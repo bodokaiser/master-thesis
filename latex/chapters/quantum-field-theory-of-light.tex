@@ -1,0 +1,117 @@
+\chapter{Quantum field theory of light}
+
+\section{Harmonic oscillator}
+
+\section{Lagrangian and mode decomposition}
+
+\subsection{Foundations}
+
+\begin{equation}
+	\mathcal{L}
+	=
+	\frac{1}{2}
+	\left(\partial_\mu\phi\right)
+	\left(\partial^\mu\phi\right)
+	-
+	\frac{1}{2}
+	m^2\phi^2
+	\label{eq:kg_lagrangian}
+\end{equation}
+
+\begin{equation}
+	0
+	=
+	\left(\partial^2+m^2\right)
+	\phi^2
+	\label{eq:kg_eom}
+\end{equation}
+
+\subsection{Canonical quantization}
+
+\begin{align}
+	\hat\phi(t,\vb{x})
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{1}{\sqrt{2\omega(\vb{p})}}
+	\left\{
+		\hat{a}(\vb{p})
+		e^{+ip_\mu x^\mu}
+		+
+		\hat{a}^\dagger(\vb{p})
+		e^{-ip_\mu x^\mu}
+	\right\}
+	\label{eq:kg_pos}
+	\\
+	\hat\phi(t,\vb{p})
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\left(-i\sqrt{2\omega(\vb{p})}\right)
+	\left\{
+		\hat{a}(\vb{p})
+		e^{+ip_\mu x^\mu}
+		-
+		\hat{a}^\dagger(\vb{p})
+		e^{-ip_\mu x^\mu}
+	\right\}
+	\label{eq:kg_mom}
+\end{align}
+
+\begin{align}
+	\comm{\hat\phi(\vb{x})}{\hat\pi(\vb{y})}
+	=
+	i\delta^{(3)}(\vb{x}-\vb{y})
+	&&
+	\comm{\hat\phi(\vb{x})}{\hat\phi(\vb{y})}
+	=
+	0
+	=
+	\comm{\hat\pi(\vb{x})}{\hat\pi(\vb{y})}
+	\label{eq:kg_comm_pm}
+\end{align}
+
+\begin{align}
+	\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+	=
+	(2\pi)^3\delta^{(3)}(\vb{p}-\vb{q})
+	&&
+	\comm{\hat{a}(\vb{p})}{\hat\phi(\vb{q})}
+	=
+	0
+	=
+	\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+	\label{eq:kg_comm_ac}
+\end{align}
+
+\subsection{Smearing functions and single-particle states}
+
+\begin{equation}
+	\ket{f}
+	=
+	\hat\phi[f]
+	\ket{0}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	f(\vb{p})\hat{a}^\dagger(\vb{p})\ket{0}
+\end{equation}
+
+\subsection{Interactions and coherent states}
+
+\section{Maxwell field}
+
+\section{Lagrangian and mode decomposition}
+
+\begin{equation}
+	\mathcal{L}
+	=
+	-
+	\frac{1}{4}
+	F_{\mu\nu}
+	F^{\mu\nu}
+	\label{eq:mw_lagrangian}
+\end{equation}
+
+\subsection{Canonical quantization}
+
+\subsection{Smeared single-particle and coherent states}
+
+\subsection{Electromagnetic field operators}
