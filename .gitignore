@@ -1,2 +1,4 @@
 .texpadtmp
 *.pdf
+*.log
+*.aux

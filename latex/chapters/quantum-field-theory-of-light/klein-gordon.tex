@@ -2,6 +2,7 @@
 
 \subsection{Relativistic field theory}
 
+The most simple non-trivial, free relativistic Lagrangian density of a real-valued scalar field $\phi$ to be constructed is
 \begin{equation}
 	\mathcal{L}
 	=
@@ -11,9 +12,9 @@
 	-
 	\frac{1}{2}
 	m^2\phi^2
-	\label{eq:kg_lagrangian}
+	\label{eq:kg_lagrangian}.
 \end{equation}
-
+The field equation of motion are found by the relativistic Euler-Lagrange equations
 \begin{equation}
 	0
 	=
@@ -25,46 +26,214 @@
 	\phi(t,\vb{x})
 	\label{eq:kg_eom}
 \end{equation}
-
+which minimize the action.
+Assuming the existence of the Fourier transform of the field
 \begin{equation}
 	\phi(t,\vb{x})
 	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
 	\phi(t,\vb{p})e^{+i\vb{p}\vdot\vb{x}}
 	=
-	\int\frac{\dd[4]{p}}{(2\pi)^4}
+	\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
 	\phi(p_0,\vb{p})e^{-ip_\mu x^\mu}
-	\label{eq:kg_ft}
+	\label{eq:kg_ft_naive},
 \end{equation}
-
+and inserting the Fourier transform into the equation of motion reduces \cref{eq:kg_eom} to
 \begin{equation}
-	0
-	=
-	(p_\mu p^\mu-m^2)\phi(p_0,\vb{p})
-	=
-	(p_0^2-\vb{p}^2-m^2)\phi(p_0,\vb{p})
+	\begin{split}
+		0
+		&=
+		(ip_\mu ip^\mu+m^2)\phi(p_0,\vb{p})
+		\\
+		&=
+		-(p_\mu p^\mu-m^2)\phi(p_0,\vb{p})
+		\\
+		&=
+		-(p_0^2-\vb{p}^2-m^2)\phi(p_0,\vb{p})
+		\\
+		&=
+		-\left(p_0^2-\omega(\vb{p})^2\right)\phi(p_0,\vb{p})
+	\end{split}
 	\label{eq:kg_eom_ft}
 \end{equation}
-
+where we defined the relativistic energy-momentum (or dispersion) relation
 \begin{equation}
+	E(\vb{p})
+	=
 	\omega(\vb{p})
 	=
 	\sqrt{\vb{p}^2+m^2}
-	\label{eq:energy_momentum}
+	\label{eq:energy_momentum_relation}.
 \end{equation}
-
+By restricting the integration domain to the momentum lightcone
 \begin{equation}
 	V
 	=
 	\left\{
 		(p_0,\vb{p})\in\mathbb{R}^4
-		\mid\vert
-		p_0^2=\omega(\vb{p})
+		\mid
+		p_0^2=\omega(\vb{p})^2
 	\right\}
+	\label{eq:momentum_lightcone},
+\end{equation}
+we ensure that the Fourier modes satisfy the equation of motion.
+It is sensible to rewrite the restricted Fourier mode expansion
+\begin{equation}
+	\begin{split}
+		\phi(t,\vb{x})
+		&=
+		\int_V\frac{\dd[4]{p}}{(2\pi)^4}
+		\phi(p_0,\vb{p})e^{-ip_\mu x^\mu}
+		\\
+		&=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
+		\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
+		\phi(p_0,\vb{p})e^{-ip_\mu x^\mu}
+		\\
+		&=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left\{
+			a(\vb{p})
+			e^{-i\omega(\vb{p})t}
+			+
+			a(\vb{p})
+			e^{+i\omega(\vb{p})t}
+		\right\}
+		e^{i\vb{p}\vdot\vb{x}}
+		\\
+		&=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left\{
+			a(\vb{p})
+			e^{-i\omega(\vb{p})t}
+			e^{+i\vb{p}\vdot\vb{x}}
+			+
+			a(-\vb{p})
+			e^{+i\omega(\vb{p})t}
+			e^{-i\vb{p}\vdot\vb{x}}
+		\right\}
+		\\
+		&=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\eval{\left\{
+			a(\vb{p})
+			e^{-ip_\mu x^\mu}
+			+
+			a(-\vb{p})
+			e^{+ip_\mu x^\mu}
+		\right\}}_{p_0=\omega(\vb{p})}
+	\end{split}
+	\label{eq:kg_ft_final}
+\end{equation}
+where we used the composition property of the delta distribution
+\begin{equation}
+	\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
+	=
+	\frac{
+		\delta^{(1)}\left(p_0-\omega(\vb{p})\right)
+		+
+		\delta^{(1)}\left(p_0+\omega(\vb{p})\right)
+	}{\sqrt{2\omega(\vb{p})}}
+	\label{eq:kg_em_delta}
+\end{equation}
+and defined $a(\vb{p})=\phi(\omega(\vb{p}),\vb{p})$ which has conjugate symmetry, $a(-\vb{p})=a(\vb{p})^*$ as $\phi(t,\vb{x})$ is real-valued.
+
+We close the chapter by transitioning from Lagrangian to Hamiltonian field mechanics.
+The canonical momentum density is given by
+\begin{equation}
+	\pi(t,\vb{x})
+	=
+	\partial_t\pdv{\mathcal{L}}{(\partial_t\phi)}
+	=
+	\partial_t\phi(t,\vb{x})
+	\label{eq:canonical_momentum}
+\end{equation}
+and we find the conjugate variables to be
+\begin{align}
+	\hat\phi(t,\vb{x})
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{1}{\sqrt{2\omega(\vb{p})}}
+	\left\{
+		a(\vb{p})
+		e^{+ip_\mu x^\mu}
+		+
+		a(\vb{p})^*
+		e^{-ip_\mu x^\mu}
+	\right\}
+	\label{eq:kg_pos}
+	\\
+	\hat\phi(t,\vb{p})
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\left(-i\sqrt{2\omega(\vb{p})}\right)
+	\left\{
+		a(\vb{p})
+		e^{+ip_\mu x^\mu}
+		-
+		a(\vb{p})^*
+		e^{-ip_\mu x^\mu}
+	\right\}
+	\label{eq:kg_mom}.
+\end{align}
+Field observables are encoded in the canonical energy-momentum, sometimes called (Hilbert) stress-energy, tensor
+\begin{equation}
+	T^{\mu\nu}
+	=
+	\pdv{\mathcal{L}}{(\partial_\mu\phi)}\partial^\nu\phi
+	-
+	g^{\mu\nu}\mathcal{L}
+	\label{eq:energy_momentum_tensor}.
+\end{equation}
+For instance, the time-time component
+\begin{equation}
+	T^{00}
+	=
+	\frac{1}{2}
+	\left\{
+		\left(\partial_t\phi\right)^2
+		+
+		\left(\grad\phi\right)^2
+		+
+		\left(m\phi\right)^2
+	\right\}
+	=
+	\mathcal{H}
+	\label{eq:kg_energy_density}
+\end{equation}
+yields the energy density which integrated becomes the total energy
+\begin{equation}
+	H
+	=
+	\int\dd[3]{x}\mathcal{H}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\omega(\vb{p})\abs{a(\vb{p})}^2
+	\label{eq:kg_total_energy},
+\end{equation}
+and the time-spatial components evaluate to the momentum density
+\begin{equation}
+	T^{0i}
+	=
+	-\pi(t,\vb{x})\partial_i\phi(t,\vb{x})
+	=
+	p_i
+	\label{eq:kg_momentum_density}
+\end{equation}
+which integrated yields the total momentum
+\begin{equation}
+	\vb{P}
+	=
+	\int\dd[3]{x}T^{0i}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\vb{p}\abs{a(\vb{p})}^2
+	\label{eq:kg_total_momentum}.
 \end{equation}
 
 \subsection{Canonical quantization}
 
+In the canonical quantization procedure, we promote the dynamical field variables to operators
 \begin{align}
 	\hat\phi(t,\vb{x})
 	&=
@@ -77,7 +246,7 @@
 		\hat{a}^\dagger(\vb{p})
 		e^{-ip_\mu x^\mu}
 	\right\}
-	\label{eq:kg_pos}
+	\label{eq:qkg_pos}
 	\\
 	\hat\phi(t,\vb{p})
 	&=
@@ -90,9 +259,9 @@
 		\hat{a}^\dagger(\vb{p})
 		e^{-ip_\mu x^\mu}
 	\right\}
-	\label{eq:kg_mom}
+	\label{eq:qkg_mom}
 \end{align}
-
+satisfying the canonical commutation relations
 \begin{align}
 	\comm{\hat\phi(\vb{x})}{\hat\pi(\vb{y})}
 	=
@@ -103,9 +272,10 @@
 	0
 	=
 	\comm{\hat\pi(\vb{x})}{\hat\pi(\vb{y})}
-	\label{eq:kg_comm_pm}	
+	\label{eq:qkg_comm_pm}	
 \end{align}
-
+which encode the uncertainty relation.
+Inserting \cref{eq:qkg_pos} and \cref{eq:qkg_mom} into \cref{eq:qkg_comm_pm} reveals the commutation relations for the Fourier mode operators
 \begin{align}
 	\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
 	=
@@ -116,8 +286,84 @@
 	0
 	=
 	\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}^\dagger(\vb{q})}
-	\label{eq:kg_comm_ac}
+	\label{eq:kg_comm_ac}.
 \end{align}
+Extending the corresponding principle by normal-ordering and applying it to the classical energy and momentum observables, \cref{eq:kg_total_energy} and \cref{eq:kg_total_momentum}, we find
+\begin{align}
+	\hat{H}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\omega(\vb{p})\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})
+	&&
+	\hat{\vb{P}}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\vb{p}\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})
+	\label{eq:qkg_total_energy_momentum}.
+\end{align}
+
+\subsubsection{Vacuum and momentum eigenstates}
+Existence of a unique (?) vacuum state $\ket{0}$ for which we find
+\begin{equation}
+	\expval{\hat{H}}{0}
+	=
+	0
+	=
+	\expval{\hat{\vb{p}}}{0}
+	\label{eq:qkg_expval_energy_momentum_vacuum}.
+\end{equation}
+The first and second moment of the momentum operator
+\begin{align}
+	\expval{\hat{a}(\vb{p})\hat{\vb{P}}\hat{a}^\dagger(\vb{p})}{0}
+	\propto
+	\vb{p}
+	&&
+	\expval{\hat{a}(\vb{p})\hat{\vb{P}}^2\hat{a}^\dagger(\vb{p})}{0}
+	\propto
+	\vb{p}^2
+\end{align}
+suggest that $\hat{a}^\dagger(\vb{p})\ket{0}=\ket{\vb{p}}$ is a momentum eigenstate, and
+\begin{equation}
+	\expval{\hat{\vb{P}}}{\vb{p}_1,\vb{p}_2}
+	\propto
+	\vb{p}_1+\vb{p}_2
+\end{equation}
+where we defined
+\begin{equation}
+	\ket{\vb{p}_1,\vb{p}_2}
+	=
+	\hat{a}^\dagger(\vb{p}_2)\ket{\vb{p}_1}
+	=
+	\hat{a}^\dagger(\vb{p}_2)\hat{a}^\dagger(\vb{p}_1)\ket{0}
+	=
+	\hat{a}^\dagger(\vb{p}_1)\hat{a}^\dagger(\vb{p}_2)\ket{0}
+	=
+	\ket{\vb{p}_2,\vb{p}_1}
+\end{equation}
+suggests that $\hat{a}^\dagger(\vb{p})$ acting on a state to the right, adds an excitation with momentum $\vb{p}$ to the field.
+
+The momentum eigenstates are not normalizable
+\begin{equation}
+	\bra{\vb{p}}\ket{\vb{p}}
+	=
+	\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{p})}{0}
+	=
+	(2\pi)^3\delta^{(3)}(0)
+\end{equation}
+because $\delta^{(3)}(0)$ has no consistent mathematical definition but $\bra{\vb{p}}\ket{\vb{p}}$ appears. in all observables associated with the momentum eigenstates.
+Actually, the wave function
+\begin{equation}
+	\psi(0,\vb{x})
+	=
+	\bra{0}\hat\phi(0,\vb{x})\ket{\vb{p}}
+	=
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+	e^{-i\vb{q}\vdot\vb{x}}
+	=
+	e^{-i\vb{p}\vdot\vb{x}}
+\end{equation}
+is a plane-wave which is not square-integrable and therefore not an element of the Hilbert space.
 
 \subsection{Smearing and single-particle states}
 
