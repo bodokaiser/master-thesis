@@ -1,0 +1,167 @@
+\section{Klein-Gordon field}
+
+\subsection{Relativistic field theory}
+
+\begin{equation}
+	\mathcal{L}
+	=
+	\frac{1}{2}
+	\left(\partial_\mu\phi\right)
+	\left(\partial^\mu\phi\right)
+	-
+	\frac{1}{2}
+	m^2\phi^2
+	\label{eq:kg_lagrangian}
+\end{equation}
+
+\begin{equation}
+	0
+	=
+	\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu\phi)}
+	-
+	\pdv{\mathcal{L}}{\phi}
+	=
+	\left(\partial_\mu\partial^\mu+m^2\right)
+	\phi(t,\vb{x})
+	\label{eq:kg_eom}
+\end{equation}
+
+\begin{equation}
+	\phi(t,\vb{x})
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\phi(t,\vb{p})e^{+i\vb{p}\vdot\vb{x}}
+	=
+	\int\frac{\dd[4]{p}}{(2\pi)^4}
+	\phi(p_0,\vb{p})e^{-ip_\mu x^\mu}
+	\label{eq:kg_ft}
+\end{equation}
+
+\begin{equation}
+	0
+	=
+	(p_\mu p^\mu-m^2)\phi(p_0,\vb{p})
+	=
+	(p_0^2-\vb{p}^2-m^2)\phi(p_0,\vb{p})
+	\label{eq:kg_eom_ft}
+\end{equation}
+
+\begin{equation}
+	\omega(\vb{p})
+	=
+	\sqrt{\vb{p}^2+m^2}
+	\label{eq:energy_momentum}
+\end{equation}
+
+\begin{equation}
+	V
+	=
+	\left\{
+		(p_0,\vb{p})\in\mathbb{R}^4
+		\mid\vert
+		p_0^2=\omega(\vb{p})
+	\right\}
+\end{equation}
+
+\subsection{Canonical quantization}
+
+\begin{align}
+	\hat\phi(t,\vb{x})
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{1}{\sqrt{2\omega(\vb{p})}}
+	\left\{
+		\hat{a}(\vb{p})
+		e^{+ip_\mu x^\mu}
+		+
+		\hat{a}^\dagger(\vb{p})
+		e^{-ip_\mu x^\mu}
+	\right\}
+	\label{eq:kg_pos}
+	\\
+	\hat\phi(t,\vb{p})
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\left(-i\sqrt{2\omega(\vb{p})}\right)
+	\left\{
+		\hat{a}(\vb{p})
+		e^{+ip_\mu x^\mu}
+		-
+		\hat{a}^\dagger(\vb{p})
+		e^{-ip_\mu x^\mu}
+	\right\}
+	\label{eq:kg_mom}
+\end{align}
+
+\begin{align}
+	\comm{\hat\phi(\vb{x})}{\hat\pi(\vb{y})}
+	=
+	i\delta^{(3)}(\vb{x}-\vb{y})
+	&&
+	\comm{\hat\phi(\vb{x})}{\hat\phi(\vb{y})}
+	=
+	0
+	=
+	\comm{\hat\pi(\vb{x})}{\hat\pi(\vb{y})}
+	\label{eq:kg_comm_pm}	
+\end{align}
+
+\begin{align}
+	\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+	=
+	(2\pi)^3\delta^{(3)}(\vb{p}-\vb{q})
+	&&
+	\comm{\hat{a}(\vb{p})}{\hat{a}(\vb{q})}
+	=
+	0
+	=
+	\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+	\label{eq:kg_comm_ac}
+\end{align}
+
+\subsection{Smearing and single-particle states}
+
+\subsubsection{Wightman axioms and smearing}
+
+\begin{align}
+	\hat\Phi[f]
+	&=
+	\int\dd[4]{x}f(t,\vb{x})\hat\Phi(t,\vb{x})
+\end{align}
+
+\begin{align}
+	\hat\phi^+[f]
+	&=
+	\int\dd[4]{x}
+	f(t,\vb{x})
+	\hat\phi^+(t,\vb{x})
+\end{align}
+
+\subsubsection{Definition}
+
+\begin{equation}
+	\ket{f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	f(\vb{p})\hat{a}^\dagger(\vb{p})\ket{0}
+\end{equation}
+
+\begin{equation}
+	\bra{f}\ket{f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs{f(\vb{p})}^2
+\end{equation}
+
+\subsubsection{Expectation values}
+
+\begin{equation}
+	\psi(t,\vb{x})
+	=
+	\bra{0}\hat\phi(t,\vb{x})\ket{f}
+	=
+\end{equation}
+
+\subsubsection{Covariant Gaussian wave packets}
+
+\subsection{Interactions and coherent states}

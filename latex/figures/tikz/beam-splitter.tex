@@ -1,0 +1,22 @@
+\documentclass{standalone}
+
+\usepackage{amsmath}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.17}
+
+\begin{document}
+    \begin{tikzpicture}
+        \draw (0, 0) -- ++(2, 0) -- ++(0, -2) -- (0, 0) -- ++(0, -2) -- ++(2, 0);
+        \draw[->] (-2, -1) -- ++(1.9, 0);
+        \draw[->] (1, 2) -- ++(0, -1.9);
+        \draw[<-] (1, -4) -- ++(0, 1.9);
+        \draw[<-] (4, -1) -- ++(-1.9, 0);
+        \node at (0.4, 1) {$E_2$};
+        \node at (-1, -1.5) {$E_1$};
+        \node at (3, -0.6) {$E_1^\prime$};
+        \node at (1.6, -3) {$E_2^\prime$};
+        \node at (1.4, -0.5) {$r^\prime,t^\prime$};
+        \node at (0.6, -1.5) {$r,t$};
+    \end{tikzpicture}
+\end{document}

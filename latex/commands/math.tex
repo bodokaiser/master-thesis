@@ -1,0 +1,25 @@
+% approximately proportional to symbol
+% https://tex.stackexchange.com/questions/33538/how-to-get-an-approximately-proportional-to-symbol
+\def\app#1#2{%
+    \mathrel{%
+        \setbox0=\hbox{$#1\sim$}%
+        \setbox2=\hbox{%
+            \rlap{\hbox{$#1\propto$}}%
+            \lower1.1\ht0\box0%
+        }%
+        \raise0.25\ht2\box2%
+    }%
+}
+\def\approxprop{\mathpalette\app\relax}
+
+% overwrite real and imaginary part operators
+\let\Re\undefined
+\let\Im\undefined
+\DeclareMathOperator{\Re}{\operatorname{Re}}
+\DeclareMathOperator{\Im}{\operatorname{Im}}
+% other functions
+\DeclareMathOperator{\sinc}{\operatorname{sinc}}
+
+% transpose
+% https://tex.stackexchange.com/questions/403104/small-caps-mathsf-font-for-writing-transpose-of-a-matrix
+\newcommand{\trans}[1]{\ensuremath{#1^{\scriptscriptstyle\mathsf{T}}}}

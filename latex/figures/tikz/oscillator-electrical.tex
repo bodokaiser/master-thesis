@@ -1,0 +1,9 @@
+\documentclass[margin=0.4cm]{standalone}
+
+\usepackage{circuitikz}
+
+\begin{document}
+	\begin{circuitikz}
+		\draw (0,0) to[L, l^=$L$, i=$I$] ++(0,4) -- ++(3,0) to[C, l^=$C$,i=$I$] ++(0,-4) -- (0,0);
+	\end{circuitikz}
+\end{document}

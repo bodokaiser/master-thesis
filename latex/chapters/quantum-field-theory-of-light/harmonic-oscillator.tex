@@ -1,0 +1,510 @@
+\section{Harmonic oscillator}
+
+\blockcquote{Sidney Coleman}{The career of a young theoretical physicist consists of treating the harmonic oscillator in ever-increasing levels of abstraction.}
+
+\subsection{Examples and quadratic approximation}
+
+To illustrate Coleman's quote, let us consider two at first glance very different physical systems showing the same dynamics.
+The left-hand side of \Cref{fig:ho} depicts a mechanical oscillator comprising a spring and a mass $m$ at different times.
+The right-hand side of \Cref{fig:ho} depicts an electrical oscillator comprising an inductor with inductance $L$, a capacitor with capacitance $C$, and a current $i$.
+\begin{figure}[htb]
+    \centering
+    \subfloat[\centering Mechanical oscillator]{\includestandalone[mode=buildnew]{figures/tikz/oscillator-mechanical}}
+    \qquad
+    \subfloat[\centering Electrical oscillator]{\includestandalone[mode=buildnew]{figures/tikz/oscillator-electrical}}
+    \caption{Two embodiments of a oscillator based on classical mechanics (a) and electronic circuit theory (b).}\label{fig:ho}
+\end{figure}
+If we assume the spring of the mechanical oscillator to exert a force proportional to $q(t)$ on the point mass $m$\footnote{For small deviations from the equilibrium, $\abs{q(t)}\ll1$, experiments justify a linear force for the spring.}, Newtonian mechanics relate the spring's force to the particle's acceleration
+\begin{equation}
+    m\ddot{q}
+    =
+    F
+    =
+    -kq
+    \label{eq:ho_newton}
+\end{equation}
+wherein $k$ is the proportionality factor of the spring's force, known as the spring constant.
+From circuit theory, we know that the effect of an inductance $L$ and capacitance $C$ on their respective current and voltage
+\begin{align}
+    V_L
+    =
+    L\dv{I_L}{t}
+    ,&&
+    I_C
+    =
+    C\dv{V_C}{t}
+    .
+\end{align}
+Kirchhoff's current law tells us that the same current $I=I_L=I_C$ flows through the inductor and the capacitor while Kirchhoff's voltage law that the sum of the voltage drops $V_L+V_C$ is equal to zero, hence
+\begin{equation}
+    \dv[2]{I}{t}
+    =
+    \frac{1}{L}\dv{V_C}{t}
+    =
+    -\frac{1}{L}\dv{V_L}{t}
+    =
+    -\frac{1}{LC}I
+    \label{eq:ho_current}.
+\end{equation}
+On first sight, \cref{eq:ho_newton} and \cref{eq:ho_current} appear quite different.
+If we define $\omega_0=k/m$ for the mechanical and $\omega_0=1/\sqrt{LC}$ for the electrical oscillator, and adjust our notation, \cref{eq:ho_newton} and \cref{eq:ho_current} take the form
+\begin{align}
+    \ddot{q}
+    =
+    -\omega_0^2q
+    ,&&
+    \ddot{I}
+    =
+    -\omega_0^2I
+    \label{eq:ho_me}
+\end{align}
+which is remarkable as the fundamental physics behind the electrical and mechanical oscillator are very different.
+Integration of the harmonic oscillator's equations of motion, \cref{eq:ho_me}, yields
+\begin{equation}
+    E
+    =
+    \frac{1}{2}m\dot{q}^2
+    +
+    \frac{1}{2}m\omega_0^2q^2
+    \label{eq:ho_energy}
+\end{equation}
+where the integration constant $E$ has the interpretation of being the energy available to the system.
+
+Most physical problems reduce to the harmonic oscillator after performing a series expansion up of the potential in a dynamical variable up to quadratic (or harmonic) order.\footnote{The harmonic oscillator is the most simple non-trivial system for which there exists a closed solution.}
+To clarify, let us consider the energy of a physical system with potential $V(q)$
+\begin{equation}
+    E
+    =
+    \frac{1}{2}m^2\dot{q}^2
+    +
+    V(q)
+    \label{eq:pp_energy}.
+\end{equation}
+We perform a Taylor series expansion of the potential around some configuration $q_0$ minimizing the potential energy
+\begin{equation}
+    V(q)
+    =
+    \sum_{n=1}\frac{1}{n!}\eval{\dv[n]{V}{q}}_{q_0}(q-q_0)^n
+    =
+    \frac{1}{2}\eval{\dv[2]{V}{q}}_{q_0}(q-q_0)^2
+    +
+    \mathcal{O}(q^3)
+    \label{eq:pp_potential}
+\end{equation}
+and recover the potential energy of the harmonic oscillator given in \cref{eq:ho_energy}.
+In physics we mainly deal with continuously differentiable functions\footnote{Discontinuities in motion are unphysical in the sense that they require infinite energy. An exception being macroscopic or stochastic dynamics, e.g., Brownian motion.} for which a Taylor series exists.
+If we find an equilibrium configuration of our physical system, a finite expansion around such point yields in most cases a very good approximation of the problem, and the harmonic solution to the quadratic term describes the dominating dynamics.
+
+\subsection{Fourier analysis of the equation of motion}
+
+A closed solution to the differential equation encoding the harmonic dynamics
+\begin{equation}
+    \ddot{q}
+    =
+    -\omega_0^2q
+    \label{eq:ho_eom}
+\end{equation}
+can be found using Fourier analysis.
+Physical systems have finite energy, \Cref{eq:ho_energy}, the dynamical variable $q(t)$ is square-integrable\footnote{Let $q^*$ be a global maximum, then we have $E=\frac{k}{2}{q^*}^2$, and thus $\int_0^T\dd{t}q(t)^2<\int_0^T2E/k=2ET/k<\infty$, i.e., $q(t)$ is square-integrable on $[0,T]$.} and the (inverse) Fourier transform
+\begin{equation}
+    q(t)
+    =
+    \int_0^T\dd{\omega}e^{i\omega t}q(\omega)
+    \label{eq:ho_ft}
+\end{equation}
+exists.
+Inserting \cref{eq:ho_ft} into \cref{eq:ho_eom} reduces the differential equation, \cref{eq:ho_eom}, to the algebraic equation
+\begin{equation}
+    -\omega^2q(\omega)
+    =-\omega_0^2q(\omega)
+    \label{eq:ho_eom_ft}
+\end{equation}
+which is solved by
+\begin{equation}
+    q(\omega)
+    =
+    c_1\delta(\omega-\omega_0)
+    +
+    c_2\delta(\omega+\omega_0)
+    \label{eq:ho_eom_ft_sol}.
+\end{equation}
+\Cref{eq:ho_eom_ft_sol} corresponds to a spectrum of two fundamental frequencies $\pm\omega_0$ with complex weights $c_1,c_2\in\mathbb{C}$.
+The requirement that $q(t)$ is real constraints the spectrum
+\begin{equation}
+    q^*(\omega)
+    =
+    q(-\omega)
+\end{equation}
+and the spectral weights of \cref{eq:ho_eom_ft_sol} must fulfill $c_1=c_2^*$.
+We introduce $A,\varphi\in\mathbb{R}$ and rewrite the spectrum, \cref{eq:ho_eom_ft_sol}, to be real
+\begin{equation}
+    q(\omega)
+    =
+    \frac{A}{2}
+    \left\{
+    \delta(\omega-\omega_0)e^{+i\varphi}
+    +
+    \delta(\omega+\omega_0)e^{-i\varphi}
+    \right\}
+    \label{eq:ho_eom_ft_sol_fin}.
+\end{equation}
+By inserting \cref{eq:ho_eom_ft_sol_fin} into \cref{eq:ho_ft}, we find our way back to the time domain
+\begin{equation}
+    q(t)
+    =
+    \frac{A}{2}
+    \int\dd{\omega}e^{i\omega t}q(\omega)
+    =
+    A\cos(\omega_0t+\varphi)
+    \label{eq:ho_eom_sol}.
+\end{equation}
+Two initial conditions, for instance, $q(0),q(T)$, fix the free parameters $A$ and $\varphi$, and \cref{eq:ho_eom_sol} describes the displacement for all subsequent times.
+
+\subsection{Lagrange and Hamilton formalism}
+
+So far, we have used Newtonian mechanics to find the equation of motion of the mechanical oscillator.
+Now, we discuss the harmonic oscillator in the language of the Lagrangian and Hamiltonian formalism which turn out to be essential for subsequent steps.
+
+The Lagrangian of the harmonic oscillator is defined as the difference between the kinetic and the potential energy
+\begin{equation}
+    L
+    =
+    \frac{1}{2}m\dot{q}^2
+    -
+    \frac{1}{2}m\omega_0^2q^2
+    \label{eq:ho_lagrangian}.
+\end{equation}
+In contrast to the Newtonian approach, where we need to account for every relevant force, the Lagrangian approach only requires knowledge of the kinetic and potential energies, which are more intuitive to suspect.\footnote{After choosing a convenient set of coordinates, the Lagrangian approach also reproduces inertial forces.}
+Given the Lagrange function, finding the equation of motion reduces to calculating the derivatives in the Euler-Lagrange equation
+\begin{equation}
+    0
+    =
+    \dv{t}\pdv{L}{\dot{q}}
+    -
+    \pdv{L}{q}
+    =
+    m\ddot{q}+m\omega_0^2q
+    \label{eq:ho_euler_lagrange}
+\end{equation}
+reproducing the equation of motion found by Newton's force force law and electrical circuit analysis \cref{eq:ho_me}.
+
+In the Hamilton approach to mechanics, we replace the time-derivative of the dynamical variable $\dot{q}$ by a new dynamical variable, the canonical momentum
+\begin{equation}
+    p
+    =
+    \pdv{L}{\dot q}
+    \label{eq:canonical_momentum}.
+\end{equation}
+Using the Legendre transformation
+\begin{equation}
+    H(p,q)
+    =
+    p\dot{q}(p,q)
+    -
+    L(p,q)
+    \label{eq:legendre_transform},
+\end{equation}
+we can cast the Lagrange function $L$ to the Hamilton function $H$.
+The Hamilton function is a function of the canonical momentum $p$ and position $q$ known as conjugate variables.
+The dynamics of the conjugate variables are determined by the Hamilton equations of motion
+\begin{align}
+    \dot{q}
+    =
+    +\pdv{H}{p}
+    =
+    +\left\{p,H\right\}
+    ,&&
+    \dot{p}
+    =
+    -\pdv{H}{q}
+    =
+    -\left\{q,H\right\}
+    \label{eq:hamilton_eom}
+\end{align}
+where we introduced the Poisson bracket operator $\left\{\cdot,\cdot\right\}$.
+The action of the Poisson bracket operator acting on two functions $f(p,q,t),g(p,q,t)$ is defined by
+\begin{equation}
+    \left\{f,g\right\}
+    =
+    \pdv{f}{q}\pdv{g}{p}
+    -
+    \pdv{f}{p}\pdv{g}{q}
+    \label{eq:poisson_bracket}.
+\end{equation}
+The Poisson bracket operator allows us to replace differential by algebraic equations.
+For example, we can rewrite the time evolution of a function $f(p,q)$ as
+\begin{equation}
+    \dv{f}{t}
+    =
+    \pdv{f}{q}\dv{q}{t}
+    +
+    \pdv{f}{p}\dv{p}{t}
+    =
+    \pdv{f}{q}\pdv{H}{p}
+    -
+    \pdv{f}{p}\pdv{H}{q}
+    =
+    \left\{f,H\right\}
+    \label{eq:hamilton_time_evol}.
+\end{equation}
+Introducing the Poisson bracket operator may appear artificial at first but it turns out that replacing the Poisson brackets with commutators leads us to quantum mechanics.
+
+For the harmonic oscillator, the canonical momentum is equal to the physical momentum $p=m\dot{q}$\footnote{Generally, the canonical momentum is not equal to the physical momentum, e.g., the canonical momentum of a particle with electrical charge $e$ in an electric field given by the vector potential $A$ is $p-eA$.} and the Hamilton function
+\begin{equation}
+    H
+    =
+    \frac{p^2}{2m}
+    +
+    \frac{m\omega_0^2}{2}q^2
+    \label{eq:ho_hamilton}
+\end{equation}
+is equal to the energy, \cref{eq:ho_energy}, rewritten in terms of the physical momentum $p=m\dot{q}$.
+The Hamilton equations of motion, \cref{eq:hamilton_eom} for the harmonic oscillator yield
+\begin{align}
+    \dot{q}
+    =
+    \frac{p}{m},
+    &&
+    \dot{p}
+    =
+    -m\omega_0^2q
+    \label{eq:ho_hamilton_eom}.
+\end{align}
+With the time derivative of the position variable $\ddot{q}=\dot{p}/m=\omega_0^2q$ we recover the equation of motion we derived with Newton, \cref{eq:ho_newton}, and the Lagrange formalism, \cref{eq:ho_eom}.
+
+\subsection{Canonical quantization and dynamical pictures}
+
+In the canonical quantization prescription, we promote the conjugate variables $q(t),p(t)$ to linear operators $\hat{q}(t),\hat{p}(t)$\footnote{In contrast to variables which can be thought of as real functions, linear operators map between vector spaces.} satisfying the commutation relation
+\begin{equation}
+    \comm{\hat{q}}{\hat{p}}
+    =
+    \hat{q}\hat{p}
+    -
+    \hat{p}\hat{q}
+    =
+    i
+    \label{eq:comm_pm},
+\end{equation}
+and thereby implementing the measurement uncertainty in quantum mechanics.\footnote{In quantum mechanics, a measurement yields an eigenvalue of an (self-adjoint) operator. If operators do not commute, they cannot be simultaneously diagonalized, thus, there exists no shared eigenbasis, and the measurement order is not independent.}
+Replacing the Poisson brackets in \cref{eq:hamilton_time_evol} with commutators yields us the time-evolution of an operator $\hat{A}(\hat{q},\hat{p})$ in the Heisenberg picture
+\begin{equation}
+    \dv{\hat{A}}{t}
+    =
+    \comm{\hat{H}}{\hat{A}}
+    \label{eq:heisenberg_time_evol}
+\end{equation}
+which is solved by unitary transformation with the time evolution operator $\hat{U}$
+\begin{equation}
+    \hat{A}(t)
+    =
+    \hat{U}^\dagger(t)
+    \hat{A}(0)
+    \hat{U}(t)
+    =
+    e^{+i\hat{H}t}\hat{A}(0)e^{-i\hat{H}t}
+    \label{eq:heisenberg_time_evol_sol}.
+\end{equation}
+In the Heisenberg picture, operators are time-dependent but states are not.
+In the Schrödinger picture, the time evolution operator $\hat{U}$ is part of the state
+\begin{equation}
+    \ket{\psi(t)}
+    =
+    \hat{U}(t)\ket{\psi(0)}
+    =
+    e^{-i\hat{H}t}\ket{\psi(0)}
+    \label{eq:schroedinger_state}.
+\end{equation}
+and the operator itself is time-independent.\footnote{Heisenberg and Schrödinger picture predict the same expectation values $\expval{\hat{A}(t)}{\psi(0)}=\expval{\hat{U}^\dagger(t)\hat{A}(0)\hat{U}}{\psi(0)}=\expval{\hat{A}(0)}{\psi(t)}$.}
+Taking the derivative w.r.t. time of \cref{eq:schroedinger_state} yields the Schrödinger equation
+\begin{equation}
+    \pdv{t}\ket{\psi(t)}
+    =
+    \hat{H}\ket{\psi(t)}
+    \label{eq:schroedinger_time_evol}.
+\end{equation}
+Solving field dynamics in the Schrödinger picture requires infinite-dimensional differential operators, which are mathematical problematic compared to the Heisenberg picture's algebraic relations~\cite[p.~19]{Fulling1989}.\footnote{Ref.~\cite[p.~19]{Fulling1989} gives an in-depth comparison of both pictures.}
+However, it is possible to solve the field dynamics in the Heisenberg picture and transform it into the Schrödinger picture to gain additional insights.
+
+\subsection{Hermite polynomials as solution to the Schrödinger equation}
+
+We perform the canonical quantization procedure and obtain the quantum Hamiltonian
+\begin{equation}
+    \hat{H}
+    =
+    \frac{\hat{p}^2}{2m}
+    +
+    \frac{m\omega_0^2}{2}\hat{q}^2
+    \label{eq:qho_hamilton}.
+\end{equation}
+The conservation of energy suggests the existence of an energy eigenbasis
+\begin{equation}
+    \hat{H}\ket{n}
+    =
+    E_n\ket{n}
+    \label{eq:qho_eigen_energy}.
+\end{equation}
+Using some length mathematical arguments and the canonical commutation relation, \cref{eq:comm_pm}, it is possible to derive~\cite[p.~27]{Mukhanov2007}
+\begin{equation}
+    \hat{p}\ket{q}
+    =
+    -i\pdv{q}\ket{q}
+    \label{eq:qho_eigen_mp}.
+\end{equation}
+Taking the self-adjoint of \cref{eq:qho_eigen_energy}, then applying $\ket{q}$ to the right, and using \cref{eq:qho_eigen_mp}, we can find the solutions to the one-dimensional quantum harmonic oscillator to solving the differential equation
+\begin{equation}
+    E_n\braket{n}{q}
+    =
+    \bra{n}\hat{H}\ket{q}
+    =
+    \left(-\frac{1}{2m}\pdv[2]{q}+\frac{m\omega_0^2}{2}q^2\right)\braket{n}{q}
+    \label{eq:qho_pdv}.
+\end{equation}
+The solution to the differential equation is~\cite[p.~51]{Griffiths2017}
+\begin{equation}
+    \psi_n(q)
+    =
+    \braket{n}{q}
+    =
+    \left(\frac{m\omega_0}{\pi}\right)^{1/4}
+    \frac{1}{\sqrt{2^nn!}}
+    H_n\left(\sqrt{m\omega_0}q\right)
+    \exp\left\{-\frac{m\omega_0}{2}q^2\right\}
+    \label{eq:qho_pdv_sol}
+\end{equation}
+wherein $H_n$ denotes the $n$th Hermite polynomial.
+It is common practice to read \cref{eq:qho_pdv_sol} as the position representation of the wave function corresponding to the $n$th energy level.
+Momentum and position representation of the wave function relate by the Fourier transform\footnote{Instead of using a position state to derive \cref{eq:qho_pdv}, we could have used a momentum state by using the momentum state equivalent of \cref{eq:qho_eigen_mp} $q\ket{p}=i\pdv{q}\ket{q}$.}
+\begin{equation}
+    \psi_n(p)
+    =
+    \bra{n}\left(\int\dd{q}\ketbra{q}{q}\right)\ket{p}
+    =
+    \int\dd{q}\braket{q}{p}\braket{n}{q}
+    =
+    \int\frac{\dd{q}}{\sqrt{2\pi}}\psi_n(q)e^{ipq}
+    \label{eq:qho_pdv_sol_mom}
+\end{equation}
+where $\braket{q}{p}=e^{ipq}/\sqrt{2\pi}$ is the solution to the differential equation one obtains after applying $\bra{p}$ to \cref{eq:qho_eigen_mp} and choosing a normalization compatible with the symmetric Fourier transform.
+The time evolution is encoded in the time evolution operator, for instance, in the Schrödinger picture, \cref{eq:schroedinger_time_evol},
+\begin{equation}
+    \psi_n(q,t)
+    =
+    \psi_n(q)
+    e^{-iE_nt}
+    .
+\end{equation}
+
+\subsection{Energy eigenstates, creation and annihilation operators}
+
+While \cref{eq:qho_pdv_sol} represents the probability amplitude dynamics in terms of position (and momentum) variables, the energy spectrum remains unknown.
+If we could factor the quantum harmonic oscillator's Hamiltonian as a product of operators, finding the energy spectrum reduces to solving an eigenvalue equation.
+It turns out that
+\begin{align}
+    \hat{x}
+    =
+    \sqrt{\frac{1}{2m\omega_0}}
+    \left(\hat{a}^\dagger+\hat{a}\right)
+    &&
+    \hat{p}
+    =
+    i\sqrt{\frac{m\omega_0}{2}}
+    \left(\hat{a}^\dagger-\hat{a}\right)
+    \label{eq:qho_pm_ac}
+\end{align}
+respective
+\begin{align}
+    \hat{a}
+    =
+    \frac{1}{\sqrt{2m\omega_0}}
+    \left(m\omega_0\hat{x}+i\hat{p}\right)
+    &&
+    \hat{a}^\dagger
+    =
+    \frac{1}{\sqrt{2m\omega_0}}
+    \left(m\omega_0\hat{x}-i\hat{p}\right)
+    \label{eq:qho_ac_pm}
+\end{align}
+is such a factorization known as the annihilation and creation operator.
+Before we cast the Hamiltonian in terms of these new operators, we need to find the commutator between them
+\begin{equation}
+    \comm{\hat{a}}{\hat{a}^\dagger}
+    =
+    \hat{a}\hat{a}^\dagger
+    -
+    \hat{a}^\dagger\hat{a}
+    =
+    1
+    \label{eq:qho_comm_ac}
+\end{equation}
+by inserting \cref{eq:qho_ac_pm} and using the commutator of the position and momentum operator, \cref{eq:comm_pm}.
+Inserting \cref{eq:qho_pm_ac} into \cref{eq:qho_hamilton} yields
+\begin{equation}
+    \hat{H}
+    =
+    \omega_0\left(\hat{a}^\dagger\hat{a}+\frac{1}{2}\right)
+    \label{eq:qho_hamilton_ac}
+\end{equation}
+after using the commutator, \cref{eq:qho_comm_ac}.
+The eigenspectrum of $\hat{a}^\dagger\hat{a}$ is equal to the natural numbers including zero $\mathbb{N}_0$~\cite[p.~506]{Cohen2019} which suggests to name
+\begin{equation}
+    \hat{N}
+    =
+    \hat{a}^\dagger\hat{a}
+    \label{eq:qho_number_operator}
+\end{equation}
+the number operator and the number state $\ket{n}$ an eigenstate thereof.
+The number operator commutes with the Hamilton operator, thus, the number state is also an energy eigenstate
+\begin{equation}
+    E_n\ket{n}
+    =
+    \hat{H}\ket{n}
+    =
+    \omega_0\left(n+\frac{1}{2}\right)
+    \label{eq:qho_number_energy}
+\end{equation}
+which answers the question of the energy spectrum of the quantum harmonic oscillator.
+
+However, there is more about the annihilation and creation operator than finding the energy spectrum, in particular, we have not yet explained why they are called annihilation and creation operator.
+Let us consider the eigenvalue of the number operator $\hat{N}$ with respect to $\hat{a}^\dagger\ket{n}$
+\begin{equation}
+    \hat{N}\hat{a}^\dagger\ket{n}
+    =
+    \left(\comm{\hat{N}}{\hat{a}^\dagger}+\hat{a}^\dagger\hat{N}\right)\ket{n}
+    =
+    (n+1)\hat{a}^\dagger\ket{n}
+    ,
+\end{equation}
+i.e., $\hat{a}^\dagger\ket{n}\propto\ket{n+1}$.
+We fix the proportionality constant by requiring $n=\expval{\hat{a}^\dagger\hat{a}}{n}$ and summarize
+\begin{equation}
+    \hat{a}^\dagger\ket{n}
+    =
+    \sqrt{n+1}\ket{n}
+    \label{eq:qho_creation}.
+\end{equation}
+We conclude that $\hat{a}^\dagger$ is the creation operator because it creates an additional excitation when acting on a number state $\ket{n}$.
+In the same sense, we find that
+\begin{equation}
+    \hat{a}\ket{n}
+    =
+    \sqrt{n}\ket{n-1}
+    \label{eq:qho_annhiliation}
+\end{equation}
+explains why $\hat{a}$ is named the annihilation operator.
+Consistency of the number states being natural numbers requires the annihilation operator to destroy the ground (or vacuum) state
+\begin{equation}
+    \hat{a}\ket{0}
+    =
+    0
+    \label{eq:qho_vacuum_annihilation}.
+\end{equation}
+Applying the creation operator iteratively, lets us construct a number state from the vacuum state via
+\begin{equation}
+    \frac{(\hat{a}^\dagger)^n}{\sqrt{n!}}\ket{0}
+    =
+    \ket{n}
+    \label{eq:qho_creation_number}.
+\end{equation}
+Annihilation and creation operators form an algebra that generalizes to highly advanced Hilbert spaces and will be used in the subsequent sections.
+
+\subsection{Coherent states from an external classical source}

@@ -1,22 +1,89 @@
-\documentclass{scrreprt}
+\documentclass[a4paper,appendixprefix,parskip]{scrreprt}
 
+\usepackage[utf8]{inputenc}
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{authblk}
+\usepackage[english]{babel}
+\usepackage[backend=biber]{biblatex}
+\usepackage{booktabs}
+\usepackage{csquotes}
+\usepackage[acronym,nonumberlist,toc]{glossaries}
+\usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{physics}
 \usepackage{siunitx}
+\usepackage[subpreambles=true]{standalone}
+\usepackage{subfig}
+
+\addbibresource{references/articles.bib}
+\addbibresource{references/books.bib}
+
+% add bibliography as section (not chapter)
+% https://tex.stackexchange.com/questions/568580/make-the-bibliography-as-a-section-in-each-included-chapter
+\defbibheading{bibliography}[\bibname]{\section*{#1}}
+
+% custom math commands (transpose, Re, ...)
+\include{commands/math}
+
+% prefix equation numbers with section number
+\numberwithin{equation}{section}
+
+\include{glossaries/acronyms}
 
 \title{A theoretical framework for quantum optical communication}
 \author{Bodo Kaiser}
+\affil{\textit{bodo.kaiser@huawei.com}}
 
 \begin{document}
 
-\maketitle
-\tableofcontents
+	\maketitle
+	\tableofcontents
 
-\include{chapters/quantum-field-theory-of-light}
-\include{chapters/quantum-optical-signal-processing}
-\include{chapters/example-cv-qkd}
+	\chapter{Quantum field theory of light}
+	\begin{refsection}
+		\include{chapters/quantum-field-theory-of-light/harmonic-oscillator}
+		\include{chapters/quantum-field-theory-of-light/klein-gordon}
+		\include{chapters/quantum-field-theory-of-light/maxwell}
+		
+		\addcontentsline{toc}{section}{References}
+		\printbibliography[title=References]
+	\end{refsection}
+	
+	\chapter{Quantum optical signal-processing}
+	\begin{refsection}
+		\section{Coherent laser source}
+		\section{Cylindrical dielectric waveguide}
+		\section{Mode coupler}
+		\section{Modulator}
+		\section{Coherent detector}
+		
+		\addcontentsline{toc}{section}{References}
+		\printbibliography[title=References]	
+	\end{refsection}
+
+	\chapter{Example: CV-QKD}
+	\begin{refsection}
+		\section{Idea and operating principle}
+		\section{Protocol}
+		\subsection{Recociliation}
+		\subsection{Classical post-processing}
+		\section{Coherent state transmitter}
+		\section{Coherent state receiver}
+		
+		\addcontentsline{toc}{section}{References}
+		\printbibliography[title=References]
+	\end{refsection}
+
+	\appendix
+
+	\chapter{Classical beam splitter}
+	\begin{refsection}
+		\include{chapters/appendix/classical-beam-splitter}
+		
+		\addcontentsline{toc}{section}{References}
+		\printbibliography[title=References]
+	\end{refsection}
 
 \end{document}
