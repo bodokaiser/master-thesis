@@ -2,15 +2,271 @@
 
 \subsection{Relativistic field theory}
 
+The Maxwell Lagrangian with an external source $J^\mu(t,\vb{x})$ is
 \begin{equation}
-	\mathcal{L}
-	=
-	-
-	\frac{1}{4}
-	F_{\mu\nu}
-	F^{\mu\nu}
+	\begin{split}
+		\mathcal{L}
+		&=
+		-
+		\frac{1}{4}
+		F_{\mu\nu}
+		F^{\mu\nu}
+		+
+		A_\mu J^\mu
+		\\
+		&=
+		\frac{1}{2}
+		\left(\partial_\mu A_\nu\right)
+		\left(\partial^\mu A^\nu-\partial^\nu A^\mu\right)
+		+
+		A_\mu J^\mu
+	\end{split}
 	\label{eq:mw_lagrangian}
 \end{equation}
+with the relativistic Euler-Lagrange equation yielding
+\begin{equation}
+	0
+	=
+	\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+	-
+	\pdv{\mathcal{L}}{A_\nu}
+	=
+	\partial_\mu\partial^\mu A^\nu
+	-
+	\partial^\nu\partial_\mu A^\mu
+	-
+	J^\nu	
+	\label{eq:mw_eom}	
+\end{equation}
+
+\subsection{Coulomb gauge}
+
+The Maxwell Lagrangian is invariant under local gauge transformations
+\begin{equation}
+	A_\mu(t,\vb{x})
+	\to
+	A_\mu^\prime(t,\vb{x})
+	=
+	A_\mu(t,\vb{x})
+	+
+	\partial_\mu\Lambda(t,\vb{x})
+	\label{eq:mw_local_gauge_transform}
+\end{equation}
+where $\Lambda(t,\vb{x})$ is a local gauge field.
+For instance, the physical field-strength tensor transforms under \cref{eq:mw_local_gauge_transform} as
+\begin{equation}
+	\begin{split}
+		F_{\mu\nu}
+		\to
+		F_{\mu\nu}^\prime
+		&=
+		\partial_\mu\left(A_\nu+\partial_\nu\Lambda\right)
+		-
+		\partial_\nu\left(A_\mu+\partial_\mu\Lambda\right)
+		\\
+		&=
+		F_{\mu\nu}
+		+
+		\partial_\mu\partial_\nu\Lambda
+		-
+		\partial_\nu\partial_\mu\Lambda
+		=
+		F_{\mu\nu}
+	\end{split}
+	\label{eq:mw_field_strength_gauge_transform}.
+\end{equation}
+The invariance of the Maxwell field under local gauge transformation is used to remove a degree of freedom from the field using a gauge condition.
+The most popular gauge conditions are the Lorentz gauge $\partial_\mu A^\mu=0$ and the Coulomb gauge $\div\vb{A}=0$.
+While the Lorentz gauge is manifest Lorentz invariant it suffers from unphysical scalar and longitudinal polarization states destroying unitarity.
+The Coulomb gauge is manifest unitarity but has to be imposed in every reference frame.
+As Lorentz boosts are not of interest for us, we will adapt the Coulomb gauge condition.
+The Coulomb gauge leaves a residual gauge freedom which allows us to choose $A_0=0$.\footnote{If external static sources are present, we need to be more careful with the residual gauge fixing.}
+
+Applying the Coulomb gauge
+\begin{align}
+	\div\vb{A}(t,\vb{x})
+	=
+	0
+	&&
+	A_0
+	=
+	0
+	\label{eq:mw_coulomb_gauge}
+\end{align}
+to the free equation of motion \cref{eq:mw_eom} yields the relativistic wave equation
+\begin{equation}
+	0
+	=
+	\partial_\mu\partial^\mu
+	\vb{A}(t,\vb{x})
+	=
+	\partial_t^2
+	\vb{A}(t,\vb{x})
+	-
+	\grad^2
+	\vb{A}(t,\vb{x})
+	\label{eq:mw_relatistic_wave}
+\end{equation}
+which is solved by plane-waves satisfying the massless dispersion relation
+\begin{equation}
+	\omega(\vb{p})
+	=
+	\norm{\vb{p}}
+\end{equation}
+
+\subsection{Mode decomposition}
+
+As with the Klein-Gordon field, we start with the four-dimensional Fourier transform of $A^\mu(t,\vb{x})$, insert it into the free equations of motion ($J^\mu=0$), and perform the mode decomposition
+\begin{equation}
+	\vb{A}(t,\vb{x})
+	=
+	\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left\{
+		a_\lambda(\vb{p})
+		\vb{\epsilon}_\lambda(\vb{p})
+		e^{-ip_\mu x^\mu}
+		+
+		\text{c.c.}
+	\right\}
+	\label{eq:mw_ft}
+\end{equation}
+where we defined $a_\lambda(\vb{p})\vb{\epsilon}_\lambda(\vb{p})=\vb{A}(\omega(\vb{p}),\vb{p})$ and $\vb{\epsilon}_\lambda(\vb{p})$ denotes the polarization vectors.
+For the mode decomposition to satisfy the Coulomb gauge, the polarization vectors $\vb{\epsilon}_\lambda(\vb{p})$ need to be orthogonal to the wave vector $\vb{p}$, i.e.,
+\begin{equation}
+	\vb{p}\vdot\vb{\epsilon}_\lambda(\vb{p})
+	=
+	0	
+\end{equation}
+Furthermore, we require the $\vb{p}/\norm{\vb{p}},\vb{\epsilon}_1(\vb{p}),\vb{\epsilon}_2(\vb{p})$ to form a orthonormal basis
+\begin{equation}
+	\vb{\epsilon}_i(\vb{p})
+	\vdot
+	\vb{\epsilon}_j(\vb{p})
+	=
+	\delta_{ij}
+\end{equation}
+
+\subsection{Maxwell equations}
+
+The covariant inhomogeneous Maxwell equations are obtained from the equations of motion
+\begin{equation}
+	J^\nu
+	=
+	\partial_\mu F^{\mu\nu}
+	=
+	\partial_\mu\partial^\mu A^\nu
+	-
+	\partial^\nu\partial_\mu A^\mu
+	\label{eq:mw_inhomo},
+\end{equation}
+and the covariant homogeneous Maxwell equations are a consequence of the Bianchi identity
+\begin{equation}
+	0
+	=
+	\partial_\mu\tilde{F}^{\mu\nu}
+	\label{eq:mw_homo}
+\end{equation}
+where we defined $\tilde{F}^{\mu\nu}=\frac{1}{2}\varepsilon^{\mu\nu\alpha\beta}F_{\alpha\beta}$.
+
+The components of the field-strength tensor $F^{\mu\nu}$ relate to the electromagnetic field components via
+\begin{align}
+	F^{0i}
+	=
+	-E^i
+	&&
+	F^{ij}
+	=
+	-\varepsilon^{ijk}B_k
+	\label{eq:mw_em_components}.
+\end{align}
+Evaluating the time component of \cref{eq:mw_homo} yields the Gauss' law for magnetism
+\begin{equation}
+	\begin{split}
+		0
+		=
+		\varepsilon_{0\lambda\mu\nu}\partial^\lambda F^{\mu\nu}
+		&=
+		\varepsilon_{0ijk}\partial^iF^{jk}
+		\\
+		&=
+		-
+		\varepsilon_{ijk}\varepsilon_{ljk}
+		\partial^i B_l
+		=
+		2\partial_iB^i
+	\end{split}
+	\label{eq:mw_gauss_law_mag}
+\end{equation}
+and the spatial component yields Ampere's circuit law
+\begin{equation}
+	\begin{split}
+		0
+		=
+		\varepsilon_{i\lambda\mu\nu}
+		\partial^\lambda
+		F^{\mu\nu}
+		&=
+		-
+		\varepsilon_{ijk}
+		\varepsilon^{ljk}
+		\partial_t B_l
+		-
+		2\varepsilon_{ijk}
+		\partial^jE^k
+		\\
+		&=
+		\partial_tB_i
+		+
+		\varepsilon_{ijk}
+		\partial^jE_k
+	\end{split}
+	\label{eq:mw_ampere_law}.
+\end{equation}
+The time component of the inhomogeneous covariant Maxwell equation \cref{eq:mw_inhomo} yields Gauss' law
+\begin{equation}
+	J^0
+	=
+	\rho
+	=
+	\partial_\mu F^{\mu\nu}
+	=
+	\partial_i E^i
+	\label{eq:mw_gauss_law},
+\end{equation}
+and the spatial component yields Faraday's law of induction
+\begin{equation}
+	J^i
+	=
+	\partial_\mu F^{\mu i}
+	=
+	-\partial_t E^i
+	+\varepsilon^{ijk}\partial_j B_k
+	\label{eq:mw_faraday_law}.
+\end{equation}
+and we derived the vector Maxwell equations from first principles
+\begin{align}
+	\div\vb{E}
+	=
+	\rho
+	&&
+	\div\vb{B}
+	=
+	0
+	\label{eq:mw_homo_vec}
+	\\
+	\curl\vb{E}
+	=
+	-
+	\partial_t\vb{B}
+	&&
+	\curl\vb{B}
+	=
+	\vb{J}
+	+
+	\partial_t\vb{E}
+	\label{eq:mw_inhomo_vec}
+\end{align}
 
 \subsection{Canonical quantization}
 

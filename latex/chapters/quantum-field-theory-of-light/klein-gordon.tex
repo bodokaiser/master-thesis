@@ -163,7 +163,7 @@ and we find the conjugate variables to be
 	\right\}
 	\label{eq:kg_pos}
 	\\
-	\hat\phi(t,\vb{p})
+	\hat\pi(t,\vb{p})
 	&=
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\left(-i\sqrt{2\omega(\vb{p})}\right)
@@ -248,7 +248,7 @@ In the canonical quantization procedure, we promote the dynamical field variable
 	\right\}
 	\label{eq:qkg_pos}
 	\\
-	\hat\phi(t,\vb{p})
+	\hat\pi(t,\vb{p})
 	&=
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\left(-i\sqrt{2\omega(\vb{p})}\right)
@@ -301,6 +301,15 @@ Extending the corresponding principle by normal-ordering and applying it to the 
 	\vb{p}\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})
 	\label{eq:qkg_total_energy_momentum}.
 \end{align}
+In analogy with the quantum harmonic oscillator, we define the number operator to be
+\begin{equation}
+	\hat{N}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\hat{a}^\dagger(\vb{p})
+	\hat{a}(\vb{p})
+	\label{eq:qkg_number}.
+\end{equation}
 
 \subsubsection{Vacuum and momentum eigenstates}
 Existence of a unique (?) vacuum state $\ket{0}$ for which we find
@@ -365,49 +374,187 @@ Actually, the wave function
 \end{equation}
 is a plane-wave which is not square-integrable and therefore not an element of the Hilbert space.
 
+Decomposing the Klein-Gordon field into a positive and negative frequency part
+\begin{equation}
+	\hat\phi(t,\vb{x})
+	=
+	\hat\phi^+(t,\vb{x})
+	+
+	\hat\phi^+(t,\vb{x})
+\end{equation}
+where the positive frequency part is defined to be
+\begin{equation}
+	\hat\phi(t,\vb{x})
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	e^{-ip_\mu x^\mu}
+	\hat{a}^\dagger(\vb{p})
+\end{equation}
+and the negative frequency part $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$.
+The field operator acting on the vacuum
+\begin{equation}
+	\hat\phi(t,\vb{x})\ket{0}
+	=
+	\hat\phi^+(t,\vb{x})\ket{0}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	e^{-ip_\mu x^\mu}
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+\end{equation}
+appears to resemble the relativistic Fourier transform of an momentum eigenstate.
+In that sense $\hat\phi(t,\vb{x})\ket{0}$ corresponds to a particle localized exactly at $t,\vb{x}$
+
 \subsection{Smearing and single-particle states}
 
 \subsubsection{Wightman axioms and smearing}
 
-\begin{align}
+According to Wightman quantum field theory, a quantum field $\hat\Phi$ is an operator-valued tempered distribution which needs be combined with some Lorentz-invariant Schwartz function $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{K})$
+\begin{equation}
 	\hat\Phi[f]
-	&=
-	\int\dd[4]{x}f(t,\vb{x})\hat\Phi(t,\vb{x})
-\end{align}
+	=
+	\int\dd[4]{x}f(t,\vb{x})\hat\Phi(t,\vb{x})	
+\end{equation}
+to avoid ambiguities arising from the idealized non-physical ultra-localized momentum states.
 
+\subsubsection{Definition smeared single-particle state}
+
+Smearing the positive frequency operator $\hat\phi^+$  with $f$ and defining $f(\vb{p})=f(\omega(\vb{p}),\vb{p})$
 \begin{align}
 	\hat\phi^+[f]
 	&=
 	\int\dd[4]{x}
 	f(t,\vb{x})
 	\hat\phi^+(t,\vb{x})
+	\\
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left(
+		\int\dd[4]{x}
+		f(t,\vb{x})
+		e^{-ip_\mu x^\mu}
+	\right)
+	\hat{a}^\dagger(\vb{p})
+	\\
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	f(\vb{p})
+	\hat{a}^\dagger(\vb{p})
 \end{align}
-
-\subsubsection{Definition}
-
+and extrapolating from the known action of $\hat\phi^+$ on the vacuum, suggests
 \begin{equation}
 	\ket{f}
 	=
 	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	f(\vb{p})\hat{a}^\dagger(\vb{p})\ket{0}
 \end{equation}
-
+to represent a smeared particle state with localization in spacetime $f(t,\vb{x})$ respective momentum space $f(\vb{p})$.
+Normalization of the smeared particle state restricts the smearing function to satisfy
 \begin{equation}
 	\bra{f}\ket{f}
 	=
 	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 	\abs{f(\vb{p})}^2
+	=
+	1
 \end{equation}
 
-\subsubsection{Expectation values}
+\subsubsection{Characteristics (expectation values)}
 
+To get a better "feel" for the smeared particle state, we evaluate some expectation values.
+Most trivially, we find the first two moments of the number operator to equal
+\begin{equation}
+	\expval{\hat{N}}{f}
+	=
+	1
+	=
+	\expval{\hat{N}^2}{f}
+\end{equation}
+suggesting $\ket{f}$ to be a single-particle number state.
+Similar the total energy and momentum are given by
+\begin{align}
+	\expval{\hat{H}}{f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\omega(\vb{p})\abs{f(\vb{p})}^2
+	&&
+	\expval{\hat{\vb{P}}}{f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\vb{p}\abs{f(\vb{p})}^2
+\end{align}
+which allows the interpretation of $f(\vb{p})$ as a spectral weight.
+
+From the spacetime representation of the wave function
 \begin{equation}
 	\psi(t,\vb{x})
 	=
 	\bra{0}\hat\phi(t,\vb{x})\ket{f}
-	=
 \end{equation}
+we can calculate the probability current
+\begin{equation}
+	j^\mu
+	=
+	i\left(
+		\psi^*\partial_\mu\psi
+		-
+		\psi\partial_\mu\psi^*
+	\right)
+	\label{eq:qkg_probability_current}
+\end{equation}
+from which we can calculate many interesting properties~\cite{Naumov2013}.
+The probability density $\rho=j_0$ has proper normalization
+\begin{equation}
+	\int\dd[3]{x}\rho(t,\vb{x})
+	=
+	1
+\end{equation}
+and the probability current yields the (group) velocity
+\begin{equation}
+	\int\dd[3]{x}\vb{j}(t,\vb{x})
+	=
+	\overline{\vb{v}}
+	\label{qkg:group_velocity}.
+\end{equation}
+The mean center-of-mass can be expressed in terms of the velocity
+\begin{equation}
+	\overline{\vb{x}}
+	=
+	\int\dd[3]{x}\vb{x}\rho(t,\vb{x})
+	=
+	\overline{\vb{v}}t
+	\label{qkg:mean_position}
+\end{equation}
+which gives the smeared single-particle state a sensible interpretation in terms of localization and speed.
+
+The time-dependent variance of the position
+\begin{equation}
+	\sigma_x^2(t)
+	=
+	\sigma_x^2(0)
+	+
+	\sigma_v^2t^2
+\end{equation}
+can be interpreted as dispersion.
 
 \subsubsection{Covariant Gaussian wave packets}
+
+Naumov~\cite{Naumov2013} discusses a covariant Gaussian wave packet. In particular
+\begin{equation}
+	f(\vb{p})
+	\propto
+	\exp\left\{\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma_p^2}\right\}
+\end{equation}
+describes a covariant Gaussian wave packet localized at $\vb{k}$ in momentum space.
+Assuming $\sigma_P$ to be small, we can perform a series expansion of the dispersion relation and obtain
+\begin{equation}
+	f(\vb{p})
+	=
+	\sqrt{2m}
+	\left(\frac{2\pi}{\sigma_p^2}\right)^{3/4}
+	\exp\left\{
+		-\frac{(\vb{p}-\vb{k}_\parallel)^2}{4\sigma_{p\parallel}^2}
+	\right\}
+\end{equation}
 
 \subsection{Interactions and coherent states}
