@@ -445,11 +445,36 @@ and extrapolating from the known action of $\hat\phi^+$ on the vacuum, suggests
 \begin{equation}
 	\ket{f}
 	=
+	\hat\phi[f]\ket{0}
+	=
+	\hat\phi^+[f]\ket{0}
+	=
 	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	f(\vb{p})\hat{a}^\dagger(\vb{p})\ket{0}
 \end{equation}
 to represent a smeared particle state with localization in spacetime $f(t,\vb{x})$ respective momentum space $f(\vb{p})$.
-Normalization of the smeared particle state restricts the smearing function to satisfy
+The probability amplitude to measure $\ket{g}$ given $\ket{f}$ was prepared is
+\begin{equation}
+	\begin{split}
+		\bra{g}\ket{f}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})g(\vb{q})^*
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})g(\vb{q})^*
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		f(\vb{p})g(\vb{p})^*
+	\end{split}
+\end{equation}
+and suggests the normalization to be
 \begin{equation}
 	\bra{f}\ket{f}
 	=
@@ -458,32 +483,316 @@ Normalization of the smeared particle state restricts the smearing function to s
 	=
 	1
 \end{equation}
+Alternatively, in coordinate space
+\begin{equation}
+	\begin{split}
+		\bra{g}\ket{f}
+		=
+		\expval{\hat\phi[g]\hat\phi[f]}{0}
+		&=
+		\int\dd[4]{x}
+		\int\dd[4]{y}
+		f(x^0,\vb{x})g(y^0,\vb{y})^*
+		\expval{\hat\phi(x^0,\vb{x})\hat\phi(y^0,\vb{y})}{0}
+		\\
+		&=
+		\int\dd[4]{x}
+		\int\dd[4]{y}
+		f(x^0,\vb{x})g(y^0,\vb{y})^*
+		D(x^0-y^0,\vb{x}-\vb{y})
+	\end{split}
+\end{equation}
+where $D(x^0-y^0,\vb{x}-\vb{y})$ is the Feynman propagator~\cite[p.~27]{Peskin1995}.
 
-\subsubsection{Characteristics (expectation values)}
+\subsubsection{Expectation values of field observables}
 
 To get a better "feel" for the smeared particle state, we evaluate some expectation values.
-Most trivially, we find the first two moments of the number operator to equal
+First we derive the auxiliary result
 \begin{equation}
-	\expval{\hat{N}}{f}
-	=
-	1
+	\begin{split}
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{N}
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		&=
+		\int\frac{\dd[3]{k}}{(2\pi)^3}
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{k})
+			\hat{a}(\vb{k})
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{k}}{(2\pi)^3}
+		(2\pi)^3\delta^{(3)}(\vb{k}-\vb{q})
+		\expval{
+			\hat{a}(\vb{k})
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		\\
+		&=
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		=
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+	\end{split}
+\end{equation}
+and
+\begin{equation}
+	\begin{split}
+		\expval{\hat{a}(\vb{q})\hat{N}^2\hat{a}^\dagger(\vb{p})}{0}
+		&=
+		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
+		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
+		\\
+		&\times
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{k}_1)
+			\hat{a}(\vb{k}_1)
+			\hat{a}^\dagger(\vb{k}_2)
+			\hat{a}(\vb{k}_2)
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
+		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
+		\\
+		&\times
+		(2\pi)^3\delta^{(3)}(\vb{k}_1-\vb{q})
+		\expval{
+			\hat{a}(\vb{k}_1)
+			\hat{a}^\dagger(\vb{k}_2)
+		}{0}
+		(2\pi)^3\delta^{(3)}(\vb{k}_2-\vb{p})
+		\\
+		&=
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		=
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+	\end{split}
+\end{equation}
+Most trivially, we find the first moments of the number operator to equal
+\begin{equation}
+	\begin{split}
+		\expval{\hat{N}}{f}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		\expval{\hat{a}(\vb{q})\hat{N}\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{f(\vb{p})}^2
+		=
+		1
+	\end{split}
+\end{equation}
+and the second moment to equal
+\begin{equation}
+	\begin{split}
+		\expval{\hat{N}^2}{f}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		\expval{\hat{a}(\vb{q})\hat{N}^2\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{f(\vb{p})}^2
+		=
+		1
+	\end{split}
+\end{equation}
+such that the variance vanishes
+\begin{equation}
+	\expval{(\Delta\hat{N})^2}{f}
 	=
 	\expval{\hat{N}^2}{f}
+	-
+	\expval{\hat{N}}{f}^2
+	=
+	0
 \end{equation}
 suggesting $\ket{f}$ to be a single-particle number state.
-Similar the total energy and momentum are given by
+Similar the first moment of the total energy is
+\begin{equation}
+	\begin{split}
+		\expval{\hat{H}}{f}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		\expval{\hat{a}(\vb{q})\hat{H}\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		\omega(\vb{p})
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\omega(\vb{p})
+		\abs{f(\vb{p})}^2
+	\end{split}
+\end{equation}
+where we used
+\begin{equation}
+	\begin{split}
+		\expval{\hat{a}(\vb{q})\hat{H}\hat{a}^\dagger(\vb{p})}{0}
+		&=
+		\int\frac{\dd[3]{k}}{(2\pi)^3}
+		\omega(\vb{k})
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{k})\hat{a}(\vb{k})\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{k}}{(2\pi)^3}
+		\omega(\vb{k})
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{k})}{0}
+		(2\pi)^3\delta^{(3)}(\vb{k}-\vb{p})
+		\\
+		&=
+		\omega(\vb{p})
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+		=
+		\omega(\vb{p})
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+	\end{split}	
+\end{equation}
+and the second moment is
+\begin{equation}
+	\begin{split}
+		\expval{\hat{H}^2}{f}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		\expval{\hat{a}(\vb{q})\hat{H}^2\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		\omega(\vb{p})^2
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\omega(\vb{p})^2
+		\abs{f(\vb{p})}^2
+	\end{split}
+\end{equation}
+where we used
+\begin{equation}
+	\begin{split}
+		\expval{\hat{a}(\vb{q})\hat{H}^2\hat{a}^\dagger(\vb{p})}{0}
+		&=
+		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
+		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
+		\omega(\vb{k}_1)\omega(\vb{k}_2)
+		\\
+		&\times
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{k}_1)
+			\hat{a}(\vb{k}_1)
+			\hat{a}^\dagger(\vb{k}_2)
+			\hat{a}(\vb{k}_2)
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
+		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
+		\omega(\vb{k}_1)\omega(\vb{k}_2)
+		\\
+		&\times
+		(2\pi)^3\delta^{(3)}(\vb{k}_1-\vb{q})
+		\expval{
+			\hat{a}(\vb{k}_1)
+			\hat{a}^\dagger(\vb{k}_2)
+		}{0}
+		(2\pi)^3\delta^{(3)}(\vb{k}_2-\vb{p})
+		\\
+		&=
+		\omega(\vb{q})\omega(\vb{p})
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		\\
+		&=
+		\omega(\vb{p})^2
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+	\end{split}
+\end{equation}
+Before we calculate the energy fluctuations, we need
+\begin{equation}
+	\begin{split}
+		\expval{\hat{H}}{f}^2
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\omega(\vb{p})
+		\abs{f(\vb{p})}^2
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		\omega(\vb{q})
+		\abs{f(\vb{q})}^2
+	\end{split}	
+\end{equation}
+The energy fluctuations turn out to be non-zero (?)
+\begin{equation}
+	\begin{split}
+		\expval{\left(\Delta\hat{H}\right)^2}{f}
+		&=
+		\expval{\hat{H}^2}{f}
+		-
+		\expval{\hat{H}}{f}^2
+		>
+		0
+	\end{split}
+\end{equation}
+
+By an completely analog calculation, we find for the total momentum
 \begin{align}
-	\expval{\hat{H}}{f}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\omega(\vb{p})\abs{f(\vb{p})}^2
-	&&
 	\expval{\hat{\vb{P}}}{f}
 	=
 	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\vb{p}\abs{f(\vb{p})}^2
+	\vb{p}
+	\abs{f(\vb{p})}^2
+	&&
+	\expval{\hat{\vb{P}}^2}{f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\vb{p}^2
+	\abs{f(\vb{p})}^2
 \end{align}
-which allows the interpretation of $f(\vb{p})$ as a spectral weight.
+in agreement with results reported in~\cite[eqs.~10 and 11]{Naumov2013}.
+
+\subsubsection{Expectation values of wave packet observables}
 
 From the spacetime representation of the wave function
 \begin{equation}
