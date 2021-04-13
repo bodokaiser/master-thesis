@@ -796,22 +796,108 @@ in agreement with results reported in~\cite[eqs.~10 and 11]{Naumov2013}.
 
 From the spacetime representation of the wave function
 \begin{equation}
-	\psi(t,\vb{x})
-	=
-	\bra{0}\hat\phi(t,\vb{x})\ket{f}
+	\begin{split}
+		\psi(t,\vb{x})
+		&=
+		\bra{0}\hat\phi(t,\vb{x})\ket{f}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})e^{iq_\mu x^\mu}
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})e^{iq_\mu x^\mu}
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		f(\vb{p})e^{ip_\mu x^\mu}
+	\end{split}
 \end{equation}
 we can calculate the probability current
 \begin{equation}
 	j^\mu
+	=
+	\left(\rho,\vb{j}\right)
 	=
 	i\left(
 		\psi^*\partial_\mu\psi
 		-
 		\psi\partial_\mu\psi^*
 	\right)
+	=
+	-2\Im\left\{
+		\psi^*\partial_\mu\psi
+	\right\}
 	\label{eq:qkg_probability_current}
 \end{equation}
 from which we can calculate many interesting properties~\cite{Naumov2013}.
+
+We need the auxiliary result
+\begin{equation}
+	\begin{split}
+		\partial_t\psi(t,\vb{x})
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		f(\vb{p})i\omega(\vb{p})e^{i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+		\\
+		&=
+		\frac{1}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		f(\vb{p})i\omega(\vb{p})e^{i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+		\\
+		&=
+		\frac{i}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		f(\vb{p})
+		e^{ip_\mu x^\mu}
+	\end{split}
+\end{equation}
+We first calculate the probability density
+\begin{equation}
+	\begin{split}
+		\rho(t,\vb{x})
+		&=
+		-2\Im\left\{
+			\psi(t,\vb{x})^*\partial_t\psi(t,\vb{x})		
+		\right\}
+		\\
+		&=
+		-2\Im\left\{
+			\left(
+				\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+				f(\vb{q})
+				e^{+iq_\mu x^\mu}
+			\right)^*
+			\frac{i}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			f(\vb{p})
+			e^{+ip_\mu x^\mu}
+		\right\}
+		\\
+		&=
+		-2\Im\left\{
+			\frac{i}{2}
+			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			f(\vb{q})^*f(\vb{p})
+			e^{i(p_\mu-q_\mu)x^\mu}
+		\right\}
+		\\
+		&=
+		-\Re\left\{
+			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			f(\vb{q})^*f(\vb{p})
+			e^{i(p_\mu-q_\mu)x^\mu}
+		\right\}
+	\end{split}
+\end{equation}
+
 The probability density $\rho=j_0$ has proper normalization
 \begin{equation}
 	\int\dd[3]{x}\rho(t,\vb{x})
