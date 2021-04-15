@@ -506,286 +506,48 @@ where $D(x^0-y^0,\vb{x}-\vb{y})$ is the Feynman propagator~\cite[p.~27]{Peskin19
 
 \subsubsection{Expectation values of field observables}
 
-To get a better "feel" for the smeared particle state, we evaluate some expectation values.
-First we derive the auxiliary result
-\begin{equation}
-	\begin{split}
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{N}
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		&=
-		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{a}^\dagger(\vb{k})
-			\hat{a}(\vb{k})
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		(2\pi)^3\delta^{(3)}(\vb{k}-\vb{q})
-		\expval{
-			\hat{a}(\vb{k})
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		\\
-		&=
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		=
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-	\end{split}
-\end{equation}
-and
-\begin{equation}
-	\begin{split}
-		\expval{\hat{a}(\vb{q})\hat{N}^2\hat{a}^\dagger(\vb{p})}{0}
-		&=
-		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
-		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-		\\
-		&\times
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{a}^\dagger(\vb{k}_1)
-			\hat{a}(\vb{k}_1)
-			\hat{a}^\dagger(\vb{k}_2)
-			\hat{a}(\vb{k}_2)
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
-		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-		\\
-		&\times
-		(2\pi)^3\delta^{(3)}(\vb{k}_1-\vb{q})
-		\expval{
-			\hat{a}(\vb{k}_1)
-			\hat{a}^\dagger(\vb{k}_2)
-		}{0}
-		(2\pi)^3\delta^{(3)}(\vb{k}_2-\vb{p})
-		\\
-		&=
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		=
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-	\end{split}
-\end{equation}
-Most trivially, we find the first moments of the number operator to equal
-\begin{equation}
-	\begin{split}
-		\expval{\hat{N}}{f}
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		\expval{\hat{a}(\vb{q})\hat{N}\hat{a}^\dagger(\vb{p})}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\abs{f(\vb{p})}^2
-		=
-		1
-	\end{split}
-\end{equation}
-and the second moment to equal
-\begin{equation}
-	\begin{split}
-		\expval{\hat{N}^2}{f}
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		\expval{\hat{a}(\vb{q})\hat{N}^2\hat{a}^\dagger(\vb{p})}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\abs{f(\vb{p})}^2
-		=
-		1
-	\end{split}
-\end{equation}
-such that the variance vanishes
-\begin{equation}
-	\expval{(\Delta\hat{N})^2}{f}
+The first two moments of the number operator are
+\begin{align}
+	\expval{\hat{N}}{f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs{f(\vb{p})}^2
 	=
+	1
+	\\
 	\expval{\hat{N}^2}{f}
-	-
-	\expval{\hat{N}}{f}^2
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs{f(\vb{p})}^2
 	=
-	0
-\end{equation}
-suggesting $\ket{f}$ to be a single-particle number state.
-Similar the first moment of the total energy is
-\begin{equation}
-	\begin{split}
-		\expval{\hat{H}}{f}
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		\expval{\hat{a}(\vb{q})\hat{H}\hat{a}^\dagger(\vb{p})}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		\omega(\vb{p})
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\omega(\vb{p})
-		\abs{f(\vb{p})}^2
-	\end{split}
-\end{equation}
-where we used
-\begin{equation}
-	\begin{split}
-		\expval{\hat{a}(\vb{q})\hat{H}\hat{a}^\dagger(\vb{p})}{0}
-		&=
-		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		\omega(\vb{k})
-		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{k})\hat{a}(\vb{k})\hat{a}^\dagger(\vb{p})}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		\omega(\vb{k})
-		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{k})}{0}
-		(2\pi)^3\delta^{(3)}(\vb{k}-\vb{p})
-		\\
-		&=
-		\omega(\vb{p})
-		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
-		=
-		\omega(\vb{p})
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-	\end{split}	
-\end{equation}
-and the second moment is
-\begin{equation}
-	\begin{split}
-		\expval{\hat{H}^2}{f}
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		\expval{\hat{a}(\vb{q})\hat{H}^2\hat{a}^\dagger(\vb{p})}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		\omega(\vb{p})^2
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\omega(\vb{p})^2
-		\abs{f(\vb{p})}^2
-	\end{split}
-\end{equation}
-where we used
-\begin{equation}
-	\begin{split}
-		\expval{\hat{a}(\vb{q})\hat{H}^2\hat{a}^\dagger(\vb{p})}{0}
-		&=
-		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
-		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-		\omega(\vb{k}_1)\omega(\vb{k}_2)
-		\\
-		&\times
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{a}^\dagger(\vb{k}_1)
-			\hat{a}(\vb{k}_1)
-			\hat{a}^\dagger(\vb{k}_2)
-			\hat{a}(\vb{k}_2)
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
-		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-		\omega(\vb{k}_1)\omega(\vb{k}_2)
-		\\
-		&\times
-		(2\pi)^3\delta^{(3)}(\vb{k}_1-\vb{q})
-		\expval{
-			\hat{a}(\vb{k}_1)
-			\hat{a}^\dagger(\vb{k}_2)
-		}{0}
-		(2\pi)^3\delta^{(3)}(\vb{k}_2-\vb{p})
-		\\
-		&=
-		\omega(\vb{q})\omega(\vb{p})
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		\\
-		&=
-		\omega(\vb{p})^2
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-	\end{split}
-\end{equation}
-Before we calculate the energy fluctuations, we need
-\begin{equation}
-	\begin{split}
-		\expval{\hat{H}}{f}^2
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\omega(\vb{p})
-		\abs{f(\vb{p})}^2
-		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-		\omega(\vb{q})
-		\abs{f(\vb{q})}^2
-	\end{split}	
-\end{equation}
-The energy fluctuations turn out to be non-zero (?)
-\begin{equation}
-	\begin{split}
-		\expval{\left(\Delta\hat{H}\right)^2}{f}
-		&=
-		\expval{\hat{H}^2}{f}
-		-
-		\expval{\hat{H}}{f}^2
-		>
-		0
-	\end{split}
-\end{equation}
-
+	1
+\end{align}
+suggesting $\ket{f}$ to be a single-particle number state because $\expval{\left(\Delta\hat{N}\right)}{f}=0$
+Similar the first two moments of the total energy are
+\begin{align}
+	\expval{\hat{H}}{f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\omega(\vb{p})
+	\abs{f(\vb{p})}^2
+	\\
+	\expval{\hat{H}^2}{f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\omega(\vb{p})^2
+	\abs{f(\vb{p})}^2
+\end{align}
+implying non-zero energy fluctuations $\expval{\left(\Delta\hat{H}\right)^2}{f}>0$.
 By an completely analog calculation, we find for the total momentum
 \begin{align}
 	\expval{\hat{\vb{P}}}{f}
-	=
+	&=
 	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 	\vb{p}
 	\abs{f(\vb{p})}^2
-	&&
+	\\
 	\expval{\hat{\vb{P}}^2}{f}
-	=
+	&=
 	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 	\vb{p}^2
 	\abs{f(\vb{p})}^2
@@ -796,121 +558,67 @@ in agreement with results reported in~\cite[eqs.~10 and 11]{Naumov2013}.
 
 From the spacetime representation of the wave function
 \begin{equation}
-	\begin{split}
-		\psi(t,\vb{x})
-		&=
-		\bra{0}\hat\phi(t,\vb{x})\ket{f}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})e^{iq_\mu x^\mu}
-		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})e^{iq_\mu x^\mu}
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		f(\vb{p})e^{ip_\mu x^\mu}
-	\end{split}
+	\psi(t,\vb{x})
+	=
+	\bra{0}\hat\phi(t,\vb{x})\ket{f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	f(\vb{p})e^{ip_\mu x^\mu}
 \end{equation}
 we can calculate the probability current
 \begin{equation}
-	j^\mu
-	=
-	\left(\rho,\vb{j}\right)
-	=
-	i\left(
-		\psi^*\partial_\mu\psi
-		-
-		\psi\partial_\mu\psi^*
-	\right)
-	=
-	-2\Im\left\{
-		\psi^*\partial_\mu\psi
-	\right\}
-	\label{eq:qkg_probability_current}
-\end{equation}
-from which we can calculate many interesting properties~\cite{Naumov2013}.
-
-We need the auxiliary result
-\begin{equation}
 	\begin{split}
-		\partial_t\psi(t,\vb{x})
+		j_\mu(t,\vb{x})
+		&=
+		2\Im\left\{
+			\psi(t,\vb{x})^*
+			\partial_\mu
+			\psi(t,\vb{x})
+		\right\}
+		=
+		\left(
+			\rho(t,\vb{x}),
+			\vb{j}(t,\vb{x})
+		\right)
+		\\
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		f(\vb{p})i\omega(\vb{p})e^{i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
-		\\
-		&=
-		\frac{1}{2}
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		f(\vb{p})i\omega(\vb{p})e^{i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
-		\\
-		&=
-		\frac{i}{2}
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		\left\{
+			q_\mu
+			+
+			p_\mu
+		\right\}
+		f(\vb{q})^*
 		f(\vb{p})
-		e^{ip_\mu x^\mu}
+		e^{-i(q_\mu-p_\mu)x^\mu}
 	\end{split}
+	\label{eq:qkg_probability_current}
 \end{equation}
-We first calculate the probability density
-\begin{equation}
-	\begin{split}
-		\rho(t,\vb{x})
-		&=
-		-2\Im\left\{
-			\psi(t,\vb{x})^*\partial_t\psi(t,\vb{x})		
-		\right\}
-		\\
-		&=
-		-2\Im\left\{
-			\left(
-				\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-				f(\vb{q})
-				e^{+iq_\mu x^\mu}
-			\right)^*
-			\frac{i}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			f(\vb{p})
-			e^{+ip_\mu x^\mu}
-		\right\}
-		\\
-		&=
-		-2\Im\left\{
-			\frac{i}{2}
-			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			f(\vb{q})^*f(\vb{p})
-			e^{i(p_\mu-q_\mu)x^\mu}
-		\right\}
-		\\
-		&=
-		-\Re\left\{
-			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			f(\vb{q})^*f(\vb{p})
-			e^{i(p_\mu-q_\mu)x^\mu}
-		\right\}
-	\end{split}
-\end{equation}
+where we need to keep in mind that $q_0=\omega(\vb{q})$.
+\Cref{eq:qkg_probability_current} is in agreement with results reported by Naumov~\cite[p.~9]{Naumov2013}.
 
-The probability density $\rho=j_0$ has proper normalization
+The probability density is normalized
 \begin{equation}
-	\int\dd[3]{x}\rho(t,\vb{x})
+	\int\dd[3]{x}
+	\rho(t,\vb{x})
 	=
 	1
 \end{equation}
 and the probability current yields the (group) velocity
 \begin{equation}
-	\int\dd[3]{x}\vb{j}(t,\vb{x})
-	=
 	\overline{\vb{v}}
+	=
+	\int\dd[3]{x}
+	\vb{j}(t,\vb{x})
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\frac{\vb{p}}{\omega(\vb{p})}
+	\abs{f(\vb{p})}^2
 	\label{qkg:group_velocity}.
 \end{equation}
+Indeed in the non-relativistic regime $\omega(\vb{p})^2\sim m^2$
+and the group velocity equals $\vb{p}/(2m^2)$ weighted by $\abs{f(\vb{p})}^2$.
 The mean center-of-mass can be expressed in terms of the velocity
 \begin{equation}
 	\overline{\vb{x}}
@@ -918,10 +626,7 @@ The mean center-of-mass can be expressed in terms of the velocity
 	\int\dd[3]{x}\vb{x}\rho(t,\vb{x})
 	=
 	\overline{\vb{v}}t
-	\label{qkg:mean_position}
 \end{equation}
-which gives the smeared single-particle state a sensible interpretation in terms of localization and speed.
-
 The time-dependent variance of the position
 \begin{equation}
 	\sigma_x^2(t)
@@ -932,25 +637,10 @@ The time-dependent variance of the position
 \end{equation}
 can be interpreted as dispersion.
 
-\subsubsection{Covariant Gaussian wave packets}
+\subsubsection{Massless Gaussian wave packets}
 
-Naumov~\cite{Naumov2013} discusses a covariant Gaussian wave packet. In particular
-\begin{equation}
-	f(\vb{p})
-	\propto
-	\exp\left\{\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma_p^2}\right\}
-\end{equation}
-describes a covariant Gaussian wave packet localized at $\vb{k}$ in momentum space.
-Assuming $\sigma_P$ to be small, we can perform a series expansion of the dispersion relation and obtain
-\begin{equation}
-	f(\vb{p})
-	=
-	\sqrt{2m}
-	\left(\frac{2\pi}{\sigma_p^2}\right)^{3/4}
-	\exp\left\{
-		-\frac{(\vb{p}-\vb{k}_\parallel)^2}{4\sigma_{p\parallel}^2}
-	\right\}
-\end{equation}
+Naumov~\cite{Naumov2013} discusses a massive covariant Gaussian wave packet.
+We will discuss the massless case.
 
 \subsection{Interactions and coherent states}
 

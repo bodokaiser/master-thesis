@@ -1,0 +1,447 @@
+\section{Single-particle}
+
+\subsection{Number, energy and momentum observables}
+
+We define the operator
+\begin{equation}
+	\hat{A}
+	=
+	g(\vb{k})
+	\hat{a}^\dagger(\vb{k})
+	\hat{a}(\vb{k})
+\end{equation}
+where $g$ is allowed to be vector-valued, e.g., $g(\vb{p})=\vb{p}$.
+To calculate the first two moments of $\hat{A}$, we need the auxiliary results
+\begin{equation}
+	\begin{split}
+		\expval{\hat{a}(\vb{q})\hat{A}\hat{a}^\dagger(\vb{p})}{0}
+		&=
+		\int\frac{\dd[3]{k}}{(2\pi)^3}
+		g(\vb{k})
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{k})\hat{a}(\vb{k})\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{k}}{(2\pi)^3}
+		g(\vb{k})
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{k})}{0}
+		(2\pi)^3\delta^{(3)}(\vb{k}-\vb{p})
+		\\
+		&=
+		g(\vb{p})
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		g(\vb{p})
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+	\end{split}
+\end{equation}
+and
+\begin{equation}
+	\begin{split}
+		\expval{\hat{a}(\vb{q})\hat{A}^2\hat{a}^\dagger(\vb{p})}{0}
+		&=
+		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
+		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
+		g(\vb{k}_1)g(\vb{k}_2)
+		\\
+		&\times
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{k}_1)
+			\hat{a}(\vb{k}_1)
+			\hat{a}^\dagger(\vb{k}_2)
+			\hat{a}(\vb{k}_2)
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
+		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
+		g(\vb{k}_1)g(\vb{k}_2)
+		\\
+		&\times
+		(2\pi)^3\delta^{(3)}(\vb{k}_1-\vb{q})
+		\expval{
+			\hat{a}(\vb{k}_1)
+			\hat{a}^\dagger(\vb{k}_2)
+		}{0}
+		(2\pi)^3\delta^{(3)}(\vb{k}_2-\vb{p})
+		\\
+		&=
+		g(\vb{q})g(\vb{p})
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		\\
+		&=
+		g(\vb{p})^2
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+	\end{split}
+	.
+\end{equation}
+The first moment then turns out to be
+\begin{equation}
+	\begin{split}
+		\expval{\hat{A}}{f}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		\expval{\hat{a}(\vb{q})\hat{A}\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		g(\vb{p})
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		g(\vb{p})
+		\abs{f(\vb{p})}^2
+	\end{split}
+\end{equation}
+and the second moment is
+\begin{equation}
+	\begin{split}
+		\expval{\hat{A}^2}{f}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		\expval{\hat{a}(\vb{q})\hat{A}^2\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})f(\vb{q})^*
+		g(\vb{p})^2
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		g(\vb{p})^2
+		\abs{f(\vb{p})}^2
+	\end{split}
+	.
+\end{equation}
+We can now identify $g(\vb{p})$ with $1,\omega(\vb{p}),\vb{p}$ to obtain the first two moments of number, Hamilton, or momentum operator.
+
+\subsection{Center-of-mass position and dispersion}
+
+The coordinate the wave function is
+\begin{equation}
+	\begin{split}
+		\psi(t,\vb{x})
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})e^{iq_\mu x^\mu}
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})e^{iq_\mu x^\mu}
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		f(\vb{p})e^{ip_\mu x^\mu}
+	\end{split}
+\end{equation}
+the probability current in terms of the wave function is
+\begin{equation}
+	\begin{split}
+		j_\mu(t,\vb{x})
+		&=
+		2
+		\Im\left\{
+			\psi(t,\vb{x})
+			\partial_\mu
+			\psi(t,\vb{x})
+		\right\}
+		\\
+		&=
+		2
+		\Im\left\{
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})^*e^{-ip_\mu x^\mu}
+			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+			f(\vb{q})iq_\mu e^{+iq_\mu x^\mu}
+		\right\}
+		\\
+		&=
+		2
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		\Im\left\{
+			f(\vb{p})^*
+			f(\vb{q})
+			iq_\mu
+			e^{-i(p_\mu-q_\mu)x^\mu}
+		\right\}
+		\\
+		&=
+		2
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		q_\mu
+		\Re\left\{
+			f(\vb{p})^*
+			f(\vb{q})
+			e^{-i(p_\mu-q_\mu)x^\mu}
+		\right\}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		\left\{
+			q_\mu
+			f(\vb{p})
+			f(\vb{q})^*
+			e^{+i(p_\mu-q_\mu)x^\mu}
+			+
+			q_\mu
+			f(\vb{p})^*
+			f(\vb{q})
+			e^{-i(p_\mu-q_\mu)x^\mu}
+		\right\}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		\left\{
+			q_\mu
+			f(\vb{p})
+			f(\vb{q})^*
+			e^{+i(p_\mu-q_\mu)x^\mu}
+			+
+			p_\mu
+			f(\vb{q})^*
+			f(\vb{p})
+			e^{-i(q_\mu-p_\mu)x^\mu}
+		\right\}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		\left\{
+			q_\mu
+			+
+			p_\mu
+		\right\}
+		f(\vb{q})^*
+		f(\vb{p})
+		e^{-i(q_\mu-p_\mu)x^\mu}
+	\end{split}
+\end{equation}
+
+\subsubsection{Center-of-mass position}
+
+The mean center-of-mass can be expressed in terms of the velocity
+\begin{equation}
+	\begin{split}
+		\overline{\vb{x}}
+		&=
+		\int\dd[3]{x}\vb{x}\rho(t,\vb{x})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		\left\{
+			\omega(\vb{p})
+			+
+			\omega(\vb{q})
+		\right\}
+		\\
+		&\times
+		f(\vb{q})^*
+		f(\vb{p})
+		e^{-i\left(\omega(\vb{q})-\omega(\vb{p})\right)t}
+		\int\dd[3]{x}
+		\vb{x}
+		e^{+i(\vb{q}-\vb{p})\vdot\vb{x}}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{k}}{(2\pi)^32\omega(\vb{k})}
+		\left\{
+			\omega(\vb{p})
+			+
+			\omega(\vb{p}+\vb{k})
+		\right\}
+		\\
+		&\times
+		f(\vb{p}+\vb{k})^*
+		f(\vb{p})
+		e^{-i\left(\omega(\vb{p}+\vb{k})-\omega(\vb{p})\right)t}
+		\int\dd[3]{x}
+		\vb{x}
+		e^{+i(\vb{k})\vdot\vb{x}}
+		\\
+		&=
+		-i
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		f(\vb{p})
+		e^{+i\omega(\vb{p})t}
+		\\
+		&\times
+		\int\dd[3]{k}
+		\frac{\omega(\vb{p})+\omega(\vb{p}+\vb{k})}{2\omega(\vb{p}+\vb{k})}
+		f(\vb{p}+\vb{k})^*
+		e^{-i\omega(\vb{p}+\vb{k})t}
+		\grad_{\vb{k}}
+		\delta^{(3)}(\vb{k})
+	\end{split}
+	\label{qkg:mean_position}
+\end{equation}
+we start with the second term, because we can reuse a part of it
+\begin{equation}
+	\begin{split}
+		&
+		\frac{1}{2}
+		\int\dd[3]{k}
+		f(\vb{p}+\vb{k})^*
+		e^{-i\omega(\vb{p}+\vb{k})t}
+		\grad_{\vb{k}}
+		\delta^{(3)}(\vb{k})
+		\\
+		=&\
+		-
+		\frac{1}{2}
+		\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+		\left\{
+			f(\vb{p}+\vb{k})^*
+			e^{-i\omega(\vb{p}+\vb{k})t}
+		\right\}
+		\\
+		=&\
+		-
+		\frac{1}{2}
+		e^{-i\omega(\vb{p})t}
+		\left\{
+			\left(\grad_{\vb{k}}f(\vb{p}+\vb{k})\right)^*
+			-
+			it\grad_{\vb{k}}\omega(\vb{p}+\vb{k})
+		\right\}_{\vb{k}=0}
+		\\
+		=&\
+		-
+		\frac{1}{2}
+		e^{-i\omega(\vb{p})t}
+		\frac{\vb{p}}{\norm{\vb{p}}}
+		\vdot\grad_{\vb{k}}
+		\left\{
+			f(\vb{p})^*
+			-
+			i\grad_{\vb{p}}\omega(\vb{p})t
+		\right\}
+	\end{split}
+\end{equation}
+and then the first term
+\begin{equation}
+	\begin{split}
+		&
+		\frac{\omega(\vb{p})}{2}
+		\int\dd[3]{k}
+		\frac{
+			f(\vb{p}+\vb{k})^*
+			e^{-i\omega(\vb{p}+\vb{k})t}
+		}{2\omega(\vb{p}+\vb{k})}
+		\grad_{\vb{k}}
+		\delta^{(3)}(\vb{k})
+		\\
+		=&
+		-
+		\frac{\omega(\vb{p})}{2}
+		\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+		\frac{
+			f(\vb{p}+\vb{k})^*
+			e^{-i\omega(\vb{p}+\vb{k})t}
+		}{\omega(\vb{p}+\vb{k})}
+		\\
+		=&
+		-
+		\frac{\omega(\vb{p})}{2}
+		\frac{
+			\omega(\vb{p})
+			\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+			f(\vb{p}+\vb{k})^*
+			e^{-i\omega(\vb{p}+\vb{k})t}
+			-
+			f(\vb{p})^*
+			e^{-i\omega(\vb{p})t}
+			\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+			\omega(\vb{p}+\vb{k})
+		}{\omega(\vb{p})^2}
+		\\
+		=&
+		-
+		\frac{1}{2}
+		\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+		f(\vb{p}+\vb{k})^*
+		e^{-i\omega(\vb{p}+\vb{k})t}
+		+
+		\frac{1}{2\omega(\vb{p})}
+		f(\vb{p})^*
+		e^{-i\omega(\vb{p})t}
+		\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+		\omega(\vb{p}+\vb{k})
+		\\
+		=&\
+		-
+		\frac{1}{2}
+		e^{-i\omega(\vb{p})t}
+		\frac{\vb{p}}{\norm{\vb{p}}}
+		\vdot\grad_{\vb{k}}
+		\left\{
+			f(\vb{p})^*
+			-
+			i\grad_{\vb{p}}\omega(\vb{p})t
+		\right\}
+		+
+		\frac{1}{2\omega(\vb{p})}
+		f(\vb{p})^*
+		e^{-i\omega(\vb{p})t}
+		\frac{\vb{p}}{\norm{\vb{p}}}\vdot
+		\eval{\grad_{\vb{p}}}
+		\omega(\vb{p})
+	\end{split}
+\end{equation}
+
+where we used
+\begin{equation}
+	\int\dd[3]{x}
+	\vb{x}
+	e^{+i\vb{k}\vdot\vb{x}}
+	=
+	\left(-i\grad_{\vb{k}}\right)
+	\int\dd[3]{x}
+	e^{+i\vb{k}\vdot\vb{x}}
+	=
+	\left(-i\grad_{\vb{k}}\right)
+	(2\pi)^3
+	\delta^{(3)}(\vb{k})
+\end{equation}
+and
+\begin{equation}
+	\int\dd[3]{k}
+	f(\vb{k})
+	\grad_{\vb{k}}(\vb{k})
+	\delta^{(3)}(\vb{k})
+	=
+	-
+	\int\dd[3]{k}
+	\delta^{(3)}(\vb{k})
+	\grad_{\vb{k}}(\vb{k})
+	f(\vb{k})
+	=
+	-
+	f^\prime(0)
+\end{equation}
+
+
+\section{Coherent state}
