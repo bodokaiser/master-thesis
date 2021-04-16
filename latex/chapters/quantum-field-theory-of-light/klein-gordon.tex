@@ -27,42 +27,44 @@ The field equation of motion are found by the relativistic Euler-Lagrange equati
 	\label{eq:kg_eom}
 \end{equation}
 which minimize the action.
-Assuming the existence of the Fourier transform of the field
+Assuming the existence of the Fourier transform of the field~\cite[p.~341]{Cohen2019}
 \begin{equation}
 	\phi(t,\vb{x})
 	=
 	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
-	\phi(t,\vb{p})e^{+i\vb{p}\vdot\vb{x}}
+	\phi(t,\vb{p})e^{-i\vb{p}\vdot\vb{x}}
 	=
 	\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
-	\phi(p_0,\vb{p})e^{-ip_\mu x^\mu}
+	\phi(p_0,\vb{p})e^{+ip_\mu x^\mu}
 	\label{eq:kg_ft_naive},
 \end{equation}
 and inserting the Fourier transform into the equation of motion reduces \cref{eq:kg_eom} to
 \begin{equation}
-	\begin{split}
-		0
-		&=
-		(ip_\mu ip^\mu+m^2)\phi(p_0,\vb{p})
-		\\
-		&=
-		-(p_\mu p^\mu-m^2)\phi(p_0,\vb{p})
-		\\
-		&=
-		-(p_0^2-\vb{p}^2-m^2)\phi(p_0,\vb{p})
-		\\
-		&=
-		-\left(p_0^2-\omega(\vb{p})^2\right)\phi(p_0,\vb{p})
-	\end{split}
+	0
+	=
+	\left(
+		ip_\mu ip^\mu
+		+
+		m^2
+	\right)
+	\phi(p_0,\vb{p})
+	=
+	-
+	\left(
+		p_0^2
+		-
+		\omega(\vb{p})^2
+	\right)
+	\phi(p_0,\vb{p})
 	\label{eq:kg_eom_ft}
 \end{equation}
 where we defined the relativistic energy-momentum (or dispersion) relation
 \begin{equation}
-	E(\vb{p})
-	=
 	\omega(\vb{p})
 	=
 	\sqrt{\vb{p}^2+m^2}
+	=
+	E(\vb{p})
 	\label{eq:energy_momentum_relation}.
 \end{equation}
 By restricting the integration domain to the momentum lightcone
@@ -78,65 +80,85 @@ By restricting the integration domain to the momentum lightcone
 \end{equation}
 we ensure that the Fourier modes satisfy the equation of motion.
 It is sensible to rewrite the restricted Fourier mode expansion
-\begin{equation}
+\begin{equation*}
 	\begin{split}
 		\phi(t,\vb{x})
 		&=
 		\int_V\frac{\dd[4]{p}}{(2\pi)^4}
-		\phi(p_0,\vb{p})e^{-ip_\mu x^\mu}
+		\phi(p_0,\vb{p})
+		e^{+ip_\mu x^\mu}
 		\\
 		&=
 		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
 		\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
-		\phi(p_0,\vb{p})e^{-ip_\mu x^\mu}
+		\phi(p_0,\vb{p})
+		e^{+ip_\mu x^\mu}
 		\\
 		&=
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\left\{
-			a(\vb{p})
-			e^{-i\omega(\vb{p})t}
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
+		\frac{
+			\delta^{(1)}\left(p_0-\omega(\vb{p})\right)
 			+
-			a(\vb{p})
+			\delta^{(1)}\left(p_0+\omega(\vb{p})\right)
+		}{\sqrt{2\omega(\vb{p})}}
+		\phi(p_0,\vb{p})
+		e^{+ip_0t}
+		e^{-i\vb{p}\vdot\vb{x}}
+		\\
+		&=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			\phi(\omega(\vb{p}),\vb{p})
 			e^{+i\omega(\vb{p})t}
-		\right\}
-		e^{i\vb{p}\vdot\vb{x}}
+			+
+			\phi(-\omega(\vb{p}),\vb{p})
+			e^{-i\omega(\vb{p})t}
+		\biggr\}
+		e^{-i\vb{p}\vdot\vb{x}}
 		\\
 		&=
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\left\{
-			a(\vb{p})
-			e^{-i\omega(\vb{p})t}
-			e^{+i\vb{p}\vdot\vb{x}}
-			+
-			a(-\vb{p})
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			\phi(\omega(\vb{p}),\vb{p})
 			e^{+i\omega(\vb{p})t}
 			e^{-i\vb{p}\vdot\vb{x}}
-		\right\}
+			+
+			\phi(-\omega(\vb{p}),\vb{p})
+			e^{-i\omega(\vb{p})t}
+			e^{-i\vb{p}\vdot\vb{x}}
+		\biggr\}
 		\\
 		&=
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\eval{\left\{
-			a(\vb{p})
-			e^{-ip_\mu x^\mu}
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			\phi(\omega(\vb{p}),\vb{p})
+			e^{+i\omega(\vb{p})t}
+			e^{-i\vb{p}\vdot\vb{x}}
 			+
-			a(-\vb{p})
+			\phi(-\omega(\vb{p}),-\vb{p})
+			e^{-i\omega(\vb{p})t}
+			e^{+i\vb{p}\vdot\vb{x}}
+		\biggr\}
+		\\
+		&=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			\phi(\omega(\vb{p}),\vb{p})
 			e^{+ip_\mu x^\mu}
-		\right\}}_{p_0=\omega(\vb{p})}
+			+
+			\phi(\omega(\vb{p}),\vb{p})^*
+			e^{-ip_\mu x^\mu}
+		\biggr\}_{p_0=\omega(\vb{p})}
 	\end{split}
-	\label{eq:kg_ft_final}
-\end{equation}
-where we used the composition property of the delta distribution
+\end{equation*}
+where we used the conjugate symmetry of $\phi(p_0,\vb{p})$ because $\phi(t,\vb{x})$ is real-valued.
+We define
 \begin{equation}
-	\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
+	a(\vb{p})
 	=
-	\frac{
-		\delta^{(1)}\left(p_0-\omega(\vb{p})\right)
-		+
-		\delta^{(1)}\left(p_0+\omega(\vb{p})\right)
-	}{\sqrt{2\omega(\vb{p})}}
-	\label{eq:kg_em_delta}
+	\phi(\omega(\vb{p}),\vb{p})^*
 \end{equation}
-and defined $a(\vb{p})=\phi(\omega(\vb{p}),\vb{p})$ which has conjugate symmetry, $a(-\vb{p})=a(\vb{p})^*$ as $\phi(t,\vb{x})$ is real-valued.
+and from now on assume $p_0=\omega(\vb{p})$ if nothing different is stated.
 
 We close the chapter by transitioning from Lagrangian to Hamiltonian field mechanics.
 The canonical momentum density is given by
@@ -150,33 +172,33 @@ The canonical momentum density is given by
 \end{equation}
 and we find the conjugate variables to be
 \begin{align}
-	\hat\phi(t,\vb{x})
+	\phi(t,\vb{x})
 	&=
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\frac{1}{\sqrt{2\omega(\vb{p})}}
 	\left\{
 		a(\vb{p})
-		e^{+ip_\mu x^\mu}
+		e^{-ip_\mu x^\mu}
 		+
 		a(\vb{p})^*
-		e^{-ip_\mu x^\mu}
+		e^{+ip_\mu x^\mu}
 	\right\}
 	\label{eq:kg_pos}
 	\\
-	\hat\pi(t,\vb{p})
+	\pi(t,\vb{x})
 	&=
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\left(-i\sqrt{2\omega(\vb{p})}\right)
 	\left\{
 		a(\vb{p})
-		e^{+ip_\mu x^\mu}
+		e^{-ip_\mu x^\mu}
 		-
 		a(\vb{p})^*
-		e^{-ip_\mu x^\mu}
+		e^{+ip_\mu x^\mu}
 	\right\}
 	\label{eq:kg_mom}.
 \end{align}
-Field observables are encoded in the canonical energy-momentum, sometimes called (Hilbert) stress-energy, tensor
+Field observables are encoded in the canonical energy-momentum tensor, sometimes called (Hilbert) stress-energy tensor
 \begin{equation}
 	T^{\mu\nu}
 	=
@@ -185,51 +207,42 @@ Field observables are encoded in the canonical energy-momentum, sometimes called
 	g^{\mu\nu}\mathcal{L}
 	\label{eq:energy_momentum_tensor}.
 \end{equation}
-For instance, the time-time component
-\begin{equation}
+For instance, the time components yield the energy and momentum density
+\begin{align}
 	T^{00}
 	=
 	\frac{1}{2}
-	\left\{
-		\left(\partial_t\phi\right)^2
-		+
-		\left(\grad\phi\right)^2
-		+
-		\left(m\phi\right)^2
-	\right\}
-	=
-	\mathcal{H}
-	\label{eq:kg_energy_density}
-\end{equation}
-yields the energy density which integrated becomes the total energy
-\begin{equation}
+	\left(\partial_t\phi\right)^2
+	+
+	\frac{1}{2}
+	\left(\grad\phi\right)^2
+	+
+	\frac{1}{2}
+	\left(m\phi\right)^2
+	&&
+	T^{0i}
+	&=
+	-\pi\partial_i\phi
+\end{align}
+which integrated upon becomes the total energy and momentum
+\begin{align}
 	H
-	=
-	\int\dd[3]{x}\mathcal{H}
+	&=
+	\int\dd[3]{x}T^{00}
 	=
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\omega(\vb{p})\abs{a(\vb{p})}^2
-	\label{eq:kg_total_energy},
-\end{equation}
-and the time-spatial components evaluate to the momentum density
-\begin{equation}
-	T^{0i}
-	=
-	-\pi(t,\vb{x})\partial_i\phi(t,\vb{x})
-	=
-	p_i
-	\label{eq:kg_momentum_density}
-\end{equation}
-which integrated yields the total momentum
-\begin{equation}
+	\label{eq:kg_total_energy}
+	\\
 	\vb{P}
-	=
+	&=
 	\int\dd[3]{x}T^{0i}
 	=
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\vb{p}\abs{a(\vb{p})}^2
-	\label{eq:kg_total_momentum}.
-\end{equation}
+	\label{eq:kg_total_momentum}
+	.
+\end{align}
 
 \subsection{Canonical quantization}
 
@@ -241,23 +254,23 @@ In the canonical quantization procedure, we promote the dynamical field variable
 	\frac{1}{\sqrt{2\omega(\vb{p})}}
 	\left\{
 		\hat{a}(\vb{p})
-		e^{+ip_\mu x^\mu}
+		e^{-ip_\mu x^\mu}
 		+
 		\hat{a}^\dagger(\vb{p})
-		e^{-ip_\mu x^\mu}
+		e^{+ip_\mu x^\mu}
 	\right\}
 	\label{eq:qkg_pos}
 	\\
-	\hat\pi(t,\vb{p})
+	\hat\pi(t,\vb{x})
 	&=
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\left(-i\sqrt{2\omega(\vb{p})}\right)
 	\left\{
 		\hat{a}(\vb{p})
-		e^{+ip_\mu x^\mu}
+		e^{-ip_\mu x^\mu}
 		-
 		\hat{a}^\dagger(\vb{p})
-		e^{-ip_\mu x^\mu}
+		e^{+ip_\mu x^\mu}
 	\right\}
 	\label{eq:qkg_mom}
 \end{align}
@@ -310,17 +323,41 @@ In analogy with the quantum harmonic oscillator, we define the number operator t
 	\hat{a}(\vb{p})
 	\label{eq:qkg_number}.
 \end{equation}
-
-\subsubsection{Vacuum and momentum eigenstates}
-Existence of a unique (?) vacuum state $\ket{0}$ for which we find
+It will be useful to decompose the Klein-Gordon field into a positive and negative frequency part
 \begin{equation}
-	\expval{\hat{H}}{0}
+	\hat\phi(t,\vb{x})
 	=
-	0
-	=
-	\expval{\hat{\vb{p}}}{0}
-	\label{eq:qkg_expval_energy_momentum_vacuum}.
+	\hat\phi^+(t,\vb{x})
+	+
+	\hat\phi^+(t,\vb{x})
 \end{equation}
+where the positive and negative frequency parts are defined as~\cite[p.~26]{Peskin1995}
+\begin{align}
+	\hat\phi^+(t,\vb{x})
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	e^{-ip_\mu x^\mu}
+	\hat{a}(\vb{p})
+	\\
+	\hat\phi^-(t,\vb{x})
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	e^{+ip_\mu x^\mu}
+	\hat{a}^\dagger(\vb{p})
+\end{align}
+and both parts are related by the hermitian conjugate $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$.
+
+So far, we have not considered any states.
+The most important state is the vacuum state $\ket{0}$ which is axiomatically defined to be invariant under spacetime translations~\cite[p.~276]{Bogolubov1989}
+\begin{equation}
+	e^{i\hat{P}_\mu a^\mu}
+	\ket{0}
+	=
+	\ket{0}
+\end{equation}
+suggesting that the vacuum state is energy and momentum eigenstate with respective zero eigenvalue $\hat{P}_\mu\ket{0}=0$.
+From the vacuum state any other state can be constructed by applying the appropriate operators to it.
+
 The first and second moment of the momentum operator
 \begin{align}
 	\expval{\hat{a}(\vb{p})\hat{\vb{P}}\hat{a}^\dagger(\vb{p})}{0}
@@ -331,7 +368,8 @@ The first and second moment of the momentum operator
 	\propto
 	\vb{p}^2
 \end{align}
-suggest that $\hat{a}^\dagger(\vb{p})\ket{0}=\ket{\vb{p}}$ is a momentum eigenstate, and
+where we only used the commutation relations, suggest that $\hat{a}^\dagger(\vb{p})\ket{0}$ is a momentum eigenstate.
+The expectation value
 \begin{equation}
 	\expval{\hat{\vb{P}}}{\vb{p}_1,\vb{p}_2}
 	\propto
@@ -340,99 +378,117 @@ suggest that $\hat{a}^\dagger(\vb{p})\ket{0}=\ket{\vb{p}}$ is a momentum eigenst
 where we defined
 \begin{equation}
 	\ket{\vb{p}_1,\vb{p}_2}
-	=
-	\hat{a}^\dagger(\vb{p}_2)\ket{\vb{p}_1}
-	=
-	\hat{a}^\dagger(\vb{p}_2)\hat{a}^\dagger(\vb{p}_1)\ket{0}
-	=
-	\hat{a}^\dagger(\vb{p}_1)\hat{a}^\dagger(\vb{p}_2)\ket{0}
-	=
+	\propto
+	\hat{a}^\dagger(\vb{p}_1)
+	\hat{a}^\dagger(\vb{p}_2)
+	\ket{0}
+	\propto
 	\ket{\vb{p}_2,\vb{p}_1}
 \end{equation}
 suggests that $\hat{a}^\dagger(\vb{p})$ acting on a state to the right, adds an excitation with momentum $\vb{p}$ to the field.
 
-The momentum eigenstates are not normalizable
+From $\hat{a}(\vb{p})\ket{0}=0$, we find that $\hat\phi^+(t,\vb{x})\ket{0}=0$ and thus
+\begin{equation}
+	\hat\phi(t,\vb{x})
+	\ket{0}
+	=
+	\hat\phi^-(t,\vb{x})
+	\ket{0}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	e^{+ip_\mu x^\mu}
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+\end{equation}
+which resembles the Fourier transform of of the momentum eigenstate.
+In that sense, $\hat\phi$ respective $\hat\phi^-$ creates a particle ideally localized at the spacetime event $(t,\vb{x})$.
+
+One critical problem of the momentum eigenstates is that they are not normalizable
 \begin{equation}
 	\bra{\vb{p}}\ket{\vb{p}}
 	=
 	\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{p})}{0}
-	=
-	(2\pi)^3\delta^{(3)}(0)
+	\propto
+	\delta^{(3)}(0)
 \end{equation}
-because $\delta^{(3)}(0)$ has no consistent mathematical definition but $\bra{\vb{p}}\ket{\vb{p}}$ appears. in all observables associated with the momentum eigenstates.
-Actually, the wave function
+because $\delta^{(3)}(0)$ has no consistent mathematical definition.
+Actually, the coordinate wave function of the momentum space~\cite[p.~25]{Peskin1995}
 \begin{equation}
-	\psi(0,\vb{x})
-	=
-	\bra{0}\hat\phi(0,\vb{x})\ket{\vb{p}}
-	=
-	\int\frac{\dd[3]{q}}{(2\pi)^3}
-	(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-	e^{-i\vb{q}\vdot\vb{x}}
-	=
-	e^{-i\vb{p}\vdot\vb{x}}
+	\begin{split}
+		\psi(t,\vb{x})
+		=
+		\bra{0}
+		\hat\phi(t,\vb{x})
+		\hat{a}^\dagger(\vb{p})
+		\ket{0}
+		&=
+		\left(
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			e^{+iq_\mu x^\mu}
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
+		\right)^\dagger
+		\hat{a}^\dagger(\vb{p})
+		\ket{0}
+		\\
+		&=
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		e^{-iq_\mu x^\mu}
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		e^{-iq_\mu x^\mu}
+		(2\pi)^3
+		\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&\propto
+		e^{-ip_\mu x^\mu}
+	\end{split}
 \end{equation}
-is a plane-wave which is not square-integrable and therefore not an element of the Hilbert space.
-
-Decomposing the Klein-Gordon field into a positive and negative frequency part
-\begin{equation}
-	\hat\phi(t,\vb{x})
-	=
-	\hat\phi^+(t,\vb{x})
-	+
-	\hat\phi^+(t,\vb{x})
-\end{equation}
-where the positive frequency part is defined to be
-\begin{equation}
-	\hat\phi(t,\vb{x})
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	e^{-ip_\mu x^\mu}
-	\hat{a}^\dagger(\vb{p})
-\end{equation}
-and the negative frequency part $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$.
-The field operator acting on the vacuum
-\begin{equation}
-	\hat\phi(t,\vb{x})\ket{0}
-	=
-	\hat\phi^+(t,\vb{x})\ket{0}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	e^{-ip_\mu x^\mu}
-	\hat{a}^\dagger(\vb{p})
-	\ket{0}
-\end{equation}
-appears to resemble the relativistic Fourier transform of an momentum eigenstate.
-In that sense $\hat\phi(t,\vb{x})\ket{0}$ corresponds to a particle localized exactly at $t,\vb{x}$
+is a plane-wave which is not square-integrable and therefore is not even an element of the Hilbert space.
 
 \subsection{Smearing and single-particle states}
 
 \subsubsection{Wightman axioms and smearing}
 
-According to Wightman quantum field theory, a quantum field $\hat\Phi$ is an operator-valued tempered distribution which needs be combined with some Lorentz-invariant Schwartz function $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{K})$
+According to Wightman quantum field theory~\cite[p.~324]{Bogolubov1989}, a quantum field $\hat\Phi$ is an operator-valued tempered distribution which needs be combined with some Lorentz-invariant Schwartz function $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{K})$
 \begin{equation}
 	\hat\Phi[f]
 	=
-	\int\dd[4]{x}f(t,\vb{x})\hat\Phi(t,\vb{x})	
+	\int\dd[4]{x}
+	f(t,\vb{x})
+	\hat\Phi(t,\vb{x})
 \end{equation}
-to avoid ambiguities arising from the idealized non-physical ultra-localized momentum states.
+to avoid ambiguities arising from the idealized non-physical ultra-localized momentum states which we would recover for
+\begin{equation}
+	\hat\Phi[\delta_x]
+	=
+	\int\dd[4]{y}
+	\delta^{(1)}(y^0-x^0)
+	\delta^{(3)}(\vb{y}-\vb{x})
+	\hat\Phi(y^0,\vb{y})
+	=
+	\hat\Phi(x^0,\vb{x})
+	.
+\end{equation}
 
 \subsubsection{Definition smeared single-particle state}
 
-Smearing the positive frequency operator $\hat\phi^+$  with $f$ and defining $f(\vb{p})=f(\omega(\vb{p}),\vb{p})$
+Smearing the negative frequency field operator $\hat\phi^-$  with $f$ and defining $f(\vb{p})=f(\omega(\vb{p}),\vb{p})$
 \begin{align}
-	\hat\phi^+[f]
+	\hat\phi^-[f]
 	&=
 	\int\dd[4]{x}
 	f(t,\vb{x})
-	\hat\phi^+(t,\vb{x})
+	\hat\phi^-(t,\vb{x})
 	\\
 	&=
 	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left(
 		\int\dd[4]{x}
 		f(t,\vb{x})
-		e^{-ip_\mu x^\mu}
+		e^{+ip_\mu x^\mu}
 	\right)
 	\hat{a}^\dagger(\vb{p})
 	\\
@@ -441,19 +497,17 @@ Smearing the positive frequency operator $\hat\phi^+$  with $f$ and defining $f(
 	f(\vb{p})
 	\hat{a}^\dagger(\vb{p})
 \end{align}
-and extrapolating from the known action of $\hat\phi^+$ on the vacuum, suggests
+and extrapolating from the known action of $\hat\phi$ on the vacuum, suggests
 \begin{equation}
 	\ket{f}
 	=
-	\hat\phi[f]\ket{0}
-	=
-	\hat\phi^+[f]\ket{0}
-	=
 	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	f(\vb{p})\hat{a}^\dagger(\vb{p})\ket{0}
+	f(\vb{p})
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
 \end{equation}
 to represent a smeared particle state with localization in spacetime $f(t,\vb{x})$ respective momentum space $f(\vb{p})$.
-The probability amplitude to measure $\ket{g}$ given $\ket{f}$ was prepared is
+The probability amplitude to measure $\ket{g}$ given $\ket{f}$ was prepared is equal to the overlap of the smearing functions
 \begin{equation}
 	\begin{split}
 		\bra{g}\ket{f}

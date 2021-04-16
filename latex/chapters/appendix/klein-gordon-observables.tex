@@ -241,207 +241,217 @@ the probability current in terms of the wave function is
 
 \subsubsection{Center-of-mass position}
 
-The mean center-of-mass can be expressed in terms of the velocity
+The center-of-mass position can be expressed in terms of the velocity
 \begin{equation}
 	\begin{split}
 		\overline{\vb{x}}
 		&=
-		\int\dd[3]{x}\vb{x}\rho(t,\vb{x})
+		\int\dd[3]{x}
+		\vb{x}
+		\rho(t,\vb{x})
 		\\
 		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-		\left\{
-			\omega(\vb{p})
-			+
+		2\Re\left\{
+			\int\dd[3]{x}
+			\vb{x}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
 			\omega(\vb{q})
-		\right\}
-		\\
-		&\times
-		f(\vb{q})^*
-		f(\vb{p})
-		e^{-i\left(\omega(\vb{q})-\omega(\vb{p})\right)t}
-		\int\dd[3]{x}
-		\vb{x}
-		e^{+i(\vb{q}-\vb{p})\vdot\vb{x}}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\int\frac{\dd[3]{k}}{(2\pi)^32\omega(\vb{k})}
-		\left\{
-			\omega(\vb{p})
-			+
-			\omega(\vb{p}+\vb{k})
-		\right\}
-		\\
-		&\times
-		f(\vb{p}+\vb{k})^*
-		f(\vb{p})
-		e^{-i\left(\omega(\vb{p}+\vb{k})-\omega(\vb{p})\right)t}
-		\int\dd[3]{x}
-		\vb{x}
-		e^{+i(\vb{k})\vdot\vb{x}}
-		\\
-		&=
-		-i
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		f(\vb{p})
-		e^{+i\omega(\vb{p})t}
-		\\
-		&\times
-		\int\dd[3]{k}
-		\frac{\omega(\vb{p})+\omega(\vb{p}+\vb{k})}{2\omega(\vb{p}+\vb{k})}
-		f(\vb{p}+\vb{k})^*
-		e^{-i\omega(\vb{p}+\vb{k})t}
-		\grad_{\vb{k}}
-		\delta^{(3)}(\vb{k})
-	\end{split}
-	\label{qkg:mean_position}
-\end{equation}
-we start with the second term, because we can reuse a part of it
-\begin{equation}
-	\begin{split}
-		&
-		\frac{1}{2}
-		\int\dd[3]{k}
-		f(\vb{p}+\vb{k})^*
-		e^{-i\omega(\vb{p}+\vb{k})t}
-		\grad_{\vb{k}}
-		\delta^{(3)}(\vb{k})
-		\\
-		=&\
-		-
-		\frac{1}{2}
-		\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-		\left\{
-			f(\vb{p}+\vb{k})^*
-			e^{-i\omega(\vb{p}+\vb{k})t}
-		\right\}
-		\\
-		=&\
-		-
-		\frac{1}{2}
-		e^{-i\omega(\vb{p})t}
-		\left\{
-			\left(\grad_{\vb{k}}f(\vb{p}+\vb{k})\right)^*
-			-
-			it\grad_{\vb{k}}\omega(\vb{p}+\vb{k})
-		\right\}_{\vb{k}=0}
-		\\
-		=&\
-		-
-		\frac{1}{2}
-		e^{-i\omega(\vb{p})t}
-		\frac{\vb{p}}{\norm{\vb{p}}}
-		\vdot\grad_{\vb{k}}
-		\left\{
+			f(\vb{q})
 			f(\vb{p})^*
-			-
-			i\grad_{\vb{p}}\omega(\vb{p})t
+			e^{-i(p_\mu-q_\mu)x^\mu}
 		\right\}
-	\end{split}
-\end{equation}
-and then the first term
-\begin{equation}
-	\begin{split}
-		&
-		\frac{\omega(\vb{p})}{2}
-		\int\dd[3]{k}
-		\frac{
-			f(\vb{p}+\vb{k})^*
-			e^{-i\omega(\vb{p}+\vb{k})t}
-		}{2\omega(\vb{p}+\vb{k})}
-		\grad_{\vb{k}}
-		\delta^{(3)}(\vb{k})
 		\\
-		=&
-		-
-		\frac{\omega(\vb{p})}{2}
-		\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-		\frac{
-			f(\vb{p}+\vb{k})^*
-			e^{-i\omega(\vb{p}+\vb{k})t}
-		}{\omega(\vb{p}+\vb{k})}
+		&=
+		2\Re\left\{
+			\int\dd[3]{x}
+			\vb{x}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			f(\vb{q})
+			f(\vb{p})^*
+			e^{-i(p_\mu-q_\mu)x^\mu}
+		\right\}
 		\\
-		=&
-		-
-		\frac{\omega(\vb{p})}{2}
-		\frac{
-			\omega(\vb{p})
-			\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-			f(\vb{p}+\vb{k})^*
-			e^{-i\omega(\vb{p}+\vb{k})t}
-			-
+		&=
+		2\Re\left\{
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 			f(\vb{p})^*
 			e^{-i\omega(\vb{p})t}
-			\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-			\omega(\vb{p}+\vb{k})
-		}{\omega(\vb{p})^2}
-		\\
-		=&
-		-
-		\frac{1}{2}
-		\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-		f(\vb{p}+\vb{k})^*
-		e^{-i\omega(\vb{p}+\vb{k})t}
-		+
-		\frac{1}{2\omega(\vb{p})}
-		f(\vb{p})^*
-		e^{-i\omega(\vb{p})t}
-		\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-		\omega(\vb{p}+\vb{k})
-		\\
-		=&\
-		-
-		\frac{1}{2}
-		e^{-i\omega(\vb{p})t}
-		\frac{\vb{p}}{\norm{\vb{p}}}
-		\vdot\grad_{\vb{k}}
-		\left\{
-			f(\vb{p})^*
-			-
-			i\grad_{\vb{p}}\omega(\vb{p})t
+			\int\frac{\dd[3]{k}}{(2\pi)^3}
+			f(\vb{p}+\vb{k})
+			e^{+i\omega(\vb{k}+\vb{p})t}
+			\int\dd[3]{x}
+			\vb{x}
+			e^{+i\vb{k}\vdot\vb{x}}
 		\right\}
-		+
-		\frac{1}{2\omega(\vb{p})}
-		f(\vb{p})^*
-		e^{-i\omega(\vb{p})t}
-		\frac{\vb{p}}{\norm{\vb{p}}}\vdot
-		\eval{\grad_{\vb{p}}}
-		\omega(\vb{p})
+	\end{split}
+\end{equation}
+We take $g(\vb{k})=f(\vb{p}+\vb{k})e^{-i\omega(\vb{k}+\vb{p})t}$ and use partial integration with vanishing boundaries because $g(\vb{k})$ is a Schwartz function
+\begin{equation}
+	\begin{split}
+		\int\frac{\dd[3]{k}}{(2\pi)^3}
+		g(\vb{k})
+		\int\dd[3]{x}
+		\vb{x}
+		e^{+i\vb{k}\vdot\vb{x}}
+		&=
+		\int\frac{\dd[3]{k}}{(2\pi)^3}
+		g(\vb{k})
+		\left(-i\grad_{\vb{k}}\right)
+		\int\dd[3]{x}
+		e^{+i\vb{k}\vdot\vb{x}}
+		\\
+		&=
+		\int\frac{\dd[3]{k}}{(2\pi)^3}
+		g(\vb{k})
+		\left(-i\grad_{\vb{k}}\right)
+		(2\pi)^3\delta^{(3)}(\vb{k})
+		\\
+		&=
+		\int\dd[3]{k}
+		\left(i\grad_{\vb{k}}g(\vb{k})\right)
+		\delta^{(3)}(\vb{k})
+		\\
+		&=
+		i\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+		f(\vb{p}+\vb{k})
+		e^{+i\omega(\vb{k}+\vb{p})t}
+		\\
+		&=
+		ie^{+i\omega(\vb{p})t}
+		\left(
+			\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+			f(\vb{p}+\vb{k})
+			+
+			f(\vb{p})
+			\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+			it\omega(\vb{p}+\vb{k})
+		\right)
+		\\
+		&=
+		ie^{+i\omega(\vb{p})t}
+		\left(
+			\grad_{\vb{p}}
+			f(\vb{p})
+			+
+			it
+			f(\vb{p})
+			\grad_{\vb{p}}
+			\omega(\vb{p})
+		\right)
+	\end{split}
+\end{equation}
+Inserting this back
+\begin{equation}
+	\begin{split}
+		\overline{\vb{x}}
+		&=
+		2\Re\left\{
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})^*
+			e^{-i\omega(\vb{p})t}
+			ie^{+i\omega(\vb{p})t}
+			\left(
+				\grad_{\vb{p}}
+				f(\vb{p})
+				+
+				it
+				f(\vb{p})
+				\grad_{\vb{p}}
+				\omega(\vb{p})
+			\right)
+		\right\}
+		\\
+		&=
+		2\Re\left\{
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})^*
+			i
+			\left(
+				\grad_{\vb{p}}
+				f(\vb{p})
+				+
+				it
+				f(\vb{p})
+				\grad_{\vb{p}}
+				\omega(\vb{p})
+			\right)
+		\right\}
+		\\
+		&=
+		-
+		2\Im\left\{
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})^*
+			\grad_{\vb{p}}
+			f(\vb{p})
+		\right\}
+		-
+		2
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{f(\vb{p})}^2
+		\grad_{\vb{p}}
+		\omega(\vb{p})t
+		\\
+		&=
+		2\Im\left\{
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			f(\vb{p})
+			\grad_{\vb{p}}
+			\frac{f(\vb{p})^*}{2\omega(\vb{p})}
+		\right\}
+		-
+		2
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{f(\vb{p})}^2
+		\grad_{\vb{p}}
+		\omega(\vb{p})t
+		\\
+		&=
+		2\Im\left\{
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			f(\vb{p})
+			\frac{
+				\omega(\vb{p})
+				\grad_{\vb{p}}
+				f(\vb{p})^*
+				-
+				f(\vb{p})^*
+				\grad_{\vb{p}}
+				\omega(\vb{p})
+			}{2\omega(\vb{p})^2}
+		\right\}
+		-
+		2
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{f(\vb{p})}^2
+		\grad_{\vb{p}}
+		\omega(\vb{p})t
 	\end{split}
 \end{equation}
 
-where we used
+If we want
 \begin{equation}
-	\int\dd[3]{x}
-	\vb{x}
-	e^{+i\vb{k}\vdot\vb{x}}
+	\overline{\vb{x}}
 	=
-	\left(-i\grad_{\vb{k}}\right)
-	\int\dd[3]{x}
-	e^{+i\vb{k}\vdot\vb{x}}
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\frac{\vb{p}}{\omega(\vb{p})}
+	\abs{f(\vb{p})}^2
+	t
 	=
-	\left(-i\grad_{\vb{k}}\right)
-	(2\pi)^3
-	\delta^{(3)}(\vb{k})
+	\overline{\vb{v}}t
 \end{equation}
-and
+we need
 \begin{equation}
-	\int\dd[3]{k}
-	f(\vb{k})
-	\grad_{\vb{k}}(\vb{k})
-	\delta^{(3)}(\vb{k})
-	=
-	-
-	\int\dd[3]{k}
-	\delta^{(3)}(\vb{k})
-	\grad_{\vb{k}}(\vb{k})
-	f(\vb{k})
-	=
-	-
-	f^\prime(0)
+			\int\frac{\dd[3]{k}}{(2\pi)^3}
+			f(\vb{p}+\vb{k})
+			e^{-i\omega(\vb{k}+\vb{p})t}
+			\int\dd[3]{x}
+			\vb{x}
+			e^{+i\vb{k}\vdot\vb{x}}
+			=
+			\frac{\vb{p}}{\omega(\vb{p})}f(\vb{p})t	
 \end{equation}
-
 
 \section{Coherent state}
