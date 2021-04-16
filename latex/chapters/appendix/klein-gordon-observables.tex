@@ -136,30 +136,72 @@ The coordinate the wave function is
 	\begin{split}
 		\psi(t,\vb{x})
 		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\bra{0}
+		\hat\phi(t,\vb{x})
+		\ket{f}
+		\\
+		&=
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{+ip_\mu x^\mu}
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+		\right)^\dagger
 		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})e^{iq_\mu x^\mu}
-		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+		f(\vb{q})
+		\hat{a}^\dagger(\vb{q})
+		\ket{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		e^{-ip_\mu x^\mu}
+		\bra{0}
+		\hat{a}(\vb{p})
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{q})
+		\hat{a}^\dagger(\vb{q})
+		\ket{0}
 		\\
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})e^{iq_\mu x^\mu}
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		f(\vb{q})
+		e^{-ip_\mu x^\mu}
+		\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{q})
+		e^{-ip_\mu x^\mu}
+		(2\pi)^3
+		\delta^{(3)}(\vb{q}-\vb{p})
 		\\
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		f(\vb{p})e^{ip_\mu x^\mu}
+		f(\vb{p})
+		e^{-ip_\mu x^\mu}
 	\end{split}
 \end{equation}
-the probability current in terms of the wave function is
+the probability current is a conserved Noether current\cite[p.~18]{Peskin1995}
 \begin{equation}
 	\begin{split}
 		j_\mu(t,\vb{x})
 		&=
+		i
+		\bigl\{
+			\psi(t,\vb{x})
+			\partial_\mu
+			\psi(t,\vb{x})^*
+			-
+			\psi(t,\vb{x})^*
+			\partial_\mu
+			\psi(t,\vb{x})
+		\bigr\}
+		=
 		2
 		\Im\left\{
-			\psi(t,\vb{x})
+			\psi(t,\vb{x})^*
 			\partial_\mu
 			\psi(t,\vb{x})
 		\right\}
@@ -168,9 +210,9 @@ the probability current in terms of the wave function is
 		2
 		\Im\left\{
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})^*e^{-ip_\mu x^\mu}
+			f(\vb{p})^*e^{+ip_\mu x^\mu}
 			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-			f(\vb{q})iq_\mu e^{+iq_\mu x^\mu}
+			f(\vb{q})iq_\mu e^{-iq_\mu x^\mu}
 		\right\}
 		\\
 		&=
@@ -181,7 +223,7 @@ the probability current in terms of the wave function is
 			f(\vb{p})^*
 			f(\vb{q})
 			iq_\mu
-			e^{-i(p_\mu-q_\mu)x^\mu}
+			e^{-i(q_\mu-p_\mu)x^\mu}
 		\right\}
 		\\
 		&=
@@ -192,36 +234,6 @@ the probability current in terms of the wave function is
 		\Re\left\{
 			f(\vb{p})^*
 			f(\vb{q})
-			e^{-i(p_\mu-q_\mu)x^\mu}
-		\right\}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-		\left\{
-			q_\mu
-			f(\vb{p})
-			f(\vb{q})^*
-			e^{+i(p_\mu-q_\mu)x^\mu}
-			+
-			q_\mu
-			f(\vb{p})^*
-			f(\vb{q})
-			e^{-i(p_\mu-q_\mu)x^\mu}
-		\right\}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-		\left\{
-			q_\mu
-			f(\vb{p})
-			f(\vb{q})^*
-			e^{+i(p_\mu-q_\mu)x^\mu}
-			+
-			p_\mu
-			f(\vb{q})^*
-			f(\vb{p})
 			e^{-i(q_\mu-p_\mu)x^\mu}
 		\right\}
 		\\
@@ -233,8 +245,8 @@ the probability current in terms of the wave function is
 			+
 			p_\mu
 		\right\}
-		f(\vb{q})^*
-		f(\vb{p})
+		f(\vb{p})^*
+		f(\vb{q})
 		e^{-i(q_\mu-p_\mu)x^\mu}
 	\end{split}
 \end{equation}
