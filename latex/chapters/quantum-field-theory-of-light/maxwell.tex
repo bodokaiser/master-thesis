@@ -1,6 +1,6 @@
 \section{Maxwell field}
 
-The Maxwell Lagrangian with an external source $J^\mu(t,\vb{x})$ is
+The Maxwell Lagrangian with an external source $J^\mu(t,\vb{x})$ is~\cite[p.~339]{Srednicki2007}
 \begin{equation}
 	\begin{split}
 		\mathcal{L}
@@ -13,9 +13,14 @@ The Maxwell Lagrangian with an external source $J^\mu(t,\vb{x})$ is
 		A_\mu J^\mu
 		\\
 		&=
+		-
 		\frac{1}{2}
-		\left(\partial_\mu A_\nu\right)
-		\left(\partial^\mu A^\nu-\partial^\nu A^\mu\right)
+		(\partial_\mu A_\nu)
+		(\partial^\mu A^\nu)
+		+
+		\frac{1}{2}
+		(\partial_\mu A_\nu)
+		(\partial^\nu A^\mu)
 		+
 		A_\mu J^\mu
 	\end{split}
@@ -130,20 +135,28 @@ As with the Klein-Gordon field, we start with the four-dimensional Fourier trans
 	\label{eq:mw_ft}
 \end{equation}
 where we defined $a_\lambda(\vb{p})\vb{\epsilon}_\lambda(\vb{p})=\vb{A}(\omega(\vb{p}),\vb{p})$ and $\vb{\epsilon}_\lambda(\vb{p})$ denotes the polarization vectors.
-For the mode decomposition to satisfy the Coulomb gauge, the polarization vectors $\vb{\epsilon}_\lambda(\vb{p})$ need to be orthogonal to the wave vector $\vb{p}$, i.e.,
-\begin{equation}
-	\vb{p}\vdot\vb{\epsilon}_\lambda(\vb{p})
-	=
-	0	
-\end{equation}
-Furthermore, we require the $\vb{p}/\norm{\vb{p}},\vb{\epsilon}_1(\vb{p}),\vb{\epsilon}_2(\vb{p})$ to form a orthonormal basis
-\begin{equation}
-	\vb{\epsilon}_i(\vb{p})
+In the Coulomb gauge, the polarization vectors satisfy~\cite[p.~341]{Srednicki2007}
+\begin{align}
+	\vb{p}
 	\vdot
-	\vb{\epsilon}_j(\vb{p})
-	=
-	\delta_{ij}
-\end{equation}
+	\boldsymbol{\varepsilon}_\lambda(\vb{p})
+	&=
+	0
+	\\
+	\boldsymbol{\varepsilon}_\alpha(\vb{p})
+	\vdot
+	\boldsymbol{\varepsilon}_\beta(\vb{p})^*
+	&=
+	\delta_{\alpha\beta}
+	\\
+	\sum_{\lambda=1,2}
+	\boldsymbol{\varepsilon}_\alpha^i(\vb{p})
+	\boldsymbol{\varepsilon}_\alpha^j(\vb{p})^*
+	&=
+	\delta^{ij}
+	-
+	\frac{p^ip^j}{\vb{p}^2}
+\end{align}
 
 \subsection{Maxwell equations}
 
@@ -167,15 +180,15 @@ and the covariant homogeneous Maxwell equations are a consequence of the Bianchi
 \end{equation}
 where we defined $\tilde{F}^{\mu\nu}=\frac{1}{2}\varepsilon^{\mu\nu\alpha\beta}F_{\alpha\beta}$.
 
-The components of the field-strength tensor $F^{\mu\nu}$ relate to the electromagnetic field components via
+The components of the antisymmetric field-strength tensor $F^{\mu\nu}=-F^{\nu\mu}$ relate to the electromagnetic field components via~\cite[p.~336]{Srednicki2007}
 \begin{align}
 	F^{0i}
 	=
-	-E^i
+	E^i
 	&&
 	F^{ij}
 	=
-	-\varepsilon^{ijk}B_k
+	\varepsilon^{ijk}B_k
 	\label{eq:mw_field_strength_components}.
 \end{align}
 Evaluating the time component of \cref{eq:mw_homo} yields the Gauss' law for magnetism
