@@ -139,6 +139,10 @@ The coordinate the wave function is
 		\bra{0}
 		\hat\phi(t,\vb{x})
 		\ket{f}
+		=
+		\bra{0}
+		\hat\phi^-(t,\vb{x})
+		\ket{f}
 		\\
 		&=
 		\left(
@@ -153,10 +157,12 @@ The coordinate the wave function is
 		\ket{0}
 		\\
 		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		e^{-ip_\mu x^\mu}
-		\bra{0}
-		\hat{a}(\vb{p})
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{-ip_\mu x^\mu}
+			\bra{0}
+			\hat{a}(\vb{p})
+		\right)^\dagger
 		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
 		f(\vb{q})
 		\hat{a}^\dagger(\vb{q})
@@ -183,7 +189,7 @@ The coordinate the wave function is
 		e^{-ip_\mu x^\mu}
 	\end{split}
 \end{equation}
-the probability current is a conserved Noether current\cite[p.~18]{Peskin1995}
+the probability current is a conserved Noether current~\cite[p.~18]{Peskin1995}
 \begin{equation}
 	\begin{split}
 		j_\mu(t,\vb{x})
@@ -250,6 +256,7 @@ the probability current is a conserved Noether current\cite[p.~18]{Peskin1995}
 		e^{-i(q_\mu-p_\mu)x^\mu}
 	\end{split}
 \end{equation}
+where we expanded the real part and renamed the integrations variables of the second term in the last line.
 
 \subsubsection{Center-of-mass position}
 
@@ -467,3 +474,501 @@ we need
 \end{equation}
 
 \section{Coherent state}
+
+Ref.~\cite[p.~40]{Barnett2002} proves
+\begin{equation}
+	e^{\hat{A}}
+	\hat{B}
+	e^{-\hat{A}}
+	=
+	\hat{B}
+	+
+	\comm{\hat{A}}{\hat{B}}
+	+
+	\frac{1}{2!}
+	\comm{\hat{A}}{\comm{\hat{A}}{\hat{B}}}
+	+
+	\frac{1}{3!}
+	\comm{\hat{A}}{\comm{\hat{A}}{\comm{\hat{A}}{\hat{B}}}}
+\end{equation}
+which for $\comm{\hat{A}}{\hat{B}}=0$ reduces to
+\begin{equation}
+	e^{\hat{A}}
+	\hat{B}
+	e^{-\hat{A}}
+	=
+	\hat{B}
+	+
+	\comm{\hat{A}}{\hat{B}}
+\end{equation}
+
+Wick's theorem from Lancaster~\cite[p.~173]{Lancaster2014}
+\begin{equation}
+	T
+	\hat\phi(x_1)
+	\hat\phi(x_2)
+	=
+	N
+	\hat\phi(x_1)
+	\hat\phi(x_2)
+	+
+	D_F(x_1-x_2)	
+\end{equation}
+where the Feynman propagator $D_F(x_1-x_2)$ is the result of the contraction and odd orders vanish.
+The next higher order is
+\begin{equation}
+	\begin{split}
+		T
+		\hat\phi(x_1)
+		\hat\phi(x_2)
+		\hat\phi(x_3)
+		\hat\phi(x_4)
+		&=
+		N
+		\hat\phi(x_1)
+		\hat\phi(x_2)
+		\hat\phi(x_3)
+		\hat\phi(x_4)
+		\\
+		&+
+		D_F(x_1-x_2)
+		N
+		\hat\phi(x_3)
+		\hat\phi(x_4)
+		+
+		D_F(x_2-x_3)
+		N
+		\hat\phi(x_1)
+		\hat\phi(x_4)
+		\\
+		&+
+		D_F(x_3-x_4)
+		N
+		\hat\phi(x_1)
+		\hat\phi(x_2)
+		+
+		D_F(x_1-x_3)
+		N
+		\hat\phi(x_2)
+		\hat\phi(x_4)
+		\\
+		&+
+		D_F(x_1-x_4)
+		N
+		\hat\phi(x_2)
+		\hat\phi(x_3)
+		+
+		D_F(x_2-x_4)
+		N
+		\hat\phi(x_1)
+		\hat\phi(x_3)
+		\\
+		&+
+		D_F(x_1-x_2)
+		D_F(x_3-x_4)
+		+
+		D_F(x_1-x_3)
+		D_F(x_2-x_4)
+		\\
+		&+
+		D_F(x_1-x_4)
+		D_F(x_2-x_3)
+	\end{split}
+\end{equation}
+which is already quite complex but fortunately simplifies after integration
+\begin{align*}
+	T
+	\int\dd[4]{x_1}\dd[4]{x_2}
+	J(x_1)
+	J(x_2)
+	\hat\phi(x_1)
+	\hat\phi(x_2)
+	&=
+	N
+	\int\dd[4]{x_1}\dd[4]{x_2}
+	J(x_1)
+	J(x_2)
+	\hat\phi(x_1)
+	\hat\phi(x_2)
+	\\
+	&+
+	\int\dd[4]{x_1}\dd[4]{x_2}
+	J(x_1)
+	D_F(x_1-x_2)
+	J(x_2)
+	\\
+	T
+	\int\dd[4]{x_1}\dots\dd[4]{x_4}
+	J(x_1)
+	\dots
+	J(x_4)
+	\hat\phi(x_1)
+	\dots
+	\hat\phi(x_4)
+	&=
+	N
+	\int\dd[4]{x_1}\dots\dd[4]{x_4}
+	J(x_1)
+	\dots
+	J(x_4)
+	\hat\phi(x_1)
+	\dots
+	\hat\phi(x_4)
+	\\
+	&+
+	6\int\dd[4]{x_1}\dd[4]{x_2}
+	J(x_1)
+	D_F(x_1-x_2)
+	J(x_2)
+	\\
+	&+
+	3\left(
+		\int\dd[4]{x_1}\dd[4]{x_2}
+		J(x_1)
+		D_F(x_1-x_2)
+		J(x_2)
+	\right)^2
+\end{align*}
+because we can relabel the integration variables to equalize the permutations.
+We expect that this generalizes to
+\begin{equation}
+	\begin{split}
+		&
+		T
+		\int\dd[4]{x_1}\dots\dd[4]{x_n}
+		J(x_1)
+		\dots
+		J(x_n)
+		\hat\phi(x_1)
+		\dots
+		\hat\phi(x_n)
+		\\
+		=&\
+		N
+		\int\dd[4]{x_1}\dots\dd[4]{x_n}
+		J(x_1)
+		\dots
+		J(x_n)
+		\hat\phi(x_1)
+		\dots
+		\hat\phi(x_n)
+		\\
+		+&\
+		\binom{n}{2}
+		\int\dd[4]{x_1}\dd[4]{x_2}
+		J(x_1)
+		D_F(x_1-x_2)
+		J(x_2)
+		\\
+		+&\
+		\binom{n}{4}
+		\left(
+			\int\dd[4]{x_1}\dd[4]{x_2}
+			J(x_1)
+			D_F(x_1-x_2)
+			J(x_2)
+		\right)^2
+		+
+		\dots
+	\end{split}
+\end{equation}
+
+\begin{equation}
+	\begin{split}
+		&
+		T\exp\left\{
+			-i
+			\int\dd[4]{x}
+			\hat\phi(x)
+			J(x)
+		\right\}
+		\\
+		=&\
+		\sum_{n=0}^\infty
+		\frac{1}{n!}
+		(-i)^n
+		\int\dd[4]{x_1}\dots\dd[4]{x_n}
+		J(x_1)\dots J(x_n)
+		T\hat\phi(x_1)\dots\hat\phi(x_n)
+		\\
+		=&\
+		N\exp\left\{
+			-i
+			\int\dd[4]{x}
+			\hat\phi(x)
+			J(x)
+		\right\}
+		\\
+		\times&\
+		\left\{
+			\sum_{n=0}^\infty
+			\frac{1}{n!}
+			(-i)^{n}
+			\int\dd[4]{x_1}\dots\dd[4]{x_n}
+			J(x_1)\dots J(x_n)
+			\sum_\text{perm}
+			D_F(x_1-x_2)\dots D_F(x_{n-1}-x_n)
+		\right\}
+		\\
+		=&\
+		N\exp\left\{
+			-i
+			\int\dd[4]{x}
+			\hat\phi(x)
+			J(x)
+		\right\}
+		\\
+		\times&\
+		\left\{
+			\sum_{n=0}^\infty
+			\frac{1}{n!}
+			(-i)^{n}
+			\sum_\text{perm}
+			\int\dd[4]{x_1}\dd[4]{x_2}
+			J(x_1)D_F(x_1-x_2)J(x_2)
+			\dots
+			\int\dd[4]{x_{n-1}}\dd[4]{x_n}
+			J(x_{n-1})D_F(x_{n-1}-x_n)J(x_n)
+		\right\}
+	\end{split}
+\end{equation}
+where we used Wick's theorem as in Ref.~\cite[p.~89]{Peskin1995}
+
+\subsection{Eigenvalue of annihilation operator}
+
+\begin{equation}
+	\begin{split}
+		\hat{a}(\vb{p})
+		\ket{\alpha}
+		&\propto
+		\hat{a}(\vb{p})
+		\exp\left\{
+			-i
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\alpha(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+		\right\}
+		\ket{0}
+		\\
+		&=
+		\hat{a}(\vb{p})
+		\sum_{n=0}^\infty
+		\frac{1}{n!}
+		\left(
+			-i
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\alpha(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+		\right)^n
+		\ket{0}
+		\\
+		&=
+		\sum_{n=1}^\infty
+		\frac{1}{n!}
+		(-i)^n
+		\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
+		\dots
+		\int\frac{\dd[3]{q_n}}{(2\pi)^3\sqrt{2\omega(\vb{q}_n)}}
+		\\
+		&\times
+		\alpha(\vb{q}_1)
+		\dots
+		\alpha(\vb{q}_n)
+		\hat{a}(\vb{p})
+		\hat{a}^\dagger(\vb{q}_1)
+		\dots
+		\hat{a}^\dagger(\vb{q}_n)
+		\ket{0}
+		\\
+		&=
+		\sum_{n=1}^\infty
+		\frac{1}{n!}
+		(-i)^n
+		\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
+		\dots
+		\int\frac{\dd[3]{q_n}}{(2\pi)^3\sqrt{2\omega(\vb{q}_n)}}
+		\\
+		&\times
+		\alpha(\vb{q}_1)
+		\dots
+		\alpha(\vb{q}_n)
+		(2\pi)^3\delta^{(3)}(\vb{q}_1-\vb{p})
+		\hat{a}^\dagger(\vb{q}_2)
+		\dots
+		\hat{a}^\dagger(\vb{q}_n)
+		\ket{0}
+		\\
+		&=
+		\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+		\sum_{n=1}^\infty
+		\frac{1}{n!}
+		\left(
+			-i
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\alpha(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+		\right)^{n-1}
+		\ket{0}
+		\\
+		&\propto
+		\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+		\ket{\alpha}
+	\end{split}
+\end{equation}
+the hermitian conjugate gives $\bra{\alpha}\hat{a}^\dagger(\vb{p})=\bra{\alpha}\alpha(\vb{p})$.
+
+\subsection{Number, energy, and momentum observables}
+
+As for the single-particle case, we calculate the moments for $\hat{H}$ and replace $\omega(\vb{p})\to1,\vb{p}$ to obtain the results for $\hat{N},\hat{P}$
+\begin{equation}
+	\begin{split}
+		\expval{\hat{H}}{\alpha}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\omega(\vb{p})
+		\expval{\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})}{\alpha}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\omega(\vb{p})
+		\expval{\frac{\alpha(\vb{p})^*}{2\omega(\vb{p})}\frac{\alpha(\vb{p})}{2\omega(\vb{p})}}{\alpha}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\omega(\vb{p})
+		\abs{\alpha(\vb{p})}^2
+	\end{split}
+\end{equation}
+for the first and
+\begin{equation}
+	\begin{split}
+		\expval{\hat{H}^2}{\alpha}
+		&=
+		\int\frac{\dd[3]{p}_1}{(2\pi)^3}
+		\int\frac{\dd[3]{p}_2}{(2\pi)^3}
+		\omega(\vb{p}_1)
+		\omega(\vb{p}_2)
+		\expval{
+			\hat{a}^\dagger(\vb{p}_1)
+			\hat{a}(\vb{p}_1)
+			\hat{a}^\dagger(\vb{p}_2)
+			\hat{a}(\vb{p}_2)
+		}{\alpha}
+		\\
+		&=
+		\int\frac{\dd[3]{p}_1}{(2\pi)^3}
+		\int\frac{\dd[3]{p}_2}{(2\pi)^3}
+		\omega(\vb{p}_1)
+		\omega(\vb{p}_2)
+		\expval{
+			\hat{a}^\dagger(\vb{p}_1)
+			(2\pi)^3
+			\delta^{(3)}(\vb{p}_2-\vb{p}_1)
+			\hat{a}(\vb{p}_2)
+		}{\alpha}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\omega(\vb{p})^2
+		\expval{
+			\hat{a}^\dagger(\vb{p})
+			\hat{a}(\vb{p})
+		}{\alpha}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\omega(\vb{p})^2
+		\abs{\alpha(\vb{p})}^2
+	\end{split}
+\end{equation}
+for the second moment.
+
+The probability to measure the vacuum given a coherent state is
+\begin{equation}
+	\begin{split}
+		\braket{0}{\alpha}
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{\alpha(\vb{p})}^2
+		\right\}
+		\expval{0}
+		\exp\left\{
+			-i
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\alpha(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+		\right\}
+		\ket{0}
+		\\
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{\alpha(\vb{p})}^2
+		\right\}
+		\left\{
+			\braket{0}
+			-
+			i\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\alpha(\vb{q})
+			\expval{\hat{a}^\dagger(\vb{q})}{0}
+			+
+			\dots
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{\alpha(\vb{p})}^2
+		\right\}
+		=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\expval{\hat{N}}{\alpha}
+		\right\}
+	\end{split}
+\end{equation}
+For instance, the overlap with a single-particle state is
+\begin{equation}
+	\begin{split}
+		\braket{f}{\alpha}
+		&=
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+		\right)^\dagger
+		\ket{\alpha}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		f(\vb{p})^*
+		\bra{0}
+		\hat{a}(\vb{p})
+		\ket{\alpha}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		f(\vb{p})^*
+		\alpha(\vb{p})
+		\braket{0}{\alpha}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		f(\vb{p})^*
+		\alpha(\vb{p})
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\expval{\hat{N}}{\alpha}
+		\right\}
+	\end{split}
+\end{equation}
