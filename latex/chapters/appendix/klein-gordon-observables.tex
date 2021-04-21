@@ -1,5 +1,80 @@
 \section{Single-particle}
 
+\begin{proof}
+\begin{equation*}
+	\begin{split}
+		\phi(t,\vb{x})
+		&=
+		\int_V\frac{\dd[4]{p}}{(2\pi)^4}
+		\phi(p_0,\vb{p})
+		e^{+ip_\mu x^\mu}
+		\\
+		&=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
+		\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
+		\phi(p_0,\vb{p})
+		e^{+ip_\mu x^\mu}
+		\\
+		&=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
+		\frac{
+			\delta^{(1)}\left(p_0-\omega(\vb{p})\right)
+			+
+			\delta^{(1)}\left(p_0+\omega(\vb{p})\right)
+		}{\sqrt{2\omega(\vb{p})}}
+		\phi(p_0,\vb{p})
+		e^{+ip_0t}
+		e^{-i\vb{p}\vdot\vb{x}}
+		\\
+		&=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			\phi(\omega(\vb{p}),\vb{p})
+			e^{+i\omega(\vb{p})t}
+			+
+			\phi(-\omega(\vb{p}),\vb{p})
+			e^{-i\omega(\vb{p})t}
+		\biggr\}
+		e^{-i\vb{p}\vdot\vb{x}}
+		\\
+		&=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			\phi(\omega(\vb{p}),\vb{p})
+			e^{+i\omega(\vb{p})t}
+			e^{-i\vb{p}\vdot\vb{x}}
+			+
+			\phi(-\omega(\vb{p}),\vb{p})
+			e^{-i\omega(\vb{p})t}
+			e^{-i\vb{p}\vdot\vb{x}}
+		\biggr\}
+		\\
+		&=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			\phi(\omega(\vb{p}),\vb{p})
+			e^{+i\omega(\vb{p})t}
+			e^{-i\vb{p}\vdot\vb{x}}
+			+
+			\phi(-\omega(\vb{p}),-\vb{p})
+			e^{-i\omega(\vb{p})t}
+			e^{+i\vb{p}\vdot\vb{x}}
+		\biggr\}
+		\\
+		&=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			\phi(\omega(\vb{p}),\vb{p})
+			e^{+ip_\mu x^\mu}
+			+
+			\phi(\omega(\vb{p}),\vb{p})^*
+			e^{-ip_\mu x^\mu}
+		\biggr\}_{p_0=\omega(\vb{p})}
+	\end{split}
+\end{equation*}
+where we used the conjugate symmetry of $\phi(p_0,\vb{p})$ because $\phi(t,\vb{x})$ is real-valued.
+\end{proof}
+
 \subsection{Number, energy and momentum observables}
 
 We start with the expectation values of the energy operator and begin with the auxiliary results

@@ -2,247 +2,193 @@
 
 \subsection{Relativistic field theory}
 
-The most simple non-trivial, free relativistic Lagrangian density of a real-valued scalar field $\phi$ to be constructed is
-\begin{equation}
-	\mathcal{L}
-	=
-	\frac{1}{2}
-	\left(\partial_\mu\phi\right)
-	\left(\partial^\mu\phi\right)
-	-
-	\frac{1}{2}
-	m^2\phi^2
-	\label{eq:kg_lagrangian}.
-\end{equation}
-The field equation of motion are found by the relativistic Euler-Lagrange equations
-\begin{equation}
-	0
-	=
-	\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu\phi)}
-	-
-	\pdv{\mathcal{L}}{\phi}
-	=
-	\left(\partial_\mu\partial^\mu+m^2\right)
-	\phi(t,\vb{x})
-	\label{eq:kg_eom}
-\end{equation}
-which minimize the action.
-Assuming the existence of the Fourier transform of the field~\cite[p.~341]{Cohen2019}
-\begin{equation}
-	\phi(t,\vb{x})
-	=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
-	\phi(t,\vb{p})e^{-i\vb{p}\vdot\vb{x}}
-	=
-	\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
-	\phi(p_0,\vb{p})e^{+ip_\mu x^\mu}
-	\label{eq:kg_ft_naive},
-\end{equation}
-and inserting the Fourier transform into the equation of motion reduces \cref{eq:kg_eom} to
-\begin{equation}
-	0
-	=
-	\left(
-		ip_\mu ip^\mu
-		+
-		m^2
-	\right)
-	\phi(p_0,\vb{p})
-	=
-	-
-	\left(
-		p_0^2
+\begin{definition}[Klein-Gordon Lagrangian]
+	The Lorentz-invariant Lagrangian density
+	\begin{equation}
+		\mathcal{L}
+		=
+		\frac{1}{2}
+		\left(\partial_\mu\phi\right)
+		\left(\partial^\mu\phi\right)
 		-
-		\omega(\vb{p})^2
-	\right)
-	\phi(p_0,\vb{p})
-	\label{eq:kg_eom_ft}
-\end{equation}
-where we defined the relativistic energy-momentum (or dispersion) relation
-\begin{equation}
-	\omega(\vb{p})
-	=
-	\sqrt{\vb{p}^2+m^2}
-	=
-	E(\vb{p})
-	\label{eq:energy_momentum_relation}.
-\end{equation}
-By restricting the integration domain to the momentum lightcone
-\begin{equation}
-	V
-	=
-	\left\{
-		(p_0,\vb{p})\in\mathbb{R}^4
-		\mid
-		p_0^2=\omega(\vb{p})^2
-	\right\}
-	\label{eq:momentum_lightcone},
-\end{equation}
-we ensure that the Fourier modes satisfy the equation of motion.
-It is sensible to rewrite the restricted Fourier mode expansion
-\begin{equation*}
-	\begin{split}
+		\frac{1}{2}
+		m^2\phi^2
+		\label{eq:kg_lagrangian}
+	\end{equation}
+	describes a real scalar field $\phi(t,\vb{x})$ with mass $m>0$, the (massive) Klein-Gordon field.
+\end{definition}
+\begin{theorem}[Relativistic energy-momentum relation]\label{th:relativistic_energy_momentum}
+	Excitations of the Klein-Gordon field satisfy the relativistic energy-momentum relation
+	\begin{equation}
+		\omega(\vb{p})
+		=
+		\sqrt{\vb{p}^2+m^2}
+		=
+		E(\vb{p})
+		\label{eq:energy_momentum_relation}
+	\end{equation}
+	and the physical momentum space is constrained to the momentum lightcone
+	\begin{equation}
+		V
+		=
+		\left\{
+			(p_0,\vb{p})\in\mathbb{R}^4
+			\mid
+			p_0^2=\omega(\vb{p})^2
+		\right\}
+		\label{eq:momentum_lightcone}
+		.
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	According to the action principle, the dynamics of the field are determined by the equations of motion which can be found by the relativistic Euler-Lagrange equations
+	\begin{equation*}
+		0
+		=
+		\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu\phi)}
+		-
+		\pdv{\mathcal{L}}{\phi}
+		=
+		\left(
+			\partial_\mu\partial^\mu
+			+
+			m^2
+		\right)
 		\phi(t,\vb{x})
-		&=
-		\int_V\frac{\dd[4]{p}}{(2\pi)^4}
-		\phi(p_0,\vb{p})
-		e^{+ip_\mu x^\mu}
-		\\
-		&=
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
-		\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
-		\phi(p_0,\vb{p})
-		e^{+ip_\mu x^\mu}
-		\\
-		&=
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
-		\frac{
-			\delta^{(1)}\left(p_0-\omega(\vb{p})\right)
-			+
-			\delta^{(1)}\left(p_0+\omega(\vb{p})\right)
-		}{\sqrt{2\omega(\vb{p})}}
-		\phi(p_0,\vb{p})
-		e^{+ip_0t}
+		.
+	\end{equation*}
+	Assuming the existence of the Klein-Gordon field's Fourier representation~\cite[p.~341]{Cohen2019}
+	\begin{equation}
+		\phi(t,\vb{x})
+		=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+		\phi(t,\vb{p})
 		e^{-i\vb{p}\vdot\vb{x}}
-		\\
-		&=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\biggl\{
-			\phi(\omega(\vb{p}),\vb{p})
-			e^{+i\omega(\vb{p})t}
-			+
-			\phi(-\omega(\vb{p}),\vb{p})
-			e^{-i\omega(\vb{p})t}
-		\biggr\}
-		e^{-i\vb{p}\vdot\vb{x}}
-		\\
-		&=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\biggl\{
-			\phi(\omega(\vb{p}),\vb{p})
-			e^{+i\omega(\vb{p})t}
-			e^{-i\vb{p}\vdot\vb{x}}
-			+
-			\phi(-\omega(\vb{p}),\vb{p})
-			e^{-i\omega(\vb{p})t}
-			e^{-i\vb{p}\vdot\vb{x}}
-		\biggr\}
-		\\
-		&=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\biggl\{
-			\phi(\omega(\vb{p}),\vb{p})
-			e^{+i\omega(\vb{p})t}
-			e^{-i\vb{p}\vdot\vb{x}}
-			+
-			\phi(-\omega(\vb{p}),-\vb{p})
-			e^{-i\omega(\vb{p})t}
-			e^{+i\vb{p}\vdot\vb{x}}
-		\biggr\}
-		\\
-		&=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\biggl\{
-			\phi(\omega(\vb{p}),\vb{p})
-			e^{+ip_\mu x^\mu}
-			+
-			\phi(\omega(\vb{p}),\vb{p})^*
-			e^{-ip_\mu x^\mu}
-		\biggr\}_{p_0=\omega(\vb{p})}
-	\end{split}
-\end{equation*}
-where we used the conjugate symmetry of $\phi(p_0,\vb{p})$ because $\phi(t,\vb{x})$ is real-valued.
-We define
-\begin{equation}
-	a(\vb{p})
-	=
-	\phi(\omega(\vb{p}),\vb{p})^*
-\end{equation}
-and from now on assume $p_0=\omega(\vb{p})$ if nothing different is stated.
-
-We close the chapter by transitioning from Lagrangian to Hamiltonian field mechanics.
-The canonical momentum density is given by
-\begin{equation}
-	\pi(t,\vb{x})
-	=
-	\partial_t\pdv{\mathcal{L}}{(\partial_t\phi)}
-	=
-	\partial_t\phi(t,\vb{x})
-	\label{eq:canonical_momentum}
-\end{equation}
-and we find the conjugate variables to be
-\begin{align}
-	\phi(t,\vb{x})
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\frac{1}{\sqrt{2\omega(\vb{p})}}
-	\left\{
-		a(\vb{p})
-		e^{-ip_\mu x^\mu}
-		+
-		a(\vb{p})^*
+		=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
+		\phi(p_0,\vb{p})
 		e^{+ip_\mu x^\mu}
-	\right\}
-	\label{eq:kg_pos}
-	\\
-	\pi(t,\vb{x})
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\left(-i\sqrt{2\omega(\vb{p})}\right)
-	\left\{
-		a(\vb{p})
-		e^{-ip_\mu x^\mu}
+		,
+	\end{equation}
+	the equation of motion in momentum space reduces to
+	\begin{equation}
+		0
+		=
+		\left(
+			ip_\mu ip^\mu
+			+
+			m^2
+		\right)
+		\phi(p_0,\vb{p})
+		=
 		-
-		a(\vb{p})^*
-		e^{+ip_\mu x^\mu}
-	\right\}
-	\label{eq:kg_mom}.
-\end{align}
-Field observables are encoded in the canonical energy-momentum tensor, sometimes called (Hilbert) stress-energy tensor
-\begin{equation}
-	T^{\mu\nu}
-	=
-	\pdv{\mathcal{L}}{(\partial_\mu\phi)}\partial^\nu\phi
-	-
-	g^{\mu\nu}\mathcal{L}
-	\label{eq:energy_momentum_tensor}.
-\end{equation}
-For instance, the time components yield the energy and momentum density
-\begin{align}
-	T^{00}
-	=
-	\frac{1}{2}
-	\left(\partial_t\phi\right)^2
-	+
-	\frac{1}{2}
-	\left(\grad\phi\right)^2
-	+
-	\frac{1}{2}
-	\left(m\phi\right)^2
-	&&
-	T^{0i}
-	&=
-	-\pi\partial_i\phi
-\end{align}
-which integrated upon becomes the total energy and momentum
-\begin{align}
-	H
-	&=
-	\int\dd[3]{x}T^{00}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\omega(\vb{p})\abs{a(\vb{p})}^2
-	\label{eq:kg_total_energy}
-	\\
-	\vb{P}
-	&=
-	\int\dd[3]{x}T^{0i}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\vb{p}\abs{a(\vb{p})}^2
-	\label{eq:kg_total_momentum}
-	.
-\end{align}
+		\left(
+			p_0^2
+			-
+			\omega(\vb{p})^2
+		\right)
+		\phi(p_0,\vb{p})
+	\end{equation}
+	which is satisfied if $p_0=\pm\omega(\vb{p})$.
+\end{proof}
+
+\begin{lemma}[Fourier expansion of the Klein-Gordon field]
+	The Fourier expansion of the Klein-Gordon field
+	\begin{equation}
+		\phi(t,\vb{x})
+		=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			a(\vb{p})^*
+			e^{-ip_\mu x^\mu}
+			+
+			a(\vb{p})
+			e^{+ip_\mu x^\mu}
+		\biggr\}_{p_0=\omega(\vb{p})}
+	\end{equation}
+	satisfies the equations of motion for any choice of $a(\vb{p})=\phi(\omega(\vb{p}),\vb{p})^*$.
+\end{lemma}
+
+\begin{remark}
+	From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
+\end{remark}
+
+\begin{corollary}[Conjugate momentum density of the Klein-Gordon field]
+	The conjugate momentum density of the Klein-Gordon field is
+	\begin{equation}
+		\pi(t,\vb{x})
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\left(-i\sqrt{2\omega(\vb{p})}\right)
+		\left\{
+			a(\vb{p})
+			e^{-ip_\mu x^\mu}
+			-
+			a(\vb{p})^*
+			e^{+ip_\mu x^\mu}
+		\right\}
+	\end{equation}
+	which follows directly from the Legendre transformation
+	\begin{equation}
+		\pi(t,\vb{x})
+		=
+		\partial_t\pdv{\mathcal{L}}{(\partial_t\phi)}
+		=
+		\partial_t\phi(t,\vb{x})
+	\end{equation}
+	fundamental to Hamiltonian mechanics.
+\end{corollary}
+
+\begin{definition}[Energy-momentum tensor]
+	We define the energy-momentum tensor
+	\begin{equation}
+		T^{\mu\nu}
+		=
+		\pdv{\mathcal{L}}{(\partial_\mu\phi)}\partial^\nu\phi
+		-
+		g^{\mu\nu}\mathcal{L}
+		\label{eq:energy_momentum_tensor}
+	\end{equation}
+	which encodes the field's observables in its components.
+	For instance, the energy density is encoded in the
+	\begin{equation*}
+		T^{00}
+		=
+		\frac{1}{2}
+		\left(\partial_t\phi\right)^2
+		+
+		\frac{1}{2}
+		\left(\grad\phi\right)^2
+		+
+		\frac{1}{2}
+		\left(m\phi\right)^2		
+	\end{equation*}
+	component and the momentum density in the
+	\begin{equation*}
+		T^{0i}
+		=
+		-\pi\partial_i\phi		
+	\end{equation*}
+	component, see Ref.~\cite{Peskin1995}.
+\end{definition}
+
+\begin{lemma}
+	The total energy and momentum observables of the Klein-Gordon field are
+	\begin{align}
+		H
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\omega(\vb{p})\abs{a(\vb{p})}^2
+		&&
+		\vb{P}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\vb{p}\abs{a(\vb{p})}^2
+	\end{align}
+\end{lemma}
+\begin{proof}
+	Perform a spatial integration over the energy and momentum densities.
+\end{proof}
 
 \subsection{Canonical quantization}
 
