@@ -1,0 +1,156 @@
+\section{Interactions}
+
+\subsection{Interaction picture}
+
+\subsection{S-matrix operator}
+
+\subsection{Classical source}
+
+The coherent state can be found by treating the full Lagrangian with an external source~\cite{Peskin1995} or through the $\hat{S}$ operator formalism which has the advantage of extending to other interactions.
+The $\hat{S}$ operator is defined by
+\begin{equation}
+	\hat{S}
+	=
+	T\exp\left\{
+		-i
+		\int\dd[4]{x}
+		\mathcal{L}_\text{int}
+	\right\}
+\end{equation}
+where $\mathcal{L}_\text{int}$ is the interaction term of the Lagrangian and $T$ is the time-ordering symbol.
+For a classical source, we find
+\begin{equation}
+	\begin{split}
+		\hat{S}
+		&=
+		T\exp\left\{
+			-i
+			\int\dd[4]{x}
+			J(t,\vb{x})
+			\hat\phi(t,\vb{x})
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			-i
+			\int\dd[4]{x}
+			J(t,\vb{x})
+			\hat\phi(t,\vb{x})
+			-i\theta
+		\right\}
+	\end{split}
+\end{equation}
+where the second equal is motived in Ref.~\cite[p.~180]{Itzykson2012} for the Maxwell field and
+\begin{equation}
+	\theta
+	=
+	\frac{1}{2}
+	\int\dd[4]{x}\dd[4]{y}
+	J(x^0,\vb{x})
+	D_\text{ret}(x^0-y^0,\vb{x}-\vb{y})
+	J(y^0,\vb{y})
+\end{equation}
+where $D_\text{ret}$ is the retarded propagator of the Klein-Gordon field.
+We are going to neglect the phase for now.
+We expand the field into the positive and negative frequency part and apply the BCH formula to obtain the normal-ordered form (up to a phase factor)
+\begin{equation}
+	\begin{split}
+		\hat{S}
+		&=
+		\exp\left\{
+			-i
+			\int\dd[4]{x}
+			\hat\phi^-(t,\vb{x})
+			J(t,\vb{x})
+			-i
+			\int\dd[4]{x}
+			\hat\phi^+(t,\vb{x})
+			J(t,\vb{x})
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\frac{1}{2}
+			\iint\dd[4]{x}\dd[4]{y}
+			\comm{\hat\phi^-(x)J(x)}{\hat\phi^+(y)J(y)}
+		\right\}
+		\\
+		&\times
+		\exp\left\{
+			-i
+			\int\dd[4]{x}
+			\hat\phi^-(x)
+			J(x)
+		\right\}
+		\exp\left\{
+			-i
+			\int\dd[4]{y}
+			\hat\phi^+(y)
+			J(y)
+		\right\}
+	\end{split}
+\end{equation}
+We rewrite
+\begin{equation}
+	\begin{split}
+		&
+		\frac{1}{2}
+		\iint\dd[4]{x}\dd[4]{y}
+		\comm{\hat\phi^-(x)J(x)}{\hat\phi^+(y)J(y)}
+		\\
+		=&\
+		\frac{1}{2}
+		\iint\dd[4]{x}\dd[4]{y}
+		J(x)
+		\comm{\hat\phi^-(x)}{\hat\phi^+(y)}
+		J(y)
+		\\
+		=&\
+		\frac{1}{2}
+		\iint\dd[4]{x}\dd[4]{y}
+		J(x)
+		D(x-y)
+		J(y)
+		\\
+		=&\
+		-
+		\frac{1}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{J(\vb{p})}^2
+	\end{split}
+\end{equation}
+check factors!
+and $\int\dd[4]{x}\hat\phi^-(x)J(x)=\hat\phi^-[J]$ which looks similar to the smeared particle creation operator.
+
+\subsubsection{Displacement operator}
+
+We then identify the $S$-matrix operator as the displacement operator
+\begin{equation}
+	\begin{split}
+		\hat{D}[\alpha]
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{\alpha(\vb{p})}^2
+		\right\}
+		\\
+		&\times
+		\exp\left\{
+			-i
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\alpha(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+		\right\}
+		\\
+		&\times
+		\exp\left\{
+			-i
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\alpha(\vb{p})^*
+			\hat{a}(\vb{p})
+		\right\}
+	\end{split}
+\end{equation}
+which when acting on the vacuum state, creates a coherent state with spectrum $\alpha(\vb{p})$

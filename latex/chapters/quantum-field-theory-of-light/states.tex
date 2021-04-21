@@ -1,0 +1,382 @@
+\section{Quantum states}
+
+\subsection{Number states}
+
+\subsubsection{Wightman axioms and smearing functions}
+
+According to Wightman quantum field theory~\cite[p.~324]{Bogolubov1989}, a quantum field $\hat\Phi$ is an operator-valued tempered distribution which needs be combined with some Lorentz-invariant Schwartz function $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{K})$
+\begin{equation}
+	\hat\Phi[f]
+	=
+	\int\dd[4]{x}
+	f(t,\vb{x})
+	\hat\Phi(t,\vb{x})
+\end{equation}
+to avoid ambiguities arising from the idealized non-physical ultra-localized momentum states which we would recover for
+\begin{equation}
+	\hat\Phi[\delta_x]
+	=
+	\int\dd[4]{y}
+	\delta^{(1)}(y^0-x^0)
+	\delta^{(3)}(\vb{y}-\vb{x})
+	\hat\Phi(y^0,\vb{y})
+	=
+	\hat\Phi(x^0,\vb{x})
+	.
+\end{equation}
+
+\subsubsection{Smeared single-particle state and overlap}
+
+Smearing the Klein-Gordon field operator $\hat\phi^-$ acting on the vacuum state $\ket{0}$ with $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{R})$ and defining $f(\vb{p})=f(\omega(\vb{p}),\vb{p})$
+\begin{align}
+	\hat\phi[f]
+	\ket{0}
+	&=
+	\int\dd[4]{x}
+	f(t,\vb{x})
+	\hat\phi^-(t,\vb{x})
+	\ket{0}
+	\\
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left(
+		\int\dd[4]{x}
+		f(t,\vb{x})
+		e^{+ip_\mu x^\mu}
+	\right)
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+	\\
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	f(\vb{p})
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+\end{align}
+and extrapolating from the known action of $\hat\phi$ on the vacuum, suggests
+\begin{equation}
+	\ket{f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	f(\vb{p})
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+\end{equation}
+to represent a smeared particle state with localization in spacetime $f(t,\vb{x})$ respective momentum space $f(\vb{p})$.
+The probability amplitude to measure $\ket{g}$ given $\ket{f}$ was prepared is equal to the overlap of the smearing functions
+\begin{equation}
+	\begin{split}
+		\bra{g}\ket{f}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})g(\vb{q})^*
+		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})g(\vb{q})^*
+		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		f(\vb{p})g(\vb{p})^*
+	\end{split}
+\end{equation}
+and suggests the normalization to be
+\begin{equation}
+	\bra{f}\ket{f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs{f(\vb{p})}^2
+	=
+	1
+\end{equation}
+Alternatively, in coordinate space
+\begin{equation}
+	\begin{split}
+		\bra{g}\ket{f}
+		=
+		\expval{\hat\phi[g]\hat\phi[f]}{0}
+		&=
+		\int\dd[4]{x}
+		\int\dd[4]{y}
+		f(x^0,\vb{x})g(y^0,\vb{y})^*
+		\expval{\hat\phi(x^0,\vb{x})\hat\phi(y^0,\vb{y})}{0}
+		\\
+		&=
+		\int\dd[4]{x}
+		\int\dd[4]{y}
+		f(x^0,\vb{x})g(y^0,\vb{y})^*
+		D(x^0-y^0,\vb{x}-\vb{y})
+	\end{split}
+\end{equation}
+where $D(x^0-y^0,\vb{x}-\vb{y})$ is the Feynman propagator~\cite[p.~27]{Peskin1995}.
+
+\subsubsection{Number, energy, and momentum expectation values}
+
+The first two moments of the number operator are
+\begin{align}
+	\expval{\hat{N}}{f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs{f(\vb{p})}^2
+	=
+	1
+	\\
+	\expval{\hat{N}^2}{f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs{f(\vb{p})}^2
+	=
+	1
+\end{align}
+suggesting $\ket{f}$ to be a single-particle number state because $\expval{\left(\Delta\hat{N}\right)}{f}=0$
+Similar the first two moments of the total energy are
+\begin{align}
+	\expval{\hat{H}}{f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\omega(\vb{p})
+	\abs{f(\vb{p})}^2
+	\\
+	\expval{\hat{H}^2}{f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\omega(\vb{p})^2
+	\abs{f(\vb{p})}^2
+\end{align}
+implying non-zero energy fluctuations $\expval{\left(\Delta\hat{H}\right)^2}{f}>0$.
+By an completely analog calculation, we find for the total momentum
+\begin{align}
+	\expval{\hat{\vb{P}}}{f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\vb{p}
+	\abs{f(\vb{p})}^2
+	\\
+	\expval{\hat{\vb{P}}^2}{f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\vb{p}^2
+	\abs{f(\vb{p})}^2
+\end{align}
+in agreement with results reported in~\cite[eqs.~10 and 11]{Naumov2013}.
+
+\subsubsection{Group velocity, mean position and spatial dispersion}
+
+From the spacetime representation of the wave function
+\begin{equation}
+	\psi(t,\vb{x})
+	=
+	\bra{0}\hat\phi(t,\vb{x})\ket{f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	f(\vb{p})e^{-ip_\mu x^\mu}
+\end{equation}
+we can calculate the probability current being the conserved Noether's current of the Klein-Gordon field~\cite[p.~18]{Peskin1995})
+\begin{equation}
+	j_\mu(t,\vb{x})
+	=
+	2
+	\Im\left\{
+		\psi(t,\vb{x})^*
+		\partial_\mu
+		\psi(t,\vb{x})
+	\right\}
+	\label{eq:qkg_probability_current}.
+\end{equation}
+Spatial integration of the probability current yields the group velocity of $\ket{f}$
+\begin{equation}
+	\expval{\vb{v}}
+	=
+	\int\dd[3]{x}
+	\vb{j}(t,\vb{x})
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs{f(\vb{p})}^2
+	\frac{\vb{p}}{\omega(\vb{p})}
+	\label{qkg:group_velocity}.
+\end{equation}
+Indeed in the non-relativistic regime $\omega(\vb{p})^2\sim m^2$
+and the group velocity equals $\vb{p}/(2m^2)$ weighted by $\abs{f(\vb{p})}^2$.
+The probability center-of-mass position is
+\begin{equation}
+	\expval{\vb{x}(t)}
+	=
+	\int\dd[3]{x}\vb{x}\rho(t,\vb{x})
+	=
+	\expval{\vb{v}}t
+	,
+\end{equation}
+with the variance quantifying the spatial dispersion in time
+\begin{equation}
+	\sigma_x(t)^2
+	=
+	\expval{\vb{x}(t)^2}
+	-
+	\expval{\vb{x}(t)}^2
+\end{equation}
+which can be found in Naumov~\cite{Naumov2013}.
+
+\subsubsection{Example of a massless Gaussian single-particle state}
+
+Naumov~\cite{Naumov2013} discusses a massive Gaussian wave packets.
+
+Let $k_\mu=(k_0,\vb{k})$ be a constant four-momentum vector with $k_0=\omega(\vb{k})$ (?), then the function
+\begin{equation}
+	f(\vb{p})
+	\propto
+	\exp\left\{
+		\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma_p^2}
+	\right\}
+	=
+	\exp\left\{
+		\frac{p_\mu p^\mu-2k_\mu p^\mu+k_\mu k^\mu}{4\sigma_p^2}
+	\right\}
+\end{equation}
+is an element of the Schwartz space $\mathcal{S}(\mathbb{R}^4,\mathbb{R})$ and is as a function of Lorentz scalars manifest Lorentz invariant, thus, a candidate for a smearing function.
+
+For a massless Klein-Gordon field the dispersion relation is $\omega(\vb{p})=\norm{\vb{p}}$ and the smearing function simplifies to
+\begin{equation}
+	\begin{split}
+		f(\vb{p})
+		&\propto
+		\exp\left\{
+			-
+			\frac{1}{2\sigma_p^2}
+			\left(
+				k_0
+				\norm{\vb{p}}
+				-
+				\vb{k}\vdot\vb{p}
+			\right)
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			-
+			\frac{k_0}{2\sigma_p^2}
+			\norm{\vb{p}}
+			\left(
+				1	
+				-
+				\cos\theta
+			\right)
+		\right\}
+	\end{split}
+\end{equation}
+
+\subsection{Coherent states}
+
+
+\begin{equation}
+	\begin{split}
+		\ket{\alpha}
+		&=
+		\hat{D}[J]
+		\ket{0}
+		\\
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{\alpha(\vb{p})}^2
+		\right\}
+		\\
+		&\times
+		\exp\left\{
+			-i
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\alpha(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+		\right\}
+		\ket{0}
+	\end{split}
+\end{equation}
+
+\subsubsection{Number, energy, and momentum}
+
+The coherent state is eigenstate of the annihilation operator
+\begin{equation}
+	\hat{a}(\vb{p})
+	\ket{\alpha}
+	=
+	\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+	\ket{\alpha}
+\end{equation}
+
+The first two moments of the energy operator are exactly the same as for the sidle-particle state
+\begin{align}
+	\expval{\hat{H}}{\alpha}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\omega(\vb{p})
+	\abs{\alpha(\vb{p})}^2
+	\\
+	\expval{\hat{H}^2}{\alpha}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\omega(\vb{p})^2
+	\abs{\alpha(\vb{p})}^2
+\end{align}
+which is similar to our single-particle case with the big difference that is $\alpha(\vb{p})$ not normalized.
+The same follows for the momentum moments
+\begin{align}
+	\expval{\hat{\vb{P}}}{\alpha}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\vb{p}
+	\abs{\alpha(\vb{p})}^2
+	\\
+	\expval{\hat{\vb{P}}^2}{\alpha}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\vb{p}^2
+	\abs{\alpha(\vb{p})}^2
+\end{align}
+and the number moments
+\begin{align}
+	\expval{\hat{N}}{\alpha}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs{\alpha(\vb{p})}^2
+	\\
+	\expval{\hat{N}^2}{\alpha}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs{\alpha(\vb{p})}^2
+\end{align}
+the variance of the number operator
+
+The probability of detecting a single-particle given a coherent state is
+\begin{equation}
+	\begin{split}
+		\braket{f}{\alpha}
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{\alpha(\vb{p})}^2
+		\right\}
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		f(\vb{p})^*
+		\alpha(\vb{p})
+	\end{split}
+\end{equation}
+Assuming spectral overlap, i.e., $\alpha(\vb{p})=\alpha f(\vb{p})$, we recover the Poisson distribution
+\begin{equation}
+	\begin{split}
+		\braket{f}{\alpha}
+		&=
+		\alpha
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\abs{\alpha}^2
+		\right\}
+	\end{split}
+\end{equation}
