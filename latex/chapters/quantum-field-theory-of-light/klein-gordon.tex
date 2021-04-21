@@ -184,6 +184,7 @@
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\vb{p}\abs{a(\vb{p})}^2
+		\label{eq:kg_energy_momentum}
 	\end{align}
 \end{lemma}
 \begin{proof}
@@ -192,118 +193,159 @@
 
 \subsection{Canonical quantization}
 
-In the canonical quantization procedure, we promote the dynamical field variables to operators
-\begin{align}
-	\hat\phi(t,\vb{x})
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\frac{1}{\sqrt{2\omega(\vb{p})}}
-	\left\{
-		\hat{a}(\vb{p})
-		e^{-ip_\mu x^\mu}
-		+
-		\hat{a}^\dagger(\vb{p})
-		e^{+ip_\mu x^\mu}
-	\right\}
-	\label{eq:qkg_pos}
-	\\
-	\hat\pi(t,\vb{x})
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\left(-i\sqrt{2\omega(\vb{p})}\right)
-	\left\{
-		\hat{a}(\vb{p})
-		e^{-ip_\mu x^\mu}
-		-
-		\hat{a}^\dagger(\vb{p})
-		e^{+ip_\mu x^\mu}
-	\right\}
-	\label{eq:qkg_mom}
-\end{align}
-satisfying the canonical commutation relations
-\begin{align}
-	\comm{\hat\phi(\vb{x})}{\hat\pi(\vb{y})}
-	=
-	i\delta^{(3)}(\vb{x}-\vb{y})
-	&&
-	\comm{\hat\phi(\vb{x})}{\hat\phi(\vb{y})}
-	=
-	0
-	=
-	\comm{\hat\pi(\vb{x})}{\hat\pi(\vb{y})}
-	\label{eq:qkg_comm_pm}	
-\end{align}
-which encode the uncertainty relation.
-Inserting \cref{eq:qkg_pos} and \cref{eq:qkg_mom} into \cref{eq:qkg_comm_pm} reveals the commutation relations for the Fourier mode operators
-\begin{align}
-	\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
-	=
-	(2\pi)^3\delta^{(3)}(\vb{p}-\vb{q})
-	&&
-	\comm{\hat{a}(\vb{p})}{\hat{a}(\vb{q})}
-	=
-	0
-	=
-	\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}^\dagger(\vb{q})}
-	\label{eq:kg_comm_ac}.
-\end{align}
-Extending the corresponding principle by normal-ordering and applying it to the classical energy and momentum observables, \cref{eq:kg_total_energy} and \cref{eq:kg_total_momentum}, we find
-\begin{align}
-	\hat{H}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\omega(\vb{p})\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})
-	&&
-	\hat{\vb{P}}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\vb{p}\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})
-	\label{eq:qkg_total_energy_momentum}.
-\end{align}
-In analogy with the quantum harmonic oscillator, we define the number operator to be
-\begin{equation}
-	\hat{N}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\hat{a}^\dagger(\vb{p})
-	\hat{a}(\vb{p})
-	\label{eq:qkg_number}.
-\end{equation}
-Observables always need to be normal-ordered, hence, higher moments are given by
-\begin{equation}
-	\hat{N}^2
-	=
-	\int\frac{\dd[3]{p_1}}{(2\pi)^3}
-	\int\frac{\dd[3]{p_2}}{(2\pi)^3}
-	\hat{a}^\dagger(\vb{p}_1)
-	\hat{a}^\dagger(\vb{p}_2)
-	\hat{a}(\vb{p}_1)
-	\hat{a}(\vb{p}_2)
-\end{equation}
+\begin{definition}[Klein-Gordon field operators]
+	In the canonical quantization procedure, we promote the dynamical field variables to operators
+	\begin{align}
+		\hat\phi(t,\vb{x})
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\frac{1}{\sqrt{2\omega(\vb{p})}}
+		\left\{
+			\hat{a}(\vb{p})
+			e^{-ip_\mu x^\mu}
+			+
+			\hat{a}^\dagger(\vb{p})
+			e^{+ip_\mu x^\mu}
+		\right\}
+		\label{eq:qkg_pos}
+		\\
+		\hat\pi(t,\vb{x})
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\left(-i\sqrt{2\omega(\vb{p})}\right)
+		\left\{
+			\hat{a}(\vb{p})
+			e^{-ip_\mu x^\mu}
+			-
+			\hat{a}^\dagger(\vb{p})
+			e^{+ip_\mu x^\mu}
+		\right\}
+		\label{eq:qkg_mom}
+	\end{align}
+	which satisfy the canonical commutation relations
+	\begin{align}
+		\comm{\hat\phi(\vb{x})}{\hat\pi(\vb{y})}
+		=
+		i\delta^{(3)}(\vb{x}-\vb{y})
+		&&
+		\comm{\hat\phi(\vb{x})}{\hat\phi(\vb{y})}
+		=
+		0
+		=
+		\comm{\hat\pi(\vb{x})}{\hat\pi(\vb{y})}
+		\label{eq:qkg_comm_pm}
+		.
+	\end{align}
+	We refer to $\hat{a}(\vb{p})$ as the annihilation operator and $\hat{a}^\dagger(\vb{p})$ as the creation operator of the Klein-Gordon field with respect to momentum $\vb{p}$.
+\end{definition}
 
-It will be useful to decompose the Klein-Gordon field into a positive and negative frequency part
-\begin{equation}
-	\hat\phi(t,\vb{x})
-	=
-	\hat\phi^+(t,\vb{x})
-	+
-	\hat\phi^+(t,\vb{x})
-\end{equation}
-where the positive and negative frequency parts are defined as~\cite[p.~26]{Peskin1995}
-\begin{align}
-	\hat\phi^+(t,\vb{x})
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	e^{-ip_\mu x^\mu}
-	\hat{a}(\vb{p})
-	\\
-	\hat\phi^-(t,\vb{x})
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	e^{+ip_\mu x^\mu}
-	\hat{a}^\dagger(\vb{p})
-\end{align}
-and both parts are related by the hermitian conjugate $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$.
+\begin{theorem}[Commutation relations for the annihilation and creation operator]
+	The annihilation and creation operator of the Klein-Gordon field obey the commutation relations
+	\begin{align}
+		\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+		=
+		(2\pi)^3\delta^{(3)}(\vb{p}-\vb{q})
+		&&
+		\comm{\hat{a}(\vb{p})}{\hat{a}(\vb{q})}
+		=
+		0
+		=
+		\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+		\label{eq:kg_comm_ac}
+		.
+	\end{align}	
+\end{theorem}
+\begin{proof}
+	Insert the Klein-Gordon field operators in terms of the annihilation and creation operators, \cref{eq:qkg_pos} and \cref{eq:qkg_mom}, into the field commutation relations \cref{eq:qkg_comm_pm}.
+\end{proof}
+
+\begin{definition}[Normal-ordered product]
+	Let $\hat{A}$ be an operator that can be expressed as a product of annihilation and creation operators of the Klein-Gordon field, then the normal-ordered product of $\hat{A}$ is
+	\begin{equation}
+		\hat{A}
+		=
+		\hat{a}^\dagger(\vb{p}_1)
+		\dots
+		\hat{a}^\dagger(\vb{p}_n)
+		\hat{a}(\vb{q}_1)
+		\dots
+		\hat{a}(\vb{q}_n)
+		,
+	\end{equation}
+	i.e., the creation operators are on the left and the annihilation operators are on the right side.
+	As the annihilation operators and creation operators commute among another, the order of the operators on the left or right is not relevant.
+\end{definition}
+
+\begin{definition}[Correspondence principle]
+	The correspondence principle relates classical with quantum observables.
+	Given a classical observable, we replace the dynamical variables with the corresponding quantum operators in normal order.
+\end{definition}
+\begin{remark}
+	The requirement of the quantum observable being in normal order is essential as in contrast to the classical dynamical variables, quantum operators do not commute.
+	See Ref.~\cite[p.~20]{Mukhanov2007} for more details on the problem of operator ordering.
+\end{remark}
+
+\begin{lemma}[Energy, momentum and number operator]
+	Invoking the correspondence principle to the total energy and momentum we derived for the classical Klein-Gordon field, \cref{eq:kg_energy_momentum}, we find
+	\begin{align}
+		\hat{H}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\omega(\vb{p})\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})
+		&&
+		\hat{\vb{P}}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\vb{p}\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})
+		\label{eq:qkg_energy_momentum}
+	\end{align}
+	to be the energy and momentum operators of the quantum Klein-Gordon field.
+	In analogy with the quantum harmonic oscillator, we define the number operator to be
+	\begin{align}
+		\hat{N}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\hat{a}^\dagger(\vb{p})
+		\hat{a}(\vb{p})
+		&&
+		\hat{N}^2
+		=
+		\int\frac{\dd[3]{p_1}}{(2\pi)^3}
+		\int\frac{\dd[3]{p_2}}{(2\pi)^3}
+		\hat{a}^\dagger(\vb{p}_1)
+		\hat{a}^\dagger(\vb{p}_2)
+		\hat{a}(\vb{p}_1)
+		\hat{a}(\vb{p}_2)
+		\label{eq:qkg_number}
+	\end{align}
+	where the squared number operator is also in normal-order!
+\end{lemma}
+
+\begin{definition}[Positive and negative frequency Klein-Gordon field operator]
+	It will be useful to decompose the Klein-Gordon field into a positive and negative frequency part
+	\begin{equation}
+		\hat\phi(t,\vb{x})
+		=
+		\hat\phi^+(t,\vb{x})
+		+
+		\hat\phi^+(t,\vb{x})
+	\end{equation}
+	where the positive and negative frequency parts are defined as~\cite[p.~26]{Peskin1995}
+	\begin{align}
+		\hat\phi^+(t,\vb{x})
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		e^{-ip_\mu x^\mu}
+		\hat{a}(\vb{p})
+		\\
+		\hat\phi^-(t,\vb{x})
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		e^{+ip_\mu x^\mu}
+		\hat{a}^\dagger(\vb{p})
+	\end{align}
+	and both parts are related by the hermitian conjugate $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$.
+\end{definition}
 
 So far, we have not considered any states.
 The most important state is the vacuum state $\ket{0}$ which is axiomatically defined to be invariant under spacetime translations~\cite[p.~276]{Bogolubov1989}
