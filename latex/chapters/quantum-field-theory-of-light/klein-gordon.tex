@@ -323,6 +323,18 @@ In analogy with the quantum harmonic oscillator, we define the number operator t
 	\hat{a}(\vb{p})
 	\label{eq:qkg_number}.
 \end{equation}
+Observables always need to be normal-ordered, hence, higher moments are given by
+\begin{equation}
+	\hat{N}^2
+	=
+	\int\frac{\dd[3]{p_1}}{(2\pi)^3}
+	\int\frac{\dd[3]{p_2}}{(2\pi)^3}
+	\hat{a}^\dagger(\vb{p}_1)
+	\hat{a}^\dagger(\vb{p}_2)
+	\hat{a}(\vb{p}_1)
+	\hat{a}(\vb{p}_2)
+\end{equation}
+
 It will be useful to decompose the Klein-Gordon field into a positive and negative frequency part
 \begin{equation}
 	\hat\phi(t,\vb{x})
@@ -944,8 +956,7 @@ and the number moments
 	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 	\abs{\alpha(\vb{p})}^2
 \end{align}
-the variance of the number operator still vanishes for the coherent state, the reason being that the particle number is conserved by Noether's theorem.
-In quantum optics, the number operator is in fact the single-particle projection operator not the "true" number operator.
+the variance of the number operator
 
 The probability of detecting a single-particle given a coherent state is
 \begin{equation}

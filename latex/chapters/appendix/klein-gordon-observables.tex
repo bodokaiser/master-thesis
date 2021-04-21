@@ -2,54 +2,86 @@
 
 \subsection{Number, energy and momentum observables}
 
-We define the operator
-\begin{equation}
-	\hat{A}
-	=
-	g(\vb{k})
-	\hat{a}^\dagger(\vb{k})
-	\hat{a}(\vb{k})
-\end{equation}
-where $g$ is allowed to be vector-valued, e.g., $g(\vb{p})=\vb{p}$.
-To calculate the first two moments of $\hat{A}$, we need the auxiliary results
+We start with the expectation values of the energy operator and begin with the auxiliary results
 \begin{equation}
 	\begin{split}
-		\expval{\hat{a}(\vb{q})\hat{A}\hat{a}^\dagger(\vb{p})}{0}
+		\expval{\hat{a}(\vb{q})\hat{H}\hat{a}^\dagger(\vb{p})}{0}
 		&=
-		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		g(\vb{k})
-		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{k})\hat{a}(\vb{k})\hat{a}^\dagger(\vb{p})}{0}
+		\expval{
+			\hat{a}(\vb{q})
+			\left(
+				\int\frac{\dd[3]{k}}{(2\pi)^3}
+				\omega(\vb{k})
+				\hat{a}^\dagger(\vb{k})
+				\hat{a}(\vb{k})
+			\right)
+			\hat{a}^\dagger(\vb{p})
+		}{0}
 		\\
 		&=
 		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		g(\vb{k})
-		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{k})}{0}
-		(2\pi)^3\delta^{(3)}(\vb{k}-\vb{p})
+		\omega(\vb{k})
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{k})
+			\hat{a}(\vb{k})
+			\hat{a}^\dagger(\vb{p})
+		}{0}
 		\\
 		&=
-		g(\vb{p})
-		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+		\int\frac{\dd[3]{k}}{(2\pi)^3}
+		\omega(\vb{k})
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{k})
+			(2\pi)^3\delta^{(3)}(\vb{k}-\vb{p})
+		}{0}
 		\\
 		&=
-		g(\vb{p})
+		\omega(\vb{p})
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		\\
+		&=
+		\omega(\vb{p})
 		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
 	\end{split}
 \end{equation}
 and
 \begin{equation}
 	\begin{split}
-		\expval{\hat{a}(\vb{q})\hat{A}^2\hat{a}^\dagger(\vb{p})}{0}
+		\expval{
+			\hat{a}(\vb{q})
+			\hat{H}^2\hat{a}^\dagger(\vb{p})
+		}{0}
+		&=
+		\expval{
+			\hat{a}(\vb{q})
+			\left(
+				\int\frac{\dd[3]{k_1}}{(2\pi)^3}
+				\int\frac{\dd[3]{k_2}}{(2\pi)^3}
+				\omega(\vb{k}_1)
+				\omega(\vb{k}_2)
+				\hat{a}^\dagger(\vb{k}_1)
+				\hat{a}^\dagger(\vb{k}_2)
+				\hat{a}(\vb{k}_1)
+				\hat{a}(\vb{k}_2)
+			\right)
+			\hat{a}^\dagger(\vb{p})
+		}{0}
+		\\
 		&=
 		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
 		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-		g(\vb{k}_1)g(\vb{k}_2)
-		\\
-		&\times
+		\omega(\vb{k}_1)
+		\omega(\vb{k}_2)
 		\expval{
 			\hat{a}(\vb{q})
 			\hat{a}^\dagger(\vb{k}_1)
-			\hat{a}(\vb{k}_1)
 			\hat{a}^\dagger(\vb{k}_2)
+			\hat{a}(\vb{k}_1)
 			\hat{a}(\vb{k}_2)
 			\hat{a}^\dagger(\vb{p})
 		}{0}
@@ -57,77 +89,123 @@ and
 		&=
 		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
 		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-		g(\vb{k}_1)g(\vb{k}_2)
-		\\
-		&\times
-		(2\pi)^3\delta^{(3)}(\vb{k}_1-\vb{q})
+		\omega(\vb{k}_1)
+		\omega(\vb{k}_2)
 		\expval{
-			\hat{a}(\vb{k}_1)
+			(2\pi)^3
+			\delta^{(3)}(\vb{k}_1-\vb{q})
 			\hat{a}^\dagger(\vb{k}_2)
+			\hat{a}(\vb{k}_1)
+			(2\pi)^3
+			\delta^{(3)}(\vb{k}_2-\vb{p})
 		}{0}
-		(2\pi)^3\delta^{(3)}(\vb{k}_2-\vb{p})
 		\\
 		&=
-		g(\vb{q})g(\vb{p})
+		\omega(\vb{p})
+		\omega(\vb{q})
 		\expval{
-			\hat{a}(\vb{q})
 			\hat{a}^\dagger(\vb{p})
+			\hat{a}(\vb{q})
 		}{0}
 		\\
 		&=
-		g(\vb{p})^2
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\omega(\vb{p})^2
+		(2\pi)^3
+		\delta^{(3)}(\vb{q}-\vb{p})
 	\end{split}
 	.
 \end{equation}
 The first moment then turns out to be
 \begin{equation}
 	\begin{split}
-		\expval{\hat{A}}{f}
+		\expval{\hat{H}}{f}
 		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		\expval{\hat{a}(\vb{q})\hat{A}\hat{a}^\dagger(\vb{p})}{0}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+		\right)^\dagger
+		\hat{H}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
+		\right)^\dagger
 		\\
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		g(\vb{p})
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})^*
+		f(\vb{q})
+		\expval{
+			\hat{a}(\vb{p})
+			\hat{H}
+			\hat{a}^\dagger(\vb{q})
+		}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})^*
+		f(\vb{q})		
+		\omega(\vb{p})
 		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
 		\\
 		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		g(\vb{p})
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\omega(\vb{p})
 		\abs{f(\vb{p})}^2
 	\end{split}
 \end{equation}
 and the second moment is
 \begin{equation}
 	\begin{split}
-		\expval{\hat{A}^2}{f}
+		\expval{\hat{H}^2}{f}
 		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		\expval{\hat{a}(\vb{q})\hat{A}^2\hat{a}^\dagger(\vb{p})}{0}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+		\right)^\dagger
+		\hat{H}^2
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
+		\right)^\dagger
 		\\
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})f(\vb{q})^*
-		g(\vb{p})^2
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})^*
+		f(\vb{q})
+		\expval{
+			\hat{a}(\vb{p})
+			\hat{H}^2
+			\hat{a}^\dagger(\vb{q})
+		}{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f(\vb{p})^*
+		f(\vb{q})
+		\omega(\vb{p})^2
+		(2\pi)^3
+		\delta^{(3)}(\vb{q}-\vb{p})
 		\\
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		g(\vb{p})^2
+		\omega(\vb{p})^2
 		\abs{f(\vb{p})}^2
 	\end{split}
 	.
 \end{equation}
-We can now identify $g(\vb{p})$ with $1,\omega(\vb{p}),\vb{p}$ to obtain the first two moments of number, Hamilton, or momentum operator.
+Replacing $\omega(\vb{p})$ with either $1$ or $\vb{p}$ yields the first two moments of the number $\hat{N}$ respective momentum $\hat{\vb{P}}$ operator.
 
 \subsection{Center-of-mass position and dispersion}
 
@@ -736,86 +814,220 @@ where we used Wick's theorem as in Ref.~\cite[p.~89]{Peskin1995}
 
 \subsection{Eigenvalue of annihilation operator}
 
-\begin{equation}
-	\begin{split}
+\begin{lemma}\label{th:normal_ordered_a1_cn}
+	Let $\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{p})$ be the annihilation and creation operator of the Klein-Gordon field satisfying the canonical commutation relations then for $n\in\mathbb{N}$
+	\begin{equation}
 		\hat{a}(\vb{p})
-		\ket{\alpha}
-		&\propto
-		\hat{a}(\vb{p})
-		\exp\left\{
-			-i
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			\alpha(\vb{q})
-			\hat{a}^\dagger(\vb{q})
-		\right\}
+		\prod_{j=1}^n
+		\hat{a}^\dagger(\vb{q}_j)
 		\ket{0}
-		\\
-		&=
-		\hat{a}(\vb{p})
-		\sum_{n=0}^\infty
-		\frac{1}{n!}
-		\left(
-			-i
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			\alpha(\vb{q})
-			\hat{a}^\dagger(\vb{q})
-		\right)^n
+		=
+		\sum_{i=1}^n
+		(2\pi)^3
+		\delta^{(3)}(\vb{q}_i-\vb{p})
+		\prod_{\substack{j=1\\j\neq i}}^n
+		\hat{a}^\dagger(\vb{q}_j)
 		\ket{0}
-		\\
-		&=
-		\sum_{n=1}^\infty
-		\frac{1}{n!}
-		(-i)^n
-		\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
-		\dots
-		\int\frac{\dd[3]{q_n}}{(2\pi)^3\sqrt{2\omega(\vb{q}_n)}}
-		\\
-		&\times
-		\alpha(\vb{q}_1)
-		\dots
-		\alpha(\vb{q}_n)
+		\label{eq:normal_ordered_a1_cn}
+		.
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	To prove by induction, we start with $n=1$
+	\begin{equation*}
+		\hat{a}(\vb{p})
+		\prod_{j=1}^1
+		\hat{a}^\dagger(\vb{q}_j)
+		\ket{0}
+		=
 		\hat{a}(\vb{p})
 		\hat{a}^\dagger(\vb{q}_1)
-		\dots
-		\hat{a}^\dagger(\vb{q}_n)
 		\ket{0}
-		\\
-		&=
-		\sum_{n=1}^\infty
-		\frac{1}{n!}
-		(-i)^n
-		\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
-		\dots
-		\int\frac{\dd[3]{q_n}}{(2\pi)^3\sqrt{2\omega(\vb{q}_n)}}
-		\\
-		&\times
-		\alpha(\vb{q}_1)
-		\dots
-		\alpha(\vb{q}_n)
-		(2\pi)^3\delta^{(3)}(\vb{q}_1-\vb{p})
-		\hat{a}^\dagger(\vb{q}_2)
-		\dots
-		\hat{a}^\dagger(\vb{q}_n)
+		=
+		(2\pi)^3
+		\delta^{(3)}(\vb{q}_1-\vb{p})
 		\ket{0}
-		\\
-		&=
-		\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
-		\sum_{n=1}^\infty
-		\frac{1}{n!}
-		\left(
-			-i
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			\alpha(\vb{q})
-			\hat{a}^\dagger(\vb{q})
-		\right)^{n-1}
-		\ket{0}
-		\\
-		&\propto
+	\end{equation*}
+	where we used the commutation relation and $\hat{a}(\vb{p})\ket{0}=0$.
+	We assume the induction hypothesis, \cref{eq:normal_ordered_a1_cn}, to hold for $n\in\mathbb{N}$ and perform the induction step $n\to n+1$
+	\begin{equation*}
+		\begin{split}
+			\hat{a}(\vb{p})
+			\prod_{j=1}^{n+1}
+			\hat{a}^\dagger(\vb{q}_j)
+			\ket{0}
+			&=
+			\hat{a}(\vb{p})
+			\left(
+				\prod_{j=1}^n
+				\hat{a}^\dagger(\vb{q}_j)
+			\right)
+			\hat{a}^\dagger(\vb{q}_{n+1})
+			\ket{0}
+			\\
+			&=
+			\hat{a}(\vb{p})
+			\hat{a}^\dagger(\vb{q}_{n+1})
+			\left(
+				\prod_{j=1}^n
+				\hat{a}^\dagger(\vb{q}_j)
+			\right)
+			\ket{0}
+			\\
+			&=
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}_{n+1}-\vb{p})
+			\prod_{j=1}^n
+			\hat{a}^\dagger(\vb{q}_j)
+			\ket{0}
+			+
+			\hat{a}^\dagger(\vb{q}_{n+1})
+			\hat{a}(\vb{p})
+			\prod_{j=1}^n
+			\hat{a}^\dagger(\vb{q}_j)
+			\ket{0}
+			\\
+			&=
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}_{n+1}-\vb{p})
+			\prod_{j=1}^n
+			\hat{a}^\dagger(\vb{q}_j)
+			\ket{0}
+			+
+			\sum_{i=1}^n
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}_i-\vb{p})
+			\prod_{\substack{j=1\\j\neq i}}^{n+1}
+			\hat{a}^\dagger(\vb{q}_j)
+			\ket{0}
+			\\
+			&=
+			\sum_{i=1}^{n+1}
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}_i-\vb{p})
+			\prod_{\substack{j=1\\j\neq i}}^{n+1}
+			\hat{a}^\dagger(\vb{q}_j)
+			\ket{0}
+		\end{split}
+	\end{equation*}
+	where we used that creation operators commute in the first line, the canonical commutation relation in the second line, and the induction hypothesis in the third line.
+\end{proof}
+
+\begin{theorem}
+	Let $\ket{\alpha}$ be a coherent state of the Klein-Gordon field and $\hat{a}(\vb{p})$ the annihilation operator satisfying the canonical commutation relation of the Klein-Gordon field, then the coherent state is an eigenstate of the annihilation operator
+	\begin{equation}
+		\hat{a}(\vb{p})
+		\ket{\alpha}
+		=
 		\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
 		\ket{\alpha}
-	\end{split}
-\end{equation}
-the hermitian conjugate gives $\bra{\alpha}\hat{a}^\dagger(\vb{p})=\bra{\alpha}\alpha(\vb{p})$.
+		.
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	We use the series representation of the operator exponential and \cref{th:normal_ordered_a1_cn} to move the annihilation operator to the right
+	\begin{equation*}
+		\begin{split}
+			&
+			\hat{a}(\vb{p})
+			\exp\left\{
+				-i
+				\int\frac{\dd[3]{p}\alpha(\vb{p})}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\hat{a}^\dagger(\vb{p})
+			\right\}
+			\ket{0}
+			\\
+			=&\
+			\hat{a}(\vb{p})
+			\sum_{n=0}^\infty
+			\frac{1}{n!}
+			\left(
+				-i
+				\int\frac{\dd[3]{p}\alpha(\vb{p})}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\hat{a}^\dagger(\vb{p})
+			\right)^n
+			\ket{0}
+			\\
+			=&\
+			\sum_{n=0}^\infty
+			\frac{1}{n!}
+			(-i)^n
+			\int\frac{\dd[3]{p_1}\alpha(\vb{p}_1)}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+			\dots
+			\int\frac{\dd[3]{p_n}\alpha(\vb{p}_n)}{(2\pi)^3\sqrt{2\omega(\vb{p}_n)}}
+			\hat{a}(\vb{p})
+			\prod_{j=1}^n
+			\hat{a}^\dagger(\vb{p}_j)
+			\ket{0}
+			\\
+			=&\
+			\sum_{n=1}^\infty
+			\frac{1}{n!}
+			(-i)^n
+			\int\frac{\dd[3]{p_1}\alpha(\vb{p}_1)}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+			\dots
+			\int\frac{\dd[3]{p_n}\alpha(\vb{p}_n)}{(2\pi)^3\sqrt{2\omega(\vb{p}_n)}}
+			\sum_{i=1}^n
+			(2\pi)^3
+			\delta^{(3)}(\vb{p}_i-\vb{p})
+			\prod_{\substack{j=1\\j\neq i}}^n
+			\hat{a}^\dagger(\vb{p}_j)
+			\ket{0}
+			\\
+			=&\
+			\sum_{n=1}^\infty
+			\frac{1}{n!}
+			(-i)^n
+			\sum_{i=1}^n
+			\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+			\prod_{\substack{j=1\\j\neq i}}^n
+			\int\frac{\dd[3]{p_j}\alpha(\vb{p}_j)}{(2\pi)^3\sqrt{2\omega(\vb{p}_j)}}
+			\hat{a}^\dagger(\vb{p}_j)
+			\ket{0}
+			\\
+			=&\
+			\sum_{n=1}^\infty
+			\frac{1}{(n-1)!}
+			(-i)^n
+			\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+			\left(
+				\int\frac{\dd[3]{p}\alpha(\vb{p})}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\hat{a}^\dagger(\vb{p})
+			\right)^n
+			\ket{0}
+			\\
+			=&\
+			\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+			\sum_{n=0}^\infty
+			\frac{1}{n!}
+			\left(
+				-i
+				\int\frac{\dd[3]{p}\alpha(\vb{p})}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\hat{a}^\dagger(\vb{p})
+			\right)^n
+			\ket{0}
+			\\
+			=&\
+			\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+			\exp\left\{
+				-i
+				\int\frac{\dd[3]{p}\alpha(\vb{p})}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\hat{a}^\dagger(\vb{p})
+			\right\}
+			\ket{0}
+		\end{split}
+	\end{equation*}
+	and to obtain the eigenvalue equation we are left to multiply both sides with
+	\begin{equation*}
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\abs{\alpha(\vb{p})}^2
+		\right\}
+		.
+	\end{equation*}
+\end{proof}
 
 \subsection{Number, energy, and momentum observables}
 
