@@ -1,32 +1,83 @@
-\section{Single-particle}
+\section{Klein-Gordon field}
 
-\begin{proof}
-\begin{equation*}
-	\begin{split}
+\begin{delayedproof}{thm:kg_fourier_expansion}
+	There are two approaches to prove \cref{thm:kg_fourier_expansion}.
+	In a first approach, we calculate with the proposed Fourier expansion
+	\begin{equation*}
+		\begin{split}
+			\partial_\mu
+			\partial^\mu
+			\phi(t,\vb{x})
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left\{
+				a^*(\vb{p})
+				\partial_\mu
+				\partial^\mu
+				e^{-ip_\mu x^\mu}
+				+
+				\text{c.c.}
+			\right\}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left\{
+				a^*(\vb{p})
+				\left(
+					-
+					p_\mu
+					p^\mu
+				\right)
+				e^{-ip_\mu x^\mu}
+				+
+				\text{c.c.}
+			\right\}
+		\end{split}
+	\end{equation*}
+	where $p_\mu p^\mu=\omega(\vb{p})^2-\vb{p}=m^2$ and therefore the equation of motion
+	\begin{equation*}
+			\partial_\mu
+			\partial^\mu
+			\phi(t,\vb{x})
+			=
+			-
+			m^2
+			\phi(t,\vb{x})
+	\end{equation*}
+	is satisfied.
+	While the first approach successfully shows why the theorem is true, it is not obvious how to arrive at the Fourier expansion.
+	Therefor, a second approach starts with the Fourier transform of the Klein-Gordon field
+	\begin{equation*}
 		\phi(t,\vb{x})
-		&=
+		=
 		\int_V\frac{\dd[4]{p}}{(2\pi)^4}
 		\phi(p_0,\vb{p})
 		e^{+ip_\mu x^\mu}
-		\\
-		&=
+	\end{equation*}
+	where the integration domain is constrained to the momentum lightcone $V$ and therefore $\omega(\vb{p})^2=p_0^2$ is automatically satisfied.
+	We are left to rewrite the constrained integration domain
+	\begin{equation*}
+		\phi(t,\vb{x})
+		=
 		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
 		\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
 		\phi(p_0,\vb{p})
 		e^{+ip_\mu x^\mu}
-		\\
-		&=
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
+	\end{equation*}
+	and using the composition property of the delta distribution
+	\begin{equation*}
+		\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
+		=
 		\frac{
 			\delta^{(1)}\left(p_0-\omega(\vb{p})\right)
 			+
 			\delta^{(1)}\left(p_0+\omega(\vb{p})\right)
 		}{\sqrt{2\omega(\vb{p})}}
-		\phi(p_0,\vb{p})
-		e^{+ip_0t}
-		e^{-i\vb{p}\vdot\vb{x}}
-		\\
-		&=
+	\end{equation*}
+	which leaves us with
+	\begin{equation*}
+		\phi(t,\vb{x})
+		=
 		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\biggl\{
 			\phi(\omega(\vb{p}),\vb{p})
@@ -36,366 +87,330 @@
 			e^{-i\omega(\vb{p})t}
 		\biggr\}
 		e^{-i\vb{p}\vdot\vb{x}}
-		\\
-		&=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\biggl\{
-			\phi(\omega(\vb{p}),\vb{p})
-			e^{+i\omega(\vb{p})t}
-			e^{-i\vb{p}\vdot\vb{x}}
-			+
-			\phi(-\omega(\vb{p}),\vb{p})
-			e^{-i\omega(\vb{p})t}
-			e^{-i\vb{p}\vdot\vb{x}}
-		\biggr\}
-		\\
-		&=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\biggl\{
-			\phi(\omega(\vb{p}),\vb{p})
-			e^{+i\omega(\vb{p})t}
-			e^{-i\vb{p}\vdot\vb{x}}
-			+
-			\phi(-\omega(\vb{p}),-\vb{p})
-			e^{-i\omega(\vb{p})t}
-			e^{+i\vb{p}\vdot\vb{x}}
-		\biggr\}
-		\\
-		&=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\biggl\{
-			\phi(\omega(\vb{p}),\vb{p})
-			e^{+ip_\mu x^\mu}
-			+
-			\phi(\omega(\vb{p}),\vb{p})^*
-			e^{-ip_\mu x^\mu}
-		\biggr\}_{p_0=\omega(\vb{p})}
-	\end{split}
-\end{equation*}
-where we used the conjugate symmetry of $\phi(p_0,\vb{p})$ because $\phi(t,\vb{x})$ is real-valued.
-\end{proof}
+		.
+	\end{equation*}
+	We now only need to perform the substitution $\vb{p}\to-\vb{p}$ on the second term
+	\begin{equation*}
+		\begin{split}
+			\phi(t,\vb{x})
+			&=
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\biggl\{
+				\phi(\omega(\vb{p}),\vb{p})
+				e^{+i\omega(\vb{p})t}
+				e^{-i\vb{p}\vdot\vb{x}}
+				+
+				\phi(-\omega(\vb{p}),\vb{p})
+				e^{-i\omega(\vb{p})t}
+				e^{-i\vb{p}\vdot\vb{x}}
+			\biggr\}
+			\\
+			&=
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\biggl\{
+				\phi(\omega(\vb{p}),\vb{p})
+				e^{+i\omega(\vb{p})t}
+				e^{-i\vb{p}\vdot\vb{x}}
+				+
+				\phi(-\omega(\vb{p}),-\vb{p})
+				e^{-i\omega(\vb{p})t}
+				e^{+i\vb{p}\vdot\vb{x}}
+			\biggr\}
+			\\
+			&=
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\biggl\{
+				\phi(\omega(\vb{p}),\vb{p})
+				e^{+ip_\mu x^\mu}
+				+
+				\phi(\omega(\vb{p}),\vb{p})^*
+				e^{-ip_\mu x^\mu}
+			\biggr\}_{p_0=\omega(\vb{p})}
+		\end{split}
+	\end{equation*}
+	and use the conjugate symmetry of the Fourier amplitudes
+	\begin{equation*}
+		\phi(p_0,\vb{p})^*
+		=
+		\phi(-p_0,-\vb{p})
+	\end{equation*}
+	which is present because $\phi(t,\vb{x})$ is real-valued.
+\end{delayedproof}
 
-\subsubsection{Wightman axioms and smearing functions}
+\section{Quantum states}
 
-According to Wightman quantum field theory~\cite[p.~324]{Bogolubov1989}, a quantum field $\hat\Phi$ is an operator-valued tempered distribution which needs be combined with some Lorentz-invariant Schwartz function $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{K})$
-\begin{equation}
-	\hat\Phi[f]
-	=
-	\int\dd[4]{x}
-	f(t,\vb{x})
-	\hat\Phi(t,\vb{x})
-\end{equation}
-to avoid ambiguities arising from the idealized non-physical ultra-localized momentum states which we would recover for
-\begin{equation}
-	\hat\Phi[\delta_x]
-	=
-	\int\dd[4]{y}
-	\delta^{(1)}(y^0-x^0)
-	\delta^{(3)}(\vb{y}-\vb{x})
-	\hat\Phi(y^0,\vb{y})
-	=
-	\hat\Phi(x^0,\vb{x})
-	.
-\end{equation}
+\subsection{Single-particle number state}
 
-\subsubsection{Smeared single-particle state and overlap}
-
-Smearing the Klein-Gordon field operator $\hat\phi^-$ acting on the vacuum state $\ket{0}$ with $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{R})$ and defining $f(\vb{p})=f(\omega(\vb{p}),\vb{p})$
-\begin{align}
-	\hat\phi[f]
-	\ket{0}
-	&=
-	\int\dd[4]{x}
-	f(t,\vb{x})
-	\hat\phi^-(t,\vb{x})
-	\ket{0}
-	\\
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\left(
-		\int\dd[4]{x}
-		f(t,\vb{x})
-		e^{+ip_\mu x^\mu}
-	\right)
-	\hat{a}^\dagger(\vb{p})
-	\ket{0}
-	\\
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	f(\vb{p})
-	\hat{a}^\dagger(\vb{p})
-	\ket{0}
-\end{align}
-and extrapolating from the known action of $\hat\phi$ on the vacuum, suggests
-
-\subsection{Number, energy and momentum observables}
-
-We start with the expectation values of the energy operator and begin with the auxiliary results
-\begin{equation}
-	\begin{split}
-		\expval{\hat{a}(\vb{q})\hat{H}\hat{a}^\dagger(\vb{p})}{0}
-		&=
-		\expval{
-			\hat{a}(\vb{q})
-			\left(
-				\int\frac{\dd[3]{k}}{(2\pi)^3}
-				\omega(\vb{k})
+\begin{delayedproof}{thm:single_particle_number_state_energy}
+	We start with the expectation values of the energy operator and begin with the auxiliary results
+	\begin{equation}
+		\begin{split}
+			\expval{\hat{a}(\vb{q})\hat{H}\hat{a}^\dagger(\vb{p})}{0}
+			&=
+			\expval{
+				\hat{a}(\vb{q})
+				\left(
+					\int\frac{\dd[3]{k}}{(2\pi)^3}
+					\omega(\vb{k})
+					\hat{a}^\dagger(\vb{k})
+					\hat{a}(\vb{k})
+				\right)
+				\hat{a}^\dagger(\vb{p})
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{k}}{(2\pi)^3}
+			\omega(\vb{k})
+			\expval{
+				\hat{a}(\vb{q})
 				\hat{a}^\dagger(\vb{k})
 				\hat{a}(\vb{k})
-			\right)
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		\omega(\vb{k})
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{a}^\dagger(\vb{k})
-			\hat{a}(\vb{k})
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		\omega(\vb{k})
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{a}^\dagger(\vb{k})
-			(2\pi)^3\delta^{(3)}(\vb{k}-\vb{p})
-		}{0}
-		\\
-		&=
-		\omega(\vb{p})
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		\\
-		&=
-		\omega(\vb{p})
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-	\end{split}
-\end{equation}
-and
-\begin{equation}
-	\begin{split}
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{H}^2\hat{a}^\dagger(\vb{p})
-		}{0}
-		&=
-		\expval{
-			\hat{a}(\vb{q})
-			\left(
-				\int\frac{\dd[3]{k_1}}{(2\pi)^3}
-				\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-				\omega(\vb{k}_1)
-				\omega(\vb{k}_2)
+				\hat{a}^\dagger(\vb{p})
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{k}}{(2\pi)^3}
+			\omega(\vb{k})
+			\expval{
+				\hat{a}(\vb{q})
+				\hat{a}^\dagger(\vb{k})
+				(2\pi)^3\delta^{(3)}(\vb{k}-\vb{p})
+			}{0}
+			\\
+			&=
+			\omega(\vb{p})
+			\expval{
+				\hat{a}(\vb{q})
+				\hat{a}^\dagger(\vb{p})
+			}{0}
+			\\
+			&=
+			\omega(\vb{p})
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+		\end{split}
+	\end{equation}
+	and
+	\begin{equation}
+		\begin{split}
+			\expval{
+				\hat{a}(\vb{q})
+				\hat{H}^2\hat{a}^\dagger(\vb{p})
+			}{0}
+			&=
+			\expval{
+				\hat{a}(\vb{q})
+				\left(
+					\int\frac{\dd[3]{k_1}}{(2\pi)^3}
+					\int\frac{\dd[3]{k_2}}{(2\pi)^3}
+					\omega(\vb{k}_1)
+					\omega(\vb{k}_2)
+					\hat{a}^\dagger(\vb{k}_1)
+					\hat{a}^\dagger(\vb{k}_2)
+					\hat{a}(\vb{k}_1)
+					\hat{a}(\vb{k}_2)
+				\right)
+				\hat{a}^\dagger(\vb{p})
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{k_1}}{(2\pi)^3}
+			\int\frac{\dd[3]{k_2}}{(2\pi)^3}
+			\omega(\vb{k}_1)
+			\omega(\vb{k}_2)
+			\expval{
+				\hat{a}(\vb{q})
 				\hat{a}^\dagger(\vb{k}_1)
 				\hat{a}^\dagger(\vb{k}_2)
 				\hat{a}(\vb{k}_1)
 				\hat{a}(\vb{k}_2)
-			\right)
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
-		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-		\omega(\vb{k}_1)
-		\omega(\vb{k}_2)
-		\expval{
-			\hat{a}(\vb{q})
-			\hat{a}^\dagger(\vb{k}_1)
-			\hat{a}^\dagger(\vb{k}_2)
-			\hat{a}(\vb{k}_1)
-			\hat{a}(\vb{k}_2)
-			\hat{a}^\dagger(\vb{p})
-		}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{k_1}}{(2\pi)^3}
-		\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-		\omega(\vb{k}_1)
-		\omega(\vb{k}_2)
-		\expval{
+				\hat{a}^\dagger(\vb{p})
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{k_1}}{(2\pi)^3}
+			\int\frac{\dd[3]{k_2}}{(2\pi)^3}
+			\omega(\vb{k}_1)
+			\omega(\vb{k}_2)
+			\expval{
+				(2\pi)^3
+				\delta^{(3)}(\vb{k}_1-\vb{q})
+				\hat{a}^\dagger(\vb{k}_2)
+				\hat{a}(\vb{k}_1)
+				(2\pi)^3
+				\delta^{(3)}(\vb{k}_2-\vb{p})
+			}{0}
+			\\
+			&=
+			\omega(\vb{p})
+			\omega(\vb{q})
+			\expval{
+				\hat{a}^\dagger(\vb{p})
+				\hat{a}(\vb{q})
+			}{0}
+			\\
+			&=
+			\omega(\vb{p})^2
 			(2\pi)^3
-			\delta^{(3)}(\vb{k}_1-\vb{q})
-			\hat{a}^\dagger(\vb{k}_2)
-			\hat{a}(\vb{k}_1)
-			(2\pi)^3
-			\delta^{(3)}(\vb{k}_2-\vb{p})
-		}{0}
-		\\
-		&=
-		\omega(\vb{p})
-		\omega(\vb{q})
-		\expval{
-			\hat{a}^\dagger(\vb{p})
-			\hat{a}(\vb{q})
-		}{0}
-		\\
-		&=
-		\omega(\vb{p})^2
-		(2\pi)^3
-		\delta^{(3)}(\vb{q}-\vb{p})
-	\end{split}
-	.
-\end{equation}
-The first moment then turns out to be
-\begin{equation}
-	\begin{split}
-		\expval{\hat{H}}{f}
-		&=
-		\left(
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			f(\vb{p})
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-		\right)^\dagger
-		\hat{H}
-		\left(
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			f(\vb{q})
-			\hat{a}^\dagger(\vb{q})
-			\ket{0}
-		\right)^\dagger
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})^*
-		f(\vb{q})
-		\expval{
-			\hat{a}(\vb{p})
+			\delta^{(3)}(\vb{q}-\vb{p})
+		\end{split}
+		.
+	\end{equation}
+	The first moment then turns out to be
+	\begin{equation}
+		\begin{split}
+			\expval{\hat{H}}{f}
+			&=
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				f(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+				\ket{0}
+			\right)^\dagger
 			\hat{H}
-			\hat{a}^\dagger(\vb{q})
-		}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})^*
-		f(\vb{q})		
-		\omega(\vb{p})
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\omega(\vb{p})
-		\abs{f(\vb{p})}^2
-	\end{split}
-\end{equation}
-and the second moment is
-\begin{equation}
-	\begin{split}
-		\expval{\hat{H}^2}{f}
-		&=
-		\left(
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				f(\vb{q})
+				\hat{a}^\dagger(\vb{q})
+				\ket{0}
+			\right)^\dagger
+			\\
+			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			f(\vb{p})
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-		\right)^\dagger
-		\hat{H}^2
-		\left(
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{p})^*
 			f(\vb{q})
-			\hat{a}^\dagger(\vb{q})
-			\ket{0}
-		\right)^\dagger
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})^*
-		f(\vb{q})
-		\expval{
-			\hat{a}(\vb{p})
+			\expval{
+				\hat{a}(\vb{p})
+				\hat{H}
+				\hat{a}^\dagger(\vb{q})
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{p})^*
+			f(\vb{q})		
+			\omega(\vb{p})
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\omega(\vb{p})
+			\abs{f(\vb{p})}^2
+		\end{split}
+	\end{equation}
+	and the second moment is
+	\begin{equation}
+		\begin{split}
+			\expval{\hat{H}^2}{f}
+			&=
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				f(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+				\ket{0}
+			\right)^\dagger
 			\hat{H}^2
-			\hat{a}^\dagger(\vb{q})
-		}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})^*
-		f(\vb{q})
-		\omega(\vb{p})^2
-		(2\pi)^3
-		\delta^{(3)}(\vb{q}-\vb{p})
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\omega(\vb{p})^2
-		\abs{f(\vb{p})}^2
-	\end{split}
-	.
-\end{equation}
-Replacing $\omega(\vb{p})$ with either $1$ or $\vb{p}$ yields the first two moments of the number $\hat{N}$ respective momentum $\hat{\vb{P}}$ operator.
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				f(\vb{q})
+				\hat{a}^\dagger(\vb{q})
+				\ket{0}
+			\right)^\dagger
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{p})^*
+			f(\vb{q})
+			\expval{
+				\hat{a}(\vb{p})
+				\hat{H}^2
+				\hat{a}^\dagger(\vb{q})
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{p})^*
+			f(\vb{q})
+			\omega(\vb{p})^2
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\omega(\vb{p})^2
+			\abs{f(\vb{p})}^2
+		\end{split}
+		.
+	\end{equation}
+	in agreement with Ref.~\cite[eqs.~10 and 11]{Naumov2013}.
+\end{delayedproof}
 
 \subsection{Center-of-mass position and dispersion}
 
-The coordinate the wave function is
-\begin{equation}
-	\begin{split}
-		\psi(t,\vb{x})
-		&=
-		\bra{0}
-		\hat\phi(t,\vb{x})
-		\ket{f}
-		=
-		\bra{0}
-		\hat\phi^-(t,\vb{x})
-		\ket{f}
-		\\
-		&=
-		\left(
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{+ip_\mu x^\mu}
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-		\right)^\dagger
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{q})
-		\hat{a}^\dagger(\vb{q})
-		\ket{0}
-		\\
-		&=
-		\left(
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{-ip_\mu x^\mu}
+\begin{delayedproof}{thm:single_particle_number_state_wave_function}
+	The coordinate the wave function is
+	\begin{equation}
+		\begin{split}
+			\psi(t,\vb{x})
+			&=
 			\bra{0}
-			\hat{a}(\vb{p})
-		\right)^\dagger
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{q})
-		\hat{a}^\dagger(\vb{q})
-		\ket{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{q})
-		e^{-ip_\mu x^\mu}
-		\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{q})
-		e^{-ip_\mu x^\mu}
-		(2\pi)^3
-		\delta^{(3)}(\vb{q}-\vb{p})
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		f(\vb{p})
-		e^{-ip_\mu x^\mu}
-	\end{split}
-\end{equation}
-the probability current is a conserved Noether current~\cite[p.~18]{Peskin1995}
+			\hat\phi(t,\vb{x})
+			\ket{f}
+			=
+			\bra{0}
+			\hat\phi^-(t,\vb{x})
+			\ket{f}
+			\\
+			&=
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				e^{+ip_\mu x^\mu}
+				\hat{a}^\dagger(\vb{p})
+				\ket{0}
+			\right)^\dagger
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
+			\\
+			&=
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				e^{-ip_\mu x^\mu}
+				\bra{0}
+				\hat{a}(\vb{p})
+			\right)^\dagger
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			e^{-ip_\mu x^\mu}
+			\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			e^{-ip_\mu x^\mu}
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})
+			e^{-ip_\mu x^\mu}
+		\end{split}
+	\end{equation}
+\end{delayedproof}
+
 \begin{equation}
 	\begin{split}
 		j_\mu(t,\vb{x})

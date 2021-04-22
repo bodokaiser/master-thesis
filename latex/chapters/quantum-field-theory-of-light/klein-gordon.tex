@@ -92,7 +92,7 @@
 	which is satisfied if $p_0=\pm\omega(\vb{p})$.
 \end{proof}
 
-\begin{lemma}[Fourier expansion of the Klein-Gordon field]
+\begin{theorem}[Fourier expansion of the Klein-Gordon field]\label{thm:kg_fourier_expansion}
 	The Fourier expansion of the Klein-Gordon field
 	\begin{equation}
 		\phi(t,\vb{x})
@@ -107,8 +107,8 @@
 		\biggr\}_{p_0=\omega(\vb{p})}
 	\end{equation}
 	satisfies the equations of motion for any choice of $a(\vb{p})=\phi(\omega(\vb{p}),\vb{p})^*$.
-\end{lemma}
-
+\end{theorem}
+To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansion} might be helpful.
 \begin{remark}
 	From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 \end{remark}
@@ -118,8 +118,9 @@
 	\begin{equation}
 		\pi(t,\vb{x})
 		=
+		-i
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\left(-i\sqrt{2\omega(\vb{p})}\right)
+		\sqrt{2\omega(\vb{p})}
 		\left\{
 			a(\vb{p})
 			e^{-ip_\mu x^\mu}
@@ -172,7 +173,7 @@
 	component, see Ref.~\cite{Peskin1995}.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}[Energy and momentum of the Klein-Gordon field]
 	The total energy and momentum observables of the Klein-Gordon field are
 	\begin{align}
 		H
@@ -188,7 +189,7 @@
 	\end{align}
 \end{lemma}
 \begin{proof}
-	Perform a spatial integration over the energy and momentum densities.
+	Perform a spatial integration over the energy and momentum densities, see Ref.~\cite{Peskin1995}.
 \end{proof}
 
 \subsection{Canonical quantization}
@@ -285,7 +286,7 @@
 	See Ref.~\cite[p.~20]{Mukhanov2007} for more details on the problem of operator ordering.
 \end{remark}
 
-\begin{lemma}[Energy, momentum and number operator]
+\begin{lemma}[Energy and momentum operators of the Klein-Gordon field]
 	Invoking the correspondence principle to the total energy and momentum we derived for the classical Klein-Gordon field, \cref{eq:kg_energy_momentum}, we find
 	\begin{align}
 		\hat{H}
@@ -300,14 +301,20 @@
 		\label{eq:qkg_energy_momentum}
 	\end{align}
 	to be the energy and momentum operators of the quantum Klein-Gordon field.
-	In analogy with the quantum harmonic oscillator, we define the number operator to be
-	\begin{align}
+\end{lemma}
+\begin{corollary}[Number operator of the Klein-Gordon field]
+	In analogy with the quantum harmonic oscillator, the number operator is the unweighted part of the energy operator, i.e.,
+	\begin{equation}
 		\hat{N}
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\hat{a}^\dagger(\vb{p})
 		\hat{a}(\vb{p})
-		&&
+		\label{eq:qkg_number}
+		.
+	\end{equation}
+	The squared number operator which is required for calculating the variance is the squared number operator in normal order~\cite{Barnett2002}
+	\begin{equation}
 		\hat{N}^2
 		=
 		\int\frac{\dd[3]{p_1}}{(2\pi)^3}
@@ -316,10 +323,9 @@
 		\hat{a}^\dagger(\vb{p}_2)
 		\hat{a}(\vb{p}_1)
 		\hat{a}(\vb{p}_2)
-		\label{eq:qkg_number}
-	\end{align}
-	where the squared number operator is also in normal-order!
-\end{lemma}
+		.
+	\end{equation}
+\end{corollary}
 
 \begin{definition}[Positive and negative frequency Klein-Gordon field operator]
 	It will be useful to decompose the Klein-Gordon field into a positive and negative frequency part

@@ -18,15 +18,15 @@
 	If we remind ourselves that quantum field operators are operator-valued distributions mapping from the Schwartz function space to quantum operators, the definition follows from the smeared Klein-Gordon field operator acting on the vacuum $\hat\phi[f]\ket{0}=\phi^-[f]\ket{0}=\ket{f}$.
 \end{remark}
 
-\begin{lemma}[Inner product of two single-particle number states]\label{th:number_states_non_orthogonal}
-	Let $\ket{f},\ket{g}$ be two number states then
+\begin{lemma}[Inner product of two single-particle number states]\label{th:single_particle_number_states_inner_product}
+	Let $\ket{f},\ket{g}$ be two single-particle number states then their inner product is equal to
 	\begin{equation}
 		\braket{g}{f}
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		f(\vb{p})g(\vb{p})^*
 	\end{equation}
-	indicates that number states are, in general, not orthogonal.
+	indicating that the single-particle number states are overcomplete.
 \end{lemma}
 \begin{proof}
 	For the proof, we insert the definition and use the commutation relation of the annihilation and creation operators of the Klein-Gordon field
@@ -49,11 +49,11 @@
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 			f(\vb{p})g(\vb{p})^*
 		\end{split}
+		.
 	\end{equation}
 \end{proof}
-
-\begin{corollary}[Normalization of a single-particle number state spectrum]
-	\Cref{th:number_states_non_orthogonal} and the probabilistic interpretation of quantum mechanics require the spectrum of a number state to be constrained by
+\begin{lemma}[Normalization of a single-particle number state spectrum]
+	The spectrum of a single-particle number state satisfies
 	\begin{equation}
 		\bra{f}\ket{f}
 		=
@@ -63,34 +63,13 @@
 		1
 		.
 	\end{equation}
-\end{corollary}
-
-\begin{remark}
-	In the coordinate representation is not a practical representation as we have integrals involving the Feynman propagator.
-	For instance, the inner product of two number states in coordinate representation is
-	\begin{equation}
-		\begin{split}
-			\bra{g}\ket{f}
-			=
-			\expval{\hat\phi[g]\hat\phi[f]}{0}
-			&=
-			\int\dd[4]{x}
-			\int\dd[4]{y}
-			f(x^0,\vb{x})g(y^0,\vb{y})^*
-			\expval{\hat\phi(x^0,\vb{x})\hat\phi(y^0,\vb{y})}{0}
-			\\
-			&=
-			\int\dd[4]{x}
-			\int\dd[4]{y}
-			f(x^0,\vb{x})g(y^0,\vb{y})^*
-			D(x^0-y^0,\vb{x}-\vb{y})
-		\end{split}
-	\end{equation}
-	where $D(x^0-y^0,\vb{x}-\vb{y})$ is the Feynman propagator~\cite[p.~27]{Peskin1995}.
-\end{remark}
-
+\end{lemma}
+\begin{proof}
+	The probabilistic interpretation of quantum mechanics requires $\braket{f}=1$ and \cref{th:single_particle_number_states_inner_product} with $\ket{g}=\ket{f}$ relates $\braket{f}=1$ with the integral.
+\end{proof}
+Let us consider some examples for the single-particle number state spectrum $f(\vb{p})$.
 \begin{example}[Covariant Gaussian single-particle number state]
-	Naumov~\cite{Naumov2013,Naumov2009} claims $\ket{f}$ with
+	The covariant Gaussian spectrum with mean $k^\mu=(k_0,\vb{k})$ and variance $\sigma^2$ is
 	\begin{equation}
 		f(\vb{p})
 		\propto
@@ -104,13 +83,8 @@
 		\right\}
 		\label{eq:covariant_gaussian_spectrum}
 	\end{equation}
-	to describe a single-particle number state with spectrum peaked at $k^\mu=(k_0,\vb{k})$ with variance $\sigma^2$.
+	according to Ref.~\cite{Naumov2013,Naumov2009}.
 \end{example}
-\begin{remark}
-	In Ref.~\cite{Naumov2009} a discussion of the relativistic effects on the wave packet.
-	In particular, a complete covariant description requires renormalization.
-	However, close to the maximum of $f(\vb{p})$ a non-covariant approximation is justified.
-\end{remark}
 \begin{example}[Approximate massive Gaussian single-particle number state]
 	According to Naumov~\cite{Naumov2013}, the spectrum of the covariant Gaussian number state can be approximated with
 	\begin{equation}
@@ -140,8 +114,7 @@
 		\right\}
 	\end{equation}
 \end{example}
-
-\begin{lemma}[Energy moments of the single-paricle number state]
+\begin{theorem}[Energy observable of the single-paricle number state]\label{thm:single_particle_number_state_energy}
 	Calculating the first two moments of the energy observables, \cref{qkg:energy}, with respect to a single-particle number state $\ket{f}$ yields
 	\begin{align}
 		\expval{\hat{H}}{f}
@@ -166,9 +139,9 @@
 		\expval{\hat{H}}{f}^2
 		>
 		0
-	\end{equation}
-	in agreement with Ref.~\cite[eqs.~10 and 11]{Naumov2013}.
-\end{lemma}
+	\end{equation}.
+\end{theorem}
+The proof is found in \proofref{the appendix}{thm:single_particle_number_state_energy}.
 
 \begin{corollary}[Single-particle number state is eigenstate of the number operator]
 	Performing the replacement $\omega(\vb{p})\to1$ in \cref{eq:single_particle_number_state_energy} and employing the normalization condition yields
@@ -190,7 +163,7 @@
 		\bra{0}\hat\phi(t,\vb{x})\ket{\psi}
 	\end{equation}
 \end{definition}
-\begin{example}[Coordinate wave function of single-particle number state]
+\begin{lemma}[Coordinate wave function of single-particle number state]\label{thm:single_particle_number_state_wave_function}
 	The coordinate wave function of a single-particle number state turns out to be
 	\begin{equation}
 		\psi(t,\vb{x})
@@ -198,8 +171,8 @@
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		f(\vb{p})e^{-ip_\mu x^\mu}
 	\end{equation}
-\end{example}
-
+\end{lemma}
+The proof is given in \proofref{the appendix}{thm:single_particle_number_state_wave_function}.
 \begin{definition}[Probability current]
 	The covariant probability current
 	\begin{equation}
@@ -214,13 +187,7 @@
 		\label{eq:qkg_probability_current}
 	\end{equation}	
 \end{definition}
-\begin{lemma}[Probability current conservation]
-	The probability current is the conserved Noether's current of the Klein-Gordon field.
-\end{lemma}
-\begin{proof}
-	See Ref.~\cite[p.~18]{Peskin1995})
-\end{proof}
-
+The probability current is the conserved Noether's current of the Klein-Gordon field, see Ref.~\cite[p.~18]{Peskin1995}).
 \begin{definition}[Group velocity]
 	We refer to the spatial integration of the probability current $\vb{j}$
 	\begin{equation}
@@ -232,7 +199,7 @@
 	\end{equation}
 	as the group velocity.
 \end{definition}
-\begin{example}[Group velocity of a single-particle number state]
+\begin{lemma}[Group velocity of a single-particle number state]
 	The group velocity of a single-particle number state $\ket{f}$ is
 	\begin{equation}
 		\expval{\vb{v}}
@@ -242,7 +209,7 @@
 		\frac{\vb{p}}{\omega(\vb{p})}
 		\label{eq:single_particle_number_state_group_velocity}
 	\end{equation}
-\end{example}
+\end{lemma}
 \begin{definition}[Mean localization]
 	We define the mean localization to be
 	\begin{equation}
@@ -276,85 +243,77 @@
 
 \subsection{Coherent states}
 
-\begin{equation}
-	\begin{split}
+\begin{definition}[Coherent state]
+	We define a coherent state $\ket{\alpha}$ with spectrum $\alpha(\vb{p})$ as
+	\begin{equation}
+		\begin{split}
+			\ket{\alpha}
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\abs{\alpha(\vb{p})}^2
+			\right\}
+			\\
+			&\times
+			\exp\left\{
+				-i
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\alpha(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+			\right\}
+			\ket{0}
+		\end{split}
+	\end{equation}
+\end{definition}
+\begin{theorem}[Coherent state is eigenstate of the annihilation operator]
+	The coherent state is eigenstate of the annihilation operator
+	\begin{equation}
+		\hat{a}(\vb{p})
 		\ket{\alpha}
+		=
+		\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+		\ket{\alpha}
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	See appendix.
+\end{proof}
+
+\begin{lemma}[Energy moments of the coherent state]
+	\begin{align}
+		\expval{\hat{H}}{\alpha}
 		&=
-		\hat{D}[J]
-		\ket{0}
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\omega(\vb{p})
+		\abs{\alpha(\vb{p})}^2
 		\\
+		\expval{\hat{H}^2}{\alpha}
 		&=
-		\exp\left\{
-			-
-			\frac{1}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\abs{\alpha(\vb{p})}^2
-		\right\}
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\omega(\vb{p})^2
+		\abs{\alpha(\vb{p})}^2
+	\end{align}	
+\end{lemma}
+\begin{remark}
+	The energy moments look very similar but in contrast to the single-particle number state spectrum $f(\vb{p})$ we have to keep in mind that there is no constraint on the coherent state spectrum $\alpha(\vb{p})$.
+\end{remark}
+\begin{corollary}[Number moments of the coherent state]
+	Performing the replacement $\omega(\vb{p})\to1$ in the energy expectation moments of the coherent state, we find the moments of the number observable to be
+	\begin{align}
+		\expval{\hat{N}}{\alpha}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{\alpha(\vb{p})}^2
 		\\
-		&\times
-		\exp\left\{
-			-i
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\alpha(\vb{p})
-			\hat{a}^\dagger(\vb{p})
-		\right\}
-		\ket{0}
-	\end{split}
-\end{equation}
-
-\subsubsection{Number, energy, and momentum}
-
-The coherent state is eigenstate of the annihilation operator
-\begin{equation}
-	\hat{a}(\vb{p})
-	\ket{\alpha}
-	=
-	\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
-	\ket{\alpha}
-\end{equation}
-
-The first two moments of the energy operator are exactly the same as for the sidle-particle state
-\begin{align}
-	\expval{\hat{H}}{\alpha}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\omega(\vb{p})
-	\abs{\alpha(\vb{p})}^2
-	\\
-	\expval{\hat{H}^2}{\alpha}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\omega(\vb{p})^2
-	\abs{\alpha(\vb{p})}^2
-\end{align}
-which is similar to our single-particle case with the big difference that is $\alpha(\vb{p})$ not normalized.
-The same follows for the momentum moments
-\begin{align}
-	\expval{\hat{\vb{P}}}{\alpha}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\vb{p}
-	\abs{\alpha(\vb{p})}^2
-	\\
-	\expval{\hat{\vb{P}}^2}{\alpha}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\vb{p}^2
-	\abs{\alpha(\vb{p})}^2
-\end{align}
-and the number moments
-\begin{align}
-	\expval{\hat{N}}{\alpha}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\abs{\alpha(\vb{p})}^2
-	\\
-	\expval{\hat{N}^2}{\alpha}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\abs{\alpha(\vb{p})}^2
-\end{align}
-the variance of the number operator
+		\expval{\hat{N}^2}{\alpha}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{\alpha(\vb{p})}^2
+	\end{align}
+	.
+\end{corollary}
 
 The probability of detecting a single-particle given a coherent state is
 \begin{equation}
