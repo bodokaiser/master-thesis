@@ -75,6 +75,59 @@
 where we used the conjugate symmetry of $\phi(p_0,\vb{p})$ because $\phi(t,\vb{x})$ is real-valued.
 \end{proof}
 
+\subsubsection{Wightman axioms and smearing functions}
+
+According to Wightman quantum field theory~\cite[p.~324]{Bogolubov1989}, a quantum field $\hat\Phi$ is an operator-valued tempered distribution which needs be combined with some Lorentz-invariant Schwartz function $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{K})$
+\begin{equation}
+	\hat\Phi[f]
+	=
+	\int\dd[4]{x}
+	f(t,\vb{x})
+	\hat\Phi(t,\vb{x})
+\end{equation}
+to avoid ambiguities arising from the idealized non-physical ultra-localized momentum states which we would recover for
+\begin{equation}
+	\hat\Phi[\delta_x]
+	=
+	\int\dd[4]{y}
+	\delta^{(1)}(y^0-x^0)
+	\delta^{(3)}(\vb{y}-\vb{x})
+	\hat\Phi(y^0,\vb{y})
+	=
+	\hat\Phi(x^0,\vb{x})
+	.
+\end{equation}
+
+\subsubsection{Smeared single-particle state and overlap}
+
+Smearing the Klein-Gordon field operator $\hat\phi^-$ acting on the vacuum state $\ket{0}$ with $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{R})$ and defining $f(\vb{p})=f(\omega(\vb{p}),\vb{p})$
+\begin{align}
+	\hat\phi[f]
+	\ket{0}
+	&=
+	\int\dd[4]{x}
+	f(t,\vb{x})
+	\hat\phi^-(t,\vb{x})
+	\ket{0}
+	\\
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left(
+		\int\dd[4]{x}
+		f(t,\vb{x})
+		e^{+ip_\mu x^\mu}
+	\right)
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+	\\
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	f(\vb{p})
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+\end{align}
+and extrapolating from the known action of $\hat\phi$ on the vacuum, suggests
+
 \subsection{Number, energy and momentum observables}
 
 We start with the expectation values of the energy operator and begin with the auxiliary results

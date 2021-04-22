@@ -1,275 +1,280 @@
 \section{Quantum states}
 
-\subsection{Number states}
+\subsection{Single-particle number states}
 
-\subsubsection{Wightman axioms and smearing functions}
-
-According to Wightman quantum field theory~\cite[p.~324]{Bogolubov1989}, a quantum field $\hat\Phi$ is an operator-valued tempered distribution which needs be combined with some Lorentz-invariant Schwartz function $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{K})$
-\begin{equation}
-	\hat\Phi[f]
-	=
-	\int\dd[4]{x}
-	f(t,\vb{x})
-	\hat\Phi(t,\vb{x})
-\end{equation}
-to avoid ambiguities arising from the idealized non-physical ultra-localized momentum states which we would recover for
-\begin{equation}
-	\hat\Phi[\delta_x]
-	=
-	\int\dd[4]{y}
-	\delta^{(1)}(y^0-x^0)
-	\delta^{(3)}(\vb{y}-\vb{x})
-	\hat\Phi(y^0,\vb{y})
-	=
-	\hat\Phi(x^0,\vb{x})
-	.
-\end{equation}
-
-\subsubsection{Smeared single-particle state and overlap}
-
-Smearing the Klein-Gordon field operator $\hat\phi^-$ acting on the vacuum state $\ket{0}$ with $f\in\mathcal{S}(\mathbb{R}^4,\mathbb{R})$ and defining $f(\vb{p})=f(\omega(\vb{p}),\vb{p})$
-\begin{align}
-	\hat\phi[f]
-	\ket{0}
-	&=
-	\int\dd[4]{x}
-	f(t,\vb{x})
-	\hat\phi^-(t,\vb{x})
-	\ket{0}
-	\\
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\left(
-		\int\dd[4]{x}
-		f(t,\vb{x})
-		e^{+ip_\mu x^\mu}
-	\right)
-	\hat{a}^\dagger(\vb{p})
-	\ket{0}
-	\\
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	f(\vb{p})
-	\hat{a}^\dagger(\vb{p})
-	\ket{0}
-\end{align}
-and extrapolating from the known action of $\hat\phi$ on the vacuum, suggests
-\begin{equation}
-	\ket{f}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	f(\vb{p})
-	\hat{a}^\dagger(\vb{p})
-	\ket{0}
-\end{equation}
-to represent a smeared particle state with localization in spacetime $f(t,\vb{x})$ respective momentum space $f(\vb{p})$.
-The probability amplitude to measure $\ket{g}$ given $\ket{f}$ was prepared is equal to the overlap of the smearing functions
-\begin{equation}
-	\begin{split}
-		\bra{g}\ket{f}
-		&=
+\begin{definition}[Single-particle number state]\label{def:single_particle_number_state}
+	We define a number state of the Klein-Gordon field by
+	\begin{equation}
+		\ket{f}
+		=
 		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})g(\vb{q})^*
-		\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		f(\vb{p})g(\vb{q})^*
-		(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-		\\
-		&=
+		f(\vb{p})
+		\hat{a}^\dagger(\vb{p})
+		\ket{0}
+	\end{equation}
+	where the Lorentz-invariant spectrum $f(\vb{p})=f(\omega(\vb{p}),\vb{p})\in\mathcal{S}(\mathbb{R}^4,\mathbb{C})$ encodes the spectral distribution of $\ket{f}$.
+\end{definition}
+\begin{remark}
+	If we remind ourselves that quantum field operators are operator-valued distributions mapping from the Schwartz function space to quantum operators, the definition follows from the smeared Klein-Gordon field operator acting on the vacuum $\hat\phi[f]\ket{0}=\phi^-[f]\ket{0}=\ket{f}$.
+\end{remark}
+
+\begin{lemma}[Inner product of two single-particle number states]\label{th:number_states_non_orthogonal}
+	Let $\ket{f},\ket{g}$ be two number states then
+	\begin{equation}
+		\braket{g}{f}
+		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		f(\vb{p})g(\vb{p})^*
-	\end{split}
-\end{equation}
-and suggests the normalization to be
-\begin{equation}
-	\bra{f}\ket{f}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\abs{f(\vb{p})}^2
-	=
-	1
-\end{equation}
-Alternatively, in coordinate space
-\begin{equation}
-	\begin{split}
-		\bra{g}\ket{f}
+	\end{equation}
+	indicates that number states are, in general, not orthogonal.
+\end{lemma}
+\begin{proof}
+	For the proof, we insert the definition and use the commutation relation of the annihilation and creation operators of the Klein-Gordon field
+	\begin{equation}
+		\begin{split}
+			\bra{g}\ket{f}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{p})g(\vb{q})^*
+			\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{p})g(\vb{q})^*
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})g(\vb{p})^*
+		\end{split}
+	\end{equation}
+\end{proof}
+
+\begin{corollary}[Normalization of a single-particle number state spectrum]
+	\Cref{th:number_states_non_orthogonal} and the probabilistic interpretation of quantum mechanics require the spectrum of a number state to be constrained by
+	\begin{equation}
+		\bra{f}\ket{f}
 		=
-		\expval{\hat\phi[g]\hat\phi[f]}{0}
-		&=
-		\int\dd[4]{x}
-		\int\dd[4]{y}
-		f(x^0,\vb{x})g(y^0,\vb{y})^*
-		\expval{\hat\phi(x^0,\vb{x})\hat\phi(y^0,\vb{y})}{0}
-		\\
-		&=
-		\int\dd[4]{x}
-		\int\dd[4]{y}
-		f(x^0,\vb{x})g(y^0,\vb{y})^*
-		D(x^0-y^0,\vb{x}-\vb{y})
-	\end{split}
-\end{equation}
-where $D(x^0-y^0,\vb{x}-\vb{y})$ is the Feynman propagator~\cite[p.~27]{Peskin1995}.
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{f(\vb{p})}^2
+		=
+		1
+		.
+	\end{equation}
+\end{corollary}
 
-\subsubsection{Number, energy, and momentum expectation values}
+\begin{remark}
+	In the coordinate representation is not a practical representation as we have integrals involving the Feynman propagator.
+	For instance, the inner product of two number states in coordinate representation is
+	\begin{equation}
+		\begin{split}
+			\bra{g}\ket{f}
+			=
+			\expval{\hat\phi[g]\hat\phi[f]}{0}
+			&=
+			\int\dd[4]{x}
+			\int\dd[4]{y}
+			f(x^0,\vb{x})g(y^0,\vb{y})^*
+			\expval{\hat\phi(x^0,\vb{x})\hat\phi(y^0,\vb{y})}{0}
+			\\
+			&=
+			\int\dd[4]{x}
+			\int\dd[4]{y}
+			f(x^0,\vb{x})g(y^0,\vb{y})^*
+			D(x^0-y^0,\vb{x}-\vb{y})
+		\end{split}
+	\end{equation}
+	where $D(x^0-y^0,\vb{x}-\vb{y})$ is the Feynman propagator~\cite[p.~27]{Peskin1995}.
+\end{remark}
 
-The first two moments of the number operator are
-\begin{align}
-	\expval{\hat{N}}{f}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\abs{f(\vb{p})}^2
-	=
-	1
-	\\
-	\expval{\hat{N}^2}{f}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\abs{f(\vb{p})}^2
-	=
-	1
-\end{align}
-suggesting $\ket{f}$ to be a single-particle number state because $\expval{\left(\Delta\hat{N}\right)}{f}=0$
-Similar the first two moments of the total energy are
-\begin{align}
-	\expval{\hat{H}}{f}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\omega(\vb{p})
-	\abs{f(\vb{p})}^2
-	\\
-	\expval{\hat{H}^2}{f}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\omega(\vb{p})^2
-	\abs{f(\vb{p})}^2
-\end{align}
-implying non-zero energy fluctuations $\expval{\left(\Delta\hat{H}\right)^2}{f}>0$.
-By an completely analog calculation, we find for the total momentum
-\begin{align}
-	\expval{\hat{\vb{P}}}{f}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\vb{p}
-	\abs{f(\vb{p})}^2
-	\\
-	\expval{\hat{\vb{P}}^2}{f}
-	&=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\vb{p}^2
-	\abs{f(\vb{p})}^2
-\end{align}
-in agreement with results reported in~\cite[eqs.~10 and 11]{Naumov2013}.
-
-\subsubsection{Group velocity, mean position and spatial dispersion}
-
-From the spacetime representation of the wave function
-\begin{equation}
-	\psi(t,\vb{x})
-	=
-	\bra{0}\hat\phi(t,\vb{x})\ket{f}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	f(\vb{p})e^{-ip_\mu x^\mu}
-\end{equation}
-we can calculate the probability current being the conserved Noether's current of the Klein-Gordon field~\cite[p.~18]{Peskin1995})
-\begin{equation}
-	j_\mu(t,\vb{x})
-	=
-	2
-	\Im\left\{
-		\psi(t,\vb{x})^*
-		\partial_\mu
-		\psi(t,\vb{x})
-	\right\}
-	\label{eq:qkg_probability_current}.
-\end{equation}
-Spatial integration of the probability current yields the group velocity of $\ket{f}$
-\begin{equation}
-	\expval{\vb{v}}
-	=
-	\int\dd[3]{x}
-	\vb{j}(t,\vb{x})
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\abs{f(\vb{p})}^2
-	\frac{\vb{p}}{\omega(\vb{p})}
-	\label{qkg:group_velocity}.
-\end{equation}
-Indeed in the non-relativistic regime $\omega(\vb{p})^2\sim m^2$
-and the group velocity equals $\vb{p}/(2m^2)$ weighted by $\abs{f(\vb{p})}^2$.
-The probability center-of-mass position is
-\begin{equation}
-	\expval{\vb{x}(t)}
-	=
-	\int\dd[3]{x}\vb{x}\rho(t,\vb{x})
-	=
-	\expval{\vb{v}}t
-	,
-\end{equation}
-with the variance quantifying the spatial dispersion in time
-\begin{equation}
-	\sigma_x(t)^2
-	=
-	\expval{\vb{x}(t)^2}
-	-
-	\expval{\vb{x}(t)}^2
-\end{equation}
-which can be found in Naumov~\cite{Naumov2013}.
-
-\subsubsection{Example of a massless Gaussian single-particle state}
-
-Naumov~\cite{Naumov2013} discusses a massive Gaussian wave packets.
-
-Let $k_\mu=(k_0,\vb{k})$ be a constant four-momentum vector with $k_0=\omega(\vb{k})$ (?), then the function
-\begin{equation}
-	f(\vb{p})
-	\propto
-	\exp\left\{
-		\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma_p^2}
-	\right\}
-	=
-	\exp\left\{
-		\frac{p_\mu p^\mu-2k_\mu p^\mu+k_\mu k^\mu}{4\sigma_p^2}
-	\right\}
-\end{equation}
-is an element of the Schwartz space $\mathcal{S}(\mathbb{R}^4,\mathbb{R})$ and is as a function of Lorentz scalars manifest Lorentz invariant, thus, a candidate for a smearing function.
-
-For a massless Klein-Gordon field the dispersion relation is $\omega(\vb{p})=\norm{\vb{p}}$ and the smearing function simplifies to
-\begin{equation}
-	\begin{split}
+\begin{example}[Covariant Gaussian single-particle number state]
+	Naumov~\cite{Naumov2013,Naumov2009} claims $\ket{f}$ with
+	\begin{equation}
 		f(\vb{p})
-		&\propto
+		\propto
+		\exp\left\{
+			\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma_P^2}
+		\right\}
+		=
 		\exp\left\{
 			-
-			\frac{1}{2\sigma_p^2}
-			\left(
-				k_0
-				\norm{\vb{p}}
-				-
-				\vb{k}\vdot\vb{p}
-			\right)
+			\frac{\omega(\vb{p})\omega(\vb{k})-\vb{k}\vdot\vb{p}}{2\sigma^2}
 		\right\}
-		\\
+		\label{eq:covariant_gaussian_spectrum}
+	\end{equation}
+	to describe a single-particle number state with spectrum peaked at $k^\mu=(k_0,\vb{k})$ with variance $\sigma^2$.
+\end{example}
+\begin{remark}
+	In Ref.~\cite{Naumov2009} a discussion of the relativistic effects on the wave packet.
+	In particular, a complete covariant description requires renormalization.
+	However, close to the maximum of $f(\vb{p})$ a non-covariant approximation is justified.
+\end{remark}
+\begin{example}[Approximate massive Gaussian single-particle number state]
+	According to Naumov~\cite{Naumov2013}, the spectrum of the covariant Gaussian number state can be approximated with
+	\begin{equation}
+		f(\vb{p})
+		=
+		\sqrt{2m}
+		\left(
+			\frac{2\pi}{\sigma^2}
+		\right)^{3/4}
+		\exp\left\{
+			-
+			\frac{(\vb{k}-\vb{p}_L)^2}{4\sigma_L^2}
+			-
+			\frac{\vb{p}_T^2}{4\sigma_T^2}
+		\right\}
+	\end{equation}
+	for $\vb{p}\approx\vb{k}$, wherein $\vb{p}_T,\vb{p}_L$ are the momentum transversal and longitudinal to $\vb{k}$, and $\sigma_L=\omega(\vb{p})\sigma/m$ and $\sigma_T=\sigma_P$ are the longitudinal and transversal momentum spreads.
+\end{example}
+\begin{example}[Massless Gaussian single-particle number state]
+	Evaluating \cref{eq:covariant_gaussian_spectrum} with $\omega(\vb{p})=\norm{\vb{p}}$ yields
+	\begin{equation}
+		f(\vb{p})
+		\propto
+		\exp\left\{
+			-
+			\frac{\norm{\vb{p}}\norm{\vb{k}}-\vb{k}\vdot\vb{p}}{2\sigma^2}
+		\right\}
+	\end{equation}
+\end{example}
+
+\begin{lemma}[Energy moments of the single-paricle number state]
+	Calculating the first two moments of the energy observables, \cref{qkg:energy}, with respect to a single-particle number state $\ket{f}$ yields
+	\begin{align}
+		\expval{\hat{H}}{f}
 		&=
-		\exp\left\{
-			-
-			\frac{k_0}{2\sigma_p^2}
-			\norm{\vb{p}}
-			\left(
-				1	
-				-
-				\cos\theta
-			\right)
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\omega(\vb{p})
+		\abs{f(\vb{p})}^2
+		\\
+		\expval{\hat{H}^2}{f}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\omega(\vb{p})^2
+		\abs{f(\vb{p})}^2
+		\label{eq:single_particle_number_state_energy}
+	\end{align}
+	for the first two moments implying non-zero energy fluctuations
+	\begin{equation}
+		\expval{\left(\Delta\hat{H}\right)^2}{f}
+		=
+		\expval{\hat{H}^2}{f}
+		-
+		\expval{\hat{H}}{f}^2
+		>
+		0
+	\end{equation}
+	in agreement with Ref.~\cite[eqs.~10 and 11]{Naumov2013}.
+\end{lemma}
+
+\begin{corollary}[Single-particle number state is eigenstate of the number operator]
+	Performing the replacement $\omega(\vb{p})\to1$ in \cref{eq:single_particle_number_state_energy} and employing the normalization condition yields
+	\begin{equation}
+		\expval{\hat{N}}{f}
+		=
+		1
+		=
+		\expval{\hat{N}^2}{f}
+	\end{equation}
+	which leads to zero variance in the number observable, implying that $\ket{f}$ is a number eigenstate.
+\end{corollary}
+
+\begin{definition}[Coordinate wave function]
+	We define the coordinate wave function of a state $\ket{\psi}$
+	\begin{equation}
+		\psi(t,\vb{x})
+		=
+		\bra{0}\hat\phi(t,\vb{x})\ket{\psi}
+	\end{equation}
+\end{definition}
+\begin{example}[Coordinate wave function of single-particle number state]
+	The coordinate wave function of a single-particle number state turns out to be
+	\begin{equation}
+		\psi(t,\vb{x})
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		f(\vb{p})e^{-ip_\mu x^\mu}
+	\end{equation}
+\end{example}
+
+\begin{definition}[Probability current]
+	The covariant probability current
+	\begin{equation}
+		j_\mu(t,\vb{x})
+		=
+		2
+		\Im\left\{
+			\psi(t,\vb{x})^*
+			\partial_\mu
+			\psi(t,\vb{x})
 		\right\}
-	\end{split}
-\end{equation}
+		\label{eq:qkg_probability_current}
+	\end{equation}	
+\end{definition}
+\begin{lemma}[Probability current conservation]
+	The probability current is the conserved Noether's current of the Klein-Gordon field.
+\end{lemma}
+\begin{proof}
+	See Ref.~\cite[p.~18]{Peskin1995})
+\end{proof}
+
+\begin{definition}[Group velocity]
+	We refer to the spatial integration of the probability current $\vb{j}$
+	\begin{equation}
+		\expval{\vb{v}}
+		=
+		\int\dd[3]{x}
+		\vb{j}(t,\vb{x})
+		\label{eq:group_velocity}
+	\end{equation}
+	as the group velocity.
+\end{definition}
+\begin{example}[Group velocity of a single-particle number state]
+	The group velocity of a single-particle number state $\ket{f}$ is
+	\begin{equation}
+		\expval{\vb{v}}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{f(\vb{p})}^2
+		\frac{\vb{p}}{\omega(\vb{p})}
+		\label{eq:single_particle_number_state_group_velocity}
+	\end{equation}
+\end{example}
+\begin{definition}[Mean localization]
+	We define the mean localization to be
+	\begin{equation}
+		\expval{\vb{x}(t)}
+		=
+		\int\dd[3]{x}
+		\vb{x}
+		\rho(t,\vb{x})
+	\end{equation}
+\end{definition}
+\begin{example}[Mean localization of a single-particle number state]
+	\begin{equation}
+		\expval{\vb{x}(t)}
+		=
+		\expval{\vb{v}}t
+	\end{equation}	
+\end{example}
+\begin{definition}[Spatial dispersion]
+	The spatial dispersion is defined by
+	\begin{equation}
+		\sigma_x(t)^2
+		=
+		\expval{\vb{x}(t)^2}
+		-
+		\expval{\vb{x}(t)}^2		
+	\end{equation}
+\end{definition}
+\begin{example}[Spatial dispersion for massive Gaussian single-particle number states]
+	See Ref.~\cite{Naumov2013}.
+\end{example}
 
 \subsection{Coherent states}
-
 
 \begin{equation}
 	\begin{split}
