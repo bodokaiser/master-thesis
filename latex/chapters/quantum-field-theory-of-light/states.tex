@@ -114,7 +114,7 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 		\right\}
 	\end{equation}
 \end{example}
-\begin{theorem}[Energy observable of the single-paricle number state]\label{thm:single_particle_number_state_energy}
+\begin{theorem}[Energy observable of the single-particle number state]\label{thm:single_particle_number_state_energy}
 	Calculating the first two moments of the energy observables, \cref{qkg:energy}, with respect to a single-particle number state $\ket{f}$ yields
 	\begin{align}
 		\expval{\hat{H}}{f}
@@ -199,7 +199,7 @@ The probability current is the conserved Noether's current of the Klein-Gordon f
 	\end{equation}
 	as the group velocity.
 \end{definition}
-\begin{lemma}[Group velocity of a single-particle number state]
+\begin{lemma}[Group velocity of a single-particle number state]\label{thm:single_particle_number_state_group_velocity}
 	The group velocity of a single-particle number state $\ket{f}$ is
 	\begin{equation}
 		\expval{\vb{v}}
@@ -267,7 +267,7 @@ The probability current is the conserved Noether's current of the Klein-Gordon f
 		\end{split}
 	\end{equation}
 \end{definition}
-\begin{theorem}[Coherent state is eigenstate of the annihilation operator]
+\begin{theorem}[Coherent state is eigenstate of the annihilation operator]\label{thm:coherent_state_annihilation_eigenvalue}
 	The coherent state is eigenstate of the annihilation operator
 	\begin{equation}
 		\hat{a}(\vb{p})
@@ -277,11 +277,9 @@ The probability current is the conserved Noether's current of the Klein-Gordon f
 		\ket{\alpha}
 	\end{equation}
 \end{theorem}
-\begin{proof}
-	See appendix.
-\end{proof}
+The proof is given in \proofref{the appendix}{thm:coherent_state_annihilation_eigenvalue}.
 
-\begin{lemma}[Energy moments of the coherent state]
+\begin{lemma}[Energy moments of the coherent state]\label{thm:coherent_state_energy_observable}
 	\begin{align}
 		\expval{\hat{H}}{\alpha}
 		&=
@@ -291,14 +289,11 @@ The probability current is the conserved Noether's current of the Klein-Gordon f
 		\\
 		\expval{\hat{H}^2}{\alpha}
 		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\omega(\vb{p})^2
-		\abs{\alpha(\vb{p})}^2
+		\expval{\hat{H}}{\alpha}^2
 	\end{align}	
 \end{lemma}
-\begin{remark}
-	The energy moments look very similar but in contrast to the single-particle number state spectrum $f(\vb{p})$ we have to keep in mind that there is no constraint on the coherent state spectrum $\alpha(\vb{p})$.
-\end{remark}
+The proof is given in \proofref{the appendix}{thm:coherent_state_energy_observable}.
+The energy moments look very similar but in contrast to the single-particle number state spectrum $f(\vb{p})$ we have to keep in mind that there is no constraint on the coherent state spectrum $\alpha(\vb{p})$.
 \begin{corollary}[Number moments of the coherent state]
 	Performing the replacement $\omega(\vb{p})\to1$ in the energy expectation moments of the coherent state, we find the moments of the number observable to be
 	\begin{align}
@@ -309,38 +304,39 @@ The probability current is the conserved Noether's current of the Klein-Gordon f
 		\\
 		\expval{\hat{N}^2}{\alpha}
 		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\abs{\alpha(\vb{p})}^2
+		\expval{\hat{N}}{\alpha}^2
 	\end{align}
 	.
 \end{corollary}
 
-The probability of detecting a single-particle given a coherent state is
-\begin{equation}
-	\begin{split}
-		\braket{f}{\alpha}
-		&=
-		\exp\left\{
-			-
-			\frac{1}{2}
+\begin{lemma}
+	The probability of detecting a single-particle given a coherent state is
+	\begin{equation}
+		\begin{split}
+			\braket{f}{\alpha}
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\abs{\alpha(\vb{p})}^2
+			\right\}
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\abs{\alpha(\vb{p})}^2
-		\right\}
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		f(\vb{p})^*
-		\alpha(\vb{p})
-	\end{split}
-\end{equation}
-Assuming spectral overlap, i.e., $\alpha(\vb{p})=\alpha f(\vb{p})$, we recover the Poisson distribution
-\begin{equation}
-	\begin{split}
-		\braket{f}{\alpha}
-		&=
-		\alpha
-		\exp\left\{
-			-
-			\frac{1}{2}
-			\abs{\alpha}^2
-		\right\}
-	\end{split}
-\end{equation}
+			f(\vb{p})^*
+			\alpha(\vb{p})
+		\end{split}
+	\end{equation}
+	Assuming spectral overlap, i.e., $\alpha(\vb{p})=\alpha f(\vb{p})$, we recover the Poisson distribution
+	\begin{equation}
+		\begin{split}
+			\braket{f}{\alpha}
+			&=
+			\alpha
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\abs{\alpha}^2
+			\right\}
+		\end{split}
+	\end{equation}
+\end{lemma}

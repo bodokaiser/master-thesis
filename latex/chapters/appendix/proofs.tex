@@ -348,8 +348,6 @@
 	in agreement with Ref.~\cite[eqs.~10 and 11]{Naumov2013}.
 \end{delayedproof}
 
-\subsection{Center-of-mass position and dispersion}
-
 \begin{delayedproof}{thm:single_particle_number_state_wave_function}
 	The coordinate the wave function is
 	\begin{equation}
@@ -411,49 +409,10 @@
 	\end{equation}
 \end{delayedproof}
 
-\begin{equation}
-	\begin{split}
+\begin{lemma}[Probability current of a single-particle number state]
+	\begin{equation}
 		j_\mu(t,\vb{x})
-		&=
-		i
-		\bigl\{
-			\psi(t,\vb{x})
-			\partial_\mu
-			\psi(t,\vb{x})^*
-			-
-			\psi(t,\vb{x})^*
-			\partial_\mu
-			\psi(t,\vb{x})
-		\bigr\}
 		=
-		2
-		\Im\left\{
-			\psi(t,\vb{x})^*
-			\partial_\mu
-			\psi(t,\vb{x})
-		\right\}
-		\\
-		&=
-		2
-		\Im\left\{
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})^*e^{+ip_\mu x^\mu}
-			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-			f(\vb{q})iq_\mu e^{-iq_\mu x^\mu}
-		\right\}
-		\\
-		&=
-		2
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-		\Im\left\{
-			f(\vb{p})^*
-			f(\vb{q})
-			iq_\mu
-			e^{-i(q_\mu-p_\mu)x^\mu}
-		\right\}
-		\\
-		&=
 		2
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
@@ -463,134 +422,169 @@
 			f(\vb{q})
 			e^{-i(q_\mu-p_\mu)x^\mu}
 		\right\}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-		\left\{
-			q_\mu
-			+
-			p_\mu
-		\right\}
-		f(\vb{p})^*
-		f(\vb{q})
-		e^{-i(q_\mu-p_\mu)x^\mu}
-	\end{split}
-\end{equation}
-where we expanded the real part and renamed the integrations variables of the second term in the last line.
-
-\subsubsection{Center-of-mass position}
-
-The center-of-mass position can be expressed in terms of the velocity
-\begin{equation}
-	\begin{split}
-		\overline{\vb{x}}
-		&=
-		\int\dd[3]{x}
-		\vb{x}
-		\rho(t,\vb{x})
-		\\
-		&=
-		2\Re\left\{
-			\int\dd[3]{x}
-			\vb{x}
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	\begin{equation}
+		\begin{split}
+			j_\mu(t,\vb{x})
+			&=
+			i
+			\bigl\{
+				\psi(t,\vb{x})
+				\partial_\mu
+				\psi(t,\vb{x})^*
+				-
+				\psi(t,\vb{x})^*
+				\partial_\mu
+				\psi(t,\vb{x})
+			\bigr\}
+			=
+			2
+			\Im\left\{
+				\psi(t,\vb{x})^*
+				\partial_\mu
+				\psi(t,\vb{x})
+			\right\}
+			\\
+			&=
+			2
+			\Im\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				f(\vb{p})^*e^{+ip_\mu x^\mu}
+				\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+				f(\vb{q})iq_\mu e^{-iq_\mu x^\mu}
+			\right\}
+			\\
+			&=
+			2
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-			\omega(\vb{q})
-			f(\vb{q})
+			\Im\left\{
+				f(\vb{p})^*
+				f(\vb{q})
+				iq_\mu
+				e^{-i(q_\mu-p_\mu)x^\mu}
+			\right\}
+			\\
+			&=
+			2
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+			q_\mu
+			\Re\left\{
+				f(\vb{p})^*
+				f(\vb{q})
+				e^{-i(q_\mu-p_\mu)x^\mu}
+			\right\}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+			\left\{
+				q_\mu
+				+
+				p_\mu
+			\right\}
 			f(\vb{p})^*
-			e^{-i(p_\mu-q_\mu)x^\mu}
-		\right\}
-		\\
-		&=
-		2\Re\left\{
+			f(\vb{q})
+			e^{-i(q_\mu-p_\mu)x^\mu}
+		\end{split}
+	\end{equation}
+	where we expanded the real part and renamed the integrations variables of the second term in the last line.
+	The last line is in agreement with results reported in Ref.~\cite{Naumov2013}.
+\end{proof}
+
+\begin{delayedproof}{thm:single_particle_number_state_group_velocity}
+	The center-of-mass position can be expressed in terms of the velocity
+	\begin{equation}
+		\begin{split}
+			\overline{\vb{x}}
+			&=
 			\int\dd[3]{x}
 			\vb{x}
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			f(\vb{q})
-			f(\vb{p})^*
-			e^{-i(p_\mu-q_\mu)x^\mu}
-		\right\}
-		\\
-		&=
-		2\Re\left\{
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})^*
-			e^{-i\omega(\vb{p})t}
+			\rho(t,\vb{x})
+			\\
+			&=
+			2\Re\left\{
+				\int\dd[3]{x}
+				\vb{x}
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+				\omega(\vb{q})
+				f(\vb{q})
+				f(\vb{p})^*
+				e^{-i(p_\mu-q_\mu)x^\mu}
+			\right\}
+			\\
+			&=
+			2\Re\left\{
+				\int\dd[3]{x}
+				\vb{x}
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\int\frac{\dd[3]{q}}{(2\pi)^3}
+				f(\vb{q})
+				f(\vb{p})^*
+				e^{-i(p_\mu-q_\mu)x^\mu}
+			\right\}
+			\\
+			&=
+			2\Re\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				f(\vb{p})^*
+				e^{-i\omega(\vb{p})t}
+				\int\frac{\dd[3]{k}}{(2\pi)^3}
+				f(\vb{p}+\vb{k})
+				e^{+i\omega(\vb{k}+\vb{p})t}
+				\int\dd[3]{x}
+				\vb{x}
+				e^{+i\vb{k}\vdot\vb{x}}
+			\right\}
+		\end{split}
+	\end{equation}
+	We take $g(\vb{k})=f(\vb{p}+\vb{k})e^{-i\omega(\vb{k}+\vb{p})t}$ and use partial integration with vanishing boundaries because $g(\vb{k})$ is a Schwartz function
+	\begin{equation}
+		\begin{split}
 			\int\frac{\dd[3]{k}}{(2\pi)^3}
-			f(\vb{p}+\vb{k})
-			e^{+i\omega(\vb{k}+\vb{p})t}
+			g(\vb{k})
 			\int\dd[3]{x}
 			\vb{x}
 			e^{+i\vb{k}\vdot\vb{x}}
-		\right\}
-	\end{split}
-\end{equation}
-We take $g(\vb{k})=f(\vb{p}+\vb{k})e^{-i\omega(\vb{k}+\vb{p})t}$ and use partial integration with vanishing boundaries because $g(\vb{k})$ is a Schwartz function
-\begin{equation}
-	\begin{split}
-		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		g(\vb{k})
-		\int\dd[3]{x}
-		\vb{x}
-		e^{+i\vb{k}\vdot\vb{x}}
-		&=
-		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		g(\vb{k})
-		\left(-i\grad_{\vb{k}}\right)
-		\int\dd[3]{x}
-		e^{+i\vb{k}\vdot\vb{x}}
-		\\
-		&=
-		\int\frac{\dd[3]{k}}{(2\pi)^3}
-		g(\vb{k})
-		\left(-i\grad_{\vb{k}}\right)
-		(2\pi)^3\delta^{(3)}(\vb{k})
-		\\
-		&=
-		\int\dd[3]{k}
-		\left(i\grad_{\vb{k}}g(\vb{k})\right)
-		\delta^{(3)}(\vb{k})
-		\\
-		&=
-		i\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-		f(\vb{p}+\vb{k})
-		e^{+i\omega(\vb{k}+\vb{p})t}
-		\\
-		&=
-		ie^{+i\omega(\vb{p})t}
-		\left(
-			\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+			&=
+			\int\frac{\dd[3]{k}}{(2\pi)^3}
+			g(\vb{k})
+			\left(-i\grad_{\vb{k}}\right)
+			\int\dd[3]{x}
+			e^{+i\vb{k}\vdot\vb{x}}
+			\\
+			&=
+			\int\frac{\dd[3]{k}}{(2\pi)^3}
+			g(\vb{k})
+			\left(-i\grad_{\vb{k}}\right)
+			(2\pi)^3\delta^{(3)}(\vb{k})
+			\\
+			&=
+			\int\dd[3]{k}
+			\left(i\grad_{\vb{k}}g(\vb{k})\right)
+			\delta^{(3)}(\vb{k})
+			\\
+			&=
+			i\eval{\grad_{\vb{k}}}_{\vb{k}=0}
 			f(\vb{p}+\vb{k})
-			+
-			f(\vb{p})
-			\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-			it\omega(\vb{p}+\vb{k})
-		\right)
-		\\
-		&=
-		ie^{+i\omega(\vb{p})t}
-		\left(
-			\grad_{\vb{p}}
-			f(\vb{p})
-			+
-			it
-			f(\vb{p})
-			\grad_{\vb{p}}
-			\omega(\vb{p})
-		\right)
-	\end{split}
-\end{equation}
-Inserting this back
-\begin{equation}
-	\begin{split}
-		\overline{\vb{x}}
-		&=
-		2\Re\left\{
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})^*
-			e^{-i\omega(\vb{p})t}
+			e^{+i\omega(\vb{k}+\vb{p})t}
+			\\
+			&=
+			ie^{+i\omega(\vb{p})t}
+			\left(
+				\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+				f(\vb{p}+\vb{k})
+				+
+				f(\vb{p})
+				\eval{\grad_{\vb{k}}}_{\vb{k}=0}
+				it\omega(\vb{p}+\vb{k})
+			\right)
+			\\
+			&=
 			ie^{+i\omega(\vb{p})t}
 			\left(
 				\grad_{\vb{p}}
@@ -601,361 +595,121 @@ Inserting this back
 				\grad_{\vb{p}}
 				\omega(\vb{p})
 			\right)
-		\right\}
-		\\
-		&=
-		2\Re\left\{
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})^*
-			i
-			\left(
-				\grad_{\vb{p}}
-				f(\vb{p})
-				+
-				it
-				f(\vb{p})
-				\grad_{\vb{p}}
-				\omega(\vb{p})
-			\right)
-		\right\}
-		\\
-		&=
-		-
-		2\Im\left\{
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})^*
-			\grad_{\vb{p}}
-			f(\vb{p})
-		\right\}
-		-
-		2
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\abs{f(\vb{p})}^2
-		\grad_{\vb{p}}
-		\omega(\vb{p})t
-		\\
-		&=
-		2\Im\left\{
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			f(\vb{p})
-			\grad_{\vb{p}}
-			\frac{f(\vb{p})^*}{2\omega(\vb{p})}
-		\right\}
-		-
-		2
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\abs{f(\vb{p})}^2
-		\grad_{\vb{p}}
-		\omega(\vb{p})t
-		\\
-		&=
-		2\Im\left\{
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			f(\vb{p})
-			\frac{
-				\omega(\vb{p})
-				\grad_{\vb{p}}
+		\end{split}
+	\end{equation}
+	Inserting this back
+	\begin{equation}
+		\begin{split}
+			\overline{\vb{x}}
+			&=
+			2\Re\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 				f(\vb{p})^*
-				-
+				e^{-i\omega(\vb{p})t}
+				ie^{+i\omega(\vb{p})t}
+				\left(
+					\grad_{\vb{p}}
+					f(\vb{p})
+					+
+					it
+					f(\vb{p})
+					\grad_{\vb{p}}
+					\omega(\vb{p})
+				\right)
+			\right\}
+			\\
+			&=
+			2\Re\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				f(\vb{p})^*
+				i
+				\left(
+					\grad_{\vb{p}}
+					f(\vb{p})
+					+
+					it
+					f(\vb{p})
+					\grad_{\vb{p}}
+					\omega(\vb{p})
+				\right)
+			\right\}
+			\\
+			&=
+			-
+			2\Im\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 				f(\vb{p})^*
 				\grad_{\vb{p}}
-				\omega(\vb{p})
-			}{2\omega(\vb{p})^2}
-		\right\}
-		-
-		2
+				f(\vb{p})
+			\right\}
+			-
+			2
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{f(\vb{p})}^2
+			\grad_{\vb{p}}
+			\omega(\vb{p})t
+			\\
+			&=
+			2\Im\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				f(\vb{p})
+				\grad_{\vb{p}}
+				\frac{f(\vb{p})^*}{2\omega(\vb{p})}
+			\right\}
+			-
+			2
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{f(\vb{p})}^2
+			\grad_{\vb{p}}
+			\omega(\vb{p})t
+			\\
+			&=
+			2\Im\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				f(\vb{p})
+				\frac{
+					\omega(\vb{p})
+					\grad_{\vb{p}}
+					f(\vb{p})^*
+					-
+					f(\vb{p})^*
+					\grad_{\vb{p}}
+					\omega(\vb{p})
+				}{2\omega(\vb{p})^2}
+			\right\}
+			-
+			2
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{f(\vb{p})}^2
+			\grad_{\vb{p}}
+			\omega(\vb{p})t
+		\end{split}
+	\end{equation}
+	If we want
+	\begin{equation}
+		\overline{\vb{x}}
+		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\frac{\vb{p}}{\omega(\vb{p})}
 		\abs{f(\vb{p})}^2
-		\grad_{\vb{p}}
-		\omega(\vb{p})t
-	\end{split}
-\end{equation}
+		t
+		=
+		\overline{\vb{v}}t
+	\end{equation}
+	we need
+	\begin{equation}
+				\int\frac{\dd[3]{k}}{(2\pi)^3}
+				f(\vb{p}+\vb{k})
+				e^{-i\omega(\vb{k}+\vb{p})t}
+				\int\dd[3]{x}
+				\vb{x}
+				e^{+i\vb{k}\vdot\vb{x}}
+				=
+				\frac{\vb{p}}{\omega(\vb{p})}f(\vb{p})t	
+	\end{equation}
+\end{delayedproof}
 
-If we want
-\begin{equation}
-	\overline{\vb{x}}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\frac{\vb{p}}{\omega(\vb{p})}
-	\abs{f(\vb{p})}^2
-	t
-	=
-	\overline{\vb{v}}t
-\end{equation}
-we need
-\begin{equation}
-			\int\frac{\dd[3]{k}}{(2\pi)^3}
-			f(\vb{p}+\vb{k})
-			e^{-i\omega(\vb{k}+\vb{p})t}
-			\int\dd[3]{x}
-			\vb{x}
-			e^{+i\vb{k}\vdot\vb{x}}
-			=
-			\frac{\vb{p}}{\omega(\vb{p})}f(\vb{p})t	
-\end{equation}
-
-\section{Coherent state}
-
-Ref.~\cite[p.~40]{Barnett2002} proves
-\begin{equation}
-	e^{\hat{A}}
-	\hat{B}
-	e^{-\hat{A}}
-	=
-	\hat{B}
-	+
-	\comm{\hat{A}}{\hat{B}}
-	+
-	\frac{1}{2!}
-	\comm{\hat{A}}{\comm{\hat{A}}{\hat{B}}}
-	+
-	\frac{1}{3!}
-	\comm{\hat{A}}{\comm{\hat{A}}{\comm{\hat{A}}{\hat{B}}}}
-\end{equation}
-which for $\comm{\hat{A}}{\hat{B}}=0$ reduces to
-\begin{equation}
-	e^{\hat{A}}
-	\hat{B}
-	e^{-\hat{A}}
-	=
-	\hat{B}
-	+
-	\comm{\hat{A}}{\hat{B}}
-\end{equation}
-
-Wick's theorem from Lancaster~\cite[p.~173]{Lancaster2014}
-\begin{equation}
-	T
-	\hat\phi(x_1)
-	\hat\phi(x_2)
-	=
-	N
-	\hat\phi(x_1)
-	\hat\phi(x_2)
-	+
-	D_F(x_1-x_2)	
-\end{equation}
-where the Feynman propagator $D_F(x_1-x_2)$ is the result of the contraction and odd orders vanish.
-The next higher order is
-\begin{equation}
-	\begin{split}
-		T
-		\hat\phi(x_1)
-		\hat\phi(x_2)
-		\hat\phi(x_3)
-		\hat\phi(x_4)
-		&=
-		N
-		\hat\phi(x_1)
-		\hat\phi(x_2)
-		\hat\phi(x_3)
-		\hat\phi(x_4)
-		\\
-		&+
-		D_F(x_1-x_2)
-		N
-		\hat\phi(x_3)
-		\hat\phi(x_4)
-		+
-		D_F(x_2-x_3)
-		N
-		\hat\phi(x_1)
-		\hat\phi(x_4)
-		\\
-		&+
-		D_F(x_3-x_4)
-		N
-		\hat\phi(x_1)
-		\hat\phi(x_2)
-		+
-		D_F(x_1-x_3)
-		N
-		\hat\phi(x_2)
-		\hat\phi(x_4)
-		\\
-		&+
-		D_F(x_1-x_4)
-		N
-		\hat\phi(x_2)
-		\hat\phi(x_3)
-		+
-		D_F(x_2-x_4)
-		N
-		\hat\phi(x_1)
-		\hat\phi(x_3)
-		\\
-		&+
-		D_F(x_1-x_2)
-		D_F(x_3-x_4)
-		+
-		D_F(x_1-x_3)
-		D_F(x_2-x_4)
-		\\
-		&+
-		D_F(x_1-x_4)
-		D_F(x_2-x_3)
-	\end{split}
-\end{equation}
-which is already quite complex but fortunately simplifies after integration
-\begin{align*}
-	T
-	\int\dd[4]{x_1}\dd[4]{x_2}
-	J(x_1)
-	J(x_2)
-	\hat\phi(x_1)
-	\hat\phi(x_2)
-	&=
-	N
-	\int\dd[4]{x_1}\dd[4]{x_2}
-	J(x_1)
-	J(x_2)
-	\hat\phi(x_1)
-	\hat\phi(x_2)
-	\\
-	&+
-	\int\dd[4]{x_1}\dd[4]{x_2}
-	J(x_1)
-	D_F(x_1-x_2)
-	J(x_2)
-	\\
-	T
-	\int\dd[4]{x_1}\dots\dd[4]{x_4}
-	J(x_1)
-	\dots
-	J(x_4)
-	\hat\phi(x_1)
-	\dots
-	\hat\phi(x_4)
-	&=
-	N
-	\int\dd[4]{x_1}\dots\dd[4]{x_4}
-	J(x_1)
-	\dots
-	J(x_4)
-	\hat\phi(x_1)
-	\dots
-	\hat\phi(x_4)
-	\\
-	&+
-	6\int\dd[4]{x_1}\dd[4]{x_2}
-	J(x_1)
-	D_F(x_1-x_2)
-	J(x_2)
-	\\
-	&+
-	3\left(
-		\int\dd[4]{x_1}\dd[4]{x_2}
-		J(x_1)
-		D_F(x_1-x_2)
-		J(x_2)
-	\right)^2
-\end{align*}
-because we can relabel the integration variables to equalize the permutations.
-We expect that this generalizes to
-\begin{equation}
-	\begin{split}
-		&
-		T
-		\int\dd[4]{x_1}\dots\dd[4]{x_n}
-		J(x_1)
-		\dots
-		J(x_n)
-		\hat\phi(x_1)
-		\dots
-		\hat\phi(x_n)
-		\\
-		=&\
-		N
-		\int\dd[4]{x_1}\dots\dd[4]{x_n}
-		J(x_1)
-		\dots
-		J(x_n)
-		\hat\phi(x_1)
-		\dots
-		\hat\phi(x_n)
-		\\
-		+&\
-		\binom{n}{2}
-		\int\dd[4]{x_1}\dd[4]{x_2}
-		J(x_1)
-		D_F(x_1-x_2)
-		J(x_2)
-		\\
-		+&\
-		\binom{n}{4}
-		\left(
-			\int\dd[4]{x_1}\dd[4]{x_2}
-			J(x_1)
-			D_F(x_1-x_2)
-			J(x_2)
-		\right)^2
-		+
-		\dots
-	\end{split}
-\end{equation}
-
-\begin{equation}
-	\begin{split}
-		&
-		T\exp\left\{
-			-i
-			\int\dd[4]{x}
-			\hat\phi(x)
-			J(x)
-		\right\}
-		\\
-		=&\
-		\sum_{n=0}^\infty
-		\frac{1}{n!}
-		(-i)^n
-		\int\dd[4]{x_1}\dots\dd[4]{x_n}
-		J(x_1)\dots J(x_n)
-		T\hat\phi(x_1)\dots\hat\phi(x_n)
-		\\
-		=&\
-		N\exp\left\{
-			-i
-			\int\dd[4]{x}
-			\hat\phi(x)
-			J(x)
-		\right\}
-		\\
-		\times&\
-		\left\{
-			\sum_{n=0}^\infty
-			\frac{1}{n!}
-			(-i)^{n}
-			\int\dd[4]{x_1}\dots\dd[4]{x_n}
-			J(x_1)\dots J(x_n)
-			\sum_\text{perm}
-			D_F(x_1-x_2)\dots D_F(x_{n-1}-x_n)
-		\right\}
-		\\
-		=&\
-		N\exp\left\{
-			-i
-			\int\dd[4]{x}
-			\hat\phi(x)
-			J(x)
-		\right\}
-		\\
-		\times&\
-		\left\{
-			\sum_{n=0}^\infty
-			\frac{1}{n!}
-			(-i)^{n}
-			\sum_\text{perm}
-			\int\dd[4]{x_1}\dd[4]{x_2}
-			J(x_1)D_F(x_1-x_2)J(x_2)
-			\dots
-			\int\dd[4]{x_{n-1}}\dd[4]{x_n}
-			J(x_{n-1})D_F(x_{n-1}-x_n)J(x_n)
-		\right\}
-	\end{split}
-\end{equation}
-where we used Wick's theorem as in Ref.~\cite[p.~89]{Peskin1995}
-
-\subsection{Eigenvalue of annihilation operator}
+\subsection{Coherent state}
 
 \begin{lemma}\label{th:normal_ordered_a1_cn}
 	Let $\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{p})$ be the annihilation and creation operator of the Klein-Gordon field satisfying the canonical commutation relations then for $n\in\mathbb{N}$
@@ -1056,18 +810,7 @@ where we used Wick's theorem as in Ref.~\cite[p.~89]{Peskin1995}
 	where we used that creation operators commute in the first line, the canonical commutation relation in the second line, and the induction hypothesis in the third line.
 \end{proof}
 
-\begin{theorem}
-	Let $\ket{\alpha}$ be a coherent state of the Klein-Gordon field and $\hat{a}(\vb{p})$ the annihilation operator satisfying the canonical commutation relation of the Klein-Gordon field, then the coherent state is an eigenstate of the annihilation operator
-	\begin{equation}
-		\hat{a}(\vb{p})
-		\ket{\alpha}
-		=
-		\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
-		\ket{\alpha}
-		.
-	\end{equation}
-\end{theorem}
-\begin{proof}
+\begin{delayedproof}{thm:coherent_state_annihilation_eigenvalue}
 	We use the series representation of the operator exponential and \cref{th:normal_ordered_a1_cn} to move the annihilation operator to the right
 	\begin{equation*}
 		\begin{split}
@@ -1170,160 +913,233 @@ where we used Wick's theorem as in Ref.~\cite[p.~89]{Peskin1995}
 		\right\}
 		.
 	\end{equation*}
-\end{proof}
+\end{delayedproof}
 
-\subsection{Number, energy, and momentum observables}
-
-As for the single-particle case, we calculate the moments for $\hat{H}$ and replace $\omega(\vb{p})\to1,\vb{p}$ to obtain the results for $\hat{N},\hat{P}$
-\begin{equation}
-	\begin{split}
-		\expval{\hat{H}}{\alpha}
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\omega(\vb{p})
-		\expval{\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})}{\alpha}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\omega(\vb{p})
-		\expval{\frac{\alpha(\vb{p})^*}{2\omega(\vb{p})}\frac{\alpha(\vb{p})}{2\omega(\vb{p})}}{\alpha}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\omega(\vb{p})
-		\abs{\alpha(\vb{p})}^2
-	\end{split}
-\end{equation}
-for the first and
-\begin{equation}
-	\begin{split}
-		\expval{\hat{H}^2}{\alpha}
-		&=
-		\int\frac{\dd[3]{p}_1}{(2\pi)^3}
-		\int\frac{\dd[3]{p}_2}{(2\pi)^3}
-		\omega(\vb{p}_1)
-		\omega(\vb{p}_2)
-		\expval{
-			\hat{a}^\dagger(\vb{p}_1)
-			\hat{a}(\vb{p}_1)
-			\hat{a}^\dagger(\vb{p}_2)
-			\hat{a}(\vb{p}_2)
-		}{\alpha}
-		\\
-		&=
-		\int\frac{\dd[3]{p}_1}{(2\pi)^3}
-		\int\frac{\dd[3]{p}_2}{(2\pi)^3}
-		\omega(\vb{p}_1)
-		\omega(\vb{p}_2)
-		\expval{
-			\hat{a}^\dagger(\vb{p}_1)
-			(2\pi)^3
-			\delta^{(3)}(\vb{p}_2-\vb{p}_1)
-			\hat{a}(\vb{p}_2)
-		}{\alpha}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\omega(\vb{p})^2
-		\expval{
-			\hat{a}^\dagger(\vb{p})
-			\hat{a}(\vb{p})
-		}{\alpha}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\omega(\vb{p})^2
-		\abs{\alpha(\vb{p})}^2
-	\end{split}
-\end{equation}
-for the second moment.
-
-The probability to measure the vacuum given a coherent state is
-\begin{equation}
-	\begin{split}
-		\braket{0}{\alpha}
-		&=
-		\exp\left\{
-			-
-			\frac{1}{2}
+\begin{delayedproof}{thm:coherent_state_energy_observable}
+	As for the single-particle case, we calculate the moments for $\hat{H}$ and replace $\omega(\vb{p})\to1,\vb{p}$ to obtain the results for $\hat{N},\hat{P}$
+	\begin{equation}
+		\begin{split}
+			\expval{\hat{H}}{\alpha}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			\expval{\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})}{\alpha}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			\expval{\frac{\alpha(\vb{p})^*}{2\omega(\vb{p})}\frac{\alpha(\vb{p})}{2\omega(\vb{p})}}{\alpha}
+			\\
+			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\omega(\vb{p})
 			\abs{\alpha(\vb{p})}^2
-		\right\}
-		\expval{0}
-		\exp\left\{
-			-i
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			\alpha(\vb{q})
-			\hat{a}^\dagger(\vb{q})
-		\right\}
-		\ket{0}
-		\\
-		&=
-		\exp\left\{
-			-
-			\frac{1}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\end{split}
+	\end{equation}
+	for the first and
+	\begin{equation}
+		\begin{split}
+			\expval{\hat{H}^2}{\alpha}
+			&=
+			\int\frac{\dd[3]{p}_1}{(2\pi)^3}
+			\int\frac{\dd[3]{p}_2}{(2\pi)^3}
+			\omega(\vb{p}_1)
+			\omega(\vb{p}_2)
+			\expval{
+				\hat{a}^\dagger(\vb{p}_1)
+				\hat{a}^\dagger(\vb{p}_2)
+				\hat{a}(\vb{p}_1)
+				\hat{a}(\vb{p}_2)
+			}{\alpha}
+			\\
+			&=
+			\int\frac{\dd[3]{p}_1}{(2\pi)^3}
+			\int\frac{\dd[3]{p}_2}{(2\pi)^3}
+			\omega(\vb{p}_1)
+			\omega(\vb{p}_2)
+			\expval{
+				\alpha(\vb{p}_1)^*
+				\alpha(\vb{p}_2)^*
+				\alpha(\vb{p}_1)
+				\alpha(\vb{p}_2)
+			}{\alpha}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
 			\abs{\alpha(\vb{p})}^2
-		\right\}
-		\left\{
-			\braket{0}
+		\end{split}
+	\end{equation}
+	for the second moment.
+\end{delayedproof}
+
+\section{Maxwell field in the Coulomb gauge}
+
+\begin{delayedproof}{thm:mw_local_gauge_invariance}
+	The physical field-strength tensor transforms under \cref{eq:mw_local_gauge_transform} as
+	\begin{equation*}
+		\begin{split}
+			F_{\mu\nu}
+			\to
+			F_{\mu\nu}^\prime
+			&=
+			\partial_\mu\left(A_\nu+\partial_\nu\Lambda\right)
 			-
-			i\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			\alpha(\vb{q})
-			\expval{\hat{a}^\dagger(\vb{q})}{0}
+			\partial_\nu\left(A_\mu+\partial_\mu\Lambda\right)
+			\\
+			&=
+			F_{\mu\nu}
 			+
-			\dots
-		\right\}
-		\\
-		&=
-		\exp\left\{
+			\partial_\mu\partial_\nu\Lambda
 			-
-			\frac{1}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\abs{\alpha(\vb{p})}^2
-		\right\}
+			\partial_\nu\partial_\mu\Lambda
+			=
+			F_{\mu\nu}
+		\end{split}
+	\end{equation*}	
+\end{delayedproof}
+
+\begin{delayedproof}{thm:mw_field_strength_antisymmetry}
+	\begin{equation*}
+		F^{\mu\nu}
 		=
-		\exp\left\{
-			-
-			\frac{1}{2}
-			\expval{\hat{N}}{\alpha}
-		\right\}
-	\end{split}
-\end{equation}
-For instance, the overlap with a single-particle state is
-\begin{equation}
-	\begin{split}
-		\braket{f}{\alpha}
-		&=
+		\partial^\mu A^\nu
+		-
+		\partial^\nu A^\mu
+		=
+		-
 		\left(
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			f(\vb{p})
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-		\right)^\dagger
-		\ket{\alpha}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		f(\vb{p})^*
-		\bra{0}
-		\hat{a}(\vb{p})
-		\ket{\alpha}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		f(\vb{p})^*
-		\alpha(\vb{p})
-		\braket{0}{\alpha}
-		\\
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		f(\vb{p})^*
-		\alpha(\vb{p})
-		\exp\left\{
+			\partial^\nu A^\mu
+			-
+			\partial^\mu A^\nu
+		\right)
+		=
+		-
+		F^{\nu\mu}
+	\end{equation*}
+\end{delayedproof}
+
+\begin{delayedproof}{thm:covariant_maxwell_equations}
+	The inhomogeneous Maxwell equations are the equations of motion which are found from the Euler-Lagrange equation
+	\begin{equation*}
+		0
+		=
+		\partial_\mu
+		\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+		-
+		\pdv{\mathcal{L}}{A_\nu}
+		=
+		-
+		\partial_\mu
+		F^{\mu\nu}
+		+
+		J^\nu
+	\end{equation*}
+	where we used
+	\begin{equation*}
+		\begin{split}
+			\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+			&=
+			\pdv{\mathcal{L}}{F_{\alpha\beta}}
+			\pdv{F_{\alpha\beta}}{(\partial_\mu A_\nu)}
+			\\
+			&=
+			-
+			\frac{1}{4}
+			\pdv{(F_{\sigma\rho}F^{\sigma\rho})}{F_{\alpha\beta}}
+			\pdv{(\partial_\alpha A_\beta-\partial_\beta A_\alpha)}{(\partial_\mu A_\nu)}
+			\\
+			&=
 			-
 			\frac{1}{2}
-			\expval{\hat{N}}{\alpha}
-		\right\}
-	\end{split}
-\end{equation}
+			F^{\alpha\beta}
+			\left(
+				\delta_\alpha^\mu
+				\delta_\beta^\nu
+				-
+				\delta_\alpha^\nu
+				\delta_\beta^\mu
+			\right)
+			\\
+			&=
+			-
+			\frac{1}{2}
+			F^{\mu\nu}
+			+
+			\frac{1}{2}
+			F^{\nu\mu}
+			=
+			-
+			F^{\mu\nu}			
+		\end{split}
+	\end{equation*}
+	The homogeneous Maxwell equations are a consequence of the Bianchi identity and antisymmetry of $F^{\mu\nu}$.
+\end{delayedproof}
+
+\begin{delayedproof}{thm:non_covarain_maxwell_equations}
+	Evaluating the time component of \cref{eq:mw_homo} yields the Gauss' law for magnetism
+	\begin{equation}
+		\begin{split}
+			0
+			=
+			\varepsilon_{0\lambda\mu\nu}\partial^\lambda F^{\mu\nu}
+			&=
+			\varepsilon_{0ijk}\partial^iF^{jk}
+			\\
+			&=
+			-
+			\varepsilon_{ijk}\varepsilon_{ljk}
+			\partial^i B_l
+			=
+			2\partial_iB^i
+		\end{split}
+		\label{eq:mw_gauss_law_mag}
+	\end{equation}
+	and the spatial component yields Ampere's circuit law
+	\begin{equation}
+		\begin{split}
+			0
+			=
+			\varepsilon_{i\lambda\mu\nu}
+			\partial^\lambda
+			F^{\mu\nu}
+			&=
+			-
+			\varepsilon_{ijk}
+			\varepsilon^{ljk}
+			\partial_t B_l
+			-
+			2\varepsilon_{ijk}
+			\partial^jE^k
+			\\
+			&=
+			\partial_tB_i
+			+
+			\varepsilon_{ijk}
+			\partial^jE_k
+		\end{split}
+		\label{eq:mw_ampere_law}.
+	\end{equation}
+	The time component of the inhomogeneous covariant Maxwell equation \cref{eq:mw_inhomo} yields Gauss' law
+	\begin{equation}
+		J^0
+		=
+		\rho
+		=
+		\partial_\mu F^{\mu\nu}
+		=
+		\partial_i E^i
+		\label{eq:mw_gauss_law},
+	\end{equation}
+	and the spatial component yields Faraday's law of induction
+	\begin{equation}
+		J^i
+		=
+		\partial_\mu F^{\mu i}
+		=
+		-\partial_t E^i
+		+\varepsilon^{ijk}\partial_j B_k
+		\label{eq:mw_faraday_law}.
+	\end{equation}
+	and we derived the vector Maxwell equations from first principles.	
+\end{delayedproof}

@@ -1,0 +1,53 @@
+\section{Connection to quantum optics}
+
+Here we reduce the results of the previous sections to a continuous-mode description of (linear polarized) light, i.e., frequency range limited to the optical domain.
+Assumptions and limitations:
+\begin{enumerate}
+	\item Fixed reference frame (at rest), i.e., no Lorentz boosts allowed.
+	\item Light is linearly polarized.
+	\item \textcolor{red}{No distribution of the momentum}
+\end{enumerate}
+
+\begin{equation}
+	\hat{N}
+	=
+	\int\dd{\omega}
+	\hat{a}^\dagger(\omega)
+	\hat{a}(\omega)
+\end{equation}
+
+\begin{equation}
+	\hat{E}
+	=
+	i
+	\int\dd{\omega}
+	\omega
+	\hat{a}^\dagger(\omega)
+	\hat{a}(\omega)
+\end{equation}
+
+\begin{equation}
+	\ket{f}
+	=
+	\int\dd{\omega}
+	f(\omega)
+	\hat{a}(\omega)
+\end{equation}
+
+\begin{equation}
+	\ket{\alpha}
+	=
+	\exp\left\{
+		-
+		\frac{1}{2}
+		\int\dd{\omega}
+		\abs{\alpha(\omega)}^2
+	\right\}
+	\exp\left\{
+		-
+		\int\dd{\omega}
+		\alpha(\omega)
+		\hat{a}^\dagger(\omega)
+	\right\}
+	\ket{0}
+\end{equation}

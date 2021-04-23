@@ -1,18 +1,12 @@
-\section{Maxwell field}
+\section{Maxwell field in the Coulomb gauge}
 
-The Maxwell Lagrangian with an external source $J^\mu(t,\vb{x})$ is~\cite[p.~339]{Srednicki2007}
-\begin{equation}
-	\begin{split}
+\subsection{Lagrangian and gauge fixing}
+
+\begin{definition}[Maxwell Lagrangian]
+	The Maxwell Lagrangian is~\cite[p.~339]{Srednicki2007}
+	\begin{equation}
 		\mathcal{L}
-		&=
-		-
-		\frac{1}{4}
-		F_{\mu\nu}
-		F^{\mu\nu}
-		+
-		A_\mu J^\mu
-		\\
-		&=
+		=
 		-
 		\frac{1}{2}
 		(\partial_\mu A_\nu)
@@ -21,336 +15,240 @@ The Maxwell Lagrangian with an external source $J^\mu(t,\vb{x})$ is~\cite[p.~339
 		\frac{1}{2}
 		(\partial_\mu A_\nu)
 		(\partial^\nu A^\mu)
-		+
-		A_\mu J^\mu
-	\end{split}
-	\label{eq:mw_lagrangian}
-\end{equation}
-with the relativistic Euler-Lagrange equation yielding
-\begin{equation}
-	0
-	=
-	\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
-	-
-	\pdv{\mathcal{L}}{A_\nu}
-	=
-	\partial_\mu\partial^\mu A^\nu
-	-
-	\partial^\nu\partial_\mu A^\mu
-	-
-	J^\nu	
-	\label{eq:mw_eom}	
-\end{equation}
-
-\subsubsection{Coulomb gauge}
-
-The Maxwell Lagrangian is invariant under local gauge transformations
-\begin{equation}
-	A_\mu(t,\vb{x})
-	\to
-	A_\mu^\prime(t,\vb{x})
-	=
-	A_\mu(t,\vb{x})
-	+
-	\partial_\mu\Lambda(t,\vb{x})
-	\label{eq:mw_local_gauge_transform}
-\end{equation}
-where $\Lambda(t,\vb{x})$ is a local gauge field.
-For instance, the physical field-strength tensor transforms under \cref{eq:mw_local_gauge_transform} as
-\begin{equation}
-	\begin{split}
-		F_{\mu\nu}
+		-
+		J_\mu A^\mu
+		\label{eq:mw_lagrangian}
+	\end{equation}
+\end{definition}
+\begin{definition}[Local gauge transformation]
+	A local gauge transformation adds the gradient of a scalar field to the potential
+	\begin{equation}
+		A_\mu(t,\vb{x})
 		\to
-		F_{\mu\nu}^\prime
-		&=
-		\partial_\mu\left(A_\nu+\partial_\nu\Lambda\right)
-		-
-		\partial_\nu\left(A_\mu+\partial_\mu\Lambda\right)
-		\\
-		&=
-		F_{\mu\nu}
-		+
-		\partial_\mu\partial_\nu\Lambda
-		-
-		\partial_\nu\partial_\mu\Lambda
+		A_\mu^\prime(t,\vb{x})
 		=
-		F_{\mu\nu}
-	\end{split}
-	\label{eq:mw_field_strength_gauge_transform}.
-\end{equation}
-The invariance of the Maxwell field under local gauge transformation is used to remove a degree of freedom from the field using a gauge condition.
-The most popular gauge conditions are the Lorentz gauge $\partial_\mu A^\mu=0$ and the Coulomb gauge $\div\vb{A}=0$.
-While the Lorentz gauge is manifest Lorentz invariant it suffers from unphysical scalar and longitudinal polarization states destroying unitarity.
-The Coulomb gauge is manifest unitarity but has to be imposed in every reference frame.
-As Lorentz boosts are not of interest for us, we will adapt the Coulomb gauge condition.
-The Coulomb gauge leaves a residual gauge freedom which allows us to choose $A_0=0$.\footnote{If external static sources are present, we need to be more careful with the residual gauge fixing.}
-
-Applying the Coulomb gauge
-\begin{align}
-	\div\vb{A}(t,\vb{x})
-	=
-	0
-	&&
-	A_0
-	=
-	0
-	\label{eq:mw_coulomb_gauge}
-\end{align}
-to the free equation of motion \cref{eq:mw_eom} yields the relativistic wave equation
-\begin{equation}
-	0
-	=
-	\partial_\mu\partial^\mu
-	\vb{A}(t,\vb{x})
-	=
-	\partial_t^2
-	\vb{A}(t,\vb{x})
-	-
-	\grad^2
-	\vb{A}(t,\vb{x})
-	\label{eq:mw_relatistic_wave}
-\end{equation}
-which is solved by plane-waves satisfying the massless dispersion relation
-\begin{equation}
-	\omega(\vb{p})
-	=
-	\norm{\vb{p}}
-\end{equation}
-
-\subsubsection{Mode decomposition}
-
-As with the Klein-Gordon field, we start with the four-dimensional Fourier transform of $A^\mu(t,\vb{x})$, insert it into the free equations of motion ($J^\mu=0$), and perform the mode decomposition
-\begin{equation}
-	\vb{A}(t,\vb{x})
-	=
-	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\left\{
-		a_\lambda(\vb{p})
-		\vb{\epsilon}_\lambda(\vb{p})
-		e^{-ip_\mu x^\mu}
+		A_\mu(t,\vb{x})
 		+
-		\text{c.c.}
-	\right\}
-	\label{eq:mw_ft}
-\end{equation}
-where we defined $a_\lambda(\vb{p})\vb{\epsilon}_\lambda(\vb{p})=\vb{A}(\omega(\vb{p}),\vb{p})$ and $\vb{\epsilon}_\lambda(\vb{p})$ denotes the polarization vectors.
-In the Coulomb gauge, the polarization vectors satisfy~\cite[p.~341]{Srednicki2007}
-\begin{align}
-	\vb{p}
-	\vdot
-	\boldsymbol{\varepsilon}_\lambda(\vb{p})
-	&=
-	0
-	\\
-	\boldsymbol{\varepsilon}_\alpha(\vb{p})
-	\vdot
-	\boldsymbol{\varepsilon}_\beta(\vb{p})^*
-	&=
-	\delta_{\alpha\beta}
-	\\
-	\sum_{\lambda=1,2}
-	\boldsymbol{\varepsilon}_\alpha^i(\vb{p})
-	\boldsymbol{\varepsilon}_\alpha^j(\vb{p})^*
-	&=
-	\delta^{ij}
-	-
-	\frac{p^ip^j}{\vb{p}^2}
-\end{align}
+		\partial_\mu\Lambda(t,\vb{x})
+		\label{eq:mw_local_gauge_transform}
+		.
+	\end{equation}	
+\end{definition}
+\begin{theorem}\label{thm:mw_local_gauge_invariance}
+	The physical observables of the Maxwell field are invariant under local gauge transformations.
+\end{theorem}
+For the proof see \proofref{the appendix}{thm:mw_local_gauge_invariance}.
+
+The unphysical degrees of freedom in the Maxwell field can be removed by imposing a gauge condition.
+\begin{definition}[Lorentz gauge]
+	In the Lorentz gauge, the four-gradient of the Maxwell field is zero, $\partial_\mu A^\mu=0$.
+\end{definition}
+The Lorentz gauge is manifestly Lorentz covariant~\cite[p.~144]{Greiner2013} and therefore calculations using the Lorentz gauge are valid in any reference frame.
+A drawback of the Lorentz gauge is that the quantization procedure becomes more elaborate giving rise to scalar and longitudinal polarization vectors which have to be removed by projecting out unphysical states of the Hilbert space, see Gupta-Beuler quantization in Ref.~\cite[p.~180]{Greiner2013}.
+\begin{definition}[Coulomb gauge]
+	In the Coulomb gauge, the three-gradient of the Maxwell field is zero, $\partial_iA^i=\div\vb{A}=0$.
+\end{definition}
+In contrast to the Lorentz gauge, the Coulomb gauge removes unphysical longitudinal and scalar degrees of freedom from the start by making the Maxwell field transverse at the cost of manifest Lorentz-covariance.
+\begin{definition}[Temporal gauge]
+	In the temporal gauge, the temporal component of the Maxwell field is zero, $A_0=0$.
+\end{definition}
+The Coulomb gauge leaves a residual gauge freedom which is further removed by the temporal gauge.
+\begin{remark}
+	The temporal removes Coulomb interactions, i.e., interactions with a static charge distribution~\cite[p.~200]{Greiner2013}.
+\end{remark}
+
+Quantum optical communication is described in the rest frame of the communication system and it appears natural to renounce manifest Lorentz-covariance for a simplified quantization procedure.
 
 \subsection{Maxwell equations}
 
-The covariant inhomogeneous Maxwell equations are obtained from the equations of motion
-\begin{equation}
-	J^\nu
-	=
-	\partial_\mu F^{\mu\nu}
-	=
-	\partial_\mu\partial^\mu A^\nu
-	-
-	\partial^\nu\partial_\mu A^\mu
-	\label{eq:mw_inhomo},
-\end{equation}
-and the covariant homogeneous Maxwell equations are a consequence of the Bianchi identity
-\begin{equation}
-	0
-	=
-	\partial_\mu\tilde{F}^{\mu\nu}
-	\label{eq:mw_homo}
-\end{equation}
-where we defined $\tilde{F}^{\mu\nu}=\frac{1}{2}\varepsilon^{\mu\nu\alpha\beta}F_{\alpha\beta}$.
-
-The components of the antisymmetric field-strength tensor $F^{\mu\nu}=-F^{\nu\mu}$ relate to the electromagnetic field components via~\cite[p.~336]{Srednicki2007}
-\begin{align}
-	F^{0i}
-	=
-	E^i
-	&&
-	F^{ij}
-	=
-	\varepsilon^{ijk}B_k
-	\label{eq:mw_field_strength_components}.
-\end{align}
-Evaluating the time component of \cref{eq:mw_homo} yields the Gauss' law for magnetism
-\begin{equation}
-	\begin{split}
-		0
-		=
-		\varepsilon_{0\lambda\mu\nu}\partial^\lambda F^{\mu\nu}
-		&=
-		\varepsilon_{0ijk}\partial^iF^{jk}
-		\\
-		&=
-		-
-		\varepsilon_{ijk}\varepsilon_{ljk}
-		\partial^i B_l
-		=
-		2\partial_iB^i
-	\end{split}
-	\label{eq:mw_gauss_law_mag}
-\end{equation}
-and the spatial component yields Ampere's circuit law
-\begin{equation}
-	\begin{split}
-		0
-		=
-		\varepsilon_{i\lambda\mu\nu}
-		\partial^\lambda
+\begin{definition}[Field-strength tensors]
+	We define the covariant field-strength tensor of the Maxwell field as
+	\begin{equation}
 		F^{\mu\nu}
-		&=
+		=
+		\partial^\mu A^\nu
 		-
-		\varepsilon_{ijk}
-		\varepsilon^{ljk}
-		\partial_t B_l
-		-
-		2\varepsilon_{ijk}
-		\partial^jE^k
+		\partial^\nu A^\mu
+	\end{equation}
+	and its dual
+	\begin{equation}
+		\tilde{F}^{\mu\nu}
+		=
+		\frac{1}{2}
+		\varepsilon^{\mu\nu\alpha\beta}
+		F_{\alpha\beta}
+	\end{equation}
+	where $\varepsilon^{\mu\nu\alpha\beta}$ is the generalized antisymmetric tensor.
+	The components of the field-strength tensor relate to the electromagnetic field components via~\cite[p.~336]{Srednicki2007}
+	\begin{align}
+		F^{0i}
+		=
+		E^i
+		&&
+		F^{ij}
+		=
+		\varepsilon^{ijk}B_k
+		\label{eq:mw_field_strength_components}
+		.
+	\end{align}
+\end{definition}
+\begin{lemma}\label{thm:mw_field_strength_antisymmetry}
+	The field-strength tensor is antisymmetric $F^{\mu\nu}=-F^{\nu\mu}$.
+\end{lemma}
+For the proof see \proofref{the appendix}{thm:mw_field_strength_antisymmetry}.
+\begin{theorem}[Covariant Maxwell equations]\label{thm:covariant_maxwell_equations}
+	The Lorentz-covariant Maxwell equations are
+	\begin{align}
+		0
+		=
+		\partial_\mu
+		\tilde{F}^{\mu\nu}
+		&&
+		J^\nu
+		=
+		\partial_\mu
+		F^{\mu\nu}		
+	\end{align}
+	where the first is the homogeneous and the second the inhomogeneous equation.
+\end{theorem}
+The proof is given in \proofref{the appendix}{thm:covariant_maxwell_equations}.
+\begin{theorem}[Non-covariant Maxwell equations]\label{thm:non_covarain_maxwell_equations}
+	The non-covariant Maxwell equations are
+	\begin{align}
+		\div\vb{E}
+		=
+		\rho
+		&&
+		\div\vb{B}
+		=
+		0
+		\label{eq:mw_homo_vec}
 		\\
-		&=
-		\partial_tB_i
+		\curl\vb{E}
+		=
+		-
+		\partial_t\vb{B}
+		&&
+		\curl\vb{B}
+		=
+		\vb{J}
 		+
-		\varepsilon_{ijk}
-		\partial^jE_k
-	\end{split}
-	\label{eq:mw_ampere_law}.
-\end{equation}
-The time component of the inhomogeneous covariant Maxwell equation \cref{eq:mw_inhomo} yields Gauss' law
-\begin{equation}
-	J^0
-	=
-	\rho
-	=
-	\partial_\mu F^{\mu\nu}
-	=
-	\partial_i E^i
-	\label{eq:mw_gauss_law},
-\end{equation}
-and the spatial component yields Faraday's law of induction
-\begin{equation}
-	J^i
-	=
-	\partial_\mu F^{\mu i}
-	=
-	-\partial_t E^i
-	+\varepsilon^{ijk}\partial_j B_k
-	\label{eq:mw_faraday_law}.
-\end{equation}
-and we derived the vector Maxwell equations from first principles
-\begin{align}
-	\div\vb{E}
-	=
-	\rho
-	&&
-	\div\vb{B}
-	=
-	0
-	\label{eq:mw_homo_vec}
-	\\
-	\curl\vb{E}
-	=
-	-
-	\partial_t\vb{B}
-	&&
-	\curl\vb{B}
-	=
-	\vb{J}
-	+
-	\partial_t\vb{E}
-	\label{eq:mw_inhomo_vec}
-\end{align}
+		\partial_t\vb{E}
+		\label{eq:mw_inhomo_vec}
+	\end{align}
+\end{theorem}
+For the proof see \proofref{the appendix}{thm:non_covarain_maxwell_equations}.
 
-\subsubsection{Field observables}
+\subsection{Mode expansion}
 
-From \cref{eq:mw_field_strength_components} in the Coulomb gauge, we find
-\begin{align}
-	\vb{E}
-	=
-	-\partial_t\vb{A}
-	&&
-	\vb{B}
-	=
-	\curl\vb{A}
-\end{align}
-and inserting the Fourier mode decomposition \cref{eq:mw_ft}
-\begin{align}
-	\vb{E}(t,\vb{x})
-	&=
-	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\left(
-		i\omega(\vb{p})
+\begin{theorem}
+	The mode expansion of the Maxwell field in the Coulomb gauge is
+	\begin{equation}
+		\vb{A}(t,\vb{x})
+		=
+		\sum_{\lambda=1,2}
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left\{
+			a_\lambda(\vb{p})
+			\boldsymbol{\epsilon}_\lambda(\vb{p})
+			e^{-ip_\mu x^\mu}
+			+
+			\text{c.c.}
+		\right\}
+		\label{eq:mw_ft}
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	As with the Klein-Gordon field, we start with the four-dimensional Fourier transform of $A^\mu(t,\vb{x})$, insert it into the free equations of motion ($J^\mu=0$), and perform the mode decomposition.
+	To account for the vector nature of the Maxwell field, we introduce the generic basis vectors $\boldsymbol{\epsilon}_\lambda(\vb{p})$.
+\end{proof}
+\begin{theorem}
+	The polarization basis vectors satisfy~\cite[p.~341]{Srednicki2007}
+	\begin{align}
+		\vb{p}
+		\vdot
 		\boldsymbol{\varepsilon}_\lambda(\vb{p})
-	\right)
-	\left\{
-		a_\lambda(\vb{p})
-		e^{-ip_\mu x^\mu}
+		&=
+		0
+		\\
+		\boldsymbol{\varepsilon}_\alpha(\vb{p})
+		\vdot
+		\boldsymbol{\varepsilon}_\beta(\vb{p})^*
+		&=
+		\delta_{\alpha\beta}
+		\\
+		\sum_{\lambda=1,2}
+		\boldsymbol{\varepsilon}_\alpha^i(\vb{p})
+		\boldsymbol{\varepsilon}_\alpha^j(\vb{p})^*
+		&=
+		\delta^{ij}
 		-
-		\text{c.c.}
-	\right\}
-	\\
-	\vb{B}(t,\vb{x})
-	&=
-	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\left(
-		i\vb{p}\cross\omega(\vb{p})
-		\boldsymbol{\varepsilon}_\lambda(\vb{p})
-	\right)
-	\left\{
-		a_\lambda(\vb{p})
-		e^{-ip_\mu x^\mu}
-		-
-		\text{c.c.}
-	\right\}
-\end{align}
-see Greiner~\cite[p.~198]{Greiner2013} who uses a symmetric definition for the Fourier transform.
-
-The canonical momentum density turns out to be the electric field
-\begin{equation}
-	\pi(t,\vb{x})
-	=
-	\partial_t\pdv{\mathcal{L}}{(\partial_t\vb{A})}
-	=
-	\vb{E}(t,\vb{x})
-	\label{eq:mw_mom}.
-\end{equation}
-The energy density is
-\begin{equation}
-	\mathcal{H}
-	=
-	T^{00}
-	=
-	\pdv{\mathcal{L}}{(\partial_t\vb{A})}
-	\partial_t\vb{A}
-	-
-	\mathcal{L}
-\end{equation}
-while the total energy becomes
-\begin{equation}
-	H
-	=
-	\int\dd[3]{x}
-\end{equation}
+		\frac{p^ip^j}{\vb{p}^2}
+	\end{align}
+\end{theorem}
+\begin{theorem}
+	\begin{align}
+		\vb{E}(t,\vb{x})
+		&=
+		\sum_{\lambda=1,2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left(
+			i\omega(\vb{p})
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+		\right)
+		\left\{
+			a_\lambda(\vb{p})
+			e^{-ip_\mu x^\mu}
+			-
+			\text{c.c.}
+		\right\}
+		\\
+		\vb{B}(t,\vb{x})
+		&=
+		\sum_{\lambda=1,2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left(
+			i\vb{p}\cross\omega(\vb{p})
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+		\right)
+		\left\{
+			a_\lambda(\vb{p})
+			e^{-ip_\mu x^\mu}
+			-
+			\text{c.c.}
+		\right\}
+	\end{align}
+\end{theorem}
+\begin{lemma}
+	The canonical momentum density turns out to be the electric field
+	\begin{equation}
+		\pi(t,\vb{x})
+		=
+		\partial_t\pdv{\mathcal{L}}{(\partial_t\vb{A})}
+		=
+		\vb{E}(t,\vb{x})
+		\label{eq:mw_mom}.
+	\end{equation}
+\end{lemma}
+\begin{lemma}\label{thm:mw_energy}
+	The field energy is equal to
+	\begin{equation}
+		H
+		=
+		\frac{1}{2}
+		\int\dd[3]{x}
+		\left(
+			\vb{E}(t,\vb{x})^2
+			+
+			\vb{B}(t,\vb{x})^2
+		\right)
+		=
+		\sum_{\lambda=1,2}
+		\int\dd[3]{p}
+		\omega(\vb{p})
+		\abs{a(\vb{p})}^2
+	\end{equation}
+\end{lemma}
 
 \subsection{Canonical quantization}
 
@@ -447,34 +345,24 @@ and the total momentum is
 	\label{eq:qmw_total_momentum}
 \end{equation}
 
-\subsection{Single-particle}
+\subsection{Connection to Klein-Gordon field}
 
-The (smeared) single-particle state is expected to generalize to
+Choosing a reference frame in which the polarization basis is independent of the momentum, we find that
 \begin{equation}
-	\ket{\vb{f}}
-	=
-	\hat{\vb{A}}[\vb{f}]
+	\hat{\vb{A}}(t,\vb{x})
 	=
 	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	f_\lambda(\vb{p})
-	\boldsymbol{\varepsilon}_\lambda(\vb{p})
-	\hat{a}_\lambda^\dagger(\vb{p})
-	\ket{0}
+	c_\lambda
+	\hat\phi(t,\vb{x})
+	\boldsymbol{\varepsilon}_\lambda
 \end{equation}
-and we expect the results for the Klein-Gordon field to hold as we only get additional polarization degrees of freedom.
-
-\subsection{Coherent state and interactions}
-
-Zhang~\cite{Zhang1999} gives a beautiful discussion of coherent states for the Maxwell field in the Lorentz gauge.
-In the Coulomb gauge, we find
+with $c_1,c_2\in\mathbb{C}$ and $\abs{c_1}^2+\abs{c_2}^2=1$.
+Alternatively, we can perform the replacement
 \begin{equation}
-	\hat{S}
-	=
-	\mathcal{T}
-	\exp\left\{
-		-i\int\dd[4]{x}
-		\vb{A}(t,\vb{x})\vdot\vb{J}(t,\vb{x})
-	\right\}
+	\hat{a}(\vb{p})
+	\to
+	\sum_{\lambda=1,2}
+	\hat{a}_\lambda(\vb{p})
+	\boldsymbol{\varepsilon}_\lambda(\vb{p})
 \end{equation}
-where $\mathcal{T}$ denotes the time-ordering symbol.
+in our results obtained with the Klein-Gordon field to transfer the results to the Maxwell field in the Coulomb gauge.
