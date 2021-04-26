@@ -14,10 +14,70 @@
 	\end{equation}
 	where the Lorentz-invariant spectrum $f(\vb{p})=f(\omega(\vb{p}),\vb{p})\in\mathcal{S}(\mathbb{R}^4,\mathbb{C})$ encodes the spectral distribution of $\ket{f}$.
 \end{definition}
-\begin{remark}
-	If we remind ourselves that quantum field operators are operator-valued distributions mapping from the Schwartz function space to quantum operators, the definition follows from the smeared Klein-Gordon field operator acting on the vacuum $\hat\phi[f]\ket{0}=\phi^-[f]\ket{0}=\ket{f}$.
-\end{remark}
-
+\begin{lemma}
+	The single-particle number state is equal to the smeared Klein-Gordon field operator acting on the vacuum state
+	\begin{equation}
+		\hat\phi[f]
+		\ket{0}
+		=
+		\int\dd[4]{x}
+		f(x)
+		\hat\phi(x)
+		\ket{0}
+		=
+		\ket{f}
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	First, we note that the positive frequency Klein-Gordon operator vanishes,
+	\begin{equation}
+		\int\dd[4]{x}
+		f(x)
+		\hat\phi(x)
+		\ket{0}
+		=
+		\int\dd[4]{x}
+		f(x)
+		\hat\phi^-(x)
+		\ket{0}
+		,
+	\end{equation}
+	because $\hat{a}(\vb{p})\ket{0}=0$, then we insert the definition of the negative frequency part \cref{eq:qkg_positive_negative_frequency}
+	\begin{equation}
+		\begin{split}
+			\int\dd[4]{x}
+			f(x)
+			\hat\phi^-(x)
+			\ket{0}
+			&=
+			\int\dd[4]{x}
+			f(x)
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{+ip_\mu x^\mu}
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left(
+				\int\dd[4]{x}
+				f(x)
+				e^{+ip_\mu x^\mu}
+			\right)
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			=
+			\ket{f}
+		\end{split}
+	\end{equation}
+	and the last integral is the definition of the single-particle state.
+\end{proof}
 \begin{lemma}[Inner product of two single-particle number states]\label{th:single_particle_number_states_inner_product}
 	Let $\ket{f},\ket{g}$ be two single-particle number states then their inner product is equal to
 	\begin{equation}
@@ -241,8 +301,62 @@ The probability current is the conserved Noether's current of the Klein-Gordon f
 	See Ref.~\cite{Naumov2013}.
 \end{example}
 
-\subsection{Coherent states}
+\subsection{Coherent state}
 
+\begin{definition}
+	We define the displacement operator
+	\begin{equation}
+		\hat{D}[\alpha]
+		=
+		\exp\left\{
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\left\{
+				\alpha(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+				-
+				\alpha(\vb{p})^*
+				\hat{a}(\vb{p})
+			\right\}
+		\right\}
+		\label{eq:displacement_operator}
+	\end{equation}
+	where $\alpha(\vb{p})$ is a spectral function.
+\end{definition}
+\begin{lemma}
+	The displacement operator can be rewritten in normal-order and is equal to
+	\begin{equation}
+		\begin{split}
+			\hat{D}[\alpha]
+			&=
+			\exp\left\{
+				+
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\alpha(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+			\right\}
+			\\
+			&\times
+			\exp\left\{
+				-
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\alpha(\vb{p})^*
+				\hat{a}(\vb{p})
+			\right\}
+			\\
+			&\times
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\abs{\alpha(\vb{p})}^2
+			\right\}
+		\end{split}
+		\label{eq:displacement_operator_normal}
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	See Ref.~\cite[p.~48]{Barnett2002}.
+\end{proof}
 \begin{definition}[Coherent state]
 	We define a coherent state $\ket{\alpha}$ with spectrum $\alpha(\vb{p})$ as
 	\begin{equation}
@@ -267,8 +381,17 @@ The probability current is the conserved Noether's current of the Klein-Gordon f
 		\end{split}
 	\end{equation}
 \end{definition}
+\begin{lemma}
+	The displacement operator acting on the vacuum state is a coherent state, i.e.,
+	\begin{equation}
+		\hat{D}[\alpha]
+		\ket{0}
+		=
+		\ket{\alpha}
+	\end{equation}
+\end{lemma}
 \begin{theorem}[Coherent state is eigenstate of the annihilation operator]\label{thm:coherent_state_annihilation_eigenvalue}
-	The coherent state is eigenstate of the annihilation operator
+	The coherent state is an eigenstate of the annihilation operator
 	\begin{equation}
 		\hat{a}(\vb{p})
 		\ket{\alpha}

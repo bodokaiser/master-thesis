@@ -973,6 +973,78 @@
 	for the second moment.
 \end{delayedproof}
 
+\section{Interactions}
+
+\subsection{Dynamical pictures}
+
+\begin{delayedproof}{thm:heisenberg_schroedinger_equivalence}
+	Heisenberg and Schrödinger picture are unitarily equivalent by the Stone-von Neumann theorem.
+	Let $\hat{O}^H(t)$ be an observable and $\ket{\psi}^H$ a state in the Heisenberg picture, then the expectation values agree
+	\begin{equation}
+		\bra{\psi}^H
+		\hat{O}^H(t)
+		\ket{\psi}^H
+		=
+		\bra{\psi(0)}^H
+		e^{+i\hat{H}t}
+		\hat{O}^H(0)
+		e^{-i\hat{H}t}
+		\ket{\psi(0)}^H
+		=
+		\bra{\psi(t)}^S
+		\hat{O}^S
+		\ket{\psi(t)}^S
+		,
+	\end{equation}
+	where we used \Cref{thm:heisenberg_eom_sol} and \Cref{thm:schroedinger_eom_sol}.
+\end{delayedproof}
+
+\begin{delayedproof}{thm:heisenberg_schroedinger_canonical_transformation}
+	Let $\hat{A}^H,\hat{B}^H,\hat{C}^H$ be operators in the Heisenberg picture satisfying the commutation relation
+	\begin{equation}
+		\comm{\hat{A}^H}{\hat{B}^H}
+		=
+		\hat{C}^H
+	\end{equation}
+	then in the Schrödinger picture, we find
+	\begin{equation}
+		\begin{split}
+			\comm{\hat{A}^S}{\hat{B}^S}
+			&=
+			e^{-i\hat{H}t}
+			\left\{
+				\hat{A}^H
+				e^{+i\hat{H}t}
+				e^{-i\hat{H}t}
+				\hat{B}^H
+				-	
+				\hat{B}^H
+				e^{-i\hat{H}t}
+				e^{+i\hat{H}t}
+				\hat{A}^H
+			\right\}
+			e^{+i\hat{H}t}
+			\\
+			&=
+			e^{-i\hat{H}t}
+			\comm{\hat{A}^H}{\hat{B}^H}
+			e^{+i\hat{H}t}
+			\\
+			&=
+			e^{-i\hat{H}t}
+			\hat{C}^H
+			e^{+i\hat{H}t}
+			=
+			\hat{C}^S
+		\end{split}
+	\end{equation}
+	from Ref.~\cite[p.~213]{Greiner2013}.
+\end{delayedproof}
+
+\begin{delayedproof}{thm:dirac_schroedinger_eom}
+	See Ref.~\cite[p.~214]{Greiner2013}.
+\end{delayedproof}
+
 \section{Maxwell field in the Coulomb gauge}
 
 \begin{delayedproof}{thm:mw_local_gauge_invariance}
@@ -1142,4 +1214,30 @@
 		\label{eq:mw_faraday_law}.
 	\end{equation}
 	and we derived the vector Maxwell equations from first principles.	
+\end{delayedproof}
+
+\subsection{Time-evolution operator}
+
+\begin{delayedproof}{thm:time_evolution_int}
+	We integrate \cref{eq:time_evolution_diff} over the interval $[t_0,t]$
+	\begin{equation}
+		\int_t^{t_0}\dd{t_1}
+		\hat{H}_\text{int}^D(t_1,t_0)
+		\hat{U}_D(t_1,t_0)
+		=
+		i\int_t^{t_0}\dd{t_1}
+		\partial_{t_1}
+		\hat{U}_D(t_1,t_0)
+		=
+		i\mathbb{I}
+		-
+		i\hat{U}_D(t,t_0)
+	\end{equation}
+	where we used the fundamental theorem of calculus and the boundary condition $\hat{U}^D(t_0,t_0)=\mathbb{I}$ in the third line.
+	We are left to rearrange the terms to find \cref{eq:time_evolution_int}.
+\end{delayedproof}
+
+\begin{delayedproof}{thm:time_evolution_exp_sol}
+	Use \Cref{thm:time_ordered_integral} with $\hat{A}=\hat{H}_\text{int}^D$ to rewrite the iterative integral solution \Cref{thm:time_evolution_iter_sol}.
+	A proof that \cref{eq:time_evolution_sol} satisfies \cref{eq:time_evolution_diff} can be found in Ref.~\cite[p.~219]{Greiner2013}.
 \end{delayedproof}

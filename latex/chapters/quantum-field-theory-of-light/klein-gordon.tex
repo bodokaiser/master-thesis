@@ -337,18 +337,21 @@ To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansi
 		\hat\phi^+(t,\vb{x})
 	\end{equation}
 	where the positive and negative frequency parts are defined as~\cite[p.~26]{Peskin1995}
-	\begin{align}
-		\hat\phi^+(t,\vb{x})
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		e^{-ip_\mu x^\mu}
-		\hat{a}(\vb{p})
-		\\
-		\hat\phi^-(t,\vb{x})
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		e^{+ip_\mu x^\mu}
-		\hat{a}^\dagger(\vb{p})
-	\end{align}
+	\begin{equation}
+		\begin{split}
+			\hat\phi^+(t,\vb{x})
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{-ip_\mu x^\mu}
+			\hat{a}(\vb{p})
+			\\
+			\hat\phi^-(t,\vb{x})
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{+ip_\mu x^\mu}
+			\hat{a}^\dagger(\vb{p})
+		\end{split}
+		\label{eq:qkg_positive_negative_frequency}
+	\end{equation}
 	and both parts are related by the hermitian conjugate $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$.
 \end{definition}
