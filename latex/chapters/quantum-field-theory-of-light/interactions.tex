@@ -389,94 +389,44 @@
 \begin{proof}
 	See Ref.~\cite{Zhang1999} and Ref.~\cite[p.~180]{Itzykson2012} where the scattering operator is calculated for the Maxwell field.
 \end{proof}
-\begin{theorem}
-	The $\hat{S}$ operator of \cref{eq:scattering_operator_classical_interaction} is up to a global phase equal to the displacement operator with $\alpha(\vb{p})=-iJ(\vb{p})$.
+\begin{theorem}\label{thm:displacement_scattering_operator_equivalence}
+	The $\hat{S}$ operator of \cref{eq:scattering_operator_classical_interaction} is equal to the phase-shifted displacement operator
+	\begin{equation}
+		\hat{S}
+		=
+		\hat{D}[iJ]
+		.
+	\end{equation}
 \end{theorem}
-\begin{proof}
-	Inserting the Fourier representation of the real-valued source
-	\begin{equation}
-		J(x)
-		=
-		\int\frac{\dd[4]{p}}{(2\pi)^4}
-		J(p)
-		e^{+ip_\mu x^\mu}
-	\end{equation}
-	into the last integral, we find
-	\begin{equation}
-		\begin{split}
-			&
-			\iint\dd[4]{x}\dd[4]{y}
-			J(x)
-			D(x-y)
-			J(y)
-			\\
-			=&\
-			\iint\dd[4]{x}\dd[4]{y}
-			\left(
-				\int\frac{\dd[4]{p}}{(2\pi)^4}
-				J(p)
-				e^{+ip_\mu x^\mu}
-			\right)
-			D(x-y)
-			\left(
-				\int\frac{\dd[4]{q}}{(2\pi)^4}
-				J(q)
-				e^{+iq_\mu y^\mu}
-			\right)
-		\end{split}
-	\end{equation}
-	Decomposing the Klein-Gordon operator into positive and negative frequency parts
-	\begin{equation}
-		\int\dd[4]{x}
-		J(x)
-		\hat\phi(x)
-		=
-		\int\dd[4]{x}
-		J(x)
-		\hat\phi^+(x)
-		+
-		\int\dd[4]{x}
-		J(x)
-		\hat\phi^-(x)
-		=
-		\hat\phi^+[J]
-		+
-		\text{h.c.}
-	\end{equation}
-	and note that the second term is the hermitian conjugate of the first.
-	We then rewrite the integral using the Fourier transform of the source
-	\begin{equation}
-		\begin{split}
-			\hat\phi^+[J]
-			=
-			\int\dd[4]{x}
-			J(x)
-			\hat\phi^+(x)
-			&=
-			\int\dd[4]{x}
-			J(x)
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{-ip_\mu x^\mu}
-			\hat{a}^\dagger(\vb{p})
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\left(
-				\int\dd[4]{x}
-				J(x)
-				e^{-ip_\mu x^\mu}
-			\right)
-			\hat{a}^\dagger(\vb{p})
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			J(\vb{p})
-			\hat{a}^\dagger(\vb{p})
-		\end{split}
-	\end{equation}
-	which is very similar to what we did for the single-particle number state with the exception that $J(\vb{p})$ has not to be normalized.
-\end{proof}
 
-\subsection{Single-particle emission from qubit}
+\subsection{Two-level quantum system}
+
+\begin{example}
+	The Hamiltonian of a Klein-Gordon field coupled to a two-level quantum system is
+	\begin{equation}
+		\hat{H}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\omega(\vb{p})
+		\hat{a}^\dagger(\vb{p})
+		\hat{a}(\vb{p})
+		+
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left\{
+			\gamma(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\hat{b}
+			+0
+			\gamma(\vb{p})^*
+			\hat{a}(\vb{p})
+			\hat{b}^\dagger
+		\right\}
+		+
+		\frac{1}{2}
+		\omega_0
+		\hat{b}^\dagger
+		\hat{b}
+	\end{equation}
+\end{example}
 
 \subsection{Beam splitter from mode coupling}
