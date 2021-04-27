@@ -60,59 +60,7 @@ in our results obtained with the Klein-Gordon field to transfer the results to t
 		.
 	\end{equation}
 \end{theorem}
-\begin{proof}
-	According to the action principle, the dynamics of the field are determined by the equations of motion which can be found by the relativistic Euler-Lagrange equations
-	\begin{equation*}
-		0
-		=
-		\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu\phi)}
-		-
-		\pdv{\mathcal{L}}{\phi}
-		=
-		\left(
-			\partial_\mu\partial^\mu
-			+
-			m^2
-		\right)
-		\phi(t,\vb{x})
-		.
-	\end{equation*}
-	Assuming the existence of the Klein-Gordon field's Fourier representation~\cite[p.~341]{Cohen2019}
-	\begin{equation}
-		\phi(t,\vb{x})
-		=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
-		\phi(t,\vb{p})
-		e^{-i\vb{p}\vdot\vb{x}}
-		=
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
-		\phi(p_0,\vb{p})
-		e^{+ip_\mu x^\mu}
-		,
-	\end{equation}
-	the equation of motion in momentum space reduces to
-	\begin{equation}
-		0
-		=
-		\left(
-			ip_\mu ip^\mu
-			+
-			m^2
-		\right)
-		\phi(p_0,\vb{p})
-		=
-		-
-		\left(
-			p_0^2
-			-
-			\omega(\vb{p})^2
-		\right)
-		\phi(p_0,\vb{p})
-	\end{equation}
-	which is satisfied if $p_0=\pm\omega(\vb{p})$.
-\end{proof}
-
-\begin{theorem}[Fourier expansion of the Klein-Gordon field]\label{thm:kg_fourier_expansion}
+\begin{theorem}[Mode expansion of the Klein-Gordon field]\label{thm:kg_fourier_expansion}
 	The Fourier expansion of the Klein-Gordon field
 	\begin{equation}
 		\phi(t,\vb{x})
@@ -128,11 +76,7 @@ in our results obtained with the Klein-Gordon field to transfer the results to t
 	\end{equation}
 	satisfies the equations of motion for any choice of $a(\vb{p})=\phi(\omega(\vb{p}),\vb{p})^*$.
 \end{theorem}
-To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansion} might be helpful.
-\begin{remark}
-	From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
-\end{remark}
-
+From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 \begin{corollary}[Conjugate momentum density of the Klein-Gordon field]
 	The conjugate momentum density of the Klein-Gordon field is
 	\begin{equation}
@@ -159,7 +103,6 @@ To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansi
 	\end{equation}
 	fundamental to Hamiltonian mechanics.
 \end{corollary}
-
 \begin{definition}[Energy-momentum tensor]
 	We define the energy-momentum tensor
 	\begin{equation}
@@ -192,9 +135,8 @@ To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansi
 	\end{equation*}
 	component, see Ref.~\cite{Peskin1995}.
 \end{definition}
-
-\begin{lemma}[Energy and momentum of the Klein-Gordon field]
-	The total energy and momentum observables of the Klein-Gordon field are
+\begin{lemma}\label{thm:kg_total_energy_momentum}
+	The total energy and momentum of the Klein-Gordon field,
 	\begin{align}
 		H
 		=
@@ -206,16 +148,31 @@ To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansi
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\vb{p}\abs{a(\vb{p})}^2
 		\label{eq:kg_energy_momentum}
+		,
 	\end{align}
+	are the energy and momentum weighted by the mode amplitudes.
 \end{lemma}
-\begin{proof}
-	Perform a spatial integration over the energy and momentum densities, see Ref.~\cite{Peskin1995}.
-\end{proof}
 
 \subsection{Canonical quantization}
 
-\begin{definition}[Klein-Gordon field operators]
-	In the canonical quantization procedure, we promote the dynamical field variables to operators
+\begin{definition}[Canonical quantization]
+	In the canonical quantization procedure, the dynamical variables are promoted to operators satisfying the equal-time canonical commutation relations
+	\begin{align}
+		\comm{\hat\phi(\vb{x})}{\hat\pi(\vb{y})}
+		&=
+		i\delta^{(3)}(\vb{x}-\vb{y})
+		\\
+		\comm{\hat\phi(\vb{x})}{\hat\phi(\vb{y})}
+		&=
+		\comm{\hat\pi(\vb{x})}{\hat\pi(\vb{y})}
+		=
+		0
+		\label{eq:qkg_comm_pm}
+		.
+	\end{align}
+\end{definition}
+\begin{theorem}[Klein-Gordon field operators]
+	The Klein-Gordon field operators are
 	\begin{align}
 		\hat\phi(t,\vb{x})
 		&=
@@ -242,72 +199,45 @@ To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansi
 			e^{+ip_\mu x^\mu}
 		\right\}
 		\label{eq:qkg_mom}
+		,
 	\end{align}
-	which satisfy the canonical commutation relations
-	\begin{align}
-		\comm{\hat\phi(\vb{x})}{\hat\pi(\vb{y})}
-		=
-		i\delta^{(3)}(\vb{x}-\vb{y})
-		&&
-		\comm{\hat\phi(\vb{x})}{\hat\phi(\vb{y})}
-		=
-		0
-		=
-		\comm{\hat\pi(\vb{x})}{\hat\pi(\vb{y})}
-		\label{eq:qkg_comm_pm}
-		.
-	\end{align}
-	We refer to $\hat{a}(\vb{p})$ as the annihilation operator and $\hat{a}^\dagger(\vb{p})$ as the creation operator of the Klein-Gordon field with respect to momentum $\vb{p}$.
-\end{definition}
-
-\begin{theorem}[Commutation relations for the annihilation and creation operator]
+	where $\hat\phi(t,\vb{x})$ and $\hat\pi(t,\vb{x})$ satisfy the equal-time canonical commutation relations.
+\end{theorem}
+\begin{theorem}\label{thm:kg_comm_ac}
 	The annihilation and creation operator of the Klein-Gordon field obey the commutation relations
 	\begin{align}
 		\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
-		=
-		(2\pi)^3\delta^{(3)}(\vb{p}-\vb{q})
-		&&
+		&=
+		(2\pi)^3
+		\delta^{(3)}(\vb{p}-\vb{q})
+		\\
+		\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+		&=
 		\comm{\hat{a}(\vb{p})}{\hat{a}(\vb{q})}
 		=
 		0
-		=
-		\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}^\dagger(\vb{q})}
 		\label{eq:kg_comm_ac}
 		.
 	\end{align}	
 \end{theorem}
-\begin{proof}
-	Insert the Klein-Gordon field operators in terms of the annihilation and creation operators, \cref{eq:qkg_pos} and \cref{eq:qkg_mom}, into the field commutation relations \cref{eq:qkg_comm_pm}.
-\end{proof}
-
 \begin{definition}[Normal-ordered product]
-	Let $\hat{A}$ be an operator that can be expressed as a product of annihilation and creation operators of the Klein-Gordon field, then the normal-ordered product of $\hat{A}$ is
+	The normal-ordered product of annihilation and creation operators puts all creation operators to the left and all annihilation operators to the right, for example,
 	\begin{equation}
-		\hat{A}
+		N\left(
+			\hat{a}^\dagger
+			\hat{a}
+		\right)^l
 		=
-		\hat{a}^\dagger(\vb{p}_1)
-		\dots
-		\hat{a}^\dagger(\vb{p}_n)
-		\hat{a}(\vb{q}_1)
-		\dots
-		\hat{a}(\vb{q}_n)
-		,
+		\left(\hat{a}^\dagger\right)^l
+		\hat{a}^l
+		.
 	\end{equation}
-	i.e., the creation operators are on the left and the annihilation operators are on the right side.
-	As the annihilation operators and creation operators commute among another, the order of the operators on the left or right is not relevant.
 \end{definition}
-
 \begin{definition}[Correspondence principle]
-	The correspondence principle relates classical with quantum observables.
-	Given a classical observable, we replace the dynamical variables with the corresponding quantum operators in normal order.
+	The correspondence principle is a prescription to find the quantum from the classical observables by promoting the dynamical variables to operators in normal-order.\footnote{See Ref.~\cite[p.~20]{Mukhanov2007} for details on the problem of operator ordering.}
 \end{definition}
-\begin{remark}
-	The requirement of the quantum observable being in normal order is essential as in contrast to the classical dynamical variables, quantum operators do not commute.
-	See Ref.~\cite[p.~20]{Mukhanov2007} for more details on the problem of operator ordering.
-\end{remark}
-
-\begin{lemma}[Energy and momentum operators of the Klein-Gordon field]
-	Invoking the correspondence principle to the total energy and momentum we derived for the classical Klein-Gordon field, \cref{eq:kg_energy_momentum}, we find
+\begin{corollary}
+	The total energy and momentum operators of the Klein-Gordon field are
 	\begin{align}
 		\hat{H}
 		=
@@ -319,11 +249,11 @@ To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansi
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\vb{p}\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})
 		\label{eq:qkg_energy_momentum}
+		.
 	\end{align}
-	to be the energy and momentum operators of the quantum Klein-Gordon field.
-\end{lemma}
-\begin{corollary}[Number operator of the Klein-Gordon field]
-	In analogy with the quantum harmonic oscillator, the number operator is the unweighted part of the energy operator, i.e.,
+\end{corollary}
+\begin{corollary}
+	The number operator is the unweighted part of the energy and momentum operators
 	\begin{equation}
 		\hat{N}
 		=
@@ -333,30 +263,17 @@ To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansi
 		\label{eq:qkg_number}
 		.
 	\end{equation}
-	The squared number operator which is required for calculating the variance is the squared number operator in normal order~\cite{Barnett2002}
-	\begin{equation}
-		\hat{N}^2
-		=
-		\int\frac{\dd[3]{p_1}}{(2\pi)^3}
-		\int\frac{\dd[3]{p_2}}{(2\pi)^3}
-		\hat{a}^\dagger(\vb{p}_1)
-		\hat{a}^\dagger(\vb{p}_2)
-		\hat{a}(\vb{p}_1)
-		\hat{a}(\vb{p}_2)
-		.
-	\end{equation}
 \end{corollary}
-
 \begin{definition}[Positive and negative frequency Klein-Gordon field operator]
-	It will be useful to decompose the Klein-Gordon field into a positive and negative frequency part
+	The positive and negative frequency decomposition of the Klein-Gordon field operator
 	\begin{equation}
 		\hat\phi(t,\vb{x})
 		=
 		\hat\phi^+(t,\vb{x})
 		+
-		\hat\phi^+(t,\vb{x})
+		\hat\phi^-(t,\vb{x})
 	\end{equation}
-	where the positive and negative frequency parts are defined as~\cite[p.~26]{Peskin1995}
+	wherein the positive and negative frequency Klein-Gordon field operators
 	\begin{equation}
 		\begin{split}
 			\hat\phi^+(t,\vb{x})
@@ -373,21 +290,22 @@ To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansi
 		\end{split}
 		\label{eq:qkg_positive_negative_frequency}
 	\end{equation}
-	and both parts are related by the hermitian conjugate $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$.
+	are related by the hermitian conjugate $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$, see Ref.~\cite[p.~26]{Peskin1995} for details.
 \end{definition}
 
 \subsection{Coordinate wave function properties}
 
 \begin{definition}[Coordinate wave function]
-	We define the coordinate wave function of a state $\ket{\psi}$
+	The equivalent of a coordinate wave function given a state $\ket{\psi}$ and a field operator $\hat\phi$ is
 	\begin{equation}
 		\psi(t,\vb{x})
 		=
 		\bra{0}\hat\phi(t,\vb{x})\ket{\psi}
+		.
 	\end{equation}
 \end{definition}
 \begin{definition}[Probability current]
-	The covariant probability current
+	The manifest Lorentz-covariant probability current\footnote{The probability current is the conserved Noether's current of the Klein-Gordon field, see Ref.~\cite[p.~18]{Peskin1995}.} is
 	\begin{equation}
 		j_\mu(t,\vb{x})
 		=
@@ -398,37 +316,41 @@ To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansi
 			\psi(t,\vb{x})
 		\right\}
 		\label{eq:qkg_probability_current}
-	\end{equation}	
+	\end{equation}
+	where $\psi(t,\vb{x})$ is a coordinate wave function.
+	The time component $j^0(t,\vb{x})$ is equal to the probability density $\rho(t,\vb{x})$ and the spatial components $j^i(t,\vb{x})$ are equal to the probability current.
 \end{definition}
-The probability current is the conserved Noether's current of the Klein-Gordon field, see Ref.~\cite[p.~18]{Peskin1995}).
 \begin{definition}[Localization]
-	We define the mean localization to be
+	The center-of-mass position of the probability density,
 	\begin{equation}
 		\expval{\vb{x}(t)}
 		=
 		\int\dd[3]{x}
 		\vb{x}
 		\rho(t,\vb{x})
+		,
 	\end{equation}
+	allows us to make statements about the localization of a field excitation.\footnote{There exists no position operator free of contradictions in quantum field theory!}
 \end{definition}
 \begin{definition}[Group velocity]
-	We refer to the spatial integration of the probability current $\vb{j}$
+	The total probability current
 	\begin{equation}
-		\expval{\vb{v}}
+		\expval{\vb{v}(t)}
 		=
 		\int\dd[3]{x}
 		\vb{j}(t,\vb{x})
 		\label{eq:group_velocity}
 	\end{equation}
-	as the group velocity.
+	equals the group velocity of a field excitation.
 \end{definition}
 \begin{definition}[Spatial dispersion]
-	The spatial dispersion is defined by
+	The spatial dispersion is equal to the variance of the position weighted by the probability density
 	\begin{equation}
 		\sigma_x(t)^2
 		=
 		\expval{\vb{x}(t)^2}
 		-
-		\expval{\vb{x}(t)}^2		
+		\expval{\vb{x}(t)}^2
 	\end{equation}
+	and quantifies the spatial spread of a wave packet.
 \end{definition}

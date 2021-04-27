@@ -2,7 +2,7 @@
 
 \subsection{Vacuum state}
 
-\begin{definition}
+\begin{definition}[Vacuum state]
 	The vacuum state $\ket{0}$ is a unique state that is normalized
 	\begin{equation}
 		\braket{0}
@@ -23,33 +23,20 @@
 	\end{align}
 	where $\hat{P}_\mu$ is the four-momentum and $\hat{M}_{\mu\nu}$ is the relativistic angular momentum operator, see Ref.~\cite[p.~270]{Greiner2013} for details.
 \end{definition}
-\begin{lemma}
-	The vacuum state is invariant under spacetime translations.
-\end{lemma}
-\begin{proof}
-	The four-momentum operator is the generator of the spacetime translation operator
+\begin{corollary}
+	The vacuum state is invariant under spacetime translations
 	\begin{equation}
-		\hat{T}(a)
-		=
-		e^{i\hat{P}_\mu a^\mu}
-	\end{equation}
-	and $a^\mu$ is a four-coordinate vector.
-	From the definition of the vacuum state, $\hat{P}_\mu\ket{0}=0$, the invariance under spacetime translations
-	\begin{equation}
-		\hat{T}(a)
-		\ket{0}
-		=
 		e^{i\hat{P}_\mu a^\mu}
 		\ket{0}
 		=
 		\ket{0}
-	\end{equation}
-	follows.
-\end{proof}
+		.
+	\end{equation}	
+\end{corollary}
 
 \subsection{Momentum state}
 
-\begin{definition}
+\begin{definition}[Momentum state]
 	The creation operator acting on the vacuum state
 	\begin{equation}
 		\ket{\vb{p}}
@@ -60,26 +47,10 @@
 	\end{equation}
 	creates a state with momentum $\vb{p}$, the momentum state.
 \end{definition}
-\begin{theorem}
+\begin{lemma}\label{thm:momentum_state_non_normalizable}
 	The momentum state $\ket{\vb{p}}$ is not normalizable.
-\end{theorem}
-\begin{proof}
-	The inner product of two momentum states is
-	\begin{equation}
-		\braket{\vb{p}}{\vb{q}}
-		=
-		\sqrt{2\omega(\vb{p})}
-		\sqrt{2\omega(\vb{q})}
-		\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})}{0}
-		=
-		2\omega(\vb{p})
-		(2\pi)^3
-		\delta^{(3)}(\vb{q}-\vb{p})
-	\end{equation}
-	where we used the commutation relation and $\hat{a}(\vb{p})\ket{0}=0$.
-	For $\vb{p}=\vb{q}$ the inner product is proportional to $\delta^{(3)}(0)$ which has no consistent mathematical definition.
-\end{proof}
-\begin{theorem}
+\end{lemma}
+\begin{theorem}\label{thm:momentum_state_eigenstate}
 	The momentum state $\ket{\vb{p}}$ is an eigenstate of the momentum operator $\hat{\vb{P}}$
 	\begin{equation}
 		\hat{\vb{P}}
@@ -88,102 +59,16 @@
 		\vb{p}
 		\ket{\vb{p}}
 	\end{equation}
+	with eigenvalue $\vb{p}$.
 \end{theorem}
-\begin{proof}
-	\begin{equation*}
-		\begin{split}
-			\hat{\vb{P}}
-			\ket{\vb{p}}
-			&=
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			\vb{q}
-			\hat{a}^\dagger(\vb{q})
-			\hat{a}(\vb{q})
-			\sqrt{2\omega(\vb{p})}
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-			\\
-			&=
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			\vb{q}
-			\sqrt{2\omega(\vb{p})}
-			\hat{a}^\dagger(\vb{q})
-			(2\pi)^3
-			\delta^{(3)}(\vb{q}-\vb{p})
-			\ket{0}
-			\\
-			&=
-			\vb{p}
-			\sqrt{2\omega(\vb{p})}
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-			=
-			\vb{p}
-			\ket{\vb{p}}
-		\end{split}
-	\end{equation*}
-\end{proof}
-\begin{definition}
-	The state
-	\begin{equation}
-		\ket{n_{\vb{p}_1},\dots,n_{\vb{p}_m}}
-		=
-		\frac{\left(\hat{a}^\dagger(\vb{p}_1)\right)^{n_{\vb{p}_1}}}{\sqrt{n_{\vb{p}_1}!}}
-		\dots
-		\frac{\left(\hat{a}^\dagger(\vb{p}_m)\right)^{n_{\vb{p}_m}}}{\sqrt{n_{\vb{p}_m}!}}
-		\ket{0}
-	\end{equation}
-	is a momentum state with $n_{\vb{p}_1}$ excitations with momentum $\vb{p}_1$.
-\end{definition}
-\begin{lemma}
-	The coordinate wave function of a momentum state $\ket{\vb{p}}$ is a plane-wave
-	\begin{equation}
-		\psi(t,\vb{x})
-		=
-		e^{-ip_\mu x^\mu}
-		.
-	\end{equation}
+\begin{lemma}\label{thm:momentum_state_wave_function}
+	The coordinate wave function of a momentum state $\ket{\vb{p}}$ is a plane-wave $\psi(t,\vb{x})=e^{-ip_\mu x^\mu}$.
 \end{lemma}
-\begin{proof}
-	\begin{equation}
-		\begin{split}
-			\psi(t,\vb{x})
-			=
-			\bra{0}
-			\hat\phi(t,\vb{x})
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-			&=
-			\left(
-				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-				e^{+iq_\mu x^\mu}
-				\hat{a}^\dagger(\vb{q})
-				\ket{0}
-			\right)^\dagger
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-			\\
-			&=
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			e^{-iq_\mu x^\mu}
-			\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			e^{-iq_\mu x^\mu}
-			(2\pi)^3
-			\delta^{(3)}(\vb{q}-\vb{p})
-			\\
-			&\propto
-			e^{-ip_\mu x^\mu}
-		\end{split}
-	\end{equation}
-\end{proof}
 
 \subsection{Single-particle number state}
 
-\begin{definition}\label{def:single_particle_number_state}
-	We define a number state of the Klein-Gordon field by
+\begin{definition}[Single-particle number state]\label{def:single_particle_number_state}
+	The single-particle number state with Lorentz-invariant spectrum $f(\vb{p})=f(\omega(\vb{p}),\vb{p})\in\mathcal{S}(\mathbb{R}^4,\mathbb{C})$ is
 	\begin{equation}
 		\ket{f}
 		=
@@ -191,10 +76,10 @@
 		f(\vb{p})
 		\hat{a}^\dagger(\vb{p})
 		\ket{0}
+		.
 	\end{equation}
-	where the Lorentz-invariant spectrum $f(\vb{p})=f(\omega(\vb{p}),\vb{p})\in\mathcal{S}(\mathbb{R}^4,\mathbb{C})$ encodes the spectral distribution of $\ket{f}$.
 \end{definition}
-\begin{lemma}
+\begin{lemma}\label{thm:single_particle_number_state_smeared_kg}
 	The single-particle number state is equal to the smeared Klein-Gordon field operator acting on the vacuum state
 	\begin{equation}
 		\hat\phi[f]
@@ -208,57 +93,7 @@
 		\ket{f}
 	\end{equation}
 \end{lemma}
-\begin{proof}
-	First, we note that the positive frequency Klein-Gordon operator vanishes,
-	\begin{equation}
-		\int\dd[4]{x}
-		f(x)
-		\hat\phi(x)
-		\ket{0}
-		=
-		\int\dd[4]{x}
-		f(x)
-		\hat\phi^-(x)
-		\ket{0}
-		,
-	\end{equation}
-	because $\hat{a}(\vb{p})\ket{0}=0$, then we insert the definition of the negative frequency part \cref{eq:qkg_positive_negative_frequency}
-	\begin{equation}
-		\begin{split}
-			\int\dd[4]{x}
-			f(x)
-			\hat\phi^-(x)
-			\ket{0}
-			&=
-			\int\dd[4]{x}
-			f(x)
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{+ip_\mu x^\mu}
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\left(
-				\int\dd[4]{x}
-				f(x)
-				e^{+ip_\mu x^\mu}
-			\right)
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			f(\vb{p})
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-			=
-			\ket{f}
-		\end{split}
-	\end{equation}
-	and the last integral is the definition of the single-particle state.
-\end{proof}
-\begin{lemma}[Inner product of two single-particle number states]\label{th:single_particle_number_states_inner_product}
+\begin{lemma}\label{th:single_particle_number_states_inner_product}
 	Let $\ket{f},\ket{g}$ be two single-particle number states then their inner product is equal to
 	\begin{equation}
 		\braket{g}{f}
@@ -268,31 +103,7 @@
 	\end{equation}
 	indicating that the single-particle number states are overcomplete.
 \end{lemma}
-\begin{proof}
-	For the proof, we insert the definition and use the commutation relation of the annihilation and creation operators of the Klein-Gordon field
-	\begin{equation}
-		\begin{split}
-			\bra{g}\ket{f}
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			f(\vb{p})g(\vb{q})^*
-			\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			f(\vb{p})g(\vb{q})^*
-			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})g(\vb{p})^*
-		\end{split}
-		.
-	\end{equation}
-\end{proof}
-\begin{lemma}[Normalization of a single-particle number state spectrum]
+\begin{lemma}\label{thm:single_particle_number_state_normalization}
 	The spectrum of a single-particle number state satisfies
 	\begin{equation}
 		\bra{f}\ket{f}
@@ -304,12 +115,9 @@
 		.
 	\end{equation}
 \end{lemma}
-\begin{proof}
-	The probabilistic interpretation of quantum mechanics requires $\braket{f}=1$ and \cref{th:single_particle_number_states_inner_product} with $\ket{g}=\ket{f}$ relates $\braket{f}=1$ with the integral.
-\end{proof}
 Let us consider some examples for the single-particle number state spectrum $f(\vb{p})$.
-\begin{example}[Covariant Gaussian single-particle number state]
-	The covariant Gaussian spectrum with mean $k^\mu=(k_0,\vb{k})$ and variance $\sigma^2$ is
+\begin{example}
+	The spectrum of a Gaussian single-particle number state is
 	\begin{equation}
 		f(\vb{p})
 		\propto
@@ -323,39 +131,10 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 		\right\}
 		\label{eq:covariant_gaussian_spectrum}
 	\end{equation}
-	according to Ref.~\cite{Naumov2013,Naumov2009}.
+	where the spectrum is peaked at $k^\mu=(k_0,\vb{k})$ and has variance $\sigma^2$.\footnote{See Ref.~\cite{Naumov2013,Naumov2009} for a in-depth discussion.}
 \end{example}
-\begin{example}[Approximate massive Gaussian single-particle number state]
-	According to Naumov~\cite{Naumov2013}, the spectrum of the covariant Gaussian number state can be approximated with
-	\begin{equation}
-		f(\vb{p})
-		=
-		\sqrt{2m}
-		\left(
-			\frac{2\pi}{\sigma^2}
-		\right)^{3/4}
-		\exp\left\{
-			-
-			\frac{(\vb{k}-\vb{p}_L)^2}{4\sigma_L^2}
-			-
-			\frac{\vb{p}_T^2}{4\sigma_T^2}
-		\right\}
-	\end{equation}
-	for $\vb{p}\approx\vb{k}$, wherein $\vb{p}_T,\vb{p}_L$ are the momentum transversal and longitudinal to $\vb{k}$, and $\sigma_L=\omega(\vb{p})\sigma/m$ and $\sigma_T=\sigma_P$ are the longitudinal and transversal momentum spreads.
-\end{example}
-\begin{example}[Massless Gaussian single-particle number state]
-	Evaluating \cref{eq:covariant_gaussian_spectrum} with $\omega(\vb{p})=\norm{\vb{p}}$ yields
-	\begin{equation}
-		f(\vb{p})
-		\propto
-		\exp\left\{
-			-
-			\frac{\norm{\vb{p}}\norm{\vb{k}}-\vb{k}\vdot\vb{p}}{2\sigma^2}
-		\right\}
-	\end{equation}
-\end{example}
-\begin{theorem}[Energy observable of the single-particle number state]\label{thm:single_particle_number_state_energy}
-	Calculating the first two moments of the energy observables, \cref{qkg:energy}, with respect to a single-particle number state $\ket{f}$ yields
+\begin{theorem}\label{thm:single_particle_number_state_energy}
+	The first and second moments of the (normal-ordered) energy operator, \cref{qkg:energy}, given a number state $\ket{f}$ are
 	\begin{align}
 		\expval{\hat{H}}{f}
 		&=
@@ -369,21 +148,14 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 		\omega(\vb{p})^2
 		\abs{f(\vb{p})}^2
 		\label{eq:single_particle_number_state_energy}
+		.
 	\end{align}
-	for the first two moments implying non-zero energy fluctuations
-	\begin{equation}
-		\expval{\left(\Delta\hat{H}\right)^2}{f}
-		=
-		\expval{\hat{H}^2}{f}
-		-
-		\expval{\hat{H}}{f}^2
-		>
-		0
-	\end{equation}.
 \end{theorem}
-The proof is found in \proofref{the appendix}{thm:single_particle_number_state_energy}.
+\begin{corollary}
+	The single-particle number state has non-zero energy fluctuations.
+\end{corollary}
 \begin{theorem}\label{thm:single_particle_number_state_number_eigenstate}
-	The single-particle number state $\ket{f}$ is an eigenstate of the number operator
+	The single-particle number state $\ket{f}$ is an eigenstate of the number operator $\hat{N}$
 	\begin{equation}
 		\hat{N}
 		\ket{f}
@@ -395,18 +167,17 @@ The proof is found in \proofref{the appendix}{thm:single_particle_number_state_e
 \begin{corollary}
 	The single-particle number state has expectation value $1$ with respect to the number operator and zero-variance.
 \end{corollary}
-
-\begin{lemma}[Coordinate wave function of single-particle number state]\label{thm:single_particle_number_state_wave_function}
-	The coordinate wave function of a single-particle number state turns out to be
+\begin{lemma}\label{thm:single_particle_number_state_wave_function}
+	The coordinate wave function of a single-particle number state is
 	\begin{equation}
 		\psi(t,\vb{x})
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		f(\vb{p})e^{-ip_\mu x^\mu}
+		.
 	\end{equation}
 \end{lemma}
-The proof is given in \proofref{the appendix}{thm:single_particle_number_state_wave_function}.
-\begin{lemma}[Group velocity of a single-particle number state]\label{thm:single_particle_number_state_group_velocity}
+\begin{lemma}\label{thm:single_particle_number_state_group_velocity}
 	The group velocity of a single-particle number state $\ket{f}$ is
 	\begin{equation}
 		\expval{\vb{v}}
@@ -415,22 +186,22 @@ The proof is given in \proofref{the appendix}{thm:single_particle_number_state_w
 		\abs{f(\vb{p})}^2
 		\frac{\vb{p}}{\omega(\vb{p})}
 		\label{eq:single_particle_number_state_group_velocity}
+		.
 	\end{equation}
 \end{lemma}
-\begin{example}[Mean localization of a single-particle number state]
+\begin{lemma}
+	The single-particle number state is localized on a trajectory
 	\begin{equation}
 		\expval{\vb{x}(t)}
 		=
 		\expval{\vb{v}}t
-	\end{equation}	
-\end{example}
-\begin{example}[Spatial dispersion for massive Gaussian single-particle number states]
-	See Ref.~\cite{Naumov2013}.
-\end{example}
+	\end{equation}
+	moving with the group velocity $\expval{\vb{v}}$.
+\end{lemma}
 
 \subsection{Multi-particle number state}
 
-\begin{definition}
+\begin{definition}[Multi-particle number state]
 	A multi-particle number state with $n$ particles and spectrum $f$ is given by
 	\begin{equation}
 		\ket{n,f}
@@ -464,8 +235,8 @@ The proof is given in \proofref{the appendix}{thm:single_particle_number_state_w
 
 \subsection{Coherent state}
 
-\begin{definition}
-	We define the displacement operator
+\begin{definition}[Displacement operator]
+	The displacement operator with spectrum $\alpha(\vb{p})$ is
 	\begin{equation}
 		\hat{D}[\alpha]
 		=
@@ -480,10 +251,10 @@ The proof is given in \proofref{the appendix}{thm:single_particle_number_state_w
 			\right\}
 		\right\}
 		\label{eq:displacement_operator}
+		.
 	\end{equation}
-	where $\alpha(\vb{p})$ is a spectral function.
 \end{definition}
-\begin{lemma}
+\begin{lemma}\label{thm:displacement_operator_normal_ordered}
 	The displacement operator can be rewritten in normal-order and is equal to
 	\begin{equation}
 		\begin{split}
@@ -515,11 +286,8 @@ The proof is given in \proofref{the appendix}{thm:single_particle_number_state_w
 		\label{eq:displacement_operator_normal}
 	\end{equation}
 \end{lemma}
-\begin{proof}
-	See Ref.~\cite[p.~48]{Barnett2002}.
-\end{proof}
 \begin{definition}[Coherent state]
-	We define a coherent state $\ket{\alpha}$ with spectrum $\alpha(\vb{p})$ as
+	A coherent state $\ket{\alpha}$ with spectrum $\alpha(\vb{p})$ is
 	\begin{equation}
 		\begin{split}
 			\ket{\alpha}
@@ -533,7 +301,6 @@ The proof is given in \proofref{the appendix}{thm:single_particle_number_state_w
 			\\
 			&\times
 			\exp\left\{
-				-i
 				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 				\alpha(\vb{p})
 				\hat{a}^\dagger(\vb{p})
@@ -543,15 +310,9 @@ The proof is given in \proofref{the appendix}{thm:single_particle_number_state_w
 	\end{equation}
 \end{definition}
 \begin{lemma}
-	The displacement operator acting on the vacuum state is a coherent state, i.e.,
-	\begin{equation}
-		\hat{D}[\alpha]
-		\ket{0}
-		=
-		\ket{\alpha}
-	\end{equation}
+	The displacement operator creates a coherent state from the vacuum $\hat{D}[\alpha]\ket{0}=\ket{\alpha}$.
 \end{lemma}
-\begin{theorem}[Coherent state is eigenstate of the annihilation operator]\label{thm:coherent_state_annihilation_eigenvalue}
+\begin{theorem}\label{thm:coherent_state_annihilation_eigenvalue}
 	The coherent state is an eigenstate of the annihilation operator
 	\begin{equation}
 		\hat{a}(\vb{p})
@@ -560,48 +321,32 @@ The proof is given in \proofref{the appendix}{thm:single_particle_number_state_w
 		\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
 		\ket{\alpha}
 	\end{equation}
+	with eigenvalue $\alpha(\vb{p})/\sqrt{2\omega(\vb{p})}$.
 \end{theorem}
-The proof is given in \proofref{the appendix}{thm:coherent_state_annihilation_eigenvalue}.
-
-\begin{lemma}[Energy moments of the coherent state]\label{thm:coherent_state_energy_observable}
-	\begin{align}
+\begin{lemma}\label{thm:coherent_state_energy_observable}
+	The mean energy of the coherent state is equal to
+	\begin{equation}
 		\expval{\hat{H}}{\alpha}
-		&=
+		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\omega(\vb{p})
-		\abs{\alpha(\vb{p})}^2
-		\\
-		\expval{\hat{H}^2}{\alpha}
-		&=
-		\expval{\hat{H}}{\alpha}^2
-	\end{align}	
+		\abs{\alpha(\vb{p})}^2		
+	\end{equation}
+	and the variance is zero.
 \end{lemma}
-The proof is given in \proofref{the appendix}{thm:coherent_state_energy_observable}.
-The energy moments look very similar but in contrast to the single-particle number state spectrum $f(\vb{p})$ we have to keep in mind that there is no constraint on the coherent state spectrum $\alpha(\vb{p})$.
-\begin{corollary}[Number moments of the coherent state]
-	Performing the replacement $\omega(\vb{p})\to1$ in the energy expectation moments of the coherent state, we find the moments of the number observable to be
-	\begin{align}
-		\expval{\hat{N}}{\alpha}
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\abs{\alpha(\vb{p})}^2
-		\\
-		\expval{\hat{N}^2}{\alpha}
-		&=
-		\expval{\hat{N}}{\alpha}^2
-	\end{align}
-	.
-\end{corollary}
-\begin{definition}
-	The coherent state's mean number of particles $\overline{n}$ is equal to the first moment of the number operator
+Although, the mean energy of the coherent state is the same as the mean energy of the single-particle number state, the spectrum $\alpha(\vb{p})$ of the coherent state is not bound.
+\begin{corollary}
+	The mean number of photons is equal to
 	\begin{equation}
 		\overline{n}
 		=
+		\expval{\hat{N}}{\alpha}
+		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\abs{\alpha(\vb{p})}^2
+		.
 	\end{equation}
-\end{definition}
-
+\end{corollary}
 \begin{lemma}
 	The probability of detecting a single-particle given a coherent state is
 	\begin{equation}
@@ -631,5 +376,6 @@ The energy moments look very similar but in contrast to the single-particle numb
 				\abs{\alpha}^2
 			\right\}
 		\end{split}
+		.
 	\end{equation}
 \end{lemma}

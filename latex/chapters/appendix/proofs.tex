@@ -1,5 +1,232 @@
+\section{Maxwell field in the Coulomb gauge}
+
+\subsection{Lagrangian and gauge fixing}
+
+\begin{delayedproof}{thm:mw_local_gauge_invariance}
+	The physical field-strength tensor transforms under \cref{eq:mw_local_gauge_transform} as
+	\begin{equation*}
+		\begin{split}
+			F_{\mu\nu}
+			\to
+			F_{\mu\nu}^\prime
+			&=
+			\partial_\mu\left(A_\nu+\partial_\nu\Lambda\right)
+			-
+			\partial_\nu\left(A_\mu+\partial_\mu\Lambda\right)
+			\\
+			&=
+			F_{\mu\nu}
+			+
+			\partial_\mu\partial_\nu\Lambda
+			-
+			\partial_\nu\partial_\mu\Lambda
+			=
+			F_{\mu\nu}
+		\end{split}
+	\end{equation*}	
+\end{delayedproof}
+\begin{lemma}
+	The field-strength tensor is antisymmetric $F^{\mu\nu}=-F^{\nu\mu}$.
+\end{lemma}
+\begin{proof}
+	\begin{equation*}
+		F^{\mu\nu}
+		=
+		\partial^\mu A^\nu
+		-
+		\partial^\nu A^\mu
+		=
+		-
+		\left(
+			\partial^\nu A^\mu
+			-
+			\partial^\mu A^\nu
+		\right)
+		=
+		-
+		F^{\nu\mu}
+	\end{equation*}
+\end{proof}
+
+\subsection{Maxwell equations}
+
+\begin{delayedproof}{thm:tensor_maxwell_equations}
+	The inhomogeneous Maxwell equations are the equations of motion which are found from the Euler-Lagrange equation
+	\begin{equation*}
+		0
+		=
+		\partial_\mu
+		\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+		-
+		\pdv{\mathcal{L}}{A_\nu}
+		=
+		-
+		\partial_\mu
+		F^{\mu\nu}
+		+
+		J^\nu
+	\end{equation*}
+	where we used
+	\begin{equation*}
+		\begin{split}
+			\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+			&=
+			\pdv{\mathcal{L}}{F_{\alpha\beta}}
+			\pdv{F_{\alpha\beta}}{(\partial_\mu A_\nu)}
+			\\
+			&=
+			-
+			\frac{1}{4}
+			\pdv{(F_{\sigma\rho}F^{\sigma\rho})}{F_{\alpha\beta}}
+			\pdv{(\partial_\alpha A_\beta-\partial_\beta A_\alpha)}{(\partial_\mu A_\nu)}
+			\\
+			&=
+			-
+			\frac{1}{2}
+			F^{\alpha\beta}
+			\left(
+				\delta_\alpha^\mu
+				\delta_\beta^\nu
+				-
+				\delta_\alpha^\nu
+				\delta_\beta^\mu
+			\right)
+			\\
+			&=
+			-
+			\frac{1}{2}
+			F^{\mu\nu}
+			+
+			\frac{1}{2}
+			F^{\nu\mu}
+			=
+			-
+			F^{\mu\nu}			
+		\end{split}
+	\end{equation*}
+	The homogeneous Maxwell equations are a consequence of the Bianchi identity and antisymmetry of $F^{\mu\nu}$.
+\end{delayedproof}
+\begin{delayedproof}{thm:vector_maxwell_equations}
+	Evaluating the time component of \cref{eq:mw_homo} yields the Gauss' law for magnetism
+	\begin{equation}
+		\begin{split}
+			0
+			=
+			\varepsilon_{0\lambda\mu\nu}\partial^\lambda F^{\mu\nu}
+			&=
+			\varepsilon_{0ijk}\partial^iF^{jk}
+			\\
+			&=
+			-
+			\varepsilon_{ijk}\varepsilon_{ljk}
+			\partial^i B_l
+			=
+			2\partial_iB^i
+		\end{split}
+		\label{eq:mw_gauss_law_mag}
+	\end{equation}
+	and the spatial component yields Ampere's circuit law
+	\begin{equation}
+		\begin{split}
+			0
+			=
+			\varepsilon_{i\lambda\mu\nu}
+			\partial^\lambda
+			F^{\mu\nu}
+			&=
+			-
+			\varepsilon_{ijk}
+			\varepsilon^{ljk}
+			\partial_t B_l
+			-
+			2\varepsilon_{ijk}
+			\partial^jE^k
+			\\
+			&=
+			\partial_tB_i
+			+
+			\varepsilon_{ijk}
+			\partial^jE_k
+		\end{split}
+		\label{eq:mw_ampere_law}.
+	\end{equation}
+	The time component of the inhomogeneous covariant Maxwell equation \cref{eq:mw_inhomo} yields Gauss' law
+	\begin{equation}
+		J^0
+		=
+		\rho
+		=
+		\partial_\mu F^{\mu\nu}
+		=
+		\partial_i E^i
+		\label{eq:mw_gauss_law},
+	\end{equation}
+	and the spatial component yields Faraday's law of induction
+	\begin{equation}
+		J^i
+		=
+		\partial_\mu F^{\mu i}
+		=
+		-\partial_t E^i
+		+\varepsilon^{ijk}\partial_j B_k
+		\label{eq:mw_faraday_law}.
+	\end{equation}
+	and we derived the vector Maxwell equations from first principles.	
+\end{delayedproof}
+
 \section{Klein-Gordon field}
 
+\begin{delayedproof}{th:relativistic_energy_momentum}
+	According to the action principle, the dynamics of the field are determined by the equations of motion which can be found by the relativistic Euler-Lagrange equations
+	\begin{equation*}
+		0
+		=
+		\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu\phi)}
+		-
+		\pdv{\mathcal{L}}{\phi}
+		=
+		\left(
+			\partial_\mu\partial^\mu
+			+
+			m^2
+		\right)
+		\phi(t,\vb{x})
+		.
+	\end{equation*}
+	Assuming the existence of the Klein-Gordon field's Fourier representation~\cite[p.~341]{Cohen2019}
+	\begin{equation}
+		\phi(t,\vb{x})
+		=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+		\phi(t,\vb{p})
+		e^{-i\vb{p}\vdot\vb{x}}
+		=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
+		\phi(p_0,\vb{p})
+		e^{+ip_\mu x^\mu}
+		,
+	\end{equation}
+	the equation of motion in momentum space reduces to
+	\begin{equation}
+		0
+		=
+		\left(
+			ip_\mu ip^\mu
+			+
+			m^2
+		\right)
+		\phi(p_0,\vb{p})
+		=
+		-
+		\left(
+			p_0^2
+			-
+			\omega(\vb{p})^2
+		\right)
+		\phi(p_0,\vb{p})
+	\end{equation}
+	which is satisfied if $p_0=\pm\omega(\vb{p})$.
+\end{delayedproof}
 \begin{delayedproof}{thm:kg_fourier_expansion}
 	There are two approaches to prove \cref{thm:kg_fourier_expansion}.
 	In a first approach, we calculate with the proposed Fourier expansion
@@ -136,11 +363,182 @@
 	\end{equation*}
 	which is present because $\phi(t,\vb{x})$ is real-valued.
 \end{delayedproof}
+\begin{delayedproof}{thm:kg_total_energy_momentum}
+	Perform a spatial integration over the energy and momentum densities, see Ref.~\cite{Peskin1995}.
+\end{delayedproof}
+\begin{delayedproof}{thm:kg_comm_ac}
+	Insert the Klein-Gordon field operators in terms of the annihilation and creation operators, \cref{eq:qkg_pos} and \cref{eq:qkg_mom}, into the field commutation relations \cref{eq:qkg_comm_pm}.
+\end{delayedproof}
 
 \section{Quantum states}
 
+\subsection{Momentum state}
+
+\begin{delayedproof}{thm:momentum_state_non_normalizable}
+	The inner product of two momentum states is
+	\begin{equation}
+		\braket{\vb{p}}{\vb{q}}
+		=
+		\sqrt{2\omega(\vb{p})}
+		\sqrt{2\omega(\vb{q})}
+		\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})}{0}
+		=
+		2\omega(\vb{p})
+		(2\pi)^3
+		\delta^{(3)}(\vb{q}-\vb{p})
+	\end{equation}
+	where we used the commutation relation and $\hat{a}(\vb{p})\ket{0}=0$.
+	For $\vb{p}=\vb{q}$ the inner product is proportional to $\delta^{(3)}(0)$ which has no consistent mathematical definition.
+\end{delayedproof}
+\begin{delayedproof}{thm:momentum_state_eigenstate}
+	\begin{equation*}
+		\begin{split}
+			\hat{\vb{P}}
+			\ket{\vb{p}}
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\vb{q}
+			\hat{a}^\dagger(\vb{q})
+			\hat{a}(\vb{q})
+			\sqrt{2\omega(\vb{p})}
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\vb{q}
+			\sqrt{2\omega(\vb{p})}
+			\hat{a}^\dagger(\vb{q})
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}-\vb{p})
+			\ket{0}
+			\\
+			&=
+			\vb{p}
+			\sqrt{2\omega(\vb{p})}
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			=
+			\vb{p}
+			\ket{\vb{p}}
+		\end{split}
+	\end{equation*}
+\end{delayedproof}
+\begin{delayedproof}{thm:momentum_state_wave_function}
+	\begin{equation}
+		\begin{split}
+			\psi(t,\vb{x})
+			=
+			\bra{0}
+			\hat\phi(t,\vb{x})
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			&=
+			\left(
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				e^{+iq_\mu x^\mu}
+				\hat{a}^\dagger(\vb{q})
+				\ket{0}
+			\right)^\dagger
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			e^{-iq_\mu x^\mu}
+			\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			e^{-iq_\mu x^\mu}
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&\propto
+			e^{-ip_\mu x^\mu}
+		\end{split}
+	\end{equation}
+\end{delayedproof}
+
 \subsection{Single-particle number state}
 
+\begin{delayedproof}{thm:single_particle_number_state_smeared_kg}
+	First, we note that the positive frequency Klein-Gordon operator vanishes,
+	\begin{equation}
+		\int\dd[4]{x}
+		f(x)
+		\hat\phi(x)
+		\ket{0}
+		=
+		\int\dd[4]{x}
+		f(x)
+		\hat\phi^-(x)
+		\ket{0}
+		,
+	\end{equation}
+	because $\hat{a}(\vb{p})\ket{0}=0$, then we insert the definition of the negative frequency part \cref{eq:qkg_positive_negative_frequency}
+	\begin{equation}
+		\begin{split}
+			\int\dd[4]{x}
+			f(x)
+			\hat\phi^-(x)
+			\ket{0}
+			&=
+			\int\dd[4]{x}
+			f(x)
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{+ip_\mu x^\mu}
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left(
+				\int\dd[4]{x}
+				f(x)
+				e^{+ip_\mu x^\mu}
+			\right)
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			=
+			\ket{f}
+		\end{split}
+	\end{equation}
+	and the last integral is the definition of the single-particle state.
+\end{delayedproof}
+\begin{delayedproof}{th:single_particle_number_states_inner_product}
+	For the proof, we insert the definition and use the commutation relation of the annihilation and creation operators of the Klein-Gordon field
+	\begin{equation}
+		\begin{split}
+			\bra{g}\ket{f}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{p})g(\vb{q})^*
+			\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{p})g(\vb{q})^*
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})g(\vb{p})^*
+		\end{split}
+		.
+	\end{equation}
+\end{delayedproof}
+\begin{delayedproof}{thm:single_particle_number_state_normalization}
+	The probabilistic interpretation of quantum mechanics requires $\braket{f}=1$ and \cref{th:single_particle_number_states_inner_product} with $\ket{g}=\ket{f}$ relates $\braket{f}=1$ with the integral.
+\end{delayedproof}
 \begin{delayedproof}{thm:single_particle_number_state_number_eigenstate}
 	\begin{equation*}
 		\begin{split}
@@ -853,6 +1251,9 @@
 
 \subsection{Coherent state}
 
+\begin{delayedproof}{thm:displacement_operator_normal_ordered}
+	See Ref.~\cite[p.~48]{Barnett2002}.
+\end{delayedproof}
 \begin{delayedproof}{thm:coherent_state_annihilation_eigenvalue}
 	We use the series representation of the operator exponential and \cref{th:normal_ordered_a1_cn} to move the annihilation operator to the right
 	\begin{equation*}
@@ -1222,175 +1623,4 @@
 		\end{split}
 	\end{equation}
 	which shows that $\hat{S}=\hat{D}[iJ]$.
-\end{delayedproof}
-
-\section{Maxwell field in the Coulomb gauge}
-
-\begin{delayedproof}{thm:mw_local_gauge_invariance}
-	The physical field-strength tensor transforms under \cref{eq:mw_local_gauge_transform} as
-	\begin{equation*}
-		\begin{split}
-			F_{\mu\nu}
-			\to
-			F_{\mu\nu}^\prime
-			&=
-			\partial_\mu\left(A_\nu+\partial_\nu\Lambda\right)
-			-
-			\partial_\nu\left(A_\mu+\partial_\mu\Lambda\right)
-			\\
-			&=
-			F_{\mu\nu}
-			+
-			\partial_\mu\partial_\nu\Lambda
-			-
-			\partial_\nu\partial_\mu\Lambda
-			=
-			F_{\mu\nu}
-		\end{split}
-	\end{equation*}	
-\end{delayedproof}
-
-\begin{delayedproof}{thm:mw_field_strength_antisymmetry}
-	\begin{equation*}
-		F^{\mu\nu}
-		=
-		\partial^\mu A^\nu
-		-
-		\partial^\nu A^\mu
-		=
-		-
-		\left(
-			\partial^\nu A^\mu
-			-
-			\partial^\mu A^\nu
-		\right)
-		=
-		-
-		F^{\nu\mu}
-	\end{equation*}
-\end{delayedproof}
-
-\begin{delayedproof}{thm:covariant_maxwell_equations}
-	The inhomogeneous Maxwell equations are the equations of motion which are found from the Euler-Lagrange equation
-	\begin{equation*}
-		0
-		=
-		\partial_\mu
-		\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
-		-
-		\pdv{\mathcal{L}}{A_\nu}
-		=
-		-
-		\partial_\mu
-		F^{\mu\nu}
-		+
-		J^\nu
-	\end{equation*}
-	where we used
-	\begin{equation*}
-		\begin{split}
-			\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
-			&=
-			\pdv{\mathcal{L}}{F_{\alpha\beta}}
-			\pdv{F_{\alpha\beta}}{(\partial_\mu A_\nu)}
-			\\
-			&=
-			-
-			\frac{1}{4}
-			\pdv{(F_{\sigma\rho}F^{\sigma\rho})}{F_{\alpha\beta}}
-			\pdv{(\partial_\alpha A_\beta-\partial_\beta A_\alpha)}{(\partial_\mu A_\nu)}
-			\\
-			&=
-			-
-			\frac{1}{2}
-			F^{\alpha\beta}
-			\left(
-				\delta_\alpha^\mu
-				\delta_\beta^\nu
-				-
-				\delta_\alpha^\nu
-				\delta_\beta^\mu
-			\right)
-			\\
-			&=
-			-
-			\frac{1}{2}
-			F^{\mu\nu}
-			+
-			\frac{1}{2}
-			F^{\nu\mu}
-			=
-			-
-			F^{\mu\nu}			
-		\end{split}
-	\end{equation*}
-	The homogeneous Maxwell equations are a consequence of the Bianchi identity and antisymmetry of $F^{\mu\nu}$.
-\end{delayedproof}
-
-\begin{delayedproof}{thm:non_covarain_maxwell_equations}
-	Evaluating the time component of \cref{eq:mw_homo} yields the Gauss' law for magnetism
-	\begin{equation}
-		\begin{split}
-			0
-			=
-			\varepsilon_{0\lambda\mu\nu}\partial^\lambda F^{\mu\nu}
-			&=
-			\varepsilon_{0ijk}\partial^iF^{jk}
-			\\
-			&=
-			-
-			\varepsilon_{ijk}\varepsilon_{ljk}
-			\partial^i B_l
-			=
-			2\partial_iB^i
-		\end{split}
-		\label{eq:mw_gauss_law_mag}
-	\end{equation}
-	and the spatial component yields Ampere's circuit law
-	\begin{equation}
-		\begin{split}
-			0
-			=
-			\varepsilon_{i\lambda\mu\nu}
-			\partial^\lambda
-			F^{\mu\nu}
-			&=
-			-
-			\varepsilon_{ijk}
-			\varepsilon^{ljk}
-			\partial_t B_l
-			-
-			2\varepsilon_{ijk}
-			\partial^jE^k
-			\\
-			&=
-			\partial_tB_i
-			+
-			\varepsilon_{ijk}
-			\partial^jE_k
-		\end{split}
-		\label{eq:mw_ampere_law}.
-	\end{equation}
-	The time component of the inhomogeneous covariant Maxwell equation \cref{eq:mw_inhomo} yields Gauss' law
-	\begin{equation}
-		J^0
-		=
-		\rho
-		=
-		\partial_\mu F^{\mu\nu}
-		=
-		\partial_i E^i
-		\label{eq:mw_gauss_law},
-	\end{equation}
-	and the spatial component yields Faraday's law of induction
-	\begin{equation}
-		J^i
-		=
-		\partial_\mu F^{\mu i}
-		=
-		-\partial_t E^i
-		+\varepsilon^{ijk}\partial_j B_k
-		\label{eq:mw_faraday_law}.
-	\end{equation}
-	and we derived the vector Maxwell equations from first principles.	
 \end{delayedproof}
