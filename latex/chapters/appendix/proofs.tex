@@ -141,6 +141,47 @@
 
 \subsection{Single-particle number state}
 
+\begin{delayedproof}{thm:single_particle_number_state_number_eigenstate}
+	\begin{equation*}
+		\begin{split}
+			\hat{N}
+			\ket{f}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\hat{a}^\dagger(\vb{p})
+			\hat{a}(\vb{p})
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\hat{a}^\dagger(\vb{p})
+			\hat{a}(\vb{p})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\hat{a}^\dagger(\vb{p})
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}-\vb{p})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+		\end{split}
+	\end{equation*}
+\end{delayedproof}
+
 \begin{delayedproof}{thm:single_particle_number_state_energy}
 	We start with the expectation values of the energy operator and begin with the auxiliary results
 	\begin{equation}
@@ -709,7 +750,7 @@
 	\end{equation}
 \end{delayedproof}
 
-\subsection{Coherent state}
+\subsection{Multi-particle number state}
 
 \begin{lemma}\label{th:normal_ordered_a1_cn}
 	Let $\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{p})$ be the annihilation and creation operator of the Klein-Gordon field satisfying the canonical commutation relations then for $n\in\mathbb{N}$
@@ -809,6 +850,8 @@
 	\end{equation*}
 	where we used that creation operators commute in the first line, the canonical commutation relation in the second line, and the induction hypothesis in the third line.
 \end{proof}
+
+\subsection{Coherent state}
 
 \begin{delayedproof}{thm:coherent_state_annihilation_eigenvalue}
 	We use the series representation of the operator exponential and \cref{th:normal_ordered_a1_cn} to move the annihilation operator to the right

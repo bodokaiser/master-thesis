@@ -355,3 +355,60 @@ To get an intuition, the \proofref{proof in the appendix}{thm:kg_fourier_expansi
 	\end{equation}
 	and both parts are related by the hermitian conjugate $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$.
 \end{definition}
+
+\subsection{Coordinate wave function properties}
+
+\begin{definition}[Coordinate wave function]
+	We define the coordinate wave function of a state $\ket{\psi}$
+	\begin{equation}
+		\psi(t,\vb{x})
+		=
+		\bra{0}\hat\phi(t,\vb{x})\ket{\psi}
+	\end{equation}
+\end{definition}
+\begin{definition}[Probability current]
+	The covariant probability current
+	\begin{equation}
+		j_\mu(t,\vb{x})
+		=
+		2
+		\Im\left\{
+			\psi(t,\vb{x})^*
+			\partial_\mu
+			\psi(t,\vb{x})
+		\right\}
+		\label{eq:qkg_probability_current}
+	\end{equation}	
+\end{definition}
+The probability current is the conserved Noether's current of the Klein-Gordon field, see Ref.~\cite[p.~18]{Peskin1995}).
+\begin{definition}[Localization]
+	We define the mean localization to be
+	\begin{equation}
+		\expval{\vb{x}(t)}
+		=
+		\int\dd[3]{x}
+		\vb{x}
+		\rho(t,\vb{x})
+	\end{equation}
+\end{definition}
+\begin{definition}[Group velocity]
+	We refer to the spatial integration of the probability current $\vb{j}$
+	\begin{equation}
+		\expval{\vb{v}}
+		=
+		\int\dd[3]{x}
+		\vb{j}(t,\vb{x})
+		\label{eq:group_velocity}
+	\end{equation}
+	as the group velocity.
+\end{definition}
+\begin{definition}[Spatial dispersion]
+	The spatial dispersion is defined by
+	\begin{equation}
+		\sigma_x(t)^2
+		=
+		\expval{\vb{x}(t)^2}
+		-
+		\expval{\vb{x}(t)}^2		
+	\end{equation}
+\end{definition}

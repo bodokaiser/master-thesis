@@ -1,8 +1,188 @@
 \section{Quantum states}
 
-\subsection{Single-particle number states}
+\subsection{Vacuum state}
 
-\begin{definition}[Single-particle number state]\label{def:single_particle_number_state}
+\begin{definition}
+	The vacuum state $\ket{0}$ is a unique state that is normalized
+	\begin{equation}
+		\braket{0}
+		=
+		1
+	\end{equation}
+	and satisfies
+	\begin{align}
+		\hat{P}_\mu
+		\ket{0}
+		&=
+		0
+		\\
+		\hat{M}_{\mu\nu}
+		\ket{0}
+		&=
+		\ket{0}
+	\end{align}
+	where $\hat{P}_\mu$ is the four-momentum and $\hat{M}_{\mu\nu}$ is the relativistic angular momentum operator, see Ref.~\cite[p.~270]{Greiner2013} for details.
+\end{definition}
+\begin{lemma}
+	The vacuum state is invariant under spacetime translations.
+\end{lemma}
+\begin{proof}
+	The four-momentum operator is the generator of the spacetime translation operator
+	\begin{equation}
+		\hat{T}(a)
+		=
+		e^{i\hat{P}_\mu a^\mu}
+	\end{equation}
+	and $a^\mu$ is a four-coordinate vector.
+	From the definition of the vacuum state, $\hat{P}_\mu\ket{0}=0$, the invariance under spacetime translations
+	\begin{equation}
+		\hat{T}(a)
+		\ket{0}
+		=
+		e^{i\hat{P}_\mu a^\mu}
+		\ket{0}
+		=
+		\ket{0}
+	\end{equation}
+	follows.
+\end{proof}
+
+\subsection{Momentum state}
+
+\begin{definition}
+	The creation operator acting on the vacuum state
+	\begin{equation}
+		\ket{\vb{p}}
+		=
+		\sqrt{2\omega(\vb{p})}
+		\hat{a}^\dagger(\vb{p})
+		\ket{0}
+	\end{equation}
+	creates a state with momentum $\vb{p}$, the momentum state.
+\end{definition}
+\begin{theorem}
+	The momentum state $\ket{\vb{p}}$ is not normalizable.
+\end{theorem}
+\begin{proof}
+	The inner product of two momentum states is
+	\begin{equation}
+		\braket{\vb{p}}{\vb{q}}
+		=
+		\sqrt{2\omega(\vb{p})}
+		\sqrt{2\omega(\vb{q})}
+		\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})}{0}
+		=
+		2\omega(\vb{p})
+		(2\pi)^3
+		\delta^{(3)}(\vb{q}-\vb{p})
+	\end{equation}
+	where we used the commutation relation and $\hat{a}(\vb{p})\ket{0}=0$.
+	For $\vb{p}=\vb{q}$ the inner product is proportional to $\delta^{(3)}(0)$ which has no consistent mathematical definition.
+\end{proof}
+\begin{theorem}
+	The momentum state $\ket{\vb{p}}$ is an eigenstate of the momentum operator $\hat{\vb{P}}$
+	\begin{equation}
+		\hat{\vb{P}}
+		\ket{\vb{p}}
+		=
+		\vb{p}
+		\ket{\vb{p}}
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			\hat{\vb{P}}
+			\ket{\vb{p}}
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\vb{q}
+			\hat{a}^\dagger(\vb{q})
+			\hat{a}(\vb{q})
+			\sqrt{2\omega(\vb{p})}
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\vb{q}
+			\sqrt{2\omega(\vb{p})}
+			\hat{a}^\dagger(\vb{q})
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}-\vb{p})
+			\ket{0}
+			\\
+			&=
+			\vb{p}
+			\sqrt{2\omega(\vb{p})}
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			=
+			\vb{p}
+			\ket{\vb{p}}
+		\end{split}
+	\end{equation*}
+\end{proof}
+\begin{definition}
+	The state
+	\begin{equation}
+		\ket{n_{\vb{p}_1},\dots,n_{\vb{p}_m}}
+		=
+		\frac{\left(\hat{a}^\dagger(\vb{p}_1)\right)^{n_{\vb{p}_1}}}{\sqrt{n_{\vb{p}_1}!}}
+		\dots
+		\frac{\left(\hat{a}^\dagger(\vb{p}_m)\right)^{n_{\vb{p}_m}}}{\sqrt{n_{\vb{p}_m}!}}
+		\ket{0}
+	\end{equation}
+	is a momentum state with $n_{\vb{p}_1}$ excitations with momentum $\vb{p}_1$.
+\end{definition}
+\begin{lemma}
+	The coordinate wave function of a momentum state $\ket{\vb{p}}$ is a plane-wave
+	\begin{equation}
+		\psi(t,\vb{x})
+		=
+		e^{-ip_\mu x^\mu}
+		.
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	\begin{equation}
+		\begin{split}
+			\psi(t,\vb{x})
+			=
+			\bra{0}
+			\hat\phi(t,\vb{x})
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			&=
+			\left(
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				e^{+iq_\mu x^\mu}
+				\hat{a}^\dagger(\vb{q})
+				\ket{0}
+			\right)^\dagger
+			\hat{a}^\dagger(\vb{p})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			e^{-iq_\mu x^\mu}
+			\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			e^{-iq_\mu x^\mu}
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&\propto
+			e^{-ip_\mu x^\mu}
+		\end{split}
+	\end{equation}
+\end{proof}
+
+\subsection{Single-particle number state}
+
+\begin{definition}\label{def:single_particle_number_state}
 	We define a number state of the Klein-Gordon field by
 	\begin{equation}
 		\ket{f}
@@ -202,27 +382,20 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}.
 \end{theorem}
 The proof is found in \proofref{the appendix}{thm:single_particle_number_state_energy}.
-
-\begin{corollary}[Single-particle number state is eigenstate of the number operator]
-	Performing the replacement $\omega(\vb{p})\to1$ in \cref{eq:single_particle_number_state_energy} and employing the normalization condition yields
+\begin{theorem}\label{thm:single_particle_number_state_number_eigenstate}
+	The single-particle number state $\ket{f}$ is an eigenstate of the number operator
 	\begin{equation}
-		\expval{\hat{N}}{f}
+		\hat{N}
+		\ket{f}
 		=
-		1
-		=
-		\expval{\hat{N}^2}{f}
+		\ket{f}
 	\end{equation}
-	which leads to zero variance in the number observable, implying that $\ket{f}$ is a number eigenstate.
+	with eigenvalue $1$.
+\end{theorem}
+\begin{corollary}
+	The single-particle number state has expectation value $1$ with respect to the number operator and zero-variance.
 \end{corollary}
 
-\begin{definition}[Coordinate wave function]
-	We define the coordinate wave function of a state $\ket{\psi}$
-	\begin{equation}
-		\psi(t,\vb{x})
-		=
-		\bra{0}\hat\phi(t,\vb{x})\ket{\psi}
-	\end{equation}
-\end{definition}
 \begin{lemma}[Coordinate wave function of single-particle number state]\label{thm:single_particle_number_state_wave_function}
 	The coordinate wave function of a single-particle number state turns out to be
 	\begin{equation}
@@ -233,32 +406,6 @@ The proof is found in \proofref{the appendix}{thm:single_particle_number_state_e
 	\end{equation}
 \end{lemma}
 The proof is given in \proofref{the appendix}{thm:single_particle_number_state_wave_function}.
-\begin{definition}[Probability current]
-	The covariant probability current
-	\begin{equation}
-		j_\mu(t,\vb{x})
-		=
-		2
-		\Im\left\{
-			\psi(t,\vb{x})^*
-			\partial_\mu
-			\psi(t,\vb{x})
-		\right\}
-		\label{eq:qkg_probability_current}
-	\end{equation}	
-\end{definition}
-The probability current is the conserved Noether's current of the Klein-Gordon field, see Ref.~\cite[p.~18]{Peskin1995}).
-\begin{definition}[Group velocity]
-	We refer to the spatial integration of the probability current $\vb{j}$
-	\begin{equation}
-		\expval{\vb{v}}
-		=
-		\int\dd[3]{x}
-		\vb{j}(t,\vb{x})
-		\label{eq:group_velocity}
-	\end{equation}
-	as the group velocity.
-\end{definition}
 \begin{lemma}[Group velocity of a single-particle number state]\label{thm:single_particle_number_state_group_velocity}
 	The group velocity of a single-particle number state $\ket{f}$ is
 	\begin{equation}
@@ -270,16 +417,6 @@ The probability current is the conserved Noether's current of the Klein-Gordon f
 		\label{eq:single_particle_number_state_group_velocity}
 	\end{equation}
 \end{lemma}
-\begin{definition}[Mean localization]
-	We define the mean localization to be
-	\begin{equation}
-		\expval{\vb{x}(t)}
-		=
-		\int\dd[3]{x}
-		\vb{x}
-		\rho(t,\vb{x})
-	\end{equation}
-\end{definition}
 \begin{example}[Mean localization of a single-particle number state]
 	\begin{equation}
 		\expval{\vb{x}(t)}
@@ -287,19 +424,33 @@ The probability current is the conserved Noether's current of the Klein-Gordon f
 		\expval{\vb{v}}t
 	\end{equation}	
 \end{example}
-\begin{definition}[Spatial dispersion]
-	The spatial dispersion is defined by
-	\begin{equation}
-		\sigma_x(t)^2
-		=
-		\expval{\vb{x}(t)^2}
-		-
-		\expval{\vb{x}(t)}^2		
-	\end{equation}
-\end{definition}
 \begin{example}[Spatial dispersion for massive Gaussian single-particle number states]
 	See Ref.~\cite{Naumov2013}.
 \end{example}
+
+\subsection{Multi-particle number state}
+
+\begin{definition}
+	A $n$-particle number state with spectrum $f$ is given by
+	\begin{equation}
+		\ket{n,f}
+		=
+		\frac{1}{n!}
+		\hat\phi[f]^n
+		\ket{0}
+		=
+		\frac{1}{n!}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+		\right)^n
+		\ket{0}
+	\end{equation}
+\end{definition}
+\begin{theorem}
+
+\end{theorem}
 
 \subsection{Coherent state}
 
