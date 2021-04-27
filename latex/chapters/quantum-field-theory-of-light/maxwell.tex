@@ -3,7 +3,7 @@
 \subsection{Lagrangian and gauge fixing}
 
 \begin{definition}[Maxwell Lagrangian]
-	The Maxwell Lagrangian is~\cite[p.~339]{Srednicki2007}
+	The Maxwell Lagrangian including an external classical source field $J^\mu(t,\vb{x})$ is
 	\begin{equation}
 		\mathcal{L}
 		=
@@ -19,9 +19,10 @@
 		J_\mu A^\mu
 		\label{eq:mw_lagrangian}
 	\end{equation}
+	where $A^\mu(t,\vb{x})$ is the Maxwell field or four-potential, see, for instance, Ref.~\cite[p.~339]{Srednicki2007}.
 \end{definition}
 \begin{definition}[Local gauge transformation]
-	A local gauge transformation adds the gradient of a scalar field to the potential
+	A local gauge transformation
 	\begin{equation}
 		A_\mu(t,\vb{x})
 		\to
@@ -31,20 +32,28 @@
 		+
 		\partial_\mu\Lambda(t,\vb{x})
 		\label{eq:mw_local_gauge_transform}
-		.
-	\end{equation}	
+	\end{equation}
+	adds the gradient of a scalar field to a (vector) field.
 \end{definition}
 \begin{theorem}\label{thm:mw_local_gauge_invariance}
 	The physical observables of the Maxwell field are invariant under local gauge transformations.
 \end{theorem}
-For the proof see \proofref{the appendix}{thm:mw_local_gauge_invariance}.
-
-The unphysical degrees of freedom in the Maxwell field can be removed by imposing a gauge condition.
+Unphysical degrees of freedom of the Maxwell field can be removed by choosing a specific scalar field $\Lambda(t,\vb{x})$ and performing a local gauge transformation.
+The procedure is known as gauge fixing or imposing a gauge and the resulting restriction on the fieldis known as gauge condition.
+Typical gauge conditions are:
 \begin{definition}[Lorentz gauge]
-	In the Lorentz gauge, the four-gradient of the Maxwell field is zero, $\partial_\mu A^\mu=0$.
+	The Lorentz gauge,
+	\begin{equation}
+		\partial_\mu
+		A^\mu
+		=
+		0
+		,
+	\end{equation}
+	where the four-gradient of the Maxwell field is zero.
 \end{definition}
-The Lorentz gauge is manifestly Lorentz covariant~\cite[p.~144]{Greiner2013} and therefore calculations using the Lorentz gauge are valid in any reference frame.
-A drawback of the Lorentz gauge is that the quantization procedure becomes more elaborate giving rise to scalar and longitudinal polarization vectors which have to be removed by projecting out unphysical states of the Hilbert space, see Gupta-Beuler quantization in Ref.~\cite[p.~180]{Greiner2013}.
+The Lorentz gauge is manifestly Lorentz-covariant~\cite[p.~144]{Greiner2013} and calculations in the Lorentz gauge are valid in any reference frame.
+However, a drawback of the Lorentz gauge is that the quantization procedure becomes more elaborate giving rise to scalar and longitudinal polarization vectors which have to be removed by projecting out unphysical states of the Hilbert space, see Gupta-Beuler quantization in Ref.~\cite[p.~180]{Greiner2013}.
 \begin{definition}[Coulomb gauge]
 	In the Coulomb gauge, the three-gradient of the Maxwell field is zero, $\partial_iA^i=\div\vb{A}=0$.
 \end{definition}
@@ -61,8 +70,8 @@ Quantum optical communication is described in the rest frame of the communicatio
 
 \subsection{Maxwell equations}
 
-\begin{definition}[Field-strength tensors]
-	We define the covariant field-strength tensor of the Maxwell field as
+\begin{definition}[Field-strength tensor]
+	The Maxwell's field covariant field-strength tensor is
 	\begin{equation}
 		F^{\mu\nu}
 		=
@@ -70,7 +79,7 @@ Quantum optical communication is described in the rest frame of the communicatio
 		-
 		\partial^\nu A^\mu
 	\end{equation}
-	and its dual
+	and its dual is
 	\begin{equation}
 		\tilde{F}^{\mu\nu}
 		=
@@ -79,7 +88,7 @@ Quantum optical communication is described in the rest frame of the communicatio
 		F_{\alpha\beta}
 	\end{equation}
 	where $\varepsilon^{\mu\nu\alpha\beta}$ is the generalized antisymmetric tensor.
-	The components of the field-strength tensor relate to the electromagnetic field components via~\cite[p.~336]{Srednicki2007}
+	The components of the field-strength tensor relate to the components of the physical electromagnetic field
 	\begin{align}
 		F^{0i}
 		=
@@ -89,15 +98,14 @@ Quantum optical communication is described in the rest frame of the communicatio
 		=
 		\varepsilon^{ijk}B_k
 		\label{eq:mw_field_strength_components}
-		.
 	\end{align}
+	see, Ref.~\cite[p.~336]{Srednicki2007}.
 \end{definition}
 \begin{lemma}\label{thm:mw_field_strength_antisymmetry}
 	The field-strength tensor is antisymmetric $F^{\mu\nu}=-F^{\nu\mu}$.
 \end{lemma}
-For the proof see \proofref{the appendix}{thm:mw_field_strength_antisymmetry}.
-\begin{theorem}[Covariant Maxwell equations]\label{thm:covariant_maxwell_equations}
-	The Lorentz-covariant Maxwell equations are
+\begin{theorem}[Tensor Maxwell equations]\label{thm:covariant_maxwell_equations}
+	The manifest Lorentz-covariant Maxwell equations are
 	\begin{align}
 		0
 		=
@@ -107,12 +115,11 @@ For the proof see \proofref{the appendix}{thm:mw_field_strength_antisymmetry}.
 		J^\nu
 		=
 		\partial_\mu
-		F^{\mu\nu}		
+		F^{\mu\nu}
+		.
 	\end{align}
-	where the first is the homogeneous and the second the inhomogeneous equation.
 \end{theorem}
-The proof is given in \proofref{the appendix}{thm:covariant_maxwell_equations}.
-\begin{theorem}[Non-covariant Maxwell equations]\label{thm:non_covarain_maxwell_equations}
+\begin{theorem}[Vector Maxwell equations]\label{thm:non_covarain_maxwell_equations}
 	The non-covariant Maxwell equations are
 	\begin{align}
 		\div\vb{E}
@@ -137,7 +144,6 @@ The proof is given in \proofref{the appendix}{thm:covariant_maxwell_equations}.
 		\label{eq:mw_inhomo_vec}
 	\end{align}
 \end{theorem}
-For the proof see \proofref{the appendix}{thm:non_covarain_maxwell_equations}.
 
 \subsection{Mode expansion}
 
@@ -249,120 +255,3 @@ For the proof see \proofref{the appendix}{thm:non_covarain_maxwell_equations}.
 		\abs{a(\vb{p})}^2
 	\end{equation}
 \end{lemma}
-
-\subsection{Canonical quantization}
-
-According to Greiner~\cite[p.~196]{Greiner2013}
-\begin{align}
-	\vb{A}(t,\vb{x})
-	&=
-	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\boldsymbol{\varepsilon}_\lambda(\vb{p})
-	\left\{
-		a_\lambda(\vb{p})
-		e^{-ip_\mu x^\mu}
-		+
-		\text{c.c.}
-	\right\}
-	\label{eq:qmw_pos}
-	\\
-	\vb{E}(t,\vb{x})
-	&=
-	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\left(
-		i\omega(\vb{p})
-		\boldsymbol{\varepsilon}_\lambda(\vb{p})
-	\right)
-	\left\{
-		a_\lambda(\vb{p})
-		e^{-ip_\mu x^\mu}
-		-
-		\text{c.c.}
-	\right\}
-	\label{eq:qmw_mom}
-	\\
-	\vb{B}(t,\vb{x})
-	&=
-	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\left(
-		i\vb{p}\cross\omega(\vb{p})
-		\boldsymbol{\varepsilon}_\lambda(\vb{p})
-	\right)
-	\left\{
-		a_\lambda(\vb{p})
-		e^{-ip_\mu x^\mu}
-		-
-		\text{c.c.}
-	\right\}
-	\label{eq:qmw_mag}
-\end{align}
-and the commutation relations are
-\begin{align}
-	\comm{\hat{A}_i(t,\vb{x})}{\hat{E}_j(t,\vb{y})}
-	=
-	-i\delta^{(3)}_{\perp ij}(\vb{x}-\vb{y})
-	&&
-	\comm{\hat{A}_i(t,\vb{x})}{\hat{A}_j(t,\vb{y})}
-	=
-	0
-	=
-	\comm{\hat{E}_i(t,\vb{x})}{\hat{E}_j(t,\vb{y})}
-\end{align}
-with the transverse delta function
-\begin{equation}
-	\delta^{(3)}_{\perp ij}(\vb{x})
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\left(\delta_{ij}-\frac{p_ip_j}{\vb{p}^2}\right)
-	e^{i\vb{p}\vdot\vb{x}}
-	\label{eq:transverse_delta}
-\end{equation}
-which is required for the quantization in the Coulomb gauge.
-
-The total energy of the field is
-\begin{equation}
-	\hat{H}
-	=
-	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\omega(\vb{p})
-	\hat{a}_\lambda^\dagger(\vb{p})
-	\hat{a}_\lambda(\vb{p})
-	\label{eq:qmw_total_energy}
-\end{equation}
-and the total momentum is
-\begin{equation}
-	\hat{\vb{P}}
-	=
-	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\vb{p}
-	\hat{a}_\lambda^\dagger(\vb{p})
-	\hat{a}_\lambda(\vb{p})
-	\label{eq:qmw_total_momentum}
-\end{equation}
-
-\subsection{Connection to Klein-Gordon field}
-
-Choosing a reference frame in which the polarization basis is independent of the momentum, we find that
-\begin{equation}
-	\hat{\vb{A}}(t,\vb{x})
-	=
-	\sum_{\lambda=1,2}
-	c_\lambda
-	\hat\phi(t,\vb{x})
-	\boldsymbol{\varepsilon}_\lambda
-\end{equation}
-with $c_1,c_2\in\mathbb{C}$ and $\abs{c_1}^2+\abs{c_2}^2=1$.
-Alternatively, we can perform the replacement
-\begin{equation}
-	\hat{a}(\vb{p})
-	\to
-	\sum_{\lambda=1,2}
-	\hat{a}_\lambda(\vb{p})
-	\boldsymbol{\varepsilon}_\lambda(\vb{p})
-\end{equation}
-in our results obtained with the Klein-Gordon field to transfer the results to the Maxwell field in the Coulomb gauge.
