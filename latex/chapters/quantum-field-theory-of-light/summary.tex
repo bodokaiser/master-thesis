@@ -1,53 +1,70 @@
-\section{Connection to quantum optics}
+\section{Approximations and summary}
 
-Here we reduce the results of the previous sections to a continuous-mode description of (linear polarized) light, i.e., frequency range limited to the optical domain.
-Assumptions and limitations:
-\begin{enumerate}
-	\item Fixed reference frame (at rest), i.e., no Lorentz boosts allowed.
-	\item Light is linearly polarized.
-	\item \textcolor{red}{No distribution of the momentum}
-\end{enumerate}
-
-\begin{equation}
-	\hat{N}
-	=
-	\int\dd{\omega}
-	\hat{a}^\dagger(\omega)
-	\hat{a}(\omega)
-\end{equation}
-
-\begin{equation}
-	\hat{E}
-	=
-	i
-	\int\dd{\omega}
-	\omega
-	\hat{a}^\dagger(\omega)
-	\hat{a}(\omega)
-\end{equation}
-
-\begin{equation}
-	\ket{f}
-	=
-	\int\dd{\omega}
-	f(\omega)
-	\hat{a}(\omega)
-\end{equation}
-
-\begin{equation}
+In the previous sections we derived the number state which is an eigenstate of the number operator $\hat{N}$
+\begin{align}
+	\ket{n}
+	&=
+	\frac{1}{n!}
+	\left(
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		f(\vb{p})
+		\hat{a}^\dagger(\vb{p})
+	\right)^n
+	\ket{0}
+	\\
 	\ket{\alpha}
-	=
+	&=
+	e^{-\overline{n}/2}
 	\exp\left\{
-		-
-		\frac{1}{2}
-		\int\dd{\omega}
-		\abs{\alpha(\omega)}^2
-	\right\}
-	\exp\left\{
-		-
-		\int\dd{\omega}
-		\alpha(\omega)
-		\hat{a}^\dagger(\omega)
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\alpha(\vb{p})
+		\hat{a}^\dagger(\vb{p})
 	\right\}
 	\ket{0}
-\end{equation}
+\end{align}
+and the coherent state which is an eigenstate of the annihilation operator.
+For the number observable of these two states, we found
+\begin{align}
+	\expval{\hat{N}}{n}
+	=
+	n
+	&&
+	\expval{(\Delta\hat{N})^2}{n}
+	=
+	0
+	\\
+	\expval{\hat{N}}{\alpha}
+	=
+	\overline{n}
+	&&
+	\expval{(\Delta\hat{N})^2}{n}
+	=
+	\overline{n}
+\end{align}
+while for the energy observable, we found.
+
+Our definitions of the number and coherent state are manifest Lorentz-covariant as the integral measure and the integrand are both Lorentz-invariant.
+However, our measurements are not Lorentz-invariant, i.e., our spectrum analyzer measures $\beta(\vb{p})=\alpha(\vb{p})/\sqrt{2\omega(\vb{p})}$ and not $\alpha(\vb{p})$ for the spectrum.
+Therefore, we can redefine the spectrum and use
+\begin{align}
+	\ket{n}
+	&=
+	\frac{1}{n!}
+	\left(
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		g(\vb{p})
+		\hat{a}^\dagger(\vb{p})
+	\right)^n
+	\ket{0}
+	\\
+	\ket{\beta}
+	&=
+	e^{-\overline{n}/2}
+	\exp\left\{
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\beta(\vb{p})
+		\hat{a}^\dagger(\vb{p})
+	\right\}
+	\ket{0}
+\end{align}
+without loss of generality.\footnote{We kept the Lorentz-invariant measure and spectrum throughout the chapter to compare the results directly with the literature.}

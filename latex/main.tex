@@ -13,7 +13,7 @@
 \usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{physics}
-\usepackage{siunitx}
+\usepackage[separate-uncertainty=true]{siunitx}
 \usepackage[subpreambles=true]{standalone}
 \usepackage{subfig}
 \usepackage{xcolor}
@@ -50,10 +50,10 @@
 
 	\chapter{Quantum field theory of light}
 	\begin{refsection}
+		\include{chapters/quantum-field-theory-of-light/maxwell}
 		\include{chapters/quantum-field-theory-of-light/klein-gordon}
 		\include{chapters/quantum-field-theory-of-light/states}
 		\include{chapters/quantum-field-theory-of-light/interactions}
-		\include{chapters/quantum-field-theory-of-light/maxwell}
 		\include{chapters/quantum-field-theory-of-light/summary}
 		
 		\addcontentsline{toc}{section}{References}

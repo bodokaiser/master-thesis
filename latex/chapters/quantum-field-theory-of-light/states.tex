@@ -431,7 +431,7 @@ The proof is given in \proofref{the appendix}{thm:single_particle_number_state_w
 \subsection{Multi-particle number state}
 
 \begin{definition}
-	A $n$-particle number state with spectrum $f$ is given by
+	A multi-particle number state with $n$ particles and spectrum $f$ is given by
 	\begin{equation}
 		\ket{n,f}
 		=
@@ -449,8 +449,18 @@ The proof is given in \proofref{the appendix}{thm:single_particle_number_state_w
 	\end{equation}
 \end{definition}
 \begin{theorem}
-
+	The multi-particle number state $\ket{n,f}$ is an eigenstate of the number operator $\hat{N}$ to eigenvalue $n$, i.e.,
+	\begin{equation}
+		\hat{N}
+		\ket{n,f}
+		=
+		n
+		\ket{n,f}
+	\end{equation}
 \end{theorem}
+\begin{corollary}
+	The multi-particle number state $\ket{n,f}$ has zero-variance in the number observable.
+\end{corollary}
 
 \subsection{Coherent state}
 
@@ -582,6 +592,15 @@ The energy moments look very similar but in contrast to the single-particle numb
 	\end{align}
 	.
 \end{corollary}
+\begin{definition}
+	The coherent state's mean number of particles $\overline{n}$ is equal to the first moment of the number operator
+	\begin{equation}
+		\overline{n}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{\alpha(\vb{p})}^2
+	\end{equation}
+\end{definition}
 
 \begin{lemma}
 	The probability of detecting a single-particle given a coherent state is
