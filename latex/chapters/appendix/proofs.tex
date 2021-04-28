@@ -1438,13 +1438,13 @@
 			\braket{n_f}{m_g}
 			&=
 			\expval{
-				\frac{1}{n!}
+				\frac{1}{\sqrt{n!}}
 				\left(
 					\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 					f(\vb{p})^*
 					\hat{a}(\vb{p})
 				\right)^n
-				\frac{1}{m!}
+				\frac{1}{\sqrt{m!}}
 				\left(
 					\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
 					g(\vb{q})
@@ -1461,11 +1461,11 @@
 			\int\frac{\dd[3]{q_m}}{(2\pi)^3\sqrt{2\omega(\vb{q}_m)}}
 			\\
 			&\times
-			\frac{1}{n!}
+			\frac{1}{\sqrt{n!}}
 			f(\vb{p}_1)^*
 			\dots
 			f(\vb{p}_n)^*
-			\frac{1}{m!}
+			\frac{1}{\sqrt{m!}}
 			g(\vb{q}_1)
 			\dots
 			g(\vb{q}_m)
@@ -1664,6 +1664,25 @@
 		\end{split}
 	\end{equation}
 	for the second moment.
+\end{delayedproof}
+\begin{delayedproof}{thm:coherent_state_number_state_inner_product}
+	Expanding the exponential series and noting that the coefficients have the same algebraic form as a $m$-particle state with spectrum $\alpha(\vb{p})$\footnote{Except for the coherent spectrum $\alpha(\vb{p})$ being unbound.}, we find
+	\begin{equation*}
+		\braket{n_f}{\alpha}
+		=
+		\sum_{m=0}^\infty
+		\frac{1}{\sqrt{m!}}
+		\braket{n_f}{m_\alpha}
+		e^{-\overline{n}/2}
+		=
+		\frac{1}{\sqrt{m!}}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})^*
+			\alpha(\vb{p})
+		\right)^n
+		e^{-\overline{n}/2}
+	\end{equation*}
 \end{delayedproof}
 
 \section{Interactions}

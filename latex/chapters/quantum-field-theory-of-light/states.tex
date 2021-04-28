@@ -206,11 +206,11 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\begin{equation}
 		\ket{n_f}
 		=
-		\frac{1}{n!}
+		\frac{1}{\sqrt{n!}}
 		\hat\phi[f]^n
 		\ket{0}
 		=
-		\frac{1}{n!}
+		\frac{1}{\sqrt{n!}}
 		\left(
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			f(\vb{p})
@@ -364,35 +364,56 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 		.
 	\end{equation}
 \end{corollary}
-\begin{lemma}
-	The probability of detecting a single-particle given a coherent state is
+\begin{lemma}\label{thm:coherent_state_number_state_inner_product}
+	The inner product between an $n$-particle number state with spectrum $f(\vb{p})$ and a coherent state with spectrum $\alpha(\vb{p})$ is
 	\begin{equation}
-		\begin{split}
-			\braket{f}{\alpha}
-			&=
-			\exp\left\{
-				-
-				\frac{1}{2}
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				\abs{\alpha(\vb{p})}^2
-			\right\}
+		\braket{n_f}{\alpha}
+		=
+		\frac{1}{\sqrt{n!}}
+		\left(
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 			f(\vb{p})^*
 			\alpha(\vb{p})
-		\end{split}
+		\right)^n
+		e^{-\overline{n}/2}
 	\end{equation}
-	Assuming spectral overlap, i.e., $\alpha(\vb{p})=\alpha f(\vb{p})$, we recover the Poisson distribution
-	\begin{equation}
-		\begin{split}
-			\braket{f}{\alpha}
-			&=
-			\alpha
-			\exp\left\{
-				-
-				\frac{1}{2}
-				\abs{\alpha}^2
-			\right\}
-		\end{split}
-		.
-	\end{equation}
+	where $\overline{n}$ is the mean particle number of the coherent state.
 \end{lemma}
+\begin{corollary}
+	If $\alpha(\vb{p})=f(\vb{p})$ the former inner product reduces to
+	\begin{equation}
+		\braket{n_f}{\alpha}
+		=
+		\frac{1}{\sqrt{n!}}
+		e^{-\overline{n}/2}
+	\end{equation}
+	which absolute squared is a Poisson distribution with unit variance.
+\end{corollary}
+\begin{corollary}
+	If the product of the spectrums is equal to
+	\begin{equation}
+		f(\vb{p})
+		\alpha(\vb{p})
+		=
+		2\omega(\vb{p})
+		(2\pi)^3
+		\delta(\vb{p}-\vb{k})
+	\end{equation}
+	the inner product reduces to
+	\begin{equation}
+		\braket{n_f}{\alpha}
+		=
+		\frac{\alpha^n}{\sqrt{n!}}
+		e^{-\overline{n}/2}
+	\end{equation}
+	and we recover the Poisson distribution known from single-mode quantum optics
+	\begin{equation}
+		p_n
+		=
+		\abs{\braket{n_f}{\alpha}}^2
+		=
+		\frac{\overline{n}^n}{\sqrt{n!}}
+		e^{-\overline{n}}
+	\end{equation}
+	where $\overline{n}=\abs{\alpha}^2$.
+\end{corollary}
