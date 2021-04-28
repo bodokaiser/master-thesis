@@ -1169,7 +1169,7 @@
 	\end{equation}
 \end{lemma}
 \begin{proof}
-	To prove by induction, we start with $n=1$
+	Induction start $n=1$:
 	\begin{equation*}
 		\hat{a}(\vb{p})
 		\prod_{j=1}^1
@@ -1185,7 +1185,8 @@
 		\ket{0}
 	\end{equation*}
 	where we used the commutation relation and $\hat{a}(\vb{p})\ket{0}=0$.
-	We assume the induction hypothesis, \cref{eq:normal_ordered_a1_cn}, to hold for $n\in\mathbb{N}$ and perform the induction step $n\to n+1$
+
+	Induction step $n\to n+1$:
 	\begin{equation*}
 		\begin{split}
 			\hat{a}(\vb{p})
@@ -1248,6 +1249,254 @@
 	\end{equation*}
 	where we used that creation operators commute in the first line, the canonical commutation relation in the second line, and the induction hypothesis in the third line.
 \end{proof}
+\begin{lemma}\label{thm:anti_normal_expvalue}
+	Let $n,m\in\mathbb{N}$ then
+	\begin{equation}
+		\expval{
+			\hat{a}(\vb{p}_1)
+			\dots
+			\hat{a}(\vb{p}_n)
+			\hat{a}^\dagger(\vb{q}_1)
+			\dots
+			\hat{a}^\dagger(\vb{q}_m)
+		}{0}
+		=
+		\delta_{nm}
+		\sum_{\pi\in\textrm{perm}}
+		\prod^n_{i=1}
+		(2\pi)^3
+		\delta^{(3)}(\vb{p}_i-\vb{q}_{\pi(i)})
+	\end{equation}
+	where the sum is over all pairwise permutations of $(i,j)\in\left\{1,\dots,n\right\}^2$.
+\end{lemma}
+\begin{proof}
+	Assuming $s=n-m>0$, then
+	\begin{equation*}
+		\expval{
+			\hat{a}(\vb{p}_1)
+			\dots
+			\hat{a}(\vb{p}_n)
+			\hat{a}^\dagger(\vb{q}_1)
+			\dots
+			\hat{a}^\dagger(\vb{q}_m)
+		}{0}
+		\propto
+		\expval{
+			\hat{a}(\vb{p}_{i_1})
+			\dots
+			\hat{a}(\vb{p}_{i_s})
+		}{0}
+		=
+		0
+	\end{equation*}
+	because of $\hat{a}(\vb{p})\ket{0}=0$. The case $s<0$ follows directly from the hermitian conjugate.
+	We conclude that the expectation value is only non-zero iff $n=m$.
+	
+	Induction start $n=1$:
+	\begin{equation*}
+		\expval{
+			\hat{a}(\vb{p}_1)
+			\hat{a}^\dagger(\vb{q}_1)
+			\dots
+			\hat{a}^\dagger(\vb{q}_m)
+		}{0}
+		=
+		\delta_{m1}
+		\expval{
+			\hat{a}(\vb{p}_1)
+			\hat{a}^\dagger(\vb{q}_1)
+		}{0}
+		=
+		\delta_{m1}
+		(2\pi)^3
+		\delta^{(3)}(\vb{q}_1-\vb{p}_1)
+	\end{equation*}
+	
+	Induction step $n\to n+1$:
+	\begin{equation*}
+		\begin{split}
+			&\
+			\expval{
+				\hat{a}(\vb{p}_1)
+				\dots
+				\hat{a}(\vb{p}_{n+1})
+				\hat{a}^\dagger(\vb{q}_1)
+				\dots
+				\hat{a}^\dagger(\vb{q}_{m+1})
+			}{0}
+			\\
+			=&\
+			\delta_{nm}
+			\expval{
+				\hat{a}(\vb{p}_1)
+				\dots
+				\hat{a}(\vb{p}_{n+1})
+				\hat{a}^\dagger(\vb{q}_{n+1})
+				\hat{a}^\dagger(\vb{q}_1)
+				\dots
+				\hat{a}^\dagger(\vb{q}_n)
+			}{0}
+			\\
+			=&\
+			\delta_{nm}
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}_{n+1}-\vb{p}_{n+1})
+			\expval{
+				\hat{a}(\vb{p}_1)
+				\dots
+				\hat{a}(\vb{p}_n)
+				\hat{a}^\dagger(\vb{q}_1)
+				\dots
+				\hat{a}^\dagger(\vb{q}_n)
+			}{0}
+			\\
+			+&\
+			\delta_{nm}
+			\expval{
+				\hat{a}(\vb{p}_1)
+				\dots
+				\hat{a}(\vb{p}_n)
+				\hat{a}^\dagger(\vb{q}_{n+1})
+				\hat{a}(\vb{p}_{n+1})
+				\hat{a}^\dagger(\vb{q}_1)
+				\dots
+				\hat{a}^\dagger(\vb{q}_n)
+			}{0}
+		\end{split}
+	\end{equation*}
+	the second term can be further simplified to
+	\begin{equation*}
+		\begin{split}
+			&\
+			\expval{
+				\hat{a}(\vb{p}_1)
+				\dots
+				\hat{a}(\vb{p}_n)
+				\hat{a}^\dagger(\vb{q}_{n+1})
+				\hat{a}(\vb{p}_{n+1})
+				\hat{a}^\dagger(\vb{q}_1)
+				\dots
+				\hat{a}^\dagger(\vb{q}_n)
+			}{0}
+			\\
+			=&\
+			\left(
+				\hat{a}(\vb{q}_{n+1})
+				\hat{a}^\dagger(\vb{p}_1)
+				\dots
+				\hat{a}^\dagger(\vb{p}_n)
+				\ket{0}
+			\right)^\dagger
+			\left(
+				\hat{a}(\vb{p}_{n+1})
+				\hat{a}^\dagger(\vb{q}_1)
+				\dots
+				\hat{a}^\dagger(\vb{q}_n)
+				\ket{0}
+			\right)
+			\\
+			=&\
+			\left(
+				\sum^n_{i=1}
+				(2\pi)^3
+				\delta^{(3)}(\vb{p}_i-\vb{q}_{n+1})
+				\prod_{\substack{j=1\\j\neq i}}^n
+				\hat{a}^\dagger(\vb{p}_j)
+				\ket{0}
+			\right)^\dagger
+			\left(
+				\sum^n_{l=1}
+				(2\pi)^3
+				\delta^{(3)}(\vb{q}_l-\vb{p}_{n+1})
+				\prod_{\substack{k=1\\k\neq l}}^n
+				\hat{a}^\dagger(\vb{p}_k)
+				\ket{0}
+			\right)
+			\\
+			=&\
+			\sum^n_{i,l=1}
+			\delta^{(3)}(\vb{p}_i-\vb{q}_{n+1})
+			\delta^{(3)}(\vb{q}_l-\vb{p}_{n+1})
+			\expval{
+				\left(
+					\prod_{\substack{j=1\\j\neq i}}^n
+					\hat{a}(\vb{p}_j)
+				\right)
+				\left(
+					\prod_{\substack{k=1\\k\neq l}}^n
+					\hat{a}^\dagger(\vb{p}_k)
+				\right)
+			}{0}
+		\end{split}
+	\end{equation*}
+	applying the induction hypothesis and inserting the second term back, we complete the induction step as all permutations are accounted for.
+\end{proof}
+\begin{delayedproof}{thm:multi_particle_number_state_inner_product}
+	Using \Cref{thm:anti_normal_expvalue} and noting that the sum over the permutations compensates for the factorials, we find
+	\begin{equation*}
+		\begin{split}
+			\braket{n_f}{m_g}
+			&=
+			\expval{
+				\frac{1}{n!}
+				\left(
+					\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+					f(\vb{p})^*
+					\hat{a}(\vb{p})
+				\right)^n
+				\frac{1}{m!}
+				\left(
+					\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+					g(\vb{q})
+					\hat{a}^\dagger(\vb{q})
+				\right)^m
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+			\dots
+			\int\frac{\dd[3]{p_n}}{(2\pi)^3\sqrt{2\omega(\vb{p}_n)}}
+			\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
+			\dots
+			\int\frac{\dd[3]{q_m}}{(2\pi)^3\sqrt{2\omega(\vb{q}_m)}}
+			\\
+			&\times
+			\frac{1}{n!}
+			f(\vb{p}_1)^*
+			\dots
+			f(\vb{p}_n)^*
+			\frac{1}{m!}
+			g(\vb{q}_1)
+			\dots
+			g(\vb{q}_m)
+			\expval{
+				\hat{a}(\vb{p}_1)
+				\dots
+				\hat{a}(\vb{p}_n)
+				\hat{a}^\dagger(\vb{q}_1)
+				\dots
+				\hat{a}^\dagger(\vb{q}_m)
+			}{0}
+			\\
+			&=
+			\delta_{nm}
+			\int\frac{\dd[3]{p_1}}{(2\pi)^32\omega(\vb{p}_1)}
+			f(\vb{p}_1)^*
+			g(\vb{p}_1)
+			\dots
+			\int\frac{\dd[3]{p_n}}{(2\pi)^32\omega(\vb{p}_n)}
+			f(\vb{p}_n)^*
+			g(\vb{p}_n)
+			\\
+			&=
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				f(\vb{p})^*
+				g(\vb{p})
+			\right)^n
+		\end{split}
+	\end{equation*}
+\end{delayedproof}
 
 \subsection{Coherent state}
 

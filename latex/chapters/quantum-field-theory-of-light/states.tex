@@ -204,7 +204,7 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 \begin{definition}[Multi-particle number state]
 	A multi-particle number state with $n$ particles and spectrum $f$ is given by
 	\begin{equation}
-		\ket{n,f}
+		\ket{n_f}
 		=
 		\frac{1}{n!}
 		\hat\phi[f]^n
@@ -223,14 +223,31 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	The multi-particle number state $\ket{n,f}$ is an eigenstate of the number operator $\hat{N}$ to eigenvalue $n$, i.e.,
 	\begin{equation}
 		\hat{N}
-		\ket{n,f}
+		\ket{n_f}
 		=
 		n
-		\ket{n,f}
+		\ket{n_f}
 	\end{equation}
 \end{theorem}
 \begin{corollary}
-	The multi-particle number state $\ket{n,f}$ has zero-variance in the number observable.
+	The multi-particle number state $\ket{n_f}$ has zero-variance in the number observable.
+\end{corollary}
+\begin{theorem}\label{thm:multi_particle_number_state_inner_product}
+	Let $\ket{n_f}$ be an $n$-particle number state with spectrum $f(\vb{p})$ and $,\ket{m_g}$ a $m$-particle number state with spectrum $g(\vb{p})$, then their inner product is
+	\begin{equation}
+		\braket{n_f}{m_g}
+		=
+		\delta_{nm}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})^*
+			g(\vb{p})
+		\right)^n
+		.
+	\end{equation}
+\end{theorem}
+\begin{corollary}
+	Multi-particle number state with the same spectrum $f(\vb{p})$ are orthogonal.
 \end{corollary}
 
 \subsection{Coherent state}
