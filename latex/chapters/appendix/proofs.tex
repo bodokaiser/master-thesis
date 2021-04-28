@@ -464,7 +464,7 @@
 
 \begin{delayedproof}{thm:single_particle_number_state_smeared_kg}
 	First, we note that the positive frequency Klein-Gordon operator vanishes,
-	\begin{equation}
+	\begin{equation*}
 		\int\dd[4]{x}
 		f(x)
 		\hat\phi(x)
@@ -475,9 +475,9 @@
 		\hat\phi^-(x)
 		\ket{0}
 		,
-	\end{equation}
+	\end{equation*}
 	because $\hat{a}(\vb{p})\ket{0}=0$, then we insert the definition of the negative frequency part \cref{eq:qkg_positive_negative_frequency}
-	\begin{equation}
+	\begin{equation*}
 		\begin{split}
 			\int\dd[4]{x}
 			f(x)
@@ -506,17 +506,18 @@
 			f(\vb{p})
 			\hat{a}^\dagger(\vb{p})
 			\ket{0}
-			=
-			\ket{f}
+			\\
+			&=
+			\ket{1_f}
 		\end{split}
-	\end{equation}
-	and the last integral is the definition of the single-particle state.
+	\end{equation*}
+	and recognize the single-particle number state.
 \end{delayedproof}
 \begin{delayedproof}{th:single_particle_number_states_inner_product}
-	For the proof, we insert the definition and use the commutation relation of the annihilation and creation operators of the Klein-Gordon field
-	\begin{equation}
+	Simply inserting the definition and using the commutation relations
+	\begin{equation*}
 		\begin{split}
-			\bra{g}\ket{f}
+			\bra{1_g}\ket{1_f}
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
@@ -533,17 +534,41 @@
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 			f(\vb{p})g(\vb{p})^*
 		\end{split}
-		.
-	\end{equation}
+	\end{equation*}
+	shows the equality.
 \end{delayedproof}
 \begin{delayedproof}{thm:single_particle_number_state_normalization}
-	The probabilistic interpretation of quantum mechanics requires $\braket{f}=1$ and \cref{th:single_particle_number_states_inner_product} with $\ket{g}=\ket{f}$ relates $\braket{f}=1$ with the integral.
+	The probabilistic interpretation of quantum mechanics requires the absolute square of the probability amplitude to equal one, i.e.,
+	\begin{equation*}
+		\abs{\braket{1_f}}^2
+		=
+		1
+		.
+	\end{equation*}
+	From \Cref{th:single_particle_number_states_inner_product}, we know that
+	\begin{equation*}
+		\braket{1_f}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{f(\vb{p})}^2
+	\end{equation*}
+	which is real-valued. Combining both insights, we must conclude
+	\begin{equation*}
+		\braket{1_f}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{f(\vb{p})}^2
+		=
+		1
+		.
+	\end{equation*}
 \end{delayedproof}
 \begin{delayedproof}{thm:single_particle_number_state_number_eigenstate}
+	Inserting the definitions and carefully applying the commutation relations
 	\begin{equation*}
 		\begin{split}
 			\hat{N}
-			\ket{f}
+			\ket{1_f}
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3}
 			\hat{a}^\dagger(\vb{p})
@@ -576,206 +601,120 @@
 			f(\vb{p})
 			\hat{a}^\dagger(\vb{p})
 			\ket{0}
+			\\
+			&=
+			1
+			\ket{1_f}
 		\end{split}
+		,
 	\end{equation*}
+	we identify the single-particle state which has trivial eigenvalue $1$.
 \end{delayedproof}
-
 \begin{delayedproof}{thm:single_particle_number_state_energy}
-	We start with the expectation values of the energy operator and begin with the auxiliary results
-	\begin{equation}
+	Using the auxiliary result
+	\begin{equation*}
 		\begin{split}
-			\expval{\hat{a}(\vb{q})\hat{H}\hat{a}^\dagger(\vb{p})}{0}
-			&=
-			\expval{
-				\hat{a}(\vb{q})
-				\left(
-					\int\frac{\dd[3]{k}}{(2\pi)^3}
-					\omega(\vb{k})
-					\hat{a}^\dagger(\vb{k})
-					\hat{a}(\vb{k})
-				\right)
-				\hat{a}^\dagger(\vb{p})
-			}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{k}}{(2\pi)^3}
-			\omega(\vb{k})
-			\expval{
-				\hat{a}(\vb{q})
-				\hat{a}^\dagger(\vb{k})
-				\hat{a}(\vb{k})
-				\hat{a}^\dagger(\vb{p})
-			}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{k}}{(2\pi)^3}
-			\omega(\vb{k})
-			\expval{
-				\hat{a}(\vb{q})
-				\hat{a}^\dagger(\vb{k})
-				(2\pi)^3\delta^{(3)}(\vb{k}-\vb{p})
-			}{0}
-			\\
-			&=
-			\omega(\vb{p})
-			\expval{
-				\hat{a}(\vb{q})
-				\hat{a}^\dagger(\vb{p})
-			}{0}
-			\\
-			&=
-			\omega(\vb{p})
-			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-		\end{split}
-	\end{equation}
-	and
-	\begin{equation}
-		\begin{split}
-			\expval{
-				\hat{a}(\vb{q})
-				\hat{H}^2\hat{a}^\dagger(\vb{p})
-			}{0}
-			&=
-			\expval{
-				\hat{a}(\vb{q})
-				\left(
-					\int\frac{\dd[3]{k_1}}{(2\pi)^3}
-					\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-					\omega(\vb{k}_1)
-					\omega(\vb{k}_2)
-					\hat{a}^\dagger(\vb{k}_1)
-					\hat{a}^\dagger(\vb{k}_2)
-					\hat{a}(\vb{k}_1)
-					\hat{a}(\vb{k}_2)
-				\right)
-				\hat{a}^\dagger(\vb{p})
-			}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{k_1}}{(2\pi)^3}
-			\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-			\omega(\vb{k}_1)
-			\omega(\vb{k}_2)
-			\expval{
-				\hat{a}(\vb{q})
-				\hat{a}^\dagger(\vb{k}_1)
-				\hat{a}^\dagger(\vb{k}_2)
-				\hat{a}(\vb{k}_1)
-				\hat{a}(\vb{k}_2)
-				\hat{a}^\dagger(\vb{p})
-			}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{k_1}}{(2\pi)^3}
-			\int\frac{\dd[3]{k_2}}{(2\pi)^3}
-			\omega(\vb{k}_1)
-			\omega(\vb{k}_2)
-			\expval{
-				(2\pi)^3
-				\delta^{(3)}(\vb{k}_1-\vb{q})
-				\hat{a}^\dagger(\vb{k}_2)
-				\hat{a}(\vb{k}_1)
-				(2\pi)^3
-				\delta^{(3)}(\vb{k}_2-\vb{p})
-			}{0}
-			\\
-			&=
-			\omega(\vb{p})
-			\omega(\vb{q})
-			\expval{
-				\hat{a}^\dagger(\vb{p})
-				\hat{a}(\vb{q})
-			}{0}
-			\\
-			&=
-			\omega(\vb{p})^2
-			(2\pi)^3
-			\delta^{(3)}(\vb{q}-\vb{p})
-		\end{split}
-		.
-	\end{equation}
-	The first moment then turns out to be
-	\begin{equation}
-		\begin{split}
-			\expval{\hat{H}}{f}
-			&=
-			\left(
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				f(\vb{p})
-				\hat{a}^\dagger(\vb{p})
-				\ket{0}
-			\right)^\dagger
 			\hat{H}
-			\left(
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-				f(\vb{q})
-				\hat{a}^\dagger(\vb{q})
-				\ket{0}
-			\right)^\dagger
+			\ket{1_f}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\hat{a}(\vb{p})
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\hat{a}(\vb{p})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			(2\pi)^3
+			\delta^{(3)}(\vb{p}-\vb{q})
+			\ket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\omega(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
+		\end{split}
+		,
+	\end{equation*}
+	the first moment turns out to be
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat{H}}{1_f}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})^*
+			\bra{0}
+			\hat{a}(\vb{p})
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\omega(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
 			\\
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\omega(\vb{q})
 			f(\vb{p})^*
 			f(\vb{q})
 			\expval{
 				\hat{a}(\vb{p})
-				\hat{H}
 				\hat{a}^\dagger(\vb{q})
 			}{0}
 			\\
 			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			f(\vb{p})^*
-			f(\vb{q})		
-			\omega(\vb{p})
-			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 			\omega(\vb{p})
 			\abs{f(\vb{p})}^2
 		\end{split}
-	\end{equation}
-	and the second moment is
-	\begin{equation}
+	\end{equation*}
+	in agreement with Ref.~\cite[eqs.~10 and 11]{Naumov2013}.
+	The second moment turns out as
+	\begin{equation*}
 		\begin{split}
-			\expval{\hat{H}^2}{f}
+			\expval{\hat{H}^2}{1_f}
 			&=
-			\left(
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				f(\vb{p})
-				\hat{a}^\dagger(\vb{p})
-				\ket{0}
-			\right)^\dagger
-			\hat{H}^2
-			\left(
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-				f(\vb{q})
-				\hat{a}^\dagger(\vb{q})
-				\ket{0}
-			\right)^\dagger
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})^*
+			\omega(\vb{p})
+			\bra{0}
+			\hat{a}(\vb{p})
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			f(\vb{q})
+			\omega(\vb{q})
+			\hat{a}^\dagger(\vb{q})
+			\ket{0}
 			\\
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\omega(\vb{p})
+			\omega(\vb{q})
 			f(\vb{p})^*
 			f(\vb{q})
 			\expval{
 				\hat{a}(\vb{p})
-				\hat{H}^2
 				\hat{a}^\dagger(\vb{q})
 			}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			f(\vb{p})^*
-			f(\vb{q})
-			\omega(\vb{p})^2
-			(2\pi)^3
-			\delta^{(3)}(\vb{q}-\vb{p})
 			\\
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
@@ -783,23 +722,28 @@
 			\abs{f(\vb{p})}^2
 		\end{split}
 		.
-	\end{equation}
-	in agreement with Ref.~\cite[eqs.~10 and 11]{Naumov2013}.
+	\end{equation*}
 \end{delayedproof}
-
 \begin{delayedproof}{thm:single_particle_number_state_wave_function}
-	The coordinate the wave function is
-	\begin{equation}
+	The Klein-Gordon operator acting on the vacuum state reduces to the negative frequency Klein-Gordon operator
+	\begin{equation*}
+		\hat\phi(t,\vb{x})
+		\ket{0}
+		=
+		\hat\phi^-(t,\vb{x})
+		\ket{0}
+	\end{equation*}
+	because $\bra{0}\hat{a}^\dagger(\vb{p})=0$.
+	The hermitian conjugate reveals the left hand side
+	\begin{equation*}
 		\begin{split}
-			\psi(t,\vb{x})
+			\bra{0}
+			\hat\phi^+(t,\vb{x})
 			&=
-			\bra{0}
-			\hat\phi(t,\vb{x})
-			\ket{f}
-			=
-			\bra{0}
-			\hat\phi^-(t,\vb{x})
-			\ket{f}
+			\left(
+				\hat\phi^-(t,\vb{x})
+				\ket{0}
+			\right)^\dagger
 			\\
 			&=
 			\left(
@@ -808,55 +752,76 @@
 				\hat{a}^\dagger(\vb{p})
 				\ket{0}
 			\right)^\dagger
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			f(\vb{q})
-			\hat{a}^\dagger(\vb{q})
-			\ket{0}
 			\\
 			&=
-			\left(
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				e^{-ip_\mu x^\mu}
-				\bra{0}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{-ip_\mu x^\mu}
+			\bra{0}
+			\hat{a}(\vb{p})
+		\end{split}
+	\end{equation*}
+	of the coordinate wave function
+	\begin{equation*}
+		\psi(t,\vb{x})
+		=
+		\bra{0}
+		\hat\phi(t,\vb{x})
+		\ket{1_f}
+		=
+		\bra{0}
+		\hat\phi^+(t,\vb{x})
+		\ket{1_f}
+		.
+	\end{equation*}
+	Inserting the definition of the single-particle number state yields
+	\begin{equation*}
+		\begin{split}
+			\psi(t,\vb{x})
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{-ip_\mu x^\mu}
+			\expval{
 				\hat{a}(\vb{p})
-			\right)^\dagger
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			f(\vb{q})
-			\hat{a}^\dagger(\vb{q})
-			\ket{0}
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				f(\vb{q})
+				\hat{a}^\dagger(\vb{p})
+			}{0}
 			\\
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			f(\vb{q})
 			e^{-ip_\mu x^\mu}
-			\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})}{0}
+			f(\vb{q})
+			\expval{
+				\hat{a}(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+			}{0}
 			\\
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			f(\vb{q})
 			e^{-ip_\mu x^\mu}
+			f(\vb{q})
 			(2\pi)^3
 			\delta^{(3)}(\vb{q}-\vb{p})
 			\\
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})
 			e^{-ip_\mu x^\mu}
+			f(\vb{p})
 		\end{split}
-	\end{equation}
+	\end{equation*}
+	in agreement with Ref.~\cite[eq.~4]{Naumov2013}.
 \end{delayedproof}
-
-\begin{lemma}[Probability current of a single-particle number state]
+\begin{lemma}
+	The probability current of a single-particle number state is
 	\begin{equation}
 		j_\mu(t,\vb{x})
 		=
-		2
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
 		q_\mu
-		\Re\left\{
+		2\Re\left\{
 			f(\vb{p})^*
 			f(\vb{q})
 			e^{-i(q_\mu-p_\mu)x^\mu}
@@ -864,288 +829,93 @@
 	\end{equation}
 \end{lemma}
 \begin{proof}
-	\begin{equation}
+	The probability current is\footnote{See Ref.~\cite[p.~18]{Peskin1995} for a derivation from Noether's theorem}
+	\begin{equation*}
+		j^\mu(t,\vb{x})
+		=
+		i
+		\bigl\{
+			\psi(t,\vb{x})
+			\partial^\mu
+			\psi(t,\vb{x})^*
+			-
+			\psi(t,\vb{x})^*
+			\partial^\mu
+			\psi(t,\vb{x})
+		\bigr\}
+	\end{equation*}
+	and can be written
+	\begin{equation*}
+		j^\mu(t,\vb{x})
+		=
+		2\frac{\psi(t,\vb{x})\partial^\mu\psi(t,\vb{x})^*-\text{c.c.}}{2i}
+		=
+		2\Im\left\{
+			\psi(t,\vb{x})
+			\partial^\mu
+			\psi(t,\vb{x})^*
+		\right\}
+		.
+	\end{equation*}
+	We proceed with the argument of the imaginary part
+	\begin{equation*}
 		\begin{split}
-			j_\mu(t,\vb{x})
+			\psi(t,\vb{x})^*
+			\partial^\mu
+			\psi(t,\vb{x})
 			&=
-			i
-			\bigl\{
-				\psi(t,\vb{x})
-				\partial_\mu
-				\psi(t,\vb{x})^*
-				-
-				\psi(t,\vb{x})^*
-				\partial_\mu
-				\psi(t,\vb{x})
-			\bigr\}
-			=
-			2
-			\Im\left\{
-				\psi(t,\vb{x})^*
-				\partial_\mu
-				\psi(t,\vb{x})
-			\right\}
-			\\
-			&=
-			2
-			\Im\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				f(\vb{p})^*e^{+ip_\mu x^\mu}
-				\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-				f(\vb{q})iq_\mu e^{-iq_\mu x^\mu}
-			\right\}
-			\\
-			&=
-			2
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			e^{-ip_\mu x^\mu}
+			f(\vb{p})
+			\partial^\mu
 			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-			\Im\left\{
-				f(\vb{p})^*
-				f(\vb{q})
-				iq_\mu
-				e^{-i(q_\mu-p_\mu)x^\mu}
-			\right\}
-			\\
-			&=
-			2
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-			q_\mu
-			\Re\left\{
-				f(\vb{p})^*
-				f(\vb{q})
-				e^{-i(q_\mu-p_\mu)x^\mu}
-			\right\}
+			e^{+iq_\mu x^\mu}
+			f(\vb{q})^*
 			\\
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-			\left\{
-				q_\mu
-				+
-				p_\mu
-			\right\}
-			f(\vb{p})^*
-			f(\vb{q})
-			e^{-i(q_\mu-p_\mu)x^\mu}
+			iq^\mu
+			f(\vb{p})
+			f(\vb{q})^*
+			e^{-i(p_\mu-q_\mu)x^\mu}
 		\end{split}
-	\end{equation}
-	where we expanded the real part and renamed the integrations variables of the second term in the last line.
-	The last line is in agreement with results reported in Ref.~\cite{Naumov2013}.
-\end{proof}
-
-\begin{delayedproof}{thm:single_particle_number_state_group_velocity}
-	The center-of-mass position can be expressed in terms of the velocity
-	\begin{equation}
-		\begin{split}
-			\overline{\vb{x}}
-			&=
-			\int\dd[3]{x}
-			\vb{x}
-			\rho(t,\vb{x})
-			\\
-			&=
-			2\Re\left\{
-				\int\dd[3]{x}
-				\vb{x}
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-				\omega(\vb{q})
-				f(\vb{q})
-				f(\vb{p})^*
-				e^{-i(p_\mu-q_\mu)x^\mu}
-			\right\}
-			\\
-			&=
-			2\Re\left\{
-				\int\dd[3]{x}
-				\vb{x}
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				\int\frac{\dd[3]{q}}{(2\pi)^3}
-				f(\vb{q})
-				f(\vb{p})^*
-				e^{-i(p_\mu-q_\mu)x^\mu}
-			\right\}
-			\\
-			&=
-			2\Re\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				f(\vb{p})^*
-				e^{-i\omega(\vb{p})t}
-				\int\frac{\dd[3]{k}}{(2\pi)^3}
-				f(\vb{p}+\vb{k})
-				e^{+i\omega(\vb{k}+\vb{p})t}
-				\int\dd[3]{x}
-				\vb{x}
-				e^{+i\vb{k}\vdot\vb{x}}
-			\right\}
-		\end{split}
-	\end{equation}
-	We take $g(\vb{k})=f(\vb{p}+\vb{k})e^{-i\omega(\vb{k}+\vb{p})t}$ and use partial integration with vanishing boundaries because $g(\vb{k})$ is a Schwartz function
-	\begin{equation}
-		\begin{split}
-			\int\frac{\dd[3]{k}}{(2\pi)^3}
-			g(\vb{k})
-			\int\dd[3]{x}
-			\vb{x}
-			e^{+i\vb{k}\vdot\vb{x}}
-			&=
-			\int\frac{\dd[3]{k}}{(2\pi)^3}
-			g(\vb{k})
-			\left(-i\grad_{\vb{k}}\right)
-			\int\dd[3]{x}
-			e^{+i\vb{k}\vdot\vb{x}}
-			\\
-			&=
-			\int\frac{\dd[3]{k}}{(2\pi)^3}
-			g(\vb{k})
-			\left(-i\grad_{\vb{k}}\right)
-			(2\pi)^3\delta^{(3)}(\vb{k})
-			\\
-			&=
-			\int\dd[3]{k}
-			\left(i\grad_{\vb{k}}g(\vb{k})\right)
-			\delta^{(3)}(\vb{k})
-			\\
-			&=
-			i\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-			f(\vb{p}+\vb{k})
-			e^{+i\omega(\vb{k}+\vb{p})t}
-			\\
-			&=
-			ie^{+i\omega(\vb{p})t}
-			\left(
-				\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-				f(\vb{p}+\vb{k})
-				+
-				f(\vb{p})
-				\eval{\grad_{\vb{k}}}_{\vb{k}=0}
-				it\omega(\vb{p}+\vb{k})
-			\right)
-			\\
-			&=
-			ie^{+i\omega(\vb{p})t}
-			\left(
-				\grad_{\vb{p}}
-				f(\vb{p})
-				+
-				it
-				f(\vb{p})
-				\grad_{\vb{p}}
-				\omega(\vb{p})
-			\right)
-		\end{split}
-	\end{equation}
-	Inserting this back
-	\begin{equation}
-		\begin{split}
-			\overline{\vb{x}}
-			&=
-			2\Re\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				f(\vb{p})^*
-				e^{-i\omega(\vb{p})t}
-				ie^{+i\omega(\vb{p})t}
-				\left(
-					\grad_{\vb{p}}
-					f(\vb{p})
-					+
-					it
-					f(\vb{p})
-					\grad_{\vb{p}}
-					\omega(\vb{p})
-				\right)
-			\right\}
-			\\
-			&=
-			2\Re\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				f(\vb{p})^*
-				i
-				\left(
-					\grad_{\vb{p}}
-					f(\vb{p})
-					+
-					it
-					f(\vb{p})
-					\grad_{\vb{p}}
-					\omega(\vb{p})
-				\right)
-			\right\}
-			\\
-			&=
-			-
-			2\Im\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				f(\vb{p})^*
-				\grad_{\vb{p}}
-				f(\vb{p})
-			\right\}
-			-
-			2
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\abs{f(\vb{p})}^2
-			\grad_{\vb{p}}
-			\omega(\vb{p})t
-			\\
-			&=
-			2\Im\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
-				f(\vb{p})
-				\grad_{\vb{p}}
-				\frac{f(\vb{p})^*}{2\omega(\vb{p})}
-			\right\}
-			-
-			2
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\abs{f(\vb{p})}^2
-			\grad_{\vb{p}}
-			\omega(\vb{p})t
-			\\
-			&=
-			2\Im\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
-				f(\vb{p})
-				\frac{
-					\omega(\vb{p})
-					\grad_{\vb{p}}
-					f(\vb{p})^*
-					-
-					f(\vb{p})^*
-					\grad_{\vb{p}}
-					\omega(\vb{p})
-				}{2\omega(\vb{p})^2}
-			\right\}
-			-
-			2
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\abs{f(\vb{p})}^2
-			\grad_{\vb{p}}
-			\omega(\vb{p})t
-		\end{split}
-	\end{equation}
-	If we want
-	\begin{equation}
-		\overline{\vb{x}}
+		.
+	\end{equation*}
+	Inserting the argument back into the probability current and using $\Im{iz}=\Re{z}$, we find
+	\begin{equation*}
+		j^\mu(t,\vb{x})
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\frac{\vb{p}}{\omega(\vb{p})}
-		\abs{f(\vb{p})}^2
-		t
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		2\Re\left\{
+			q^\mu
+			f(\vb{p})
+			f(\vb{q})^*
+			e^{-i(p_\mu-q_\mu)x^\mu}
+		\right\}
+		.
+	\end{equation*}
+	Writing out the real part and relabeling the integration variables in the second term yields
+	\begin{equation*}
+		j^\mu(t,\vb{x})
 		=
-		\overline{\vb{v}}t
-	\end{equation}
-	we need
-	\begin{equation}
-				\int\frac{\dd[3]{k}}{(2\pi)^3}
-				f(\vb{p}+\vb{k})
-				e^{-i\omega(\vb{k}+\vb{p})t}
-				\int\dd[3]{x}
-				\vb{x}
-				e^{+i\vb{k}\vdot\vb{x}}
-				=
-				\frac{\vb{p}}{\omega(\vb{p})}f(\vb{p})t	
-	\end{equation}
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		\left\{
+			q^\mu
+			+
+			p^\mu
+		\right\}
+		f(\vb{p})
+		f(\vb{q})^*
+		e^{-i(p_\mu-q_\mu)x^\mu}
+		.
+	\end{equation*}	
+	The last result is in agreement with Ref.~\cite[eqs.~36,37]{Naumov2013} if one further assumes $f(\vb{p})$ to be real.
+\end{proof}
+\begin{delayedproof}{thm:single_particle_number_state_group_velocity}
+	No explicit proof, result claimed in Ref.~\cite[eq.~38]{Naumov2013}.
 \end{delayedproof}
 
 \subsection{Multi-particle number state}

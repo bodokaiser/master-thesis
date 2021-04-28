@@ -125,36 +125,21 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 		\exp\left\{
 			\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma_P^2}
 		\right\}
-		=
-		\exp\left\{
-			-
-			\frac{\omega(\vb{p})\omega(\vb{k})-\vb{k}\vdot\vb{p}}{2\sigma^2}
-		\right\}
 		\label{eq:covariant_gaussian_spectrum}
 	\end{equation}
-	where the spectrum is peaked at $k^\mu=(k_0,\vb{k})$ and has variance $\sigma^2$.\footnote{See Ref.~\cite{Naumov2013,Naumov2009} for a in-depth discussion.}
+	where the spectrum has mean $k^\mu=(k_0,\vb{k})$ and variance $\sigma^2$.\footnote{See Ref.~\cite{Naumov2013,Naumov2009} for a in-depth discussion.}
 \end{example}
 \begin{theorem}\label{thm:single_particle_number_state_energy}
-	The first and second moments of the (normal-ordered) energy operator, \cref{qkg:energy}, given a number state $\ket{1_f}$ are
-	\begin{align}
+	The mean energy of a single-particle number state $\ket{1_f}$ is
+	\begin{equation}
 		\expval{\hat{H}}{1_f}
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\omega(\vb{p})
-		\abs{f(\vb{p})}^2
-		\\
-		\expval{\hat{H}^2}{1_f}
-		&=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\omega(\vb{p})^2
-		\abs{f(\vb{p})}^2
-		\label{eq:single_particle_number_state_energy}
+	\end{equation}
+	with variance
+	\begin{equation}
+		\expval{\left(\Delta\hat{H}\right)^2}{1_f}
 		.
-	\end{align}
+	\end{equation}
 \end{theorem}
-\begin{corollary}
-	The single-particle number state has non-zero energy fluctuations.
-\end{corollary}
 \begin{theorem}\label{thm:single_particle_number_state_number_eigenstate}
 	The single-particle number state $\ket{1_f}$ is an eigenstate of the number operator $\hat{N}$
 	\begin{equation}
@@ -167,7 +152,14 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	with eigenvalue $1$.
 \end{theorem}
 \begin{corollary}
-	The single-particle number state has expectation value $1$ with respect to the number operator and zero-variance.
+	The mean energy, \cref{qkg:energy}, of a single-particle number state $\ket{1_f}$ is
+	\begin{equation}
+		\expval{\hat{H}}{1_f}
+	\end{equation}
+	with variance
+	\begin{equation}
+		\expval{\left(\Delta\hat{H}\right)^2}{1_f}		
+	\end{equation}
 \end{corollary}
 \begin{lemma}\label{thm:single_particle_number_state_wave_function}
 	The coordinate wave function of a single-particle number state is
