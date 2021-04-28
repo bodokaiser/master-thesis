@@ -70,7 +70,7 @@
 \begin{definition}[Single-particle number state]\label{def:single_particle_number_state}
 	The single-particle number state with Lorentz-invariant spectrum $f(\vb{p})=f(\omega(\vb{p}),\vb{p})\in\mathcal{S}(\mathbb{R}^4,\mathbb{C})$ is
 	\begin{equation}
-		\ket{f}
+		\ket{1_f}
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		f(\vb{p})
@@ -90,13 +90,14 @@
 		\hat\phi(x)
 		\ket{0}
 		=
-		\ket{f}
+		\ket{1_f}
 	\end{equation}
+	known from Wightman quantum field theory.\footnote{Wightman quantum field theory defines quantum field operators as operator-valued distributions acting on the Schwartz function space, see Ref.~\cite{Bogolubov1989} and Ref.~\cite{Streater2016}.}
 \end{lemma}
 \begin{lemma}\label{th:single_particle_number_states_inner_product}
-	Let $\ket{f},\ket{g}$ be two single-particle number states then their inner product is equal to
+	Let $\ket{1_f},\ket{1_g}$ be two single-particle number states then their inner product is equal to
 	\begin{equation}
-		\braket{g}{f}
+		\braket{1_g}{1_f}
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		f(\vb{p})g(\vb{p})^*
@@ -106,7 +107,7 @@
 \begin{lemma}\label{thm:single_particle_number_state_normalization}
 	The spectrum of a single-particle number state satisfies
 	\begin{equation}
-		\bra{f}\ket{f}
+		\bra{1_f}\ket{1_f}
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\abs{f(\vb{p})}^2
@@ -134,15 +135,15 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	where the spectrum is peaked at $k^\mu=(k_0,\vb{k})$ and has variance $\sigma^2$.\footnote{See Ref.~\cite{Naumov2013,Naumov2009} for a in-depth discussion.}
 \end{example}
 \begin{theorem}\label{thm:single_particle_number_state_energy}
-	The first and second moments of the (normal-ordered) energy operator, \cref{qkg:energy}, given a number state $\ket{f}$ are
+	The first and second moments of the (normal-ordered) energy operator, \cref{qkg:energy}, given a number state $\ket{1_f}$ are
 	\begin{align}
-		\expval{\hat{H}}{f}
+		\expval{\hat{H}}{1_f}
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\omega(\vb{p})
 		\abs{f(\vb{p})}^2
 		\\
-		\expval{\hat{H}^2}{f}
+		\expval{\hat{H}^2}{1_f}
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\omega(\vb{p})^2
@@ -155,12 +156,13 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	The single-particle number state has non-zero energy fluctuations.
 \end{corollary}
 \begin{theorem}\label{thm:single_particle_number_state_number_eigenstate}
-	The single-particle number state $\ket{f}$ is an eigenstate of the number operator $\hat{N}$
+	The single-particle number state $\ket{1_f}$ is an eigenstate of the number operator $\hat{N}$
 	\begin{equation}
 		\hat{N}
-		\ket{f}
+		\ket{1_f}
 		=
-		\ket{f}
+		1
+		\ket{1_f}
 	\end{equation}
 	with eigenvalue $1$.
 \end{theorem}
@@ -178,7 +180,7 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}
 \end{lemma}
 \begin{lemma}\label{thm:single_particle_number_state_group_velocity}
-	The group velocity of a single-particle number state $\ket{f}$ is
+	The group velocity of a single-particle number state $\ket{1_f}$ is
 	\begin{equation}
 		\expval{\vb{v}}
 		=
