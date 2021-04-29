@@ -1,5 +1,7 @@
 \section{Klein-Gordon field}
 
+\subsection{Relativistic field theory}
+
 \begin{delayedproof}{th:relativistic_energy_momentum}
 	According to the action principle, the dynamics of the field are determined by the equations of motion which can be found by the relativistic Euler-Lagrange equations
 	\begin{equation*}
@@ -17,8 +19,8 @@
 		\phi(t,\vb{x})
 		.
 	\end{equation*}
-	Assuming the existence of the Klein-Gordon field's Fourier representation~\cite[p.~341]{Cohen2019}
-	\begin{equation}
+	Assuming the existence of the Klein-Gordon field's Fourier representation\footnote{See Ref.~\cite[p.~341]{Cohen2019} for a definition of a Minkowski Fourier transform.}
+	\begin{equation*}
 		\phi(t,\vb{x})
 		=
 		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
@@ -29,9 +31,9 @@
 		\phi(p_0,\vb{p})
 		e^{+ip_\mu x^\mu}
 		,
-	\end{equation}
+	\end{equation*}
 	the equation of motion in momentum space reduces to
-	\begin{equation}
+	\begin{equation*}
 		0
 		=
 		\left(
@@ -48,7 +50,7 @@
 			\omega(\vb{p})^2
 		\right)
 		\phi(p_0,\vb{p})
-	\end{equation}
+	\end{equation*}
 	which is satisfied if $p_0=\pm\omega(\vb{p})$.
 \end{delayedproof}
 \begin{delayedproof}{thm:kg_fourier_expansion}
@@ -194,13 +196,54 @@
 	Insert the Klein-Gordon field operators in terms of the annihilation and creation operators, \cref{eq:qkg_pos} and \cref{eq:qkg_mom}, into the field commutation relations \cref{eq:qkg_comm_pm}.
 \end{delayedproof}
 
+\subsection{Coordinate wave function properties}
+
+\begin{delayedproof}{thm:coordinate_wave_function_simplified}
+	The Klein-Gordon operator acting on the vacuum state reduces to the negative frequency Klein-Gordon operator
+	\begin{equation*}
+		\hat\phi(t,\vb{x})
+		\ket{0}
+		=
+		\hat\phi^-(t,\vb{x})
+		\ket{0}
+	\end{equation*}
+	because the annihilation operator destroy the vacuum $\hat{a}(\vb{p})\ket{0}=0$.
+	We are left to take hermitian conjugate
+	\begin{equation*}
+		\begin{split}
+			\bra{0}
+			\hat\phi^+(t,\vb{x})
+			&=
+			\left(
+				\hat\phi^-(t,\vb{x})
+				\ket{0}
+			\right)^\dagger
+			\\
+			&=
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				e^{+ip_\mu x^\mu}
+				\hat{a}^\dagger(\vb{p})
+				\ket{0}
+			\right)^\dagger
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{-ip_\mu x^\mu}
+			\bra{0}
+			\hat{a}(\vb{p})
+		\end{split}
+	\end{equation*}
+	and insert the definition of the negative frequency Klein-Gordon operator.
+\end{delayedproof}
+
 \section{Quantum states}
 
 \subsection{Momentum state}
 
 \begin{delayedproof}{thm:momentum_state_non_normalizable}
 	The inner product of two momentum states is
-	\begin{equation}
+	\begin{equation*}
 		\braket{\vb{p}}{\vb{q}}
 		=
 		\sqrt{2\omega(\vb{p})}
@@ -210,7 +253,7 @@
 		2\omega(\vb{p})
 		(2\pi)^3
 		\delta^{(3)}(\vb{q}-\vb{p})
-	\end{equation}
+	\end{equation*}
 	where we used the commutation relation and $\hat{a}(\vb{p})\ket{0}=0$.
 	For $\vb{p}=\vb{q}$ the inner product is proportional to $\delta^{(3)}(0)$ which has no consistent mathematical definition.
 \end{delayedproof}
@@ -249,39 +292,31 @@
 	\end{equation*}
 \end{delayedproof}
 \begin{delayedproof}{thm:momentum_state_wave_function}
-	\begin{equation}
+	We use \Cref{thm:coordinate_wave_function_simplified} and insert the definition of the momentum state
+	\begin{equation*}
 		\begin{split}
 			\psi(t,\vb{x})
-			=
-			\bra{0}
-			\hat\phi(t,\vb{x})
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
 			&=
-			\left(
-				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-				e^{+iq_\mu x^\mu}
-				\hat{a}^\dagger(\vb{q})
-				\ket{0}
-			\right)^\dagger
-			\hat{a}^\dagger(\vb{p})
-			\ket{0}
-			\\
-			&=
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			e^{-iq_\mu x^\mu}
-			\expval{\hat{a}(\vb{q})\hat{a}^\dagger(\vb{p})}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			e^{-iq_\mu x^\mu}
-			(2\pi)^3
-			\delta^{(3)}(\vb{q}-\vb{p})
-			\\
-			&\propto
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			e^{-ip_\mu x^\mu}
+			\bra{0}
+			\hat{a}(\vb{p})
+			\ket{\vb{q}}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{-ip_\mu x^\mu}
+			\sqrt{2\omega(\vb{q})}
+			\expval{
+				\hat{a}(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+			}{0}
+			\\
+			&=
+			e^{-iq_\mu x^\mu}
 		\end{split}
-	\end{equation}
+		.
+	\end{equation*}
 \end{delayedproof}
 
 \subsection{Single-particle number state}
@@ -549,41 +584,6 @@
 	\end{equation*}
 \end{delayedproof}
 \begin{delayedproof}{thm:single_particle_number_state_wave_function}
-	The Klein-Gordon operator acting on the vacuum state reduces to the negative frequency Klein-Gordon operator
-	\begin{equation*}
-		\hat\phi(t,\vb{x})
-		\ket{0}
-		=
-		\hat\phi^-(t,\vb{x})
-		\ket{0}
-	\end{equation*}
-	because $\bra{0}\hat{a}^\dagger(\vb{p})=0$.
-	The hermitian conjugate reveals the left hand side
-	\begin{equation*}
-		\begin{split}
-			\bra{0}
-			\hat\phi^+(t,\vb{x})
-			&=
-			\left(
-				\hat\phi^-(t,\vb{x})
-				\ket{0}
-			\right)^\dagger
-			\\
-			&=
-			\left(
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				e^{+ip_\mu x^\mu}
-				\hat{a}^\dagger(\vb{p})
-				\ket{0}
-			\right)^\dagger
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{-ip_\mu x^\mu}
-			\bra{0}
-			\hat{a}(\vb{p})
-		\end{split}
-	\end{equation*}
 	of the coordinate wave function
 	\begin{equation*}
 		\psi(t,\vb{x})
@@ -1203,7 +1203,7 @@
 \end{delayedproof}
 \begin{delayedproof}{thm:coherent_state_energy_observable}
 	For the first moment of the energy observable, we insert the definitions
-	\begin{equation}
+	\begin{equation*}
 		\begin{split}
 			\expval{\hat{H}}{\alpha}
 			&=
@@ -1221,9 +1221,9 @@
 			\omega(\vb{p})
 			\abs{\alpha(\vb{p})}^2
 		\end{split}
-	\end{equation}
+	\end{equation*}
 	and use the eigenvalue equation. For the second moment, we again use the definitions and the eigenvalue equation
-	\begin{equation}
+	\begin{equation*}
 		\begin{split}
 			\expval{\hat{H}^2}{\alpha}
 			&=
@@ -1278,7 +1278,7 @@
 				\abs{\alpha(\vb{p})}^2
 			\right)^2
 		\end{split}
-	\end{equation}
+	\end{equation*}
 \end{delayedproof}
 \begin{delayedproof}{thm:coherent_state_number_observable}
 	The number observable is a special case of \Cref{thm:coherent_state_energy_observable} for $\omega(\vb{p})=1$.
@@ -1310,7 +1310,7 @@
 \begin{delayedproof}{thm:heisenberg_schroedinger_equivalence}
 	Heisenberg and Schrödinger picture are unitarily equivalent by the Stone-von Neumann theorem.
 	Let $\hat{O}^H(t)$ be an observable and $\ket{\psi}^H$ a state in the Heisenberg picture, then the expectation values agree
-	\begin{equation}
+	\begin{equation*}
 		\bra{\psi}^H
 		\hat{O}^H(t)
 		\ket{\psi}^H
@@ -1324,20 +1324,18 @@
 		\bra{\psi(t)}^S
 		\hat{O}^S
 		\ket{\psi(t)}^S
-		,
-	\end{equation}
+	\end{equation*}
 	where we used \Cref{thm:heisenberg_eom_sol} and \Cref{thm:schroedinger_eom_sol}.
 \end{delayedproof}
-
 \begin{delayedproof}{thm:heisenberg_schroedinger_canonical_transformation}
 	Let $\hat{A}^H,\hat{B}^H,\hat{C}^H$ be operators in the Heisenberg picture satisfying the commutation relation
-	\begin{equation}
+	\begin{equation*}
 		\comm{\hat{A}^H}{\hat{B}^H}
 		=
 		\hat{C}^H
-	\end{equation}
+	\end{equation*}
 	then in the Schrödinger picture, we find
-	\begin{equation}
+	\begin{equation*}
 		\begin{split}
 			\comm{\hat{A}^S}{\hat{B}^S}
 			&=
@@ -1367,10 +1365,9 @@
 			=
 			\hat{C}^S
 		\end{split}
-	\end{equation}
+	\end{equation*}
 	from Ref.~\cite[p.~213]{Greiner2013}.
 \end{delayedproof}
-
 \begin{delayedproof}{thm:dirac_schroedinger_eom}
 	See Ref.~\cite[p.~214]{Greiner2013}.
 \end{delayedproof}
@@ -1379,7 +1376,7 @@
 
 \begin{delayedproof}{thm:time_evolution_int}
 	We integrate \cref{eq:time_evolution_diff} over the interval $[t_0,t]$
-	\begin{equation}
+	\begin{equation*}
 		\int_t^{t_0}\dd{t_1}
 		\hat{H}_\text{int}^D(t_1,t_0)
 		\hat{U}_D(t_1,t_0)
@@ -1391,11 +1388,10 @@
 		i\mathbb{I}
 		-
 		i\hat{U}_D(t,t_0)
-	\end{equation}
+	\end{equation*}
 	where we used the fundamental theorem of calculus and the boundary condition $\hat{U}^D(t_0,t_0)=\mathbb{I}$ in the third line.
 	We are left to rearrange the terms to find \cref{eq:time_evolution_int}.
 \end{delayedproof}
-
 \begin{delayedproof}{thm:time_evolution_exp_sol}
 	Use \Cref{thm:time_ordered_integral} with $\hat{A}=\hat{H}_\text{int}^D$ to rewrite the iterative integral solution \Cref{thm:time_evolution_iter_sol}.
 	A proof that \cref{eq:time_evolution_sol} satisfies \cref{eq:time_evolution_diff} can be found in Ref.~\cite[p.~219]{Greiner2013}.
@@ -1405,7 +1401,7 @@
 
 \begin{delayedproof}{thm:displacement_scattering_operator_equivalence}
 	The double integral evaluates to
-	\begin{equation}
+	\begin{equation*}
 		\iint\dd[4]{x}\dd[4]{y}
 		J(x)
 		D(x-y)
@@ -1413,10 +1409,10 @@
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\abs{J(\vb{p})}^2
-	\end{equation}
+	\end{equation*}
 	see Ref.~\cite[p.~26]{Zee2010}.
 	Furthermore, decomposing the Klein-Gordon operator into positive and negative frequency parts
-	\begin{equation}
+	\begin{equation*}
 		\int\dd[4]{x}
 		J(x)
 		\hat\phi(x)
@@ -1433,10 +1429,10 @@
 		+
 		\hat\phi^-[J]
 		,
-	\end{equation}
+	\end{equation*}
 	we note that the second term is the hermitian conjugate of the first.
 	Similar to what we did for the single-particle number state, we rewrite the integral using the Fourier transform of the source
-	\begin{equation}
+	\begin{equation*}
 		\begin{split}
 			\hat\phi^+[J]
 			=
@@ -1465,9 +1461,9 @@
 			\hat{a}^\dagger(\vb{p})
 		\end{split}
 		.
-	\end{equation}
+	\end{equation*}
 	We therefore find
-	\begin{equation}
+	\begin{equation*}
 		\begin{split}
 			\hat{S}
 			&=
@@ -1507,7 +1503,7 @@
 			=
 			\hat{D}[iJ]
 		\end{split}
-	\end{equation}
+	\end{equation*}
 	which shows that $\hat{S}=\hat{D}[iJ]$.
 \end{delayedproof}
 
@@ -1620,8 +1616,8 @@
 	The homogeneous Maxwell equations are a consequence of the Bianchi identity and antisymmetry of $F^{\mu\nu}$.
 \end{delayedproof}
 \begin{delayedproof}{thm:vector_maxwell_equations}
-	Evaluating the time component of \cref{eq:mw_homo} yields the Gauss' law for magnetism
-	\begin{equation}
+	Evaluating the time component of \cref{eq:mw_homo_vec} yields the Gauss' law for magnetism
+	\begin{equation*}
 		\begin{split}
 			0
 			=
@@ -1637,9 +1633,9 @@
 			2\partial_iB^i
 		\end{split}
 		\label{eq:mw_gauss_law_mag}
-	\end{equation}
+	\end{equation*}
 	and the spatial component yields Ampere's circuit law
-	\begin{equation}
+	\begin{equation*}
 		\begin{split}
 			0
 			=
@@ -1662,9 +1658,9 @@
 			\partial^jE_k
 		\end{split}
 		\label{eq:mw_ampere_law}.
-	\end{equation}
+	\end{equation*}
 	The time component of the inhomogeneous covariant Maxwell equation \cref{eq:mw_inhomo} yields Gauss' law
-	\begin{equation}
+	\begin{equation*}
 		J^0
 		=
 		\rho
@@ -1673,9 +1669,9 @@
 		=
 		\partial_i E^i
 		\label{eq:mw_gauss_law},
-	\end{equation}
+	\end{equation*}
 	and the spatial component yields Faraday's law of induction
-	\begin{equation}
+	\begin{equation*}
 		J^i
 		=
 		\partial_\mu F^{\mu i}
@@ -1683,6 +1679,6 @@
 		-\partial_t E^i
 		+\varepsilon^{ijk}\partial_j B_k
 		\label{eq:mw_faraday_law}.
-	\end{equation}
+	\end{equation*}
 	and we derived the vector Maxwell equations from first principles.
 \end{delayedproof}

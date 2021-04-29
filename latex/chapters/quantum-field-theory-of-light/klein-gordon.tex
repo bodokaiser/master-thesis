@@ -306,6 +306,21 @@ From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 		.
 	\end{equation}
 \end{definition}
+\begin{lemma}\label{thm:coordinate_wave_function_simplified}
+	The coordinate wave function reduces to
+	\begin{equation}
+		\psi(t,\vb{x})
+		=
+		\bra{0}\hat\phi(t,\vb{x})\ket{\psi}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		e^{-ip_\mu x^\mu}
+		\bra{0}
+		\hat{a}(\vb{p})
+		\ket{\psi}
+		.
+	\end{equation}
+\end{lemma}
 \begin{definition}[Probability current]
 	The manifest Lorentz-covariant probability current\footnote{The probability current is the conserved Noether's current of the Klein-Gordon field, see Ref.~\cite[p.~18]{Peskin1995}.} is
 	\begin{equation}
