@@ -151,14 +151,32 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}
 	with eigenvalue $1$.
 \end{theorem}
-\begin{corollary}
-	The mean energy, \cref{qkg:energy}, of a single-particle number state $\ket{1_f}$ is
+\begin{lemma}\label{thm:single_particle_number_state_energy}
+	The first energy moment of the single-particle number state $\ket{1_f}$ is
 	\begin{equation}
 		\expval{\hat{H}}{1_f}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\omega(\vb{p})
+		\abs{f(\vb{p})}^2
 	\end{equation}
-	with variance
+	and the second moment is
 	\begin{equation}
-		\expval{\left(\Delta\hat{H}\right)^2}{1_f}		
+		\expval{\hat{H}^2}{1_f}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\omega(\vb{p})^2
+		\abs{f(\vb{p})}^2
+		.
+	\end{equation}
+\end{lemma}
+\begin{corollary}
+	The single-particle number state has non-zero energy fluctuations, i.e.,
+	\begin{equation}
+		\expval{\left(\Delta\hat{H}\right)^2}{1_f}
+		>
+		0
+		.
 	\end{equation}
 \end{corollary}
 \begin{lemma}\label{thm:single_particle_number_state_wave_function}
@@ -214,20 +232,21 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}
 \end{definition}
 \begin{theorem}
-	The multi-particle number state $\ket{n,f}$ is an eigenstate of the number operator $\hat{N}$ to eigenvalue $n$, i.e.,
+	The multi-particle number state $\ket{n_f}$ is an eigenstate of the number operator $\hat{N}$ to eigenvalue $n$, i.e.,
 	\begin{equation}
 		\hat{N}
 		\ket{n_f}
 		=
 		n
 		\ket{n_f}
+		.
 	\end{equation}
 \end{theorem}
 \begin{corollary}
-	The multi-particle number state $\ket{n_f}$ has zero-variance in the number observable.
+	The multi-particle number state $\ket{n_f}$ has zero uncertainty in the number observable.
 \end{corollary}
 \begin{theorem}\label{thm:multi_particle_number_state_inner_product}
-	Let $\ket{n_f}$ be an $n$-particle number state with spectrum $f(\vb{p})$ and $,\ket{m_g}$ a $m$-particle number state with spectrum $g(\vb{p})$, then their inner product is
+	Let $\ket{n_f}$ be an $n$-particle number state with spectrum $f(\vb{p})$ and $\ket{m_g}$ a $m$-particle number state with spectrum $g(\vb{p})$, then their inner product is
 	\begin{equation}
 		\braket{n_f}{m_g}
 		=
@@ -241,7 +260,7 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}
 \end{theorem}
 \begin{corollary}
-	Multi-particle number state with the same spectrum $f(\vb{p})$ are orthogonal.
+	Multi-particle number states with the same spectrum $f(\vb{p})$ are orthogonal.
 \end{corollary}
 
 \subsection{Coherent state}
@@ -266,7 +285,7 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}
 \end{definition}
 \begin{lemma}\label{thm:displacement_operator_normal_ordered}
-	The displacement operator can be rewritten in normal-order and is equal to
+	The displacement operator in normal-order is
 	\begin{equation}
 		\begin{split}
 			\hat{D}[\alpha]
@@ -295,6 +314,7 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 			\right\}
 		\end{split}
 		\label{eq:displacement_operator_normal}
+		.
 	\end{equation}
 \end{lemma}
 \begin{definition}[Coherent state]
@@ -321,33 +341,48 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}
 \end{definition}
 \begin{lemma}
-	The displacement operator creates a coherent state from the vacuum $\hat{D}[\alpha]\ket{0}=\ket{\alpha}$.
+	The displacement operator creates a coherent state from the vacuum, i.e.,
+	\begin{equation}
+		\hat{D}[\alpha]
+		\ket{0}
+		=
+		\ket{\alpha}
+		.
+	\end{equation}
 \end{lemma}
 \begin{theorem}\label{thm:coherent_state_annihilation_eigenvalue}
-	The coherent state is an eigenstate of the annihilation operator
+	The coherent state is an eigenstate of the annihilation operator to eigenvalue $\alpha(\vb{p})/\sqrt{2\omega(\vb{p})}$, i.e.,
 	\begin{equation}
 		\hat{a}(\vb{p})
 		\ket{\alpha}
 		=
 		\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
 		\ket{\alpha}
+		.
 	\end{equation}
-	with eigenvalue $\alpha(\vb{p})/\sqrt{2\omega(\vb{p})}$.
 \end{theorem}
 \begin{lemma}\label{thm:coherent_state_energy_observable}
-	The mean energy of the coherent state is equal to
+	The mean energy of the coherent state is
 	\begin{equation}
 		\expval{\hat{H}}{\alpha}
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\omega(\vb{p})
-		\abs{\alpha(\vb{p})}^2		
+		\abs{\alpha(\vb{p})}^2
 	\end{equation}
-	and the variance is zero.
+	and the variance is
+	\begin{equation}
+		\expval{\left(\Delta\hat{H}\right)^2}{\alpha}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\omega(\vb{p})^2
+		\abs{\alpha(\vb{p})}^2
+		.
+	\end{equation}
 \end{lemma}
 Although, the mean energy of the coherent state is the same as the mean energy of the single-particle number state, the spectrum $\alpha(\vb{p})$ of the coherent state is not bound.
-\begin{corollary}
-	The mean number of photons is equal to
+\begin{lemma}\label{thm:coherent_state_number_observable}
+	The mean number of particles is
 	\begin{equation}
 		\overline{n}
 		=
@@ -355,9 +390,19 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\abs{\alpha(\vb{p})}^2
-		.
 	\end{equation}
-\end{corollary}
+	and the variance is
+	\begin{equation}
+		\expval{\left(\Delta\hat{N}\right)^2}{\alpha}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{\alpha(\vb{p})}^2
+		=
+		\overline{n}
+		,
+	\end{equation}
+	i.e., the particle number is Poisson distributed.
+\end{lemma}
 \begin{lemma}\label{thm:coherent_state_number_state_inner_product}
 	The inner product between an $n$-particle number state with spectrum $f(\vb{p})$ and a coherent state with spectrum $\alpha(\vb{p})$ is
 	\begin{equation}
