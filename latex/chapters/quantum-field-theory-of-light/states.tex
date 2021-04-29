@@ -314,6 +314,174 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 			\right\}
 		\end{split}
 		\label{eq:displacement_operator_normal}
+	\end{equation}
+	and the displacement operator in antinormal-order is
+	\begin{equation}
+		\begin{split}
+			\hat{D}[\alpha]
+			&=
+			\exp\left\{
+				-
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\alpha(\vb{p})^*
+				\hat{a}(\vb{p})
+			\right\}
+			\\
+			&\times
+			\exp\left\{
+				+
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\alpha(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+			\right\}
+			\\
+			&\times
+			\exp\left\{
+				+
+				\frac{1}{2}
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\abs{\alpha(\vb{p})}^2
+			\right\}
+		\end{split}
+		\label{eq:displacement_operator_antinormal}
+	\end{equation}
+\end{lemma}
+\begin{lemma}\label{thm:displacement_operator_simplified}
+	The displacement operators can be expressed with the smeared positive and negative frequency Klein-Gordon operators
+	\begin{equation}
+		\begin{split}
+			\hat{D}[\alpha]
+			&=
+			\exp\left\{
+				\hat\phi^-[\alpha]
+				-
+				\hat\phi^+[\alpha]
+			\right\}
+			\\
+			&=
+			\exp\left\{
+				+\hat\phi^-[\alpha]
+			\right\}
+			\exp\left\{
+				-\hat\phi^+[\alpha]
+			\right\}
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\overline{n}
+			\right\}
+			\\
+			&=
+			\exp\left\{
+				-\hat\phi^+[\alpha]
+			\right\}
+			\exp\left\{
+				+\hat\phi^-[\alpha]
+			\right\}
+			\exp\left\{
+				+
+				\frac{1}{2}
+				\overline{n}
+			\right\}
+		\end{split}
+	\end{equation}
+	where we additionally defined
+	\begin{equation}
+		\overline{n}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{\alpha(\vb{p})}^2
+		.
+	\end{equation}
+\end{lemma}
+\begin{lemma}\label{thm:displacement_operator_product}
+	Let $\hat{D}[\alpha],\hat{D}[\beta]$ be two displacement operators with spectrum $\alpha(\vb{p}),\beta(\vb{p})$, then their product equals
+	\begin{equation}
+		\hat{D}[\alpha]
+		\hat{D}[\beta]
+		=
+		\hat{D}[\alpha+\beta]
+		\exp\left\{
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\left\{
+				\alpha(\vb{p})
+				\beta(\vb{p})^*
+				-
+				\alpha(\vb{p})^*
+				\beta(\vb{p})
+			\right\}
+		\right\}
+		.
+	\end{equation}
+\end{lemma}
+\begin{delayedproof}{thm:displacement_operator_product}
+	Inserting the definitions of the normal-ordered displacement operator from \Cref{thm:displacement_operator_simplified},
+	\begin{equation*}
+		\begin{split}
+			\hat{D}[\alpha]
+			\hat{D}[\beta]
+			&=
+			\left(
+				e^{-\overline{n}_\alpha/2}
+				e^{+\hat\phi^-[\alpha]}
+				e^{-\hat\phi^+[\alpha]}
+			\right)
+			\left(
+				e^{-\overline{n}_\beta/2}
+				e^{+\hat\phi^-[\beta]}
+				e^{-\hat\phi^+[\beta]}
+			\right)
+			\\
+			&=
+			e^{-(\overline{n}_\alpha+\overline{n}_\beta)/2}
+			e^{+\hat\phi^-[\alpha]}
+			\left(
+				e^{-\hat\phi^+[\alpha]}
+				e^{+\hat\phi^-[\beta]}
+			\right)			
+			e^{-\hat\phi^+[\beta]}
+		\end{split}
+		,
+	\end{equation*}
+	and noting that
+	\begin{equation*}
+		\begin{split}
+			\exp\left\{
+				-\hat\phi^+[\alpha]
+			\right\}
+			\exp\left\{
+				+\hat\phi^-[\beta]
+			\right\}
+			&=
+			\exp\left\{
+				\hat\phi^+[-\alpha]
+			\right\}
+			\exp\left\{
+				\hat\phi^-[\beta]
+			\right\}
+			\\
+			&=
+			\exp\left\{
+				\hat\phi^+[-\alpha]
+				+
+				\hat\phi^-[\beta]
+				+
+				\frac{1}{2}
+				\comm{\hat\phi^+[-\alpha]}{\hat\phi^-[\beta]}
+			\right\}
+		\end{split}
+	\end{equation*}
+	according to the Baker-Campbell-Hausdorff formula.
+\end{delayedproof}
+\begin{lemma}\label{thm:displacement_operator_unitary}
+	The displacement operator is unitary
+	\begin{equation}
+		\hat{D}[\alpha]^{-1}
+		=
+		\hat{D}[\alpha]^\dagger
+		=
+		\hat{D}[-\alpha]
 		.
 	\end{equation}
 \end{lemma}
@@ -350,6 +518,40 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 		.
 	\end{equation}
 \end{lemma}
+\begin{lemma}\label{thm:coherent_state_inner_product}
+	Let $\ket{\alpha},\ket{\beta}$ be two coherent states, then their inner product is
+	\begin{equation}
+		\braket{\alpha}{\beta}
+		=
+	\end{equation}
+\end{lemma}
+\begin{delayedproof}{thm:coherent_state_inner_product}
+	\begin{equation*}
+		\begin{split}
+			\braket{\alpha}{\beta}
+			=
+			\expval{
+				\hat{D}[\alpha]^\dagger
+				\hat{D}[\beta]
+			}{0}
+			=
+			\expval{
+				\hat{D}[-\alpha]
+				\hat{D}[\beta]
+			}{0}
+			=
+		\end{split}
+	\end{equation*}
+\end{delayedproof}
+\begin{corollary}
+	The coherent state is normalized\footnote{In contrast to the number state, there is no requirement on the spectrum of the coherent state $\alpha(\vb{p})$.}
+	\begin{equation}
+		\braket{\alpha}
+		=
+		1
+		.
+	\end{equation}
+\end{corollary}
 \begin{theorem}\label{thm:coherent_state_annihilation_eigenvalue}
 	The coherent state is an eigenstate of the annihilation operator to eigenvalue $\alpha(\vb{p})/\sqrt{2\omega(\vb{p})}$, i.e.,
 	\begin{equation}

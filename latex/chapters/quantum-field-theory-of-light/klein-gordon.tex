@@ -266,6 +266,20 @@ From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 		.
 	\end{equation}
 \end{corollary}
+
+\subsection{Propagators}
+
+The section is based on Ref.~\cite[p.~26]{Peskin1995}.
+\begin{definition}[Propagator]
+	We define the propagator as
+	\begin{equation}
+		D(x^\mu-y^\mu)
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		e^{-ip_\mu (x^\mu-y^\mu)}
+		.
+	\end{equation}
+\end{definition}
 \begin{definition}[Positive and negative frequency Klein-Gordon field operator]
 	The positive and negative frequency decomposition of the Klein-Gordon field operator
 	\begin{equation}
@@ -292,8 +306,40 @@ From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 		\end{split}
 		\label{eq:qkg_positive_negative_frequency}
 	\end{equation}
-	are related by the hermitian conjugate $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$, see Ref.~\cite[p.~26]{Peskin1995} for details.
+	are related by the hermitian conjugate $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$.
 \end{definition}
+\begin{lemma}\label{thm:qkg_full_comm_pn_comm}
+	The positive and negative frequency Klein-Gordon field operators satisfy
+	\begin{align}
+		\comm{\hat\phi^+(x^\mu)}{\hat\phi^-(y^\mu)}
+		&=
+		D(x^\mu-y^\mu)
+		\\
+		\comm{\hat\phi^+(x^\mu)}{\hat\phi^+(y^\mu)}
+		&=
+		\comm{\hat\phi^-(x^\mu)}{\hat\phi^-(y^\mu)}
+		=
+		0
+	\end{align}
+\end{lemma}
+\begin{lemma}\label{thm:qkg_propagator_kg_comm}
+	The commutator of the Klein-Gordon operators is equal to
+	\begin{equation}
+		\comm{\hat\phi(x^\mu)}{\hat\phi(y^\mu)}
+		=
+		D(x^\mu-y^\mu)
+		-
+		D(y^\mu-x^\mu)
+	\end{equation}
+\end{lemma}
+\begin{lemma}\label{thm:qkg_propagator_correlation_function}
+	The propagator is equal to
+	\begin{equation}
+		D(x^\mu-y^\mu)
+		=
+		\expval{\hat\phi(x^\mu)\hat\phi(y^\mu)}{0}
+	\end{equation}
+\end{lemma}
 
 \subsection{Coordinate wave function properties}
 

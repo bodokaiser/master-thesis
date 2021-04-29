@@ -196,6 +196,61 @@
 	Insert the Klein-Gordon field operators in terms of the annihilation and creation operators, \cref{eq:qkg_pos} and \cref{eq:qkg_mom}, into the field commutation relations \cref{eq:qkg_comm_pm}.
 \end{delayedproof}
 
+\subsection{Propagators}
+
+\begin{delayedproof}{thm:qkg_full_comm_pn_comm}
+	The first equal follows from
+	\begin{equation*}
+		\begin{split}
+			\comm{\hat\phi^+(x^\mu)}{\hat\phi^-(y^\mu)}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			e^{-ip_\mu x^\mu}
+			e^{+iq_\mu y^\mu}
+			\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			e^{-ip_\mu x^\mu}
+			e^{+iq_\mu y^\mu}
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			e^{-ip_\mu (x^\mu-y^\mu)}
+			.
+		\end{split}
+	\end{equation*}
+	The other identity follows analog while noting that in this case the commutators vanish.
+\end{delayedproof}
+\begin{delayedproof}{thm:qkg_propagator_correlation_function}
+	We use $\hat\phi^+(x^\mu)\ket{0}=0$ and $\bra{0}\hat\phi^-(x^\mu)=0$
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\phi(x^\mu)\hat\phi(y^\mu)}{0}
+			&=
+			\expval{\hat\phi^+(x^\mu)\hat\phi^+(y^\mu)}{0}
+			+
+			\expval{\hat\phi^+(x^\mu)\hat\phi^-(y^\mu)}{0}
+			\\
+			&+
+			\expval{\hat\phi^-(x^\mu)\hat\phi^+(y^\mu)}{0}
+			+
+			\expval{\hat\phi^-(x^\mu)\hat\phi^-(y^\mu)}{0}
+			\\
+			&=
+			\expval{\hat\phi^+(x^\mu)\hat\phi^-(y^\mu)}{0}
+			\\
+			&=
+			D(x^\mu-y^\mu)
+		\end{split}	
+	\end{equation*}
+	and the result of \Cref{thm:qkg_full_comm_pn_comm}.
+\end{delayedproof}
+
 \subsection{Coordinate wave function properties}
 
 \begin{delayedproof}{thm:coordinate_wave_function_simplified}
@@ -1096,6 +1151,68 @@
 
 \begin{delayedproof}{thm:displacement_operator_normal_ordered}
 	See Ref.~\cite[p.~48]{Barnett2002}.
+\end{delayedproof}
+\begin{delayedproof}{thm:displacement_operator_simplified}
+	The identification of
+	\begin{equation*}
+		\hat\phi^-[\alpha]
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\alpha(\vb{p})^*
+		\hat{a}(\vb{p})
+	\end{equation*}
+	follows from the smearing of the Klein-Gordon operators as discussed in \Cref{thm:single_particle_number_state_smeared_kg}.
+\end{delayedproof}
+\begin{delayedproof}{thm:displacement_operator_unitary}
+	Using the notation introduced in \Cref{thm:displacement_operator_simplified} and the normal-ordered displacement operator, we show $\hat{D}[\alpha]^\dagger=\hat{D}[-\alpha]$
+	\begin{equation*}
+		\begin{split}
+			\hat{D}[\alpha]^\dagger
+			&=
+			\left(
+				e^{-\overline{n}/2}
+				e^{+\hat\phi^-[\alpha]}
+				e^{-\hat\phi^+[\alpha]}
+			\right)^\dagger
+			\\
+			&=
+			e^{-\overline{n}/2}
+			\left(
+				e^{-\hat\phi^+[\alpha]}
+			\right)^\dagger
+			\left(
+				e^{+\hat\phi^-[\alpha]}
+			\right)^\dagger
+			\\
+			&=
+			e^{-\overline{n}/2}
+			e^{-\hat\phi^-[\alpha]}
+			e^{+\hat\phi^+[\alpha]}
+			\\
+			&=
+			e^{-\overline{n}/2}
+			e^{+\hat\phi^-[-\alpha]}
+			e^{-\hat\phi^+[-\alpha]}
+			\\
+			&=
+			\hat{D}[-\alpha]
+			.
+		\end{split}
+	\end{equation*}
+	\Cref{thm:displacement_operator_product} lets us evaluate the product of two displacement operators
+	\begin{equation*}
+		\hat{D}[\alpha]^\dagger
+		\hat{D}[\alpha]
+		=
+		\hat{D}[-\alpha]
+		\hat{D}[\alpha]
+		=
+		\hat{D}[-\alpha+\alpha]
+		=
+		\mathbb{I}
+		.
+	\end{equation*}
+	We conclude that $\hat{D}[\alpha]^\dagger$ is the inverse of the displacement operator and therefore the displacement operator is unitary.
 \end{delayedproof}
 \begin{delayedproof}{thm:coherent_state_annihilation_eigenvalue}
 	We use the series representation of the operator exponential and \cref{th:normal_ordered_a1_cn} to move the annihilation operator to the right
