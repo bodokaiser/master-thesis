@@ -129,17 +129,6 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}
 	where the spectrum has mean $k^\mu=(k_0,\vb{k})$ and variance $\sigma^2$.\footnote{See Ref.~\cite{Naumov2013,Naumov2009} for a in-depth discussion.}
 \end{example}
-\begin{theorem}\label{thm:single_particle_number_state_energy}
-	The mean energy of a single-particle number state $\ket{1_f}$ is
-	\begin{equation}
-		\expval{\hat{H}}{1_f}
-	\end{equation}
-	with variance
-	\begin{equation}
-		\expval{\left(\Delta\hat{H}\right)^2}{1_f}
-		.
-	\end{equation}
-\end{theorem}
 \begin{theorem}\label{thm:single_particle_number_state_number_eigenstate}
 	The single-particle number state $\ket{1_f}$ is an eigenstate of the number operator $\hat{N}$
 	\begin{equation}
@@ -209,6 +198,16 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 		\expval{\vb{v}}t
 	\end{equation}
 	moving with the group velocity $\expval{\vb{v}}$.
+\end{lemma}
+Later, we are going to need
+\begin{lemma}\label{thm:single_partiicle_number_state_inner_product_pn_smeared_kg_comm}
+	The commutator of the smeared positive and negative frequency Klein-Gordon operators is equal to the overlap of the corresponding single-particle number states, i.e.,
+	\begin{equation}
+		\comm{\hat\phi^+[f]}{\hat\phi^-[g]}
+		=
+		\braket{1_f}{1_g}
+		.
+	\end{equation}
 \end{lemma}
 
 \subsection{Multi-particle number state}
@@ -347,133 +346,81 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}
 \end{lemma}
 \begin{lemma}\label{thm:displacement_operator_simplified}
-	The displacement operators can be expressed with the smeared positive and negative frequency Klein-Gordon operators
+	The displacement operators can be expressed in terms of the smeared positive and negative frequency Klein-Gordon operators
 	\begin{equation}
 		\begin{split}
 			\hat{D}[\alpha]
+			&=
+			\exp\left\{
+				+\hat\phi^-[\alpha]
+			\right\}
+			\exp\left\{
+				-\hat\phi^+[\alpha]
+			\right\}
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+			\right\}
+			\\
+			&=
+			\exp\left\{
+				-\hat\phi^+[\alpha]
+			\right\}
+			\exp\left\{
+				+\hat\phi^-[\alpha]
+			\right\}
+			\exp\left\{
+				+
+				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+			\right\}
+			\\
 			&=
 			\exp\left\{
 				\hat\phi^-[\alpha]
 				-
 				\hat\phi^+[\alpha]
 			\right\}
-			\\
-			&=
-			\exp\left\{
-				+\hat\phi^-[\alpha]
-			\right\}
-			\exp\left\{
-				-\hat\phi^+[\alpha]
-			\right\}
-			\exp\left\{
-				-
-				\frac{1}{2}
-				\overline{n}
-			\right\}
-			\\
-			&=
-			\exp\left\{
-				-\hat\phi^+[\alpha]
-			\right\}
-			\exp\left\{
-				+\hat\phi^-[\alpha]
-			\right\}
-			\exp\left\{
-				+
-				\frac{1}{2}
-				\overline{n}
-			\right\}
+			.
 		\end{split}
-	\end{equation}
-	where we additionally defined
-	\begin{equation}
-		\overline{n}
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\abs{\alpha(\vb{p})}^2
-		.
 	\end{equation}
 \end{lemma}
 \begin{lemma}\label{thm:displacement_operator_product}
 	Let $\hat{D}[\alpha],\hat{D}[\beta]$ be two displacement operators with spectrum $\alpha(\vb{p}),\beta(\vb{p})$, then their product equals
 	\begin{equation}
-		\hat{D}[\alpha]
-		\hat{D}[\beta]
-		=
-		\hat{D}[\alpha+\beta]
-		\exp\left\{
-			\frac{1}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\left\{
-				\alpha(\vb{p})
-				\beta(\vb{p})^*
-				-
-				\alpha(\vb{p})^*
-				\beta(\vb{p})
-			\right\}
-		\right\}
-		.
-	\end{equation}
-\end{lemma}
-\begin{delayedproof}{thm:displacement_operator_product}
-	Inserting the definitions of the normal-ordered displacement operator from \Cref{thm:displacement_operator_simplified},
-	\begin{equation*}
 		\begin{split}
 			\hat{D}[\alpha]
 			\hat{D}[\beta]
 			&=
-			\left(
-				e^{-\overline{n}_\alpha/2}
-				e^{+\hat\phi^-[\alpha]}
-				e^{-\hat\phi^+[\alpha]}
-			\right)
-			\left(
-				e^{-\overline{n}_\beta/2}
-				e^{+\hat\phi^-[\beta]}
-				e^{-\hat\phi^+[\beta]}
-			\right)
-			\\
-			&=
-			e^{-(\overline{n}_\alpha+\overline{n}_\beta)/2}
-			e^{+\hat\phi^-[\alpha]}
-			\left(
-				e^{-\hat\phi^+[\alpha]}
-				e^{+\hat\phi^-[\beta]}
-			\right)			
-			e^{-\hat\phi^+[\beta]}
-		\end{split}
-		,
-	\end{equation*}
-	and noting that
-	\begin{equation*}
-		\begin{split}
+			\hat{D}[\alpha+\beta]
 			\exp\left\{
-				-\hat\phi^+[\alpha]
-			\right\}
-			\exp\left\{
-				+\hat\phi^-[\beta]
-			\right\}
-			&=
-			\exp\left\{
-				\hat\phi^+[-\alpha]
-			\right\}
-			\exp\left\{
-				\hat\phi^-[\beta]
-			\right\}
-			\\
-			&=
-			\exp\left\{
-				\hat\phi^+[-\alpha]
-				+
-				\hat\phi^-[\beta]
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\beta]}
 				+
 				\frac{1}{2}
-				\comm{\hat\phi^+[-\alpha]}{\hat\phi^-[\beta]}
+				\comm{\hat\phi^+[\beta]}{\hat\phi^-[\alpha]}
 			\right\}
+			\\
+			&=
+			\hat{D}[\alpha+\beta]
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\iint\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\left\{
+					\alpha(\vb{p})^*
+					\beta(\vb{p})
+					-
+					\alpha(\vb{p})
+					\beta(\vb{p})^*
+				\right\}
+			\right\}
+			.
 		\end{split}
-	\end{equation*}
-	according to the Baker-Campbell-Hausdorff formula.
-\end{delayedproof}
+	\end{equation}
+\end{lemma}
 \begin{lemma}\label{thm:displacement_operator_unitary}
 	The displacement operator is unitary
 	\begin{equation}
