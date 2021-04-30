@@ -441,6 +441,17 @@ Later, we are going to need
 			\exp\left\{
 				-
 				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+			\right\}
+			\exp\left\{
+				+\hat\phi^-[\alpha]
+			\right\}
+			\ket{0}
+			\\
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
 				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 				\abs{\alpha(\vb{p})}^2
 			\right\}
@@ -456,7 +467,7 @@ Later, we are going to need
 	\end{equation}
 \end{definition}
 \begin{lemma}
-	The displacement operator creates a coherent state from the vacuum, i.e.,
+	The displacement operator creates a coherent state from the vacuum
 	\begin{equation}
 		\hat{D}[\alpha]
 		\ket{0}
@@ -465,33 +476,8 @@ Later, we are going to need
 		.
 	\end{equation}
 \end{lemma}
-\begin{lemma}\label{thm:coherent_state_inner_product}
-	Let $\ket{\alpha},\ket{\beta}$ be two coherent states, then their inner product is
-	\begin{equation}
-		\braket{\alpha}{\beta}
-		=
-	\end{equation}
-\end{lemma}
-\begin{delayedproof}{thm:coherent_state_inner_product}
-	\begin{equation*}
-		\begin{split}
-			\braket{\alpha}{\beta}
-			=
-			\expval{
-				\hat{D}[\alpha]^\dagger
-				\hat{D}[\beta]
-			}{0}
-			=
-			\expval{
-				\hat{D}[-\alpha]
-				\hat{D}[\beta]
-			}{0}
-			=
-		\end{split}
-	\end{equation*}
-\end{delayedproof}
 \begin{corollary}
-	The coherent state is normalized\footnote{In contrast to the number state, there is no requirement on the spectrum of the coherent state $\alpha(\vb{p})$.}
+	The coherent state is normalized\footnote{In contrast to the number state, there is no constraint on the spectrum of the coherent state $\alpha(\vb{p})$.}
 	\begin{equation}
 		\braket{\alpha}
 		=
@@ -605,3 +591,36 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 	\end{equation}
 	where $\overline{n}=\abs{\alpha}^2$.
 \end{corollary}
+\begin{lemma}\label{thm:coherent_state_inner_product}
+	Let $\ket{\alpha},\ket{\beta}$ be two coherent states, then their inner product is
+	\begin{equation}
+		\begin{split}
+			\braket{\alpha}{\beta}
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+				+
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\beta]}
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\beta]}{\hat\phi^-[\beta]}
+			\right\}
+			\\
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\left\{
+					\abs{\alpha(\vb{p})}^2
+					+
+					\abs{\beta(\vb{p})}^2
+					-
+					2\alpha(\vb{p})\beta(\vb{p})^*
+				\right\}
+			\right\}
+		\end{split}
+	\end{equation}
+\end{lemma}

@@ -1214,7 +1214,15 @@
 		\alpha(\vb{p})^*
 		\hat{a}(\vb{p})
 	\end{equation*}
-	follows from the smearing of the Klein-Gordon operators as discussed in \Cref{thm:single_particle_number_state_smeared_kg}.
+	follows from the smearing of the Klein-Gordon operators as discussed in \Cref{thm:single_particle_number_state_smeared_kg},
+	and the identification
+	\begin{equation*}
+		\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{\alpha(\vb{p})}^2
+	\end{equation*}
+	follows from \Cref{thm:single_partiicle_number_state_inner_product_pn_smeared_kg_comm}.
 \end{delayedproof}
 \begin{delayedproof}{thm:displacement_operator_product}
 	Inserting the definitions of the normal-ordered displacement operator from \Cref{thm:displacement_operator_simplified}, we find
@@ -1549,29 +1557,65 @@
 			\hat{D}[\alpha]^\dagger
 			&=
 			\left(
-				e^{-\overline{n}/2}
-				e^{+\hat\phi^-[\alpha]}
-				e^{-\hat\phi^+[\alpha]}
+				\exp\left\{
+					-
+					\frac{1}{2}
+					\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+				\right\}
+				\exp\left\{
+					+
+					\hat\phi^-[\alpha]
+				\right\}
+				\exp\left\{
+					-
+					\hat\phi^+[\alpha]
+				\right\}
 			\right)^\dagger
 			\\
 			&=
-			e^{-\overline{n}/2}
-			\left(
-				e^{-\hat\phi^+[\alpha]}
-			\right)^\dagger
-			\left(
-				e^{+\hat\phi^-[\alpha]}
-			\right)^\dagger
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+			\right\}
+			\exp\left\{
+				+
+				\hat\phi^-[\alpha]
+			\right\}^\dagger
+			\exp\left\{
+				-
+				\hat\phi^+[\alpha]
+			\right\}^\dagger
 			\\
 			&=
-			e^{-\overline{n}/2}
-			e^{-\hat\phi^-[\alpha]}
-			e^{+\hat\phi^+[\alpha]}
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+			\right\}
+			\exp\left\{
+				+
+				\hat\phi^+[\alpha]
+			\right\}
+			\exp\left\{
+				-
+				\hat\phi^-[\alpha]
+			\right\}
 			\\
 			&=
-			e^{-\overline{n}/2}
-			e^{+\hat\phi^-[-\alpha]}
-			e^{-\hat\phi^+[-\alpha]}
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[-\alpha]}{\hat\phi^-[-\alpha]}
+			\right\}
+			\exp\left\{
+				-
+				\hat\phi^+[-\alpha]
+			\right\}
+			\exp\left\{
+				+
+				\hat\phi^-[-\alpha]
+			\right\}
 			\\
 			&=
 			\hat{D}[-\alpha]
@@ -1796,6 +1840,119 @@
 			\alpha(\vb{p})
 		\right)^n
 		e^{-\overline{n}/2}
+	\end{equation*}
+\end{delayedproof}
+\begin{delayedproof}{thm:coherent_state_inner_product}
+	\begin{equation*}
+		\begin{split}
+			\braket{\alpha}{\beta}
+			&=
+			\expval{
+				\hat{D}[\alpha]^\dagger
+				\hat{D}[\beta]
+			}{0}
+			\\
+			&=
+			\expval{
+				\hat{D}[-\alpha]
+				\hat{D}[\beta]
+			}{0}
+			\\
+			&=
+			\expval{
+				\hat{D}[\beta-\alpha]
+			}{0}
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[-\alpha]}{\hat\phi^-[\beta]}
+				+
+				\frac{1}{2}
+				\comm{\hat\phi^+[\beta]}{\hat\phi^-[-\alpha]}
+			\right\}
+		\end{split}
+	\end{equation*}
+	where we used \Cref{thm:displacement_operator_product}.
+	Using \Cref{thm:coherent_state_number_state_inner_product} with $n=0$ reveals
+	\begin{equation*}
+		\expval{\hat{D}[\beta-\alpha]}{0}
+		=
+		\braket{0}{-\alpha+\beta}
+		=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\comm{\hat\phi^+[-\alpha+\beta]}{\hat\phi^-[-\alpha+\beta]}
+		\right\}
+	\end{equation*}
+	and threfore
+	\begin{equation*}
+		\begin{split}
+			\braket{\alpha}{\beta}
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[-\alpha+\beta]}{\hat\phi^-[-\alpha+\beta]}
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[-\alpha]}{\hat\phi^-[\beta]}
+				+
+				\frac{1}{2}
+				\comm{\hat\phi^+[\beta]}{\hat\phi^-[-\alpha]}
+			\right\}
+			\\
+			&=
+			\exp\biggl\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+				+
+				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\beta]}
+				+
+				\frac{1}{2}
+				\comm{\hat\phi^+[\beta]}{\hat\phi^-[\alpha]}
+				\\
+				&\ \ \ \ \ \ \ \ \ \
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\beta]}{\hat\phi^-[\beta]}
+				+
+				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\beta]}
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\beta]}{\hat\phi^-[\alpha]}
+			\biggr\}
+			\\
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+				+
+				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\beta]}
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^+[\beta]}{\hat\phi^-[\beta]}
+			\right\}
+			\\
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\left\{
+					\abs{\alpha(\vb{p})}^2
+					+
+					\abs{\beta(\vb{p})}^2
+					-
+					2\alpha(\vb{p})\beta(\vb{p})^*
+				\right\}
+			\right\}
+			.
+		\end{split}
 	\end{equation*}
 \end{delayedproof}
 
