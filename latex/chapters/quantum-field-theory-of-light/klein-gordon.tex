@@ -269,7 +269,7 @@ From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 
 \subsection{Propagators}
 
-The section is based on Ref.~\cite[p.~26]{Peskin1995}.
+The section is based on Ref.~\cite[p.~26]{Peskin1995} and can be skipped if one is not interested in the proofs of the coherent state and interactions.
 \begin{definition}[Propagator]
 	We define the propagator as
 	\begin{equation}
@@ -340,6 +340,116 @@ The section is based on Ref.~\cite[p.~26]{Peskin1995}.
 		\expval{\hat\phi(x^\mu)\hat\phi(y^\mu)}{0}
 	\end{equation}
 \end{lemma}
+\begin{definition}
+	The retarded propagator is defined to be
+	\begin{equation}
+		D_R(x^\mu-y^\mu)
+		=
+		\theta(x^0-y^0)
+		\comm{\hat\phi(x^\mu)}{\hat\phi(y^\mu)}
+		=
+		\begin{cases}
+			\comm{\hat\phi(x^\mu)}{\hat\phi(y^\mu)}	& \text{if}\ x^0<y^0
+			\\
+			0 & \text{otherwise}
+		\end{cases}
+		,
+	\end{equation}
+	the advanced propagator is defined to be
+	\begin{equation}
+		D_A(x^\mu-y^\mu)
+		=
+		\theta(x^0-y^0)
+		\comm{\hat\phi(x^\mu)}{\hat\phi(y^\mu)}
+		=
+		\begin{cases}
+			\comm{\hat\phi(x^\mu)}{\hat\phi(y^\mu)}	& \text{if}\ x^0>y^0
+			\\
+			0 & \text{otherwise}
+		\end{cases}
+		,
+	\end{equation}
+	and the Feynman propagator is defined to be
+	\begin{equation}
+		\begin{split}
+			D_F(x^\mu-y^\mu)
+			&=
+			\theta(x^0-y^0)
+			\expval{\hat\phi(x^\mu)\hat\phi(y^\mu)}{0}
+			+
+			\theta(y^0-x^0)
+			\expval{\hat\phi(y^\mu)\hat\phi(x^\mu)}{0}
+			\\
+			&=
+			\begin{cases}
+				D(x^\mu-y^\mu) & \text{if}\ x^0>y^0 \\
+				D(y^\mu-x^\mu) & \text{if}\ x^0<y^0 \\
+				\frac{1}{2}
+				D(x^\mu-y^\mu)
+				+
+				\frac{1}{2}
+				D(y^\mu-x^\mu)
+				& \text{if}\ x^0=y^0
+			\end{cases}
+		\end{split}
+		.
+	\end{equation}
+\end{definition}
+\begin{definition}
+	The time-ordered product of two operators $\hat{A}(x^\mu),\hat{B}(y^\mu)$ is defined to be
+	\begin{equation}
+		\begin{split}
+			\expval{T\left\{\hat{A}(x^\mu)\hat{B}(y^\mu)\right\}}{0}
+			&=
+			\theta(x^0-y^0)
+			\expval{\hat{A}(x^\mu)\hat{B}(y^\mu)}{0}
+			\\
+			&+
+			\theta(y^0-x^0)
+			\expval{\hat{B}(y^\mu)\hat{A}(x^\mu)}{0}
+		\end{split}
+		.		
+	\end{equation}
+\end{definition}
+\begin{corollary}
+	The Feynman propagator is equal to the time-ordered correlation function
+	\begin{equation}
+		D_F(x^\mu-y^\mu)
+		=
+		\expval{T\left\{\hat\phi(x^\mu)\hat\phi(y^\mu)\right\}}{0}
+		.
+	\end{equation}
+\end{corollary}
+\begin{lemma}\label{thm:propagator_kg_solution}
+	The propagators are solutions to the Klein-Gordon equation of a point-source
+	\begin{equation}
+		\left(
+			\partial_\mu
+			\partial^\mu
+			+
+			m^2
+		\right)
+		D(x^\mu-y^\mu)
+		=
+		-i\delta^{(4)}(x^\mu-y^\mu)
+	\end{equation}
+	but to different boundary conditions.
+\end{lemma}
+\begin{corollary}
+	The Fourier transform of the propagators $D(p^\mu)$ satisfies
+	\begin{equation}
+		\left(
+			-
+			p_\mu p^\mu
+			+
+			m^2
+		\right)
+		D(p^\mu)
+		=
+		-i
+		.
+	\end{equation}
+\end{corollary}
 
 \subsection{Coordinate wave function properties}
 
