@@ -641,6 +641,198 @@
 		.
 	\end{equation*}
 \end{delayedproof}
+\begin{delayedproof}{thm:single_particle_number_state_momentum_density_mean}
+	Inserting the definitions, we find
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(t,\vb{x})}{1_f}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left(
+				-i
+				2\omega(\vb{p})
+			\right)
+			\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
+			\int\frac{\dd[3]{q_2}}{(2\pi)^3\sqrt{2\omega(\vb{q}_2)}}
+			\\
+			&\times
+			f(\vb{q}_1)^*
+			f(\vb{q}_2)
+			\expval{\hat{a}(\vb{q}_1)\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q}_2)}{0}
+			+
+			\text{c.c.}			
+		\end{split}
+	\end{equation*}
+	and
+	\begin{equation*}
+		\expval{\hat{a}(\vb{q}_1)\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q}_2)}{0}
+		=
+		0
+	\end{equation*}
+	because we have an unequal number of annihilation and creation operators.
+\end{delayedproof}
+\begin{delayedproof}{thm:single_particle_number_state_momentum_density_correlation}
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{1_f}
+			&=
+			\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+			\int\frac{\dd[3]{p_2}}{(2\pi)^3\sqrt{2\omega(\vb{p}_2)}}
+			\left(-i2\omega(\vb{p}_1)\right)
+			\left(-i2\omega(\vb{p}_2)\right)
+			\\
+			&\times
+			\expval{
+				\left[
+					\hat{a}(\vb{p}_1)
+					e^{-ip_1^\mu x^\mu}
+					-
+					\hat{a}^\dagger(\vb{p}_1)
+					e^{+ip_1^\mu x^\mu}
+				\right]
+				\left[
+					\hat{a}(\vb{p}_2)
+					e^{-ip_2^\mu y^\mu}
+					-
+					\hat{a}^\dagger(\vb{p}_2)
+					e^{+ip_2^\mu y^\mu}
+				\right]
+			}{1_f}
+		\end{split}
+	\end{equation*}
+	\begin{equation*}
+		\begin{split}
+			&
+			\expval{
+				\left[
+					\hat{a}(\vb{p}_1)
+					e^{-ip_1^\mu x^\mu}
+					-
+					\hat{a}^\dagger(\vb{p}_1)
+					e^{+ip_1^\mu x^\mu}
+				\right]
+				\left[
+					\hat{a}(\vb{p}_2)
+					e^{-ip_2^\mu y^\mu}
+					-
+					\hat{a}^\dagger(\vb{p}_2)
+					e^{+ip_2^\mu y^\mu}
+				\right]
+			}{1_f}
+			\\
+			=&
+			\expval{
+				-
+				\hat{a}(\vb{p}_1)
+				e^{-ip_1^\mu x^\mu}
+				\hat{a}^\dagger(\vb{p}_2)
+				e^{+ip_2^\mu y^\mu}
+				-
+				\hat{a}^\dagger(\vb{p}_1)
+				e^{+ip_1^\mu x^\mu}
+				\hat{a}(\vb{p}_2)
+				e^{-ip_2^\mu y^\mu}
+			}{1_f}
+			\\
+			=&
+			-
+			\expval{
+				\hat{a}(\vb{p}_1)
+				\hat{a}^\dagger(\vb{p}_2)
+			}{1_f}
+			e^{-ip_1^\mu x^\mu}
+			e^{+ip_2^\mu y^\mu}
+			-
+			\expval{
+				\hat{a}^\dagger(\vb{p}_1)
+				\hat{a}(\vb{p}_2)
+			}{1_f}
+			e^{+ip_1^\mu x^\mu}
+			e^{-ip_2^\mu y^\mu}
+			\\
+			=&
+			-
+			2\Re\left\{
+				\expval{
+					\hat{a}^\dagger(\vb{p}_1)
+					\hat{a}(\vb{p}_2)
+				}{1_f}
+				e^{+ip_1^\mu x^\mu}
+				e^{-ip_2^\mu y^\mu}
+			\right\}
+		\end{split}
+	\end{equation*}
+	\begin{equation*}
+		\begin{split}
+			\expval{
+				\hat{a}^\dagger(\vb{p}_1)
+				\hat{a}(\vb{p}_2)
+			}{1_f}
+			&=
+			\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
+			\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_2)}}
+			f(\vb{q}_1)^*
+			f(\vb{q}_2)
+			\\
+			&\times
+			\expval{
+				\hat{a}(\vb{q}_1)
+				\hat{a}^\dagger(\vb{p}_1)
+				\hat{a}(\vb{p}_2)
+				\hat{a}^\dagger(\vb{q}_2)
+			}{0}
+			\\
+			&=
+			\frac{f(\vb{p}_1)^*}{\sqrt{2\omega(\vb{p}_1)}}
+			\frac{f(\vb{p}_2)}{\sqrt{2\omega(\vb{p}_2)}}
+		\end{split}
+	\end{equation*}
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{1_f}
+			&=
+			2\Re\biggl\{
+				\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+				\int\frac{\dd[3]{p_2}}{(2\pi)^3\sqrt{2\omega(\vb{p}_2)}}
+				2\omega(\vb{p}_1)
+				2\omega(\vb{p}_2)
+				\\
+				&\times
+				\frac{f(\vb{p}_1)^*}{\sqrt{2\omega(\vb{p}_1)}}
+				\frac{f(\vb{p}_2)}{\sqrt{2\omega(\vb{p}_2)}}
+				e^{+ip_1^\mu x^\mu}
+				e^{-ip_2^\mu y^\mu}
+			\biggr\}
+			\\
+			&=
+			2\Re\left\{
+				\left(
+					\int\frac{\dd[3]{p_1}}{(2\pi)^3}
+					f(\omega(\vb{p}_1),\vb{p}_1)
+					e^{+ip_1^\mu x^\mu}
+				\right)^*
+				\left(
+					\int\frac{\dd[3]{p_2}}{(2\pi)^3}
+					f(\omega(\vb{p}_2),\vb{p}_2)
+					e^{-ip_2^\mu y^\mu}
+				\right)
+			\right\}
+			\\
+			&=
+			2
+			\left(
+				\int\frac{\dd[3]{p_1}}{(2\pi)^3}
+				f(\omega(\vb{p}_1),\vb{p}_1)
+				e^{+ip_1^\mu x^\mu}
+			\right)^*
+			\left(
+				\int\frac{\dd[3]{p_2}}{(2\pi)^3}
+				f(\omega(\vb{p}_2),\vb{p}_2)
+				e^{-ip_2^\mu y^\mu}
+			\right)
+		\end{split}
+	\end{equation*}
+\end{delayedproof}
 \begin{delayedproof}{thm:single_particle_number_state_wave_function}
 	of the coordinate wave function
 	\begin{equation*}

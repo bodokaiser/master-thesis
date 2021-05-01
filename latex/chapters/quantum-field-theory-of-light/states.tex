@@ -168,6 +168,46 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 		.
 	\end{equation}
 \end{corollary}
+\begin{lemma}\label{thm:single_particle_number_state_momentum_density_mean}
+	The mean momentum density of the single-particle number state is zero, i.e.,
+	\begin{equation}
+		\expval{\hat\pi(t,\vb{x})}{1_f}
+		=
+		0
+	\end{equation}
+\end{lemma}
+\begin{lemma}\label{thm:single_particle_number_state_momentum_density_correlation}
+	The correlation function of the momentum density operator is
+	\begin{equation}
+		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{1_f}
+		=
+		2
+		\left(
+			\int\frac{\dd[3]{p_1}}{(2\pi)^3}
+			f(\omega(\vb{p}_1),\vb{p}_1)
+			e^{-ip_1^\mu x^\mu}
+		\right)^*
+		\left(
+			\int\frac{\dd[3]{p_2}}{(2\pi)^3}
+			f(\omega(\vb{p}_2),\vb{p}_2)
+			e^{-ip_2^\mu y^\mu}
+		\right)
+	\end{equation}
+\end{lemma}
+\begin{corollary}
+	The variance of the momentum density observable is
+	\begin{equation}
+		\expval{\left(\Delta\hat\pi(x^\mu)\right)^2}{1_f}
+		=
+		2
+		\abs{
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			f(\omega(\vb{p}),\vb{p})
+			e^{-ip^\mu y^\mu}
+		}^2
+		.
+	\end{equation}
+\end{corollary}
 \begin{lemma}\label{thm:single_particle_number_state_wave_function}
 	The coordinate wave function of a single-particle number state is
 	\begin{equation}
