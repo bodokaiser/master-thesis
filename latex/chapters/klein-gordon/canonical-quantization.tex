@@ -1,159 +1,4 @@
-\section{Klein-Gordon field}
-
-Choosing a reference frame in which the polarization basis is independent of the momentum, we find that
-\begin{equation}
-	\hat{\vb{A}}(t,\vb{x})
-	=
-	\sum_{\lambda=1,2}
-	c_\lambda
-	\hat\phi(t,\vb{x})
-	\boldsymbol{\varepsilon}_\lambda
-\end{equation}
-with $c_1,c_2\in\mathbb{C}$ and $\abs{c_1}^2+\abs{c_2}^2=1$.
-Alternatively, we can perform the replacement
-\begin{equation}
-	\hat{a}(\vb{p})
-	\to
-	\sum_{\lambda=1,2}
-	\hat{a}_\lambda(\vb{p})
-	\boldsymbol{\varepsilon}_\lambda(\vb{p})
-\end{equation}
-in our results obtained with the Klein-Gordon field to transfer the results to the Maxwell field in the Coulomb gauge.
-
-\subsection{Relativistic field theory}
-
-\begin{definition}[Klein-Gordon Lagrangian]
-	The Lorentz-invariant Lagrangian density
-	\begin{equation}
-		\mathcal{L}
-		=
-		\frac{1}{2}
-		\left(\partial_\mu\phi\right)
-		\left(\partial^\mu\phi\right)
-		-
-		\frac{1}{2}
-		m^2\phi^2
-		\label{eq:kg_lagrangian}
-	\end{equation}
-	describes a real scalar field $\phi(t,\vb{x})$ with mass $m>0$, the (massive) Klein-Gordon field.
-\end{definition}
-\begin{theorem}[Relativistic energy-momentum relation]\label{th:relativistic_energy_momentum}
-	Excitations of the Klein-Gordon field satisfy the relativistic energy-momentum relation
-	\begin{equation}
-		\omega(\vb{p})
-		=
-		\sqrt{\vb{p}^2+m^2}
-		=
-		E(\vb{p})
-		\label{eq:energy_momentum_relation}
-	\end{equation}
-	and the physical momentum space is constrained to the momentum lightcone
-	\begin{equation}
-		V
-		=
-		\left\{
-			(p_0,\vb{p})\in\mathbb{R}^4
-			\mid
-			p_0^2=\omega(\vb{p})^2
-		\right\}
-		\label{eq:momentum_lightcone}
-		.
-	\end{equation}
-\end{theorem}
-\begin{theorem}[Mode expansion of the Klein-Gordon field]\label{thm:kg_fourier_expansion}
-	The Fourier expansion of the Klein-Gordon field
-	\begin{equation}
-		\phi(t,\vb{x})
-		=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\biggl\{
-			a(\vb{p})^*
-			e^{-ip_\mu x^\mu}
-			+
-			a(\vb{p})
-			e^{+ip_\mu x^\mu}
-		\biggr\}_{p_0=\omega(\vb{p})}
-	\end{equation}
-	satisfies the equations of motion for any choice of $a(\vb{p})=\phi(\omega(\vb{p}),\vb{p})^*$.
-\end{theorem}
-From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
-\begin{corollary}[Conjugate momentum density of the Klein-Gordon field]
-	The conjugate momentum density of the Klein-Gordon field is
-	\begin{equation}
-		\pi(t,\vb{x})
-		=
-		-i
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\sqrt{2\omega(\vb{p})}
-		\left\{
-			a(\vb{p})
-			e^{-ip_\mu x^\mu}
-			-
-			a(\vb{p})^*
-			e^{+ip_\mu x^\mu}
-		\right\}
-	\end{equation}
-	which follows directly from the Legendre transformation
-	\begin{equation}
-		\pi(t,\vb{x})
-		=
-		\partial_t\pdv{\mathcal{L}}{(\partial_t\phi)}
-		=
-		\partial_t\phi(t,\vb{x})
-	\end{equation}
-	fundamental to Hamiltonian mechanics.
-\end{corollary}
-\begin{definition}[Energy-momentum tensor]
-	We define the energy-momentum tensor
-	\begin{equation}
-		T^{\mu\nu}
-		=
-		\pdv{\mathcal{L}}{(\partial_\mu\phi)}\partial^\nu\phi
-		-
-		g^{\mu\nu}\mathcal{L}
-		\label{eq:energy_momentum_tensor}
-	\end{equation}
-	which encodes the field's observables in its components.
-	For instance, the energy density is encoded in the
-	\begin{equation*}
-		T^{00}
-		=
-		\frac{1}{2}
-		\left(\partial_t\phi\right)^2
-		+
-		\frac{1}{2}
-		\left(\grad\phi\right)^2
-		+
-		\frac{1}{2}
-		\left(m\phi\right)^2		
-	\end{equation*}
-	component and the momentum density in the
-	\begin{equation*}
-		T^{0i}
-		=
-		-\pi\partial_i\phi		
-	\end{equation*}
-	component, see Ref.~\cite{Peskin1995}.
-\end{definition}
-\begin{lemma}\label{thm:kg_total_energy_momentum}
-	The total energy and momentum of the Klein-Gordon field,
-	\begin{align}
-		H
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\omega(\vb{p})\abs{a(\vb{p})}^2
-		&&
-		\vb{P}
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\vb{p}\abs{a(\vb{p})}^2
-		\label{eq:kg_energy_momentum}
-		,
-	\end{align}
-	are the energy and momentum weighted by the mode amplitudes.
-\end{lemma}
-
-\subsection{Canonical quantization}
+\section{Canonical quantization}
 
 \begin{definition}[Canonical quantization]
 	In the canonical quantization procedure, the dynamical variables are promoted to operators satisfying the equal-time canonical commutation relations
@@ -220,6 +65,9 @@ From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 		.
 	\end{align}	
 \end{theorem}
+
+\subsection{Energy and momentum}
+
 \begin{definition}[Normal-ordered product]
 	The normal-ordered product of annihilation and creation operators
 	\begin{equation}
@@ -266,6 +114,80 @@ From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 		.
 	\end{equation}
 \end{corollary}
+
+\subsection{Fock space}
+
+\begin{definition}[Vacuum state]
+	The vacuum state $\ket{0}$ is a unique state that is normalized
+	\begin{equation}
+		\braket{0}
+		=
+		1
+	\end{equation}
+	and satisfies
+	\begin{align}
+		\hat{P}_\mu
+		\ket{0}
+		&=
+		0
+		\\
+		\hat{M}_{\mu\nu}
+		\ket{0}
+		&=
+		\ket{0}
+	\end{align}
+	where $\hat{P}_\mu$ is the four-momentum and $\hat{M}_{\mu\nu}$ is the relativistic angular momentum operator, see Ref.~\cite[p.~270]{Greiner2013} for details.
+\end{definition}
+\begin{corollary}
+	The vacuum state is invariant under spacetime translations
+	\begin{equation}
+		e^{i\hat{P}_\mu a^\mu}
+		\ket{0}
+		=
+		\ket{0}
+		.
+	\end{equation}	
+\end{corollary}
+\begin{theorem}
+	Let $n,m\in\mathbb{N}$ and $n\neq m$ then
+	\begin{equation}
+		\expval{
+			\hat{a}(\vb{p}_1)
+			\dots
+			\hat{a}(\vb{p}_n)
+			\hat{a}^\dagger(\vb{q}_1)
+			\dots
+			\hat{a}^\dagger(\vb{q}_m)
+		}{0}
+		=
+		0
+		.
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	Without loss of generality, assume $n>m$, then
+\end{proof}
+\begin{definition}(Vacuum fluctuation)
+	The vacuum fluctuation is
+	\begin{equation}
+		\Delta\pi_0
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\left(2\omega(\vb{p})\right)^2
+		.
+	\end{equation}
+\end{definition}
+\begin{lemma}\label{thm:vacuum_state_momentum_density_observable}
+	The mean momentum density of the vacuum state is zero, the correlation is
+	\begin{equation}
+		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{0}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\left(2\omega(\vb{p})\right)^2
+		e^{-ip_\mu(x^\mu-y^\mu)}
+	\end{equation}
+	and the variance turns out to be equal to the vacuum fluctuations $\Delta\pi_0$.
+\end{lemma}
 
 \subsection{Propagators}
 
@@ -451,79 +373,4 @@ The section is based on Ref.~\cite[p.~26]{Peskin1995} and can be skipped if one 
 	\end{equation}
 \end{corollary}
 
-\subsection{Coordinate wave function properties}
-
-\begin{definition}[Coordinate wave function]
-	The equivalent of a coordinate wave function given a state $\ket{\psi}$ and a field operator $\hat\phi$ is
-	\begin{equation}
-		\psi(t,\vb{x})
-		=
-		\bra{0}\hat\phi(t,\vb{x})\ket{\psi}
-		.
-	\end{equation}
-\end{definition}
-\begin{lemma}\label{thm:coordinate_wave_function_simplified}
-	The coordinate wave function reduces to
-	\begin{equation}
-		\psi(t,\vb{x})
-		=
-		\bra{0}\hat\phi(t,\vb{x})\ket{\psi}
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		e^{-ip_\mu x^\mu}
-		\bra{0}
-		\hat{a}(\vb{p})
-		\ket{\psi}
-		.
-	\end{equation}
-\end{lemma}
-\begin{definition}[Probability current]
-	The manifest Lorentz-covariant probability current\footnote{The probability current is the conserved Noether's current of the Klein-Gordon field, see Ref.~\cite[p.~18]{Peskin1995}.} is
-	\begin{equation}
-		j_\mu(t,\vb{x})
-		=
-		2
-		\Im\left\{
-			\psi(t,\vb{x})^*
-			\partial_\mu
-			\psi(t,\vb{x})
-		\right\}
-		\label{eq:qkg_probability_current}
-	\end{equation}
-	where $\psi(t,\vb{x})$ is a coordinate wave function.
-	The time component $j^0(t,\vb{x})$ is equal to the probability density $\rho(t,\vb{x})$ and the spatial components $j^i(t,\vb{x})$ are equal to the probability current.
-\end{definition}
-\begin{definition}[Localization]
-	The center-of-mass position of the probability density,
-	\begin{equation}
-		\expval{\vb{x}(t)}
-		=
-		\int\dd[3]{x}
-		\vb{x}
-		\rho(t,\vb{x})
-		,
-	\end{equation}
-	allows us to make statements about the localization of a field excitation.\footnote{There exists no position operator free of contradictions in quantum field theory!}
-\end{definition}
-\begin{definition}[Group velocity]
-	The total probability current
-	\begin{equation}
-		\expval{\vb{v}(t)}
-		=
-		\int\dd[3]{x}
-		\vb{j}(t,\vb{x})
-		\label{eq:group_velocity}
-	\end{equation}
-	equals the group velocity of a field excitation.
-\end{definition}
-\begin{definition}[Spatial dispersion]
-	The spatial dispersion is equal to the variance of the position weighted by the probability density
-	\begin{equation}
-		\sigma_x(t)^2
-		=
-		\expval{\vb{x}(t)^2}
-		-
-		\expval{\vb{x}(t)}^2
-	\end{equation}
-	and quantifies the spatial spread of a wave packet.
-\end{definition}
+\subsection{Coordinate wave function}

@@ -1,0 +1,136 @@
+\section{Comparison with single-mode quantum optics}
+
+\begin{lemma}
+	By absorbing $1/\sqrt{2\omega(\vb{p})}$ into the definition of the spectrum $f(\vb{p})$, the number state simplifies to
+	\begin{equation}
+		\ket{n}
+		=
+		\frac{1}{n!}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			f(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+		\right)^n
+		\ket{0}
+	\end{equation}
+	and the coherent state simplifies to
+	\begin{equation}
+		\ket{\beta}
+		=
+		e^{-\overline{n}/2}
+		\exp\left\{
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\beta(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+		\right\}
+		\ket{0}
+	\end{equation}
+	in exchange for manifest Lorentz-invariance.
+\end{lemma}
+\begin{theorem}
+	The spectrum expanded in spherical harmonics is
+	\begin{equation}
+		f(\vb{p})
+		=
+		f(\norm{\vb{p}},\theta,\varphi)
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	The spectrum satisfies the Klein-Gordon equation.
+	In the massless case, the Klein-Gordon equation is equal to the relativistic wave equation
+	\begin{equation}
+		0
+		=
+		\partial_t^2
+		f(t,\vb{x})
+		-
+		\laplacian
+		f(t,\vb{x})
+		.
+	\end{equation}
+	According to Ref.~\cite[p.~538]{Jackson2007}, we then can write
+	\begin{equation}
+		f(t,\vb{x})
+		=
+		\sum_{l=0}^\infty
+		\sum_{m=-l}^l
+		\int\dd{\omega}
+		f_l(\omega\norm{\vb{x}})
+		Y_l^m(\theta,\varphi)
+		e^{-i\omega t}
+	\end{equation}
+\end{proof}
+
+In the previous sections we derived the number state which is an eigenstate of the number operator $\hat{N}$
+\begin{align}
+	\ket{n}
+	&=
+	\frac{1}{n!}
+	\left(
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		f(\vb{p})
+		\hat{a}^\dagger(\vb{p})
+	\right)^n
+	\ket{0}
+	\\
+	\ket{\alpha}
+	&=
+	e^{-\overline{n}/2}
+	\exp\left\{
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\alpha(\vb{p})
+		\hat{a}^\dagger(\vb{p})
+	\right\}
+	\ket{0}
+\end{align}
+and the coherent state which is an eigenstate of the annihilation operator.
+For the number observable of these two states, we found
+\begin{align}
+	\expval{\hat{N}}{n}
+	=
+	n
+	&&
+	\expval{(\Delta\hat{N})^2}{n}
+	=
+	0
+	\\
+	\expval{\hat{N}}{\alpha}
+	=
+	\overline{n}
+	&&
+	\expval{(\Delta\hat{N})^2}{n}
+	=
+	\overline{n}
+\end{align}
+while for the energy observable, we found.
+
+Our definitions of the number and coherent state are manifest Lorentz-covariant as the integral measure and the integrand are both Lorentz-invariant.
+However, our measurements are not Lorentz-invariant, i.e., our spectrum analyzer measures $\beta(\vb{p})=\alpha(\vb{p})/\sqrt{2\omega(\vb{p})}$ and not $\alpha(\vb{p})$ for the spectrum.
+Therefore, we can redefine the spectrum and use
+
+without loss of generality.\footnote{We kept the Lorentz-invariant measure and spectrum throughout the chapter to compare the results directly with the literature.}
+
+Another sensitive approximation to make is to transform to spherical coordinates where the $z$ axis is along the propagation direction, i.e., where $f(\vb{p})$ is maximal, then we write $f(\norm{\vb{p}},\theta,\varphi)$.
+It is also sensitive, to assume that the spectrum is symmetric around the propagation axis, hence $f(\norm{\vb{p}},\theta)$, then we can write
+\begin{align}
+	\ket{n}
+	&=
+	\frac{1}{n!}
+	\left(
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		g(\norm{\vb{p}},\theta)
+		\hat{a}^\dagger(\vb{p})
+	\right)^n
+	\ket{0}
+	\\
+	\ket{\beta}
+	&=
+	e^{-\overline{n}/2}
+	\exp\left\{
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\beta(\norm{\vb{p}},\theta)
+		\hat{a}^\dagger(\vb{p})
+	\right\}
+	\ket{0}
+\end{align}
+By the 

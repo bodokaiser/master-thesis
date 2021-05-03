@@ -43,35 +43,47 @@
 	\tableofcontents
 
 	\chapter{Introduction}
-	\begin{refsection}	
+	\begin{refsection}
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
 	\end{refsection}
 
-	\chapter{Quantum field theory of light}
+	\chapter{Klein-Gordon field}
 	\begin{refsection}
-		\include{chapters/quantum-field-theory-of-light/klein-gordon}
-		\include{chapters/quantum-field-theory-of-light/states}
-		\include{chapters/quantum-field-theory-of-light/interactions}
-		\include{chapters/quantum-field-theory-of-light/maxwell}
+		\include{chapters/klein-gordon/introduction}
+		\include{chapters/klein-gordon/relativistic-field-theory}
+		\include{chapters/klein-gordon/canonical-quantization}
+		\include{chapters/klein-gordon/quantum-states}
 		
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
 	\end{refsection}
 	
-	\chapter{Quantum optical communication}
+	\chapter{Maxwell field}
 	\begin{refsection}
-		\include{chapters/quantum-optical-communication/coherent-source}
-		\include{chapters/quantum-optical-communication/waveguides}
-		\include{chapters/quantum-optical-communication/mode-coupler}
-		\section{Modulator}
-		\include{chapters/quantum-optical-communication/coherent-detector}
+		\include{chapters/maxwell/introduction}
+		\include{chapters/maxwell/relativistic-field-theory}
+		\include{chapters/maxwell/canonical-quantization}
+		\include{chapters/maxwell/quantum-states}
+		\include{chapters/maxwell/single-mode}
 		
 		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]	
+		\printbibliography[title=References]
+	\end{refsection}
+	
+	\chapter{Interactions}
+	\begin{refsection}
+		\include{chapters/interactions/introduction}
+		\include{chapters/interactions/dynamical-pictures}
+		\include{chapters/interactions/scattering-theory}
+		\include{chapters/interactions/classical-source}
+		\include{chapters/interactions/mode-coupler}
+		
+		\addcontentsline{toc}{section}{References}
+		\printbibliography[title=References]
 	\end{refsection}
 
-	\chapter{Example: CV-QKD}
+	\chapter{Continuous-variable quantum-key distribution}
 	\begin{refsection}
 		\section{Idea and operating principle}
 		\section{Protocol}

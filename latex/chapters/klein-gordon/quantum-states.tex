@@ -1,111 +1,6 @@
 \section{Quantum states}
 
-\subsection{Vacuum state}
-
-\begin{definition}[Vacuum state]
-	The vacuum state $\ket{0}$ is a unique state that is normalized
-	\begin{equation}
-		\braket{0}
-		=
-		1
-	\end{equation}
-	and satisfies
-	\begin{align}
-		\hat{P}_\mu
-		\ket{0}
-		&=
-		0
-		\\
-		\hat{M}_{\mu\nu}
-		\ket{0}
-		&=
-		\ket{0}
-	\end{align}
-	where $\hat{P}_\mu$ is the four-momentum and $\hat{M}_{\mu\nu}$ is the relativistic angular momentum operator, see Ref.~\cite[p.~270]{Greiner2013} for details.
-\end{definition}
-\begin{corollary}
-	The vacuum state is invariant under spacetime translations
-	\begin{equation}
-		e^{i\hat{P}_\mu a^\mu}
-		\ket{0}
-		=
-		\ket{0}
-		.
-	\end{equation}	
-\end{corollary}
-\begin{theorem}
-	Let $n,m\in\mathbb{N}$ and $n\neq m$ then
-	\begin{equation}
-		\expval{
-			\hat{a}(\vb{p}_1)
-			\dots
-			\hat{a}(\vb{p}_n)
-			\hat{a}^\dagger(\vb{q}_1)
-			\dots
-			\hat{a}^\dagger(\vb{q}_m)
-		}{0}
-		=
-		0
-		.
-	\end{equation}
-\end{theorem}
-\begin{proof}
-	Without loss of generality, assume $n>m$, then
-\end{proof}
-\begin{definition}(Vacuum fluctuation)
-	The vacuum fluctuation is
-	\begin{equation}
-		\Delta\pi_0
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\left(2\omega(\vb{p})\right)^2
-		.
-	\end{equation}
-\end{definition}
-\begin{lemma}\label{thm:vacuum_state_momentum_density_observable}
-	The mean momentum density of the vacuum state is zero, the correlation is
-	\begin{equation}
-		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{0}
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\left(2\omega(\vb{p})\right)^2
-		e^{-ip_\mu(x^\mu-y^\mu)}
-	\end{equation}
-	and the variance turns out to be equal to the vacuum fluctuations $\Delta\pi_0$.
-\end{lemma}
-
-\subsection{Momentum state}
-
-\begin{definition}[Momentum state]
-	The creation operator acting on the vacuum state
-	\begin{equation}
-		\ket{\vb{p}}
-		=
-		\sqrt{2\omega(\vb{p})}
-		\hat{a}^\dagger(\vb{p})
-		\ket{0}
-	\end{equation}
-	creates a state with momentum $\vb{p}$, the momentum state.
-\end{definition}
-\begin{lemma}\label{thm:momentum_state_non_normalizable}
-	The momentum state $\ket{\vb{p}}$ is not normalizable.
-\end{lemma}
-\begin{theorem}\label{thm:momentum_state_eigenstate}
-	The momentum state $\ket{\vb{p}}$ is an eigenstate of the momentum operator $\hat{\vb{P}}$
-	\begin{equation}
-		\hat{\vb{P}}
-		\ket{\vb{p}}
-		=
-		\vb{p}
-		\ket{\vb{p}}
-	\end{equation}
-	with eigenvalue $\vb{p}$.
-\end{theorem}
-\begin{lemma}\label{thm:momentum_state_wave_function}
-	The coordinate wave function of a momentum state $\ket{\vb{p}}$ is a plane-wave $\psi(t,\vb{x})=e^{-ip_\mu x^\mu}$.
-\end{lemma}
-
-\subsection{Single-particle number state}
+\subsection{Number state}
 
 \begin{definition}[Single-particle number state]\label{def:single_particle_number_state}
 	The single-particle number state with Lorentz-invariant spectrum $f(\vb{p})=f(\omega(\vb{p}),\vb{p})\in\mathcal{S}(\mathbb{R}^4,\mathbb{C})$ is
@@ -284,8 +179,6 @@ Later, we are going to need
 		.
 	\end{equation}
 \end{lemma}
-
-\subsection{Multi-particle number state}
 
 \begin{definition}[Multi-particle number state]
 	A multi-particle number state with $n$ particles and spectrum $f$ is given by

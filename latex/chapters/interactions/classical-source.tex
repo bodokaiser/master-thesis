@@ -1,0 +1,79 @@
+\section{Classical source}
+
+\begin{definition}
+	The Lagrangian density describing the interaction between a quantized Klein-Gordon field $\hat\phi(x)$ and an external classical source $J(x)$ is
+	\begin{equation}
+		\mathcal{L}_\text{int}
+		=
+		J(x)
+		\hat\phi(x)
+		\label{eq:qkg_classical_interaction}
+		.
+	\end{equation}
+\end{definition}
+\begin{theorem}
+	The scattering operator $\hat{S}$ of the Klein-Gordon field corresponding to the interaction with a classical source $J(x)$, see \cref{eq:qkg_classical_interaction}, is equal to
+	\begin{equation}
+		\hat{S}
+		=
+		N\exp\left\{
+			i\int\dd[4]{x}
+			J(x)
+			\hat\phi(x)
+		\right\}
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\iint\dd[4]{x}\dd[4]{y}
+			J(x)
+			D(x-y)
+			J(y)
+		\right\}
+		\label{eq:scattering_operator_classical_interaction}
+	\end{equation}
+	wherein $D(x-y)$ is the Feynman propagator of the Klein-Gordon field.
+\end{theorem}
+\begin{proof}
+	See Ref.~\cite{Zhang1999} and Ref.~\cite[p.~180]{Itzykson2012} where the scattering operator is calculated for the Maxwell field.
+\end{proof}
+\begin{theorem}\label{thm:displacement_scattering_operator_equivalence}
+	The $\hat{S}$ operator of \cref{eq:scattering_operator_classical_interaction} is equal to the phase-shifted displacement operator
+	\begin{equation}
+		\hat{S}
+		=
+		\hat{D}[iJ]
+		.
+	\end{equation}
+\end{theorem}
+
+\subsection{Detector}
+
+\begin{example}
+	The Hamiltonian of a Klein-Gordon field coupled to a two-level quantum system is
+	\begin{equation}
+		\hat{H}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\omega(\vb{p})
+		\hat{a}^\dagger(\vb{p})
+		\hat{a}(\vb{p})
+		+
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left\{
+			\gamma(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\hat{b}
+			+0
+			\gamma(\vb{p})^*
+			\hat{a}(\vb{p})
+			\hat{b}^\dagger
+		\right\}
+		+
+		\frac{1}{2}
+		\omega_0
+		\hat{b}^\dagger
+		\hat{b}
+	\end{equation}
+\end{example}
+
+\subsection{Laser}

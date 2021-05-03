@@ -1,0 +1,137 @@
+\section{Dynamical pictures}
+
+\begin{definition}
+	In the Heisenberg picture, the operators satisfy the Heisenberg equation of motion
+	\begin{equation}
+		i\partial_t
+		\hat{O}^H(t)
+		=
+		\comm{\hat{O}^H(t)}{\hat{H}}
+	\end{equation}
+	and the states are constant, i.e.,
+	\begin{equation}
+		\ket{\psi(t)}^H
+		=
+		\ket{\psi(0)}^H
+		=
+		\ket{\psi}^H
+		.
+	\end{equation}
+\end{definition}
+\begin{lemma}\label{thm:heisenberg_eom_sol}
+	The Heisenberg equation of motion is solved by
+	\begin{equation}
+		\hat{O}^H(t)
+		=
+		e^{+i\hat{H}t}
+		\hat{O}^H(0)
+		e^{-i\hat{H}t}
+		.
+	\end{equation}
+\end{lemma}
+\begin{definition}
+	In the Schrödinger picture, the operators are time-independent, and the states satisfy the Schrödinger equation
+	\begin{equation}
+		i\partial_t
+		\ket{\psi(t)}^S
+		=
+		\hat{H}
+		\ket{\psi(t)}^S
+	\end{equation}
+\end{definition}
+\begin{lemma}\label{thm:schroedinger_eom_sol}
+	For a time-independent Hamiltonian, the state solving the Schrödinger equation is
+	\begin{equation}
+		\ket{\psi(t)}^S
+		=
+		e^{-i\hat{H}t}
+		\ket{\psi(0)}^S
+		.
+	\end{equation}
+\end{lemma}
+\begin{theorem}\label{thm:heisenberg_schroedinger_equivalence}
+	Operators and states in the Heisenberg and Schrödinger picture are related by
+	\begin{align}
+		\hat{O}^S
+		&=
+		\hat{O}^H(0)
+		\\
+		\ket{\psi(0)}^S
+		&=
+		\ket{\psi}^H
+		,
+	\end{align}
+	and are equivalent with respect to their physical predictions.
+\end{theorem}
+\begin{definition}
+	A canonical transformation leaves the commutation relations unchanged.	
+\end{definition}
+\begin{lemma}\label{thm:heisenberg_schroedinger_canonical_transformation}
+	Heisenberg and Schrödinger picture are related by a canonical transformation.
+\end{lemma}
+\begin{definition}
+	If we can write the Hamiltonian $\hat{H}$ as the sum of a free $\hat{H}_0$ and an interacting part $\hat{H}_\text{int}$,
+	\begin{equation}
+		\hat{H}
+		=
+		\hat{H}_0
+		+
+		\hat{H}_\text{int}
+		,
+	\end{equation}
+	the Dirac (or interaction) picture is defined as
+	\begin{align}
+		\hat{O}^D(t)
+		&=
+		e^{+i\hat{H}_0^St}
+		\hat{O}^S
+		e^{-i\hat{H}_0^St}
+		\\
+		\ket{\psi(t)}^D
+		&=
+		e^{+i\hat{H}_0^St}
+		\ket{\psi(t)}^S
+	\end{align}
+\end{definition}
+\begin{remark}
+	For $\comm{\hat{H}_0^S}{\hat{H}_\text{int}^S}=0$, we have
+	\begin{align}
+		\hat{O}^D(t)
+		&=
+		e^{+i\hat{H}_0^St}
+		\hat{O}^S
+		e^{-i\hat{H}_0^St}
+		\\
+		\ket{\psi(t)}^D
+		&=
+		e^{-i\hat{H}_\text{int}^St}
+		\ket{\psi(0)}^S
+		,
+	\end{align}
+	i.e., the state evolves according to the Schrödinger picture with the interaction Hamiltonian $\hat{H}_\text{int}$ while the operators evolve according to the Heisenberg picture with the free Hamiltonian $\hat{H}_0$.
+\end{remark}
+\begin{corollary}
+	For $\hat{H}_\text{int}=0$, the Dirac picture reduces to the Heisenberg picture.
+\end{corollary}
+\begin{corollary}
+	At $t=0$, operators and states in Heisenberg, Schrödinger, and Dirac picture coincide.
+\end{corollary}
+\begin{lemma}
+	The Dirac picture relates to the Heisenberg picture by
+	\begin{align}
+		\hat{O}^D(t)
+		&=
+		e^{+i\hat{H}_0^St}
+		e^{-i\hat{H}t}
+		\hat{O}^H(t)
+		e^{+i\hat{H}t}
+		e^{-i\hat{H}_0^St}
+		\\
+		\ket{\psi(t)}^D
+		&=
+		e^{+i\hat{H}_0^St}
+		e^{-i\hat{H}t}
+		\ket{\psi(t)}^S
+		.
+	\end{align}
+\end{lemma}
