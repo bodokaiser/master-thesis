@@ -33,6 +33,46 @@
 		.
 	\end{equation}	
 \end{corollary}
+\begin{theorem}
+	Let $n,m\in\mathbb{N}$ and $n\neq m$ then
+	\begin{equation}
+		\expval{
+			\hat{a}(\vb{p}_1)
+			\dots
+			\hat{a}(\vb{p}_n)
+			\hat{a}^\dagger(\vb{q}_1)
+			\dots
+			\hat{a}^\dagger(\vb{q}_m)
+		}{0}
+		=
+		0
+		.
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	Without loss of generality, assume $n>m$, then
+\end{proof}
+\begin{definition}(Vacuum fluctuation)
+	The vacuum fluctuation is
+	\begin{equation}
+		\Delta\pi_0
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\left(2\omega(\vb{p})\right)^2
+		.
+	\end{equation}
+\end{definition}
+\begin{lemma}\label{thm:vacuum_state_momentum_density_observable}
+	The mean momentum density of the vacuum state is zero, the correlation is
+	\begin{equation}
+		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{0}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\left(2\omega(\vb{p})\right)^2
+		e^{-ip_\mu(x^\mu-y^\mu)}
+	\end{equation}
+	and the variance turns out to be equal to the vacuum fluctuations $\Delta\pi_0$.
+\end{lemma}
 
 \subsection{Momentum state}
 
@@ -168,46 +208,6 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 		.
 	\end{equation}
 \end{corollary}
-\begin{lemma}\label{thm:single_particle_number_state_momentum_density_mean}
-	The mean momentum density of the single-particle number state is zero, i.e.,
-	\begin{equation}
-		\expval{\hat\pi(t,\vb{x})}{1_f}
-		=
-		0
-	\end{equation}
-\end{lemma}
-\begin{lemma}\label{thm:single_particle_number_state_momentum_density_correlation}
-	The correlation function of the momentum density operator is
-	\begin{equation}
-		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{1_f}
-		=
-		2
-		\left(
-			\int\frac{\dd[3]{p_1}}{(2\pi)^3}
-			f(\omega(\vb{p}_1),\vb{p}_1)
-			e^{-ip_1^\mu x^\mu}
-		\right)^*
-		\left(
-			\int\frac{\dd[3]{p_2}}{(2\pi)^3}
-			f(\omega(\vb{p}_2),\vb{p}_2)
-			e^{-ip_2^\mu y^\mu}
-		\right)
-	\end{equation}
-\end{lemma}
-\begin{corollary}
-	The variance of the momentum density observable is
-	\begin{equation}
-		\expval{\left(\Delta\hat\pi(x^\mu)\right)^2}{1_f}
-		=
-		2
-		\abs{
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			f(\omega(\vb{p}),\vb{p})
-			e^{-ip^\mu y^\mu}
-		}^2
-		.
-	\end{equation}
-\end{corollary}
 \begin{lemma}\label{thm:single_particle_number_state_wave_function}
 	The coordinate wave function of a single-particle number state is
 	\begin{equation}
@@ -239,6 +239,41 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}
 	moving with the group velocity $\expval{\vb{v}}$.
 \end{lemma}
+Finally, we calculate the quantum statistics for the momentum density operator.
+The momentum density operator will turn out to capture the physical field-strength.
+\begin{lemma}\label{thm:single_particle_number_state_momentum_density_mean}
+	The mean momentum density of the single-particle number state is zero, i.e.,
+	\begin{equation}
+		\expval{\hat\pi(t,\vb{x})}{1_f}
+		=
+		0
+	\end{equation}
+\end{lemma}
+\begin{lemma}\label{thm:single_particle_number_state_momentum_density_correlation}
+	The correlation function of the momentum density operator is
+	\begin{equation}
+		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{1_f}
+		=
+		\expval{\left(\Delta\hat\pi(x^\mu,y^\mu)\right)^2}{0}
+		+
+		2\Re\left\{
+			\psi(x^\mu)
+			\psi(y^\mu)^*
+		\right\}
+	\end{equation}
+\end{lemma}
+\begin{corollary}
+	The variance of the momentum density for the single-particle number state is
+	\begin{equation}
+		\expval{\left(\Delta\hat\pi(t,\vb{x})\right)^2}{1_f}
+		=
+		\Delta\pi_0
+		+
+		2
+		\abs{\psi(t,\vb{x})}^2
+		.
+	\end{equation}
+\end{corollary}
 Later, we are going to need
 \begin{lemma}\label{thm:single_partiicle_number_state_inner_product_pn_smeared_kg_comm}
 	The commutator of the smeared positive and negative frequency Klein-Gordon operators is equal to the overlap of the corresponding single-particle number states, i.e.,
@@ -301,6 +336,56 @@ Later, we are going to need
 \begin{corollary}
 	Multi-particle number states with the same spectrum $f(\vb{p})$ are orthogonal.
 \end{corollary}
+\begin{lemma}
+	The momentum density correlation of the multi-particle number state is
+	\begin{equation}
+		\expval{\hat\pi(x)\hat\pi(y)}{n_f}
+		=
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			\expval{
+				\hat\pi(x)
+				\hat\pi(y)
+			}{n_f}
+			&=
+			\frac{1}{n!}
+			\expval{
+				\hat\phi[f]^n
+				\hat\pi(x)
+				\hat\pi(y)
+				\hat\phi[f]^n
+			}{0}
+			\\
+			&=
+			\frac{1}{n!}
+			\int\dd[4]{x_1}
+			f(x_1)
+			\dots
+			\int\dd[4]{x_n}
+			f(x_n)
+			\int\dd[4]{y_1}
+			f(y_1)
+			\dots
+			f(y_n)
+			\int\dd[4]{y_n}
+			\\
+			&\times
+			\expval{
+				\hat\phi(x_1)
+				\dots
+				\hat\phi(x_n)
+				\hat\pi(x)
+				\hat\pi(y)
+				\hat\phi(y_1)
+				\dots
+				\hat\phi(y_n)
+			}{0}			
+		\end{split}
+	\end{equation*}
+\end{proof}
 
 \subsection{Coherent state}
 

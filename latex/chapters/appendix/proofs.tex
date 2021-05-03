@@ -297,6 +297,57 @@
 
 \section{Quantum states}
 
+\subsection{Vacuum state}
+
+\begin{delayedproof}{thm:vacuum_state_momentum_density_observable}
+	The mean vanishes because of $\expval{\hat{a}(\vb{p})}{0}=0$. The correlation is
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{0}
+			&=
+			\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+			\int\frac{\dd[3]{p_2}}{(2\pi)^3\sqrt{2\omega(\vb{p}_2)}}
+			\left(-i2\omega(\vb{p}_1)\right)
+			\left(-i2\omega(\vb{p}_2)\right)
+			\\
+			&\times
+			\expval{
+				\left[
+					\hat{a}(\vb{p}_1)
+					e^{-ip_1^\mu x_\mu}
+					-
+					\hat{a}^\dagger(\vb{p}_1)
+					e^{+ip_1^\mu x_\mu}
+				\right]
+				\left[
+					\hat{a}(\vb{p}_2)
+					e^{-ip_2^\mu y_\mu}
+					-
+					\hat{a}^\dagger(\vb{p}_2)
+					e^{+ip_2^\mu y_\mu}
+				\right]
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+			\int\frac{\dd[3]{p_2}}{(2\pi)^3\sqrt{2\omega(\vb{p}_2)}}
+			2\omega(\vb{p}_1)
+			2\omega(\vb{p}_2)
+			\expval{
+				\hat{a}(\vb{p}_1)
+				\hat{a}^\dagger(\vb{p}_2)
+			}{0}
+			e^{-ip_1^\mu x_\mu}
+			e^{+ip_2^\mu y_\mu}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\left(2\omega(\vb{p})\right)^2
+			e^{-ip_\mu(x^\mu-y^\mu)}
+		\end{split}
+	\end{equation*}
+\end{delayedproof}
+
 \subsection{Momentum state}
 
 \begin{delayedproof}{thm:momentum_state_non_normalizable}
@@ -660,7 +711,7 @@
 			f(\vb{q}_2)
 			\expval{\hat{a}(\vb{q}_1)\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q}_2)}{0}
 			+
-			\text{c.c.}			
+			\text{h.c.}			
 		\end{split}
 	\end{equation*}
 	and
@@ -685,151 +736,142 @@
 			\expval{
 				\left[
 					\hat{a}(\vb{p}_1)
-					e^{-ip_1^\mu x^\mu}
+					e^{-ip_1^\mu x_\mu}
 					-
 					\hat{a}^\dagger(\vb{p}_1)
-					e^{+ip_1^\mu x^\mu}
+					e^{+ip_1^\mu x_\mu}
 				\right]
 				\left[
 					\hat{a}(\vb{p}_2)
-					e^{-ip_2^\mu y^\mu}
+					e^{-ip_2^\mu y_\mu}
 					-
 					\hat{a}^\dagger(\vb{p}_2)
-					e^{+ip_2^\mu y^\mu}
-				\right]
-			}{1_f}
-		\end{split}
-	\end{equation*}
-	\begin{equation*}
-		\begin{split}
-			&
-			\expval{
-				\left[
-					\hat{a}(\vb{p}_1)
-					e^{-ip_1^\mu x^\mu}
-					-
-					\hat{a}^\dagger(\vb{p}_1)
-					e^{+ip_1^\mu x^\mu}
-				\right]
-				\left[
-					\hat{a}(\vb{p}_2)
-					e^{-ip_2^\mu y^\mu}
-					-
-					\hat{a}^\dagger(\vb{p}_2)
-					e^{+ip_2^\mu y^\mu}
+					e^{+ip_2^\mu y_\mu}
 				\right]
 			}{1_f}
 			\\
-			=&
-			\expval{
-				-
-				\hat{a}(\vb{p}_1)
-				e^{-ip_1^\mu x^\mu}
-				\hat{a}^\dagger(\vb{p}_2)
-				e^{+ip_2^\mu y^\mu}
-				-
-				\hat{a}^\dagger(\vb{p}_1)
-				e^{+ip_1^\mu x^\mu}
-				\hat{a}(\vb{p}_2)
-				e^{-ip_2^\mu y^\mu}
-			}{1_f}
-			\\
-			=&
-			-
-			\expval{
-				\hat{a}(\vb{p}_1)
-				\hat{a}^\dagger(\vb{p}_2)
-			}{1_f}
-			e^{-ip_1^\mu x^\mu}
-			e^{+ip_2^\mu y^\mu}
-			-
-			\expval{
-				\hat{a}^\dagger(\vb{p}_1)
-				\hat{a}(\vb{p}_2)
-			}{1_f}
-			e^{+ip_1^\mu x^\mu}
-			e^{-ip_2^\mu y^\mu}
-			\\
-			=&
-			-
-			2\Re\left\{
-				\expval{
-					\hat{a}^\dagger(\vb{p}_1)
-					\hat{a}(\vb{p}_2)
-				}{1_f}
-				e^{+ip_1^\mu x^\mu}
-				e^{-ip_2^\mu y^\mu}
-			\right\}
-		\end{split}
-	\end{equation*}
-	\begin{equation*}
-		\begin{split}
-			\expval{
-				\hat{a}^\dagger(\vb{p}_1)
-				\hat{a}(\vb{p}_2)
-			}{1_f}
 			&=
-			\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
-			\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_2)}}
-			f(\vb{q}_1)^*
-			f(\vb{q}_2)
+			\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+			\int\frac{\dd[3]{p_2}}{(2\pi)^3\sqrt{2\omega(\vb{p}_2)}}
+			2\omega(\vb{p}_1)
+			2\omega(\vb{p}_2)
 			\\
 			&\times
 			\expval{
-				\hat{a}(\vb{q}_1)
+				\hat{a}(\vb{p}_1)
+				\hat{a}^\dagger(\vb{p}_2)
+				e^{-ip_1^\mu x_\mu}
+				e^{+ip_2^\mu y_\mu}
+				+
 				\hat{a}^\dagger(\vb{p}_1)
 				\hat{a}(\vb{p}_2)
+				e^{+ip_1^\mu x_\mu}
+				e^{-ip_2^\mu y_\mu}
+			}{1_f}
+		\end{split}
+	\end{equation*}
+	The first term reduces to
+	\begin{equation*}
+		\expval{
+			\hat{a}(\vb{p}_1)
+			\hat{a}^\dagger(\vb{p}_2)
+		}{1_f}
+		=
+		(2\pi)^3\delta^{(3)}(\vb{p}_2-\vb{p}_1)
+		+
+		\expval{
+			\hat{a}^\dagger(\vb{p}_2)
+			\hat{a}(\vb{p}_1)
+		}{1_f}
+	\end{equation*}
+	where we used $\braket{1_f}=1$ and the commutation relation
+	\begin{equation*}
+		\begin{split}
+			\expval{
+				\hat{a}^\dagger(\vb{p}_2)
+				\hat{a}(\vb{p}_1)
+			}{1_f}
+			&=
+			\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
+			\int\frac{\dd[3]{q_2}}{(2\pi)^3\sqrt{2\omega(\vb{q}_2)}}
+			f(\vb{q}_1)^*
+			f(\vb{q}_2)
+			\expval{
+				\hat{a}(\vb{q}_1)
+				\hat{a}^\dagger(\vb{p}_2)
+				\hat{a}(\vb{p}_1)
 				\hat{a}^\dagger(\vb{q}_2)
 			}{0}
 			\\
 			&=
-			\frac{f(\vb{p}_1)^*}{\sqrt{2\omega(\vb{p}_1)}}
-			\frac{f(\vb{p}_2)}{\sqrt{2\omega(\vb{p}_2)}}
+			\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
+			\int\frac{\dd[3]{q_2}}{(2\pi)^3\sqrt{2\omega(\vb{q}_2)}}
+			f(\vb{q}_1)^*
+			f(\vb{q}_2)
+			(2\pi)^3\delta^{(3)}(\vb{q}_1-\vb{p}_2)
+			(2\pi)^3\delta^{(3)}(\vb{q}_2-\vb{p}_1)
+			\\
+			&=
+			\frac{f(\vb{p}_2)^*}{\sqrt{2\omega(\vb{p}_2)}}
+			\frac{f(\vb{p}_1)}{\sqrt{2\omega(\vb{p}_1)}}
 		\end{split}
 	\end{equation*}
+	and together, we get
 	\begin{equation*}
 		\begin{split}
-			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{1_f}
-			&=
-			2\Re\biggl\{
-				\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
-				\int\frac{\dd[3]{p_2}}{(2\pi)^3\sqrt{2\omega(\vb{p}_2)}}
-				2\omega(\vb{p}_1)
-				2\omega(\vb{p}_2)
+			&
+			\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+			\int\frac{\dd[3]{p_2}}{(2\pi)^3\sqrt{2\omega(\vb{p}_2)}}
+			2\omega(\vb{p}_1)
+			2\omega(\vb{p}_2)
+			\biggl\{
+				(2\pi)^3\delta^{(3)}(\vb{p}_2-\vb{p}_1)
+				e^{-ip_1^\mu x_\mu}
+				e^{+ip_2^\mu y_\mu}
 				\\
-				&\times
+				&+
+				\frac{f(\vb{p}_1)}{\sqrt{2\omega(\vb{p}_1)}}
+				\frac{f(\vb{p}_2)^*}{\sqrt{2\omega(\vb{p}_2)}}
+				e^{-ip_1^\mu x_\mu}
+				e^{+ip_2^\mu y_\mu}
+				+
 				\frac{f(\vb{p}_1)^*}{\sqrt{2\omega(\vb{p}_1)}}
 				\frac{f(\vb{p}_2)}{\sqrt{2\omega(\vb{p}_2)}}
-				e^{+ip_1^\mu x^\mu}
-				e^{-ip_2^\mu y^\mu}
+				e^{+ip_1^\mu x_\mu}
+				e^{-ip_2^\mu y_\mu}
 			\biggr\}
 			\\
-			&=
-			2\Re\left\{
-				\left(
-					\int\frac{\dd[3]{p_1}}{(2\pi)^3}
-					f(\omega(\vb{p}_1),\vb{p}_1)
-					e^{+ip_1^\mu x^\mu}
-				\right)^*
-				\left(
-					\int\frac{\dd[3]{p_2}}{(2\pi)^3}
-					f(\omega(\vb{p}_2),\vb{p}_2)
-					e^{-ip_2^\mu y^\mu}
-				\right)
-			\right\}
+			=&
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\left(2\omega(\vb{p})\right)^2
+			e^{-ip_\mu(x^\mu-y^\mu)}
+			+
+			\int\frac{\dd[3]{p_1}}{(2\pi)^32\omega(\vb{p}_1)}
+			f(\vb{p}_1)
+			e^{-ip_1^\mu x_\mu}
+			\int\frac{\dd[3]{p_2}}{(2\pi)^32\omega(\vb{p}_2)}
+			f(\vb{p}_2)^*
+			e^{+ip_2^\mu y_\mu}
 			\\
-			&=
-			2
-			\left(
-				\int\frac{\dd[3]{p_1}}{(2\pi)^3}
-				f(\omega(\vb{p}_1),\vb{p}_1)
-				e^{+ip_1^\mu x^\mu}
-			\right)^*
-			\left(
-				\int\frac{\dd[3]{p_2}}{(2\pi)^3}
-				f(\omega(\vb{p}_2),\vb{p}_2)
-				e^{-ip_2^\mu y^\mu}
-			\right)
+			+&
+			\int\frac{\dd[3]{p_1}}{(2\pi)^32\omega(\vb{p}_1)}
+			f(\vb{p}_1)^*
+			e^{+ip_1^\mu x_\mu}
+			\int\frac{\dd[3]{p_2}}{(2\pi)^32\omega(\vb{p}_2)}
+			f(\vb{p}_2)
+			e^{-ip_2^\mu y_\mu}
+			\\
+			=&
+			\expval{\left(\Delta\hat\pi(x^\mu,y^\mu)\right)^2}{0}
+			+
+			2\Re\left\{
+				\int\frac{\dd[3]{p_1}}{(2\pi)^32\omega(\vb{p}_1)}
+				f(\vb{p}_1)
+				e^{-ip_1^\mu x_\mu}
+				\int\frac{\dd[3]{p_2}}{(2\pi)^32\omega(\vb{p}_2)}
+				f(\vb{p}_2)^*
+				e^{+ip_2^\mu y_\mu}
+			\right\}
 		\end{split}
 	\end{equation*}
 \end{delayedproof}
