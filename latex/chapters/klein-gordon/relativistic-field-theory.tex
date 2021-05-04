@@ -1,7 +1,7 @@
 \section{Relativistic field theory}
 
 \begin{definition}[Klein-Gordon Lagrangian]
-	The Lorentz-invariant Lagrangian density
+	The Klein-Gordon Lagrangian density
 	\begin{equation}
 		\mathcal{L}
 		=
@@ -13,8 +13,11 @@
 		m^2\phi^2
 		\label{eq:kg_lagrangian}
 	\end{equation}
-	describes a real scalar field $\phi(t,\vb{x})$ with mass $m>0$, the (massive) Klein-Gordon field.
+	describes a real-valued massive scalar field $\phi(t,\vb{x})$.
 \end{definition}
+\begin{corollary}
+	The Klein-Gordon Lagrangian is manifest Lorentz-covariant, i.e., as a Lorentz scalar, the Klein-Gordon Lagrangian is invariant under Lorentz transformations and thereby valid in any reference frame.
+\end{corollary}
 \begin{theorem}[Relativistic energy-momentum relation]\label{th:relativistic_energy_momentum}
 	Excitations of the Klein-Gordon field satisfy the relativistic energy-momentum relation
 	\begin{equation}
@@ -24,68 +27,27 @@
 		=
 		E(\vb{p})
 		\label{eq:energy_momentum_relation}
-	\end{equation}
-	and the physical momentum space is constrained to the momentum lightcone
-	\begin{equation}
-		V
-		=
-		\left\{
-			(p_0,\vb{p})\in\mathbb{R}^4
-			\mid
-			p_0^2=\omega(\vb{p})^2
-		\right\}
-		\label{eq:momentum_lightcone}
 		.
 	\end{equation}
 \end{theorem}
 \begin{theorem}[Mode expansion of the Klein-Gordon field]\label{thm:kg_fourier_expansion}
-	The Fourier expansion of the Klein-Gordon field
+	The mode expansion of the Klein-Gordon field
 	\begin{equation}
-		\phi(t,\vb{x})
+		\phi(x^\mu)
 		=
 		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\biggl\{
-			a(\vb{p})^*
+			a(\vb{p})
 			e^{-ip_\mu x^\mu}
 			+
-			a(\vb{p})
+			a(\vb{p})^*
 			e^{+ip_\mu x^\mu}
 		\biggr\}_{p_0=\omega(\vb{p})}
 	\end{equation}
-	satisfies the equations of motion for any choice of $a(\vb{p})=\phi(\omega(\vb{p}),\vb{p})^*$.
+	satisfies the equations of motion for any choice of $a(\vb{p})=\phi(\omega(\vb{p}),\vb{p})$ where $\phi(p_0,\vb{p})=\phi(p^\mu)$ is the Fourier amplitude of the Klein-Gordon field $\phi(x^\mu)=\phi(t,\vb{x})$.
 \end{theorem}
-From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
-\begin{corollary}[Conjugate momentum density of the Klein-Gordon field]
-	The conjugate momentum density of the Klein-Gordon field is
-	\begin{equation}
-		\pi(t,\vb{x})
-		=
-		-i
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\sqrt{2\omega(\vb{p})}
-		\left\{
-			a(\vb{p})
-			e^{-ip_\mu x^\mu}
-			-
-			a(\vb{p})^*
-			e^{+ip_\mu x^\mu}
-		\right\}
-	\end{equation}
-	which follows directly from the Legendre transformation
-	\begin{equation}
-		\pi(t,\vb{x})
-		=
-		\partial_t\pdv{\mathcal{L}}{(\partial_t\phi)}
-		=
-		\partial_t\phi(t,\vb{x})
-	\end{equation}
-	fundamental to Hamiltonian mechanics.
-\end{corollary}
-
-\subsection{Energy and momentum}
-
 \begin{definition}[Energy-momentum tensor]
-	We define the energy-momentum tensor
+	The energy-momentum tensor of a scalar field is
 	\begin{equation}
 		T^{\mu\nu}
 		=
@@ -93,9 +55,12 @@ From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 		-
 		g^{\mu\nu}\mathcal{L}
 		\label{eq:energy_momentum_tensor}
+		.
 	\end{equation}
-	which encodes the field's observables in its components.
-	For instance, the energy density is encoded in the
+	The energy-momentum tensor's components encode the energy density $T^{00}$, the momentum density $T^{0i}$, and the stress densities $T^{ij}$.
+\end{definition}
+\begin{lemma}
+	The energy density of the Klein-Gordon's energy-momentum tensor
 	\begin{equation*}
 		T^{00}
 		=
@@ -106,18 +71,14 @@ From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 		\left(\grad\phi\right)^2
 		+
 		\frac{1}{2}
-		\left(m\phi\right)^2		
-	\end{equation*}
-	component and the momentum density in the
-	\begin{equation*}
-		T^{0i}
+		\left(m\phi\right)^2
 		=
-		-\pi\partial_i\phi		
+		\mathcal{H}
 	\end{equation*}
-	component, see Ref.~\cite{Peskin1995}.
-\end{definition}
+	is equal to its Hamiltonian density $\mathcal{H}$.
+\end{lemma}
 \begin{lemma}\label{thm:kg_total_energy_momentum}
-	The total energy and momentum of the Klein-Gordon field,
+	The total energy and the total momentum of the Klein-Gordon field are
 	\begin{align}
 		H
 		=
@@ -129,84 +90,56 @@ From now on assume $p_0=\omega(\vb{p})$ if not stated otherwise.
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\vb{p}\abs{a(\vb{p})}^2
 		\label{eq:kg_energy_momentum}
-		,
+		.
 	\end{align}
-	are the energy and momentum weighted by the mode amplitudes.
 \end{lemma}
-
-\subsection{Coordinate wave function}
-
-\begin{definition}[Coordinate wave function]
-	The equivalent of a coordinate wave function given a state $\ket{\psi}$ and a field operator $\hat\phi$ is
+\begin{definition}
+	The Klein-Gordon Hamiltonian density is
 	\begin{equation}
-		\psi(t,\vb{x})
+		\mathcal{H}
 		=
-		\bra{0}\hat\phi(t,\vb{x})\ket{\psi}
+		\frac{1}{2}
+		\pi^2
+		+
+		\frac{1}{2}
+		\left(\grad\phi\right)^2
+		+
+		\frac{1}{2}
+		\left(m\phi\right)^2
 		.
 	\end{equation}
+	$\phi(x^\mu)$ is the position and $\pi(x^\mu)$ the momentum density.
 \end{definition}
-\begin{lemma}\label{thm:coordinate_wave_function_simplified}
-	The coordinate wave function reduces to
-	\begin{equation}
-		\psi(t,\vb{x})
-		=
-		\bra{0}\hat\phi(t,\vb{x})\ket{\psi}
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		e^{-ip_\mu x^\mu}
-		\bra{0}
-		\hat{a}(\vb{p})
-		\ket{\psi}
-		.
-	\end{equation}
-\end{lemma}
-\begin{definition}[Probability current]
-	The manifest Lorentz-covariant probability current\footnote{The probability current is the conserved Noether's current of the Klein-Gordon field, see Ref.~\cite[p.~18]{Peskin1995}.} is
-	\begin{equation}
-		j_\mu(t,\vb{x})
-		=
-		2
-		\Im\left\{
-			\psi(t,\vb{x})^*
-			\partial_\mu
-			\psi(t,\vb{x})
-		\right\}
-		\label{eq:qkg_probability_current}
-	\end{equation}
-	where $\psi(t,\vb{x})$ is a coordinate wave function.
-	The time component $j^0(t,\vb{x})$ is equal to the probability density $\rho(t,\vb{x})$ and the spatial components $j^i(t,\vb{x})$ are equal to the probability current.
-\end{definition}
-\begin{definition}[Localization]
-	The center-of-mass position of the probability density,
-	\begin{equation}
-		\expval{\vb{x}(t)}
-		=
-		\int\dd[3]{x}
-		\vb{x}
-		\rho(t,\vb{x})
+\begin{lemma}
+	The mode expansions of the Klein-Gordon's position and momentum densities read
+	\begin{align}
+		\phi(x^\mu)
+		&=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+		\frac{1}{\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			a(\vb{p})
+			e^{-ip_\mu x^\mu}
+			+
+			a(\vb{p})^*
+			e^{+ip_\mu x^\mu}
+		\biggr\}_{p_0=\omega(\vb{p})}
 		,
-	\end{equation}
-	allows us to make statements about the localization of a field excitation.\footnote{There exists no position operator free of contradictions in quantum field theory!}
-\end{definition}
-\begin{definition}[Group velocity]
-	The total probability current
-	\begin{equation}
-		\expval{\vb{v}(t)}
-		=
-		\int\dd[3]{x}
-		\vb{j}(t,\vb{x})
-		\label{eq:group_velocity}
-	\end{equation}
-	equals the group velocity of a field excitation.
-\end{definition}
-\begin{definition}[Spatial dispersion]
-	The spatial dispersion is equal to the variance of the position weighted by the probability density
-	\begin{equation}
-		\sigma_x(t)^2
-		=
-		\expval{\vb{x}(t)^2}
-		-
-		\expval{\vb{x}(t)}^2
-	\end{equation}
-	and quantifies the spatial spread of a wave packet.
+		\\
+		\pi(x^\mu)
+		&=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+		\left(-i\sqrt{\frac{\omega(\vb{p})}{2}}\right)
+		\biggl\{
+			a(\vb{p})
+			e^{-ip_\mu x^\mu}
+			-
+			a(\vb{p})^*
+			e^{+ip_\mu x^\mu}
+		\biggr\}_{p_0=\omega(\vb{p})}
+		.
+	\end{align}
+\end{lemma}
+\begin{definition}
+	The current
 \end{definition}

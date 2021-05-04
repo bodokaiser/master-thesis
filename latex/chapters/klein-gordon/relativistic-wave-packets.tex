@@ -1,0 +1,62 @@
+\section{Relativistic wave packets}
+
+\begin{definition}[Coordinate wave function]
+	The Klein-Gordon states $\ket{\psi}$ coordinate wave function is
+	\begin{equation}
+		\psi(x^\mu)
+		=
+		\bra{0}
+		\hat\phi(x^\mu)
+		\ket{\psi}
+		.
+	\end{equation}
+\end{definition}
+\begin{definition}[Probability current]
+	The manifest Lorentz-covariant probability current is
+	\begin{equation}
+		j_\mu(x^\mu)
+		=
+		2
+		\Im\left\{
+			\psi(x^\mu)^*
+			\partial_\mu
+			\psi(x^\mu)
+		\right\}
+		\label{eq:qkg_probability_current}
+	\end{equation}
+	where $\psi(t,\vb{x})$ is a coordinate wave function.
+	The time component $j^0(t,\vb{x})$ is equal to the probability density $\rho(t,\vb{x})$ and the spatial components $j^i(t,\vb{x})$ are equal to the probability current.
+\end{definition}
+\begin{definition}[Localization]
+	The center-of-mass position of the probability density
+	\begin{equation}
+		\expval{\vb{x}(t)}
+		=
+		\int\dd[3]{x}
+		\vb{x}
+		\rho(t,\vb{x})
+	\end{equation}
+	lets us localize a Klein-Gordon state.\footnote{There exists no position operator free of contradictions in quantum field theory!}
+\end{definition}
+\begin{definition}[Group velocity]
+	The total probability current
+	\begin{equation}
+		\expval{\vb{v}(t)}
+		=
+		\int\dd[3]{x}
+		\vb{j}(t,\vb{x})
+		\label{eq:group_velocity}
+	\end{equation}
+	equals the group velocity of a field excitation.
+\end{definition}
+\begin{definition}[Spatial dispersion]
+	The spatial dispersion is equal to the variance of the position weighted by the probability density
+	\begin{equation}
+		\sigma_x(t)^2
+		=
+		\expval{\vb{x}(t)^2}
+		-
+		\expval{\vb{x}(t)}^2
+	\end{equation}
+	and quantifies the spatial spread of a wave packet.
+\end{definition}

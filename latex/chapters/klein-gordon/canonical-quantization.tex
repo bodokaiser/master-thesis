@@ -3,13 +3,13 @@
 \begin{definition}[Canonical quantization]
 	In the canonical quantization procedure, the dynamical variables are promoted to operators satisfying the equal-time canonical commutation relations
 	\begin{align}
-		\comm{\hat\phi(\vb{x})}{\hat\pi(\vb{y})}
+		\comm{\hat\phi(t,\vb{x})}{\hat\pi(t,\vb{y})}
 		&=
 		i\delta^{(3)}(\vb{x}-\vb{y})
 		\\
-		\comm{\hat\phi(\vb{x})}{\hat\phi(\vb{y})}
+		\comm{\hat\phi(t,\vb{x})}{\hat\phi(t,\vb{y})}
 		&=
-		\comm{\hat\pi(\vb{x})}{\hat\pi(\vb{y})}
+		\comm{\hat\pi(t,\vb{x})}{\hat\pi(t,\vb{y})}
 		=
 		0
 		\label{eq:qkg_comm_pm}
@@ -19,7 +19,7 @@
 \begin{theorem}[Klein-Gordon field operators]
 	The Klein-Gordon field operators are
 	\begin{align}
-		\hat\phi(t,\vb{x})
+		\hat\phi(x^\mu)
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\frac{1}{\sqrt{2\omega(\vb{p})}}
@@ -29,27 +29,26 @@
 			+
 			\hat{a}^\dagger(\vb{p})
 			e^{+ip_\mu x^\mu}
-		\right\}
+		\right\}_{p_0=\omega(\vb{p})}
 		\label{eq:qkg_pos}
 		\\
-		\hat\pi(t,\vb{x})
+		\hat\pi(x^\mu)
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\left(-i\sqrt{2\omega(\vb{p})}\right)
+		\left(-i\sqrt{\frac{\omega(\vb{p})}{2}}\right)
 		\left\{
 			\hat{a}(\vb{p})
 			e^{-ip_\mu x^\mu}
 			-
 			\hat{a}^\dagger(\vb{p})
 			e^{+ip_\mu x^\mu}
-		\right\}
+		\right\}_{p_0=\omega(\vb{p})}
 		\label{eq:qkg_mom}
-		,
 	\end{align}
-	where $\hat\phi(t,\vb{x})$ and $\hat\pi(t,\vb{x})$ satisfy the equal-time canonical commutation relations.
+	where $\hat\phi(x^\mu)$ and $\hat\pi(x^\mu)$ satisfy the equal-time canonical commutation relations.
 \end{theorem}
 \begin{theorem}\label{thm:kg_comm_ac}
-	The annihilation and creation operator of the Klein-Gordon field obey the commutation relations
+	The operators $\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{p})$ obey the commutation relations
 	\begin{align}
 		\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
 		&=
@@ -65,29 +64,8 @@
 		.
 	\end{align}	
 \end{theorem}
-
-\subsection{Energy and momentum}
-
-\begin{definition}[Normal-ordered product]
-	The normal-ordered product of annihilation and creation operators
-	\begin{equation}
-		N\left\{
-			\left(
-				\hat{a}^\dagger
-				\hat{a}
-			\right)^l
-		\right\}
-		=
-		\left(\hat{a}^\dagger\right)^l
-		\hat{a}^l
-	\end{equation}
-	places all creation operators to the left and all annihilation operators to the right.
-\end{definition}
-\begin{definition}[Correspondence principle]
-	The correspondence principle is a prescription to find the quantum from the classical observables by promoting the dynamical variables to operators in normal-order.\footnote{See Ref.~\cite[p.~20]{Mukhanov2007} for details on the problem of operator ordering.}
-\end{definition}
-\begin{corollary}
-	The total energy and momentum operators of the Klein-Gordon field are
+\begin{definition}[Energy and momentum operator]
+	The Klein-Gordon's total energy and total momentum operators are
 	\begin{align}
 		\hat{H}
 		=
@@ -101,99 +79,136 @@
 		\label{eq:qkg_energy_momentum}
 		.
 	\end{align}
-\end{corollary}
+\end{definition}
+\begin{definition}
+	The vacuum state $\ket{0}$ is the unique eigenstate of the total energy and total momentum operators with eigenvalue zero, i.e.,
+	\begin{align}
+		\hat{H}
+		\ket{0}
+		=
+		0
+		&&
+		\hat{\vb{P}}
+		\ket{0}
+		=
+		0
+		.
+	\end{align}
+\end{definition}
 \begin{corollary}
-	The number operator is the unweighted part of the energy and momentum operators
-	\begin{equation}
+	The definition of the vacuum state and the energy operator imply
+	\begin{align}
+		\hat{a}(\vb{p})
+		\ket{0}
+		=
+		0
+		&&
+		\bra{0}
+		\hat{a}^\dagger(\vb{p})
+		=
+		0
+		.
+	\end{align}
+\end{corollary}
+\begin{theorem}
+	The commutators of the operators $\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{p})$ with the Hamiltonian $\hat{H}$ yield
+	\begin{align}
+		\comm{\hat{H}}{\hat{a}^\dagger(\vb{p})}
+		=
+		\omega(\vb{p})
+		\hat{a}^\dagger(\vb{p})
+		&&
+		\comm{\hat{H}}{\hat{a}(\vb{p})}
+		=
+		-
+		\omega(\vb{p})
+		\hat{a}(\vb{p})
+	\end{align}
+	suggesting that $\hat{a}(\vb{p})$ acting on a state to the right lowers the energy by $\omega(\vb{p})$ and $\hat{a}^\dagger(\vb{p})$ raises the energy by $\omega(\vb{p})$.
+\end{theorem}
+\begin{definition}
+	The number density and total number operators are
+	\begin{align}
+		\hat{n}(\vb{p})
+		=
+		\hat{a}^\dagger(\vb{p})
+		\hat{a}(\vb{p})
+		&&
 		\hat{N}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\hat{n}(\vb{p})
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\hat{a}^\dagger(\vb{p})
 		\hat{a}(\vb{p})
-		\label{eq:qkg_number}
 		.
-	\end{equation}
-\end{corollary}
-
-\subsection{Fock space}
-
-\begin{definition}[Vacuum state]
-	The vacuum state $\ket{0}$ is a unique state that is normalized
-	\begin{equation}
-		\braket{0}
-		=
-		1
-	\end{equation}
-	and satisfies
-	\begin{align}
-		\hat{P}_\mu
-		\ket{0}
-		&=
-		0
-		\\
-		\hat{M}_{\mu\nu}
-		\ket{0}
-		&=
-		\ket{0}
 	\end{align}
-	where $\hat{P}_\mu$ is the four-momentum and $\hat{M}_{\mu\nu}$ is the relativistic angular momentum operator, see Ref.~\cite[p.~270]{Greiner2013} for details.
 \end{definition}
 \begin{corollary}
-	The vacuum state is invariant under spacetime translations
+	The total momentum and number observables are conserved
 	\begin{equation}
-		e^{i\hat{P}_\mu a^\mu}
-		\ket{0}
-		=
-		\ket{0}
-		.
-	\end{equation}	
-\end{corollary}
-\begin{theorem}
-	Let $n,m\in\mathbb{N}$ and $n\neq m$ then
-	\begin{equation}
-		\expval{
-			\hat{a}(\vb{p}_1)
-			\dots
-			\hat{a}(\vb{p}_n)
-			\hat{a}^\dagger(\vb{q}_1)
-			\dots
-			\hat{a}^\dagger(\vb{q}_m)
-		}{0}
+		\comm{\hat{H}}{\hat{\vb{P}}}
 		=
 		0
+		=
+		\comm{\hat{H}}{\hat{N}}
 		.
 	\end{equation}
-\end{theorem}
-\begin{proof}
-	Without loss of generality, assume $n>m$, then
-\end{proof}
-\begin{definition}(Vacuum fluctuation)
-	The vacuum fluctuation is
+\end{corollary}
+
+\begin{definition}[Positive and negative frequency Klein-Gordon operator]
+	The Klein-Gordon operators can be decomposed into the sum
 	\begin{equation}
-		\Delta\pi_0
+		\hat\phi(x^\mu)
 		=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\left(2\omega(\vb{p})\right)^2
+		\hat\phi^+(x^\mu)
+		+
+		\hat\phi^-(x^\mu)
+	\end{equation}
+	wherein the positive and negative frequency Klein-Gordon operators are
+	\begin{equation}
+		\begin{split}
+			\hat\phi^+(x^\mu)
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{-ip_\mu x^\mu}
+			\hat{a}(\vb{p})
+			\\
+			\hat\phi^-(x^\mu)
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{+ip_\mu x^\mu}
+			\hat{a}^\dagger(\vb{p})
+		\end{split}
+		\label{eq:qkg_positive_negative_frequency}
+		.
+	\end{equation}
+	The positive and negative frequency Klein-Gordon operators are related by the hermitian conjugate
+	\begin{equation}
+		\hat\phi^-(x^\mu)
+		=
+		\hat\phi^+(x^\mu)^\dagger
 		.
 	\end{equation}
 \end{definition}
-\begin{lemma}\label{thm:vacuum_state_momentum_density_observable}
-	The mean momentum density of the vacuum state is zero, the correlation is
-	\begin{equation}
-		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{0}
+\begin{corollary}
+	The positive and negative frequency Klein-Gordon operators satisfy
+	\begin{align}
+		\hat\phi^+(x^\mu)
+		\ket{0}
 		=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\left(2\omega(\vb{p})\right)^2
-		e^{-ip_\mu(x^\mu-y^\mu)}
-	\end{equation}
-	and the variance turns out to be equal to the vacuum fluctuations $\Delta\pi_0$.
-\end{lemma}
-
-\subsection{Propagators}
-
-The section is based on Ref.~\cite[p.~26]{Peskin1995} and can be skipped if one is not interested in the proofs of the coherent state and interactions.
-\begin{definition}[Propagator]
-	We define the propagator as
+		0
+		&&
+		\bra{0}
+		\hat\phi^-(x^\mu)
+		=
+		0
+		.
+	\end{align}
+\end{corollary}
+\begin{definition}[Klein-Gordon Propagator]
+	The Klein-Gordon propagator is
 	\begin{equation}
 		D(x^\mu-y^\mu)
 		=
@@ -202,36 +217,8 @@ The section is based on Ref.~\cite[p.~26]{Peskin1995} and can be skipped if one 
 		.
 	\end{equation}
 \end{definition}
-\begin{definition}[Positive and negative frequency Klein-Gordon field operator]
-	The positive and negative frequency decomposition of the Klein-Gordon field operator
-	\begin{equation}
-		\hat\phi(t,\vb{x})
-		=
-		\hat\phi^+(t,\vb{x})
-		+
-		\hat\phi^-(t,\vb{x})
-	\end{equation}
-	wherein the positive and negative frequency Klein-Gordon field operators
-	\begin{equation}
-		\begin{split}
-			\hat\phi^+(t,\vb{x})
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{-ip_\mu x^\mu}
-			\hat{a}(\vb{p})
-			\\
-			\hat\phi^-(t,\vb{x})
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{+ip_\mu x^\mu}
-			\hat{a}^\dagger(\vb{p})
-		\end{split}
-		\label{eq:qkg_positive_negative_frequency}
-	\end{equation}
-	are related by the hermitian conjugate $\hat\phi^-(t,\vb{x})=\hat\phi^+(t,\vb{x})^\dagger$.
-\end{definition}
-\begin{lemma}\label{thm:qkg_full_comm_pn_comm}
-	The positive and negative frequency Klein-Gordon field operators satisfy
+\begin{lemma}\label{thm:qkg_pn_comm}
+	The positive and negative frequency Klein-Gordon operators satisfy the commutation relations
 	\begin{align}
 		\comm{\hat\phi^+(x^\mu)}{\hat\phi^-(y^\mu)}
 		&=
@@ -244,133 +231,12 @@ The section is based on Ref.~\cite[p.~26]{Peskin1995} and can be skipped if one 
 		0
 	\end{align}
 \end{lemma}
-\begin{lemma}\label{thm:qkg_propagator_kg_comm}
-	The commutator of the Klein-Gordon operators is equal to
-	\begin{equation}
-		\comm{\hat\phi(x^\mu)}{\hat\phi(y^\mu)}
-		=
-		D(x^\mu-y^\mu)
-		-
-		D(y^\mu-x^\mu)
-	\end{equation}
-\end{lemma}
 \begin{lemma}\label{thm:qkg_propagator_correlation_function}
-	The propagator is equal to the correlation function
+	The propagator is equal to the expectation value
 	\begin{equation}
 		D(x^\mu-y^\mu)
 		=
 		\expval{\hat\phi(x^\mu)\hat\phi(y^\mu)}{0}
+		.
 	\end{equation}
 \end{lemma}
-\begin{definition}
-	The retarded propagator is defined to be
-	\begin{equation}
-		D_R(x^\mu-y^\mu)
-		=
-		\theta(x^0-y^0)
-		\comm{\hat\phi(x^\mu)}{\hat\phi(y^\mu)}
-		=
-		\begin{cases}
-			\comm{\hat\phi(x^\mu)}{\hat\phi(y^\mu)}	& \text{if}\ x^0<y^0
-			\\
-			0 & \text{otherwise}
-		\end{cases}
-		,
-	\end{equation}
-	the advanced propagator is defined to be
-	\begin{equation}
-		D_A(x^\mu-y^\mu)
-		=
-		\theta(x^0-y^0)
-		\comm{\hat\phi(x^\mu)}{\hat\phi(y^\mu)}
-		=
-		\begin{cases}
-			\comm{\hat\phi(x^\mu)}{\hat\phi(y^\mu)}	& \text{if}\ x^0>y^0
-			\\
-			0 & \text{otherwise}
-		\end{cases}
-		,
-	\end{equation}
-	and the Feynman propagator is defined to be
-	\begin{equation}
-		\begin{split}
-			D_F(x^\mu-y^\mu)
-			&=
-			\theta(x^0-y^0)
-			\expval{\hat\phi(x^\mu)\hat\phi(y^\mu)}{0}
-			+
-			\theta(y^0-x^0)
-			\expval{\hat\phi(y^\mu)\hat\phi(x^\mu)}{0}
-			\\
-			&=
-			\begin{cases}
-				D(x^\mu-y^\mu) & \text{if}\ x^0>y^0 \\
-				D(y^\mu-x^\mu) & \text{if}\ x^0<y^0 \\
-				\frac{1}{2}
-				D(x^\mu-y^\mu)
-				+
-				\frac{1}{2}
-				D(y^\mu-x^\mu)
-				& \text{if}\ x^0=y^0
-			\end{cases}
-		\end{split}
-		.
-	\end{equation}
-\end{definition}
-\begin{definition}
-	The time-ordered product of two operators $\hat{A}(x^\mu),\hat{B}(y^\mu)$ is defined to be
-	\begin{equation}
-		\begin{split}
-			\expval{T\left\{\hat{A}(x^\mu)\hat{B}(y^\mu)\right\}}{0}
-			&=
-			\theta(x^0-y^0)
-			\expval{\hat{A}(x^\mu)\hat{B}(y^\mu)}{0}
-			\\
-			&+
-			\theta(y^0-x^0)
-			\expval{\hat{B}(y^\mu)\hat{A}(x^\mu)}{0}
-		\end{split}
-		.		
-	\end{equation}
-\end{definition}
-\begin{corollary}
-	The Feynman propagator is equal to the time-ordered correlation function
-	\begin{equation}
-		D_F(x^\mu-y^\mu)
-		=
-		\expval{T\left\{\hat\phi(x^\mu)\hat\phi(y^\mu)\right\}}{0}
-		.
-	\end{equation}
-\end{corollary}
-\begin{lemma}\label{thm:propagator_kg_solution}
-	The propagators are solutions to the Klein-Gordon equation of a point-source
-	\begin{equation}
-		\left(
-			\partial_\mu
-			\partial^\mu
-			+
-			m^2
-		\right)
-		D(x^\mu-y^\mu)
-		=
-		-i\delta^{(4)}(x^\mu-y^\mu)
-	\end{equation}
-	but to different boundary conditions.
-\end{lemma}
-\begin{corollary}
-	The Fourier transform of the propagators $D(p^\mu)$ satisfies
-	\begin{equation}
-		\left(
-			-
-			p_\mu p^\mu
-			+
-			m^2
-		\right)
-		D(p^\mu)
-		=
-		-i
-		.
-	\end{equation}
-\end{corollary}
-
-\subsection{Coordinate wave function}
