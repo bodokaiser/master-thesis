@@ -1,113 +1,107 @@
 \section{Number states}
 
-\begin{definition}[Single-particle number state]\label{def:single_particle_number_state}
-	The single-particle number state with Lorentz-invariant spectrum $f(\vb{p})=f(\omega(\vb{p}),\vb{p})\in\mathcal{S}(\mathbb{R}^4,\mathbb{C})$ is
+\begin{definition}[Number state]\label{def:number_state}
+	The $n$-particle number state with spectrum $f(\vb{p})$ is
 	\begin{equation}
-		\ket{1_f}
+		\ket{n_f}
 		=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		f(\vb{p})
-		\hat{a}^\dagger(\vb{p})
+		\frac{1}{\sqrt{n!}}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+		\right)^n
 		\ket{0}
-		.
 	\end{equation}
-\end{definition}
-\begin{lemma}\label{thm:single_particle_number_state_smeared_kg}
-	The single-particle number state is equal to the smeared Klein-Gordon field operator acting on the vacuum state
+	and the spectrum is required to satisfy
 	\begin{equation}
-		\hat\phi[f]
-		\ket{0}
-		=
-		\int\dd[4]{x}
-		f(x)
-		\hat\phi(x)
-		\ket{0}
-		=
-		\ket{1_f}
-	\end{equation}
-	known from Wightman quantum field theory.\footnote{Wightman quantum field theory defines quantum field operators as operator-valued distributions acting on the Schwartz function space, see Ref.~\cite{Bogolubov1989} and Ref.~\cite{Streater2016}.}
-\end{lemma}
-\begin{lemma}\label{th:single_particle_number_states_inner_product}
-	Let $\ket{1_f},\ket{1_g}$ be two single-particle number states then their inner product is equal to
-	\begin{equation}
-		\braket{1_g}{1_f}
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		f(\vb{p})g(\vb{p})^*
-	\end{equation}
-	indicating that the single-particle number states are overcomplete.
-\end{lemma}
-\begin{lemma}\label{thm:single_particle_number_state_normalization}
-	The spectrum of a single-particle number state satisfies
-	\begin{equation}
-		\bra{1_f}\ket{1_f}
-		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\abs{f(\vb{p})}^2
 		=
 		1
+		\label{eq:number_state_spectrum_constraint}
 		.
 	\end{equation}
+\end{definition}
+In axiomatic quantum field theory, e.g., Wightman quantum field theory, we define quantum field operators as operator-valued distributions acting on the Schwartz function space, see Ref.~\cite{Bogolubov1989} and Ref.~\cite{Streater2016}.
+It turns out that there is a deep connection between the spectrum $f(\vb{p})$ and the smearing function $f(x^\mu)\in\mathcal{S}(\mathbb{R}^4,\mathbb{R})$ of the negative Klein-Gordon operator.
+\begin{lemma}
+	Let $f(x^\mu)$ be a smearing function with Fourier transform $f(p^\mu)=f(p_0,\vb{p})$ satisfying the spectral constraint \cref{eq:number_state_spectrum_constraint} with $f(\vb{p})=f(\omega(\vb{p}),\vb{p})$, and $\hat\phi^-(x^\mu)$ the negative frequency Klein-Gordon operator as defined in Wightman quantum field theory, then
+	\begin{equation}
+		\ket{n_f}
+		=
+		\frac{1}{\sqrt{n!}}
+		\hat\phi^-[f]^n
+		\ket{0}
+		=
+		\frac{1}{\sqrt{n!}}
+		\left(
+			\int\dd[4]{x}
+			f(x^\mu)
+			\hat\phi^-(x^\mu)
+		\right)^n
+		\ket{0}
+		,
+	\end{equation}
+	i.e., the number state is a specific kind of smearing function acting together with the negative frequency Klein-Gordon operator on the vacuum state.
 \end{lemma}
-Let us consider some examples for the single-particle number state spectrum $f(\vb{p})$.
+\begin{theorem}
+	The multi-particle number state $\ket{n_f}$ is an eigenstate of the number operator $\hat{N}$ to eigenvalue $n$, i.e.,
+	\begin{equation}
+		\hat{N}
+		\ket{n_f}
+		=
+		n
+		\ket{n_f}
+		.
+	\end{equation}
+\end{theorem}
+\begin{theorem}\label{thm:number_state_inner_product}
+	Let $\ket{n_f}$ be an $n$-particle number state with spectrum $f(\vb{p})$ and $\ket{m_g}$ a $m$-particle number state with spectrum $g(\vb{p})$, then their inner product is
+	\begin{equation}
+		\braket{n_f}{m_g}
+		=
+		\delta_{nm}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})^*
+			g(\vb{p})
+		\right)^n
+		.
+	\end{equation}
+\end{theorem}
+\begin{corollary}
+	Multi-particle number states with the same spectrum $f(\vb{p})$ are orthogonal, i.e.,
+	\begin{equation}
+		\braket{n_f}{m_f}
+		=
+		\delta_{nm}
+		.
+	\end{equation}
+\end{corollary}
 \begin{example}
-	The spectrum of a Gaussian single-particle number state is
+	The spectrum of a Gaussian number state is
 	\begin{equation}
 		f(\vb{p})
 		\propto
 		\exp\left\{
+			-
 			\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma_P^2}
 		\right\}
 		\label{eq:covariant_gaussian_spectrum}
 	\end{equation}
 	where the spectrum has mean $k^\mu=(k_0,\vb{k})$ and variance $\sigma^2$.\footnote{See Ref.~\cite{Naumov2013,Naumov2009} for a in-depth discussion.}
 \end{example}
-\begin{theorem}\label{thm:single_particle_number_state_number_eigenstate}
-	The single-particle number state $\ket{1_f}$ is an eigenstate of the number operator $\hat{N}$
-	\begin{equation}
-		\hat{N}
-		\ket{1_f}
-		=
-		1
-		\ket{1_f}
-	\end{equation}
-	with eigenvalue $1$.
-\end{theorem}
-\begin{lemma}\label{thm:single_particle_number_state_energy}
-	The first energy moment of the single-particle number state $\ket{1_f}$ is
-	\begin{equation}
-		\expval{\hat{H}}{1_f}
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\omega(\vb{p})
-		\abs{f(\vb{p})}^2
-	\end{equation}
-	and the second moment is
-	\begin{equation}
-		\expval{\hat{H}^2}{1_f}
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\omega(\vb{p})^2
-		\abs{f(\vb{p})}^2
-		.
-	\end{equation}
-\end{lemma}
-\begin{corollary}
-	The single-particle number state has non-zero energy fluctuations, i.e.,
-	\begin{equation}
-		\expval{\left(\Delta\hat{H}\right)^2}{1_f}
-		>
-		0
-		.
-	\end{equation}
-\end{corollary}
 \begin{lemma}\label{thm:single_particle_number_state_wave_function}
 	The coordinate wave function of a single-particle number state is
 	\begin{equation}
 		\psi(t,\vb{x})
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		f(\vb{p})e^{-ip_\mu x^\mu}
+		\eval{
+			f(\vb{p})
+			e^{-ip_\mu x^\mu}
+		}_{p_0=\omega(\vb{p})}
 		.
 	\end{equation}
 \end{lemma}
@@ -132,41 +126,6 @@ Let us consider some examples for the single-particle number state spectrum $f(\
 	\end{equation}
 	moving with the group velocity $\expval{\vb{v}}$.
 \end{lemma}
-Finally, we calculate the quantum statistics for the momentum density operator.
-The momentum density operator will turn out to capture the physical field-strength.
-\begin{lemma}\label{thm:single_particle_number_state_momentum_density_mean}
-	The mean momentum density of the single-particle number state is zero, i.e.,
-	\begin{equation}
-		\expval{\hat\pi(t,\vb{x})}{1_f}
-		=
-		0
-	\end{equation}
-\end{lemma}
-\begin{lemma}\label{thm:single_particle_number_state_momentum_density_correlation}
-	The correlation function of the momentum density operator is
-	\begin{equation}
-		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{1_f}
-		=
-		\expval{\left(\Delta\hat\pi(x^\mu,y^\mu)\right)^2}{0}
-		+
-		2\Re\left\{
-			\psi(x^\mu)
-			\psi(y^\mu)^*
-		\right\}
-	\end{equation}
-\end{lemma}
-\begin{corollary}
-	The variance of the momentum density for the single-particle number state is
-	\begin{equation}
-		\expval{\left(\Delta\hat\pi(t,\vb{x})\right)^2}{1_f}
-		=
-		\Delta\pi_0
-		+
-		2
-		\abs{\psi(t,\vb{x})}^2
-		.
-	\end{equation}
-\end{corollary}
 Later, we are going to need
 \begin{lemma}\label{thm:single_partiicle_number_state_inner_product_pn_smeared_kg_comm}
 	The commutator of the smeared positive and negative frequency Klein-Gordon operators is equal to the overlap of the corresponding single-particle number states, i.e.,
@@ -177,103 +136,3 @@ Later, we are going to need
 		.
 	\end{equation}
 \end{lemma}
-
-\begin{definition}[Multi-particle number state]
-	A multi-particle number state with $n$ particles and spectrum $f$ is given by
-	\begin{equation}
-		\ket{n_f}
-		=
-		\frac{1}{\sqrt{n!}}
-		\hat\phi[f]^n
-		\ket{0}
-		=
-		\frac{1}{\sqrt{n!}}
-		\left(
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			f(\vb{p})
-			\hat{a}^\dagger(\vb{p})
-		\right)^n
-		\ket{0}
-	\end{equation}
-\end{definition}
-\begin{theorem}
-	The multi-particle number state $\ket{n_f}$ is an eigenstate of the number operator $\hat{N}$ to eigenvalue $n$, i.e.,
-	\begin{equation}
-		\hat{N}
-		\ket{n_f}
-		=
-		n
-		\ket{n_f}
-		.
-	\end{equation}
-\end{theorem}
-\begin{corollary}
-	The multi-particle number state $\ket{n_f}$ has zero uncertainty in the number observable.
-\end{corollary}
-\begin{theorem}\label{thm:multi_particle_number_state_inner_product}
-	Let $\ket{n_f}$ be an $n$-particle number state with spectrum $f(\vb{p})$ and $\ket{m_g}$ a $m$-particle number state with spectrum $g(\vb{p})$, then their inner product is
-	\begin{equation}
-		\braket{n_f}{m_g}
-		=
-		\delta_{nm}
-		\left(
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})^*
-			g(\vb{p})
-		\right)^n
-		.
-	\end{equation}
-\end{theorem}
-\begin{corollary}
-	Multi-particle number states with the same spectrum $f(\vb{p})$ are orthogonal.
-\end{corollary}
-\begin{lemma}
-	The momentum density correlation of the multi-particle number state is
-	\begin{equation}
-		\expval{\hat\pi(x)\hat\pi(y)}{n_f}
-		=
-	\end{equation}
-\end{lemma}
-\begin{proof}
-	\begin{equation*}
-		\begin{split}
-			\expval{
-				\hat\pi(x)
-				\hat\pi(y)
-			}{n_f}
-			&=
-			\frac{1}{n!}
-			\expval{
-				\hat\phi[f]^n
-				\hat\pi(x)
-				\hat\pi(y)
-				\hat\phi[f]^n
-			}{0}
-			\\
-			&=
-			\frac{1}{n!}
-			\int\dd[4]{x_1}
-			f(x_1)
-			\dots
-			\int\dd[4]{x_n}
-			f(x_n)
-			\int\dd[4]{y_1}
-			f(y_1)
-			\dots
-			f(y_n)
-			\int\dd[4]{y_n}
-			\\
-			&\times
-			\expval{
-				\hat\phi(x_1)
-				\dots
-				\hat\phi(x_n)
-				\hat\pi(x)
-				\hat\pi(y)
-				\hat\phi(y_1)
-				\dots
-				\hat\phi(y_n)
-			}{0}			
-		\end{split}
-	\end{equation*}
-\end{proof}

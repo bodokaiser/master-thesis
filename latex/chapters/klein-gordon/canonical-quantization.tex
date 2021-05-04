@@ -172,14 +172,18 @@
 			\hat\phi^+(x^\mu)
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{-ip_\mu x^\mu}
-			\hat{a}(\vb{p})
+			\eval{
+				e^{-ip_\mu x^\mu}
+				\hat{a}(\vb{p})
+			}_{p_0=\omega(\vb{p})}
 			\\
 			\hat\phi^-(x^\mu)
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{+ip_\mu x^\mu}
-			\hat{a}^\dagger(\vb{p})
+			\eval{
+				e^{+ip_\mu x^\mu}
+				\hat{a}^\dagger(\vb{p})
+			}_{p_0=\omega(\vb{p})}
 		\end{split}
 		\label{eq:qkg_positive_negative_frequency}
 		.
@@ -213,7 +217,9 @@
 		D(x^\mu-y^\mu)
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		e^{-ip_\mu (x^\mu-y^\mu)}
+		\eval{
+			e^{-ip_\mu (x^\mu-y^\mu)}
+		}_{p_0=\omega(\vb{p})}
 		.
 	\end{equation}
 \end{definition}
