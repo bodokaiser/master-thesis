@@ -1,21 +1,20 @@
-\documentclass[a4paper,appendixprefix,parskip]{scrreprt}
+\documentclass[a4paper,appendixprefix]{scrreprt}
 
 \usepackage[utf8]{inputenc}
-\usepackage{amsthm}
-\usepackage{amsmath}
-\usepackage{amssymb}
+\usepackage{amsthm,amsmath,amssymb}
 \usepackage{authblk}
 \usepackage[english]{babel}
 \usepackage[backend=biber]{biblatex}
 \usepackage{booktabs}
-\usepackage{csquotes}
+%\usepackage{csquotes}
 \usepackage[acronym,nonumberlist,toc]{glossaries}
 \usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{physics}
 \usepackage[separate-uncertainty=true]{siunitx}
-\usepackage[subpreambles=true]{standalone}
-\usepackage{subfig}
+%\usepackage[subpreambles=true]{standalone}
+\usepackage{thmtools,thm-restate}
+%\usepackage{subfig}
 \usepackage{xcolor}
 
 \addbibresource{references/articles.bib}
@@ -109,10 +108,18 @@
 	\end{refsection}
 
 	\appendix
+
+	\chapter{Klein-Gordon field}
+	\begin{refsection}
+		\include{chapters/appendix/klein-gordon}
+		
+		\addcontentsline{toc}{section}{References}
+		\printbibliography[title=References]
+	\end{refsection}
 	
 	\chapter{Proofs of the Klein-Gordon theorems}
 	\begin{refsection}
-		\include{chapters/appendix/proofs-klein-gordon}
+		%\include{chapters/appendix/proofs-klein-gordon}
 		
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
@@ -120,7 +127,7 @@
 	
 	\chapter{Proofs of the Maxwell theorems}
 	\begin{refsection}
-		\include{chapters/appendix/proofs-maxwell}
+		%\include{chapters/appendix/proofs-maxwell}
 		
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
@@ -128,7 +135,7 @@
 
 	\chapter{Proofs of the Interaction theorems}
 	\begin{refsection}
-		\include{chapters/appendix/proofs-interactions}
+		%\include{chapters/appendix/proofs-interactions}
 		
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]

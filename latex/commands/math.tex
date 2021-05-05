@@ -34,13 +34,3 @@
 \newtheorem{example}{Example}[section]
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
-
-% delayed proofs
-% https://tex.stackexchange.com/questions/450357/reference-to-proof-prints-section-instead
-\newenvironment{delayedproof}[1]
- {\begin{proof}[\raisedtarget{#1}Proof of \Cref{#1}]}
- {\end{proof}}
-\newcommand{\raisedtarget}[1]{%
-  \raisebox{\fontcharht\font`P}[0pt][0pt]{\hypertarget{#1}{}}%
-}
-\newcommand{\proofref}[2]{\hyperlink{#2}{#1}}

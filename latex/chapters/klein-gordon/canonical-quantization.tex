@@ -16,7 +16,7 @@
 		.
 	\end{align}
 \end{definition}
-\begin{theorem}[Klein-Gordon field operators]
+\begin{corollary}[Klein-Gordon field operators]
 	The Klein-Gordon field operators are
 	\begin{align}
 		\hat\phi(x^\mu)
@@ -46,8 +46,8 @@
 		\label{eq:qkg_mom}
 	\end{align}
 	where $\hat\phi(x^\mu)$ and $\hat\pi(x^\mu)$ satisfy the equal-time canonical commutation relations.
-\end{theorem}
-\begin{theorem}\label{thm:kg_comm_ac}
+\end{corollary}
+\begin{restatable}{theorem}{qkgcommac}\label{thm:qkg_comm_ac}
 	The operators $\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{p})$ obey the commutation relations
 	\begin{align}
 		\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
@@ -63,8 +63,8 @@
 		\label{eq:kg_comm_ac}
 		.
 	\end{align}	
-\end{theorem}
-\begin{definition}[Energy and momentum operator]
+\end{restatable}
+\begin{definition}[Energy and momentum operator]\label{def:qkg_energy_momentum}
 	The Klein-Gordon's total energy and total momentum operators are
 	\begin{align}
 		\hat{H}
@@ -80,7 +80,7 @@
 		.
 	\end{align}
 \end{definition}
-\begin{definition}
+\begin{definition}\label{def:vacuum_state}
 	The vacuum state $\ket{0}$ is the unique eigenstate of the total energy and total momentum operators with eigenvalue zero, i.e.,
 	\begin{align}
 		\hat{H}
@@ -95,7 +95,7 @@
 		.
 	\end{align}
 \end{definition}
-\begin{corollary}
+\begin{corollary}\label{thm:vacuum_state_ac}
 	The definition of the vacuum state and the energy operator imply
 	\begin{align}
 		\hat{a}(\vb{p})
@@ -110,7 +110,7 @@
 		.
 	\end{align}
 \end{corollary}
-\begin{theorem}
+\begin{corollary}
 	The commutators of the operators $\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{p})$ with the Hamiltonian $\hat{H}$ yield
 	\begin{align}
 		\comm{\hat{H}}{\hat{a}^\dagger(\vb{p})}
@@ -123,9 +123,9 @@
 		-
 		\omega(\vb{p})
 		\hat{a}(\vb{p})
+		.
 	\end{align}
-	suggesting that $\hat{a}(\vb{p})$ acting on a state to the right lowers the energy by $\omega(\vb{p})$ and $\hat{a}^\dagger(\vb{p})$ raises the energy by $\omega(\vb{p})$.
-\end{theorem}
+\end{corollary}
 \begin{definition}
 	The number density and total number operators are
 	\begin{align}
@@ -196,7 +196,7 @@
 		.
 	\end{equation}
 \end{definition}
-\begin{corollary}
+\begin{corollary}\label{thm:vacuum_state_pn}
 	The positive and negative frequency Klein-Gordon operators satisfy
 	\begin{align}
 		\hat\phi^+(x^\mu)
@@ -208,6 +208,7 @@
 		\hat\phi^-(x^\mu)
 		=
 		0
+		\label{eq:vacuum_state_pn}
 		.
 	\end{align}
 \end{corollary}
@@ -223,7 +224,7 @@
 		.
 	\end{equation}
 \end{definition}
-\begin{lemma}\label{thm:qkg_pn_comm}
+\begin{restatable}{lemma}{qkgcommpn}\label{thm:qkg_comm_pn}
 	The positive and negative frequency Klein-Gordon operators satisfy the commutation relations
 	\begin{align}
 		\comm{\hat\phi^+(x^\mu)}{\hat\phi^-(y^\mu)}
@@ -236,8 +237,8 @@
 		=
 		0
 	\end{align}
-\end{lemma}
-\begin{lemma}\label{thm:qkg_propagator_correlation_function}
+\end{restatable}
+\begin{restatable}{lemma}{qkgpropcorr}\label{thm:qkg_prop_corr}
 	The propagator is equal to the expectation value
 	\begin{equation}
 		D(x^\mu-y^\mu)
@@ -245,4 +246,4 @@
 		\expval{\hat\phi(x^\mu)\hat\phi(y^\mu)}{0}
 		.
 	\end{equation}
-\end{lemma}
+\end{restatable}

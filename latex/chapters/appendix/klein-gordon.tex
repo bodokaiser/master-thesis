@@ -1,0 +1,417 @@
+\section{Relativistic field theory}
+
+\rem
+\begin{proof}
+	According to the action principle, the dynamics of the field are determined by the equations of motion which can be found by the relativistic Euler-Lagrange equations
+	\begin{equation*}
+		0
+		=
+		\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu\phi)}
+		-
+		\pdv{\mathcal{L}}{\phi}
+		=
+		\left(
+			\partial_\mu\partial^\mu
+			+
+			m^2
+		\right)
+		\phi(t,\vb{x})
+		.
+	\end{equation*}
+	Assuming the existence of the Klein-Gordon field's Fourier representation\footnote{See Ref.~\cite[p.~341]{Cohen2019} for a definition of a Minkowski Fourier transform.}
+	\begin{equation*}
+		\phi(t,\vb{x})
+		=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+		\phi(t,\vb{p})
+		e^{-i\vb{p}\vdot\vb{x}}
+		=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
+		\phi(p_0,\vb{p})
+		e^{+ip_\mu x^\mu}
+		,
+	\end{equation*}
+	the equation of motion in momentum space reduces to
+	\begin{equation*}
+		0
+		=
+		\left(
+			ip_\mu ip^\mu
+			+
+			m^2
+		\right)
+		\phi(p_0,\vb{p})
+		=
+		-
+		\left(
+			p_0^2
+			-
+			\omega(\vb{p})^2
+		\right)
+		\phi(p_0,\vb{p})
+	\end{equation*}
+	which is satisfied if $p_0=\pm\omega(\vb{p})$.
+\end{proof}
+
+\kgmodeexp
+\begin{proof}
+	There are two approaches to prove \cref{thm:kg_mode_expansion}.
+	In a first approach, we calculate with the proposed Fourier expansion
+	\begin{equation*}
+		\begin{split}
+			\partial_\mu
+			\partial^\mu
+			\phi(t,\vb{x})
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left\{
+				a^*(\vb{p})
+				\partial_\mu
+				\partial^\mu
+				e^{-ip_\mu x^\mu}
+				+
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left\{
+				a^*(\vb{p})
+				\left(
+					-
+					p_\mu
+					p^\mu
+				\right)
+				e^{-ip_\mu x^\mu}
+				+
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+		\end{split}
+	\end{equation*}
+	where $p_\mu p^\mu=\omega(\vb{p})^2-\vb{p}=m^2$ and therefore the equation of motion
+	\begin{equation*}
+			\partial_\mu
+			\partial^\mu
+			\phi(t,\vb{x})
+			=
+			-
+			m^2
+			\phi(t,\vb{x})
+	\end{equation*}
+	is satisfied.
+	While the first approach successfully shows why the theorem is true, it is not obvious how to arrive at the Fourier expansion.
+	Therefor, a second approach starts with the Fourier transform of the Klein-Gordon field
+	\begin{equation*}
+		\phi(t,\vb{x})
+		=
+		\int_V\frac{\dd[4]{p}}{(2\pi)^4}
+		\phi(p_0,\vb{p})
+		e^{+ip_\mu x^\mu}
+	\end{equation*}
+	where the integration domain is constrained to the momentum lightcone $V$ and therefore $\omega(\vb{p})^2=p_0^2$ is automatically satisfied.
+	We are left to rewrite the constrained integration domain
+	\begin{equation*}
+		\phi(t,\vb{x})
+		=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
+		\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
+		\phi(p_0,\vb{p})
+		e^{+ip_\mu x^\mu}
+	\end{equation*}
+	and using the composition property of the delta distribution
+	\begin{equation*}
+		\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
+		=
+		\frac{
+			\delta^{(1)}\left(p_0-\omega(\vb{p})\right)
+			+
+			\delta^{(1)}\left(p_0+\omega(\vb{p})\right)
+		}{\sqrt{2\omega(\vb{p})}}
+	\end{equation*}
+	which leaves us with
+	\begin{equation*}
+		\phi(t,\vb{x})
+		=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			\phi(\omega(\vb{p}),\vb{p})
+			e^{+i\omega(\vb{p})t}
+			+
+			\phi(-\omega(\vb{p}),\vb{p})
+			e^{-i\omega(\vb{p})t}
+		\biggr\}
+		e^{-i\vb{p}\vdot\vb{x}}
+		.
+	\end{equation*}
+	We now only need to perform the substitution $\vb{p}\to-\vb{p}$ on the second term
+	\begin{equation*}
+		\begin{split}
+			\phi(t,\vb{x})
+			&=
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\biggl\{
+				\phi(\omega(\vb{p}),\vb{p})
+				e^{+i\omega(\vb{p})t}
+				e^{-i\vb{p}\vdot\vb{x}}
+				+
+				\phi(-\omega(\vb{p}),\vb{p})
+				e^{-i\omega(\vb{p})t}
+				e^{-i\vb{p}\vdot\vb{x}}
+			\biggr\}
+			\\
+			&=
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\biggl\{
+				\phi(\omega(\vb{p}),\vb{p})
+				e^{+i\omega(\vb{p})t}
+				e^{-i\vb{p}\vdot\vb{x}}
+				+
+				\phi(-\omega(\vb{p}),-\vb{p})
+				e^{-i\omega(\vb{p})t}
+				e^{+i\vb{p}\vdot\vb{x}}
+			\biggr\}
+			\\
+			&=
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\biggl\{
+				\phi(\omega(\vb{p}),\vb{p})
+				e^{+ip_\mu x^\mu}
+				+
+				\phi(\omega(\vb{p}),\vb{p})^*
+				e^{-ip_\mu x^\mu}
+			\biggr\}_{p_0=\omega(\vb{p})}
+		\end{split}
+	\end{equation*}
+	and use the conjugate symmetry of the Fourier amplitudes
+	\begin{equation*}
+		\phi(p_0,\vb{p})^*
+		=
+		\phi(-p_0,-\vb{p})
+	\end{equation*}
+	which is present because $\phi(t,\vb{x})$ is real-valued.
+\end{proof}
+
+\Cref{thm:kg_energy_density}, \Cref{thm:kg_energy_momentum}, and \Cref{thm:kg_conjugate_momentum} are found in standard literature on relativistic field theory, for instance, in Ref.~\cite{Peskin1995}.
+
+\section{Canonical quantization}
+
+\qkgcommac
+\begin{proof}
+	The equal-time commutation relations are valid for any time $t$ so also for $t=0$, inserting \cref{eq:qkg_pos} into \cref{eq:qkg_comm_pm}, we find
+	\begin{equation*}
+		\begin{split}
+			0
+			=
+			\comm{\hat\phi(0,\vb{x})}{\hat\phi(0,\vb{y})}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\frac{1}{\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\frac{1}{\sqrt{2\omega(\vb{q})}}
+			\\
+			&\times
+			\comm{
+				\hat{a}(\vb{p})
+				e^{+i\vb{p}\vdot\vb{x}}
+				+
+				\hat{a}^\dagger(\vb{p})
+				e^{-i\vb{p}\vdot\vb{x}}
+			}{
+				\hat{a}(\vb{q})
+				e^{+i\vb{q}\vdot\vb{y}}
+				+
+				\hat{a}^\dagger(\vb{q})
+				e^{-i\vb{q}\vdot\vb{y}}
+			}
+			,
+		\end{split}
+	\end{equation*}
+		and for \cref{eq:qkg_mom}, we find
+	\begin{equation*}
+		\begin{split}
+			0
+			=
+			\comm{\hat\phi(0,\vb{x})}{\hat\phi(0,\vb{y})}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{p})}{2}}
+			\right)
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{q})}{2}}
+			\right)
+			\\
+			&\times
+			\comm{
+				\hat{a}(\vb{p})
+				e^{+i\vb{p}\vdot\vb{x}}
+				-
+				\hat{a}^\dagger(\vb{p})
+				e^{-i\vb{p}\vdot\vb{x}}
+			}{
+				\hat{a}(\vb{q})
+				e^{+i\vb{q}\vdot\vb{y}}
+				-
+				\hat{a}^\dagger(\vb{q})
+				e^{-i\vb{q}\vdot\vb{y}}
+			}
+			.
+		\end{split}
+	\end{equation*}
+	The double integral is zero iff the integrand is zero, therefore
+	\begin{align*}
+		\comm{
+			\hat{a}(\vb{p})
+			e^{+i\vb{p}\vdot\vb{x}}
+			+
+			\hat{a}^\dagger(\vb{p})
+			e^{-i\vb{p}\vdot\vb{x}}
+		}{
+			\hat{a}(\vb{q})
+			e^{+i\vb{q}\vdot\vb{y}}
+			+
+			\hat{a}^\dagger(\vb{q})
+			e^{-i\vb{q}\vdot\vb{y}}
+		}
+		&=
+		0
+		\\
+		\comm{
+			\hat{a}(\vb{p})
+			e^{+i\vb{p}\vdot\vb{x}}
+			-
+			\hat{a}^\dagger(\vb{p})
+			e^{-i\vb{p}\vdot\vb{x}}
+		}{
+			\hat{a}(\vb{q})
+			e^{+i\vb{q}\vdot\vb{y}}
+			-
+			\hat{a}^\dagger(\vb{q})
+			e^{-i\vb{q}\vdot\vb{y}}
+		}
+		&=
+		0
+		.
+	\end{align*}
+	Adding and subtracting these equations from another implies
+	\begin{equation*}
+		\comm{\hat{a}(\vb{p})}{\hat{a}(\vb{q})}
+		=
+		0
+		=
+		\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+		.
+	\end{equation*}
+	Finally, inserting \cref{eq:qkg_pos} and \cref{eq:qkg_mom} into \cref{eq:qkg_comm_pm}, reveals
+	\begin{equation*}
+		\begin{split}
+			i\delta^{(3)}(\vb{x}-\vb{y})
+			=
+			\comm{\hat\phi(0,\vb{x})}{\hat\pi(0,\vb{y})}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\frac{1}{\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{q})}{2}}
+			\right)
+			\\
+			&\times
+			\comm{
+				\hat{a}(\vb{p})
+				e^{+i\vb{p}\vdot\vb{x}}
+				+
+				\hat{a}^\dagger(\vb{p})
+				e^{-i\vb{p}\vdot\vb{x}}
+			}{
+				\hat{a}(\vb{q})
+				e^{+i\vb{q}\vdot\vb{y}}
+				-
+				\hat{a}^\dagger(\vb{q})
+				e^{-i\vb{p}\vdot\vb{y}}
+			}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				-
+				\frac{i}{2}
+				\sqrt{\frac{\omega(\vb{q})}{\omega(\vb{p})}}
+			\right)
+			\\
+			&\times
+			\left\{
+				-
+				\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+				e^{+i\vb{p}\vdot\vb{x}}
+				e^{-i\vb{q}\vdot\vb{y}}
+				+
+				\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}(\vb{q})}
+				e^{-i\vb{p}\vdot\vb{x}}
+				e^{+i\vb{q}\vdot\vb{y}}
+			\right\}
+		\end{split}
+	\end{equation*}
+	which is satisfied for
+	\begin{equation*}
+		\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+		=
+		(2\pi)^3
+		\delta^{(3)}(\vb{q}-\vb{p})
+		.
+	\end{equation*}
+\end{proof}
+
+\qkgcommpn
+\begin{proof}
+	That positive respective negative frequency Klein-Gordon operators commute follows from \Cref{thm:qkg_comm_ac}.
+	Using \Cref{thm:qkg_comm_ac} for the remaining commutator
+	\begin{equation*}
+		\begin{split}
+			\comm{\hat\phi^+(x^\mu)}{\hat\phi^-(y^\mu)}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{p})}
+			\eval{
+				e^{-ip_\mu x^\mu}
+				e^{+iq_\mu y^\mu}
+			}_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\eval{
+				e^{-ip_\mu(x^\mu-y^\mu)}
+			}_{p_0=\omega(\vb{p})}
+			=
+			D(x^\mu-y^\mu)
+		\end{split}
+	\end{equation*}
+	recovers the initial claim after identification of the Klein-Gordon propagator.
+\end{proof}
+\qkgpropcorr
+\begin{proof}
+	Decomposing the Klein-Gordon operator into positive and negative frequency and using \Cref{thm:vacuum_state_pn}, we find
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\phi(x^\mu)\hat\phi(y^\mu)}{0}
+			&=
+			\expval{\hat\phi^+(x^\mu)\hat\phi^-(y^\mu)}{0}
+			\\
+			&=
+			\expval{\comm{\hat\phi^+(x^\mu)}{\hat\phi^-(y^\mu)}}{0}
+			\\
+			&=
+			\expval{D(x^\mu-y^\mu)}{0}
+			\\
+			&=
+			D(x^\mu-y^\mu)
+		\end{split}
+	\end{equation*}
+	where we used \Cref{thm:qkg_comm_pn}.
+\end{proof}

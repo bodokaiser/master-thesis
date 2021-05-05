@@ -15,10 +15,8 @@
 	\end{equation}
 	describes a real-valued massive scalar field $\phi(t,\vb{x})$.
 \end{definition}
-\begin{corollary}
-	The Klein-Gordon Lagrangian is manifest Lorentz-covariant, i.e., as a Lorentz scalar, the Klein-Gordon Lagrangian is invariant under Lorentz transformations and thereby valid in any reference frame.
-\end{corollary}
-\begin{theorem}[Relativistic energy-momentum relation]\label{th:relativistic_energy_momentum}
+The Klein-Gordon Lagrangian is manifest Lorentz-covariant, i.e., as a Lorentz scalar, the Klein-Gordon Lagrangian is invariant under Lorentz transformations and thereby valid in any reference frame.
+\begin{restatable}[Relativistic energy-momentum relation]{theorem}{rem}\label{th:relativistic_energy_momentum}
 	Excitations of the Klein-Gordon field satisfy the relativistic energy-momentum relation
 	\begin{equation}
 		\omega(\vb{p})
@@ -29,13 +27,14 @@
 		\label{eq:energy_momentum_relation}
 		.
 	\end{equation}
-\end{theorem}
-\begin{theorem}[Mode expansion of the Klein-Gordon field]\label{thm:kg_fourier_expansion}
+\end{restatable}
+\begin{restatable}[Mode expansion of the Klein-Gordon field]{theorem}{kgmodeexp}\label{thm:kg_mode_expansion}
 	The mode expansion of the Klein-Gordon field
 	\begin{equation}
 		\phi(x^\mu)
 		=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+		\frac{1}{\sqrt{2\omega(\vb{p})}}
 		\biggl\{
 			a(\vb{p})
 			e^{-ip_\mu x^\mu}
@@ -43,9 +42,10 @@
 			a(\vb{p})^*
 			e^{+ip_\mu x^\mu}
 		\biggr\}_{p_0=\omega(\vb{p})}
+		\label{eq:kg_mode_expansion}
 	\end{equation}
 	satisfies the equations of motion for any choice of $a(\vb{p})=\phi(\omega(\vb{p}),\vb{p})$ where $\phi(p_0,\vb{p})=\phi(p^\mu)$ is the Fourier amplitude of the Klein-Gordon field $\phi(x^\mu)=\phi(t,\vb{x})$.
-\end{theorem}
+\end{restatable}
 \begin{definition}[Energy-momentum tensor]
 	The energy-momentum tensor of a scalar field is
 	\begin{equation}
@@ -59,9 +59,9 @@
 	\end{equation}
 	The energy-momentum tensor's components encode the energy density $T^{00}$, the momentum density $T^{0i}$, and the stress densities $T^{ij}$.
 \end{definition}
-\begin{lemma}
+\begin{lemma}\label{thm:kg_energy_density}
 	The energy density of the Klein-Gordon's energy-momentum tensor
-	\begin{equation*}
+	\begin{equation}
 		T^{00}
 		=
 		\frac{1}{2}
@@ -74,11 +74,12 @@
 		\left(m\phi\right)^2
 		=
 		\mathcal{H}
-	\end{equation*}
+		\label{thm:kg_hamiltonian}
+	\end{equation}
 	is equal to its Hamiltonian density $\mathcal{H}$.
 \end{lemma}
-\begin{lemma}\label{thm:kg_total_energy_momentum}
-	The total energy and the total momentum of the Klein-Gordon field are
+\begin{lemma}\label{thm:kg_energy_momentum}
+	The energy and the momentum of the Klein-Gordon field are
 	\begin{align}
 		H
 		=
@@ -93,30 +94,16 @@
 		.
 	\end{align}
 \end{lemma}
-\begin{definition}
-	The Klein-Gordon Hamiltonian density is
+\begin{lemma}\label{thm:kg_conjugate_momentum}
+	The Klein-Gordon field $\hat\phi(x^\mu)$ with mode expansion given in \cref{eq:kg_mode_expansion}, and the conjugate momentum field
 	\begin{equation}
-		\mathcal{H}
+		\hat\pi(x^\mu)
 		=
-		\frac{1}{2}
-		\pi^2
-		+
-		\frac{1}{2}
-		\left(\grad\phi\right)^2
-		+
-		\frac{1}{2}
-		\left(m\phi\right)^2
-		.
-	\end{equation}
-	$\phi(x^\mu)$ is the position and $\pi(x^\mu)$ the momentum density.
-\end{definition}
-\begin{lemma}
-	The mode expansions of the Klein-Gordon's position and momentum densities read
-	\begin{align}
-		\phi(x^\mu)
-		&=
 		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
-		\frac{1}{\sqrt{2\omega(\vb{p})}}
+		\left(
+			-i
+			\sqrt{\frac{\omega(\vb{p})}{2}}
+		\right)
 		\biggl\{
 			a(\vb{p})
 			e^{-ip_\mu x^\mu}
@@ -124,22 +111,7 @@
 			a(\vb{p})^*
 			e^{+ip_\mu x^\mu}
 		\biggr\}_{p_0=\omega(\vb{p})}
-		,
-		\\
-		\pi(x^\mu)
-		&=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
-		\left(-i\sqrt{\frac{\omega(\vb{p})}{2}}\right)
-		\biggl\{
-			a(\vb{p})
-			e^{-ip_\mu x^\mu}
-			-
-			a(\vb{p})^*
-			e^{+ip_\mu x^\mu}
-		\biggr\}_{p_0=\omega(\vb{p})}
-		.
-	\end{align}
+		\label{eq:kg_conjugate_momentum}
+	\end{equation}
+	satisfy the Hamiltonian equations of motion.
 \end{lemma}
-\begin{definition}
-	The current
-\end{definition}
