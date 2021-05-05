@@ -1,6 +1,6 @@
 \section{Number states}
 
-\begin{definition}[Number state]\label{def:number_state}
+\begin{definition}[Number state]\label{def:qkg_number_state}
 	The $n$-particle number state with spectrum $f(\vb{p})$ is
 	\begin{equation}
 		\ket{n_f}
@@ -12,6 +12,7 @@
 			\hat{a}^\dagger(\vb{p})
 		\right)^n
 		\ket{0}
+		\label{eq:qkg_number_state}
 	\end{equation}
 	and the spectrum is required to satisfy
 	\begin{equation}
@@ -23,9 +24,9 @@
 		.
 	\end{equation}
 \end{definition}
-In axiomatic quantum field theory, e.g., Wightman quantum field theory, we define quantum field operators as operator-valued distributions acting on the Schwartz function space, see Ref.~\cite{Bogolubov1989} and Ref.~\cite{Streater2016}.
+In Wightman quantum field theory, we define quantum field operators as operator-valued distributions acting on the Schwartz function space, see Ref.~\cite{Bogolubov1989} and Ref.~\cite{Streater2016}.
 It turns out that there is a deep connection between the spectrum $f(\vb{p})$ and the smearing function $f(x^\mu)\in\mathcal{S}(\mathbb{R}^4,\mathbb{R})$ of the negative Klein-Gordon operator.
-\begin{lemma}
+\begin{restatable}{lemma}{qkgnumbersmearing}\label{thm:qkg_number_state_smearing}
 	Let $f(x^\mu)$ be a smearing function with Fourier transform $f(p^\mu)=f(p_0,\vb{p})$ satisfying the spectral constraint \cref{eq:number_state_spectrum_constraint} with $f(\vb{p})=f(\omega(\vb{p}),\vb{p})$, and $\hat\phi^-(x^\mu)$ the negative frequency Klein-Gordon operator as defined in Wightman quantum field theory, then
 	\begin{equation}
 		\ket{n_f}
@@ -41,12 +42,13 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 			\hat\phi^-(x^\mu)
 		\right)^n
 		\ket{0}
+		\label{eq:qkg_number_state_smearing}
 		,
 	\end{equation}
 	i.e., the smeared negative frequency Klein-Gordon operator creates multiple particle smeared with $f(x^\mu)$.
-\end{lemma}
-\begin{theorem}
-	The multi-particle number state $\ket{n_f}$ is an eigenstate of the number operator $\hat{N}$ to eigenvalue $n$, i.e.,
+\end{restatable}
+\begin{restatable}{theorem}{qkgnumbereigenstate}\label{thm:qkg_number_state_eigenstate}
+	The number state $\ket{n_f}$ is an eigenstate of the number operator $\hat{N}$ to eigenvalue $n$
 	\begin{equation}
 		\hat{N}
 		\ket{n_f}
@@ -55,7 +57,7 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 		\ket{n_f}
 		.
 	\end{equation}
-\end{theorem}
+\end{restatable}
 \begin{theorem}\label{thm:number_state_inner_product}
 	Let $\ket{n_f}$ be an $n$-particle number state with spectrum $f(\vb{p})$ and $\ket{m_g}$ a $m$-particle number state with spectrum $g(\vb{p})$, then their inner product is
 	\begin{equation}
@@ -85,7 +87,6 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 		f(\vb{p})
 		\propto
 		\exp\left\{
-			-
 			\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma_P^2}
 		\right\}
 		\label{eq:covariant_gaussian_spectrum}

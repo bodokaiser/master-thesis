@@ -415,3 +415,197 @@
 	\end{equation*}
 	where we used \Cref{thm:qkg_comm_pn}.
 \end{proof}
+
+\section{Number states}
+
+\qkgnumbersmearing
+\begin{proof}
+	Comparing \cref{eq:qkg_number_state_smearing} and \cref{eq:qkg_number_state} leaves us with showing
+	\begin{equation*}
+		\int\dd[4]{x}
+		f(x^\mu)
+		\hat\phi^-(x^\mu)
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		f(\vb{p})
+		\hat{a}^\dagger(\vb{p})
+		.
+	\end{equation*}
+	Inserting the negative frequency Klein-Gordon operator, \cref{eq:qkg_positive_negative_frequency}, into the left-hand side yields
+	\begin{equation*}
+		\begin{split}
+			\int\dd[4]{x}
+			f(x^\mu)
+			\hat\phi^-(x^\mu)
+			&=
+			\int\dd[4]{x}
+			f(x^\mu)
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\eval{
+				e^{+ip_\mu x^\mu}
+				\hat{a}^\dagger(\vb{p})
+			}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left(
+				\int\dd[4]{x}
+				f(x^\mu)
+				e^{+ip_\mu x^\mu}
+			\right)_{p_0=\omega(\vb{p})}
+			\hat{a}^\dagger(\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\eval{f(p^\mu)}_{p_0=\omega(\vb{p})}
+			\hat{a}^\dagger(\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f\left(\omega(\vb{p}),\vb{p}\right)
+			\hat{a}^\dagger(\vb{p})
+		\end{split}
+	\end{equation*}
+	which equals the right-hand side when we take $f(\vb{p})=f\left(\omega(\vb{p}),\vb{p}\right)$.
+\end{proof}
+
+\begin{lemma}\label{thm:qkg_comm_an}
+	Let $n\in\mathbb{N}$, $\hat{a}(\vb{p})$ be the annihilation operator of the Klein-Gordon field, and $\hat\phi^-(x^\mu)$ be the negative frequency Klein-Gordon operator, then
+	\begin{equation}
+		\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)^n}
+		=
+		n
+		\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+		\hat\phi^-(x^\mu)^{n-1}
+		\label{eq:qkg_comm_an}
+		.
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	Induction start ($n=1$):
+	\begin{equation*}
+		\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)}
+		=
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		e^{+iq_\mu x^\mu}
+		\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+		=
+		\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+	\end{equation*}
+	Induction start ($n\to n+1$):
+	\begin{equation*}
+		\begin{split}
+			\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)^{n+1}}
+			&=
+			\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)\hat\phi^-(x^\mu)^n}
+			\\
+			&=
+			\hat\phi^-(x^\mu)
+			\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)^n}
+			+
+			\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)}
+			\hat\phi^-(x^\mu)^n
+			\\
+			&=
+			\hat\phi^-(x^\mu)
+			n
+			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+			\hat\phi^-(x^\mu)^{n-1}
+			+
+			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+			\hat\phi^-(x^\mu)^n
+			\\
+			&=
+			(n+1)
+			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+			\hat\phi^-(x^\mu)^n
+		\end{split}
+	\end{equation*}
+\end{proof}
+\begin{lemma}\label{thm:qkg_comm_cp}
+	Let $n\in\mathbb{N}$, $\hat{a}^\dagger(\vb{p})$ be the creation operator of the Klein-Gordon field, and $\hat\phi^+(x^\mu)$ be the positive frequency Klein-Gordon operator, then
+	\begin{equation}
+		\comm{\hat{a}^\dagger(\vb{p})}{\hat\phi^+(x^\mu)^n}
+		=
+		-
+		n
+		\frac{e^{-ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+		\hat\phi^+(x^\mu)^{n-1}
+		\label{eq:qkg_comm_cp}
+		.
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	The hermitian conjugate of the left-hand side of \cref{eq:qkg_comm_an} is
+	\begin{equation*}
+		\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)^n}^\dagger
+		=
+		-
+		\comm{\hat{a}^\dagger(\vb{p})}{\hat\phi^+(x^\mu)^n}
+	\end{equation*}
+	and the hermitian conjugate of the right-hand side is
+	\begin{equation*}
+		\left(
+			n
+			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+			\hat\phi^-(x^\mu)^{n-1}
+		\right)^\dagger
+		=
+		n
+		\frac{e^{-ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+		\hat\phi^+(x^\mu)^{n-1}
+		.
+	\end{equation*}
+	Therefore, we have
+	\begin{equation*}
+		\comm{\hat{a}^\dagger(\vb{p})}{\hat\phi^+(x^\mu)^n}
+		=
+		-
+		n
+		\frac{e^{-ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+		\hat\phi^+(x^\mu)^{n-1}
+	\end{equation*}
+	after equating both sides again.
+\end{proof}
+\begin{lemma}
+	\begin{equation}
+		\hat{a}(\vb{p})
+		\ket{n_f}
+		=
+		\sqrt{n}
+		\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+		\ket{n-1_f}
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	Using \Cref{thm:qkg_number_state_smearing}, \Cref{thm:qkg_comm_cp}, and \Cref{thm:vacuum_state_ac}, we find
+	\begin{equation*}
+		\begin{split}
+			\hat{a}(\vb{p})
+			\ket{n_f}
+			=
+			\frac{1}{\sqrt{n!}}
+			\hat{a}(\vb{p})
+			\hat\phi^-[f]^n
+			\ket{0}
+			=
+			\frac{1}{\sqrt{n!}}
+			n
+			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+			\hat\phi^-[f]^{n-1}
+			\ket{0}
+			=
+			\sqrt{n}
+			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+			\ket{1-n_f}
+			.
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\qkgnumbereigenstate
+\begin{proof}
+Foo	
+\end{proof}
+
+\section{Coherent states}
