@@ -45,18 +45,7 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 		\label{eq:qkg_number_state_smearing}
 		,
 	\end{equation}
-	i.e., the smeared negative frequency Klein-Gordon operator creates multiple particle smeared with $f(x^\mu)$.
-\end{restatable}
-\begin{restatable}{theorem}{qkgnumbereigenstate}\label{thm:qkg_number_state_eigenstate}
-	The number state $\ket{n_f}$ is an eigenstate of the number operator $\hat{N}$ to eigenvalue $n$
-	\begin{equation}
-		\hat{N}
-		\ket{n_f}
-		=
-		n
-		\ket{n_f}
-		.
-	\end{equation}
+	i.e., the smeared negative frequency Klein-Gordon operator creates a superposition of particles smeared with $f(x^\mu)$.
 \end{restatable}
 \begin{theorem}\label{thm:number_state_inner_product}
 	Let $\ket{n_f}$ be an $n$-particle number state with spectrum $f(\vb{p})$ and $\ket{m_g}$ a $m$-particle number state with spectrum $g(\vb{p})$, then their inner product is
@@ -81,18 +70,30 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 		.
 	\end{equation}
 \end{corollary}
-\begin{example}
-	The spectrum of a Gaussian number state is
+\begin{restatable}{lemma}{qkgnumbercommpn}\label{thm:number_state_comm_pn}
+	Let $f,g$ be smearing functions and $n,m\in\mathbb{N}$, then
 	\begin{equation}
-		f(\vb{p})
-		\propto
-		\exp\left\{
-			\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma_P^2}
-		\right\}
-		\label{eq:covariant_gaussian_spectrum}
+		\comm{\hat\phi^+[f]^n}{\hat\phi^-[g]^m}
+		=
+		n!\delta_{nm}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})^*
+			g(\vb{p})
+		\right)^n
 	\end{equation}
-	where the spectrum has mean $k^\mu=(k_0,\vb{k})$ and variance $\sigma^2$.\footnote{See Ref.~\cite{Naumov2013,Naumov2009} for a in-depth discussion.}
-\end{example}
+\end{restatable}
+\begin{restatable}{theorem}{qkgnumbereigenstate}\label{thm:qkg_number_state_eigenstate}
+	The number state $\ket{n_f}$ is an eigenstate of the number operator $\hat{N}$ to eigenvalue $n$
+	\begin{equation}
+		\hat{N}
+		\ket{n_f}
+		=
+		n
+		\ket{n_f}
+		.
+	\end{equation}
+\end{restatable}
 \begin{lemma}\label{thm:single_particle_number_state_wave_function}
 	The coordinate wave function of a single-particle number state is
 	\begin{equation}
@@ -126,14 +127,4 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 		\expval{\vb{v}}t
 	\end{equation}
 	moving with the group velocity $\expval{\vb{v}}$.
-\end{lemma}
-Later, we are going to need
-\begin{lemma}\label{thm:single_partiicle_number_state_inner_product_pn_smeared_kg_comm}
-	The commutator of the smeared positive and negative frequency Klein-Gordon operators is equal to the overlap of the corresponding single-particle number states, i.e.,
-	\begin{equation}
-		\comm{\hat\phi^+[f]}{\hat\phi^-[g]}
-		=
-		\braket{1_f}{1_g}
-		.
-	\end{equation}
 \end{lemma}

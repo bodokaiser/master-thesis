@@ -60,3 +60,30 @@
 	\end{equation}
 	and quantifies the spatial spread of a wave packet.
 \end{definition}
+
+\begin{definition}[Covariant Gaussian spectrum]
+	The spectrum of a Gaussian number state is
+	\begin{equation}
+		f(\vb{p})
+		\propto
+		\exp\left\{
+			\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma^2}
+		\right\}_{\substack{p_0=\omega(\vb{p})\\k_0=\omega(\vb{k})}}
+		\label{eq:covariant_gaussian_spectrum}
+	\end{equation}
+	where the spectrum has mean $k^\mu=(k_0,\vb{k})$ and variance $\sigma^2$.\footnote{See Ref.~\cite{Naumov2013,Naumov2009} for a in-depth discussion.}
+\end{definition}
+\begin{restatable}{lemma}{nonrelativisticgaussianmom}\label{thm:non_relativistic_gaussian_momentum}
+	For massless particles and $\omega(\vb{p})\ll\sigma$, the covariant Gaussian spectrum can be approximated
+	\begin{equation}
+		f(\vb{p})
+		\propto
+		\exp\left\{
+			-
+			\frac{
+				\vb{p}_T^2
+			}{4\sigma^2}
+		\right\}
+	\end{equation}
+	wherein $\vb{p}_T$ is the momentum transverse to $\vb{k}$, for instance, if $\vb{k}=k_0\vu{e}_z$ then $\vb{p}_T^2=p_x^2+p_y^2$.
+\end{restatable}

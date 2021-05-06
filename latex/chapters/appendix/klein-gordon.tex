@@ -416,6 +416,93 @@
 	where we used \Cref{thm:qkg_comm_pn}.
 \end{proof}
 
+\section{Relativistic wave packets}
+
+\nonrelativisticgaussianmom
+\begin{proof}
+	For massless particles, we have $p_\mu p^\mu=0=k_\mu k^\mu$ and \cref{eq:covariant_gaussian_spectrum} reduces to
+	\begin{equation*}
+		f(\vb{p})
+		\propto
+		\exp\left\{
+			-
+			\frac{\omega(\vb{p})\omega(\vb{k})-\vb{p}\vdot\vb{k}}{2\sigma^2}
+		\right\}
+		.
+	\end{equation*}
+	For $\omega(\vb{p})\ll\sigma$, we perform a Taylor expansion around $\vb{k}$
+	\begin{equation*}
+		\omega(\vb{p})
+		=
+		\omega(\vb{k})
+		+
+		\omega^\prime(\vb{k})
+		\vdot
+		(\vb{p}-\vb{k})
+		+
+		\frac{1}{2}
+		(\vb{p}-\vb{k})^\trans
+		\omega^{\prime\prime}(\vb{k})
+		(\vb{p}-\vb{k})
+		+
+		\order{\vb{p}^3}
+	\end{equation*}
+	where $\omega^\prime(\vb{k})=\vb{k}/\omega(\vb{k})$ denotes the gradient and $\omega^{\prime\prime}(\vb{k})$ the Hessian of $\omega(\vb{p})$ evaluated at $\vb{k}$ and further reducing the spectrum to
+	\begin{equation*}
+		f(\vb{p})
+		\propto
+		\exp\left\{
+			-
+			\frac{
+				(\vb{p}-\vb{k})^\trans
+				\omega(\vb{k})
+				\omega^{\prime\prime}(\vb{k})
+				(\vb{p}-\vb{k})
+			}{4\sigma^2}
+		\right\}
+		.
+	\end{equation*}
+	The expressions
+	\begin{equation*}
+		\omega(\vb{k})
+		\omega^{\prime\prime}(\vb{k})_{ij}
+		=
+		\omega(\vb{k})
+		\pdv{\omega(\vb{k})}{k_i}{k_j}
+		=
+		\delta_{ij}
+		-
+		\frac{k_ik_j}{\omega(\vb{k})^2}
+		=
+		\delta_{ij}
+		-
+		\frac{k_ik_j}{\vb{k}^2}
+	\end{equation*}
+	turns out to be equal to the transverse projector $P_T(\vb{k})$ which projects out the components orthogonal to $\vb{k}$.
+	Inserting the transverse project, we find the non-relativistic Gaussian spectrum to be approximately equal to
+	\begin{equation*}
+		f(\vb{p})
+		\approxeq
+		\exp\left\{
+			-
+			\frac{
+				(\vb{p}-\vb{k})^\trans
+				P_T(\vb{k})
+				(\vb{p}-\vb{k})
+			}{4\sigma^2}
+		\right\}
+		=
+		\exp\left\{
+			-
+			\frac{
+				\vb{p}_T^2
+			}{4\sigma^2}
+		\right\}
+		.
+	\end{equation*}
+	The final result is confirmed by Ref.~\cite[eq.~(25)]{Naumov2013} when removing the longitudinal momentum component.
+\end{proof}
+
 \section{Number states}
 
 \qkgnumbersmearing
@@ -467,6 +554,42 @@
 		\end{split}
 	\end{equation*}
 	which equals the right-hand side when we take $f(\vb{p})=f\left(\omega(\vb{p}),\vb{p}\right)$.
+\end{proof}
+
+\qkgnumbercommpn
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			\comm{\hat\phi^+[f]^n}{\hat\phi^-[g]^m}
+			&=
+			\expval{\comm{\hat\phi^+[f]^n}{\hat\phi^-[g]^m}}{0}
+			\\
+			&=
+			\expval{\hat\phi^+[f]^n\hat\phi^-[g]^m}{0}
+			\\
+			&=
+			\sqrt{n!m!}
+			\braket{n_f}{m_g}
+			\\
+			&=
+			\sqrt{n!m!}
+			\delta_{nm}
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				f(\vb{p})^*
+				g(\vb{p})
+			\right)^n
+			\\
+			&=
+			n!
+			\delta_{nm}
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				f(\vb{p})^*
+				g(\vb{p})
+			\right)^n
+		\end{split}
+	\end{equation*}
 \end{proof}
 
 \begin{lemma}\label{thm:qkg_comm_an}

@@ -1,356 +1,6 @@
-\section{Klein-Gordon field}
+\section{Number state}
 
-\subsection{Relativistic field theory}
-
-\begin{delayedproof}{th:relativistic_energy_momentum}
-	According to the action principle, the dynamics of the field are determined by the equations of motion which can be found by the relativistic Euler-Lagrange equations
-	\begin{equation*}
-		0
-		=
-		\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu\phi)}
-		-
-		\pdv{\mathcal{L}}{\phi}
-		=
-		\left(
-			\partial_\mu\partial^\mu
-			+
-			m^2
-		\right)
-		\phi(t,\vb{x})
-		.
-	\end{equation*}
-	Assuming the existence of the Klein-Gordon field's Fourier representation\footnote{See Ref.~\cite[p.~341]{Cohen2019} for a definition of a Minkowski Fourier transform.}
-	\begin{equation*}
-		\phi(t,\vb{x})
-		=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
-		\phi(t,\vb{p})
-		e^{-i\vb{p}\vdot\vb{x}}
-		=
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
-		\phi(p_0,\vb{p})
-		e^{+ip_\mu x^\mu}
-		,
-	\end{equation*}
-	the equation of motion in momentum space reduces to
-	\begin{equation*}
-		0
-		=
-		\left(
-			ip_\mu ip^\mu
-			+
-			m^2
-		\right)
-		\phi(p_0,\vb{p})
-		=
-		-
-		\left(
-			p_0^2
-			-
-			\omega(\vb{p})^2
-		\right)
-		\phi(p_0,\vb{p})
-	\end{equation*}
-	which is satisfied if $p_0=\pm\omega(\vb{p})$.
-\end{delayedproof}
-\begin{delayedproof}{thm:kg_fourier_expansion}
-	There are two approaches to prove \cref{thm:kg_fourier_expansion}.
-	In a first approach, we calculate with the proposed Fourier expansion
-	\begin{equation*}
-		\begin{split}
-			\partial_\mu
-			\partial^\mu
-			\phi(t,\vb{x})
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\left\{
-				a^*(\vb{p})
-				\partial_\mu
-				\partial^\mu
-				e^{-ip_\mu x^\mu}
-				+
-				\text{c.c.}
-			\right\}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\left\{
-				a^*(\vb{p})
-				\left(
-					-
-					p_\mu
-					p^\mu
-				\right)
-				e^{-ip_\mu x^\mu}
-				+
-				\text{c.c.}
-			\right\}
-		\end{split}
-	\end{equation*}
-	where $p_\mu p^\mu=\omega(\vb{p})^2-\vb{p}=m^2$ and therefore the equation of motion
-	\begin{equation*}
-			\partial_\mu
-			\partial^\mu
-			\phi(t,\vb{x})
-			=
-			-
-			m^2
-			\phi(t,\vb{x})
-	\end{equation*}
-	is satisfied.
-	While the first approach successfully shows why the theorem is true, it is not obvious how to arrive at the Fourier expansion.
-	Therefor, a second approach starts with the Fourier transform of the Klein-Gordon field
-	\begin{equation*}
-		\phi(t,\vb{x})
-		=
-		\int_V\frac{\dd[4]{p}}{(2\pi)^4}
-		\phi(p_0,\vb{p})
-		e^{+ip_\mu x^\mu}
-	\end{equation*}
-	where the integration domain is constrained to the momentum lightcone $V$ and therefore $\omega(\vb{p})^2=p_0^2$ is automatically satisfied.
-	We are left to rewrite the constrained integration domain
-	\begin{equation*}
-		\phi(t,\vb{x})
-		=
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
-		\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
-		\phi(p_0,\vb{p})
-		e^{+ip_\mu x^\mu}
-	\end{equation*}
-	and using the composition property of the delta distribution
-	\begin{equation*}
-		\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
-		=
-		\frac{
-			\delta^{(1)}\left(p_0-\omega(\vb{p})\right)
-			+
-			\delta^{(1)}\left(p_0+\omega(\vb{p})\right)
-		}{\sqrt{2\omega(\vb{p})}}
-	\end{equation*}
-	which leaves us with
-	\begin{equation*}
-		\phi(t,\vb{x})
-		=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\biggl\{
-			\phi(\omega(\vb{p}),\vb{p})
-			e^{+i\omega(\vb{p})t}
-			+
-			\phi(-\omega(\vb{p}),\vb{p})
-			e^{-i\omega(\vb{p})t}
-		\biggr\}
-		e^{-i\vb{p}\vdot\vb{x}}
-		.
-	\end{equation*}
-	We now only need to perform the substitution $\vb{p}\to-\vb{p}$ on the second term
-	\begin{equation*}
-		\begin{split}
-			\phi(t,\vb{x})
-			&=
-			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\biggl\{
-				\phi(\omega(\vb{p}),\vb{p})
-				e^{+i\omega(\vb{p})t}
-				e^{-i\vb{p}\vdot\vb{x}}
-				+
-				\phi(-\omega(\vb{p}),\vb{p})
-				e^{-i\omega(\vb{p})t}
-				e^{-i\vb{p}\vdot\vb{x}}
-			\biggr\}
-			\\
-			&=
-			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\biggl\{
-				\phi(\omega(\vb{p}),\vb{p})
-				e^{+i\omega(\vb{p})t}
-				e^{-i\vb{p}\vdot\vb{x}}
-				+
-				\phi(-\omega(\vb{p}),-\vb{p})
-				e^{-i\omega(\vb{p})t}
-				e^{+i\vb{p}\vdot\vb{x}}
-			\biggr\}
-			\\
-			&=
-			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\biggl\{
-				\phi(\omega(\vb{p}),\vb{p})
-				e^{+ip_\mu x^\mu}
-				+
-				\phi(\omega(\vb{p}),\vb{p})^*
-				e^{-ip_\mu x^\mu}
-			\biggr\}_{p_0=\omega(\vb{p})}
-		\end{split}
-	\end{equation*}
-	and use the conjugate symmetry of the Fourier amplitudes
-	\begin{equation*}
-		\phi(p_0,\vb{p})^*
-		=
-		\phi(-p_0,-\vb{p})
-	\end{equation*}
-	which is present because $\phi(t,\vb{x})$ is real-valued.
-\end{delayedproof}
-\begin{delayedproof}{thm:kg_total_energy_momentum}
-	Perform a spatial integration over the energy and momentum densities, see Ref.~\cite{Peskin1995}.
-\end{delayedproof}
-\begin{delayedproof}{thm:kg_comm_ac}
-	Insert the Klein-Gordon field operators in terms of the annihilation and creation operators, \cref{eq:qkg_pos} and \cref{eq:qkg_mom}, into the field commutation relations \cref{eq:qkg_comm_pm}.
-\end{delayedproof}
-
-\subsection{Propagators}
-
-\begin{delayedproof}{thm:qkg_full_comm_pn_comm}
-	The first equal follows from
-	\begin{equation*}
-		\begin{split}
-			\comm{\hat\phi^+(x^\mu)}{\hat\phi^-(y^\mu)}
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			e^{-ip_\mu x^\mu}
-			e^{+iq_\mu y^\mu}
-			\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			e^{-ip_\mu x^\mu}
-			e^{+iq_\mu y^\mu}
-			(2\pi)^3
-			\delta^{(3)}(\vb{q}-\vb{p})
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			e^{-ip_\mu (x^\mu-y^\mu)}
-			.
-		\end{split}
-	\end{equation*}
-	The other identity follows analog while noting that in this case the commutators vanish.
-\end{delayedproof}
-\begin{delayedproof}{thm:qkg_propagator_correlation_function}
-	We use $\hat\phi^+(x^\mu)\ket{0}=0$ and $\bra{0}\hat\phi^-(x^\mu)=0$
-	\begin{equation*}
-		\begin{split}
-			\expval{\hat\phi(x^\mu)\hat\phi(y^\mu)}{0}
-			&=
-			\expval{\hat\phi^+(x^\mu)\hat\phi^+(y^\mu)}{0}
-			+
-			\expval{\hat\phi^+(x^\mu)\hat\phi^-(y^\mu)}{0}
-			\\
-			&+
-			\expval{\hat\phi^-(x^\mu)\hat\phi^+(y^\mu)}{0}
-			+
-			\expval{\hat\phi^-(x^\mu)\hat\phi^-(y^\mu)}{0}
-			\\
-			&=
-			\expval{\hat\phi^+(x^\mu)\hat\phi^-(y^\mu)}{0}
-			\\
-			&=
-			D(x^\mu-y^\mu)
-		\end{split}	
-	\end{equation*}
-	and the result of \Cref{thm:qkg_full_comm_pn_comm}.
-\end{delayedproof}
-\begin{delayedproof}{thm:propagator_kg_solution}
-	See Ref.~\cite[p.~30]{Peskin1995}.
-\end{delayedproof}
-
-\subsection{Coordinate wave function properties}
-
-\begin{delayedproof}{thm:coordinate_wave_function_simplified}
-	The Klein-Gordon operator acting on the vacuum state reduces to the negative frequency Klein-Gordon operator
-	\begin{equation*}
-		\hat\phi(t,\vb{x})
-		\ket{0}
-		=
-		\hat\phi^-(t,\vb{x})
-		\ket{0}
-	\end{equation*}
-	because the annihilation operator destroy the vacuum $\hat{a}(\vb{p})\ket{0}=0$.
-	We are left to take hermitian conjugate
-	\begin{equation*}
-		\begin{split}
-			\bra{0}
-			\hat\phi^+(t,\vb{x})
-			&=
-			\left(
-				\hat\phi^-(t,\vb{x})
-				\ket{0}
-			\right)^\dagger
-			\\
-			&=
-			\left(
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				e^{+ip_\mu x^\mu}
-				\hat{a}^\dagger(\vb{p})
-				\ket{0}
-			\right)^\dagger
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{-ip_\mu x^\mu}
-			\bra{0}
-			\hat{a}(\vb{p})
-		\end{split}
-	\end{equation*}
-	and insert the definition of the negative frequency Klein-Gordon operator.
-\end{delayedproof}
-
-\section{Quantum states}
-
-\subsection{Vacuum state}
-
-\begin{delayedproof}{thm:vacuum_state_momentum_density_observable}
-	The mean vanishes because of $\expval{\hat{a}(\vb{p})}{0}=0$. The correlation is
-	\begin{equation*}
-		\begin{split}
-			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{0}
-			&=
-			\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
-			\int\frac{\dd[3]{p_2}}{(2\pi)^3\sqrt{2\omega(\vb{p}_2)}}
-			\left(-i2\omega(\vb{p}_1)\right)
-			\left(-i2\omega(\vb{p}_2)\right)
-			\\
-			&\times
-			\expval{
-				\left[
-					\hat{a}(\vb{p}_1)
-					e^{-ip_1^\mu x_\mu}
-					-
-					\hat{a}^\dagger(\vb{p}_1)
-					e^{+ip_1^\mu x_\mu}
-				\right]
-				\left[
-					\hat{a}(\vb{p}_2)
-					e^{-ip_2^\mu y_\mu}
-					-
-					\hat{a}^\dagger(\vb{p}_2)
-					e^{+ip_2^\mu y_\mu}
-				\right]
-			}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
-			\int\frac{\dd[3]{p_2}}{(2\pi)^3\sqrt{2\omega(\vb{p}_2)}}
-			2\omega(\vb{p}_1)
-			2\omega(\vb{p}_2)
-			\expval{
-				\hat{a}(\vb{p}_1)
-				\hat{a}^\dagger(\vb{p}_2)
-			}{0}
-			e^{-ip_1^\mu x_\mu}
-			e^{+ip_2^\mu y_\mu}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\left(2\omega(\vb{p})\right)^2
-			e^{-ip_\mu(x^\mu-y^\mu)}
-		\end{split}
-	\end{equation*}
-\end{delayedproof}
-
-\subsection{Number state}
-
-\begin{delayedproof}{thm:single_particle_number_state_smeared_kg}
+\begin{proof}
 	First, we note that the positive frequency Klein-Gordon operator vanishes,
 	\begin{equation*}
 		\int\dd[4]{x}
@@ -400,8 +50,8 @@
 		\end{split}
 	\end{equation*}
 	and recognize the single-particle number state.
-\end{delayedproof}
-\begin{delayedproof}{th:single_particle_number_states_inner_product}
+\end{proof}
+\begin{proof}
 	Simply inserting the definition and using the commutation relations
 	\begin{equation*}
 		\begin{split}
@@ -424,8 +74,8 @@
 		\end{split}
 	\end{equation*}
 	shows the equality.
-\end{delayedproof}
-\begin{delayedproof}{thm:single_particle_number_state_normalization}
+\end{proof}
+\begin{proof}
 	The probabilistic interpretation of quantum mechanics requires the absolute square of the probability amplitude to equal one, i.e.,
 	\begin{equation*}
 		\abs{\braket{1_f}}^2
@@ -450,8 +100,8 @@
 		1
 		.
 	\end{equation*}
-\end{delayedproof}
-\begin{delayedproof}{thm:single_particle_number_state_number_eigenstate}
+\end{proof}
+\begin{proof}
 	Inserting the definitions and carefully applying the commutation relations
 	\begin{equation*}
 		\begin{split}
@@ -497,8 +147,8 @@
 		,
 	\end{equation*}
 	we identify the single-particle state which has trivial eigenvalue $1$.
-\end{delayedproof}
-\begin{delayedproof}{thm:single_particle_number_state_energy}
+\end{proof}
+\begin{proof}
 	Using the auxiliary result
 	\begin{equation*}
 		\begin{split}
@@ -611,8 +261,8 @@
 		\end{split}
 		.
 	\end{equation*}
-\end{delayedproof}
-\begin{delayedproof}{thm:single_particle_number_state_momentum_density_mean}
+\end{proof}
+\begin{proof}
 	Inserting the definitions, we find
 	\begin{equation*}
 		\begin{split}
@@ -641,8 +291,8 @@
 		0
 	\end{equation*}
 	because we have an unequal number of annihilation and creation operators.
-\end{delayedproof}
-\begin{delayedproof}{thm:single_particle_number_state_momentum_density_correlation}
+\end{proof}
+\begin{proof}
 	\begin{equation*}
 		\begin{split}
 			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{1_f}
@@ -794,8 +444,8 @@
 			\right\}
 		\end{split}
 	\end{equation*}
-\end{delayedproof}
-\begin{delayedproof}{thm:single_particle_number_state_wave_function}
+\end{proof}
+\begin{proof}
 	of the coordinate wave function
 	\begin{equation*}
 		\psi(t,\vb{x})
@@ -848,7 +498,7 @@
 		\end{split}
 	\end{equation*}
 	in agreement with Ref.~\cite[eq.~4]{Naumov2013}.
-\end{delayedproof}
+\end{proof}
 \begin{lemma}
 	The probability current of a single-particle number state is
 	\begin{equation}
@@ -950,10 +600,10 @@
 	\end{equation*}	
 	The last result is in agreement with Ref.~\cite[eqs.~36,37]{Naumov2013} if one further assumes $f(\vb{p})$ to be real.
 \end{proof}
-\begin{delayedproof}{thm:single_particle_number_state_group_velocity}
+\begin{proof}
 	No explicit proof, result claimed in Ref.~\cite[eq.~38]{Naumov2013}.
-\end{delayedproof}
-\begin{delayedproof}{thm:single_partiicle_number_state_inner_product_pn_smeared_kg_comm}
+\end{proof}
+\begin{proof}
 	We insert the definition of the smeared Klein-Gordon operator
 	\begin{equation*}
 		\begin{split}
@@ -1002,7 +652,7 @@
 		\end{split}
 	\end{equation*}
 	where we used \Cref{thm:qkg_full_comm_pn_comm} to replace the commutator with the propagator, inserted the definition of the propagator, and used the definition of the Fourier transform.
-\end{delayedproof}
+\end{proof}
 
 \begin{lemma}\label{th:normal_ordered_a1_cn}
 	Let $\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{p})$ be the annihilation and creation operator of the Klein-Gordon field satisfying the canonical commutation relations then for $n\in\mathbb{N}$
@@ -1285,7 +935,7 @@
 	\end{equation*}
 	applying the induction hypothesis and inserting the second term back, we complete the induction step as all permutations are accounted for.
 \end{proof}
-\begin{delayedproof}{thm:multi_particle_number_state_inner_product}
+\begin{proof}
 	Using \Cref{thm:anti_normal_expvalue} and noting that the sum over the permutations compensates for the factorials, we find
 	\begin{equation*}
 		\begin{split}
@@ -1350,14 +1000,14 @@
 			\right)^n
 		\end{split}
 	\end{equation*}
-\end{delayedproof}
+\end{proof}
 
-\subsection{Coherent state}
+\section{Coherent state}
 
-\begin{delayedproof}{thm:displacement_operator_normal_ordered}
+\begin{proof}
 	See Ref.~\cite[p.~48]{Barnett2002}.
-\end{delayedproof}
-\begin{delayedproof}{thm:displacement_operator_simplified}
+\end{proof}
+\begin{proof}
 	The identification of
 	\begin{equation*}
 		\hat\phi^-[\alpha]
@@ -1375,8 +1025,8 @@
 		\abs{\alpha(\vb{p})}^2
 	\end{equation*}
 	follows from \Cref{thm:single_partiicle_number_state_inner_product_pn_smeared_kg_comm}.
-\end{delayedproof}
-\begin{delayedproof}{thm:displacement_operator_product}
+\end{proof}
+\begin{proof}
 	Inserting the definitions of the normal-ordered displacement operator from \Cref{thm:displacement_operator_simplified}, we find
 	\begin{equation*}
 		\begin{split}
@@ -1701,8 +1351,8 @@
 			\right\}
 		\end{split}
 	\end{equation*}
-\end{delayedproof}
-\begin{delayedproof}{thm:displacement_operator_unitary}
+\end{proof}
+\begin{proof}
 	Using the notation introduced in \Cref{thm:displacement_operator_simplified} and the normal-ordered displacement operator, we show $\hat{D}[\alpha]^\dagger=\hat{D}[-\alpha]$
 	\begin{equation*}
 		\begin{split}
@@ -1788,8 +1438,8 @@
 		.
 	\end{equation*}
 	We conclude that $\hat{D}[\alpha]^\dagger$ is the inverse of the displacement operator and therefore the displacement operator is unitary.
-\end{delayedproof}
-\begin{delayedproof}{thm:coherent_state_annihilation_eigenvalue}
+\end{proof}
+\begin{proof}
 	We use the series representation of the operator exponential and \cref{th:normal_ordered_a1_cn} to move the annihilation operator to the right
 	\begin{equation*}
 		\begin{split}
@@ -1892,8 +1542,8 @@
 		\right\}
 		.
 	\end{equation*}
-\end{delayedproof}
-\begin{delayedproof}{thm:coherent_state_energy_observable}
+\end{proof}
+\begin{proof}
 	For the first moment of the energy observable, we insert the definitions
 	\begin{equation*}
 		\begin{split}
@@ -1971,11 +1621,11 @@
 			\right)^2
 		\end{split}
 	\end{equation*}
-\end{delayedproof}
-\begin{delayedproof}{thm:coherent_state_number_observable}
+\end{proof}
+\begin{proof}
 	The number observable is a special case of \Cref{thm:coherent_state_energy_observable} for $\omega(\vb{p})=1$.
-\end{delayedproof}
-\begin{delayedproof}{thm:coherent_state_number_state_inner_product}
+\end{proof}
+\begin{proof}
 	Expanding the exponential series and noting that the coefficients have the same algebraic form as a $m$-particle state with spectrum $\alpha(\vb{p})$\footnote{Except for the coherent spectrum $\alpha(\vb{p})$ being unbound.}, we find
 	\begin{equation*}
 		\braket{n_f}{\alpha}
@@ -1993,8 +1643,8 @@
 		\right)^n
 		e^{-\overline{n}/2}
 	\end{equation*}
-\end{delayedproof}
-\begin{delayedproof}{thm:coherent_state_inner_product}
+\end{proof}
+\begin{proof}
 	\begin{equation*}
 		\begin{split}
 			\braket{\alpha}{\beta}
@@ -2106,4 +1756,4 @@
 			.
 		\end{split}
 	\end{equation*}
-\end{delayedproof}
+\end{proof}
