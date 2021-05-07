@@ -81,7 +81,19 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 		.
 	\end{equation}
 \end{restatable}
-\begin{restatable}{lemma}{qkgsmearedpnladder}\label{thm:qkg_smeared_pn_ladder}
+\begin{restatable}{lemma}{qkgsmearedpos}\label{thm:qkg_smeared_pos}
+	Let $\ket{n_f}$ be a number state and $\hat\phi^+[g]$ be the positive frequency Klein-Gordon operator, then
+	\begin{equation}
+		\hat\phi^+[g]
+		\ket{n_f}
+		=
+		\sqrt{n}
+		\braket{1_g}{1_f}
+		\ket{n-1_f}
+		.
+	\end{equation}
+\end{restatable}
+\begin{restatable}{lemma}{qkgsmearedpn}\label{thm:qkg_smeared_pn}
 	Let $\ket{n_f}$ be a number state and $\hat\phi^+[f],\hat\phi^-[f]$ be the positive and negative frequency Klein-Gordon operator, then
 	\begin{align}
 		\hat\phi^+[f]
@@ -134,7 +146,7 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 	\end{equation}
 \end{corollary}
 
-\begin{lemma}\label{thm:single_particle_number_state_wave_function}
+\begin{restatable}{lemma}{qkgsinglewavefunction}\label{thm:qkg_number_state_single_wave_function}
 	The coordinate wave function of a single-particle number state is
 	\begin{equation}
 		\psi(t,\vb{x})
@@ -146,8 +158,8 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 		}_{p_0=\omega(\vb{p})}
 		.
 	\end{equation}
-\end{lemma}
-\begin{lemma}\label{thm:single_particle_number_state_group_velocity}
+\end{restatable}
+\begin{restatable}{lemma}{qkgsinglegroupvelocity}\label{thm:number_state_single_group_velocity}
 	The group velocity of a single-particle number state $\ket{1_f}$ is
 	\begin{equation}
 		\expval{\vb{v}}
@@ -158,8 +170,8 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 		\label{eq:single_particle_number_state_group_velocity}
 		.
 	\end{equation}
-\end{lemma}
-\begin{lemma}
+\end{restatable}
+\begin{restatable}{lemma}{qkgsinglelocalization}
 	The single-particle number state is localized on a trajectory
 	\begin{equation}
 		\expval{\vb{x}(t)}
@@ -167,4 +179,4 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 		\expval{\vb{v}}t
 	\end{equation}
 	moving with the group velocity $\expval{\vb{v}}$.
-\end{lemma}
+\end{restatable}

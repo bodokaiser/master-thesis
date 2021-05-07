@@ -19,70 +19,21 @@
 		.
 	\end{equation}
 \end{definition}
-\begin{lemma}\label{thm:displacement_operator_normal_ordered}
-	The displacement operator in normal-order is
-	\begin{equation}
-		\begin{split}
-			\hat{D}[\alpha]
-			&=
-			\exp\left\{
-				+
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				\alpha(\vb{p})
-				\hat{a}^\dagger(\vb{p})
-			\right\}
-			\\
-			&\times
-			\exp\left\{
-				-
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				\alpha(\vb{p})^*
-				\hat{a}(\vb{p})
-			\right\}
-			\\
-			&\times
-			\exp\left\{
-				-
-				\frac{1}{2}
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				\abs{\alpha(\vb{p})}^2
-			\right\}
-		\end{split}
-		\label{eq:displacement_operator_normal}
-	\end{equation}
-	and the displacement operator in antinormal-order is
-	\begin{equation}
-		\begin{split}
-			\hat{D}[\alpha]
-			&=
-			\exp\left\{
-				-
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				\alpha(\vb{p})^*
-				\hat{a}(\vb{p})
-			\right\}
-			\\
-			&\times
-			\exp\left\{
-				+
-				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				\alpha(\vb{p})
-				\hat{a}^\dagger(\vb{p})
-			\right\}
-			\\
-			&\times
-			\exp\left\{
-				+
-				\frac{1}{2}
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				\abs{\alpha(\vb{p})}^2
-			\right\}
-		\end{split}
-		\label{eq:displacement_operator_antinormal}
-	\end{equation}
-\end{lemma}
-\begin{lemma}\label{thm:displacement_operator_simplified}
+\begin{corollary}\label{thm:qkg_displacement_smeared}
 	The displacement operators can be expressed in terms of the smeared positive and negative frequency Klein-Gordon operators
+	\begin{equation}
+		\hat{D}[\alpha]
+		=
+		\exp\left\{
+			\hat\phi^-[\alpha]
+			-
+			\hat\phi^+[\alpha]
+		\right\}
+		.
+	\end{equation}
+\end{corollary}
+\begin{restatable}{lemma}{qkgdisplacementordered}\label{thm:qkg_displacement_ordered}
+	The displacement operator in normal-order is
 	\begin{equation}
 		\begin{split}
 			\hat{D}[\alpha]
@@ -121,8 +72,8 @@
 			.
 		\end{split}
 	\end{equation}
-\end{lemma}
-\begin{lemma}\label{thm:displacement_operator_product}
+\end{restatable}
+\begin{restatable}{lemma}{qkgdisplacementproduct}\label{thm:qkg_displacement_product}
 	Let $\hat{D}[\alpha],\hat{D}[\beta]$ be two displacement operators with spectrum $\alpha(\vb{p}),\beta(\vb{p})$, then their product equals
 	\begin{equation}
 		\begin{split}
@@ -156,8 +107,8 @@
 			.
 		\end{split}
 	\end{equation}
-\end{lemma}
-\begin{lemma}\label{thm:displacement_operator_unitary}
+\end{restatable}
+\begin{restatable}{lemma}{qkgdisplacementunitary}\label{thm:qkg_displacement_unitary}
 	The displacement operator is unitary
 	\begin{equation}
 		\hat{D}[\alpha]^{-1}
@@ -167,7 +118,7 @@
 		\hat{D}[-\alpha]
 		.
 	\end{equation}
-\end{lemma}
+\end{restatable}
 \begin{definition}[Coherent state]
 	A coherent state $\ket{\alpha}$ with spectrum $\alpha(\vb{p})$ is
 	\begin{equation}
@@ -202,7 +153,7 @@
 		\end{split}
 	\end{equation}
 \end{definition}
-\begin{lemma}
+\begin{restatable}{lemma}{qkgdisplacementstate}\label{thm:qkg_displacement_state}
 	The displacement operator creates a coherent state from the vacuum
 	\begin{equation}
 		\hat{D}[\alpha]
@@ -211,7 +162,7 @@
 		\ket{\alpha}
 		.
 	\end{equation}
-\end{lemma}
+\end{restatable}
 \begin{corollary}
 	The coherent state is normalized\footnote{In contrast to the number state, there is no constraint on the spectrum of the coherent state $\alpha(\vb{p})$.}
 	\begin{equation}
@@ -221,7 +172,7 @@
 		.
 	\end{equation}
 \end{corollary}
-\begin{theorem}\label{thm:coherent_state_annihilation_eigenvalue}
+\begin{restatable}{theorem}{qkgcoherenteigenstate}\label{thm:qkg_coherent_state_eigenstate}
 	The coherent state is an eigenstate of the annihilation operator to eigenvalue $\alpha(\vb{p})/\sqrt{2\omega(\vb{p})}$, i.e.,
 	\begin{equation}
 		\hat{a}(\vb{p})
@@ -231,8 +182,8 @@
 		\ket{\alpha}
 		.
 	\end{equation}
-\end{theorem}
-\begin{lemma}\label{thm:coherent_state_energy_observable}
+\end{restatable}
+\begin{restatable}{lemma}{qkgcoherentenergy}\label{thm:qkg_coherent_state_energy}
 	The mean energy of the coherent state is
 	\begin{equation}
 		\expval{\hat{H}}{\alpha}
@@ -250,9 +201,9 @@
 		\abs{\alpha(\vb{p})}^2
 		.
 	\end{equation}
-\end{lemma}
+\end{restatable}
 Although, the mean energy of the coherent state is the same as the mean energy of the single-particle number state, the spectrum $\alpha(\vb{p})$ of the coherent state is not bound.
-\begin{lemma}\label{thm:coherent_state_number_observable}
+\begin{restatable}{lemma}{qkgcoherentnumber}\label{thm:qkg_coherent_state_number}
 	The mean number of particles is
 	\begin{equation}
 		\overline{n}
@@ -273,8 +224,8 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 		,
 	\end{equation}
 	i.e., the particle number is Poisson distributed.
-\end{lemma}
-\begin{lemma}\label{thm:coherent_state_number_state_inner_product}
+\end{restatable}
+\begin{restatable}{lemma}{qkgcoherentnumberinnerproduct}\label{thm:qkg_coherent_state_number_state_inner_product}
 	The inner product between an $n$-particle number state with spectrum $f(\vb{p})$ and a coherent state with spectrum $\alpha(\vb{p})$ is
 	\begin{equation}
 		\braket{n_f}{\alpha}
@@ -288,7 +239,7 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 		e^{-\overline{n}/2}
 	\end{equation}
 	where $\overline{n}$ is the mean particle number of the coherent state.
-\end{lemma}
+\end{restatable}
 \begin{corollary}
 	If $\alpha(\vb{p})=f(\vb{p})$ the former inner product reduces to
 	\begin{equation}
@@ -327,7 +278,7 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 	\end{equation}
 	where $\overline{n}=\abs{\alpha}^2$.
 \end{corollary}
-\begin{lemma}\label{thm:coherent_state_inner_product}
+\begin{restatable}{lemma}{qkgcoherentinnerproduct}\label{thm:coherent_state_inner_product}
 	Let $\ket{\alpha},\ket{\beta}$ be two coherent states, then their inner product is
 	\begin{equation}
 		\begin{split}
@@ -359,4 +310,4 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 			\right\}
 		\end{split}
 	\end{equation}
-\end{lemma}
+\end{restatable}
