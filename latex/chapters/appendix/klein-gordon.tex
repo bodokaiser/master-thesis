@@ -606,7 +606,18 @@
 	\end{equation*}
 	which equals the right-hand side when we take $f(\vb{p})=f\left(\omega(\vb{p}),\vb{p}\right)$.
 \end{proof}
-\qkgcommsmearedpn
+
+\begin{restatable}{theorem}{qkgcommsmearedpn}\label{thm:qkg_comm_smeared_pn}
+	Let $n\in\mathbb{N}$ and $\hat\phi^+[f],\hat\phi^-[g]$ be the smeared positive and negative frequency Klein-Gordon operator, then
+	\begin{equation}
+		\comm{\hat\phi^+[f]}{\hat\phi^-[g]^n}
+		=
+		n
+		\braket{1_f}{1_g}
+		\hat\phi^-[g]^{n-1}
+		.
+	\end{equation}
+\end{restatable}
 \begin{proof}
 	Proof by induction for $n\in\mathbb{N}$.
 	\begin{enumerate}
@@ -711,7 +722,18 @@
 		\end{equation*}
 	\end{enumerate}
 \end{proof}
-\qkgsmearedpos
+\begin{restatable}{lemma}{qkgsmearedpos}\label{thm:qkg_smeared_pos}
+	Let $\ket{n_f}$ be a number state and $\hat\phi^+[g]$ be the positive frequency Klein-Gordon operator, then
+	\begin{equation}
+		\hat\phi^+[g]
+		\ket{n_f}
+		=
+		\sqrt{n}
+		\braket{1_g}{1_f}
+		\ket{n-1_f}
+		.
+	\end{equation}
+\end{restatable}
 \begin{proof}
 	Inserting the definitions and using \Cref{thm:qkg_comm_smeared_pn}, we find
 	\begin{equation*}
@@ -878,29 +900,85 @@
 
 \qkgnumberinnerproduct
 \begin{proof}
-	First, we show
+	First, we note that the inner product $\braket{n_f}{m_f}$ is zero unless $n=m$ and it is sufficient to only consider
 	\begin{equation*}
-		\braket{n_f}{n_g}
-		=
-		\left(
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})^*
-			g(\vb{p})
-		\right)^n
+		\begin{split}
+			\braket{n_f}{n_f}
+			&=
+			\frac{1}{n!}
+			\expval{
+				\hat\phi^+[f]^n
+				\hat\phi^-[f]^n
+			}{0}
+			\\
+			&=
+			\frac{1}{n!}
+			\expval{
+				\hat\phi^+[f]^{n-1}
+				\hat\phi^+[f]
+				\hat\phi^-[f]
+				\hat\phi^-[f]^{n-1}
+			}{0}
+			\\
+			&=
+			\frac{1}{n!}
+			\expval{
+				\hat\phi^+[f]^{n-1}
+				\comm{\hat\phi^+[f]}{\hat\phi^-[f]}
+				\hat\phi^-[f]^{n-1}
+			}{0}
+			+
+			\frac{1}{n!}
+			\expval{
+				\hat\phi^+[f]^{n-1}
+				\hat\phi^-[f]
+				\hat\phi^+[f]
+				\hat\phi^-[f]^{n-1}
+			}{0}
+			\\
+			&=
+			\frac{1}{n}
+			\braket{n-1_f}
+			+
+			\frac{1}{n}
+			\expval{
+				\hat\phi^-[f]
+				\hat\phi^+[f]
+			}{n-1_f}
+			\\
+			&=
+			\frac{1}{n}
+			\braket{n-1_f}
+			+
+			\frac{n-1}{n}
+			\braket{n-2_f}
+		\end{split}
 	\end{equation*}
-	and then we show $\braket{n_f}{m_g}=0$ iff $n\neq m$.
+	Then by induction we show that $\braket{n_f}{n_g}=1$
 	\begin{itemize}
-		\item Induction start ($n=1$):
-		\\
-		See \Cref{thm:qkg_number_state_inner_single}.
-		\item Induction step ($n\to n+1$):
-		\\
+		\item Induction start ($n=2$):
+		\begin{equation*}
+			\braket{2_f}
+			=
+			\frac{1}{2}
+			\braket{1_f}
+			+
+			\frac{1}{2}
+			\braket{0}
+			=
+			1
+		\end{equation*}
+		\item Induction start ($n\to n+1$):
 		\begin{equation*}
 			\begin{split}
-				\braket{n+1_f}{n+1_g}
-				&=
-				\frac{1}{(n+1)!}
-				\expval{\hat\phi^+[f]^{n+1}\hat\phi^-[g]^{n+1}}{0}
+				\braket{n+1_f}
+				=
+				\frac{1}{n+1}
+				\braket{n_f}
+				+
+				\frac{n+1-1}{n+1}
+				\braket{n-1_f}
+				=
 			\end{split}
 		\end{equation*}
 	\end{itemize}

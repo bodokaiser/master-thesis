@@ -70,29 +70,6 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 	\end{equation}
 	i.e., the smeared negative frequency Klein-Gordon operator creates a superposition of particles smeared with $f(x^\mu)$.
 \end{restatable}
-\begin{restatable}{theorem}{qkgcommsmearedpn}\label{thm:qkg_comm_smeared_pn}
-	Let $n\in\mathbb{N}$ and $\hat\phi^+[f],\hat\phi^-[g]$ be the smeared positive and negative frequency Klein-Gordon operator, then
-	\begin{equation}
-		\comm{\hat\phi^+[f]}{\hat\phi^-[g]^n}
-		=
-		n
-		\braket{1_f}{1_g}
-		\hat\phi^-[g]^{n-1}
-		.
-	\end{equation}
-\end{restatable}
-\begin{restatable}{lemma}{qkgsmearedpos}\label{thm:qkg_smeared_pos}
-	Let $\ket{n_f}$ be a number state and $\hat\phi^+[g]$ be the positive frequency Klein-Gordon operator, then
-	\begin{equation}
-		\hat\phi^+[g]
-		\ket{n_f}
-		=
-		\sqrt{n}
-		\braket{1_g}{1_f}
-		\ket{n-1_f}
-		.
-	\end{equation}
-\end{restatable}
 \begin{restatable}{lemma}{qkgsmearedpn}\label{thm:qkg_smeared_pn}
 	Let $\ket{n_f}$ be a number state and $\hat\phi^+[f],\hat\phi^-[f]$ be the positive and negative frequency Klein-Gordon operator, then
 	\begin{align}
@@ -123,9 +100,9 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 	\end{equation}
 \end{restatable}
 \begin{restatable}{theorem}{qkgnumberinnerproduct}\label{thm:qkg_number_state_inner_product}
-	Let $\ket{n_f}$ be an $n$-particle number state with spectrum $f(\vb{p})$ and $\ket{m_g}$ a $m$-particle number state with spectrum $g(\vb{p})$, then their inner product is
+	Let $\ket{n_f},\ket{m_f}$ be an $n$-particle and $m$-particle number state with spectrum $f(\vb{p})$, then their inner product is
 	\begin{equation}
-		\braket{n_f}{m_g}
+		\braket{n_f}{m_f}
 		=
 		\delta_{nm}
 		\left(
@@ -136,20 +113,13 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 		.
 	\end{equation}
 \end{restatable}
-\begin{corollary}
-	Multi-particle number states with the same spectrum $f(\vb{p})$ are orthogonal, i.e.,
-	\begin{equation}
-		\braket{n_f}{m_f}
-		=
-		\delta_{nm}
-		.
-	\end{equation}
-\end{corollary}
 
 \begin{restatable}{lemma}{qkgsinglewavefunction}\label{thm:qkg_number_state_single_wave_function}
 	The coordinate wave function of a single-particle number state is
 	\begin{equation}
-		\psi(t,\vb{x})
+		\bra{0}
+		\hat\phi(x^\mu)
+		\ket{1_f}
 		=
 		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 		\eval{
