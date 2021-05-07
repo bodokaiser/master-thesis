@@ -15,7 +15,7 @@
 				\hat{a}(\vb{p})
 			\right\}
 		\right\}
-		\label{eq:displacement_operator}
+		\label{eq:qkg_displacement_operator}
 		.
 	\end{equation}
 \end{definition}
@@ -33,49 +33,50 @@
 	\end{equation}
 \end{corollary}
 \begin{restatable}{lemma}{qkgdisplacementordered}\label{thm:qkg_displacement_ordered}
-	The displacement operator in normal-order is
-	\begin{equation}
-		\begin{split}
-			\hat{D}[\alpha]
-			&=
-			\exp\left\{
-				+\hat\phi^-[\alpha]
-			\right\}
-			\exp\left\{
-				-\hat\phi^+[\alpha]
-			\right\}
-			\exp\left\{
-				-
-				\frac{1}{2}
-				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
-			\right\}
-			\\
-			&=
-			\exp\left\{
-				-\hat\phi^+[\alpha]
-			\right\}
-			\exp\left\{
-				+\hat\phi^-[\alpha]
-			\right\}
-			\exp\left\{
-				+
-				\frac{1}{2}
-				\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
-			\right\}
-			\\
-			&=
-			\exp\left\{
-				\hat\phi^-[\alpha]
-				-
-				\hat\phi^+[\alpha]
-			\right\}
-			.
-		\end{split}
+	The displacement operator can be put in normal-
+	\begin{equation}\label{eq:qkg_displacement_normal}
+		\hat{D}[\alpha]
+		=
+		\exp\left\{
+			+\hat\phi^-[\alpha]
+		\right\}
+		\exp\left\{
+			-\hat\phi^+[\alpha]
+		\right\}
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+		\right\}
 	\end{equation}
+	and antinormal-order
+	\begin{equation}\label{eq:qkg_displacement_antinormal}
+		\hat{D}[\alpha]
+		=
+		\exp\left\{
+			-\hat\phi^+[\alpha]
+		\right\}
+		\exp\left\{
+			+\hat\phi^-[\alpha]
+		\right\}
+		\exp\left\{
+			+
+			\frac{1}{2}
+			\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+		\right\}
+	\end{equation}
+	wherein the commutator evaluates to
+	\begin{equation}
+		\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{\alpha(\vb{p})}^2
+	\end{equation}
+	in momentum space.
 \end{restatable}
 \begin{restatable}{lemma}{qkgdisplacementproduct}\label{thm:qkg_displacement_product}
 	Let $\hat{D}[\alpha],\hat{D}[\beta]$ be two displacement operators with spectrum $\alpha(\vb{p}),\beta(\vb{p})$, then their product equals
-	\begin{equation}
+	\begin{equation}\label{eq:qkg_displacement_product}
 		\begin{split}
 			\hat{D}[\alpha]
 			\hat{D}[\beta]
@@ -120,7 +121,7 @@
 	\end{equation}
 \end{restatable}
 \begin{definition}[Coherent state]
-	A coherent state $\ket{\alpha}$ with spectrum $\alpha(\vb{p})$ is
+	A coherent state $\ket{\alpha}$ with spectrum $\alpha(\vb{p})$
 	\begin{equation}
 		\begin{split}
 			\ket{\alpha}
@@ -142,8 +143,6 @@
 				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 				\abs{\alpha(\vb{p})}^2
 			\right\}
-			\\
-			&\times
 			\exp\left\{
 				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 				\alpha(\vb{p})
@@ -152,10 +151,11 @@
 			\ket{0}
 		\end{split}
 	\end{equation}
+	is a coherent superposition of number states without constrained spectrum.
 \end{definition}
-\begin{restatable}{lemma}{qkgdisplacementstate}\label{thm:qkg_displacement_state}
+\begin{restatable}{lemma}{qkgdisplacementvacuum}\label{thm:qkg_displacement_vacuum}
 	The displacement operator creates a coherent state from the vacuum
-	\begin{equation}
+	\begin{equation}\label{eq:qkg_displacement_vacuum}
 		\hat{D}[\alpha]
 		\ket{0}
 		=
@@ -174,7 +174,7 @@
 \end{corollary}
 \begin{restatable}{theorem}{qkgcoherenteigenstate}\label{thm:qkg_coherent_state_eigenstate}
 	The coherent state is an eigenstate of the annihilation operator to eigenvalue $\alpha(\vb{p})/\sqrt{2\omega(\vb{p})}$, i.e.,
-	\begin{equation}
+	\begin{equation}\label{eq:qkg_coherent_state_eigenstate}
 		\hat{a}(\vb{p})
 		\ket{\alpha}
 		=

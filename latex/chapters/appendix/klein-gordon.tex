@@ -771,7 +771,17 @@
 	\end{equation*}
 \end{proof}
 
-\qkgnumbereigenstate
+\begin{lemma}\label{thm:qkg_comm_annihilation_smeared_pos_kg}
+	Let $\hat{a}(\vb{p})$ be the annihilation creator of the Klein-Gordon field and $\hat\phi^-[g]$ the smeared negative frequency Klein-Gordon operator, then
+	\begin{equation}\label{eq:qkg_comm_annihilation_smeared_pos_kg}
+		\comm{\hat{a}(\vb{p})}{\hat\phi^-[g]^n}		
+		=
+		n
+		\frac{g(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+		\hat\phi^-[g]^{n-1}
+		.
+	\end{equation}
+\end{lemma}
 \begin{proof}
 	From \Cref{thm:qkg_comm_smeared_pn}, the left-hand side can be written
 	\begin{equation*}
@@ -811,9 +821,12 @@
 		n
 		\frac{g(\vb{p})}{\sqrt{2\omega(\vb{p})}}
 		\hat\phi^-[g]^{n-1}
-		,
+		.
 	\end{equation*}
-	and we can easily show the eigenvalue equation
+\end{proof}
+\qkgnumbereigenstate
+\begin{proof}
+	Using \Cref{thm:qkg_comm_annihilation_smeared_pos_kg} we can easily show the eigenvalue equation
 	\begin{equation*}
 		\begin{split}
 			\hat{N}
@@ -893,15 +906,266 @@
 	\end{itemize}
 \end{proof}
 
+\qkgsinglewavefunction
+\begin{proof}
+	of the coordinate wave function
+	\begin{equation*}
+		\psi(t,\vb{x})
+		=
+		\bra{0}
+		\hat\phi(t,\vb{x})
+		\ket{1_f}
+		=
+		\bra{0}
+		\hat\phi^+(t,\vb{x})
+		\ket{1_f}
+		.
+	\end{equation*}
+	Inserting the definition of the single-particle number state yields
+	\begin{equation*}
+		\begin{split}
+			\psi(t,\vb{x})
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			e^{-ip_\mu x^\mu}
+			\expval{
+				\hat{a}(\vb{p})
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				f(\vb{q})
+				\hat{a}^\dagger(\vb{p})
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			e^{-ip_\mu x^\mu}
+			f(\vb{q})
+			\expval{
+				\hat{a}(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			e^{-ip_\mu x^\mu}
+			f(\vb{q})
+			(2\pi)^3
+			\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			e^{-ip_\mu x^\mu}
+			f(\vb{p})
+		\end{split}
+	\end{equation*}
+	in agreement with Ref.~\cite[eq.~4]{Naumov2013}.
+\end{proof}
+\begin{lemma}
+	The probability current of a single-particle number state is
+	\begin{equation}
+		j_\mu(t,\vb{x})
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		q_\mu
+		2\Re\left\{
+			f(\vb{p})^*
+			f(\vb{q})
+			e^{-i(q_\mu-p_\mu)x^\mu}
+		\right\}
+	\end{equation}
+\end{lemma}
+\qkgsinglegroupvelocity
+\begin{proof}
+	The probability current is\footnote{See Ref.~\cite[p.~18]{Peskin1995} for a derivation from Noether's theorem}
+	\begin{equation*}
+		j^\mu(t,\vb{x})
+		=
+		i
+		\bigl\{
+			\psi(t,\vb{x})
+			\partial^\mu
+			\psi(t,\vb{x})^*
+			-
+			\psi(t,\vb{x})^*
+			\partial^\mu
+			\psi(t,\vb{x})
+		\bigr\}
+	\end{equation*}
+	and can be written
+	\begin{equation*}
+		j^\mu(t,\vb{x})
+		=
+		2\frac{\psi(t,\vb{x})\partial^\mu\psi(t,\vb{x})^*-\text{c.c.}}{2i}
+		=
+		2\Im\left\{
+			\psi(t,\vb{x})
+			\partial^\mu
+			\psi(t,\vb{x})^*
+		\right\}
+		.
+	\end{equation*}
+	We proceed with the argument of the imaginary part
+	\begin{equation*}
+		\begin{split}
+			\psi(t,\vb{x})^*
+			\partial^\mu
+			\psi(t,\vb{x})
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			e^{-ip_\mu x^\mu}
+			f(\vb{p})
+			\partial^\mu
+			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+			e^{+iq_\mu x^\mu}
+			f(\vb{q})^*
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+			iq^\mu
+			f(\vb{p})
+			f(\vb{q})^*
+			e^{-i(p_\mu-q_\mu)x^\mu}
+		\end{split}
+		.
+	\end{equation*}
+	Inserting the argument back into the probability current and using $\Im{iz}=\Re{z}$, we find
+	\begin{equation*}
+		j^\mu(t,\vb{x})
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		2\Re\left\{
+			q^\mu
+			f(\vb{p})
+			f(\vb{q})^*
+			e^{-i(p_\mu-q_\mu)x^\mu}
+		\right\}
+		.
+	\end{equation*}
+	Writing out the real part and relabeling the integration variables in the second term yields
+	\begin{equation*}
+		j^\mu(t,\vb{x})
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
+		\left\{
+			q^\mu
+			+
+			p^\mu
+		\right\}
+		f(\vb{p})
+		f(\vb{q})^*
+		e^{-i(p_\mu-q_\mu)x^\mu}
+		.
+	\end{equation*}	
+	The last result is in agreement with Ref.~\cite[eqs.~36,37]{Naumov2013} if one further assumes $f(\vb{p})$ to be real.
+\end{proof}
+\qkgsinglelocalization
+\begin{proof}
+	No explicit proof, result claimed in Ref.~\cite[eq.~38]{Naumov2013}.
+\end{proof}
+
 \section{Coherent states}
+
+\begin{theorem}[Baker-Campbell-Hausdorff formula]
+	Let $\hat{X},\hat{Y}$ be two non-commuting operators, then
+	\begin{equation}\label{eq:bch_formula}
+		\exp\hat{X}
+		\exp\hat{Y}
+		=
+		\exp\left\{
+			\hat{X}
+			+
+			\hat{Y}
+			+
+			\frac{1}{2!}
+			\comm{\hat{X}}{\hat{Y}}
+			+
+			\frac{1}{3!}
+			\comm{\hat{X}}{\comm{\hat{X}}{\hat{Y}}}
+			+
+			\frac{1}{3!}
+			\comm{\hat{Y}}{\comm{\hat{Y}}{\hat{X}}}
+			+
+			\dots		
+		\right\}
+		.
+	\end{equation}
+\end{theorem}
+\begin{corollary}
+	Let $\hat{X},\hat{Y}$ be two non-commuting operators with $\comm{\hat{X}}{\hat{Y}}$ being a real- or complex number, then \cref{eq:bch_formula} reduces to
+	\begin{equation}\label{eq:bch_formula_reduced1}
+		\exp\hat{X}
+		\exp\hat{Y}
+		=
+		\exp\left\{
+			\hat{X}
+			+
+			\hat{Y}
+			+
+			\frac{1}{2!}
+			\comm{\hat{X}}{\hat{Y}}
+		\right\}
+	\end{equation}
+	or equivalently
+	\begin{equation}\label{eq:bch_formula_reduced2}
+		\exp\hat{X}
+		\exp\hat{Y}
+		\exp\left\{
+			-
+			\frac{1}{2!}
+			\comm{\hat{X}}{\hat{Y}}
+		\right\}
+		=
+		\exp\left\{
+			\hat{X}
+			+
+			\hat{Y}
+		\right\}
+		.
+	\end{equation}
+\end{corollary}
 
 \qkgdisplacementordered
 \begin{proof}
-	See Ref.~\cite[p.~48]{Barnett2002}.
+	From \Cref{thm:qkg_comm_pn} we know that
+	\begin{equation*}
+		\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+		=
+		\int\dd[4]{x}
+		\int\dd[4]{y}
+		\alpha(x^\mu)
+		D(x^\mu-y^\mu)
+		\alpha(y^\mu)
+	\end{equation*}
+	is complex-valued and we can use \cref{eq:bch_formula_reduced2} with $\hat{X}=\hat\phi^-[\alpha]$ and $\hat{Y}=-\hat\phi^+[\alpha]$ to obtain the normal-ordered displacement operator
+	\begin{equation*}
+		\hat{D}[\alpha]
+		=
+		\exp\left\{
+			+
+			\hat\phi^-[\alpha]
+		\right\}
+		\exp\left\{
+			-
+			\hat\phi^+[\alpha]
+		\right\}
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+		\right\}
+		.
+	\end{equation*}
+	The sum on the right-hand side of \cref{eq:bch_formula_reduced2} commutes and we can take $\hat{X}=-\hat\phi^+[\alpha]$ and $\hat{Y}=-\hat\phi^-[\alpha]$ to obtain the antinormal-ordered displacement operator.
+	The commutator in momentum space is analog to the proof of \Cref{thm:qkg_number_state_inner_product}.
 \end{proof}
 \qkgdisplacementproduct
 \begin{proof}
-	Inserting the definitions of the normal-ordered displacement operator from \Cref{thm:qkg_displacement_smeared}, we find
+	Inserting the definitions of the normal-ordered displacement operator \cref{eq:qkg_displacement_normal}, we find
 	\begin{equation*}
 		\begin{split}
 			\hat{D}[\alpha]
@@ -964,22 +1228,7 @@
 			.
 		\end{split}
 	\end{equation*}
-	Because the commutator of the Klein-Gordon field operators are complex numbers, we can use the reduced Baker-Campbell-Hausdorff formula\footnote{The reduced BCH formula requires $\comm{\hat{X}}{\comm{\hat{X}}{\hat{Y}}}=0$.}
-	\begin{equation*}
-		\exp\hat{X}
-		\exp\hat{Y}
-		=
-		\exp\left\{
-			\hat{X}
-			+
-			\hat{Y}
-			+
-			\frac{1}{2}
-			\comm{\hat{X}}{\hat{Y}}
-		\right\}
-	\end{equation*}
-	where $\hat{X}=\hat\phi^+[-\alpha]$ and $\hat{Y}=\hat\phi^-[\beta]$.
-	Using the Baker-Campbell-Hausdorff formula twice, we find
+	As with the previous proof, we use the reduced Baker-Campbell-Hausdorff formula, \cref{eq:bch_formula_reduced2} and find
 	\begin{equation*}
 		\begin{split}
 			\exp\hat{X}
@@ -1315,110 +1564,111 @@
 	We conclude that $\hat{D}[\alpha]^\dagger$ is the inverse of the displacement operator and therefore the displacement operator is unitary.
 \end{proof}
 
+\qkgdisplacementvacuum
+\begin{proof}
+	Applying the normal-ordered displacement operator \cref{eq:qkg_displacement_normal} to the vacuum
+	\begin{equation*}
+		\hat{D}[\alpha]
+		\ket{0}
+		=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}
+		\right\}
+		\exp\left\{
+			+
+			\hat\phi^-[\alpha]
+		\right\}
+		\exp\left\{
+			-
+			\hat\phi^+[\alpha]
+		\right\}
+		\ket{0}
+	\end{equation*}
+	and noting that
+	\begin{equation*}
+		\exp\left\{
+			-
+			\hat\phi^+[\alpha]
+		\right\}
+		\ket{0}
+		=
+		\sum_{n=0}^\infty
+		\frac{1}{n!}
+		\left(
+			-
+			\hat\phi^+[\alpha]
+		\right)^n
+		\ket{0}
+		=
+		\ket{0}
+	\end{equation*}
+	because $\hat\phi^+\ket{0}=0$ leads to \cref{eq:qkg_displacement_vacuum}.
+\end{proof}
 \qkgcoherenteigenstate
 \begin{proof}
-	We use the series representation of the operator exponential and \cref{th:normal_ordered_a1_cn} to move the annihilation operator to the right
+	Using \Cref{thm:qkg_comm_annihilation_smeared_pos_kg}, we find
 	\begin{equation*}
 		\begin{split}
-			&
 			\hat{a}(\vb{p})
 			\exp\left\{
-				-i
-				\int\frac{\dd[3]{p}\alpha(\vb{p})}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				\hat{a}^\dagger(\vb{p})
+				+
+				\hat\phi^-[\alpha]
 			\right\}
 			\ket{0}
-			\\
-			=&\
+			&=
 			\hat{a}(\vb{p})
 			\sum_{n=0}^\infty
 			\frac{1}{n!}
-			\left(
-				-i
-				\int\frac{\dd[3]{p}\alpha(\vb{p})}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				\hat{a}^\dagger(\vb{p})
-			\right)^n
+			\hat\phi^-[\alpha]^n
 			\ket{0}
 			\\
-			=&\
+			&=
 			\sum_{n=0}^\infty
 			\frac{1}{n!}
-			(-i)^n
-			\int\frac{\dd[3]{p_1}\alpha(\vb{p}_1)}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
-			\dots
-			\int\frac{\dd[3]{p_n}\alpha(\vb{p}_n)}{(2\pi)^3\sqrt{2\omega(\vb{p}_n)}}
 			\hat{a}(\vb{p})
-			\prod_{j=1}^n
-			\hat{a}^\dagger(\vb{p}_j)
+			\hat\phi^-[\alpha]^n
 			\ket{0}
 			\\
-			=&\
-			\sum_{n=1}^\infty
+			&=
+			\sum_{n=0}^\infty
 			\frac{1}{n!}
-			(-i)^n
-			\int\frac{\dd[3]{p_1}\alpha(\vb{p}_1)}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
-			\dots
-			\int\frac{\dd[3]{p_n}\alpha(\vb{p}_n)}{(2\pi)^3\sqrt{2\omega(\vb{p}_n)}}
-			\sum_{i=1}^n
-			(2\pi)^3
-			\delta^{(3)}(\vb{p}_i-\vb{p})
-			\prod_{\substack{j=1\\j\neq i}}^n
-			\hat{a}^\dagger(\vb{p}_j)
+			\comm{\hat{a}(\vb{p})}{\hat\phi^-[\alpha]^n}
 			\ket{0}
 			\\
-			=&\
-			\sum_{n=1}^\infty
+			&=
+			\sum_{n=0}^\infty
 			\frac{1}{n!}
-			(-i)^n
-			\sum_{i=1}^n
+			n
 			\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
-			\prod_{\substack{j=1\\j\neq i}}^n
-			\int\frac{\dd[3]{p_j}\alpha(\vb{p}_j)}{(2\pi)^3\sqrt{2\omega(\vb{p}_j)}}
-			\hat{a}^\dagger(\vb{p}_j)
+			\hat\phi^-[\alpha]^{n-1}
 			\ket{0}
 			\\
-			=&\
+			&=
+			\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
 			\sum_{n=1}^\infty
 			\frac{1}{(n-1)!}
-			(-i)^n
-			\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
-			\left(
-				\int\frac{\dd[3]{p}\alpha(\vb{p})}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				\hat{a}^\dagger(\vb{p})
-			\right)^n
+			\hat\phi^-[\alpha]^{n-1}
 			\ket{0}
 			\\
-			=&\
+			&=
 			\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
 			\sum_{n=0}^\infty
 			\frac{1}{n!}
-			\left(
-				-i
-				\int\frac{\dd[3]{p}\alpha(\vb{p})}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				\hat{a}^\dagger(\vb{p})
-			\right)^n
+			\hat\phi^-[\alpha]^{n}
 			\ket{0}
 			\\
-			=&\
+			&=
 			\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
 			\exp\left\{
-				-i
-				\int\frac{\dd[3]{p}\alpha(\vb{p})}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-				\hat{a}^\dagger(\vb{p})
+				+
+				\hat\phi^-[\alpha]
 			\right\}
 			\ket{0}
 		\end{split}
 	\end{equation*}
-	and to obtain the eigenvalue equation we are left to multiply both sides with
-	\begin{equation*}
-		\exp\left\{
-			-
-			\frac{1}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\abs{\alpha(\vb{p})}^2
-		\right\}
-		.
-	\end{equation*}
+	which multiplied by $\exp\left\{-\frac{1}{2}\comm{\hat\phi^+[\alpha]}{\hat\phi^-[\alpha]}\right\}$ reproduces \cref{eq:qkg_coherent_state_eigenstate}.
 \end{proof}
 
 \qkgcoherentenergy
@@ -1509,22 +1759,26 @@
 
 \qkgcoherentnumberinnerproduct
 \begin{proof}
-	Expanding the exponential series and noting that the coefficients have the same algebraic form as a $m$-particle state with spectrum $\alpha(\vb{p})$\footnote{Except for the coherent spectrum $\alpha(\vb{p})$ being unbound.}, we find
 	\begin{equation*}
-		\braket{n_f}{\alpha}
-		=
-		\sum_{m=0}^\infty
-		\frac{1}{\sqrt{m!}}
-		\braket{n_f}{m_\alpha}
-		e^{-\overline{n}/2}
-		=
-		\frac{1}{\sqrt{m!}}
-		\left(
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			f(\vb{p})^*
-			\alpha(\vb{p})
-		\right)^n
-		e^{-\overline{n}/2}
+		\begin{split}
+			\braket{n_f}{\alpha}
+			&=
+			\expval{
+				\frac{1}{\sqrt{n!}}
+				\hat\phi^+[f]^n
+				e^{-\overline{n}/2}
+				e^{\hat\phi^-[\alpha]}
+			}{0}
+			\\
+			&=
+			\frac{1}{\sqrt{n!}}
+			e^{-\overline{n}/2}
+			\sum_{m=0}^\infty
+			\expval{
+				\hat\phi^+[f]^n
+				\hat\phi^-[\alpha]^m
+			}{0}
+		\end{split}
 	\end{equation*}
 \end{proof}
 \qkgcoherentinnerproduct
@@ -1571,7 +1825,7 @@
 			\comm{\hat\phi^+[-\alpha+\beta]}{\hat\phi^-[-\alpha+\beta]}
 		\right\}
 	\end{equation*}
-	and threfore
+	and therefore
 	\begin{equation*}
 		\begin{split}
 			\braket{\alpha}{\beta}
@@ -1640,166 +1894,4 @@
 			.
 		\end{split}
 	\end{equation*}
-\end{proof}
-
-\qkgsinglewavefunction
-\begin{proof}
-	of the coordinate wave function
-	\begin{equation*}
-		\psi(t,\vb{x})
-		=
-		\bra{0}
-		\hat\phi(t,\vb{x})
-		\ket{1_f}
-		=
-		\bra{0}
-		\hat\phi^+(t,\vb{x})
-		\ket{1_f}
-		.
-	\end{equation*}
-	Inserting the definition of the single-particle number state yields
-	\begin{equation*}
-		\begin{split}
-			\psi(t,\vb{x})
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			e^{-ip_\mu x^\mu}
-			\expval{
-				\hat{a}(\vb{p})
-				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-				f(\vb{q})
-				\hat{a}^\dagger(\vb{p})
-			}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			e^{-ip_\mu x^\mu}
-			f(\vb{q})
-			\expval{
-				\hat{a}(\vb{p})
-				\hat{a}^\dagger(\vb{p})
-			}{0}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-			e^{-ip_\mu x^\mu}
-			f(\vb{q})
-			(2\pi)^3
-			\delta^{(3)}(\vb{q}-\vb{p})
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			e^{-ip_\mu x^\mu}
-			f(\vb{p})
-		\end{split}
-	\end{equation*}
-	in agreement with Ref.~\cite[eq.~4]{Naumov2013}.
-\end{proof}
-\begin{lemma}
-	The probability current of a single-particle number state is
-	\begin{equation}
-		j_\mu(t,\vb{x})
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-		q_\mu
-		2\Re\left\{
-			f(\vb{p})^*
-			f(\vb{q})
-			e^{-i(q_\mu-p_\mu)x^\mu}
-		\right\}
-	\end{equation}
-\end{lemma}
-\qkgsinglegroupvelocity
-\begin{proof}
-	The probability current is\footnote{See Ref.~\cite[p.~18]{Peskin1995} for a derivation from Noether's theorem}
-	\begin{equation*}
-		j^\mu(t,\vb{x})
-		=
-		i
-		\bigl\{
-			\psi(t,\vb{x})
-			\partial^\mu
-			\psi(t,\vb{x})^*
-			-
-			\psi(t,\vb{x})^*
-			\partial^\mu
-			\psi(t,\vb{x})
-		\bigr\}
-	\end{equation*}
-	and can be written
-	\begin{equation*}
-		j^\mu(t,\vb{x})
-		=
-		2\frac{\psi(t,\vb{x})\partial^\mu\psi(t,\vb{x})^*-\text{c.c.}}{2i}
-		=
-		2\Im\left\{
-			\psi(t,\vb{x})
-			\partial^\mu
-			\psi(t,\vb{x})^*
-		\right\}
-		.
-	\end{equation*}
-	We proceed with the argument of the imaginary part
-	\begin{equation*}
-		\begin{split}
-			\psi(t,\vb{x})^*
-			\partial^\mu
-			\psi(t,\vb{x})
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			e^{-ip_\mu x^\mu}
-			f(\vb{p})
-			\partial^\mu
-			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-			e^{+iq_\mu x^\mu}
-			f(\vb{q})^*
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-			iq^\mu
-			f(\vb{p})
-			f(\vb{q})^*
-			e^{-i(p_\mu-q_\mu)x^\mu}
-		\end{split}
-		.
-	\end{equation*}
-	Inserting the argument back into the probability current and using $\Im{iz}=\Re{z}$, we find
-	\begin{equation*}
-		j^\mu(t,\vb{x})
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-		2\Re\left\{
-			q^\mu
-			f(\vb{p})
-			f(\vb{q})^*
-			e^{-i(p_\mu-q_\mu)x^\mu}
-		\right\}
-		.
-	\end{equation*}
-	Writing out the real part and relabeling the integration variables in the second term yields
-	\begin{equation*}
-		j^\mu(t,\vb{x})
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		\int\frac{\dd[3]{q}}{(2\pi)^32\omega(\vb{q})}
-		\left\{
-			q^\mu
-			+
-			p^\mu
-		\right\}
-		f(\vb{p})
-		f(\vb{q})^*
-		e^{-i(p_\mu-q_\mu)x^\mu}
-		.
-	\end{equation*}	
-	The last result is in agreement with Ref.~\cite[eqs.~36,37]{Naumov2013} if one further assumes $f(\vb{p})$ to be real.
-\end{proof}
-\qkgsinglelocalization
-\begin{proof}
-	No explicit proof, result claimed in Ref.~\cite[eq.~38]{Naumov2013}.
 \end{proof}
