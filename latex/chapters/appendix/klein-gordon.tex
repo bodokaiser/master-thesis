@@ -482,7 +482,7 @@
 	Inserting the transverse project, we find the non-relativistic Gaussian spectrum to be approximately equal to
 	\begin{equation*}
 		f(\vb{p})
-		\approxeq
+		\propto
 		\exp\left\{
 			-
 			\frac{
@@ -504,6 +504,57 @@
 \end{proof}
 
 \section{Number states}
+
+\qkgnumbersingleinner
+\begin{proof}
+	Inserting the definition of the number state for $n=1$
+	\begin{equation*}
+		\begin{split}
+			\braket{1_f}{1_g}
+			&=
+			\expval{
+				\left(
+					\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+					f(\vb{p})
+					\hat{a}^\dagger(\vb{p})
+				\right)^\dagger
+				\left(
+					\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+					g(\vb{q})
+					\hat{a}^\dagger(\vb{q})
+				\right)
+			}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})^*
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			g(\vb{q})
+			\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})}{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})^*
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			g(\vb{q})
+			\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+			\braket{0}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})^*
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			g(\vb{q})
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})^*
+			g(\vb{p})
+		\end{split}
+	\end{equation*}
+	where we used $\hat{a}(\vb{p})\ket{0}=0$ and $\braket{0}=1$ to rewrite the expectation value as commutator.
+\end{proof}
 
 \qkgnumbersmearing
 \begin{proof}
@@ -555,180 +606,337 @@
 	\end{equation*}
 	which equals the right-hand side when we take $f(\vb{p})=f\left(\omega(\vb{p}),\vb{p}\right)$.
 \end{proof}
-
-\qkgnumbercommpn
+\qkgcommsmearedpn
 \begin{proof}
-	\begin{equation*}
-		\begin{split}
-			\comm{\hat\phi^+[f]^n}{\hat\phi^-[g]^m}
-			&=
-			\expval{\comm{\hat\phi^+[f]^n}{\hat\phi^-[g]^m}}{0}
-			\\
-			&=
-			\expval{\hat\phi^+[f]^n\hat\phi^-[g]^m}{0}
-			\\
-			&=
-			\sqrt{n!m!}
-			\braket{n_f}{m_g}
-			\\
-			&=
-			\sqrt{n!m!}
-			\delta_{nm}
-			\left(
+	Proof by induction for $n\in\mathbb{N}$.
+	\begin{enumerate}
+		\item Induction start ($n=1$):
+		\begin{equation*}
+			\begin{split}
+				\comm{\hat\phi^+[f]}{\hat\phi^-[g]}
+				&=
+				\int\dd[4]{x}f(x^\mu)
+				\int\dd[4]{y}g(y^\mu)
+				\comm{\hat\phi^+(x^\mu)}{\hat\phi^-(y^\mu)}
+				\\
+				&=
+				\int\dd[4]{x}f(x^\mu)
+				\int\dd[4]{y}g(y^\mu)
+				D(x^\mu-y^\mu)
+				\\
+				&=
+				\int\dd[4]{x}f(x^\mu)
+				\int\dd[4]{y}g(y^\mu)
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\eval{e^{-ip_\mu(x^\mu-y^\mu)}}_{p_0=\omega(\vb{p})}
+				\\
+				&=
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				\left(
+					\int\dd[4]{x}
+					f(x^\mu)
+					e^{+ip_\mu x^\mu}
+				\right)^*_{p_0=\omega(\vb{p})}
+				\left(
+					\int\dd[4]{y}
+					g(y^\mu)
+					e^{+ip_\mu y^\mu}
+				\right)_{p_0=\omega(\vb{p})}
+				\\
+				&=
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				f\left(\omega(\vb{p}),\vb{p}\right)^*
+				g\left(\omega(\vb{p}),\vb{p}\right)
+				\\
+				&=
+				\braket{1_f}{1_g}
+			\end{split}
+		\end{equation*}
+		where we used \Cref{thm:qkg_comm_pn}, the four-Fourier transform and the definition of the propagator, alternatively, using the commutation relation of the annihilation and creation operator
+		\begin{equation*}
+			\begin{split}
+				\comm{\hat\phi^+[f]}{\hat\phi^-[g]}
+				&=
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				f(\vb{p})^*
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				g(\vb{q})
+				\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+				\\
+				&=
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				f(\vb{p})^*
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				g(\vb{q})
+				(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+				\\
+				&=
 				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 				f(\vb{p})^*
 				g(\vb{p})
-			\right)^n
-			\\
-			&=
-			n!
-			\delta_{nm}
-			\left(
-				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-				f(\vb{p})^*
-				g(\vb{p})
-			\right)^n
-		\end{split}
-	\end{equation*}
+				\\
+				&=
+				\braket{1_f}{1_g}
+			\end{split}
+		\end{equation*}
+		which also equals $\braket{1_f}{1_g}$.
+		\item Induction step ($n\to n+1$):
+		\begin{equation*}
+			\begin{split}
+				\comm{\hat\phi^+[f]}{\hat\phi^-[g]^{n+1}}
+				&=
+				\comm{\hat\phi^+[f]}{\hat\phi^-[g]\hat\phi^-[g]^n}
+				\\
+				&=
+				\hat\phi^-[g]
+				\comm{\hat\phi^+[f]}{\hat\phi^-[g]^n}
+				+
+				\comm{\hat\phi^+[f]}{\hat\phi^-[g]}
+				\hat\phi^-[g]^n
+				\\
+				&=
+				\hat\phi^-[g]
+				n\braket{1_f}{1_g}
+				\hat\phi^-[g]^{n-1}
+				+
+				\braket{1_f}{1_g}
+				\hat\phi^-[g]^n
+				\\
+				&=
+				(n+1)
+				\braket{1_f}{1_g}
+				\hat\phi^-[g]^n
+				.
+			\end{split}
+		\end{equation*}
+	\end{enumerate}
 \end{proof}
-
-\begin{lemma}\label{thm:qkg_comm_an}
-	Let $n\in\mathbb{N}$, $\hat{a}(\vb{p})$ be the annihilation operator of the Klein-Gordon field, and $\hat\phi^-(x^\mu)$ be the negative frequency Klein-Gordon operator, then
-	\begin{equation}
-		\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)^n}
-		=
-		n
-		\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-		\hat\phi^-(x^\mu)^{n-1}
-		\label{eq:qkg_comm_an}
-		.
-	\end{equation}
-\end{lemma}
+\qkgsmearedpnladder
 \begin{proof}
-	Induction start ($n=1$):
-	\begin{equation*}
-		\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)}
-		=
-		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		e^{+iq_\mu x^\mu}
-		\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
-		=
-		\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-	\end{equation*}
-	Induction start ($n\to n+1$):
+	Inserting the definitions and using \Cref{thm:qkg_comm_smeared_pn}, we find
 	\begin{equation*}
 		\begin{split}
-			\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)^{n+1}}
-			&=
-			\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)\hat\phi^-(x^\mu)^n}
-			\\
-			&=
-			\hat\phi^-(x^\mu)
-			\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)^n}
-			+
-			\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)}
-			\hat\phi^-(x^\mu)^n
-			\\
-			&=
-			\hat\phi^-(x^\mu)
-			n
-			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-			\hat\phi^-(x^\mu)^{n-1}
-			+
-			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-			\hat\phi^-(x^\mu)^n
-			\\
-			&=
-			(n+1)
-			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-			\hat\phi^-(x^\mu)^n
-		\end{split}
-	\end{equation*}
-\end{proof}
-\begin{lemma}\label{thm:qkg_comm_cp}
-	Let $n\in\mathbb{N}$, $\hat{a}^\dagger(\vb{p})$ be the creation operator of the Klein-Gordon field, and $\hat\phi^+(x^\mu)$ be the positive frequency Klein-Gordon operator, then
-	\begin{equation}
-		\comm{\hat{a}^\dagger(\vb{p})}{\hat\phi^+(x^\mu)^n}
-		=
-		-
-		n
-		\frac{e^{-ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-		\hat\phi^+(x^\mu)^{n-1}
-		\label{eq:qkg_comm_cp}
-		.
-	\end{equation}
-\end{lemma}
-\begin{proof}
-	The hermitian conjugate of the left-hand side of \cref{eq:qkg_comm_an} is
-	\begin{equation*}
-		\comm{\hat{a}(\vb{p})}{\hat\phi^-(x^\mu)^n}^\dagger
-		=
-		-
-		\comm{\hat{a}^\dagger(\vb{p})}{\hat\phi^+(x^\mu)^n}
-	\end{equation*}
-	and the hermitian conjugate of the right-hand side is
-	\begin{equation*}
-		\left(
-			n
-			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-			\hat\phi^-(x^\mu)^{n-1}
-		\right)^\dagger
-		=
-		n
-		\frac{e^{-ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-		\hat\phi^+(x^\mu)^{n-1}
-		.
-	\end{equation*}
-	Therefore, we have
-	\begin{equation*}
-		\comm{\hat{a}^\dagger(\vb{p})}{\hat\phi^+(x^\mu)^n}
-		=
-		-
-		n
-		\frac{e^{-ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-		\hat\phi^+(x^\mu)^{n-1}
-	\end{equation*}
-	after equating both sides again.
-\end{proof}
-\begin{lemma}
-	\begin{equation}
-		\hat{a}(\vb{p})
-		\ket{n_f}
-		=
-		\sqrt{n}
-		\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-		\ket{n-1_f}
-	\end{equation}
-\end{lemma}
-\begin{proof}
-	Using \Cref{thm:qkg_number_state_smearing}, \Cref{thm:qkg_comm_cp}, and \Cref{thm:vacuum_state_ac}, we find
-	\begin{equation*}
-		\begin{split}
-			\hat{a}(\vb{p})
+			\hat\phi^+[f]
 			\ket{n_f}
-			=
+			&=
 			\frac{1}{\sqrt{n!}}
-			\hat{a}(\vb{p})
+			\hat\phi^+[f]
 			\hat\phi^-[f]^n
 			\ket{0}
-			=
+			\\
+			&=
 			\frac{1}{\sqrt{n!}}
-			n
-			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
+			\comm{\hat\phi^+[f]}{\hat\phi^-[f]^n}
+			\ket{0}
+			\\
+			&=
+			\frac{1}{\sqrt{n!}}
+			n\braket{1_f}
 			\hat\phi^-[f]^{n-1}
 			\ket{0}
-			=
+			\\
+			&=
 			\sqrt{n}
-			\frac{e^{+ip_\mu x^\mu}}{\sqrt{2\omega(\vb{p})}}
-			\ket{1-n_f}
-			.
+			\frac{1}{(n-1)!}
+			\hat\phi^-[f]^{n-1}
+			\ket{0}
+			\\
+			&=
+			\sqrt{n}
+			\ket{n-1_f}
 		\end{split}
 	\end{equation*}
+	for the left, and
+	\begin{equation*}
+		\begin{split}
+			\hat\phi^-[f]
+			\ket{n_f}
+			&=
+			\frac{1}{\sqrt{n!}}
+			\hat\phi^-[f]
+			\hat\phi^-[f]^n
+			\ket{0}
+			\\
+			&=
+			\sqrt{n+1}
+			\frac{1}{\sqrt{(n+1)!}}
+			\hat\phi^-[f]^{n+1}
+			\ket{0}
+			\\
+			&=
+			\sqrt{n+1}
+			\ket{n+1_f}
+		\end{split}
+	\end{equation*}
+	for the right equation.
 \end{proof}
 
 \qkgnumbereigenstate
 \begin{proof}
-Foo	
+	From \Cref{thm:qkg_comm_smeared_pn}, the left-hand side can be written
+	\begin{equation*}
+		\comm{\hat\phi^+[f]}{\hat\phi^-[g]^n}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		f(\vb{p})^*
+		\comm{\hat{a}(\vb{p})}{\hat\phi^-[g]^n}
+		,
+	\end{equation*}
+	and the right-hand side can be written
+	\begin{equation*}
+		\begin{split}
+			n
+			\braket{1_f}{1_g}
+			\hat\phi^-[g]^{n-1}
+			&=
+			n
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f(\vb{p})^*
+			g(\vb{p})
+			\hat\phi^-[g]^{n-1}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			f(\vb{p})^*
+			n
+			\frac{g(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+			\hat\phi^-[g]^{n-1}
+		\end{split}
+		.
+	\end{equation*}
+	Comparing the former and latter, we conclude
+	\begin{equation*}
+		\comm{\hat{a}(\vb{p})}{\hat\phi^-[g]^n}		
+		=
+		n
+		\frac{g(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+		\hat\phi^-[g]^{n-1}
+		,
+	\end{equation*}
+	and we can easily show the eigenvalue equation
+	\begin{equation*}
+		\begin{split}
+			\hat{N}
+			\ket{n_f}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\hat{a}^\dagger(\vb{p})
+			\hat{a}(\vb{p})
+			\frac{1}{\sqrt{n!}}
+			\hat\phi^-[f]^n
+			\ket{0}
+			\\
+			&=
+			\frac{1}{\sqrt{n!}}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\hat{a}^\dagger(\vb{p})
+			\comm{\hat{a}(\vb{p})}{\hat\phi^-[f]^n}
+			\ket{0}
+			\\
+			&=
+			\frac{1}{\sqrt{n!}}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\hat{a}^\dagger(\vb{p})
+			n
+			\frac{f(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+			\hat\phi^-[f]^{n-1}
+			\ket{0}
+			\\
+			&=
+			\sqrt{n}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				f(\vb{p})
+			\hat{a}^\dagger(\vb{p})
+			\frac{1}{\sqrt{(n-1)!}}
+			\hat\phi^-[f]^{n-1}
+			\ket{0}
+			\\
+			&=
+			\sqrt{n}
+			\hat\phi^-[f]
+			\ket{n-1_f}
+			=
+			n
+			\ket{n_f}
+		\end{split}
+	\end{equation*}
+	where we used \Cref{thm:qkg_smeared_pn_ladder} in the last step.
+\end{proof}
+
+\qkgnumberinnerproduct
+\begin{proof}
+	First, we note that
+	\begin{equation*}
+		\begin{split}
+			\braket{n_f}{m_g}
+			&=
+			\frac{1}{\sqrt{n!m!}}
+			\expval{\hat\phi^+[f]^n\hat\phi^-[g]^m}{0}
+			\\
+			&=
+			\frac{1}{\sqrt{nm}}
+			\bra{n-1_f}
+			\hat\phi^+[f]
+			\hat\phi^-[g]
+			\ket{m-1_g}
+			\\
+			&=
+			\frac{1}{\sqrt{nm}}
+			\bra{n-1_f}
+			\comm{\hat\phi^+[f]}{\hat\phi^-[g]}
+			\ket{m-1_g}
+			-
+			\frac{1}{\sqrt{nm}}
+			\bra{n-1_f}
+			\hat\phi^-[g]
+			\hat\phi^+[f]
+			\ket{m-1_g}
+			\\
+			&=
+			\frac{1}{\sqrt{nm}}
+			\braket{1_f}{1_g}
+			\braket{n-1_f}{m-1_g}
+			-
+			\frac{1}{\sqrt{nm}}
+			\bra{n-1_f}
+			\hat\phi^-[g]
+			\hat\phi^+[f]
+			\ket{m-1_g}
+		\end{split}
+	\end{equation*}
+	with the second term being zero unless $m>1$ and $n>1$ because $\bra{0}\hat\phi^-[g]=0$ or $\hat\phi^+[f]\ket{0}=0$.
+	Because the relation is iterative, we have $\braket{n_f}{m_g}=0$ unless $n=m$, i.e.,
+	\begin{equation*}
+		\begin{split}
+			\braket{n_f}{m_g}
+			&=
+			\delta_{nm}
+			\frac{1}{n}
+			\left\{
+				\braket{1_f}{1_g}
+				\braket{n-1_f}{n-1_g}
+				-
+				\bra{n-1_f}
+				\hat\phi^-[g]
+				\hat\phi^+[f]
+				\ket{n-1_g}
+			\right\}
+			\\
+			&=
+			\delta_{nm}
+			\frac{1}{n}
+			\left\{
+				\braket{1_f}{1_g}
+				\braket{n-1_f}{n-1_g}
+				-
+				(n-1)
+				\bra{n-2_f}
+				\ket{n-2_g}
+			\right\}
+		\end{split}
+		.
+	\end{equation*}
+	where we invoked \Cref{thm:qkg_smeared_pn_ladder}.
 \end{proof}
 
 \section{Coherent states}
