@@ -900,87 +900,245 @@
 
 \qkgnumberinnerproduct
 \begin{proof}
-	First, we note that the inner product $\braket{n_f}{m_f}$ is zero unless $n=m$ and it is sufficient to only consider
+	First, we note that the inner product $\braket{n_f}{m_g}$ is only non-zero iff $n=m$ and we are left to simplify
 	\begin{equation*}
 		\begin{split}
-			\braket{n_f}{n_f}
+			\braket{n_f}{n_g}
 			&=
-			\frac{1}{n!}
 			\expval{
-				\hat\phi^+[f]^n
-				\hat\phi^-[f]^n
+				\frac{1}{\sqrt{n!}}
+				\left(
+					\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+					f(\vb{p})^*
+					\hat{a}(\vb{p})
+				\right)^n
+				\left(
+					\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+					g(\vb{q})
+					\hat{a}^\dagger(\vb{q})
+				\right)^n
 			}{0}
 			\\
 			&=
 			\frac{1}{n!}
+			\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+			f(\vb{p}_1)^*
+			\dots
+			\int\frac{\dd[3]{q_n}}{(2\pi)^3\sqrt{2\omega(\vb{q}_n)}}
+			g(\vb{q}_n)
 			\expval{
-				\hat\phi^+[f]^{n-1}
-				\hat\phi^+[f]
-				\hat\phi^-[f]
-				\hat\phi^-[f]^{n-1}
+				\hat{a}(\vb{p}_1)
+				\dots
+				\hat{a}^\dagger(\vb{q}_n)
 			}{0}
-			\\
-			&=
-			\frac{1}{n!}
-			\expval{
-				\hat\phi^+[f]^{n-1}
-				\comm{\hat\phi^+[f]}{\hat\phi^-[f]}
-				\hat\phi^-[f]^{n-1}
-			}{0}
-			+
-			\frac{1}{n!}
-			\expval{
-				\hat\phi^+[f]^{n-1}
-				\hat\phi^-[f]
-				\hat\phi^+[f]
-				\hat\phi^-[f]^{n-1}
-			}{0}
-			\\
-			&=
-			\frac{1}{n}
-			\braket{n-1_f}
-			+
-			\frac{1}{n}
-			\expval{
-				\hat\phi^-[f]
-				\hat\phi^+[f]
-			}{n-1_f}
-			\\
-			&=
-			\frac{1}{n}
-			\braket{n-1_f}
-			+
-			\frac{n-1}{n}
-			\braket{n-2_f}
 		\end{split}
+		.
 	\end{equation*}
-	Then by induction we show that $\braket{n_f}{n_g}=1$
+	Using induction it is possible to show that
+	\begin{equation*}
+		\expval{
+				\hat{a}(\vb{p}_1)
+				\dots
+				\hat{a}(\vb{p}_1)
+				\hat{a}^\dagger(\vb{q}_1)
+				\dots
+				\hat{a}^\dagger(\vb{q}_n)
+		}{0}
+		=
+		\sum_{\pi\in\textrm{perm}}
+		\prod^n_{i=1}
+		(2\pi)^3
+		\delta^{(3)}(\vb{p}_i-\vb{q}_{\pi(i)})
+		.
+	\end{equation*}
+	Inserting the former into the latter and relabeling the integration variables accordingly, the sum over all permutations account to a factor of $n!$ and thus,
+	\begin{equation*}
+		\begin{split}
+			\braket{n_f}{n_g}
+			&=
+			\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+			f(\vb{p}_1)^*
+			\dots
+			\int\frac{\dd[3]{q_n}}{(2\pi)^3\sqrt{2\omega(\vb{q}_n)}}
+			g(\vb{q}_n)
+			\\
+			&\times
+			(2\pi)^3
+			\delta^{(3)}(\vb{p}_1-\vb{q}_1)
+			\dots
+			(2\pi)^3
+			\delta^{(3)}(\vb{p}_n-\vb{q}_n)
+			\\
+			&=
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				f(\vb{p})^*
+				g(\vb{q})
+				(2\pi)^3
+				\delta^{(3)}(\vb{p}-\vb{q})
+			\right)^n
+			\\
+			&=
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+				f(\vb{p})^*
+				g(\vb{p})
+			\right)^n
+		\end{split}
+		.
+	\end{equation*}
+	Alternatively, we show
+	\begin{equation*}
+		\braket{n_f}{n_f}
+		=
+		\frac{1}{n!}
+		\expval{
+			\hat\phi^+[f]^n
+			\hat\phi^-[g]^n
+		}{0}
+		=
+		\braket{1_f}{1_g}^n
+	\end{equation*}
+	 by induction
 	\begin{itemize}
 		\item Induction start ($n=2$):
 		\begin{equation*}
-			\braket{2_f}
-			=
-			\frac{1}{2}
-			\braket{1_f}
-			+
-			\frac{1}{2}
-			\braket{0}
-			=
-			1
+			\begin{split}
+				\braket{2_f}
+				&=
+				\frac{1}{2}
+				\expval{
+					\hat\phi^+[f]
+					\hat\phi^+[f]
+					\hat\phi^-[g]
+					\hat\phi^-[g]
+				}{0}
+				\\
+				&=
+				\frac{1}{2}
+				\expval{
+					\hat\phi^+[f]
+					\braket{1_f}{1_g}
+					\hat\phi^-[g]
+				}{0}
+				+
+				\frac{1}{2}
+				\expval{
+					\hat\phi^+[f]
+					\hat\phi^-[g]
+					\hat\phi^+[f]
+					\hat\phi^-[g]
+				}{0}
+				\\
+				&=
+				\frac{1}{2}
+				\braket{1_f}{1_g}
+				\expval{
+					\hat\phi^+[f]
+					\hat\phi^-[g]
+				}{0}
+				+
+				\frac{1}{2}
+				\expval{
+					\braket{1_f}{1_g}
+					\braket{1_f}{1_g}
+				}{0}
+				\\
+				&=
+				\braket{1_f}{1_g}^2
+			\end{split}
 		\end{equation*}
+		where we used
+		\begin{equation*}
+			\braket{1_f}{1_g}
+			=
+			\comm{\hat\phi^+[f]}{\hat\phi^-[g]}
+			=
+			\hat\phi^+[f]
+			\hat\phi^-[g]
+			-
+			\hat\phi^-[g]
+			\hat\phi^+[f]
+		\end{equation*}
+		which follows from \Cref{thm:qkg_comm_smeared_pn} for $n=1$.
 		\item Induction start ($n\to n+1$):
 		\begin{equation*}
 			\begin{split}
-				\braket{n+1_f}
-				=
+				\braket{n+1_f}{n+1_g}
+				&=
+				\frac{1}{(n+1)!}
+				\expval{
+					\hat\phi^+[f]^n
+					\hat\phi^+[f]
+					\hat\phi^-[g]
+					\hat\phi^-[g]^n
+				}{0}
+				\\
+				&=
 				\frac{1}{n+1}
-				\braket{n_f}
+				\braket{1_f}{1_g}
+				\braket{n_f}{n_g}
 				+
-				\frac{n+1-1}{n+1}
-				\braket{n-1_f}
-				=
+				\frac{1}{(n+1)!}
+				\expval{
+					\hat\phi^+[f]^n
+					\hat\phi^-[g]
+					\hat\phi^+[f]
+					\hat\phi^-[g]^n
+				}{0}
+				\\
+				&=
+				\frac{1}{n+1}
+				\braket{1_f}{1_g}^{n+1}
+				+
+				\frac{1}{(n+1)!}
+				\expval{
+					\hat\phi^+[f]^n
+					\hat\phi^-[g]
+					n
+					\braket{n_f}{n_g}
+					\hat\phi^-[g]^{n-1}
+				}{0}
+				\\
+				&=
+				\frac{1}{n+1}
+				\braket{1_f}{1_g}^{n+1}
+				+
+				\frac{n}{(n+1)!}
+				\braket{1_f}{1_g}
+				\expval{
+					\hat\phi^+[f]^n
+					\hat\phi^-[g]^n
+				}{0}
+				\\
+				&=
+				\frac{1}{n+1}
+				\braket{1_f}{1_g}^{n+1}
+				+
+				\frac{n}{n+1}
+				\braket{1_f}{1_g}
+				\braket{n_f}{n_g}
+				\\
+				&=
+				\braket{1_f}{1_g}^{n+1}
 			\end{split}
 		\end{equation*}
+		where we used
+		\begin{equation*}
+			\hat\phi^+[f]
+			\hat\phi^-[g]^n
+			\ket{0}
+			=
+			\comm{\hat\phi^+[f]}{\hat\phi^-[g]^n}
+			\ket{0}
+			=
+			n
+			\braket{1_f}{1_g}
+			\hat\phi^-[g]^{n-1}
+			\ket{0}
+		\end{equation*}
+		which follows from \Cref{thm:qkg_comm_smeared_pn}.
 	\end{itemize}
 \end{proof}
 
@@ -1856,8 +2014,27 @@
 				\hat\phi^+[f]^n
 				\hat\phi^-[\alpha]^m
 			}{0}
+			\\
+			&=
+			\sqrt{m!}
+			e^{-\overline{n}/2}
+			\sum_{m=0}^\infty
+			\braket{n_f}{m_\alpha}
+			\\
+			&=
+			\sqrt{m!}
+			e^{-\overline{n}/2}
+			\sum_{m=0}^\infty
+			\delta_{nm}
+			\braket{1_f}{1_\alpha}^m
+			\\
+			&=
+			\sqrt{n!}
+			e^{-\overline{n}/2}
+			\braket{1_f}{1_\alpha}^n
 		\end{split}
 	\end{equation*}
+	where we used \Cref{thm:qkg_number_state_inner_product}.\footnote{Technically, $\ket{1_\alpha}$ is not a true number state because $\alpha(\vb{p})$ is not constrained.}
 \end{proof}
 \qkgcoherentinnerproduct
 \begin{proof}
