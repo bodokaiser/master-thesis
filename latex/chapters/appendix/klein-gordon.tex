@@ -2010,26 +2010,27 @@
 			\frac{1}{\sqrt{n!}}
 			e^{-\overline{n}/2}
 			\sum_{m=0}^\infty
+			\frac{1}{m!}
 			\expval{
 				\hat\phi^+[f]^n
 				\hat\phi^-[\alpha]^m
 			}{0}
 			\\
 			&=
-			\sqrt{m!}
 			e^{-\overline{n}/2}
 			\sum_{m=0}^\infty
+			\frac{1}{\sqrt{m!}}
 			\braket{n_f}{m_\alpha}
 			\\
 			&=
-			\sqrt{m!}
 			e^{-\overline{n}/2}
 			\sum_{m=0}^\infty
+			\frac{1}{\sqrt{m!}}
 			\delta_{nm}
 			\braket{1_f}{1_\alpha}^m
 			\\
 			&=
-			\sqrt{n!}
+			\frac{1}{\sqrt{n!}}
 			e^{-\overline{n}/2}
 			\braket{1_f}{1_\alpha}^n
 		\end{split}
@@ -2146,6 +2147,55 @@
 					2\alpha(\vb{p})\beta(\vb{p})^*
 				\right\}
 			\right\}
+			.
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\qkgcoherentwavefunction
+\begin{proof}
+	Writing $\hat\phi^+(y^\mu)$ as a smeared Klein-Gordon operator
+	\begin{equation*}
+		\begin{split}
+			\hat\phi^+[\delta_x]
+			&=
+			\int\dd[4]{y}
+			\delta(x^\mu-y^\mu)
+			\hat\phi^+(y^\mu)
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\hat{a}(\vb{p})
+			\left(
+				\int\dd[4]{y}
+				\delta^{(4)}(x^\mu-y^\mu)
+				e^{+ip_\mu y^\mu}
+			\right)_{p_0=\omega(\vb{p})}^*
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\hat{a}(\vb{p})
+			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+		\end{split}
+	\end{equation*}
+	with spectrum $f(\vb{p})=\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}$, we can use \Cref{thm:qkg_coherent_state_number_state_inner_product} by writing
+	\begin{equation*}
+		\begin{split}
+			\bra{0}
+			\hat\phi^+(x^\mu)
+			\ket{\alpha}
+			=
+			\bra{0}
+			\hat\phi^+[\delta_x]
+			\ket{\alpha}
+			=
+			\bra{1_{\delta_x}}
+			\ket{\alpha}
+			=
+			e^{-\overline{n}/2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\alpha(\vb{p})
+			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
 			.
 		\end{split}
 	\end{equation*}

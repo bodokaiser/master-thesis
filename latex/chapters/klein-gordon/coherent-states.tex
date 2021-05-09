@@ -230,7 +230,7 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 	\begin{equation}
 		\braket{n_f}{\alpha}
 		=
-		\sqrt{n!}
+		\frac{1}{\sqrt{n!}}
 		\left(
 			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
 			f(\vb{p})^*
@@ -245,7 +245,7 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 	\begin{equation}
 		\braket{n_f}{\alpha}
 		=
-		\sqrt{n!}
+		\frac{1}{\sqrt{n!}}
 		e^{-\overline{n}/2}
 	\end{equation}
 	which absolute squared is a Poisson distribution with unit variance.
@@ -311,3 +311,23 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 		\end{split}
 	\end{equation}
 \end{restatable}
+\begin{restatable}{lemma}{qkgcoherentwavefunction}\label{thm:coherent_state_wave_function}
+	Let $\ket{\alpha}$ be a coherent state, then its coordinate wave function is
+	\begin{equation}
+		\psi(x^\mu)
+		=
+		\bra{0}
+		\hat\phi(x^\mu)
+		\ket{\alpha}
+		=
+		e^{-\overline{n}/2}
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\alpha(\vb{p})
+		\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+		.
+	\end{equation}
+	The coherent state's coordinate wave function is equal to the single-particle number state's coordinate wave function with the difference that the wave function of the coherent state is suppressed by $e^{-\overline{n}/2}$ and the spectrum $\alpha(\vb{p})$ is not constrained.
+\end{restatable}
+\begin{corollary}
+	Results obtained for the single-particle number state's coordinate wave function, e.g., the group velocity (\Cref{thm:number_state_single_group_velocity}) and the localization (\Cref{thm:number_state_single_localization}), carry over to the coherent state after performing the replacement $f(\vb{p})=e^{-\overline{n}/2}\alpha(\vb{p})$.
+\end{corollary}

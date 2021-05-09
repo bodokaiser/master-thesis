@@ -17,54 +17,8 @@
 		J_\mu A^\mu
 		\label{eq:mw_lagrangian}
 	\end{equation}
-	where $A^\mu(t,\vb{x})$ is the Maxwell field or four-potential, see, for instance, Ref.~\cite[p.~339]{Srednicki2007}.
+	where $A^\mu(t,\vb{x})$ is the Maxwell field or four-potential\footnote{See, for instance, Ref.~\cite[p.~339]{Srednicki2007}.}
 \end{definition}
-\begin{definition}[Local gauge transformation]
-	A local gauge transformation
-	\begin{equation}
-		A_\mu(t,\vb{x})
-		\to
-		A_\mu^\prime(t,\vb{x})
-		=
-		A_\mu(t,\vb{x})
-		+
-		\partial_\mu\Lambda(t,\vb{x})
-		\label{eq:mw_local_gauge_transform}
-	\end{equation}
-	adds the gradient of a scalar field to a (vector) field.\footnote{In a strict sense, a local gauge transformation is defined with respect to the Dirac field and \cref{eq:mw_local_gauge_transform} is a consequence that the Dirac combined with the Maxwell Lagrangian should be invariant under such transformations.}
-\end{definition}
-\begin{theorem}\label{thm:mw_local_gauge_invariance}
-	The physical observables of the Maxwell field are invariant under local gauge transformations.
-\end{theorem}
-Unphysical degrees of freedom of the Maxwell field can be removed by choosing a specific scalar field $\Lambda(t,\vb{x})$ and performing a local gauge transformation.
-The procedure is known as gauge fixing or imposing a gauge and the resulting restriction on the fieldis known as gauge condition.
-Typical gauge conditions are:
-\begin{definition}[Lorentz gauge]
-	The Lorentz gauge,
-	\begin{equation}
-		\partial_\mu
-		A^\mu
-		=
-		0
-		,
-	\end{equation}
-	where the four-gradient of the Maxwell field is zero.
-\end{definition}
-The Lorentz gauge is manifestly Lorentz-covariant~\cite[p.~144]{Greiner2013} and calculations in the Lorentz gauge are valid in any reference frame.
-However, a drawback of the Lorentz gauge is that the quantization procedure becomes more elaborate giving rise to scalar and longitudinal polarization vectors which have to be removed by projecting out unphysical states of the Hilbert space, see Gupta-Beuler quantization in Ref.~\cite[p.~180]{Greiner2013}.
-\begin{definition}[Coulomb gauge]
-	In the Coulomb gauge, the three-gradient of the Maxwell field is zero, $\partial_iA^i=\div\vb{A}=0$.
-\end{definition}
-In contrast to the Lorentz gauge, the Coulomb gauge removes unphysical longitudinal and scalar degrees of freedom from the start by making the Maxwell field transverse at the cost of manifest Lorentz-covariance.
-\begin{definition}[Temporal gauge]
-	In the temporal gauge, the temporal component of the Maxwell field is zero, $A_0=0$.
-\end{definition}
-The Coulomb gauge leaves a residual gauge freedom which is further removed by the temporal gauge.
-\begin{remark}
-	The temporal removes Coulomb interactions, i.e., interactions with a static charge distribution~\cite[p.~200]{Greiner2013}.
-\end{remark}
-
-Quantum optical communication is described in the rest frame of the communication system and it appears natural to renounce manifest Lorentz-covariance for a simplified quantization procedure.
 
 \subsection{Maxwell equations}
 
@@ -99,7 +53,7 @@ Quantum optical communication is described in the rest frame of the communicatio
 	\end{align}
 	see, Ref.~\cite[p.~336]{Srednicki2007}.
 \end{definition}
-\begin{theorem}[Tensor Maxwell equations]\label{thm:tensor_maxwell_equations}
+\begin{restatable}{theorem}{mweqtensor}\label{thm:tensor_maxwell_equations}
 	The manifest Lorentz-covariant Maxwell equations are
 	\begin{align}
 		0
@@ -113,8 +67,8 @@ Quantum optical communication is described in the rest frame of the communicatio
 		F^{\mu\nu}
 		.
 	\end{align}
-\end{theorem}
-\begin{theorem}[Vector Maxwell equations]\label{thm:vector_maxwell_equations}
+\end{restatable}
+\begin{restatable}{theorem}{mweqvector}\label{thm:vector_maxwell_equations}
 	The non-covariant Maxwell equations are
 	\begin{align}
 		\div\vb{E}
@@ -138,11 +92,82 @@ Quantum optical communication is described in the rest frame of the communicatio
 		\partial_t\vb{E}
 		\label{eq:mw_inhomo_vec}
 	\end{align}
-\end{theorem}
+\end{restatable}
 
-\subsection{Mode expansion}
+\subsection{Local gauge invariance}
+\begin{definition}[Local gauge transformation]
+	A local gauge transformation
+	\begin{equation}
+		A_\mu(t,\vb{x})
+		\to
+		A_\mu^\prime(t,\vb{x})
+		=
+		A_\mu(t,\vb{x})
+		+
+		\partial_\mu\Lambda(t,\vb{x})
+		\label{eq:mw_local_gauge_transform}
+	\end{equation}
+	adds the gradient of a scalar field to a (vector) field.\footnote{In a strict sense, a local gauge transformation is defined with respect to the Dirac field and \cref{eq:mw_local_gauge_transform} is a consequence that the Dirac combined with the Maxwell Lagrangian should be invariant under such transformations.}
+\end{definition}
+\begin{restatable}{theorem}{mwlogalgaugeinvariance}\label{thm:mw_local_gauge_invariance}
+	The physical observables of the Maxwell field are invariant under local gauge transformations.
+\end{restatable}
+Unphysical degrees of freedom of the Maxwell field can be removed by choosing a specific scalar field $\Lambda(t,\vb{x})$ and performing a local gauge transformation.
+The procedure is known as gauge fixing or imposing a gauge and the resulting restriction on the fieldis known as gauge condition.
+Typical gauge conditions are:
+\begin{definition}[Lorentz gauge]
+	The Lorentz gauge,
+	\begin{equation}
+		\partial_\mu
+		A^\mu
+		=
+		0
+		,
+	\end{equation}
+	where the four-gradient of the Maxwell field is zero.
+\end{definition}
+The Lorentz gauge is manifestly Lorentz-covariant and calculations in the Lorentz gauge are valid in any reference frame.\footnote{See, for instance, Ref.~\cite[p.~144]{Greiner2013}.}
+However, a drawback of the Lorentz gauge is that the quantization procedure becomes more elaborate giving rise to scalar and longitudinal polarization vectors which have to be removed by projecting out unphysical states of the Hilbert space, see Gupta-Beuler quantization in Ref.~\cite[p.~180]{Greiner2013}.
+\begin{definition}[Coulomb gauge]
+	In the Coulomb gauge, the three-gradient of the Maxwell field is zero, $\partial_iA^i=\div\vb{A}=0$.
+\end{definition}
+In contrast to the Lorentz gauge, the Coulomb gauge removes unphysical longitudinal and scalar degrees of freedom from the start by making the Maxwell field transverse at the cost of manifest Lorentz-covariance.
+\begin{definition}[Temporal gauge]
+	In the temporal gauge, the temporal component of the Maxwell field is zero, $A_0=0$.
+\end{definition}
+The Coulomb gauge leaves a residual gauge freedom which is further removed by the temporal gauge.
+The temporal removes Coulomb interactions, i.e., interactions with a static charge distribution~\cite[p.~200]{Greiner2013}.
 
-\begin{theorem}
+
+\subsection{Coulomb gauge}
+
+Quantum optical communication is described in the rest frame of the communication system and it appears natural to renounce manifest Lorentz-covariance for a simplified quantization procedure.
+\begin{restatable}{lemma}{mwcoulomblagrangian}\label{thm:mw_coulomb_lagrangian}
+	The Maxwell Lagrangian in the Coulomb and temporal gauge is
+	\begin{equation}
+		\mathcal{L}
+		=
+		-
+		\frac{1}{2}
+		\left(\partial_t A_i\right)
+		\left(\partial_t A^i\right)
+		-
+		\frac{1}{2}
+		\left(\partial_i A_j\right)
+		\left(\partial^i A^j\right)
+		+
+		J_i A^i
+		\label{eq:mw_coulomb_lagrangian}
+		.
+	\end{equation}
+\end{restatable}
+\begin{restatable}{lemma}{mwcoulombeom}\label{thm:mw_coulomb_eom}
+	The Maxwell field in the Coulomb gauge has the equation of motion
+	\begin{equation}
+		
+	\end{equation}
+\end{restatable}
+\begin{restatable}{theorem}{mwcoulombmodeexpansion}\label{thm:mw_coulomb_mode_expansion}
 	The mode expansion of the Maxwell field in the Coulomb gauge is
 	\begin{equation}
 		\vb{A}(t,\vb{x})
@@ -158,11 +183,7 @@ Quantum optical communication is described in the rest frame of the communicatio
 		\right\}
 		\label{eq:mw_ft}
 	\end{equation}
-\end{theorem}
-\begin{proof}
-	As with the Klein-Gordon field, we start with the four-dimensional Fourier transform of $A^\mu(t,\vb{x})$, insert it into the free equations of motion ($J^\mu=0$), and perform the mode decomposition.
-	To account for the vector nature of the Maxwell field, we introduce the generic basis vectors $\boldsymbol{\epsilon}_\lambda(\vb{p})$.
-\end{proof}
+\end{restatable}
 \begin{theorem}
 	The polarization basis vectors satisfy~\cite[p.~341]{Srednicki2007}
 	\begin{align}

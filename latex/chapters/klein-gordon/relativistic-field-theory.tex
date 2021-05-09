@@ -15,7 +15,7 @@
 	\end{equation}
 	describes a real-valued massive scalar field $\phi(t,\vb{x})$.
 \end{definition}
-The Klein-Gordon Lagrangian is manifest Lorentz-covariant, i.e., as a Lorentz scalar, the Klein-Gordon Lagrangian is invariant under Lorentz transformations and thereby valid in any reference frame.
+The Klein-Gordon Lagrangian is manifest Lorentz-invariant, i.e., as a Lorentz scalar, the Klein-Gordon Lagrangian is invariant under Lorentz transformations and thereby valid in any reference frame.
 \begin{restatable}[Relativistic energy-momentum relation]{theorem}{rem}\label{th:relativistic_energy_momentum}
 	Excitations of the Klein-Gordon field satisfy the relativistic energy-momentum relation
 	\begin{equation}
@@ -53,10 +53,10 @@ The Klein-Gordon Lagrangian is manifest Lorentz-covariant, i.e., as a Lorentz sc
 		=
 		\pdv{\mathcal{L}}{(\partial_\mu\phi)}\partial^\nu\phi
 		-
-		g^{\mu\nu}\mathcal{L}
+		\eta^{\mu\nu}\mathcal{L}
 		\label{eq:energy_momentum_tensor}
-		.
 	\end{equation}
+	where $\eta^{\mu\nu}$ is the Minkowski metric.
 	The energy-momentum tensor's components encode the energy density $T^{00}$, the momentum density $T^{0i}$, and the stress densities $T^{ij}$.
 \end{definition}
 \begin{lemma}\label{thm:kg_energy_density}
@@ -107,7 +107,7 @@ The Klein-Gordon Lagrangian is manifest Lorentz-covariant, i.e., as a Lorentz sc
 		\biggl\{
 			a(\vb{p})
 			e^{-ip_\mu x^\mu}
-			+
+			-
 			a(\vb{p})^*
 			e^{+ip_\mu x^\mu}
 		\biggr\}_{p_0=\omega(\vb{p})}
