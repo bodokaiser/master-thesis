@@ -19,40 +19,200 @@
 	\end{equation}
 	where $A^\mu(t,\vb{x})$ is the Maxwell field or four-potential\footnote{See, for instance, Ref.~\cite[p.~339]{Srednicki2007}.}
 \end{definition}
-
-\subsection{Maxwell equations}
-
 \begin{definition}[Field-strength tensor]
-	The Maxwell's field covariant field-strength tensor is
-	\begin{equation}
+	The Maxwell's field covariant field-strength tensor and its dual are
+	\begin{align}
 		F^{\mu\nu}
 		=
 		\partial^\mu A^\nu
 		-
 		\partial^\nu A^\mu
-	\end{equation}
-	and its dual is
-	\begin{equation}
+		&&
 		\tilde{F}^{\mu\nu}
 		=
 		\frac{1}{2}
 		\varepsilon^{\mu\nu\alpha\beta}
 		F_{\alpha\beta}
-	\end{equation}
+	\end{align}
 	where $\varepsilon^{\mu\nu\alpha\beta}$ is the generalized antisymmetric tensor.
-	The components of the field-strength tensor relate to the components of the physical electromagnetic field
+	The components of the field-strength tensor relate to the components of the physical electromagnetic field~\cite[p.~336]{Srednicki2007}.
 	\begin{align}
 		F^{0i}
 		=
-		E^i
+		-E^i
 		&&
 		F^{ij}
 		=
-		\varepsilon^{ijk}B_k
+		-\varepsilon^{ijk}B_k
 		\label{eq:mw_field_strength_components}
+		.
 	\end{align}
-	see, Ref.~\cite[p.~336]{Srednicki2007}.
 \end{definition}
+\begin{lemma}
+	\begin{align}
+		F_{0i}
+		=
+		&&
+		F_{ij}
+		=
+		.
+	\end{align}	
+\end{lemma}
+\begin{proof}
+	\begin{equation*}
+		F_{0i}
+		=
+		\eta_{0\mu}
+		\eta_{i\nu}
+		F^{\mu\nu}
+		=
+		\eta_{00}
+		\eta_{ij}
+		F^{0j}
+		=
+		-
+		\delta_{ij}
+		(-E^j)
+		=
+		E_i		
+	\end{equation*}
+	\begin{equation*}
+		F_{ij}
+		=
+		\eta_{i\mu}
+		\eta_{j\nu}
+		F^{\mu\nu}
+		=
+		\eta_{i0}
+		\eta_{jk}
+		F^{0k}
+		+
+		\eta_{ik}
+		\eta_{j0}
+		F^{k0}
+		=
+	\end{equation*}
+\end{proof}
+\begin{restatable}{lemma}{mwfieldstrengthcontracted}\label{thm:mw_field_strength_contracted}
+	Contracting the field-strength tensor and its dual yields
+		\begin{align}
+		F_{\mu\nu}
+		F^{\mu\nu}
+		=
+		-2
+		\left(
+			\vb{E}^2
+			-
+			\vb{B}^2
+		\right)
+		&&
+		\tilde{F}_{\mu\nu}
+		F^{\mu\nu}
+		=
+		-
+		4
+		\vb{E}
+		\vdot
+		\vb{B}
+		.
+	\end{align}
+\end{restatable}
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			F_{\mu\nu}
+			F^{\mu\nu}
+			&=
+			F_{0\nu}
+			F^{0\nu}
+			+
+			F_{i\nu}
+			F^{i\nu}
+			\\
+			&=
+			F_{0i}
+			F^{0i}
+			+
+			F_{i0}
+			F^{i0}
+			+
+			F_{ij}
+			F^{ij}
+			\\
+			&=
+			2
+			F_{0i}
+			F^{0i}
+			+
+			F_{ij}
+			F^{ij}
+			\\
+			&=
+			-2
+			E_i
+			E^i
+			-
+			\varepsilon^{ijk}B_k
+			\varepsilon_{ijl}B^k
+			\\
+			&=
+			-
+			2
+			E_i
+			E^i
+			-
+			2
+			B_k
+			B^k
+			\\
+			&=
+			-
+			2
+			\left(
+				\vb{E}^2
+				+
+				\vb{B}^2
+			\right)
+		\end{split}
+	\end{equation*}
+	\begin{equation*}
+		\begin{split}
+			\tilde{F}_{\mu\nu}
+			F^{\mu\nu}
+			&=
+			\frac{1}{2}
+			\varepsilon^{\mu\nu\alpha\beta}
+			F_{\alpha\beta}
+			F^{\mu\nu}
+		\end{split}
+	\end{equation*}
+\end{proof}
+\begin{restatable}{lemma}{mwfieldstrengthlagrangian}\label{thm:mw_field_strength_lagrangian}
+	The Maxwell Lagrangian can be written
+	\begin{equation}
+		\mathcal{L}
+		=
+		-
+		\frac{1}{4}
+		F_{\mu\nu}
+		F^{\mu\nu}
+		-
+		J_\mu A^\mu
+		=
+		\frac{1}{2}
+		\left(
+			\vb{E}^2
+			-
+			\vb{B}^2
+		\right)
+		-
+		\rho A^0
+		+
+		\vb{J}\vdot\vb{A}
+	\end{equation}
+	where $\rho$ is a charge and $\vb{J}$ a current density.
+\end{restatable}
+
 \begin{restatable}{theorem}{mweqtensor}\label{thm:tensor_maxwell_equations}
 	The manifest Lorentz-covariant Maxwell equations are
 	\begin{align}
@@ -94,7 +254,6 @@
 	\end{align}
 \end{restatable}
 
-\subsection{Local gauge invariance}
 \begin{definition}[Local gauge transformation]
 	A local gauge transformation
 	\begin{equation}
@@ -113,9 +272,9 @@
 	The physical observables of the Maxwell field are invariant under local gauge transformations.
 \end{restatable}
 Unphysical degrees of freedom of the Maxwell field can be removed by choosing a specific scalar field $\Lambda(t,\vb{x})$ and performing a local gauge transformation.
-The procedure is known as gauge fixing or imposing a gauge and the resulting restriction on the fieldis known as gauge condition.
+The procedure is known as gauge fixing or imposing a gauge and the resulting restriction on the field is known as gauge condition.
 Typical gauge conditions are:
-\begin{definition}[Lorentz gauge]
+\begin{definition}[Lorenz gauge]
 	The Lorentz gauge,
 	\begin{equation}
 		\partial_\mu
@@ -126,7 +285,7 @@ Typical gauge conditions are:
 	\end{equation}
 	where the four-gradient of the Maxwell field is zero.
 \end{definition}
-The Lorentz gauge is manifestly Lorentz-covariant and calculations in the Lorentz gauge are valid in any reference frame.\footnote{See, for instance, Ref.~\cite[p.~144]{Greiner2013}.}
+The Lorenz gauge is manifestly Lorentz-covariant and calculations in the Lorenz gauge are valid in any reference frame.\footnote{See, for instance, Ref.~\cite[p.~144]{Greiner2013}.}
 However, a drawback of the Lorentz gauge is that the quantization procedure becomes more elaborate giving rise to scalar and longitudinal polarization vectors which have to be removed by projecting out unphysical states of the Hilbert space, see Gupta-Beuler quantization in Ref.~\cite[p.~180]{Greiner2013}.
 \begin{definition}[Coulomb gauge]
 	In the Coulomb gauge, the three-gradient of the Maxwell field is zero, $\partial_iA^i=\div\vb{A}=0$.
@@ -138,10 +297,36 @@ In contrast to the Lorentz gauge, the Coulomb gauge removes unphysical longitudi
 The Coulomb gauge leaves a residual gauge freedom which is further removed by the temporal gauge.
 The temporal removes Coulomb interactions, i.e., interactions with a static charge distribution~\cite[p.~200]{Greiner2013}.
 
-
-\subsection{Coulomb gauge}
-
 Quantum optical communication is described in the rest frame of the communication system and it appears natural to renounce manifest Lorentz-covariance for a simplified quantization procedure.
+\begin{restatable}{lemma}{mwcoulombfixing}
+	Choosing the local gauge field $\Lambda$ such that
+	\begin{align}
+		\laplacian
+		\Lambda
+		=
+		-
+		\div\vb{A}
+		&&
+		\partial_t
+		\Lambda
+		=
+		-
+		A_0
+	\end{align}
+	implements the Coulomb and temporal gauge.
+\end{restatable}
+\begin{restatable}{lemma}{mwcoulombtransverse}
+	In the Coulomb gauge, the Maxwell field is transverse, i.e.,
+	\begin{equation}
+		\vb{A}
+		\to
+		P_\perp
+		\vb{A}
+		=
+		\vb{A}_\perp
+		.
+	\end{equation}
+\end{restatable}
 \begin{restatable}{lemma}{mwcoulomblagrangian}\label{thm:mw_coulomb_lagrangian}
 	The Maxwell Lagrangian in the Coulomb and temporal gauge is
 	\begin{equation}
@@ -162,15 +347,24 @@ Quantum optical communication is described in the rest frame of the communicatio
 	\end{equation}
 \end{restatable}
 \begin{restatable}{lemma}{mwcoulombeom}\label{thm:mw_coulomb_eom}
-	The Maxwell field in the Coulomb gauge has the equation of motion
+	The Maxwell field in the Coulomb gauge has the equation of motion become
 	\begin{equation}
-		
+		\vb{J}_\perp
+		=
+		\partial_t^2\vb{A}_\perp
+		-
+		\laplacian\vb{A}_\perp
+		=
+		\partial_\mu \partial^\mu
+		\vb{A}_\perp
+		\label{eq:mw_coulomb_eom}
+		.
 	\end{equation}
 \end{restatable}
 \begin{restatable}{theorem}{mwcoulombmodeexpansion}\label{thm:mw_coulomb_mode_expansion}
 	The mode expansion of the Maxwell field in the Coulomb gauge is
 	\begin{equation}
-		\vb{A}(t,\vb{x})
+		\vb{A}_\perp(t,\vb{x})
 		=
 		\sum_{\lambda=1,2}
 		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
@@ -181,11 +375,9 @@ Quantum optical communication is described in the rest frame of the communicatio
 			+
 			\text{c.c.}
 		\right\}
-		\label{eq:mw_ft}
+		\label{eq:mw_coulomb_mode_expansion}
 	\end{equation}
-\end{restatable}
-\begin{theorem}
-	The polarization basis vectors satisfy~\cite[p.~341]{Srednicki2007}
+	with $\omega(\vb{p})=\norm{\vb{p}}$ where the polarization basis vectors satisfy~\cite[p.~341]{Srednicki2007}
 	\begin{align}
 		\vb{p}
 		\vdot
@@ -206,9 +398,27 @@ Quantum optical communication is described in the rest frame of the communicatio
 		\delta^{ij}
 		-
 		\frac{p^ip^j}{\vb{p}^2}
+		=
+		P_\perp
+		\label{eq:mw_coulomb_polarization_basis}
+		,
 	\end{align}
-\end{theorem}
+	i.e., the two polarization are orthonormal and orthogonal to the momentum vector.
+\end{restatable}
+\begin{corollary}
+	The canonical momentum density
+	\begin{equation}
+		\pi(t,\vb{x})
+		=
+		\partial_t\pdv{\mathcal{L}}{(\partial_t\vb{A})}
+		=
+		\vb{E}(t,\vb{x})
+		\label{eq:mw_coulomb_mom}.
+	\end{equation}
+	is equal to the electric field.
+\end{corollary}
 \begin{theorem}
+	The mode expansion of the electric and magnetic field
 	\begin{align}
 		\vb{E}(t,\vb{x})
 		&=
@@ -241,17 +451,6 @@ Quantum optical communication is described in the rest frame of the communicatio
 		\right\}
 	\end{align}
 \end{theorem}
-\begin{lemma}
-	The canonical momentum density turns out to be the electric field
-	\begin{equation}
-		\pi(t,\vb{x})
-		=
-		\partial_t\pdv{\mathcal{L}}{(\partial_t\vb{A})}
-		=
-		\vb{E}(t,\vb{x})
-		\label{eq:mw_mom}.
-	\end{equation}
-\end{lemma}
 \begin{lemma}\label{thm:mw_energy}
 	The field energy is equal to
 	\begin{equation}

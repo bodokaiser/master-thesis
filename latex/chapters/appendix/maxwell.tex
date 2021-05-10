@@ -180,6 +180,78 @@
 
 \subsection{Coulomb gauge}
 
+\mwcoulombfixing
+\begin{proof}
+	The time component of the Maxwell field transforms under the suggested local gauge transformation as
+	\begin{equation*}
+		A^0
+		\to
+		A^0
+		+
+		\partial^0\Lambda
+		=
+		A^0
+		+
+		\partial_t\Lambda
+		=
+		0
+	\end{equation*}
+	and the spatial components transform as
+	\begin{equation*}
+		A^i
+		\to
+		A^i
+		+
+		\partial^i\Lambda
+		.
+	\end{equation*}
+	Taking the spatial derivative of the former, we see that the Coulomb gauge is satisfied
+	\begin{equation*}
+		\partial_i A^i
+		\to
+		\partial_i A^i
+		+
+		\partial_i \partial^i\Lambda
+		=
+		\partial_i A^i
+		-
+		\partial_i A^i
+		=
+		0
+		.
+	\end{equation*}
+	It is important to note that it is incorrect to deduce
+	\begin{equation*}
+		\partial_i
+		\Lambda
+		=
+		-
+		\partial_i A^i
+	\end{equation*}
+	as then $A^i=0$.
+\end{proof}
+\mwcoulombtransverse
+\begin{proof}
+	We first show that the transverse Maxwell field $\vb{A}_\perp$ satisfies the Coulomb gauge
+	\begin{equation*}
+		\div\vb{A}
+		=
+		\partial_i
+		\left(
+			\delta^{ij}
+			-
+			\frac{\partial^i\partial^j}{\laplacian}
+		\right)
+		A_j
+		=
+		\partial_iA^i
+		-
+		\partial_jA^j
+		=
+		0
+		.
+	\end{equation*}
+\end{proof}
 \mwcoulomblagrangian
 \begin{proof}
 	Expanding the indices of the first term
@@ -270,10 +342,22 @@
 	\end{equation*}
 	combined with the Coulomb gauge condition $\partial_j A^j=0$.
 	The former equation is in agreement with the result reported in Ref.~\cite[p.~340]{Srednicki2007}.
+	Identifying $E^i=\partial_t A^i$ and $B^i=\varepsilon^{ijk}\partial_j A_k$
 \end{proof}
 
 \mwcoulombmodeexpansion
 \begin{proof}
-	As with the Klein-Gordon field, we start with the four-dimensional Fourier transform of $A^\mu(t,\vb{x})$, insert it into the free equations of motion ($J^\mu=0$), and perform the mode decomposition.
-	To account for the vector nature of the Maxwell field, we introduce the generic basis vectors $\boldsymbol{\epsilon}_\lambda(\vb{p})$.
+	Inserting \cref{eq:mw_coulomb_mode_expansion} into the free equations of motion \cref{eq:mw_coulomb_eom}, we find
+	\begin{equation*}
+		0
+		=
+		p_\mu p^\mu
+		=
+		p_0^2
+		-
+		\vb{p}^2
+	\end{equation*}
+	which is satisfied if $p_0=\omega(\vb{p})$.
+	$\vb{p}\vdot\boldsymbol{\varepsilon}_\lambda(\vb{p})=0$ follows from the Coulomb gauge $\div\vb{A}=0$.
+	Orthogonality of the polarization vectors $\boldsymbol{\varepsilon}_1(\vb{p})\perp\boldsymbol{\varepsilon}_2(\vb{p})$ is required to have a complete solution and choosing the polarization vectors to be orthonormal is a convenient choice.
 \end{proof}

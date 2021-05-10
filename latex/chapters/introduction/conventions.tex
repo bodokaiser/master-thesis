@@ -66,4 +66,29 @@ Let $a,b$ be two Minkowski vectors, then their Minkowski product is
 	\vb{a}\vdot\vb{b}
 	.
 \end{equation}
-The former equation tell'su 
+
+\begin{definition}\label{def:projector_long_trans}
+	The transverse and longitudinal projection operators are
+	\begin{align}
+		P_\perp^{ij}
+		=
+		\delta^{ij}
+		-
+		\frac{\partial^i\partial^j}{\laplacian}
+		&&
+		P_\parallel^{ij}
+		=
+		\frac{\partial^i\partial^j}{\laplacian}
+		\label{eq:projector_long_trans}
+		.
+	\end{align}
+\end{definition}
+
+TODOs:
+\begin{enumerate}
+	\item Difference between $\vb{a}=a^i\vu{e}_i$ and $a=a^\mu\vu{e}_\mu$.
+	\item Einstein summation, Kronecker-delta $\delta_{ij}$, Levi-Cevita epsilon $\varepsilon_{ijk}$.
+	\item Lowering and raising of indices with metric.
+	\item Difference between $\phi$ and $\hat\phi$.
+	\item Difference $\hat{P^\mu},\hat{\vb{P}},\hat{H},\vb{p}$.
+\end{enumerate}

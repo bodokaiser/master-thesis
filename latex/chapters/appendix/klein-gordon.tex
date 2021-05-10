@@ -477,8 +477,10 @@
 		\delta_{ij}
 		-
 		\frac{k_ik_j}{\vb{k}^2}
+		=
+		P_\perp
 	\end{equation*}
-	turns out to be equal to the transverse projector $P_T(\vb{k})$ which projects out the components orthogonal to $\vb{k}$.
+	turns out to be equal to the transverse projector, see \Cref{def:projector_long_trans}.
 	Inserting the transverse project, we find the non-relativistic Gaussian spectrum to be approximately equal to
 	\begin{equation*}
 		f(\vb{p})
@@ -487,7 +489,7 @@
 			-
 			\frac{
 				(\vb{p}-\vb{k})^\trans
-				P_T(\vb{k})
+				P_\perp(\vb{k})
 				(\vb{p}-\vb{k})
 			}{4\sigma^2}
 		\right\}
@@ -495,7 +497,7 @@
 		\exp\left\{
 			-
 			\frac{
-				\vb{p}_T^2
+				\vb{p}_\perp^2
 			}{4\sigma^2}
 		\right\}
 		.
