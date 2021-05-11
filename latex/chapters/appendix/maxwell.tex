@@ -1,29 +1,388 @@
 \section{Relativistic field theory}
 
-\begin{lemma}
-	The field-strength tensor is antisymmetric $F^{\mu\nu}=-F^{\nu\mu}$.
-\end{lemma}
+\mwfieldstrengthlagrangian
 \begin{proof}
+	Inserting the definition of the field-strength tensor \cref{eq:mw_field_strength_tensors} into the free term of the Lagrangian \cref{eq:mw_field_strength_lagrangian}
 	\begin{equation*}
-		F^{\mu\nu}
-		=
-		\partial^\mu A^\nu
-		-
-		\partial^\nu A^\mu
-		=
-		-
-		\left(
-			\partial^\nu A^\mu
+		\begin{split}
 			-
-			\partial^\mu A^\nu
+			\frac{1}{4}
+			F_{\mu\nu}
+			F^{\mu\nu}
+			&=
+			-
+			\frac{1}{4}
+			\left(
+				\partial_\mu A_\nu
+				-
+				\partial_\nu A_\mu
+			\right)
+			\left(
+				\partial^\mu A^\nu
+				-
+				\partial^\nu A^\mu
+			\right)
+			\\
+			&=
+			-
+			\frac{1}{4}
+			\left[
+				(\partial_\mu A_\nu)
+				(\partial^\mu A^\nu)
+				-
+				(\partial_\mu A_\nu)
+				(\partial^\nu A^\mu)
+				-
+				(\partial_\nu A_\mu)
+				(\partial^\mu A^\nu)
+				+
+				(\partial_\nu A_\mu)
+				(\partial^\nu A^\mu)
+			\right]
+			\\
+			&=
+			-
+			\frac{1}{4}
+			\left[
+				(\partial_\mu A_\nu)
+				(\partial^\mu A^\nu)
+				-
+				(\partial_\mu A_\nu)
+				(\partial^\nu A^\mu)
+				-
+				(\partial_\nu A_\mu)
+				(\partial^\mu A^\nu)
+				+
+				(\partial_\nu A_\mu)
+				(\partial^\nu A^\mu)
+			\right]
+			\\
+			&=
+			-
+			\frac{1}{4}
+			\left[
+				(\partial_\mu A_\nu)
+				(\partial^\mu A^\nu)
+				-
+				(\partial_\mu A_\nu)
+				(\partial^\nu A^\mu)
+				-
+				(\partial_\mu A_\nu)
+				(\partial^\nu A^\mu)
+				+
+				(\partial_\mu A_\nu)
+				(\partial^\mu A^\nu)
+			\right]
+			\\
+			&=
+			-
+			\frac{1}{2}
+			\left[
+				(\partial_\mu A_\nu)
+				(\partial^\mu A^\nu)
+				-
+				(\partial_\mu A_\nu)
+				(\partial^\nu A^\mu)
+			\right]
+			\\
+			&=
+			\frac{1}{2}
+			(\partial_\mu A_\nu)
+			\left(
+				\partial_\mu A_\nu
+				-
+				\partial^\mu A^\nu
+			\right)
+			.
+		\end{split}
+	\end{equation*}
+\end{proof}
+\mweom
+\begin{proof}
+	Using the Lagrangian in terms of the field-strength tensor, we first calculate
+	\begin{equation*}
+		\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+		=
+		-
+		\frac{1}{2}
+		F^{\alpha\beta}
+		\pdv{F^{\alpha\beta}}{(\partial_\mu A_\nu)}
+		=
+		-
+		\frac{1}{2}
+		F^{\alpha\beta}
+		\left(
+			\delta^\alpha_\mu
+			\delta^\beta_\nu
+			-
+			\delta^\alpha_\nu
+			\delta^\beta_\mu
 		\right)
 		=
 		-
+		\frac{1}{2}
+		F^{\mu\nu}
+		+
+		\frac{1}{2}
 		F^{\nu\mu}
+		=
+		-
+		F^{\mu\nu}
+	\end{equation*}
+	and use the result for the Euler-Lagrange equations
+	\begin{equation*}
+		0
+		=
+		\partial_\mu
+		\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+		-
+		\pdv{\mathcal{L}}{A_\nu}
+		=
+		-
+		\partial_\mu
+		F^{\mu\nu}
+		+
+		J^\nu
+		.
 	\end{equation*}
 \end{proof}
 
-\subsection{Maxwell equations}
+\mwfieldstrengthextended
+\begin{proof}
+	Raising, lowering and contracting the indices, we find
+	\begin{align*}
+		F_{0i}
+		&=
+		\eta_{0\mu}
+		\eta_{i\nu}
+		F^{\mu\nu}
+		=
+		\eta_{00}
+		\eta_{ij}
+		F^{0j}
+		=
+		-
+		\delta_{ij}
+		F^{0j}
+		=
+		-
+		F^{0i}
+		\\
+		F_{ij}
+		&=
+		\eta_{i\mu}
+		\eta_{j\nu}
+		F^{\mu\nu}
+		=
+		\eta_{ik}
+		\eta_{jl}
+		F^{kl}
+		=
+		\delta_{ik}
+		\delta_{jl}
+		F^{kl}
+		=
+		F^{ij}
+	\end{align*}
+	for the field-strength tensor.
+	For its dual, we first note
+	\begin{equation*}
+		\tilde{F}_{\mu\nu}
+		=
+		\eta_{\mu\sigma}
+		\eta_{\nu\rho}
+		\tilde{F}^{\sigma\rho}
+		=
+		\frac{1}{2}
+		\eta_{\mu\sigma}
+		\eta_{\nu\rho}
+		\varepsilon^{\sigma\rho\alpha\beta}
+		F_{\alpha\beta}
+		=
+		\frac{1}{2}
+		\varepsilon_{\mu\nu}^{\ \ \alpha\beta}
+		\eta_{\alpha\sigma}
+		\eta_{\beta\rho}
+		F^{\sigma\rho}
+		=
+		\frac{1}{2}
+		\varepsilon_{\mu\nu\alpha\beta}
+		F^{\alpha\beta}
+	\end{equation*}
+	and then
+	\begin{align*}
+		\tilde{F}^{0i}
+		&=
+		\frac{1}{2}
+		\varepsilon^{0i\alpha\beta}
+		F_{\alpha\beta}
+		=
+		\frac{1}{2}
+		\varepsilon^{ijk}
+		F_{jk}
+		=
+		\frac{1}{2}
+		\varepsilon^{ijk}
+		\varepsilon_{jkl}
+		B^l
+		=
+		\delta^i_l
+		B^l
+		=
+		B^i
+		\\
+		\tilde{F}^{ij}
+		&=
+		\frac{1}{2}
+		\varepsilon^{ij\alpha\beta}
+		F_{\alpha\beta}
+		=
+		\frac{1}{2}
+		\varepsilon^{ij0\beta}
+		F_{0\beta}
+		+
+		\frac{1}{2}
+		\varepsilon^{ijk\beta}
+		F_{k\beta}
+		=
+		\frac{1}{2}
+		\varepsilon^{ij0k}
+		F_{0k}
+		+
+		\frac{1}{2}
+		\varepsilon^{ijk0}
+		F_{k0}
+		\\
+		&=
+		-
+		\frac{1}{2}
+		\varepsilon^{ijk0}
+		F_{0k}
+		-
+		\frac{1}{2}
+		\varepsilon^{ijk0}
+		F_{0k}
+		=
+		-
+		\varepsilon^{ijk}
+		E_k
+		.
+	\end{align*}
+\end{proof}
+\mwfieldstrengthcontracted
+\begin{proof}
+	For the first contraction, we find
+	\begin{equation*}
+		\begin{split}
+			F_{\mu\nu}
+			F^{\mu\nu}
+			&=
+			F_{0\nu}
+			F^{0\nu}
+			+
+			F_{i\nu}
+			F^{i\nu}
+			\\
+			&=
+			F_{0i}
+			F^{0i}
+			+
+			F_{i0}
+			F^{i0}
+			+
+			F_{ij}
+			F^{ij}
+			\\
+			&=
+			2
+			F_{0i}
+			F^{0i}
+			+
+			F_{ij}
+			F^{ij}
+			\\
+			&=
+			-2
+			E_i
+			E^i
+			+
+			\varepsilon^{ijk}B_k
+			\varepsilon_{ijl}B^l
+			\\
+			&=
+			-
+			2
+			E_i
+			E^i
+			+
+			2
+			B_k
+			B^k
+			\\
+			&=
+			-
+			2
+			\left(
+				\vb{E}^2
+				-
+				\vb{B}^2
+			\right)
+		\end{split}
+	\end{equation*}
+	and for the second contraction
+	\begin{equation*}
+		\begin{split}
+			\tilde{F}_{\mu\nu}
+			F^{\mu\nu}
+			&=
+			\tilde{F}_{0\nu}
+			F^{0\nu}
+			+
+			\tilde{F}_{i\nu}
+			F^{i\nu}
+			\\
+			&=
+			\tilde{F}_{0i}
+			F^{0i}
+			+
+			\tilde{F}_{i0}
+			F^{i0}
+			+
+			\tilde{F}_{ij}
+			F^{ij}
+			\\
+			&=
+			2
+			\tilde{F}_{0i}
+			F^{0i}
+			+
+			\tilde{F}_{ij}
+			F^{ij}
+			\\
+			&=
+			-
+			2B_iE^i
+			-
+			\varepsilon_{ijk}E^k
+			\varepsilon^{ijkl}B_l
+			\\
+			&=
+			-
+			2B_iE^i
+			-
+			2
+			E^k
+			\delta_k^l
+			B_l
+			\\
+			&=
+			-
+			4
+			\vb{E}\vdot\vb{B}
+			.
+		\end{split}
+	\end{equation*}
+\end{proof}
 
 \mweqtensor
 \begin{proof}

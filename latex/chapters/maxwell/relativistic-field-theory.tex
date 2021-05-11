@@ -1,23 +1,22 @@
 \section{Relativistic field theory}
 
 \begin{definition}[Maxwell Lagrangian]
-	The Maxwell Lagrangian including an external classical source field $J^\mu(t,\vb{x})$ is
+	The Lagrangian of the Maxwell field $A^\mu(x^\mu)$ interacting with an external source $J^\mu(x^\mu)$ is~\cite[p.~339]{Srednicki2007}.
 	\begin{equation}
 		\mathcal{L}
 		=
-		-
 		\frac{1}{2}
 		(\partial_\mu A_\nu)
-		(\partial^\mu A^\nu)
-		+
-		\frac{1}{2}
-		(\partial_\mu A_\nu)
-		(\partial^\nu A^\mu)
+		\left(
+			\partial^\nu A^\mu
+			-
+			\partial^\mu A^\nu
+		\right)
 		-
 		J_\mu A^\mu
 		\label{eq:mw_lagrangian}
+		.
 	\end{equation}
-	where $A^\mu(t,\vb{x})$ is the Maxwell field or four-potential\footnote{See, for instance, Ref.~\cite[p.~339]{Srednicki2007}.}
 \end{definition}
 \begin{definition}[Field-strength tensor]
 	The Maxwell's field covariant field-strength tensor and its dual are
@@ -33,9 +32,10 @@
 		\frac{1}{2}
 		\varepsilon^{\mu\nu\alpha\beta}
 		F_{\alpha\beta}
+		\label{eq:mw_field_strength_tensors}
 	\end{align}
 	where $\varepsilon^{\mu\nu\alpha\beta}$ is the generalized antisymmetric tensor.
-	The components of the field-strength tensor relate to the components of the physical electromagnetic field~\cite[p.~336]{Srednicki2007}.
+	The components of the field-strength tensor are
 	\begin{align}
 		F^{0i}
 		=
@@ -45,54 +45,81 @@
 		=
 		-\varepsilon^{ijk}B_k
 		\label{eq:mw_field_strength_components}
-		.
 	\end{align}
+	where $E^i$ and $B_k$ are electric respective magnetic field components~\cite[p.~336]{Srednicki2007}.
 \end{definition}
-\begin{lemma}
+\begin{corollary}
+	The field-strength tensors are antisymmetric
+	\begin{align}
+		F^{\mu\nu}
+		=
+		-
+		F^{\nu\mu}
+		&&
+		\tilde{F}^{\mu\nu}
+		=
+		-
+		\tilde{F}^{\nu\mu}
+	\end{align}
+	implying vanishing diagonal components $F^{\mu\mu}=0=\tilde{F}^{\mu\mu}$.
+\end{corollary}
+\begin{restatable}{lemma}{mwfieldstrengthlagrangian}\label{thm:mw_field_strength_lagrangian}
+	Using the field-strength tensor $F^{\mu\nu}$, the Maxwell Lagrangian becomes
+	\begin{equation}
+		\mathcal{L}
+		=
+		-
+		\frac{1}{4}
+		F_{\mu\nu}
+		F^{\mu\nu}
+		-
+		J_\mu A^\mu
+		\label{eq:mw_field_strength_lagrangian}
+	\end{equation}
+\end{restatable}
+\begin{restatable}{lemma}{mweom}\label{thm:mw_eom}
+	The dynamics of the Maxwell field are governed by the equations of motion
+	\begin{equation}
+		J^\mu
+		=
+		\partial_\mu
+		F^{\mu\nu}
+		\label{eq:mw_eom}
+		.
+	\end{equation}
+\end{restatable}
+\begin{restatable}{lemma}{mwfieldstrengthextended}\label{thm:mw_field_strength_extended}
+	The lower-indices field-strength tensors relate to the upper-indices by
 	\begin{align}
 		F_{0i}
 		=
+		-
+		F^{0i}
+		=
+		-
+		E^i
 		&&
 		F_{ij}
 		=
-		.
-	\end{align}	
-\end{lemma}
-\begin{proof}
-	\begin{equation*}
-		F_{0i}
+		F^{ij}
 		=
-		\eta_{0\mu}
-		\eta_{i\nu}
-		F^{\mu\nu}
+		\varepsilon^{ijk}
+		B_k
+		\\
+		\tilde{F}^{0i}
 		=
-		\eta_{00}
-		\eta_{ij}
-		F^{0j}
+		B^i
+		&&
+		\tilde{F}^{ij}
 		=
 		-
-		\delta_{ij}
-		(-E^j)
-		=
-		E_i		
-	\end{equation*}
-	\begin{equation*}
-		F_{ij}
-		=
-		\eta_{i\mu}
-		\eta_{j\nu}
-		F^{\mu\nu}
-		=
-		\eta_{i0}
-		\eta_{jk}
-		F^{0k}
-		+
-		\eta_{ik}
-		\eta_{j0}
-		F^{k0}
-		=
-	\end{equation*}
-\end{proof}
+		\varepsilon^{ijk}
+		E_k
+	\end{align}
+	where $\tilde{F}_{\mu\nu}=\frac{1}{2}
+		\varepsilon_{\mu\nu\alpha\beta}
+		F^{\alpha\beta}$.
+\end{restatable}
 \begin{restatable}{lemma}{mwfieldstrengthcontracted}\label{thm:mw_field_strength_contracted}
 	Contracting the field-strength tensor and its dual yields
 		\begin{align}
@@ -117,87 +144,10 @@
 		.
 	\end{align}
 \end{restatable}
-\begin{proof}
-	\begin{equation*}
-		\begin{split}
-			F_{\mu\nu}
-			F^{\mu\nu}
-			&=
-			F_{0\nu}
-			F^{0\nu}
-			+
-			F_{i\nu}
-			F^{i\nu}
-			\\
-			&=
-			F_{0i}
-			F^{0i}
-			+
-			F_{i0}
-			F^{i0}
-			+
-			F_{ij}
-			F^{ij}
-			\\
-			&=
-			2
-			F_{0i}
-			F^{0i}
-			+
-			F_{ij}
-			F^{ij}
-			\\
-			&=
-			-2
-			E_i
-			E^i
-			-
-			\varepsilon^{ijk}B_k
-			\varepsilon_{ijl}B^k
-			\\
-			&=
-			-
-			2
-			E_i
-			E^i
-			-
-			2
-			B_k
-			B^k
-			\\
-			&=
-			-
-			2
-			\left(
-				\vb{E}^2
-				+
-				\vb{B}^2
-			\right)
-		\end{split}
-	\end{equation*}
-	\begin{equation*}
-		\begin{split}
-			\tilde{F}_{\mu\nu}
-			F^{\mu\nu}
-			&=
-			\frac{1}{2}
-			\varepsilon^{\mu\nu\alpha\beta}
-			F_{\alpha\beta}
-			F^{\mu\nu}
-		\end{split}
-	\end{equation*}
-\end{proof}
-\begin{restatable}{lemma}{mwfieldstrengthlagrangian}\label{thm:mw_field_strength_lagrangian}
-	The Maxwell Lagrangian can be written
+\begin{corollary}
+	Using \Cref{thm:mw_field_strength_contracted}, we can write the Maxwell Lagrangian in terms of the electromagnetic fields
 	\begin{equation}
 		\mathcal{L}
-		=
-		-
-		\frac{1}{4}
-		F_{\mu\nu}
-		F^{\mu\nu}
-		-
-		J_\mu A^\mu
 		=
 		\frac{1}{2}
 		\left(
@@ -210,8 +160,8 @@
 		+
 		\vb{J}\vdot\vb{A}
 	\end{equation}
-	where $\rho$ is a charge and $\vb{J}$ a current density.
-\end{restatable}
+	where $\rho$ is a charge and $\vb{J}$ a current density which together form the relativistic current $J^\mu(\rho,\vb{J})$.
+\end{corollary}
 
 \begin{restatable}{theorem}{mweqtensor}\label{thm:tensor_maxwell_equations}
 	The manifest Lorentz-covariant Maxwell equations are
