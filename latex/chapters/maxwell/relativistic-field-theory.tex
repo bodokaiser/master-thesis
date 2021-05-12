@@ -39,14 +39,14 @@
 	\begin{align}
 		F^{0i}
 		=
-		-E^i
+		E^i
 		&&
 		F^{ij}
 		=
-		-\varepsilon^{ijk}B_k
+		\varepsilon^{ijk}B_k
 		\label{eq:mw_field_strength_components}
 	\end{align}
-	where $E^i$ and $B_k$ are electric respective magnetic field components~\cite[p.~336]{Srednicki2007}.
+	where $E^i$ and $B_k$ are electric respective magnetic field components~\cite[p.~20]{Carroll1997}.
 \end{definition}
 \begin{corollary}
 	The field-strength tensors are antisymmetric
@@ -87,38 +87,6 @@
 		\label{eq:mw_eom}
 		.
 	\end{equation}
-\end{restatable}
-\begin{restatable}{lemma}{mwfieldstrengthextended}\label{thm:mw_field_strength_extended}
-	The lower-indices field-strength tensors relate to the upper-indices by
-	\begin{align}
-		F_{0i}
-		=
-		-
-		F^{0i}
-		=
-		-
-		E^i
-		&&
-		F_{ij}
-		=
-		F^{ij}
-		=
-		\varepsilon^{ijk}
-		B_k
-		\\
-		\tilde{F}^{0i}
-		=
-		B^i
-		&&
-		\tilde{F}^{ij}
-		=
-		-
-		\varepsilon^{ijk}
-		E_k
-	\end{align}
-	where $\tilde{F}_{\mu\nu}=\frac{1}{2}
-		\varepsilon_{\mu\nu\alpha\beta}
-		F^{\alpha\beta}$.
 \end{restatable}
 \begin{restatable}{lemma}{mwfieldstrengthcontracted}\label{thm:mw_field_strength_contracted}
 	Contracting the field-strength tensor and its dual yields
@@ -163,7 +131,7 @@
 	where $\rho$ is a charge and $\vb{J}$ a current density which together form the relativistic current $J^\mu(\rho,\vb{J})$.
 \end{corollary}
 
-\begin{restatable}{theorem}{mweqtensor}\label{thm:tensor_maxwell_equations}
+\begin{restatable}{theorem}{mweqtensor}\label{thm:tensor_maxwell}
 	The manifest Lorentz-covariant Maxwell equations are
 	\begin{align}
 		0
@@ -175,10 +143,10 @@
 		=
 		\partial_\mu
 		F^{\mu\nu}
-		.
+		\label{eq:tensor_maxwell}.
 	\end{align}
 \end{restatable}
-\begin{restatable}{theorem}{mweqvector}\label{thm:vector_maxwell_equations}
+\begin{restatable}{theorem}{mweqvector}\label{thm:vector_maxwell}
 	The non-covariant Maxwell equations are
 	\begin{align}
 		\div\vb{E}
@@ -188,7 +156,7 @@
 		\div\vb{B}
 		=
 		0
-		\label{eq:mw_homo_vec}
+		\label{eq:vector_maxwell_homo}
 		\\
 		\curl\vb{E}
 		=
@@ -200,7 +168,7 @@
 		\vb{J}
 		+
 		\partial_t\vb{E}
-		\label{eq:mw_inhomo_vec}
+		\label{eq:vector_maxwell_inhomo}
 	\end{align}
 \end{restatable}
 
@@ -266,7 +234,7 @@ Quantum optical communication is described in the rest frame of the communicatio
 	implements the Coulomb and temporal gauge.
 \end{restatable}
 \begin{restatable}{lemma}{mwcoulombtransverse}
-	In the Coulomb gauge, the Maxwell field is transverse, i.e.,
+	In the Coulomb gauge, the Maxwell field becomes transverse
 	\begin{equation}
 		\vb{A}
 		\to
@@ -277,35 +245,19 @@ Quantum optical communication is described in the rest frame of the communicatio
 		.
 	\end{equation}
 \end{restatable}
-\begin{restatable}{lemma}{mwcoulomblagrangian}\label{thm:mw_coulomb_lagrangian}
-	The Maxwell Lagrangian in the Coulomb and temporal gauge is
-	\begin{equation}
-		\mathcal{L}
-		=
-		-
-		\frac{1}{2}
-		\left(\partial_t A_i\right)
-		\left(\partial_t A^i\right)
-		-
-		\frac{1}{2}
-		\left(\partial_i A_j\right)
-		\left(\partial^i A^j\right)
-		+
-		J_i A^i
-		\label{eq:mw_coulomb_lagrangian}
-		.
-	\end{equation}
-\end{restatable}
 \begin{restatable}{lemma}{mwcoulombeom}\label{thm:mw_coulomb_eom}
-	The Maxwell field in the Coulomb gauge has the equation of motion become
+	The Maxwell field in the Coulomb gauge has the equation of motion becomes
 	\begin{equation}
 		\vb{J}_\perp
 		=
-		\partial_t^2\vb{A}_\perp
-		-
-		\laplacian\vb{A}_\perp
-		=
 		\partial_\mu \partial^\mu
+		\vb{A}_\perp
+		=
+		\left(
+			\partial_t^2
+			-
+			\laplacian
+		\right)
 		\vb{A}_\perp
 		\label{eq:mw_coulomb_eom}
 		.
@@ -314,7 +266,7 @@ Quantum optical communication is described in the rest frame of the communicatio
 \begin{restatable}{theorem}{mwcoulombmodeexpansion}\label{thm:mw_coulomb_mode_expansion}
 	The mode expansion of the Maxwell field in the Coulomb gauge is
 	\begin{equation}
-		\vb{A}_\perp(t,\vb{x})
+		\vb{A}_\perp(x^\mu)
 		=
 		\sum_{\lambda=1,2}
 		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
@@ -324,99 +276,121 @@ Quantum optical communication is described in the rest frame of the communicatio
 			e^{-ip_\mu x^\mu}
 			+
 			\text{c.c.}
-		\right\}
+		\right\}_{p_0=\omega(\vb{p})}
 		\label{eq:mw_coulomb_mode_expansion}
 	\end{equation}
-	with $\omega(\vb{p})=\norm{\vb{p}}$ where the polarization basis vectors satisfy~\cite[p.~341]{Srednicki2007}
+	with $\omega(\vb{p})=\norm{\vb{p}}$ where the polarization basis vectors satisfy
 	\begin{align}
 		\vb{p}
 		\vdot
 		\boldsymbol{\varepsilon}_\lambda(\vb{p})
-		&=
+		=
 		0
-		\\
+		&&
 		\boldsymbol{\varepsilon}_\alpha(\vb{p})
 		\vdot
 		\boldsymbol{\varepsilon}_\beta(\vb{p})^*
-		&=
+		=
 		\delta_{\alpha\beta}
-		\\
+		\label{eq:mw_coulomb_polarization_basis}
+	\end{align}
+	and are complete~\cite[p.~341]{Srednicki2007}
+	\begin{equation}
 		\sum_{\lambda=1,2}
-		\boldsymbol{\varepsilon}_\alpha^i(\vb{p})
-		\boldsymbol{\varepsilon}_\alpha^j(\vb{p})^*
-		&=
+		\boldsymbol{\varepsilon}_\lambda^i(\vb{p})
+		\boldsymbol{\varepsilon}_\lambda^j(\vb{p})^*
+		=
 		\delta^{ij}
 		-
 		\frac{p^ip^j}{\vb{p}^2}
 		=
 		P_\perp
-		\label{eq:mw_coulomb_polarization_basis}
-		,
-	\end{align}
-	i.e., the two polarization are orthonormal and orthogonal to the momentum vector.
+		\label{eq:mw_coulomb_polarization_complete}
+		.
+	\end{equation}
 \end{restatable}
-\begin{corollary}
+\begin{restatable}{theorem}{mwcoulombmodeexpansionemfield}\label{thm:mw_coulomb_mode_expansion_em_field}
+	The mode expansion of the electric and magnetic fields reads
+	\begin{align}
+		\vb{E}(x^\mu)
+		&=
+		\sum_{\lambda=1,2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left(
+			-i
+			\omega(\vb{p})
+		\right)
+		\left\{
+			a_\lambda(\vb{p})
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			e^{-ip_\mu x^\mu}
+			-
+			\text{c.c.}
+		\right\}_{p_0=\omega(\vb{p})}
+		\\
+		\vb{B}(x^\mu)
+		&=
+		\sum_{\lambda=1,2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left(
+			i\vb{p}
+		\right)
+		\cross
+		\left\{
+			a_\lambda(\vb{p})
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			e^{-ip_\mu x^\mu}
+			-
+			\text{c.c.}
+		\right\}_{p_0=\omega(\vb{p})}
+		\label{eq:mw_coulomb_mode_expansion_em_field}
+		.
+	\end{align}
+\end{restatable}
+\begin{restatable}{lemma}{mwcoulombcanonicalmomentum}
 	The canonical momentum density
 	\begin{equation}
-		\pi(t,\vb{x})
+		\pi^i(x^\mu)
 		=
-		\partial_t\pdv{\mathcal{L}}{(\partial_t\vb{A})}
+		\partial_t
+		\pdv{\mathcal{L}}{(\partial_tA_i)}
 		=
-		\vb{E}(t,\vb{x})
-		\label{eq:mw_coulomb_mom}.
+		-
+		E^i(x^\mu)
+		\label{eq:mw_coulomb_canonical_momentum}
 	\end{equation}
 	is equal to the electric field.
+\end{restatable}
+\begin{corollary}\label{thm:mw_hamiltonian}
+	The Hamiltonian density is
+	\begin{equation}
+		\mathcal{H}
+		=
+		\frac{1}{2}
+		\boldsymbol{\pi}^2
+		-
+		\mathcal{L}
+		=
+		\frac{1}{2}
+		\left(
+			\vb{E}^2
+			+
+			\vb{B}^2
+		\right)
+		\label{thm:mw_hamiltonian}
+		.
+	\end{equation}
 \end{corollary}
-\begin{theorem}
-	The mode expansion of the electric and magnetic field
-	\begin{align}
-		\vb{E}(t,\vb{x})
-		&=
-		\sum_{\lambda=1,2}
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\left(
-			i\omega(\vb{p})
-			\boldsymbol{\varepsilon}_\lambda(\vb{p})
-		\right)
-		\left\{
-			a_\lambda(\vb{p})
-			e^{-ip_\mu x^\mu}
-			-
-			\text{c.c.}
-		\right\}
-		\\
-		\vb{B}(t,\vb{x})
-		&=
-		\sum_{\lambda=1,2}
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\left(
-			i\vb{p}\cross\omega(\vb{p})
-			\boldsymbol{\varepsilon}_\lambda(\vb{p})
-		\right)
-		\left\{
-			a_\lambda(\vb{p})
-			e^{-ip_\mu x^\mu}
-			-
-			\text{c.c.}
-		\right\}
-	\end{align}
-\end{theorem}
-\begin{lemma}\label{thm:mw_energy}
-	The field energy is equal to
+\begin{restatable}{lemma}{mwenergy}\label{thm:mw_energy}
+	The total energy is
 	\begin{equation}
 		H
 		=
-		\frac{1}{2}
-		\int\dd[3]{x}
-		\left(
-			\vb{E}(t,\vb{x})^2
-			+
-			\vb{B}(t,\vb{x})^2
-		\right)
-		=
 		\sum_{\lambda=1,2}
-		\int\dd[3]{p}
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\omega(\vb{p})
-		\abs{a(\vb{p})}^2
+		\abs{a_\lambda(\vb{p})}^2
+		\label{thm:mw_energy}
+		.
 	\end{equation}
-\end{lemma}
+\end{restatable}

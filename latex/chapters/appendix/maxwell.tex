@@ -50,23 +50,6 @@
 				(\partial_\mu A_\nu)
 				(\partial^\nu A^\mu)
 				-
-				(\partial_\nu A_\mu)
-				(\partial^\mu A^\nu)
-				+
-				(\partial_\nu A_\mu)
-				(\partial^\nu A^\mu)
-			\right]
-			\\
-			&=
-			-
-			\frac{1}{4}
-			\left[
-				(\partial_\mu A_\nu)
-				(\partial^\mu A^\nu)
-				-
-				(\partial_\mu A_\nu)
-				(\partial^\nu A^\mu)
-				-
 				(\partial_\mu A_\nu)
 				(\partial^\nu A^\mu)
 				+
@@ -93,9 +76,9 @@
 				-
 				\partial^\mu A^\nu
 			\right)
-			.
 		\end{split}
 	\end{equation*}
+	where we relabeled the indices in the two last terms at the second equal.
 \end{proof}
 \mweom
 \begin{proof}
@@ -143,132 +126,10 @@
 		F^{\mu\nu}
 		+
 		J^\nu
-		.
 	\end{equation*}
+	which produces \cref{eq:mw_eom}.
 \end{proof}
 
-\mwfieldstrengthextended
-\begin{proof}
-	Raising, lowering and contracting the indices, we find
-	\begin{align*}
-		F_{0i}
-		&=
-		\eta_{0\mu}
-		\eta_{i\nu}
-		F^{\mu\nu}
-		=
-		\eta_{00}
-		\eta_{ij}
-		F^{0j}
-		=
-		-
-		\delta_{ij}
-		F^{0j}
-		=
-		-
-		F^{0i}
-		\\
-		F_{ij}
-		&=
-		\eta_{i\mu}
-		\eta_{j\nu}
-		F^{\mu\nu}
-		=
-		\eta_{ik}
-		\eta_{jl}
-		F^{kl}
-		=
-		\delta_{ik}
-		\delta_{jl}
-		F^{kl}
-		=
-		F^{ij}
-	\end{align*}
-	for the field-strength tensor.
-	For its dual, we first note
-	\begin{equation*}
-		\tilde{F}_{\mu\nu}
-		=
-		\eta_{\mu\sigma}
-		\eta_{\nu\rho}
-		\tilde{F}^{\sigma\rho}
-		=
-		\frac{1}{2}
-		\eta_{\mu\sigma}
-		\eta_{\nu\rho}
-		\varepsilon^{\sigma\rho\alpha\beta}
-		F_{\alpha\beta}
-		=
-		\frac{1}{2}
-		\varepsilon_{\mu\nu}^{\ \ \alpha\beta}
-		\eta_{\alpha\sigma}
-		\eta_{\beta\rho}
-		F^{\sigma\rho}
-		=
-		\frac{1}{2}
-		\varepsilon_{\mu\nu\alpha\beta}
-		F^{\alpha\beta}
-	\end{equation*}
-	and then
-	\begin{align*}
-		\tilde{F}^{0i}
-		&=
-		\frac{1}{2}
-		\varepsilon^{0i\alpha\beta}
-		F_{\alpha\beta}
-		=
-		\frac{1}{2}
-		\varepsilon^{ijk}
-		F_{jk}
-		=
-		\frac{1}{2}
-		\varepsilon^{ijk}
-		\varepsilon_{jkl}
-		B^l
-		=
-		\delta^i_l
-		B^l
-		=
-		B^i
-		\\
-		\tilde{F}^{ij}
-		&=
-		\frac{1}{2}
-		\varepsilon^{ij\alpha\beta}
-		F_{\alpha\beta}
-		=
-		\frac{1}{2}
-		\varepsilon^{ij0\beta}
-		F_{0\beta}
-		+
-		\frac{1}{2}
-		\varepsilon^{ijk\beta}
-		F_{k\beta}
-		=
-		\frac{1}{2}
-		\varepsilon^{ij0k}
-		F_{0k}
-		+
-		\frac{1}{2}
-		\varepsilon^{ijk0}
-		F_{k0}
-		\\
-		&=
-		-
-		\frac{1}{2}
-		\varepsilon^{ijk0}
-		F_{0k}
-		-
-		\frac{1}{2}
-		\varepsilon^{ijk0}
-		F_{0k}
-		=
-		-
-		\varepsilon^{ijk}
-		E_k
-		.
-	\end{align*}
-\end{proof}
 \mwfieldstrengthcontracted
 \begin{proof}
 	For the first contraction, we find
@@ -282,8 +143,7 @@
 			+
 			F_{i\nu}
 			F^{i\nu}
-			\\
-			&=
+			=
 			F_{0i}
 			F^{0i}
 			+
@@ -300,8 +160,7 @@
 			+
 			F_{ij}
 			F^{ij}
-			\\
-			&=
+			=
 			-2
 			E_i
 			E^i
@@ -318,8 +177,7 @@
 			2
 			B_k
 			B^k
-			\\
-			&=
+			=
 			-
 			2
 			\left(
@@ -340,8 +198,7 @@
 			+
 			\tilde{F}_{i\nu}
 			F^{i\nu}
-			\\
-			&=
+			=
 			\tilde{F}_{0i}
 			F^{0i}
 			+
@@ -358,8 +215,7 @@
 			+
 			\tilde{F}_{ij}
 			F^{ij}
-			\\
-			&=
+			=
 			-
 			2B_iE^i
 			-
@@ -374,8 +230,7 @@
 			E^k
 			\delta_k^l
 			B_l
-			\\
-			&=
+			=
 			-
 			4
 			\vb{E}\vdot\vb{B}
@@ -443,50 +298,43 @@
 \end{proof}
 \mweqvector
 \begin{proof}
-	Evaluating the time component of \cref{eq:mw_homo_vec} yields the Gauss' law for magnetism
+	Evaluating the time component of \cref{eq:tensor_maxwell} yields the Gauss' law for magnetism
 	\begin{equation*}
-		\begin{split}
-			0
-			=
-			\varepsilon_{0\lambda\mu\nu}\partial^\lambda F^{\mu\nu}
-			&=
-			\varepsilon_{0ijk}\partial^iF^{jk}
-			\\
-			&=
-			-
-			\varepsilon_{ijk}\varepsilon_{ljk}
-			\partial^i B_l
-			=
-			2\partial_iB^i
-		\end{split}
-		\label{eq:mw_gauss_law_mag}
+		0
+		=
+		\varepsilon_{0\lambda\mu\nu}\partial^\lambda F^{\mu\nu}
+		=
+		\varepsilon_{0ijk}\partial^iF^{jk}
+		=
+		-
+		\varepsilon_{ijk}\varepsilon_{ljk}
+		\partial^i B_l
+		=
+		2\partial_iB^i
 	\end{equation*}
 	and the spatial component yields Ampere's circuit law
 	\begin{equation*}
-		\begin{split}
-			0
-			=
-			\varepsilon_{i\lambda\mu\nu}
-			\partial^\lambda
-			F^{\mu\nu}
-			&=
-			-
-			\varepsilon_{ijk}
-			\varepsilon^{ljk}
-			\partial_t B_l
-			-
-			2\varepsilon_{ijk}
-			\partial^jE^k
-			\\
-			&=
-			\partial_tB_i
-			+
-			\varepsilon_{ijk}
-			\partial^jE_k
-		\end{split}
-		\label{eq:mw_ampere_law}.
+		0
+		=
+		\varepsilon_{i\lambda\mu\nu}
+		\partial^\lambda
+		F^{\mu\nu}
+		=
+		-
+		\varepsilon_{ijk}
+		\varepsilon^{ljk}
+		\partial_t B_l
+		-
+		2\varepsilon_{ijk}
+		\partial^jE^k
+		=
+		\partial_tB_i
+		+
+		\varepsilon_{ijk}
+		\partial^jE_k
+		.
 	\end{equation*}
-	The time component of the inhomogeneous covariant Maxwell equation \cref{eq:mw_inhomo} yields Gauss' law
+	The time component of the inhomogeneous covariant Maxwell equation \cref{eq:mw_eq} yields Gauss' law
 	\begin{equation*}
 		J^0
 		=
@@ -495,7 +343,7 @@
 		\partial_\mu F^{\mu\nu}
 		=
 		\partial_i E^i
-		\label{eq:mw_gauss_law},
+		,
 	\end{equation*}
 	and the spatial component yields Faraday's law of induction
 	\begin{equation*}
@@ -503,14 +351,16 @@
 		=
 		\partial_\mu F^{\mu i}
 		=
-		-\partial_t E^i
-		+\varepsilon^{ijk}\partial_j B_k
-		\label{eq:mw_faraday_law}.
+		-
+		\partial_t E^i
+		+
+		\varepsilon^{ijk}
+		\partial_j
+		B_k
+		.
 	\end{equation*}
 	and we derived the vector Maxwell equations from first principles.
 \end{proof}
-
-\subsection{Local gauge invariance}
 
 \mwlogalgaugeinvariance
 \begin{proof}
@@ -536,8 +386,6 @@
 		\end{split}
 	\end{equation*}	
 \end{proof}
-
-\subsection{Coulomb gauge}
 
 \mwcoulombfixing
 \begin{proof}
@@ -611,97 +459,65 @@
 		.
 	\end{equation*}
 \end{proof}
-\mwcoulomblagrangian
+\mwcoulombeom
 \begin{proof}
-	Expanding the indices of the first term
+	Starting from \cref{eq:mw_eom}, we expand the field-strength tensor
 	\begin{equation*}
 		\begin{split}
-			\left(\partial_\mu A_\nu\right)
-			\left(\partial^\mu A^\nu\right)
-			&=
-			\left(\partial_0 A_\nu\right)
-			\left(\partial^0 A^\nu\right)
-			+
-			\left(\partial_i A_\nu\right)
-			\left(\partial^i A^\nu\right)
-			\\
-			&=
-			\left(\partial_0 A_j\right)
-			\left(\partial^0 A^j\right)
-			+
-			\left(\partial_i A_j\right)
-			\left(\partial^i A^j\right)
-		\end{split}
-	\end{equation*}
-	where we used the temporal gauge $A_0=0$.
-	Expanding the indices of the second term
-	\begin{equation*}
-		\left(\partial_\mu A_\nu\right)
-		\left(\partial^\nu A^\mu\right)
-		=
-		\left(\partial_i A_\nu\right)
-		\left(\partial^\nu A^i\right)
-		=
-		\left(\partial_i A_j\right)
-		\left(\partial^j A^i\right)
-	\end{equation*}
-	where we used the temporal gauge $A_0=0$.
-	Applying the temporal gauge to the first term yields $J_\mu A^\mu=J_i A^i$.
-	In summary, the Maxwell Lagrangian in the Coulomb gauge is
-	\begin{equation*}
-		\begin{split}
-			\mathcal{L}
-			&=
-			-
-			\frac{1}{2}
-			\left(\partial_0 A_j\right)
-			\left(\partial^0 A^j\right)
-			-
-			\frac{1}{2}
-			\left(\partial_i A_j\right)
-			\left(\partial^i A^j\right)
-			+
-			\frac{1}{2}
-			\left(\partial_i A_j\right)
-			\left(\partial^j A^i\right)
-			+
-			J_i A^i
-			\\
-			&=
-			-
-			\frac{1}{2}
-			\left(\partial_t A_i\right)
-			\left(\partial_t A^i\right)
-			-
-			\frac{1}{2}
-			\left(\partial_i A_j\right)
-			\left(\partial^i A^j\right)
-			+
-			J_i A^i
-		\end{split}
-	\end{equation*}
-	where we used partial integration of the action term with vanishing boundaries
-	\begin{equation*}
-		\begin{split}
-			\int\dd[4]{x}
-			\left(\partial_i A_j(x^\mu)\right)
-			\left(\partial^j A^i(x^\mu)\right)
-			&=
-			\int\dd[4]{x}
-			\left(\partial^j\partial_i A_j(x^\mu)\right)
-			A^i(x^\mu)
-			\\
-			&=
-			\int\dd[4]{x}
-			A^i(x^\mu)
-			\left(\partial_i\partial^jA_j(x^\mu)\right)
+			J^\nu
 			=
-			0
+			\partial_\mu
+			F^{\mu\nu}
+			&=
+			\partial_\mu
+			\left(
+				\partial^\mu
+				A^\nu
+				-
+				\partial^\nu
+				A^\mu
+			\right)
+			\\
+			&=
+			\partial_\mu
+			\partial^\mu
+			A^\nu
+			-
+			\partial^\nu
+			\partial_\mu
+			A^\mu
+			\\
+			&=
+			\partial_\mu
+			\partial^\mu
+			A^\nu
+			-
+			\partial^\nu
+			\left(
+				\partial_t A^0
+				+
+				\partial_i A^i
+			\right)
 		\end{split}
 	\end{equation*}
-	combined with the Coulomb gauge condition $\partial_j A^j=0$.
-	The former equation is in agreement with the result reported in Ref.~\cite[p.~340]{Srednicki2007}.
-	Identifying $E^i=\partial_t A^i$ and $B^i=\varepsilon^{ijk}\partial_j A_k$
+	and apply the Coulomb and temporal gauge conditions while assuming dynamical sources
+	\begin{equation*}
+		\vb{J}
+		=
+		\partial_\mu
+		\partial^\mu
+		\vb{A}
+		.
+	\end{equation*}
+	Because the Maxwell field in the Coulomb and temporal gauge is transverse, the previous equation reduces further to
+	\begin{equation*}
+		\vb{J}_\perp
+		=
+		\partial_\mu
+		\partial^\mu
+		\vb{A}_\perp
+		.		
+	\end{equation*}
 \end{proof}
 
 \mwcoulombmodeexpansion
@@ -719,4 +535,727 @@
 	which is satisfied if $p_0=\omega(\vb{p})$.
 	$\vb{p}\vdot\boldsymbol{\varepsilon}_\lambda(\vb{p})=0$ follows from the Coulomb gauge $\div\vb{A}=0$.
 	Orthogonality of the polarization vectors $\boldsymbol{\varepsilon}_1(\vb{p})\perp\boldsymbol{\varepsilon}_2(\vb{p})$ is required to have a complete solution and choosing the polarization vectors to be orthonormal is a convenient choice.
+\end{proof}
+\mwcoulombmodeexpansionemfield
+\begin{proof}
+	The electric field components follow directly from inserting the mode expansion of the field into the definition
+	\begin{equation*}
+		\begin{split}
+			E^i
+			&=
+			F^{0i}
+			=
+			\partial_t
+			A^i
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\partial_t
+			\left\{
+				a_\lambda(\vb{p})
+				\boldsymbol{\epsilon}_\lambda(\vb{p})^i
+				e^{-ip_\mu x^\mu}
+				+
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left\{
+				a_\lambda(\vb{p})
+				\boldsymbol{\epsilon}_\lambda(\vb{p})^i
+				\partial_t
+				e^{-ip_0t}
+				e^{+i\vb{p}\vdot\vb{x}}
+				+
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left\{
+				a_\lambda(\vb{p})
+				\boldsymbol{\epsilon}_\lambda(\vb{p})^i
+				(-ip_0)
+				e^{-ip_0t}
+				e^{+i\vb{p}\vdot\vb{x}}
+				+
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left(-i\omega(\vb{p})\right)
+			\left\{
+				a_\lambda(\vb{p})
+				\boldsymbol{\epsilon}_\lambda(\vb{p})^i
+				e^{-ip_\mu x^\mu}
+				-
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			.
+		\end{split}
+	\end{equation*}
+	For the magnetic field components, we first need to express the magnetic field components in terms of the field-strength tensor
+	\begin{equation*}
+		\varepsilon_{ijk}
+		F^{jk}
+		=
+		\varepsilon_{ijk}
+		\varepsilon^{jkl}
+		B_l
+		=
+		\varepsilon_{jki}
+		\varepsilon^{jkl}
+		B_l
+		=
+		2
+		\delta_i^l
+		B_l
+		=
+		2B_i
+	\end{equation*}
+	and insert the mode expansion of the field
+	\begin{equation*}
+		\begin{split}
+			B_i
+			&=
+			\frac{1}{2}
+			\varepsilon_{ijk}
+			F^{jk}
+			=
+			\frac{1}{2}
+			\varepsilon_{ijk}
+			\left(
+				\partial^j
+				A^k
+				-
+				\partial^k
+				A^j
+			\right)
+			\\
+			&=
+			\frac{1}{2}
+			\varepsilon_{ijk}
+			\partial^j
+			A^k
+			+
+			\frac{1}{2}
+			\varepsilon_{jik}
+			\partial^k
+			A^j
+			=
+			\varepsilon_{ijk}
+			\partial^j
+			A^k
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\varepsilon_{ijk}
+			\partial^j
+			\left\{
+				a_\lambda(\vb{p})
+				\boldsymbol{\epsilon}_\lambda(\vb{p})^i
+				e^{-ip_\mu x^\mu}
+				+
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\varepsilon_{ijk}
+			\left\{
+				a_\lambda(\vb{p})
+				\boldsymbol{\epsilon}_\lambda(\vb{p})^i
+				\partial^j
+				e^{-ip_0t}
+				e^{+i\vb{p}\vdot\vb{x}}
+				+
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\varepsilon_{ijk}
+			\left\{
+				a_\lambda(\vb{p})
+				\boldsymbol{\epsilon}_\lambda(\vb{p})^i
+				(+ip^j)
+				e^{-ip_0t}
+				e^{+i\vb{p}\vdot\vb{x}}
+				+
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left(
+				i
+				\varepsilon_{ijk}
+				p^j
+			\right)
+			\left\{
+				a_\lambda(\vb{p})
+				\boldsymbol{\epsilon}_\lambda(\vb{p})^i
+				e^{-ip_\mu x^\mu}
+				-
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left(
+				-i
+				\varepsilon_{ijk}
+				p^i
+			\right)
+			\left\{
+				a_\lambda(\vb{p})
+				\boldsymbol{\epsilon}_\lambda(\vb{p})^j
+				e^{-ip_\mu x^\mu}
+				-
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			.
+		\end{split}
+	\end{equation*}
+	Raising the index of the magnetic field with the metric yields
+	\begin{equation*}
+		B^i
+		=
+		\eta^{ij}
+		B_j
+		=
+		-
+		\delta^{ij}
+		B_j
+		=
+		-
+		B_i
+	\end{equation*}
+	and in vector notation we recover \cref{eq:mw_coulomb_mode_expansion_em_field} which up to a sign is in agreement with Ref.~\cite[p.~198]{Greiner2013}.
+\end{proof}
+
+\mwcoulombcanonicalmomentum
+\begin{proof}
+	In \Cref{thm:mw_coulomb_eom} we found
+	\begin{equation*}
+		\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+		=
+		-
+		F^{\mu\nu}
+	\end{equation*}
+	thus
+	\begin{equation*}
+		\partial_t
+		\pdv{\mathcal{L}}{(\partial_tA_i)}
+		=
+		-
+		\partial_t
+		F^{0i}
+		=
+		-
+		\partial_t
+		E^i
+		.
+	\end{equation*}
+\end{proof}
+\mwenergy
+\begin{proof}
+	Integration of the Hamiltonian density given in \Cref{thm:mw_hamiltonian} yields the total energy in terms of the electric and magnetic field amplitudes
+	\begin{equation*}
+		H
+		=
+		\int\dd[3]{x}
+		\mathcal{H}
+		=
+		\frac{1}{2}
+		\int\dd[3]{x}
+		\left\{
+			\vb{E}(x^\mu)^2
+			+
+			\vb{B}(x^\mu)^2
+		\right\}
+		.
+	\end{equation*}
+	Inserting the mode decomposition of \Cref{thm:mw_coulomb_mode_expansion_em_field} for the magnetic field, we evaluate
+	\begin{equation*}
+		\begin{split}
+			\int\dd[3]{x}
+			\vb{E}(x^\mu)^2
+			&=
+			\sum_{\lambda,\lambda^\prime=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\left(
+				-
+				\omega(\vb{p})
+				\omega(\vb{q})
+			\right)
+			\\
+			&\times
+			\biggl\{
+				a_\lambda(\vb{p})
+				a_{\lambda^\prime}(\vb{q})
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+				\vdot
+				\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{q})
+				\int\dd[3]{x}
+				e^{-i(p_\mu+q_\mu)x^\mu}
+				\\
+				& \ \ \
+				-
+				a_\lambda(\vb{p})
+				a_{\lambda^\prime}(\vb{q})^*
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+				\vdot
+				\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{q})^*
+				\int\dd[3]{x}
+				e^{-i(p_\mu-q_\mu)x^\mu}
+				+
+				\text{c.c.}
+			\biggr\}_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+		\end{split}
+	\end{equation*}
+	where we find
+	\begin{equation*}
+		\begin{split}
+			\int\dd[3]{x}
+			\eval{e^{-i(p_\mu\mp q_\mu)x^\mu}}_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+			&=
+			e^{-i\omega(\vb{p})t}
+			e^{\pm i\omega(\vb{q})t}
+			\int\dd[3]{x}
+			e^{+i(\vb{p}\mp\vb{q})\vdot\vb{x}}
+			\\
+			&=
+			e^{-i\omega(\vb{p})t}
+			e^{\pm i\omega(\vb{q})t}
+			(2\pi)^3\delta^{(3)}(\vb{q}\mp\vb{p})
+		\end{split}
+	\end{equation*}
+	which simplifies the first term in the curly brackets to
+	\begin{equation*}
+		\begin{split}
+			&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{q})
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\vdot
+			\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{q})
+			e^{-i\omega(\vb{p})t}
+			e^{-i\omega(\vb{q})t}
+			(2\pi)^3\delta^{(3)}(\vb{q}+\vb{p})
+			\\
+			=&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(-\vb{p})
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\vdot
+			\boldsymbol{\varepsilon}_{\lambda^\prime}(-\vb{p})
+			e^{-i\omega(\vb{p})t}
+			e^{-i\omega(-\vb{p})t}
+			(2\pi)^3\delta^{(3)}(\vb{q}+\vb{p})
+			\\
+			=&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{p})^*
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\vdot
+			\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{p})^*
+			e^{-2i\omega(\vb{p})t}
+			(2\pi)^3\delta^{(3)}(\vb{q}+\vb{p})
+			\\
+			=&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{p})^*
+			\delta_{\lambda\lambda^\prime}
+			e^{-2i\omega(\vb{p})t}
+			(2\pi)^3\delta^{(3)}(\vb{q}+\vb{p})
+			\\
+			=&\
+			\abs{a_\lambda(\vb{p})}^2
+			\delta_{\lambda\lambda^\prime}
+			e^{-2i\omega(\vb{p})t}
+			(2\pi)^3\delta^{(3)}(\vb{q}+\vb{p})
+		\end{split}
+	\end{equation*}
+	and the second term to
+	\begin{equation*}
+		\begin{split}
+			&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{q})^*
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\vdot
+			\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{q})^*
+			e^{-i\omega(\vb{p})t}
+			e^{+i\omega(\vb{q})t}
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			=&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{p})^*
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\vdot
+			\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{p})^*
+			e^{-i\omega(\vb{p})t}
+			e^{+i\omega(\vb{p})t}
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			=&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{p})^*
+			\delta_{\lambda\lambda^\prime}
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			=&\
+			\abs{a_\lambda(\vb{p})}^2
+			\delta_{\lambda\lambda^\prime}
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			.
+		\end{split}
+	\end{equation*}
+	Inserting both terms back, we find
+	\begin{equation*}
+		\begin{split}
+			\int\dd[3]{x}
+			\vb{E}(x^\mu)^2
+			&=
+			\sum_{\lambda,\lambda^\prime=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\left(
+				-
+				\omega(\vb{p})
+				\omega(\vb{q})
+			\right)
+			\\
+			&\times
+			\left\{
+				\abs{a_\lambda(\vb{p})}^2
+				\delta_{\lambda\lambda^\prime}
+				e^{-2i\omega(\vb{p})t}
+				(2\pi)^3\delta^{(3)}(\vb{q}+\vb{p})
+				-
+				\abs{a_\lambda(\vb{p})}^2
+				\delta_{\lambda\lambda^\prime}
+				(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+				+
+				\text{c.c.}
+			\right\}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\left(
+				-
+				\omega(\vb{p})^2
+			\right)
+			\abs{a_\lambda(\vb{p})}^2
+			\left\{
+				e^{-2i\omega(\vb{p})t}
+				-
+				1
+				+
+				e^{+2i\omega(\vb{p})t}
+				-
+				1
+			\right\}
+			\\
+			&=
+			2
+			\sum_{\lambda=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\omega(\vb{p})^2
+			\abs{a_\lambda(\vb{p})}^2
+			\Re\left\{
+				1
+				-
+				e^{-2i\omega(\vb{p})t}
+			\right\}
+			.
+		\end{split}
+	\end{equation*}
+	For the magnetic field, we need to account for an additional sign flip of the momentum when evaluating the delta distribution, otherwise the steps are analog and we find
+	\begin{equation*}
+		\begin{split}
+			\int\dd[3]{x}
+			\vb{B}(x^\mu)^2
+			&=
+			2
+			\sum_{\lambda,\lambda^\prime=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			(-1)
+			\int\dd[3]{x}
+			\\
+			&\times
+			\left\{
+				a_\lambda(\vb{p})
+				\left(
+					\vb{p}
+					\cp
+					\boldsymbol{\varepsilon}_\lambda(\vb{p})
+				\right)
+				e^{-ip_\mu x^\mu}
+				-
+				\text{c.c.}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&\vdot
+			\left\{
+				a_{\lambda^\prime}(\vb{q})
+				\left(
+					\vb{q}
+					\cp
+					\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{q})
+				\right)
+				e^{-iq_\mu x^\mu}
+				-
+				\text{c.c.}
+			\right\}_{q_0=\omega(\vb{q})}
+		\end{split}
+	\end{equation*}
+	and the inner product evaluates to
+	\begin{equation*}
+		\begin{split}
+			&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{q})
+			\left(
+				\vb{p}
+				\cp
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\right)
+			\vdot
+			\left(
+				\vb{q}
+				\cp
+				\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{q})
+			\right)
+			\int\dd[3]{x}
+			\eval{e^{-i(p_\mu+q_\mu)x^\mu}}_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+			\\
+			-&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{q})^*
+			\left(
+				\vb{p}
+				\cp
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\right)
+			\vdot
+			\left(
+				\vb{q}
+				\cp
+				\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{q})^*
+			\right)
+			\int\dd[3]{x}
+			\eval{e^{-i(p_\mu-q_\mu)x^\mu}}_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+			+
+			\text{c.c.}
+			\\
+			=&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{q})
+			\left(
+				\vb{p}
+				\cp
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\right)
+			\vdot
+			\left(
+				\vb{q}
+				\cp
+				\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{q})
+			\right)
+			e^{-i\omega(\vb{p})t}
+			e^{-i\omega(\vb{q})t}
+			(2\pi)^3\delta^{(3)}(\vb{q}+\vb{p})
+			\\
+			-&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{q})^*
+			\left(
+				\vb{p}
+				\cp
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\right)
+			\vdot
+			\left(
+				\vb{q}
+				\cp
+				\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{q})^*
+			\right)
+			e^{-i\omega(\vb{p})}
+			e^{+i\omega(\vb{q})}
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			+
+			\text{c.c.}
+			\\
+			=&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{p})^*
+			\left(
+				\vb{p}
+				\cp
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\right)
+			\vdot
+			\left(
+				-
+				\vb{p}
+				\cp
+				\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{p})^*
+			\right)
+			e^{-2i\omega(\vb{p})t}
+			(2\pi)^3\delta^{(3)}(\vb{q}+\vb{p})
+			\\
+			-&\
+			a_\lambda(\vb{p})
+			a_{\lambda^\prime}(\vb{q})^*
+			\left(
+				\vb{p}
+				\cp
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\right)
+			\vdot
+			\left(
+				\vb{p}
+				\cp
+				\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{p})^*
+			\right)
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			+
+			\text{c.c.}
+		\end{split}
+	\end{equation*}
+	and noting that
+	\begin{equation*}
+		\left(
+			\vb{p}
+			\cp
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+		\right)
+		\vdot
+		\left(
+			\vb{p}
+			\cp
+			\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{p})^*
+		\right)
+		=
+		\left(
+			\vb{p}^2
+		\right)
+		\left(
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\vdot
+			\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{p})^*
+		\right)
+		-
+		\left(
+			\vb{p}
+			\vdot
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})
+		\right)
+		\left(
+			\vb{p}
+			\vdot
+			\boldsymbol{\varepsilon}_{\lambda^\prime}(\vb{p})^*
+		\right)
+		=
+		\vb{p}^2
+		\delta_{\lambda\lambda^\prime}
+	\end{equation*}
+	we find
+	\begin{equation*}
+		\begin{split}
+			\int\dd[3]{x}
+			\vb{B}(x^\mu)^2
+			&=
+			\sum_{\lambda,\lambda^\prime=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			(-1)
+			\\
+			&\times
+			\left\{
+				-
+				\abs{a_\lambda(\vb{p})}^2
+				\vb{p}^2
+				\delta_{\lambda\lambda^\prime}
+				e^{-2i\omega(\vb{p})t}
+				(2\pi)^3\delta^{(3)}(\vb{q}+\vb{p})
+				-
+				\abs{a_\lambda(\vb{p})}^2
+				\vb{p}^2
+				\delta_{\lambda\lambda^\prime}
+				(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+				+
+				\text{c.c.}
+			\right\}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{a_\lambda(\vb{p})}^2
+			\vb{p}^2
+			\left\{
+				e^{-2i\omega(\vb{p})t}
+				+
+				1
+				+
+				\text{c.c.}
+			\right\}
+			\\
+			&=
+			2
+			\sum_{\lambda=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{a_\lambda(\vb{p})}^2
+			\vb{p}^2
+			\Re\left\{
+				1
+				+
+				e^{-2i\omega(\vb{p})t}
+			\right\}
+		\end{split}
+		.
+	\end{equation*}
+	Adding the integral over the squared field amplitudes together and dividing by two gives the total energy
+	\begin{equation*}
+		\begin{split}
+			H
+			&=
+			\frac{1}{2}
+			\int\dd[3]{x}
+			\vb{E}(x^\mu)^2
+			+
+			\frac{1}{2}
+			\int\dd[3]{x}
+			\vb{B}(x^\mu)^2
+			\\
+			&=
+			2\sum_{\lambda=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\omega(\vb{p})^2
+			\abs{a_\lambda(\vb{p})}^2
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			\abs{a_\lambda(\vb{p})}^2
+		\end{split}
+	\end{equation*}
+	where we used $\vb{p}^2=\omega(\vb{p})^2$.
 \end{proof}
