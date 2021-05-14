@@ -769,7 +769,7 @@
 		.
 	\end{equation*}
 \end{proof}
-\mwenergy
+\mwcoulombenergy
 \begin{proof}
 	Integration of the Hamiltonian density given in \Cref{thm:mw_hamiltonian} yields the total energy in terms of the electric and magnetic field amplitudes
 	\begin{equation*}
@@ -1258,4 +1258,148 @@
 		\end{split}
 	\end{equation*}
 	where we used $\vb{p}^2=\omega(\vb{p})^2$.
+\end{proof}
+
+\section{Canonical quantization}
+
+%\qmwtransversepnsmeared
+\begin{proof}
+	Inserting the definition of the positive and negative transverse Maxwell field and the Fourier transform, we find
+	\begin{equation*}
+		\begin{split}
+			\int\dd[4]{x}\
+			\vb{f}(x^\mu)
+			\vdot
+			\hat{\vb{A}}_\perp^+(x^\mu)
+			&=
+			\int\dd[4]{x}\
+			\vb{f}(x^\mu)
+			\vdot
+			\sum_{\lambda=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\hat{a}_\lambda^\dagger(\vb{p})
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})^*
+			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\hat{a}_\lambda^\dagger(\vb{p})
+			\boldsymbol{\varepsilon}_\lambda(\vb{p})^*
+			\vdot
+			\left(
+				\int\dd[4]{x}\
+				\vb{f}(x^\mu)^*
+				e^{-ip_\mu x^\mu}
+			\right)_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\hat{a}_\lambda^\dagger(\vb{p})
+			\left[
+				\vb{f}\left(\omega(\vb{p}),\vb{p}\right)
+				\vdot
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\right]^*
+			.
+		\end{split}
+	\end{equation*}
+	Taking the Hermitian conjugate, we find the smeared negative frequency transverse Maxwell operator.
+\end{proof}
+
+\section{Quantum states}
+
+\qmwqkgnumberstate
+\begin{proof}
+	The smeared positive Klein-Gordon operators $\hat\phi^+_1,\hat\phi^+_2$ commute and we can use the binomial theorem to write
+	\begin{equation*}
+		\begin{split}
+			\ket{n_{\vb{f}}}
+			&=
+			\frac{1}{\sqrt{n!}}
+			\hat{\vb{A}}_\perp^+[\vb{f}]^n
+			\ket{0}
+			\\
+			&=
+			\frac{1}{\sqrt{n!}}
+			\left(
+				\hat\phi_1^+[f_1]
+				+
+				\hat\phi_2^+[f_2]
+			\right)^n
+			\ket{0}
+			\\
+			&=
+			\frac{1}{\sqrt{n!}}
+			\sum^n_{m=0}
+			\binom{n}{m}
+			\hat\phi_1^+[f_1]^m
+			\hat\phi_2^+[f_2]^{n-m}
+			\ket{0}
+			\\
+			&=
+			\sum^n_{m=0}
+			\binom{n}{m}^{1/2}
+			\ket{m_{f_1},n-m_{f_2}}
+			.
+		\end{split}
+	\end{equation*}
+\end{proof}
+\qmwqkgnumberstateinnerproduct
+\begin{proof}
+	Inserting the transverse Maxwell number state in terms of two independent Klein-Gordon number states \Cref{thm:qmw_qkg_number_state}
+	\begin{equation*}
+		\begin{split}
+			\braket{n_{\vb{f}}}{m_{\vb{g}}}
+			&=
+			\sum^n_{k=0}
+			\sum^m_{l=0}
+			\binom{n}{k}^{1/2}
+			\binom{m}{l}^{1/2}
+			\braket{k_{f_1},n-k_{f_2}}{l_{g_1},m-l_{g_2}}
+			\\
+			&=
+			\sum^n_{k=0}
+			\sum^m_{l=0}
+			\binom{n}{k}^{1/2}
+			\binom{m}{l}^{1/2}
+			\braket{k_{f_1}}{l_{g_1}}
+			\braket{n-k_{f_2}}{m-l_{g_2}}
+			\\
+			&=
+			\sum^n_{k=0}
+			\sum^m_{l=0}
+			\binom{n}{k}^{1/2}
+			\binom{m}{l}^{1/2}
+			\delta_{k,l}
+			\braket{1_{f_1}}{1_{g_1}}^k
+			\delta_{n-k,m-l}
+			\braket{1_{f_2}}{1_{g_2}}^{n-k}
+			\\
+			&=
+			\sum^n_{k=0}
+			\binom{n}{k}^{1/2}
+			\binom{m}{k}^{1/2}
+			\braket{1_{f_1}}{1_{g_1}}^k
+			\delta_{n-k,m-k}
+			\braket{1_{f_2}}{1_{g_2}}^{n-k}
+			\\
+			&=
+			\delta_{n,m}
+			\sum^n_{k=0}
+			\binom{n}{k}
+			\braket{1_{f_1}}{1_{g_1}}^k
+			\braket{1_{f_2}}{1_{g_2}}^{n-k}
+			\\
+			&=
+			\delta_{n,m}
+			\left(
+				\braket{1_{f_1}}{1_{g_1}}
+				+
+				\braket{1_{f_2}}{1_{g_2}}
+			\right)^n
+			.
+		\end{split}
+	\end{equation*}
 \end{proof}

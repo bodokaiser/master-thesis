@@ -1,21 +1,131 @@
-\section{Quantum states from Klein-Gordon field}
+\section{Quantum states}
 
-Choosing a reference frame in which the polarization basis is independent of the momentum, we find that
-\begin{equation}
-	\hat{\vb{A}}(t,\vb{x})
-	=
-	\sum_{\lambda=1,2}
-	c_\lambda
-	\hat\phi(t,\vb{x})
-	\boldsymbol{\varepsilon}_\lambda
-\end{equation}
-with $c_1,c_2\in\mathbb{C}$ and $\abs{c_1}^2+\abs{c_2}^2=1$.
-Alternatively, we can perform the replacement
-\begin{equation}
-	\hat{a}(\vb{p})
-	\to
-	\sum_{\lambda=1,2}
-	\hat{a}_\lambda(\vb{p})
-	\boldsymbol{\varepsilon}_\lambda(\vb{p})
-\end{equation}
-in our results obtained with the Klein-Gordon field to transfer the results to the Maxwell field in the Coulomb gauge.
+\begin{corollary}\label{thm:qmw_qkg}
+	Let $\vb{f}$ be a smearing vector function, then the smeared positive frequency transverse Maxwell operator
+	\begin{equation}
+		\hat{\vb{A}}_\perp^+[\vb{f}]
+		=
+		\sum_{\lambda=1,2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		f_\lambda\left(\omega(\vb{p}),\vb{p}\right)^*
+		\hat{a}_\lambda^\dagger(\vb{p})
+		=
+		\hat\phi_1^+[f_1]
+		+
+		\hat\phi_2^+[f_2]
+	\end{equation}
+	 reduces to the sum of two independent smeared positive frequency Klein-Gordon operator.
+\end{corollary}
+\begin{restatable}{lemma}{qmwqkgnumberstate}\label{thm:qmw_qkg_number_state}
+	The transverse Maxwell fields' $n$-particle number state with smearing vector function $\vb{f}$ is
+	\begin{equation}
+		\label{eq:qmw_number_state}
+		\ket{n_{\vb{f}}}
+		=
+		\frac{1}{\sqrt{n!}}
+		\hat{\vb{A}}_\perp^+[\vb{f}]^n
+		\ket{0}
+	\end{equation}
+	where the smearing vector function is required to satisfy
+	\begin{equation}
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\norm{\vb{f}\left(\omega(\vb{p}),\vb{p}\right)}^2
+		=
+		1
+		.
+	\end{equation}
+	Using \Cref{thm:qmw_qkg}, we can write the transverse Maxwell $n$-particle state as the tensor product of $n$-particle Klein-Gordon states
+	\begin{equation}
+		\ket{n_{\vb{f}}}
+		=
+		\sum^n_{m=0}
+		\binom{n}{m}^{1/2}
+		\ket{m_{f_1},n-m_{f_2}}
+		.
+	\end{equation}
+\end{restatable}
+\begin{restatable}{lemma}{qmwqkgnumberstateinnerproduct}\label{thm:qmw_qkg_number_state_inner_product}
+	Let $\ket{n_{\vb{f}}}$ be an $n$-particle number state with spectrum $\vb{f}$, and $\ket{m_{\vb{g}}}$ an $m$-particle number state with spectrum $\vb{g}$, then their inner product is
+	\begin{equation}
+		\braket{n_{\vb{f}}}{m_{\vb{g}}}
+		=
+		\delta_{n,m}
+		\left[
+			\braket{1_{f_1}}{1_{g_1}}
+			+
+			\braket{1_{f_2}}{1_{g_2}}
+		\right]^n
+		.
+	\end{equation}
+\end{restatable}
+
+\begin{definition}[Coherent state]
+	The coherent state with spectrum $\vb{\alpha}(p_0,\vb{p})$ is
+	\begin{equation}
+		\label{eq:qmw_coherent_state}
+		\ket{\vb{\alpha}}
+		=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\comm{\hat{\vb{A}}_\perp^-[\vb{\alpha}]}{\hat{\vb{A}}_\perp^+[\vb{\alpha}]}
+		\right\}
+		\exp\left\{
+			\hat{\vb{A}}_\perp^+[\vb{\alpha}]
+		\right\}
+		\ket{0}
+		.
+	\end{equation}
+\end{definition}
+\begin{example}
+	A photon propagating along $x_3$ with frequency spectrum $g(\omega)$ has spectrum
+	\begin{equation}
+		\vb{f}(p_0,\vb{p})
+		=
+		(2\pi)\delta(p_1)
+		(2\pi)\delta(p_2)
+		g(p_0)
+		\boldsymbol{\varepsilon}_1(\vb{p})^*
+	\end{equation}
+	and corresponding smearing function
+	\begin{equation}
+		\begin{split}
+			f(t,\vb{x})
+			&=
+			\int\frac{\dd[4]{p}}{(2\pi)^4}
+			f(p_0,\vb{p})e^{+ip_\mu x^\mu}
+		\end{split}
+	\end{equation}
+	and we find the state to be
+	\begin{equation}
+		\begin{split}
+			\hat{\vb{A}}_\perp^+[\vb{f}]
+			\ket{0}
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\left(
+				\vb{f}\left(\omega(\vb{p}),\vb{p}\right)
+				\vdot
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+			\right)^*
+			\hat{a}_\lambda^\dagger(\vb{p})
+			\ket{0}
+			\\
+			&=
+			\sum_{\lambda=1,2}
+			\int_{\mathbb{R}}\frac{\dd{p_3}}{(2\pi)\sqrt{2\omega(0,0,p_3)}}
+			g\left(\omega(0,0,p_3)\right)^*
+			\delta_{\lambda1}
+			\hat{a}_\lambda^\dagger(0,0,p_3)
+			\ket{0}
+			\\
+			&\propto
+			\int_B\dd{\omega}
+			g(\omega)^*
+			\hat{a}_1^\dagger(0,0,\omega)
+			\ket{0}
+		\end{split}
+	\end{equation}
+	where the last equal is true by the mean value theorem for integrals and $B\subset\mathbb{R}$ is the support of the spectrum (or equivalent the bandwidth).
+\end{example}
