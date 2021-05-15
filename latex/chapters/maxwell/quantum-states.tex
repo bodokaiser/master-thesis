@@ -386,17 +386,32 @@
 	The coherent state with spectrum $\vb{\alpha}(p_0,\vb{p})$ is
 	\begin{equation}
 		\label{eq:qmw_coherent_state}
-		\ket{\vb{\alpha}}
-		=
-		\exp\left\{
-			-
-			\frac{1}{2}
-			\comm{\hat{\vb{A}}_\perp^-[\vb{\alpha}]}{\hat{\vb{A}}_\perp^+[\vb{\alpha}]}
-		\right\}
-		\exp\left\{
-			\hat{\vb{A}}_\perp^+[\vb{\alpha}]
-		\right\}
-		\ket{0}
-		.
+		\begin{split}
+			\ket{\vb{\alpha}}
+			=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat{\vb{A}}_\perp^-[\vb{\alpha}]}{\hat{\vb{A}}_\perp^+[\vb{\alpha}]}
+			\right\}
+			\exp\left\{
+				\hat{\vb{A}}_\perp^+[\vb{\alpha}]
+			\right\}
+			\ket{0}
+			.
+		\end{split}
 	\end{equation}
 \end{definition}
+\begin{restatable}{lemma}{qmwqkgcoherentstate}\label{thm:qmw_qkg_coherent_state}
+	The transverse Maxwell' coherent state can be written as a tensor product of Klein-Gordon' coherent state
+	\begin{equation}
+		\ket{\vb{\alpha}}
+		=
+		\hat{D}_1[\alpha_1]
+		\hat{D}_2[\alpha_2]
+		\ket{0}
+		=
+		\ket{\alpha_1,\alpha_2}
+		.
+	\end{equation}
+\end{restatable}

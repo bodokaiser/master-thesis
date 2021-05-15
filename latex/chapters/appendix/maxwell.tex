@@ -1403,3 +1403,86 @@
 		\end{split}
 	\end{equation*}
 \end{proof}
+
+\qmwqkgcoherentstate
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			\ket{\vb{\alpha}}
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat{\vb{A}}_\perp^-[\vb{\alpha}]}{\hat{\vb{A}}_\perp^+[\vb{\alpha}]}
+			\right\}
+			\exp\left\{
+				\hat{\vb{A}}_\perp^+[\vb{\alpha}]
+			\right\}
+			\ket{0}
+			\\
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{
+					\hat\phi_1^-[\alpha_1]
+					+
+					\hat\phi_2^-[\alpha_2]
+				}{
+					\hat\phi_1^+[\alpha_1]
+					+
+					\hat\phi_2^+[\alpha_2]
+				}
+			\right\}
+			\exp\left\{
+				\hat\phi_1^+[\alpha_1]
+				+
+				\hat\phi_2^+[\alpha_2]
+			\right\}
+			\ket{0}
+			\\
+			&=
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi_1^-[\alpha_1]}{\hat\phi_1^+[\alpha_1]}
+				-
+				\frac{1}{2}
+				\comm{\hat\phi_2^-[\alpha_2]}{\hat\phi_2^+[\alpha_2]}
+			\right\}
+			\exp\left\{
+				\hat\phi_1^+[\alpha_1]
+				+
+				\hat\phi_2^+[\alpha_2]
+			\right\}
+			\ket{0}
+			\\
+			&=
+			\exp\left\{
+				\frac{1}{2}
+				\comm{\hat\phi_2^-[\alpha_2]}{\hat\phi_2^+[\alpha_2]}
+			\right\}
+			\exp\left\{
+				\hat\phi_2^+[\alpha_2]
+			\right\}
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi_1^-[\alpha_1]}{\hat\phi_1^+[\alpha_1]}
+			\right\}
+			\exp\left\{
+				\hat\phi_1^+[\alpha_1]
+			\right\}
+			\ket{0}
+			\\
+			&=
+			\hat{D}_1[\alpha_1]
+			\hat{D}_2[\alpha_2]
+			\ket{0}
+			\\
+			&=
+			\ket{\alpha_1,\alpha_2}
+			.
+		\end{split}
+	\end{equation*}
+\end{proof}
