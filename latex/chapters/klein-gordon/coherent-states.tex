@@ -331,3 +331,177 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 \begin{corollary}
 	Results obtained for the single-particle number state's coordinate wave function, e.g., the group velocity (\Cref{thm:number_state_single_group_velocity}) and the localization (\Cref{thm:number_state_single_localization}), carry over to the coherent state after performing the replacement $f(\vb{p})=e^{-\overline{n}/2}\alpha(\vb{p})$.
 \end{corollary}
+
+\begin{lemma}
+	\begin{equation}
+		\expval{\hat\pi(x^\mu)}{\alpha}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\Re\left\{
+			\alpha(\vb{p})
+			e^{-ip_\mu x^\mu}
+		\right\}_{p_0=\omega(\vb{p})}
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)}{\alpha}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{p})}{2}}
+			\right)
+			\expval{
+				\left(
+					\hat{a}(\vb{p})
+					e^{-ip_\mu x^\mu}
+					-
+					\hat{a}^\dagger(\vb{p})
+					e^{+ip_\mu x^\mu}
+				\right)_{p_0=\omega(\vb{p})}
+			}{\alpha}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{p})}{2}}
+			\right)
+			\left\{
+				\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+				e^{-ip_\mu x^\mu}
+				-
+				\frac{\alpha(\vb{p})^*}{\sqrt{2\omega(\vb{p})}}
+				e^{+ip_\mu x^\mu}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\eval{
+				\frac{
+					\alpha(\vb{p})
+					e^{-ip_\mu x^\mu}
+					-
+					\alpha(\vb{p})^*
+					e^{+ip_\mu x^\mu}
+				}{2i}
+			}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\Re\left\{
+				\alpha(\vb{p})
+				e^{-ip_\mu x^\mu}
+			\right\}_{p_0=\omega(\vb{p})}
+		\end{split}
+	\end{equation*}
+\end{proof}
+\begin{lemma}
+	\begin{equation}
+		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{\alpha}
+		=
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{\alpha}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{p})}{2}}
+			\right)
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{q})}{2}}
+			\right)
+			\\
+			&\times
+			\expval{
+				\left(
+					\hat{a}(\vb{p})
+					e^{-ip_\mu x^\mu}
+					-
+					\hat{a}^\dagger(\vb{p})
+					e^{+ip_\mu x^\mu}
+				\right)_{p_0=\omega(\vb{p})}
+				\left(
+					\hat{a}(\vb{q})
+					e^{-iq_\mu y^\mu}
+					-
+					\hat{a}^\dagger(\vb{q})
+					e^{+iq_\mu y^\mu}
+				\right)_{q_0=\omega(\vb{q})}
+			}{\alpha}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				-
+				\frac{\sqrt{\omega(\vb{p})\omega(\vb{q})}}{2}
+			\right)
+			\\
+			&\times
+			\bra{\alpha}
+			\biggl(
+				\hat{a}(\vb{p})
+				\hat{a}(\vb{q})
+				e^{-ip_\mu x^\mu-iq_\mu y^\mu}
+				-
+				\hat{a}(\vb{p})
+				\hat{a}^\dagger(\vb{q})
+				e^{-ip_\mu x^\mu+iq_\mu y^\mu}
+				+
+				\text{h.c.}
+			\biggr)_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+			\ket{\alpha}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				-
+				\frac{\sqrt{\omega(\vb{p})\omega(\vb{q})}}{2}
+			\right)
+			\\
+			&\times
+			\biggl(
+				\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+				\frac{\alpha(\vb{q})}{\sqrt{2\omega(\vb{q})}}
+				e^{-ip_\mu x^\mu-iq_\mu y^\mu}
+				-
+				\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+				\frac{\alpha(\vb{q})^*}{\sqrt{2\omega(\vb{q})}}
+				e^{-ip_\mu x^\mu+iq_\mu y^\mu}
+				+
+				\text{c.c.}
+			\biggr)_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				-
+				\frac{1}{4}
+			\right)
+			\biggl(
+				\alpha(\vb{p})
+				\alpha(\vb{q})
+				e^{-ip_\mu x^\mu-iq_\mu y^\mu}
+				-
+				\alpha(\vb{p})
+				\alpha(\vb{q})^*
+				e^{-ip_\mu x^\mu+iq_\mu y^\mu}
+				+
+				\alpha(\vb{p})^*
+				\alpha(\vb{q})
+				e^{+ip_\mu x^\mu-iq_\mu y^\mu}
+				-
+				\alpha(\vb{p})^*
+				\alpha(\vb{q})^*
+				e^{+ip_\mu x^\mu+iq_\mu y^\mu}
+			\biggr)_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+		\end{split}
+	\end{equation*}
+\end{proof}
