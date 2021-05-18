@@ -554,3 +554,175 @@
 	\end{align*}
 	which for $t=0$ are equal up to a proportionality constant.
 \end{example}
+\begin{example}
+	The smearing function
+	\begin{equation*}
+		f(\omega,\vb{p})
+		=
+		\sqrt{2\omega_0}
+		\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+		\exp\left\{
+			-
+			\frac{(\omega-\omega_0)^2}{4\Delta\omega^2}
+		\right\}
+		e^{+i\omega t}
+		(2\pi)\delta^{(1)}(p^1)
+		(2\pi)\delta^{(1)}(p^2)
+	\end{equation*}
+	is normalized and the coordinate representation turns out to be
+	\begin{equation*}
+		\begin{split}
+			f(t,\vb{x})
+			&=
+			\int\frac{\dd[4]{p}}{(2\pi)^4}
+			f(p_0,\vb{p})
+			e^{+ip_\mu x^\mu}
+			\\
+			&=
+			\sqrt{2\omega_0}
+			\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+			\int\dd{\omega}
+			\exp\left\{
+				-
+				\left(\frac{\omega-\omega_0}{2\Delta\omega}\right)^2
+				+
+				i\omega t
+			\right\}
+			\int\frac{\dd{p^3}}{2\pi}
+			e^{-ip^3z}
+			\\
+			&=
+			\sqrt{2\omega_0}
+			\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+			e^{+i\omega_0t}
+			\delta^{(1)}(z)
+			2\Delta\omega
+			\int\dd{u}
+			\exp\left\{
+				-
+				u^2
+				+
+				2u i\Delta\omega t
+			\right\}
+			\\
+			&=
+			\sqrt{2\omega_0}
+			\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+			e^{+i\omega_0t}
+			e^{-\Delta\omega^2 t}
+			\delta^{(1)}(z)
+			2\Delta\omega
+			\sqrt{\pi}
+			\\
+			&=
+			\sqrt{2\omega_0}
+			\left(8\pi\Delta\omega^2\right)^\frac{1}{4}
+			e^{+i\omega_0t}
+			e^{-\Delta\omega^2 t}
+			\delta^{(1)}(z)
+			.
+		\end{split}
+	\end{equation*}
+	The coordinate wave function is
+	\begin{equation*}
+		\begin{split}
+			\psi(t,\vb{x})
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\eval{
+				f(p_0,\vb{p})^*
+				e^{+ip_\mu x^\mu}
+			}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+			\int\dd{\omega}
+			\exp\left\{
+				-
+				\left(\frac{\omega-\omega_0}{2\Delta\omega}\right)^2
+				+
+				i\omega(t-z)
+			\right\}
+			\\
+			&=
+			\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+			2\Delta\omega
+			\int\dd{u}
+			\exp\left\{
+				-
+				u^2
+				+
+				i(\omega_0+2\Delta\omega u)(t-z)
+			\right\}
+			\\
+			&=
+			\left(\frac{8\Delta\omega^2}{\pi}\right)^\frac{1}{4}
+			e^{-i\omega_0(t-z)}
+			\int\dd{u}
+			\exp\left\{
+				-
+				u^2
+				+
+				2u i\Delta\omega(t-z)
+			\right\}
+			\\
+			&=
+			\left(\frac{8\Delta\omega^2}{\pi}\right)^\frac{1}{4}
+			e^{-i\omega_0(t-z)}
+			\sqrt{\pi}
+			e^{-\Delta\omega^2(t-z)}
+			\\
+			&=
+			\left(8\pi\Delta\omega^2\right)^\frac{1}{4}
+			e^{-i\omega_0(t-z)}
+			e^{-\Delta\omega^2(t-z)}
+		\end{split}
+	\end{equation*}
+\end{example}
+\begin{lemma}
+	More generally, we find
+	\begin{equation}
+		\psi(x^\mu)
+		=
+		\int\dd[4]{y}
+		D(x^\mu-y^\mu)
+		f(y^\mu)
+		,
+	\end{equation}
+	i.e., the smearing function is an initial wave function evolved to another point in time.
+\end{lemma}
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			\int\dd[4]{y}
+			D(x^\mu-y^\mu)
+			f(y^\mu)
+			&=
+			\int\dd[4]{y}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\eval{e^{-ip_\mu(x^\mu-y^\mu)}}_{p_0=\omega(\vb{p})}
+			\int\frac{\dd[4]{q}}{(2\pi)^4}
+			f(q^\mu)
+			e^{+iq_\mu y^\mu}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			\int\frac{\dd[4]{q}}{(2\pi)^4}
+			f(q^\mu)
+			\\
+			&\times
+			\int\dd{y^0}
+			e^{+i(\omega(\vb{p})+q^0)y^0}
+			\int\dd[3]{y}
+			e^{-i(\vb{q}+\vb{p})\vdot\vb{y}}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f\left(\omega(\vb{p}),\vb{p}\right)^*
+			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			=
+			\psi(x^\mu)
+		\end{split}
+	\end{equation*}
+\end{proof}
