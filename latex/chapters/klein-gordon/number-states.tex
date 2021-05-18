@@ -152,3 +152,57 @@ It turns out that there is a deep connection between the spectrum $f(\vb{p})$ an
 	\end{equation}
 	moving with the group velocity $\expval{\vb{v}}$.
 \end{restatable}
+
+\begin{restatable}{lemma}{qkgnumbermomentumdensitymean}\label{thm:number_state_momentum_density_mean}
+	\begin{equation}
+		\expval{\hat\pi(x^\mu)}{n_f}
+		=
+		0
+	\end{equation}
+\end{restatable}
+\begin{restatable}{lemma}{qkgnumbermomentumdensitycorr}\label{thm:number_state_momentum_density_corr}
+	\begin{equation}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{n_f}
+			&=
+			\Re
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			\eval{e^{+ip_\mu(x^\mu-y^\mu)}}_{p_0=\omega(\vb{p})}
+			\\
+			&+
+			\Re
+			\frac{n}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\eval{
+				f(p_0,\vb{p})
+				e^{+ip_\mu x^\mu}
+			}_{p_0=\omega(\vb{p})}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\eval{
+				f(q_0,\vb{q})^*
+				e^{-iq_\mu y^\mu}
+			}_{q_0=\omega(\vb{q})}
+		\end{split}
+	\end{equation}
+\end{restatable}
+\begin{corollary}
+	The variance of the momentum density operator is
+	\begin{equation}
+		\begin{split}
+			\expval{\left(\Delta\hat\pi(x^\mu)\right)^2}{n_f}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			+
+			\frac{n}{2}
+			\abs{
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\eval{
+					f(p_0,\vb{p})
+					e^{+ip_\mu x^\mu}
+				}_{p_0=\omega(\vb{p})}
+			}^2
+		\end{split}
+	\end{equation}
+\end{corollary}

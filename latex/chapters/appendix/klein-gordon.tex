@@ -1306,6 +1306,101 @@
 	No explicit proof, result claimed in Ref.~\cite[eq.~38]{Naumov2013}.
 \end{proof}
 
+\qkgnumbermomentumdensitymean
+\begin{proof}
+	Expanding the momentum density operator into positive and negative frequency terms, the positive frequency term has one creation operator more than annihilation operators, and the negative frequency term has one annihilation operator more than than creation operators, and thus, at some point a creation operator acting on the left vacuum or an annihilation operator acting on the right vacuum will be zero and the expectation value vanishes.
+\end{proof}
+\qkgnumbermomentumdensitycorr
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{n_f}
+			&=
+			\expval{\hat\pi^-(x^\mu)\hat\pi^-(y^\mu)}{n_f}
+			+
+			\expval{\hat\pi^+(x^\mu)\hat\pi^-(y^\mu)}{n_f}
+			+
+			\text{h.c.}
+			\\
+			&=
+			\expval{\hat\pi^+(x^\mu)\hat\pi^-(y^\mu)}{n_f}
+			+
+			\text{h.c.}
+		\end{split}
+	\end{equation*}
+	\begin{equation*}
+		\expval{\hat\pi^+(x^\mu)\hat\pi^-(y^\mu)}{n_f}
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\left(+i\sqrt{\frac{\omega(\vb{p})}{2}}\right)
+		e^{+ip_\mu x^\mu}
+		\int\frac{\dd[3]{q}}{(2\pi)^3}
+		\left(-i\sqrt{\frac{\omega(\vb{q})}{2}}\right)
+		e^{-iq_\mu x^\mu}
+		\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})}{n_f}
+	\end{equation*}
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat{a}(\vb{p})\hat{a}^\dagger(\vb{q})}{n_f}
+			&=
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			\braket{n_f}
+			+
+			\expval{\hat{a}^\dagger(\vb{q})\hat{a}(\vb{p})}{n_f}
+			\\
+			&=
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			+
+			\frac{1}{n!}
+			\expval{
+				\hat\phi^-[f]^n
+				\hat{a}^\dagger(\vb{q})
+				\hat{a}(\vb{p})
+				\hat\phi^+[f]^n
+			}{0}
+			\\
+			&=
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			+
+			\frac{n^2}{n}
+			\frac{f(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+			\frac{f(\vb{q})^*}{\sqrt{2\omega(\vb{q})}}
+			\braket{n-1_f}
+			\\
+			&=
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			+
+			n
+			\frac{f(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+			\frac{f(\vb{q})^*}{\sqrt{2\omega(\vb{q})}}
+		\end{split}
+	\end{equation*}
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{n_f}
+			&=
+			\Re
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			\eval{e^{+ip_\mu(x^\mu-y^\mu)}}_{p_0=\omega(\vb{p})}
+			\\
+			&+
+			\Re
+			\frac{n}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\eval{
+				f(p_0,\vb{p})
+				e^{+ip_\mu x^\mu}
+			}_{p_0=\omega(\vb{p})}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\eval{
+				f(q_0,\vb{q})^*
+				e^{-iq_\mu y^\mu}
+			}_{q_0=\omega(\vb{q})}
+		\end{split}
+	\end{equation*}
+\end{proof}
+
 \section{Coherent states}
 
 \begin{theorem}[Baker-Campbell-Hausdorff formula]
@@ -2199,6 +2294,330 @@
 			\alpha(\vb{p})
 			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
 			.
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\qkgcoherentmomentumdensitymean
+\begin{proof}
+	We decompose the momentum density operator
+	\begin{equation*}
+		\expval{\hat\pi(x^\mu)}{\alpha}
+		=
+		\expval{\hat\pi^-(x^\mu)}{\alpha}
+		+
+		\expval{\hat\pi^+(x^\mu)}{\alpha}
+	\end{equation*}
+	and evaluate the first term
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi^-(x^\mu)}{\alpha}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{p})}{2}}
+			\right)
+			\expval{\hat{a}(\vb{p})}{\alpha}
+			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{p})}{2}}
+			\right)
+			\frac{\alpha\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			-
+			\frac{i}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+		\end{split}
+	\end{equation*}
+	and the second term is equal to the Hermitian conjugate, thus
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)}{\alpha}
+			&=
+			-
+			\frac{i}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			+
+			\frac{i}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\alpha\left(\omega(\vb{p}),\vb{p}\right)^*
+			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\frac{1}{2i}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left\{
+				\alpha\left(p_0,\vb{p}\right)
+				e^{-ip_\mu x^\mu}
+				-
+				\alpha\left(p_0,\vb{p}\right)^*
+				e^{+ip_\mu x^\mu}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\Im\left\{
+				\alpha\left(p_0,\vb{p}\right)
+				e^{-ip_\mu x^\mu}			
+			\right\}_{p_0=\omega(\vb{p})}
+			.
+		\end{split}
+	\end{equation*}
+\end{proof}
+\qkgcoherentmomentumdensitycorr
+\begin{proof}
+	We write the expectation value in terms of positive and negative frequency momentum density operators
+	\begin{equation*}
+		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{\alpha}
+		=
+		\expval{\hat\pi^+(x^\mu)\hat\pi^+(y^\mu)}{\alpha}
+		+
+		\expval{\hat\pi^+(x^\mu)\hat\pi^-(y^\mu)}{\alpha}
+		+
+		\text{h.c.}
+	\end{equation*}
+	and evaluate the first term
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi^+(x^\mu)\hat\pi^+(y^\mu)}{\alpha}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				+i
+				\sqrt{\frac{\omega(\vb{p})}{2}}
+			\right)
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				+i
+				\sqrt{\frac{\omega(\vb{q})}{2}}
+			\right)
+			\\
+			&\times
+			\expval{\hat{a}^\dagger(\vb{p})\hat{a}^\dagger(\vb{q})}{\alpha}
+			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			\eval{e^{+iq_\mu y^\mu}}_{q_0=\omega(\vb{q})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				+i
+				\sqrt{\frac{\omega(\vb{p})}{2}}
+			\right)
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				+i
+				\sqrt{\frac{\omega(\vb{q})}{2}}
+			\right)
+			\\
+			&\times
+			\frac{\alpha\left(\omega(\vb{p}),\vb{p}\right)^*}{\sqrt{2\omega(\vb{p})}}
+			\frac{\alpha\left(\omega(\vb{q}),\vb{q}\right)^*}{\sqrt{2\omega(\vb{q})}}
+			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			\eval{e^{+iq_\mu y^\mu}}_{q_0=\omega(\vb{q})}
+			\\
+			&=
+			\frac{i}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				\alpha(p_0,\vb{p})
+				e^{-ip_\mu x^\mu}
+			\right)^*_{p_0=\omega(\vb{p})}
+			\frac{i}{2}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				\alpha(q_0,\vb{q})
+				e^{-iq_\mu y^\mu}
+			\right)^*_{q_0=\omega(\vb{q})}
+			\\
+			&=
+			-
+			\frac{1}{4}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				\alpha(p_0,\vb{p})
+				e^{-ip_\mu x^\mu}
+			\right)^*_{p_0=\omega(\vb{p})}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				\alpha(q_0,\vb{q})
+				e^{-iq_\mu y^\mu}
+			\right)^*_{q_0=\omega(\vb{q})}
+		\end{split}
+	\end{equation*}
+	by using the Hermitian conjugate of the eigenvalue equation \Cref{thm:qkg_coherent_state_eigenstate} to the left.
+	For the second term, we find
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi^+(x^\mu)\hat\pi^-(y^\mu)}{\alpha}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				+i
+				\sqrt{\frac{\omega(\vb{p})}{2}}
+			\right)
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{q})}{2}}
+			\right)
+			\\
+			&\times
+			\expval{\hat{a}^\dagger(\vb{p})\hat{a}(\vb{q})}{\alpha}
+			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			\eval{e^{-iq_\mu y^\mu}}_{q_0=\omega(\vb{q})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				+i
+				\sqrt{\frac{\omega(\vb{p})}{2}}
+			\right)
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				-i
+				\sqrt{\frac{\omega(\vb{q})}{2}}
+			\right)
+			\\
+			&\times
+			\frac{\alpha\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+			\frac{\alpha\left(\omega(\vb{q}),\vb{q}\right)^*}{\sqrt{2\omega(\vb{q})}}
+			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			\eval{e^{-iq_\mu y^\mu}}_{q_0=\omega(\vb{q})}
+			\\
+			&=
+			\frac{i}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				\alpha(p_0,\vb{p})
+				e^{-ip_\mu x^\mu}
+			\right)^*_{p_0=\omega(\vb{p})}
+			\left(
+				-
+				\frac{i}{2}
+			\right)
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				\alpha(q_0,\vb{q})
+				e^{-iq_\mu y^\mu}
+			\right)_{q_0=\omega(\vb{q})}
+			\\
+			&=
+			+
+			\frac{1}{4}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left(
+				\alpha(p_0,\vb{p})
+				e^{-ip_\mu x^\mu}
+			\right)^*_{p_0=\omega(\vb{p})}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left(
+				\alpha(q_0,\vb{q})
+				e^{-iq_\mu y^\mu}
+			\right)_{q_0=\omega(\vb{q})}
+			,
+		\end{split}
+	\end{equation*}
+	thus in sum
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{\alpha}
+			&=
+			\frac{1}{2}
+			\Re\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\left(
+					\alpha(p_0,\vb{p})
+					e^{-ip_\mu x^\mu}
+				\right)^*_{p_0=\omega(\vb{p})}
+				\int\frac{\dd[3]{q}}{(2\pi)^3}
+				\left(
+					\alpha(q_0,\vb{q})
+					e^{-iq_\mu y^\mu}
+				\right)_{q_0=\omega(\vb{q})}			
+			\right\}
+			\\
+			&-
+			\frac{1}{2}
+			\Re\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\left(
+					\alpha(p_0,\vb{p})
+					e^{-ip_\mu x^\mu}
+				\right)^*_{p_0=\omega(\vb{p})}
+				\int\frac{\dd[3]{q}}{(2\pi)^3}
+				\left(
+					\alpha(q_0,\vb{q})
+					e^{-iq_\mu y^\mu}
+				\right)^*_{q_0=\omega(\vb{q})}
+			\right\}
+		\end{split}
+	\end{equation*}
+\end{proof}
+\qkgcoherentmomentumdensityvar
+\begin{proof}
+	The second moment follows from the previous lemma
+	\begin{equation*}
+		\begin{split}
+			\expval{\hat\pi(x^\mu)^2}{\alpha}
+			&=
+			\frac{1}{2}
+			\Re\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\left(
+					\alpha(p_0,\vb{p})
+					e^{-ip_\mu x^\mu}
+				\right)^*_{p_0=\omega(\vb{p})}
+				\int\frac{\dd[3]{q}}{(2\pi)^3}
+				\left(
+					\alpha(q_0,\vb{q})
+					e^{-iq_\mu x^\mu}
+				\right)_{q_0=\omega(\vb{q})}			
+			\right\}
+			\\
+			&-
+			\frac{1}{2}
+			\Re\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\left(
+					\alpha(p_0,\vb{p})
+					e^{-ip_\mu x^\mu}
+				\right)_{p_0=\omega(\vb{p})}
+				\int\frac{\dd[3]{q}}{(2\pi)^3}
+				\left(
+					\alpha(q_0,\vb{q})
+					e^{-iq_\mu x^\mu}
+				\right)_{q_0=\omega(\vb{q})}
+			\right\}
+			\\
+			&=
+			\frac{1}{2}
+			\abs{
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\eval{
+					\alpha(p_0,\vb{p})
+					e^{-ip_\mu x^\mu}
+				}_{p_0=\omega(\vb{p})}
+			}^2
+			-
+			\frac{1}{2}
+			\Re\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\eval{
+					\alpha(p_0,\vb{p})
+					e^{-ip_\mu x^\mu}
+				}_{p_0=\omega(\vb{p})}
+			\right\}^2
 		\end{split}
 	\end{equation*}
 \end{proof}

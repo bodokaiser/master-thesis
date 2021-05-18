@@ -378,7 +378,7 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 	\end{equation}	
 \end{corollary}
 
-\begin{lemma}
+\begin{restatable}{lemma}{qkgcoherentmomentumdensitymean}\label{thm:qkg_coherent_momentum_density_mean}
 	The expected mean of the momentum density operator w.r.t. the coherent state is
 	\begin{equation}
 		\expval{\hat\pi(x^\mu)}{\alpha}
@@ -390,84 +390,8 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 		\right\}_{p_0=\omega(\vb{p})}
 		.
 	\end{equation}
-\end{lemma}
-\begin{proof}
-	We decompose the momentum density operator
-	\begin{equation*}
-		\expval{\hat\pi(x^\mu)}{\alpha}
-		=
-		\expval{\hat\pi^-(x^\mu)}{\alpha}
-		+
-		\expval{\hat\pi^+(x^\mu)}{\alpha}
-	\end{equation*}
-	and evaluate the first term
-	\begin{equation*}
-		\begin{split}
-			\expval{\hat\pi^-(x^\mu)}{\alpha}
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left(
-				-i
-				\sqrt{\frac{\omega(\vb{p})}{2}}
-			\right)
-			\expval{\hat{a}(\vb{p})}{\alpha}
-			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left(
-				-i
-				\sqrt{\frac{\omega(\vb{p})}{2}}
-			\right)
-			\frac{\alpha\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
-			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
-			\\
-			&=
-			-
-			\frac{i}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\alpha\left(\omega(\vb{p}),\vb{p}\right)
-			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
-		\end{split}
-	\end{equation*}
-	and the second term is equal to the Hermitian conjugate, thus
-	\begin{equation*}
-		\begin{split}
-			\expval{\hat\pi(x^\mu)}{\alpha}
-			&=
-			-
-			\frac{i}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\alpha\left(\omega(\vb{p}),\vb{p}\right)
-			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
-			+
-			\frac{i}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\alpha\left(\omega(\vb{p}),\vb{p}\right)^*
-			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
-			\\
-			&=
-			\frac{1}{2i}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left\{
-				\alpha\left(p_0,\vb{p}\right)
-				e^{-ip_\mu x^\mu}
-				-
-				\alpha\left(p_0,\vb{p}\right)^*
-				e^{+ip_\mu x^\mu}
-			\right\}_{p_0=\omega(\vb{p})}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\Im\left\{
-				\alpha\left(p_0,\vb{p}\right)
-				e^{-ip_\mu x^\mu}			
-			\right\}_{p_0=\omega(\vb{p})}
-			.
-		\end{split}
-	\end{equation*}
-\end{proof}
-\begin{lemma}
+\end{restatable}
+\begin{restatable}{lemma}{qkgcoherentmomentumdensitycorr}\label{thm:qkg_coherent_momentum_density_corr}
 	\begin{equation}
 		\begin{split}
 			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{\alpha}
@@ -483,238 +407,6 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 				\left(
 					\alpha(q_0,\vb{q})
 					e^{-iq_\mu y^\mu}
-				\right)_{q_0=\omega(\vb{q})}			
-			\right\}
-			\\
-			&-
-			\frac{1}{2}
-			\Re\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
-				\left(
-					\alpha(p_0,\vb{p})
-					e^{-ip_\mu x^\mu}
-				\right)^*_{p_0=\omega(\vb{p})}
-				\int\frac{\dd[3]{q}}{(2\pi)^3}
-				\left(
-					\alpha(q_0,\vb{q})
-					e^{-iq_\mu y^\mu}
-				\right)^*_{q_0=\omega(\vb{q})}
-			\right\}
-		\end{split}
-	\end{equation}
-\end{lemma}
-\begin{proof}
-	We write the expectation value in terms of positive and negative frequency momentum density operators
-	\begin{equation*}
-		\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{\alpha}
-		=
-		\expval{\hat\pi^+(x^\mu)\hat\pi^+(y^\mu)}{\alpha}
-		+
-		\expval{\hat\pi^+(x^\mu)\hat\pi^-(y^\mu)}{\alpha}
-		+
-		\text{h.c.}
-	\end{equation*}
-	and evaluate the first term
-	\begin{equation*}
-		\begin{split}
-			\expval{\hat\pi^+(x^\mu)\hat\pi^+(y^\mu)}{\alpha}
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left(
-				+i
-				\sqrt{\frac{\omega(\vb{p})}{2}}
-			\right)
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			\left(
-				+i
-				\sqrt{\frac{\omega(\vb{q})}{2}}
-			\right)
-			\\
-			&\times
-			\expval{\hat{a}^\dagger(\vb{p})\hat{a}^\dagger(\vb{q})}{\alpha}
-			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
-			\eval{e^{+iq_\mu y^\mu}}_{q_0=\omega(\vb{q})}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left(
-				+i
-				\sqrt{\frac{\omega(\vb{p})}{2}}
-			\right)
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			\left(
-				+i
-				\sqrt{\frac{\omega(\vb{q})}{2}}
-			\right)
-			\\
-			&\times
-			\frac{\alpha\left(\omega(\vb{p}),\vb{p}\right)^*}{\sqrt{2\omega(\vb{p})}}
-			\frac{\alpha\left(\omega(\vb{q}),\vb{q}\right)^*}{\sqrt{2\omega(\vb{q})}}
-			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
-			\eval{e^{+iq_\mu y^\mu}}_{q_0=\omega(\vb{q})}
-			\\
-			&=
-			\frac{i}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left(
-				\alpha(p_0,\vb{p})
-				e^{-ip_\mu x^\mu}
-			\right)^*_{p_0=\omega(\vb{p})}
-			\frac{i}{2}
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			\left(
-				\alpha(q_0,\vb{q})
-				e^{-iq_\mu y^\mu}
-			\right)^*_{q_0=\omega(\vb{q})}
-			\\
-			&=
-			-
-			\frac{1}{4}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left(
-				\alpha(p_0,\vb{p})
-				e^{-ip_\mu x^\mu}
-			\right)^*_{p_0=\omega(\vb{p})}
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			\left(
-				\alpha(q_0,\vb{q})
-				e^{-iq_\mu y^\mu}
-			\right)^*_{q_0=\omega(\vb{q})}
-		\end{split}
-	\end{equation*}
-	by using the Hermitian conjugate of the eigenvalue equation \Cref{thm:qkg_coherent_state_eigenstate} to the left.
-	For the second term, we find
-	\begin{equation*}
-		\begin{split}
-			\expval{\hat\pi^+(x^\mu)\hat\pi^-(y^\mu)}{\alpha}
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left(
-				+i
-				\sqrt{\frac{\omega(\vb{p})}{2}}
-			\right)
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			\left(
-				-i
-				\sqrt{\frac{\omega(\vb{q})}{2}}
-			\right)
-			\\
-			&\times
-			\expval{\hat{a}^\dagger(\vb{p})\hat{a}(\vb{q})}{\alpha}
-			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
-			\eval{e^{-iq_\mu y^\mu}}_{q_0=\omega(\vb{q})}
-			\\
-			&=
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left(
-				+i
-				\sqrt{\frac{\omega(\vb{p})}{2}}
-			\right)
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			\left(
-				-i
-				\sqrt{\frac{\omega(\vb{q})}{2}}
-			\right)
-			\\
-			&\times
-			\frac{\alpha\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
-			\frac{\alpha\left(\omega(\vb{q}),\vb{q}\right)^*}{\sqrt{2\omega(\vb{q})}}
-			\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
-			\eval{e^{-iq_\mu y^\mu}}_{q_0=\omega(\vb{q})}
-			\\
-			&=
-			\frac{i}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left(
-				\alpha(p_0,\vb{p})
-				e^{-ip_\mu x^\mu}
-			\right)^*_{p_0=\omega(\vb{p})}
-			\left(
-				-
-				\frac{i}{2}
-			\right)
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			\left(
-				\alpha(q_0,\vb{q})
-				e^{-iq_\mu y^\mu}
-			\right)_{q_0=\omega(\vb{q})}
-			\\
-			&=
-			+
-			\frac{1}{4}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\left(
-				\alpha(p_0,\vb{p})
-				e^{-ip_\mu x^\mu}
-			\right)^*_{p_0=\omega(\vb{p})}
-			\int\frac{\dd[3]{q}}{(2\pi)^3}
-			\left(
-				\alpha(q_0,\vb{q})
-				e^{-iq_\mu y^\mu}
-			\right)_{q_0=\omega(\vb{q})}
-			,
-		\end{split}
-	\end{equation*}
-	thus in sum
-	\begin{equation*}
-		\begin{split}
-			\expval{\hat\pi(x^\mu)\hat\pi(y^\mu)}{\alpha}
-			&=
-			\frac{1}{2}
-			\Re\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
-				\left(
-					\alpha(p_0,\vb{p})
-					e^{-ip_\mu x^\mu}
-				\right)^*_{p_0=\omega(\vb{p})}
-				\int\frac{\dd[3]{q}}{(2\pi)^3}
-				\left(
-					\alpha(q_0,\vb{q})
-					e^{-iq_\mu y^\mu}
-				\right)_{q_0=\omega(\vb{q})}			
-			\right\}
-			\\
-			&-
-			\frac{1}{2}
-			\Re\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
-				\left(
-					\alpha(p_0,\vb{p})
-					e^{-ip_\mu x^\mu}
-				\right)^*_{p_0=\omega(\vb{p})}
-				\int\frac{\dd[3]{q}}{(2\pi)^3}
-				\left(
-					\alpha(q_0,\vb{q})
-					e^{-iq_\mu y^\mu}
-				\right)^*_{q_0=\omega(\vb{q})}
-			\right\}
-		\end{split}
-	\end{equation*}
-\end{proof}
-\begin{corollary}
-	The variance of the momentum density is
-	\begin{equation}
-		\expval{\left(\Delta\hat\pi(x^\mu)\right)^2}{\alpha}
-		=
-	\end{equation}
-\end{corollary}
-\begin{proof}
-	The second moment follows from the previous lemma
-	\begin{equation*}
-		\begin{split}
-			\expval{\hat\pi(x^\mu)^2}{\alpha}
-			&=
-			\frac{1}{2}
-			\Re\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
-				\left(
-					\alpha(p_0,\vb{p})
-					e^{-ip_\mu x^\mu}
-				\right)^*_{p_0=\omega(\vb{p})}
-				\int\frac{\dd[3]{q}}{(2\pi)^3}
-				\left(
-					\alpha(q_0,\vb{q})
-					e^{-iq_\mu x^\mu}
 				\right)_{q_0=\omega(\vb{q})}			
 			\right\}
 			\\
@@ -729,28 +421,36 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 				\int\frac{\dd[3]{q}}{(2\pi)^3}
 				\left(
 					\alpha(q_0,\vb{q})
-					e^{-iq_\mu x^\mu}
+					e^{-iq_\mu y^\mu}
 				\right)_{q_0=\omega(\vb{q})}
 			\right\}
-			\\
+		\end{split}
+	\end{equation}
+\end{restatable}
+\begin{restatable}{lemma}{qkgcoherentmomentumdensityvar}\label{thm:qkg_coherent_momentum_density_var}
+	The variance of the momentum density is
+	\begin{equation}
+		\begin{split}
+			\expval{\left(\Delta\hat\pi(x^\mu)\right)^2}{\alpha}
 			&=
 			\frac{1}{2}
 			\abs{
 				\int\frac{\dd[3]{p}}{(2\pi)^3}
-				\left(
+				\eval{
 					\alpha(p_0,\vb{p})
 					e^{-ip_\mu x^\mu}
-				\right)_{p_0=\omega(\vb{p})}
+				}_{p_0=\omega(\vb{p})}
 			}^2
-			-
+			\\
+			&-
 			\frac{1}{2}
 			\Re\left\{
 				\int\frac{\dd[3]{p}}{(2\pi)^3}
-				\left(
+				\eval{
 					\alpha(p_0,\vb{p})
 					e^{-ip_\mu x^\mu}
-				\right)_{p_0=\omega(\vb{p})}
-			\right\}^2
+				}_{p_0=\omega(\vb{p})}^2
+			\right\}
 		\end{split}
-	\end{equation*}
-\end{proof}
+	\end{equation}
+\end{restatable}
