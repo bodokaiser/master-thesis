@@ -247,3 +247,116 @@
 		.
 	\end{equation}
 \end{restatable}
+
+\begin{definition}
+	The generalized quadrature operator is
+	\begin{equation}
+		\hat\chi(\theta)
+		=
+		\frac{1}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\left\{
+			\hat{a}^\dagger(\vb{p})
+			e^{+i\theta}
+			+
+			\hat{a}(\vb{p})
+			e^{-i\theta}
+		\right\}
+	\end{equation}
+	and reduces to the quadrature and in-phase operators
+	\begin{align}
+		\hat{X}
+		&=
+		\frac{1}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\left\{
+			\hat{a}^\dagger(\vb{p})
+			+
+			\hat{a}(\vb{p})
+		\right\}
+		=
+		\hat\chi(0)
+		\\
+		\hat{P}
+		&=
+		\frac{i}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\left\{
+			\hat{a}^\dagger(\vb{p})
+			-
+			\hat{a}(\vb{p})
+		\right\}
+		=
+		\hat\chi\left(\frac{\pi}{2}\right)
+		.
+	\end{align}
+\end{definition}
+\begin{lemma}
+	\begin{equation}
+		\comm{\hat\chi(\theta)}{\hat\chi(\theta^\prime)}
+		\propto
+		i\sin(\theta-\theta^\prime)
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			\comm{\hat\chi(\theta)}{\hat\chi(\theta-\Delta\theta)}
+			&=
+			\frac{1}{4}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\comm{
+				\hat{a}^\dagger(\vb{p})
+				e^{+i\theta}
+				+
+				\hat{a}(\vb{p})
+				e^{-i\theta}
+			}{
+				\hat{a}^\dagger(\vb{q})
+				e^{+i(\theta-\Delta\theta)}
+				+
+				\hat{a}(\vb{q})
+				e^{-i(\theta-\Delta\theta)}
+			}
+			\\
+			&=
+			\frac{1}{4}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\left\{
+				\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}(\vb{q})}
+				e^{+i\Delta\theta}
+				+
+				\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+				e^{-i\Delta\theta}
+			\right\}
+			\\
+			&=
+			\frac{1}{4}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\left\{
+				-
+				e^{+i\Delta\theta}
+				+
+				e^{-i\Delta\theta}
+			\right\}
+			\\
+			&=
+			\frac{i}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\Im e^{+i\Delta\theta}
+			\\
+			&=
+			\frac{i}{2}
+			\sin\Delta\theta
+			\frac{4\pi}{(2\pi)^3}
+			\int_0^\Lambda \dd{p}p^2
+			\\
+			&=
+			i
+			\sin\Delta\theta
+			\frac{\Lambda^3}{3(2\pi)^2}
+		\end{split}
+	\end{equation*}
+\end{proof}

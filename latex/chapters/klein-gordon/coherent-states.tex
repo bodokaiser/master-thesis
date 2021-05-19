@@ -381,14 +381,26 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 \begin{restatable}{lemma}{qkgcoherentmomentumdensitymean}\label{thm:qkg_coherent_momentum_density_mean}
 	The expected mean of the momentum density operator w.r.t. the coherent state is
 	\begin{equation}
-		\expval{\hat\pi(x^\mu)}{\alpha}
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\Im\left\{
-			\alpha\left(p_0,\vb{p}\right)
-			e^{-ip_\mu x^\mu}	
-		\right\}_{p_0=\omega(\vb{p})}
-		.
+		\begin{split}
+			\expval{\hat\pi(x^\mu)}{\alpha}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\Im\left\{
+				\alpha\left(p_0,\vb{p}\right)
+				e^{-ip_\mu x^\mu}	
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\Im\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			\cos\left(\omega(\vb{p})t-\vb{p}\vdot\vb{x}\right)
+			\\
+			&-
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\Re\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			\sin\left(\omega(\vb{p})t-\vb{p}\vdot\vb{x}\right)
+			.
+		\end{split}
 	\end{equation}
 \end{restatable}
 \begin{restatable}{lemma}{qkgcoherentmomentumdensitycorr}\label{thm:qkg_coherent_momentum_density_corr}
@@ -398,27 +410,27 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 			&=
 			\frac{1}{2}
 			\Re\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 				\left(
 					\alpha(p_0,\vb{p})
 					e^{-ip_\mu x^\mu}
 				\right)^*_{p_0=\omega(\vb{p})}
-				\int\frac{\dd[3]{q}}{(2\pi)^3}
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
 				\left(
 					\alpha(q_0,\vb{q})
 					e^{-iq_\mu y^\mu}
-				\right)_{q_0=\omega(\vb{q})}			
+				\right)_{q_0=\omega(\vb{q})}
 			\right\}
 			\\
 			&-
 			\frac{1}{2}
 			\Re\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 				\left(
 					\alpha(p_0,\vb{p})
 					e^{-ip_\mu x^\mu}
 				\right)_{p_0=\omega(\vb{p})}
-				\int\frac{\dd[3]{q}}{(2\pi)^3}
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
 				\left(
 					\alpha(q_0,\vb{q})
 					e^{-iq_\mu y^\mu}
@@ -426,6 +438,106 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 			\right\}
 		\end{split}
 	\end{equation}
+	Expanding $\alpha$ into real and imaginary parts, the first term can be written
+	\begin{equation*}
+		\begin{split}
+			&\
+			\Re\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\left(
+					\alpha(p_0,\vb{p})
+					e^{-ip_\mu x^\mu}
+				\right)^*_{p_0=\omega(\vb{p})}
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				\left(
+					\alpha(q_0,\vb{q})
+					e^{-iq_\mu y^\mu}
+				\right)_{q_0=\omega(\vb{q})}			
+			\right\}
+			\\
+			=&\
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\left\{
+				\Re\alpha(p_0,\vb{p})
+				\Re\alpha(q_0,\vb{q})
+				+
+				\Im\alpha(p_0,\vb{p})
+				\Im\alpha(q_0,\vb{q})
+			\right\}
+			\cos\left[
+				p_\mu x^\mu
+				-
+				q_\mu y^\mu
+			\right]_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+			\\
+			-&\
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\left\{
+				\Re\alpha(p_0,\vb{p})
+				\Im\alpha(q_0,\vb{q})
+				-
+				\Im\alpha(p_0,\vb{p})
+				\Re\alpha(q_0,\vb{q})
+			\right\}
+			\sin\left[
+				p_\mu x^\mu
+				-
+				q_\mu y^\mu
+			\right]_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+		\end{split}
+	\end{equation*}
+	and the second term
+	\begin{equation*}
+		\begin{split}
+			&\
+			\Re\left\{
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\left(
+					\alpha(p_0,\vb{p})
+					e^{-ip_\mu x^\mu}
+				\right)_{p_0=\omega(\vb{p})}
+				\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+				\left(
+					\alpha(q_0,\vb{q})
+					e^{-iq_\mu y^\mu}
+				\right)_{q_0=\omega(\vb{q})}			
+			\right\}
+			\\
+			=&\
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\left\{
+				\Re\alpha(p_0,\vb{p})
+				\Re\alpha(q_0,\vb{q})
+				-
+				\Im\alpha(p_0,\vb{p})
+				\Im\alpha(q_0,\vb{q})
+			\right\}
+			\cos\left[
+				p_\mu x^\mu
+				+
+				q_\mu y^\mu
+			\right]_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+			\\
+			-&\
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\left\{
+				\Re\alpha(p_0,\vb{p})
+				\Im\alpha(q_0,\vb{q})
+				+
+				\Im\alpha(p_0,\vb{p})
+				\Re\alpha(q_0,\vb{q})
+			\right\}
+			\sin\left[
+				p_\mu x^\mu
+				+
+				q_\mu y^\mu
+			\right]_{\substack{p_0=\omega(\vb{p})\\q_0=\omega(\vb{q})}}
+		\end{split}
+	\end{equation*}
 \end{restatable}
 \begin{restatable}{lemma}{qkgcoherentmomentumdensityvar}\label{thm:qkg_coherent_momentum_density_var}
 	The variance of the momentum density is
@@ -435,7 +547,7 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 			&=
 			\frac{1}{2}
 			\abs{
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 				\eval{
 					\alpha(p_0,\vb{p})
 					e^{-ip_\mu x^\mu}
@@ -445,7 +557,7 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 			&-
 			\frac{1}{2}
 			\Re\left\{
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 				\eval{
 					\alpha(p_0,\vb{p})
 					e^{-ip_\mu x^\mu}
@@ -453,4 +565,236 @@ Although, the mean energy of the coherent state is the same as the mean energy o
 			\right\}
 		\end{split}
 	\end{equation}
+	or equivalently
+	\begin{equation*}
+		\begin{split}
+			\expval{\left(\Delta\hat\pi(x^\mu)\right)^2}{\alpha}
+		\end{split}
+	\end{equation*}
 \end{restatable}
+
+\begin{lemma}
+	\begin{equation}
+		\begin{split}
+			\expval{\hat\chi(\theta)}{\alpha}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\Re\left\{
+				\alpha(p_0,\vb{p})
+				e^{-i\theta}
+			\right\}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\Re\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			\cos\theta
+			\\
+			&+
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\Im\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			\sin\theta
+		\end{split}
+	\end{equation}
+\end{lemma}
+\begin{corollary}
+	\begin{align}
+		\expval{\hat{X}}{\alpha}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\Re\alpha\left(\omega(\vb{p}),\vb{p}\right)
+		\\
+		\expval{\hat{P}}{\alpha}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\Im\alpha\left(\omega(\vb{p}),\vb{p}\right)
+	\end{align}
+\end{corollary}
+\begin{lemma}
+	\begin{equation}
+		\expval{\hat\chi(\theta)\hat\chi(\theta-\Delta\theta)}{\alpha}
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			&\
+			\expval{\hat\chi(\theta)\hat\chi(\theta-2\Delta\theta)}{\alpha}
+			\\
+			=&\
+			\frac{1}{4}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\expval{
+				\left[
+					\hat{a}^\dagger(\vb{p})
+					e^{+i\theta}
+					+
+					\hat{a}(\vb{p})
+					e^{-i\theta}
+				\right]
+				\left[
+					\hat{a}^\dagger(\vb{q})
+					e^{+i(\theta-2\Delta\theta)}
+					+
+					\hat{a}(\vb{q})
+					e^{-i(\theta-2\Delta\theta)}
+				\right]
+			}{\alpha}
+			\\
+			=&\
+			\frac{1}{4}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\int\frac{\dd[3]{q}}{(2\pi)^3}
+			\expval{
+				\hat{a}^\dagger(\vb{p})
+				\hat{a}^\dagger(\vb{q})
+				e^{+2i(\theta-\Delta\theta)}
+				+
+				\hat{a}(\vb{p})
+				\hat{a}(\vb{q})
+				e^{-2i(\theta-\Delta\theta)}
+				+
+				\hat{a}(\vb{p})
+				\hat{a}^\dagger(\vb{q})
+				e^{-i\Delta\theta}
+				+
+				\hat{a}^\dagger(\vb{p})
+				\hat{a}(\vb{q})
+				e^{+i\Delta\theta}
+			}{\alpha}
+			\\
+			=&\
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\Re\left\{
+				\alpha\left(\omega(\vb{p}),\vb{p}\right)
+				\alpha\left(\omega(\vb{q}),\vb{q}\right)
+				e^{-2i(\theta-\Delta\theta)}
+			\right\}
+			\\
+			+&\
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\Re\left[
+				\alpha\left(\omega(\vb{p}),\vb{p}\right)
+				\alpha\left(\omega(\vb{q}),\vb{q}\right)^*
+			\right]
+		\end{split}
+	\end{equation*}
+	We rewrite the integrand of the first term as
+	\begin{equation*}
+		\begin{split}
+			\Re\left\{
+				\alpha\left(\omega(\vb{p}),\vb{p}\right)
+				\alpha\left(\omega(\vb{q}),\vb{q}\right)
+				e^{-2i(\theta-\Delta\theta)}
+			\right\}
+			&=
+			\Re\left\{
+				\alpha\left(\omega(\vb{p}),\vb{p}\right)
+				e^{-i(\theta-\Delta\theta)}
+			\right\}
+			\Re\left\{
+				\alpha\left(\omega(\vb{q}),\vb{q}\right)
+				e^{-i(\theta-\Delta\theta)}
+			\right\}
+			\\
+			&-
+			\Im\left\{
+				\alpha\left(\omega(\vb{p}),\vb{p}\right)
+				e^{-i(\theta-\Delta\theta)}
+			\right\}
+			\Im\left\{
+				\alpha\left(\omega(\vb{q}),\vb{q}\right)
+				e^{-i(\theta-\Delta\theta)}
+			\right\}
+		\end{split}
+	\end{equation*}
+	and noting that
+	\begin{equation*}
+		\Re\left\{
+			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			e^{-i(\theta+\pi/2)}
+		\right\}
+		=
+		\Re\left\{
+			(-i)
+			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			e^{-i\theta}
+		\right\}
+		=
+		\Im\left\{
+			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			e^{-i\theta}
+		\right\}		
+	\end{equation*}
+	we identify the first term with the expectation values
+	\begin{equation*}
+		\begin{split}
+			&\
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\Re\left\{
+				\alpha\left(\omega(\vb{p}),\vb{p}\right)
+				\alpha\left(\omega(\vb{q}),\vb{q}\right)
+				e^{-2i(\theta-\Delta\theta)}
+			\right\}
+			\\
+			=&\
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\Re\left\{
+					\alpha\left(\omega(\vb{p}),\vb{p}\right)
+					e^{-i(\theta-\Delta\theta)}
+				\right\}
+			\right)^2
+			\\
+			-&\
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+				\Re\left\{
+					\alpha\left(\omega(\vb{p}),\vb{p}\right)
+					e^{-i(\theta-\Delta\theta+\pi/2)}
+				\right\}
+			\right)^2
+			\\
+			=&\
+			\expval{\hat\chi\left(\theta-\Delta\theta\right)}{\alpha}^2
+			-
+			\expval{\hat\chi\left(\theta-\Delta\theta+\pi/2\right)}{\alpha}^2
+		\end{split}
+	\end{equation*}
+	Similar, we find for the second term
+	\begin{equation*}
+		\begin{split}
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\Re\left[
+				\alpha\left(\omega(\vb{p}),\vb{p}\right)
+				\alpha\left(\omega(\vb{q}),\vb{q}\right)^*
+			\right]
+			=
+			\expval{\hat\chi(\theta)}{\alpha}^2
+			+
+			\expval{\hat\chi\left(\theta+\frac{\pi}{2}\right)}{\alpha}^2
+		\end{split}
+	\end{equation*}
+	and in total
+	\begin{equation*}
+		\expval{\hat\chi(\theta)\hat\chi(\theta-2\Delta\theta)}{\alpha}
+		=
+		\frac{1}{2}
+		\left[
+			\expval{\hat\chi\left(\theta-\Delta\theta\right)}{\alpha}^2
+			-
+			\expval{\hat\chi\left(\theta-\Delta\theta+\pi/2\right)}{\alpha}^2
+			-
+			\expval{\hat\chi(\theta)}{\alpha}^2
+			-
+			\expval{\hat\chi\left(\theta+\frac{\pi}{2}\right)}{\alpha}^2
+		\right]
+	\end{equation*}
+\end{proof}
