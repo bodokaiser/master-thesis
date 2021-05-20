@@ -16,11 +16,14 @@
 	\begin{equation}
 		\hat{S}
 		=
-		N\exp\left\{
-			i\int\dd[4]{x}
-			J(x)
-			\hat\phi(x)
-		\right\}
+		N\left[
+			\exp\left\{
+				-i
+				\int\dd[4]{x}
+				J(x)
+				\hat\phi(x)
+			\right\}
+		\right]
 		\exp\left\{
 			-
 			\frac{1}{2}
@@ -35,13 +38,214 @@
 \end{theorem}
 \begin{proof}
 	See Ref.~\cite{Zhang1999} and Ref.~\cite[p.~180]{Itzykson2012} where the scattering operator is calculated for the Maxwell field.
+	
+	\begin{equation*}
+		\begin{split}
+			\hat{S}
+			&=
+			T\left[
+				\exp\left\{
+					i
+					\int\dd[4]{x}
+					\mathcal{L}_\text{int}(x^\mu)
+				\right\}
+			\right]
+			\\
+			&=
+			T\left[
+				\exp\left\{
+					i
+					\int\dd[4]{x}
+					J(x^\mu)
+					\hat\phi(x^\mu)
+				\right\}
+			\right]
+			\\
+			&=
+			\sum_{n=0}^\infty
+			\frac{1}{n!}
+			i^n
+			\hat{S}_n
+		\end{split}
+	\end{equation*}
+	where
+	\begin{equation*}
+		\begin{split}
+			\hat{S}_n
+			&=
+			\int\dd[4]{x_1}J(x_1)\dots J(x_n)\dd[4]{x_n}
+			T\left[
+				\hat\phi(x_1)
+				\dots
+				\hat\phi(x_n)
+			\right]
+		\end{split}
+	\end{equation*}
+	and the time-ordered product
+	\begin{equation*}
+		\begin{split}
+			T\left[
+				\hat\phi(x_1)
+				\dots
+				\hat\phi(x_n)
+			\right]
+			&=
+			N\left[
+				\hat\phi(x_1)
+				\dots
+				\hat\phi(x_n)
+			\right]
+			+
+			\text{sum of contracted normal products}			
+		\end{split}
+	\end{equation*}
+	\begin{align*}
+		S_{n=0,1}
+		&=
+		N\left[\hat\phi[J]^n\right]
+		\\
+		S_{n=2,3}
+		&=
+		N\left[\hat\phi[J]^n\right]
+		+
+		\binom{n}{2,n-2}
+		\comm{\hat\phi^-[J]}{\hat\phi^+[J]}
+		N\left[\hat\phi[J]^{n-2}\right]
+		\\
+		S_{n=4,5}
+		&=
+		N\left[\hat\phi[J]^n\right]
+		+
+		\binom{n}{2,n-2}
+		\comm{\hat\phi^-[J]}{\hat\phi^+[J]}
+		N\left[\hat\phi[J]^{n-2}\right]
+		+
+		\binom{n}{2,2,n-4}
+		\comm{\hat\phi^-[J]}{\hat\phi^+[J]}^2
+		N\left[\hat\phi[J]^{n-4}\right]
+	\end{align*}
+	\begin{equation*}
+		\begin{split}
+			\hat{S}
+			&=
+			\sum_{n=0}^\infty
+			\frac{1}{n!}
+			i^n
+			\hat{S}_n
+			\\
+			&=
+			\sum_{n=0}^\infty
+			\frac{1}{n!}
+			i^n
+			N\left[\hat\phi[J]^n\right]
+			+
+			\sum_{n=2}^\infty
+			\frac{1}{n!}
+			i^n
+			\binom{n}{2,n-2}
+			\comm{\hat\phi^-[J]}{\hat\phi^+[J]}
+			N\left[\hat\phi[J]^{n-2}\right]
+			\\
+			&+
+			\sum_{n=4}^\infty
+			\frac{1}{n!}
+			i^n
+			\binom{n}{2,2,n-4}
+			\comm{\hat\phi^-[J]}{\hat\phi^+[J]}^2
+			N\left[\hat\phi[J]^{n-4}\right]
+			+
+			\dots
+			\\
+			&=
+			\sum_{n=0}^\infty
+			\frac{1}{n!}
+			i^n
+			N\left[\hat\phi[J]^n\right]
+			+
+			\sum_{n=2}^\infty
+			i^n
+			\frac{1}{(n-2)!}
+			\left(
+				\frac{1}{2}
+				\comm{\hat\phi^-[J]}{\hat\phi^+[J]}
+			\right)
+			N\left[\hat\phi[J]^{n-2}\right]
+			\\
+			&+
+			\sum_{n=4}^\infty
+			i^n
+			\frac{1}{(n-4)!}
+			\left(
+				\frac{1}{2}
+				\comm{\hat\phi^-[J]}{\hat\phi^+[J]}
+			\right)^2
+			N\left[\hat\phi[J]^{n-4}\right]
+			+
+			\dots
+			\\
+			&=
+			\sum_{n=0}^\infty
+			\frac{1}{n!}
+			i^n
+			N\left[\hat\phi[J]^n\right]
+			+
+			\sum_{n=0}^\infty
+			i^n
+			\frac{1}{n!}
+			\left(
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^-[J]}{\hat\phi^+[J]}
+			\right)
+			N\left[\hat\phi[J]^n\right]
+			\\
+			&+
+			\sum_{n=4}^\infty
+			i^n
+			\frac{1}{n!}
+			\left(
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^-[J]}{\hat\phi^+[J]}
+			\right)^2
+			N\left[\hat\phi[J]^n\right]
+			+
+			\dots
+			\\
+			&=
+			N\left[
+				\sum_{n=0}^\infty
+				\frac{1}{n!}
+				i^n
+				\hat\phi[J]^n
+			\right]
+			\sum_{m=0}^\infty
+			\textcolor{red}{\frac{1}{m!}}
+			\left(
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^-[J]}{\hat\phi^+[J]}
+			\right)^m
+			\\
+			&=
+			N\exp\left\{
+				i
+				\hat\phi[J]
+			\right\}
+			\exp\left\{
+				-
+				\frac{1}{2}
+				\comm{\hat\phi^-[J]}{\hat\phi^+[J]}
+			\right\}
+		\end{split}
+	\end{equation*}
 \end{proof}
 \begin{theorem}\label{thm:displacement_scattering_operator_equivalence}
 	The $\hat{S}$ operator of \cref{eq:scattering_operator_classical_interaction} is equal to the phase-shifted displacement operator
 	\begin{equation}
 		\hat{S}
 		=
-		\hat{D}[iJ]
+		\hat{D}[-iJ]
 		.
 	\end{equation}
 \end{theorem}
@@ -77,3 +281,44 @@
 \end{example}
 
 \subsection{Laser}
+
+\section{Classical source and sink}
+
+\begin{equation}
+	\mathcal{L}_\text{int}(x^\mu)
+	=
+	-
+	J_\nu(x^\mu)
+	\hat{A}^\nu(x^\mu)
+	=
+	\vb{J}_\perp(x^\mu)
+	\vdot
+	\hat{\vb{A}}_\perp(x^\mu)
+\end{equation}
+\begin{equation}
+	\hat{S}
+	=
+	T
+	\exp\left\{
+		i
+		\int\dd[4]{x}
+		\mathcal{L}_\text{int}
+	\right\}
+	=
+	T
+	\exp\left\{
+		i
+		\int\dd[4]{x}
+		\vb{J}_\perp(x^\mu)
+		\vdot
+		\hat{\vb{A}}_\perp(x^\mu)
+	\right\}
+\end{equation}
+\begin{equation}
+	\hat{S}_n
+	=
+	\frac{1}{n!}
+	i^n
+	\int\dd[4]{x_1}\dots\dd[4]{x_n}
+	T\left[\right]
+\end{equation}
