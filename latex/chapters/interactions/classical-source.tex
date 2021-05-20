@@ -296,29 +296,95 @@
 	\hat{\vb{A}}_\perp(x^\mu)
 \end{equation}
 \begin{equation}
-	\hat{S}
-	=
-	T
-	\exp\left\{
-		i
-		\int\dd[4]{x}
-		\mathcal{L}_\text{int}
-	\right\}
-	=
-	T
-	\exp\left\{
-		i
-		\int\dd[4]{x}
-		\vb{J}_\perp(x^\mu)
-		\vdot
-		\hat{\vb{A}}_\perp(x^\mu)
-	\right\}
+	\begin{split}
+		\hat{S}
+		&=
+		T
+		\exp\left\{
+			i
+			\int\dd[4]{x}
+			\mathcal{L}_\text{int}
+		\right\}
+		\\
+		&=
+		T
+		\exp\left\{
+			i
+			\int\dd[4]{x}
+			\vb{J}_\perp(x^\mu)
+			\vdot
+			\hat{\vb{A}}_\perp(x^\mu)
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\comm{\hat{\vb{A}}_\perp^-[\vb{J}_\perp]}{\hat{\vb{A}}_\perp^+[\vb{J}_\perp]}
+		\right\}
+		N\exp\left\{
+			i
+			\hat{\vb{A}}_\perp[\vb{J}_\perp]
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\comm{\hat{\vb{A}}_\perp^-[\vb{J}_\perp]}{\hat{\vb{A}}_\perp^+[\vb{J}_\perp]}
+		\right\}
+		\exp\left\{
+			+
+			\hat{\vb{A}}_\perp^+[-i\vb{J}_\perp]
+		\right\}
+		\exp\left\{
+			-
+			\hat{\vb{A}}_\perp^-[-i\vb{J}_\perp]
+		\right\}
+	\end{split}
 \end{equation}
+where
 \begin{equation}
-	\hat{S}_n
+	\overline{n}
 	=
-	\frac{1}{n!}
-	i^n
-	\int\dd[4]{x_1}\dots\dd[4]{x_n}
-	T\left[\right]
+	\sum_{\lambda=1,2}
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs{J_\lambda\left(\omega(\vb{p}),\vb{p}\right)}^2
+	=
+	\comm{\hat{\vb{A}}_\perp^-[\vb{J}_\perp]}{\hat{\vb{A}}_\perp^+[\vb{J}_\perp]}
 \end{equation}
+is the energy the Maxwell field gets from the source.
+
+\begin{example}[Electric dipole]
+	Let's consider the source
+	\begin{equation*}
+		\vb{J}_\perp(t,\vb{x})
+		=
+		\vb{J}_\perp(\vb{x})
+		\cos\omega_0 t
+	\end{equation*}
+	which in momentum space becomes
+	\begin{equation*}
+		\vb{J}_\perp(p_0,\vb{p})
+		=
+		(2\pi)^3
+		\left[
+			\delta^{(1)}(p_0-\omega_0)
+			+
+			\delta^{(1)}(p_0+\omega_0)
+		\right]
+		\vb{J}_\perp(\vb{p})
+	\end{equation*}
+	and the mean number of photons
+	\begin{equation*}
+		\overline{n}
+		=
+	\end{equation*}
+\end{example}
+\begin{example}[Bremsstrahlung]
+	
+\end{example}
+
+\section{Quantum harmonic oscillator}
+
+Interaction of the Maxwell field with a quantum harmonic oscillator (discrete energy levels).
