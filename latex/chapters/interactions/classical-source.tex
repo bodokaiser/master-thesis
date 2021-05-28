@@ -250,40 +250,6 @@
 	\end{equation}
 \end{theorem}
 
-\subsection{Detector}
-
-\begin{example}
-	The Hamiltonian of a Klein-Gordon field coupled to a two-level quantum system is
-	\begin{equation}
-		\hat{H}
-		=
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\omega(\vb{p})
-		\hat{a}^\dagger(\vb{p})
-		\hat{a}(\vb{p})
-		+
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\left\{
-			\gamma(\vb{p})
-			\hat{a}^\dagger(\vb{p})
-			\hat{b}
-			+0
-			\gamma(\vb{p})^*
-			\hat{a}(\vb{p})
-			\hat{b}^\dagger
-		\right\}
-		+
-		\frac{1}{2}
-		\omega_0
-		\hat{b}^\dagger
-		\hat{b}
-	\end{equation}
-\end{example}
-
-\subsection{Laser}
-
-\section{Classical source and sink}
-
 \begin{equation}
 	\mathcal{L}_\text{int}(x^\mu)
 	=
@@ -355,36 +321,191 @@ where
 \end{equation}
 is the energy the Maxwell field gets from the source.
 
-\begin{example}[Electric dipole]
-	Let's consider the source
+\begin{example}[Oscillating dipole]
+	A point-particle with charge $e$ oscillating from $-\vb{r}$ to $+\vb{r}$ creates the current
 	\begin{equation*}
-		\vb{J}_\perp(t,\vb{x})
-		=
-		\vb{J}_\perp(\vb{x})
-		\cos\omega_0 t
+		\begin{split}
+			\vb{j}(x^\mu)
+			&=
+			e
+			\int_\mathbb{R}\dd{\tau}
+			\dv{\vb{r}}{\tau}
+			\delta^{(1)}(x^0-\tau)
+			\delta^{(3)}\left(\vb{x}-\vb{r}(\tau)\right)
+			\\
+			&=
+			e\vb{r}_0\omega_0
+			\int_\mathbb{R}\dd{\tau}
+			\cos(\omega_0\tau)
+			\delta^{(1)}(x^0-\tau)
+			\delta^{(3)}\left(\vb{x}-\vb{r}_0\sin(\omega_0\tau)\right)
+			.
+		\end{split}
 	\end{equation*}
-	which in momentum space becomes
+	In momentum space, the current takes the form
 	\begin{equation*}
-		\vb{J}_\perp(p_0,\vb{p})
-		=
-		(2\pi)^3
-		\left[
-			\delta^{(1)}(p_0-\omega_0)
-			+
-			\delta^{(1)}(p_0+\omega_0)
-		\right]
-		\vb{J}_\perp(\vb{p})
+		\begin{split}
+			\vb{j}(p^\mu)
+			=
+			e\vb{r}_0\omega_0
+			\int_\mathbb{R}\dd{\tau}
+			\cos(\omega_0\tau)
+			\exp\left\{
+				i\left[
+					p_0\tau
+					-
+					\vb{p}\vdot\vb{r}_0
+					\sin(\omega_0\tau)
+				\right]
+			\right\}
+		\end{split}
+		.
 	\end{equation*}
-	and the mean number of photons
+	In the near field, we have $\vb{r}_0\vdot\vb{p}\ll1$ and the current comprises the fundamental frequency $\omega_0$ and its second harmonic $2\omega_0$
 	\begin{equation*}
-		\overline{n}
-		=
+		\begin{split}
+			\vb{j}(p^\mu)
+			&\approx
+			e\vb{r}_0\omega_0
+			\int_\mathbb{R}\dd{\tau}
+			\cos(\omega_0\tau)
+			e^{ip_0\tau}
+			\left(
+				1
+				-
+				i
+				\vb{p}
+				\vdot
+				\vb{r}_0
+				\sin(\omega_0\tau)
+			\right)
+			\\
+			&=
+			\frac{e\vb{r}_0\omega_0}{4}
+			\left\{
+				\left[
+					\delta^{(1)}(p_0+\omega_0)
+					+
+					\delta^{(1)}(p_0-\omega_0)
+				\right]
+				-
+				2
+				\vb{p}
+				\vdot
+				\vb{r}_0
+				\left[
+					\delta^{(1)}(p_0+2\omega_0)
+					-
+					\delta^{(1)}(p_0-2\omega_0)
+				\right]				
+			\right\}
+			.
+		\end{split}
+	\end{equation*}
+	The projection of the polarization basis yields
+	\begin{equation*}
+		\boldsymbol{\varepsilon_\lambda}(\vb{p})
+		\vdot
+		\vb{j}(p^\mu)
 	\end{equation*}
 \end{example}
 \begin{example}[Bremsstrahlung]
+	A particle with charge $q$ changes momentum from $k_i^\mu$ to $k_f^\mu$ at proper time $\tau=0$, i.e.,
+	\begin{equation}
+		\vb{y}(\tau)
+		=
+		\begin{cases}
+			\vb{k}_i\tau/m
+			&
+			\tau<0
+			\\
+			\vb{k}_f\tau/m
+			&
+			\tau>0
+		\end{cases}
+		.
+	\end{equation}
+	The coordinate representation of the current is~\cite[p.~178]{Peskin1995}
+	\begin{equation}
+		\begin{split}
+			j^\mu(x^\nu)
+			&=
+			q\int_{-\infty}^{+\infty}\dd{\tau}
+			\dv{y^\mu}{\tau}
+			\delta^{(4)}\left(
+				x^\nu
+				-
+				y^\nu(\tau)
+			\right)
+			\\
+			&=
+			\frac{qk_f^\mu}{m}
+			\int_0^{+\infty}\dd{\tau}
+			\delta^{(4)}\left(x^\nu-\frac{k_f^\nu}{m}\tau\right)
+			+
+			\frac{qk_i^\mu}{m}
+			\int_{-\infty}^0\dd{\tau}
+			\delta^{(4)}\left(x^\nu-\frac{k_i^\nu}{m}\tau\right)
+		\end{split}
+	\end{equation}
+	and its momentum representation turns out to be~\cite[p.~39]{Itzykson2012}
+	\begin{equation*}
+		j^\mu(p^\nu)
+		=
+		iq\left(
+			\frac{k_f^\mu}{p_\nu k_f^\nu}
+			-
+			\frac{k_i^\mu}{p_\nu k_i^\nu}
+		\right)
+		.
+	\end{equation*}
+	The number of emitted photons is~\cite[p.~41]{Itzykson2012}
+	\begin{equation*}
+		\begin{split}
+			\overline{n}
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\sum_{\lambda=1,2}
+			\abs{
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+				\vdot
+				\vb{j}\left(\omega(\vb{p}),\vb{p}\right)
+			}^2
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\left\{
+				\frac{2g_{\mu\nu}k_i^\mu k_f^\nu}{(p_\mu k_i^\mu)(p_\nu k_f^\nu)}
+				-
+				\frac{m^2}{(p_\mu k_i^\mu)^2}
+				-
+				\frac{m^2}{(p_\mu k_f^\mu)^2}
+			\right\}_{p_0=\omega(\vb{k})}
+		\end{split}
+	\end{equation*}
+	and the corresponding coherent state is
+	\begin{equation*}
+		\ket{\alpha}
+		=
+		\hat{D}[-i\vb{j}]
+		\ket{0}
+		=
+		e^{-\overline{n}/2}
+		\exp\left\{
+			i
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\sum_{\lambda=1,2}
+			\left[
+				\boldsymbol{\varepsilon}_\lambda(\vb{p})
+				\vdot
+				\vb{j}\left(\omega(\vb{p}),\vb{p}\right)
+			\right]^*
+			\hat{a}^\dagger(\vb{p})
+		\right\}
+		\ket{0}
+		.
+	\end{equation*}
+\end{example}
+\begin{example}[Laser source]
 	
 \end{example}
-
-\section{Quantum harmonic oscillator}
-
-Interaction of the Maxwell field with a quantum harmonic oscillator (discrete energy levels).
