@@ -507,5 +507,56 @@ is the energy the Maxwell field gets from the source.
 	\end{equation*}
 \end{example}
 \begin{example}[Laser source]
-	
+	The momentum space current
+	\begin{equation*}
+		\vb{j}^\mu(p^\nu)
+		=
+		\vb{q}
+		(2\pi)\delta^{(1)}(p^1)
+		(2\pi)\delta^{(1)}(p^2)
+		\exp\left\{
+			-
+			\left(\frac{p^3-k^3}{2\sigma}\right)^2
+		\right\}
+	\end{equation*}
+	describes a Gaussian frequency spectrum peaked at $k^0$ with variance $\sigma^2$.
+	The corresponding coherent state is
+	\begin{equation}
+		\begin{split}
+			\ket{\alpha}
+			&=
+			e^{-\overline{n}/2}
+			\exp\left\{
+				i
+				\sum_{\lambda=1,2}
+				q_\lambda
+				\int\frac{\dd{p^3}}{2\pi\sqrt{2p^3}}
+				\exp\left\{
+					-
+					\left(
+						\frac{p^3-k^3}{2\sigma}
+					\right)^2
+				\right\}
+				\hat{a}_\lambda^\dagger(0,0,p^3)
+			\right\}
+			\ket{0}
+			\\
+			&=
+			e^{-\overline{n}/2}
+			\exp\left\{
+				i
+				\sum_{\lambda=1,2}
+				q_\lambda
+				\int\frac{\dd{\omega}}{\sqrt{4\pi\omega}}
+				\exp\left\{
+					-
+					\left(
+						\frac{\omega-\omega_0}{2\sigma}
+					\right)^2
+				\right\}
+				\hat{a}_\lambda^\dagger(\omega)
+			\right\}
+			\ket{0}
+		\end{split}
+	\end{equation}
 \end{example}
