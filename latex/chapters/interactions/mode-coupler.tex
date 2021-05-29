@@ -65,7 +65,7 @@ Alternatively, a quantum mode coupler with transfer function $g_{\lambda\lambda^
 	\right\}
 	.
 \end{equation}
-In terms of smeared positive and negative frequency Maxwell operators, the interaction Lagrangian takes the form
+In terms of smeared positive and negative frequency Maxwell operators, the interaction Lagrangian takes the form~\cite[p.~130]{Haroche2006}
 \begin{equation*}
 	\begin{split}
 		L_\text{int}
@@ -130,17 +130,116 @@ The scattering operator is
 		\\
 		&=
 		\sum_{n=0}^\infty
-		\frac{1}{n!}
+		\frac{i^n}{n!}
 		T\left[
-			i
 			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
 			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
 			+
-			i
 			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
 			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
 		\right]^n
+		\\
+		&=
+		\sum_{n=0}^\infty
+		\frac{i^n}{n!}
+		\sum_{m=0}^n
+		\binom{n}{m}
+		T\left[
+			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+		\right]^m
+		T\left[
+			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+		\right]^{n-m}
+	\end{split}
+\end{equation*}
+The first power term is
+\begin{equation*}
+	\begin{split}
+		&
+		T\left[
+			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+		\right]^m
+		\\
+		=&\
+		T\left[
+			\int\dd[4]{x}
+			g_\text{out}(x^\mu)
+			\hat{\vb{A}}_\text{out}^+(x^\mu)
+			\int\dd[4]{y}
+			g_\text{in}(y^\mu)
+			\hat{\vb{A}}_\text{in}^-(y^\mu)
+		\right]^m
+		\\
+		=&\
+		\int\dd[4]{x_1}
+		\int\dd[4]{y_1}
+		g_\text{out}(x^\mu_1)
+		g_\text{in}(y^\mu_1)
+		\dots
+		\int\dd[4]{x_m}
+		\int\dd[4]{y_m}
+		g_\text{out}(x^\mu_m)
+		g_\text{in}(y^\mu_n)
+		T\left[
+			\hat{\vb{A}}_\text{out}^+(x^\mu)^m
+			\hat{\vb{A}}_\text{in}^-(y^\mu)^m
+		\right]
 	\end{split}
 \end{equation*}
 
-%\subsection{Phase modulator}
+\subsection{Phase modulator}
+
+The action describing the absorption and emission of a field while adding a possibly time-dependent phase-shift is
+\begin{equation*}
+	\begin{split}
+		S
+		&=
+		\frac{1}{2}
+		\int\dd[4]{x}
+		\int\dd[4]{y}
+		\hat\phi_\text{out}^+(x^\mu)
+		G(x^\mu-y^\mu)
+		\hat\phi_\text{in}^-(y^\mu)
+		\\
+		&=
+		\frac{1}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		G(p^\mu)
+		\int\dd[4]{x}
+		\hat\phi_\text{out}^+(x^\mu)
+		e^{-ip_\nu x^\nu}
+		\int\dd[4]{y}
+		\hat\phi_\text{in}^-(y^\mu)
+		e^{+ip_\nu y^\nu}
+		\\
+		&=
+		\frac{1}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		G\left(\omega(\vb{p}),\vb{p}\right)
+		\hat{a}_\text{out}^\dagger(\vb{p})
+		\hat{a}_\text{in}(\vb{p})
+	\end{split}
+\end{equation*}
+and the corresponding scattering operator becomes
+\begin{equation*}
+	\hat{S}
+	=
+	T\left[
+		\exp\left\{
+			iS
+		\right\}
+	\right]
+	=
+	T\left[
+		\exp\left\{
+			\frac{i}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			G\left(\omega(\vb{p}),\vb{p}\right)
+			\hat{a}_\text{out}^\dagger(\vb{p})
+			\hat{a}_\text{in}(\vb{p})
+		\right\}
+	\right]
+\end{equation*}
