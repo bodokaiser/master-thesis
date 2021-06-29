@@ -192,54 +192,99 @@ The first power term is
 
 \subsection{Phase modulator}
 
-The action describing the absorption and emission of a field while adding a possibly time-dependent phase-shift is
 \begin{equation*}
-	\begin{split}
-		S
-		&=
-		\frac{1}{2}
-		\int\dd[4]{x}
-		\int\dd[4]{y}
-		\hat\phi_\text{out}^+(x^\mu)
-		G(x^\mu-y^\mu)
-		\hat\phi_\text{in}^-(y^\mu)
-		\\
-		&=
-		\frac{1}{2}
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		G(p^\mu)
-		\int\dd[4]{x}
-		\hat\phi_\text{out}^+(x^\mu)
-		e^{-ip_\nu x^\nu}
-		\int\dd[4]{y}
-		\hat\phi_\text{in}^-(y^\mu)
-		e^{+ip_\nu y^\nu}
-		\\
-		&=
-		\frac{1}{2}
-		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-		G\left(\omega(\vb{p}),\vb{p}\right)
-		\hat{a}_\text{out}^\dagger(\vb{p})
-		\hat{a}_\text{in}(\vb{p})
-	\end{split}
+	\mathcal{H}_\text{int}
+	=
+	\frac{1}{2}
+	\hat\phi(x^\mu)
+	G(x^\mu-y^\mu)
+	\hat\phi(y^\mu)
 \end{equation*}
-and the corresponding scattering operator becomes
 \begin{equation*}
 	\hat{S}
 	=
 	T\left[
 		\exp\left\{
-			iS
+			-\frac{i}{2}
+			\int\dd[4]{z}
+			\hat\phi(x^\mu)
+			G(x^\mu-y^\mu)
+			\hat\phi(y^\mu)
 		\right\}
 	\right]
-	=
-	T\left[
-		\exp\left\{
-			\frac{i}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-			G\left(\omega(\vb{p}),\vb{p}\right)
-			\hat{a}_\text{out}^\dagger(\vb{p})
-			\hat{a}_\text{in}(\vb{p})
-		\right\}
-	\right]
+\end{equation*}
+\begin{equation*}
+	\begin{split}
+		\bra{f}
+		\hat{S}^{(1)}
+		\ket{g}
+		&=
+		-
+		\frac{i}{2}
+		\int\dd[4]{u}
+		\int\dd[4]{v}
+		f(u^\mu)
+		g(v^\mu)
+		\expval{
+			\hat\phi^-(u^\mu)
+			T\left[
+				\int\dd[4]{z}
+				\hat\phi(x^\mu)
+				G(x^\mu-y^\mu)
+				\hat\phi(y^\mu)
+			\right]
+			\hat\phi^+(v^\mu)
+		}{0}
+		\\
+		&=
+		-
+		\frac{i}{2}
+		\int\dd[4]{u}
+		\int\dd[4]{v}
+		\int\dd[4]{z}
+		f(u^\mu)
+		g(v^\mu)
+		G(x^\mu-y^\mu)
+		\expval{
+			T\left[
+				\hat\phi^-(u^\mu)
+				\hat\phi(x^\mu)
+				\hat\phi(y^\mu)
+				\hat\phi^+(v^\mu)
+			\right]
+		}{0}
+	\end{split}
+\end{equation*}
+\begin{equation*}
+	\begin{split}
+		&\
+		\expval{
+			T\left[
+				\hat\phi^-(u^\mu)
+				\hat\phi(x^\mu)
+				\hat\phi(y^\mu)
+				\hat\phi^+(v^\mu)
+			\right]
+		}{0}
+		\\
+		=&\
+		\expval{
+			T\left[
+				\hat\phi(u^\mu)
+				\hat\phi(x^\mu)
+				\hat\phi(y^\mu)
+				\hat\phi(v^\mu)
+			\right]
+		}{0}
+		\\
+		=&\
+		D_F(u^\mu-x^\mu)
+		D_F(y^\mu-v^\mu)
+		+
+		D_F(u^\mu-y^\mu)
+		D_F(x^\mu-x^\mu)
+		+
+		D_F(u^\mu-v^\mu)
+		D_F(x^\mu-y^\mu)
+	\end{split}
 \end{equation*}
