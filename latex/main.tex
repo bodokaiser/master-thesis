@@ -24,13 +24,79 @@
 % https://tex.stackexchange.com/questions/568580/make-the-bibliography-as-a-section-in-each-included-chapter
 \defbibheading{bibliography}[\bibname]{\section*{#1}}
 
-% custom math commands (transpose, Re, ...)
-\include{commands/math}
+% approximately proportional to symbol
+% https://tex.stackexchange.com/questions/33538/how-to-get-an-approximately-proportional-to-symbol
+\def\app#1#2{%
+    \mathrel{%
+        \setbox0=\hbox{$#1\sim$}%
+        \setbox2=\hbox{%
+            \rlap{\hbox{$#1\propto$}}%
+            \lower1.1\ht0\box0%
+        }%
+        \raise0.25\ht2\box2%
+    }%
+}
+\def\approxprop{\mathpalette\app\relax}
+
+% overwrite real and imaginary part operators
+\let\Re\undefined
+\let\Im\undefined
+\DeclareMathOperator{\Re}{\operatorname{Re}}
+\DeclareMathOperator{\Im}{\operatorname{Im}}
+% other functions
+\DeclareMathOperator{\sinc}{\operatorname{sinc}}
+
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+
+% transpose
+% https://tex.stackexchange.com/questions/403104/small-caps-mathsf-font-for-writing-transpose-of-a-matrix
+\newcommand{\trans}{{\scriptscriptstyle\mathsf{T}}}
+
+% theorems
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{example}{Example}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
 
 % prefix equation numbers with section number
 \numberwithin{equation}{section}
 
-\include{glossaries/acronyms}
+% optics
+\newacronym{ar}{AR}{anti-reflective}
+\newacronym{mzm}{MZM}{Mach-Zehnder modulator}
+\newacronym{bs}{BS}{beam splitter}
+\newacronym{fc}{FC}{fiber coupler}
+\newacronym{qe}{QE}{quantum efficiency}
+
+% physics
+\newacronym{dv}{DV}{discrete-variable}
+\newacronym{cv}{CV}{continuous-variable}
+\newacronym{dof}{DOF}{degrees of freedom}
+\newacronym{eom}{EOM}{equation(s) of motion}
+\newacronym{pbc}{PBC}{periodic boundary conditions}
+\newacronym{bch}{BCH}{Baker-Campbell-Hausdorff}
+\newacronym{ccr}{CCR}{canonical commutation relation}
+
+% signal processing
+\newacronym{dsp}{DSP}{digital signal processing}
+\newacronym{lo}{LO}{local oscillator}
+\newacronym{if}{IF}{intermediate frequency}
+\newacronym{lp}{LP}{low-pass}
+\newacronym{adc}{ADC}{analog-to-digital converter}
+\newacronym{dac}{DAC}{digital-to-analog converter}
+\newacronym{qam}{QAM}{quadrature amplitude modulation}
+\newacronym{qpsk}{QPSK}{quadrature phase-shift keying}
+
+% quantum-key distribution
+\newacronym{qkd}{QKD}{quantum-key distribution}
+\newacronym{dvqkd}{DV-QKD}{discrete-variable quantum-key distribution}
+\newacronym{cvqkd}{CV-QKD}{continuous-variable quantum-key distribution}
 
 \title{A theoretical framework for quantum optical communication - towards CV-QKD}
 \author{Bodo Kaiser}
@@ -43,60 +109,40 @@
 
 	\chapter{Introduction}
 	\begin{refsection}
-		\include{chapters/introduction/conventions}
+		\section{Continuous-variable quantum key-distribution}
+		\section{Problem statement}
+        \section{Overview and structure}
 	
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
 	\end{refsection}
 
-	\chapter{Klein-Gordon theory}
+	\chapter{Quantum field theory of light}
 	\begin{refsection}
-		\include{chapters/klein-gordon/introduction}
-		\include{chapters/klein-gordon/relativistic-field-theory}
-		\include{chapters/klein-gordon/canonical-quantization}
-		\include{chapters/klein-gordon/relativistic-wave-packets}
-		\include{chapters/klein-gordon/number-states}
-		\include{chapters/klein-gordon/coherent-states}
-		
+		\include{sections/maxwell}
+		\include{sections/states}
+		\include{sections/interactions}
+
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
 	\end{refsection}
 	
-	\chapter{Maxwell theory}
+	\chapter{Optical components}
 	\begin{refsection}
-		\include{chapters/maxwell/introduction}
-		\include{chapters/maxwell/relativistic-field-theory}
-		\include{chapters/maxwell/canonical-quantization}
-		\include{chapters/maxwell/quantum-states}
-		\include{chapters/maxwell/single-mode}
-		
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
-	
-	\chapter{Interactions}
-	\begin{refsection}
-		\include{chapters/interactions/introduction}
-		\include{chapters/interactions/dynamical-pictures}
-		\include{chapters/interactions/scattering-theory}
-		\include{chapters/interactions/classical-source}
-		\include{chapters/interactions/mode-coupler}
-		\include{chapters/interactions/detector}
+        \section{Coherent light source}
+        \section{Mode coupler}
+        \section{Phase shifter}
+        \section{Coherent detector}
 		
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
 	\end{refsection}
 
-	\chapter{Continuous-variable quantum-key distribution}
+	\chapter{Coherent transmitter and receiver}
 	\begin{refsection}
-		\section{Idea and operating principle}
-		\section{Protocol}
-		\subsection{Recociliation}
-		\subsection{Classical post-processing}
-		\section{Coherent state transmitter}
-		\section{Coherent state receiver}
-		\section{Squeezed state attack}
-		\section{Protocol extension}
+		\section{Overview and architecture}
+		\section{Transmitter}
+		\section{Receiver}
 		
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
@@ -109,21 +155,5 @@
 	\end{refsection}
 
 	\appendix
-
-	\chapter{Supplements to Klein-Gordon theory}
-	\begin{refsection}
-		\include{chapters/appendix/klein-gordon}
-		
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
-	
-	\chapter{Supplements to Maxwell theory}
-	\begin{refsection}
-		\include{chapters/appendix/maxwell}
-		
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
 
 \end{document}
