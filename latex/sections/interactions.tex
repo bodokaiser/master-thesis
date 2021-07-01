@@ -1,7 +1,74 @@
 \section{Time-dependent interactions}
 
-\subsection{Dynamical pictures}
+\subsection{Time-evolution operator}
 
-\subsection{Magnus expansion}
+Let $\ket{\psi(t_0)}$ be a state at time $t_0$, then the time-evolution relates the state $\ket{\psi(t)}$ at some later time $t>t_0$ to $\ket{\psi(t_0)}$ via
+\begin{equation}
+	\ket{\psi(t)}
+	=
+	\hat{U}(t,t_0)
+	\ket{\psi(t_0)}
+	.
+\end{equation}
+Inserting $\ket{\psi(t)}$ into the Schrödinger equation leads to
+\begin{equation}
+	i\dv{t}
+	\hat{U}(t,t_0)
+	=
+	\hat{H}(t)
+	\hat{U}(t,t_0)
+\end{equation}
+which formal solution is the time-ordered exponential, see Ref.~\cite[p.~380]{Bartelmann2018},
+\begin{equation}
+	\hat{U}(t,t_0)
+	=
+	T\exp\left\{
+		-i
+		\int_{t_0}^t\dd{t^\prime}
+		\hat{H}(t^\prime)
+	\right\}
+\end{equation}
+where $T$ denotes the time-ordering symbol.
+Only for simple time-dependent systems an exact time-evolution operator exists.
+In contrast to the Dyson expansion, the Magnus expansion yields a unitary time-evolution operator even for finite order, in particular,
+\begin{equation}
+	\hat{U}(t,t_0)
+	=
+	\exp\left\{
+		\sum_{n=1}
+		\hat{\Omega}^{(n)}(t,t_0)
+	\right\}
+\end{equation}
+where the first two expansion terms are given by
+\begin{align}
+	\hat{\Omega}^{(1)}(t,t_0)
+	&=
+	-i
+	\int_{t_0}^t\dd{t^\prime}
+	\hat{H}(t^\prime)
+	\\
+	\hat{\Omega}^{(2)}(t,t_0)
+	&=
+	\frac{(-i)^2}{2!}
+	\int_{t_0}^t\dd{t^\prime}
+	\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
+	\comm{\hat{H}(t^\prime)}{\hat{H}(t^\prime)}
+\end{align}
+and represent time-ordering corrections, see Ref.~\cite{QuesadaMejia2015}.
 
-\subsection{Classical source}
+\subsection{Interaction with classical current}
+
+The Schrödinger-picture Hamiltonian
+\begin{equation}
+	\hat{H}
+	=
+	\hat{H}_0
+	+
+	\hat{H}_\text{int}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\omega(\vb{p})
+	\hat{a}_{\vb{p}}
+	\hat{a}_{\vb{p}}^\dagger
+	-	
+\end{equation}
