@@ -43,7 +43,7 @@ where the first two expansion terms are given by
 \begin{align}
 	\hat{\Omega}^{(1)}(t,t_0)
 	&=
-	-i
+	\frac{(-i)}{1!}
 	\int_{t_0}^t\dd{t^\prime}
 	\hat{H}(t^\prime)
 	\\
@@ -58,17 +58,14 @@ and represent time-ordering corrections, see Ref.~\cite{QuesadaMejia2015}.
 
 \subsection{Interaction with classical current}
 
-The Schrödinger-picture Hamiltonian
+The Schrödinger-picture Hamiltonian describing the interaction of the Maxwell field $\hat{\vb{A}}$ with a classical current $\vb{j}$ is
 \begin{equation}
-	\hat{H}
+	\hat{H}_\text{int}(t)
 	=
-	\hat{H}_0
-	+
-	\hat{H}_\text{int}
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\omega(\vb{p})
-	\hat{a}_{\vb{p}}
-	\hat{a}_{\vb{p}}^\dagger
-	-	
+	-
+	\vb{j}(t,\vb{x})
+	\vdot
+	\hat{\vb{A}}(t,\vb{x})
+	.
 \end{equation}
+Inserting the mode expansion
