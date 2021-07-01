@@ -1,5 +1,99 @@
-\section{Quantum states}
+\section{Light states and observables}
 
 \subsection{Number state}
 
+\subsection{Displacement operator}
+
+\begin{equation}
+	\hat{D}[\alpha]
+	=
+	\exp\left\{
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left\{
+			\alpha(\vb{p})
+			\hat{a}_{\vb{p}}^\dagger
+			-
+			\alpha(\vb{p})^*
+			\hat{a}_{\vb{p}}
+		\right\}
+	\right\}
+\end{equation}
+
 \subsection{Coherent state}
+
+\begin{equation}
+	\ket{\alpha}
+	=
+	\exp\left\{
+		-
+		\frac{1}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\abs{\alpha(\vb{p})}^2
+	\right\}
+	\exp\left\{
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+		\hat{a}_{\vb{p}}^\dagger
+	\right\}
+	\ket{0}
+\end{equation}
+
+\subsection{Generalized quadrature operator}
+
+We define the generalized quadrature operator by 
+\begin{equation}
+	\hat{X}(\theta)
+	=
+	\frac{6\pi^2}{\Lambda^3}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{1}{\sqrt{2}}
+	\left\{
+		\hat{a}_{\vb{p}}
+		e^{-i\theta}
+		+
+		\hat{a}_{\vb{p}}
+		e^{+i\theta}
+	\right\}
+\end{equation}
+where the prefactor ensures that the commutator takes the standard form
+\begin{equation}
+	\comm{\hat{X}(\theta)}{\hat{X}(\theta+\Delta\theta)}
+	=
+	\frac{i}{2}
+	\sin(\Delta\theta)
+	.
+\end{equation}
+and $\Lambda$ is used as the cut-off momentum for the otherwise infinite momentum integral
+\begin{equation}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	=
+	\frac{4\pi}{(2\pi)^3}
+	\int_0^\Lambda\dd{p}p^2
+	=
+	\frac{\Lambda^3}{6\pi^2}
+	.
+\end{equation}
+The Robertson uncertainty relation yields a lower bound for the variances
+\begin{equation}
+	\expval{\left(\Delta\hat{X}(\theta)\right)^2}
+	\expval{\left(\Delta\hat{X}(\theta+\Delta\theta)\right)^2}
+	\geq
+	\frac{1}{4}
+	\sin(\Delta\theta)^2
+\end{equation}
+and we conclude that there is maximum uncertainty for $\Delta\theta=\pi/2$.
+
+\begin{equation}
+	\expval{\hat{X}(\theta)}{\alpha}
+	=
+	\frac{\sqrt{2}6\pi^2}{\Lambda^3}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3}
+	\Re{\frac{\alpha(\vb{p})e^{-i\theta}}{\sqrt{2\omega(\vb{p})}}}
+\end{equation}
+\begin{equation}
+	\expval{\left(\Delta\hat{X}(\theta)\right)^2}{\alpha}
+	=
+	\frac{1}{2}
+\end{equation}
