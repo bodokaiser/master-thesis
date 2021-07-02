@@ -52,20 +52,117 @@ where the first two expansion terms are given by
 	\frac{(-i)^2}{2!}
 	\int_{t_0}^t\dd{t^\prime}
 	\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
-	\comm{\hat{H}(t^\prime)}{\hat{H}(t^\prime)}
+	\comm{\hat{H}(t^\prime)}{\hat{H}(t^{\prime\prime})}
 \end{align}
 and represent time-ordering corrections, see Ref.~\cite{QuesadaMejia2015}.
 
-\subsection{Interaction with classical current}
+\subsection{Interaction with a classical current field}
 
 The Schrödinger-picture Hamiltonian describing the interaction of the Maxwell field $\hat{\vb{A}}$ with a classical current $\vb{j}$ is
 \begin{equation}
 	\hat{H}_\text{int}(t)
 	=
 	-
+	\int_{\mathbb{R}^3}\dd[3]{x}
 	\vb{j}(t,\vb{x})
 	\vdot
 	\hat{\vb{A}}(t,\vb{x})
 	.
 \end{equation}
-Inserting the mode expansion
+Taking the spatial Fourier transform of the current
+\begin{equation}
+	\vb{j}(t,\vb{x})
+	=
+	\int_{\mathbb{R}^3}\frac{\dd[3]{q}}{(2\pi)^3}
+	\vb{j}(t,\vb{q})
+	e^{-i\vb{q}\vdot\vb{x}}
+\end{equation}
+and inserting the mode expansion, we find the interaction Hamiltonian to be
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	-
+	\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left\{
+		j_\lambda(t,\vb{p})
+		\hat{a}_{\lambda,\vb{p}}
+		e^{-i\omega(\vb{p})t}
+		+
+		\text{h.c.}
+	\right\}
+\end{equation}
+where we have the transverse current
+\begin{equation}
+	j_\lambda(q_0,\vb{p})
+	=
+	\vb{j}(q_0,\vb{p})
+	\vdot
+	\vu{e}_\lambda(\vb{p})
+	.
+\end{equation}
+The first term in the Magnus expansion turns out to be
+\begin{equation}
+	\hat{\Omega}^{(1)}(t,t_0)
+	=
+	i
+	\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left\{
+		J_\lambda(t,t_0;\vb{p})
+		\hat{a}_{\lambda,\vb{p}}
+		+
+		\text{h.c.}
+	\right\}
+\end{equation}
+where we defined
+\begin{equation}
+	J_\lambda(t,t_0;\vb{p})
+	=
+	\int_{t_0}^t\dd{t^\prime}
+	j_\lambda(t^\prime,\vb{p})
+	e^{-i\omega(\vb{p})t^\prime}
+	.
+\end{equation}
+For the second term in the Magnus expansion, we first evaluate the commutator
+\begin{equation}
+	\comm{\hat{H}(t^\prime)}{\hat{H}(t^{\prime\prime})}
+	=
+	i\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\omega(\vb{p})}
+	\Im\left\{
+		j_\lambda(t^\prime,\vb{p})
+		j_\lambda(t^{\prime\prime},\vb{p})^*
+		e^{-i\omega(\vb{p})(t^\prime-t^{\prime\prime})}
+	\right\}
+\end{equation}
+and notice that it is complex valued, hence, all higher commutators vanish and the Magnus expansion with the first two terms is exact.
+In summary, the second term of the Magnus expansion turns out to be
+\begin{equation}
+	\hat{\Omega}^{(2)}(t,t_0)
+	=
+	i\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\omega(\vb{p})}
+	\Im\left\{
+		J_\lambda(t_0,t^\prime;\vb{p})
+		J_\lambda(t_0,t^{\prime\prime};\vb{p})^*
+	\right\}
+\end{equation}
+The second term contributes a phase to the time-evolution operator.
+As long as we consider a single current source, no interference of phases can occur and we can ignore the phase factor.
+The exact time-evolution operator of the Maxwell field interacting with a classical source current therefore is
+\begin{equation}
+	\hat{U}(t,t_0)
+	=
+	\exp\left\{
+		i\sum_{\lambda=1,2}
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left\{
+			J_\lambda(t,t_0;\vb{p})
+			\hat{a}_{\lambda,\vb{p}}
+			+
+			\text{h.c.}
+		\right\}
+	\right\}
+\end{equation}
+which equals the displacement operator for a time-dependent spectrum $\hat{D}[\alpha(t,t_0)]$.
