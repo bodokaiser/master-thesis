@@ -2,7 +2,7 @@
 
 \subsection{Relativistic field theory}
 
-The Lagrangian of the Maxwell field $A^\mu(t,\vb{x})$ is~\cite[p.~339]{Srednicki2007}.
+The Lagrangian of the Maxwell field $A^\mu(t,\vb{x})$ reads~\cite[p.~339]{Srednicki2007}
 \begin{equation}
 	\mathcal{L}
 	=
@@ -13,9 +13,147 @@ The Lagrangian of the Maxwell field $A^\mu(t,\vb{x})$ is~\cite[p.~339]{Srednicki
 		-
 		\partial^\mu A^\nu
 	\right)
+\end{equation}
+and the covariant generalization of the Euler-Lagrange equations
+\begin{equation}
+	0
+	=
+	\partial_\mu
+	\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+	-
+	\pdv{\mathcal{L}}{A_\nu}
+	=
+	\partial_\mu\partial^\mu A^\nu
+	-
+	\partial^\nu\partial_\mu A^\mu
+\end{equation}
+leads to the free equations of motion.
+We ignore static charges $A_0=0$ and employ the Coulomb gauge $\partial_iA^i=0$ in which the Maxwell field is transverse.
+The equations of motion simplify to relativistic wave equation
+\begin{equation}
+	0
+	=
+	\partial_\mu\partial^\mu\vb{A}
+	=
+	\partial_t^2\vb{A}
+	-
+	\laplacian\vb{A}
 	.
 \end{equation}
 
-\subsection{Maxwell equations}
+\subsection{Mode decomposition}
+
+In momentum space the transverse field $\vb{A}$ reads
+\begin{equation}
+	\vb{A}(t,\vb{x})
+	=
+	\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
+	\vb{A}(p_0,\vb{p})
+	e^{ip_0t-i\vb{p}\vdot\vb{x}}
+	.
+\end{equation}
+In momentum space, we can construct a polarization basis $\vu{e}_1(\vb{p}),\vu{e}_2(\vb{p})$ being transverse
+\begin{equation}
+	\vb{p}\vdot\vu{e}_\lambda(\vb{p})
+	=
+	0
+	,
+\end{equation}
+orthonormal
+\begin{equation}
+	\vu{e}_\lambda(\vb{p})
+	\vdot
+	\vu{e}_{\lambda^\prime}(\vb{p})
+	=
+	\delta_{\lambda,\lambda^\prime}
+\end{equation}
+and complete
+\begin{equation}
+	\sum_{\lambda=1,2}
+	\vu{e}_\lambda^i(\vb{p})
+	\vu{e}_{\lambda^\prime}^j(\vb{p})
+	=
+	\delta^{ij}
+	-
+	\frac{p^ip^j}{\vb{p}^2}
+	=
+	P_\perp^{ij}(\vb{p})
+\end{equation}
+with $P_\perp(\vb{p})$ being the transverse projector.
+Expressing $\vb{A}(p_0,\vb{p})$ in the polarization basis, we find
+\begin{equation}
+	\vb{A}(p_0,\vb{p})
+	=
+	\sum_{\lambda=1,2}
+	A_\lambda(p_0,\vb{p})
+	\vu{e}_\lambda(\vb{p})
+\end{equation}
+and the mode decomposition reads
+\begin{equation}
+	\vb{A}(t,\vb{x})
+	=
+	\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
+	A_\lambda(p_0,\vb{p})
+	e^{ip_0t-i\vb{p}\vdot\vb{x}}
+	\vu{e}_\lambda(\vb{p})
+	.
+\end{equation}
+Inserting the mode decomposition into the relativistic wave equation, we recover the relativistic energy-momentum relation for massless particles
+\begin{equation}
+	E(\vb{p})
+	=
+	\omega(\vb{p})
+	=
+	\vb{p}
+	.
+\end{equation}
+Hence, if the Fourier modes $a_\lambda(p_0,\vb{p})$ satisfy the relativistic energy-momentum relation, $\vb{A}(t,\vb{x})$ satisfies the relativistic wave equation.
+We enforce the mode decomposition to satisfy the energy-momentum relation by constraining the integration domain to
+\begin{equation}
+	V_p
+	=
+	\left\{
+		(p_0,\vb{p})\in\mathbb{R}^4
+		\colon
+		p_0^2
+		=
+		\omega(\vb{p})^2
+	\right\}
+\end{equation}
+or equivalent, adding a factor
+\begin{equation}
+	(2\pi)
+	\delta^{(1)}\left(p_0^2-\omega(\vb{p})^2\right)
+	=
+	(2\pi)
+	\frac{
+		\delta^{(1)}\left(p_0-\omega(\vb{p})\right)
+		-
+		\delta^{(1)}\left(p_0+\omega(\vb{p})\right)
+	}{\sqrt{2\omega(\vb{p})}}
+\end{equation}
+to the integrand.
+Finally, we arrive at
+\begin{equation}
+	\vb{A}(t,\vb{x})
+	=
+	\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left\{
+		a_\lambda(\vb{p})
+		e^{i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+		\vu{e}_\lambda(\vb{p})
+		+
+		\text{c.c.}
+	\right\}
+\end{equation}
+where we defined
+\begin{equation}
+	a_\lambda(\vb{p})
+	=
+	A_\lambda\left(\omega(\vb{p}),\vb{p}\right)
+\end{equation}
+and used the conjugate symmetry of the Fourier amplitudes $a_\lambda(-\vb{p})=a_\lambda(\vb{p})^*$.
 
 \subsection{Canonical quantization}
