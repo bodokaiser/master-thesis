@@ -75,7 +75,7 @@ Taking the spatial Fourier transform of the current
 	=
 	\int_{\mathbb{R}^3}\frac{\dd[3]{q}}{(2\pi)^3}
 	\vb{j}(t,\vb{q})
-	e^{-i\vb{q}\vdot\vb{x}}
+	e^{+i\vb{q}\vdot\vb{x}}
 \end{equation}
 and inserting the mode expansion, we find the interaction Hamiltonian to be
 \begin{equation}
@@ -86,7 +86,7 @@ and inserting the mode expansion, we find the interaction Hamiltonian to be
 	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left\{
 		j_\lambda(t,\vb{p})
-		\hat{a}_{\lambda,\vb{p}}
+		\hat{a}_\lambda(\vb{p})
 		e^{-i\omega(\vb{p})t}
 		+
 		\text{h.c.}
@@ -110,7 +110,7 @@ The first term in the Magnus expansion turns out to be
 	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left\{
 		J_\lambda(t,t_0;\vb{p})
-		\hat{a}_{\lambda,\vb{p}}
+		\hat{a}_\lambda(\vb{p})
 		+
 		\text{h.c.}
 	\right\}
@@ -159,7 +159,7 @@ The exact time-evolution operator of the Maxwell field interacting with a classi
 		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\left\{
 			J_\lambda(t,t_0;\vb{p})
-			\hat{a}_{\lambda,\vb{p}}
+			\hat{a}_\lambda(\vb{p})
 			+
 			\text{h.c.}
 		\right\}

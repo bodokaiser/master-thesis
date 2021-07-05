@@ -15,10 +15,10 @@
 		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\left\{
 			\alpha(\vb{p})
-			\hat{a}_{\vb{p}}^\dagger
+			\hat{a}^\dagger(\vb{p})
 			-
 			\alpha(\vb{p})^*
-			\hat{a}_{\vb{p}}
+			\hat{a}(\vb{p})
 		\right\}
 	\right\}
 \end{equation}
@@ -26,20 +26,24 @@
 \subsection{Coherent state}
 
 \begin{equation}
-	\ket{\alpha}
-	=
-	\exp\left\{
-		-
-		\frac{1}{2}
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\abs{\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}}^2
-	\right\}
-	\exp\left\{
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
-		\hat{a}_{\vb{p}}^\dagger
-	\right\}
-	\ket{0}
+	\begin{split}
+		\ket{\alpha}
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{\alpha(\vb{p})}^2
+		\right\}
+		\\
+		&\times
+		\exp\left\{
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\alpha(\vb{p})
+			\hat{a}(\vb{p})^\dagger
+		\right\}
+		\ket{0}
+	\end{split}
 \end{equation}
 
 \subsection{Quadrature operator}
@@ -52,10 +56,10 @@ We define the generalized quadrature operator by
 	\frac{\dd[3]{p}}{(2\pi)^3}
 	\frac{1}{\sqrt{2}}
 	\left\{
-		\hat{a}_{\vb{p}}
+		\hat{a}(\vb{p})
 		e^{-i\theta}
 		+
-		\hat{a}_{\vb{p}}
+		\hat{a}^\dagger(\vb{p})
 		e^{+i\theta}
 	\right\}
 \end{equation}
@@ -97,9 +101,10 @@ The coherent state is a minimal uncertainty state in the sense that
 	=
 	\sqrt{2}
 	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\Re\left\{
-		\frac{\alpha(\vb{p})e^{-i\theta}}{\sqrt{2\omega(\vb{p})}}
+		\alpha(\vb{p})
+		e^{-i\theta}
 	\right\}
 	&&
 	\expval{\left(\Delta\hat{X}(\theta)\right)^2}{\alpha}
