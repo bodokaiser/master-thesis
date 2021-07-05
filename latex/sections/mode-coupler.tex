@@ -1,1 +1,77 @@
-\section{Mode coupler}
+\section{Time-dependent mode coupler}
+
+The mode coupler is a generalization of the beam splitter and is described by the Hamiltonian
+\begin{equation}
+	\hat{H}
+	=
+	\hat{H}_a
+	+
+	\hat{H}_b
+	+
+	\hat{H}_{ab}(t)
+\end{equation}
+where
+\begin{align}
+	\hat{H}_a
+	=
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\omega(\vb{p})
+	\hat{a}_{\vb{p}}^\dagger
+	\hat{a}_{\vb{p}}
+	&&
+	\hat{H}_b
+	=
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\omega(\vb{p})
+	\hat{b}_{\vb{p}}^\dagger
+	\hat{b}_{\vb{p}}
+\end{align}
+are bosonic free field Hamiltonians and
+\begin{equation}
+	\hat{H}_{ab}(t)
+	=
+	-
+	\int\dd[3]{x}
+	g(t,\vb{x})
+	\hat{A}(t,\vb{x})
+	\hat{B}(t,\vb{x})
+\end{equation}
+is the most general linear interaction between these fields.
+Expanding the fields into their positive and negative frequency parts and only keeping the mixed terms
+\begin{equation}
+	\begin{split}
+		\hat{H}_{ab}
+		&=
+		-
+		\int\dd[3]{x}
+		g(t,\vb{x})
+		\left(
+			\hat{A}^{(+)}(t,\vb{x})
+			+
+			\hat{A}^{(-)}(t,\vb{x})
+		\right)
+		\left(
+			\hat{B}^{(+)}(t,\vb{x})
+			+
+			\hat{B}^{(-)}(t,\vb{x})
+		\right)
+		\\
+		&\approx
+		-
+		\int\dd[3]{x}
+		g(t,\vb{x})
+		\left\{
+			\hat{A}^{(-)}(t,\vb{x})
+			\hat{B}^{(+)}(t,\vb{x})
+			+
+			\hat{A}^{(+)}(t,\vb{x})
+			\hat{B}^{(-)}(t,\vb{x})
+		\right\}
+	\end{split}
+\end{equation}
+called the rotating wave approximation, see Ref.~\cite[p.~158]{Gardiner2000}, because the non-mixed terms are strongly oscillating.
+An alternative argument given in Ref.~\cite[p.~127]{Haroche2006} justifies keeping only the mixed terms because the non-mixed terms do not conserve energy.
+
+\subsection{Phase-shifter}
+
+\subsection{Beam splitter}

@@ -1,8 +1,12 @@
 \section{Quantization of the Maxwell field in the Coulomb gauge}
 
-\subsection{Electrodynamics from the Maxwell Lagrangian}
+% TODO: motivate approach and outcome of the section
+% TODO: introduce four-potential (Maxwell field) from vector and scalar potential
 
-The Lagrangian of the Maxwell field $A^\mu(t,\vb{x})$ reads~\cite[p.~339]{Srednicki2007}
+\subsection{Maxwell Lagrangian and relativistic wave equation}
+
+% TODO: motivate the Maxwell Lagrangian from fundamental principles
+The Lagrangian of the Maxwell field $A^\mu(t,\vb{x})$~\cite[p.~339]{Srednicki2007}
 \begin{equation}
 	\mathcal{L}
 	=
@@ -14,7 +18,8 @@ The Lagrangian of the Maxwell field $A^\mu(t,\vb{x})$ reads~\cite[p.~339]{Sredni
 		\partial^\mu A^\nu
 	\right)
 \end{equation}
-and the covariant generalization of the Euler-Lagrange equations
+describes a manifest Lorentz-covariant massless vector field.
+From the covariant generalization of the Euler-Lagrange equations
 \begin{equation}
 	0
 	=
@@ -27,48 +32,54 @@ and the covariant generalization of the Euler-Lagrange equations
 	-
 	\partial^\nu\partial_\mu A^\mu
 \end{equation}
-leads to the free equations of motion.
-
-\subsection{Relativistic wave equation, mode decomposition and the energy-momentum relation}
-
-We ignore static charges $A_0=0$ and employ the Coulomb gauge $\partial_iA^i=0$ in which the Maxwell field is transverse.
-The equations of motion simplify to relativistic wave equation
+we find the free equations of motion which govern the dynamics of the free Maxwell field.
+Ignoring static charges $A_0=0$ and employing the Coulomb gauge $\partial_iA^i=0$ in which the Maxwell field is transverse, the free equations of motion reduce to
 \begin{equation}
 	0
 	=
-	\partial_\mu\partial^\mu\vb{A}
+	\partial_\mu\partial^\mu
+	\vb{A}
 	=
-	\partial_t^2\vb{A}
-	-
-	\laplacian\vb{A}
-	.
+	\left(
+		\partial_t^2
+		-
+		\laplacian
+	\right)
+	\vb{A}
 \end{equation}
+which is the relativistic wave equation of a transverse vector field.
+% TODO: explain what is meant with transverse (maybe figure)?
 
-In momentum space the transverse field $\vb{A}$ reads
+\subsection{Relativistic energy-momentum relation and plane-wave expansion}
+
+The momentum space representation of the transverse Maxwell field $\vb{A}$ is
 \begin{equation}
 	\vb{A}(t,\vb{x})
 	=
-	\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3}
+	\vb{A}(t,\vb{p})
+	e^{+i\vb{p}\vdot\vb{x}}
+	=
+	\int_{\mathbb{R}^4}
+	\frac{\dd[4]{p}}{(2\pi)^4}
 	\vb{A}(p_0,\vb{p})
-	e^{ip_0t-i\vb{p}\vdot\vb{x}}
-	.
+	e^{-ip_\mu x^\mu}
 \end{equation}
-In momentum space, we can construct a polarization basis $\vu{e}_1(\vb{p}),\vu{e}_2(\vb{p})$ being transverse
-\begin{equation}
+where we introduced the four-position $x^\mu=(t,\vb{x})$ and -momentum $p^\mu=(p_0,\vb{p})$ with inner Minkowski product $p_\mu x^\mu=p_0t-\vb{x}\vdot\vb{p}$.
+Construct a transverse and orthonormal polarization basis $\left\{\vu{e}_1(\vb{p}),\vu{e}_2(\vb{p})\right\}$
+\begin{align}
 	\vb{p}\vdot\vu{e}_\lambda(\vb{p})
 	=
 	0
-	,
-\end{equation}
-orthonormal
-\begin{equation}
+	&&
 	\vu{e}_\lambda(\vb{p})
 	\vdot
 	\vu{e}_{\lambda^\prime}(\vb{p})
 	=
 	\delta_{\lambda,\lambda^\prime}
-\end{equation}
-and complete
+\end{align}
+which is complete with respect to the transverse projector $P_\perp(\vb{p})$, see Ref.~\cite[p.~341]{Srednicki2007}
 \begin{equation}
 	\sum_{\lambda=1,2}
 	\vu{e}_\lambda^i(\vb{p})
@@ -80,27 +91,18 @@ and complete
 	=
 	P_\perp^{ij}(\vb{p})
 \end{equation}
-with $P_\perp(\vb{p})$ being the transverse projector.
-Expressing $\vb{A}(p_0,\vb{p})$ in the polarization basis, we find
-\begin{equation}
-	\vb{A}(p_0,\vb{p})
-	=
-	\sum_{\lambda=1,2}
-	A_\lambda(p_0,\vb{p})
-	\vu{e}_\lambda(\vb{p})
-\end{equation}
-and the mode decomposition reads
+we find the plane-wave expansion of the transverse Maxwell field to be~\cite[p.~154]{Greiner2013}
 \begin{equation}
 	\vb{A}(t,\vb{x})
 	=
 	\sum_{\lambda=1,2}
 	\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
 	A_\lambda(p_0,\vb{p})
-	e^{ip_0t-i\vb{p}\vdot\vb{x}}
+	e^{+ip_\mu x^\mu}
 	\vu{e}_\lambda(\vb{p})
 	.
 \end{equation}
-Inserting the mode decomposition into the relativistic wave equation, we recover the relativistic energy-momentum relation for massless particles
+Inserting the mode decomposition into the relativistic wave equation, we find that the modes need to satisfy $0=p_0^2-\vb{p}^2$ implying the relativistic energy-momentum relation for massless particles
 \begin{equation}
 	E(\vb{p})
 	=
@@ -109,11 +111,8 @@ Inserting the mode decomposition into the relativistic wave equation, we recover
 	\vb{p}
 	.
 \end{equation}
-Hence, if the Fourier modes $a_\lambda(p_0,\vb{p})$ satisfy the relativistic energy-momentum relation, $\vb{A}(t,\vb{x})$ satisfies the relativistic wave equation.
-We enforce the mode decomposition to satisfy the energy-momentum relation by constraining the integration domain to
+Amending the integration domain of the mode decomposition to
 \begin{equation}
-	V_p
-	=
 	\left\{
 		(p_0,\vb{p})\in\mathbb{R}^4
 		\colon
@@ -134,28 +133,51 @@ or equivalent, adding a factor
 		\delta^{(1)}\left(p_0+\omega(\vb{p})\right)
 	}{\sqrt{2\omega(\vb{p})}}
 \end{equation}
-to the integrand.
-Finally, we arrive at
+to the integrand, we ensure the plane-wave expansion to satisfy equation of motion.
+Finally, the plane-wave expansion of the transverse Maxwell field is brought into manifest Lorentz-covariant form
 \begin{equation}
-	\vb{A}(t,\vb{x})
-	=
-	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\left\{
-		a_\lambda(\vb{p})
-		e^{i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
-		\vu{e}_\lambda(\vb{p})
-		+
-		\text{c.c.}
-	\right\}
+	\begin{split}
+		\vb{A}(t,\vb{x})
+		&=
+		\sum_{\lambda=1,2}
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			a_\lambda(\vb{p})
+			\vu{e}_\lambda(\vb{p})
+			e^{-ip_0t+i\vb{p}\vdot\vb{x}}
+			+
+			a_\lambda(\vb{p})
+			\vu{e}_\lambda(\vb{p})
+			e^{+ip_0t+i\vb{p}\vdot\vb{x}}
+		\biggr\}_{p_0=\omega(\vb{p})}
+		\\
+		&=
+		\sum_{\lambda=1,2}
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\biggl\{
+			a_\lambda(\vb{p})
+			\vu{e}_\lambda(\vb{p})
+			e^{-ip_\mu x^\mu}
+			+
+			a_\lambda(\vb{p})^*
+			\vu{e}_\lambda(\vb{p})^*
+			e^{+ip_\mu x^\mu}
+		\biggr\}_{p_0=\omega(\vb{p})}
+	\end{split}
 \end{equation}
-where we defined
+where we evaluated the Dirac distributions in the first, and performed the substitution $\vb{p}\to-\vb{p}$ in the second line, and we defined the plane-wave amplitude
 \begin{equation}
 	a_\lambda(\vb{p})
 	=
 	A_\lambda\left(\omega(\vb{p}),\vb{p}\right)
 \end{equation}
-and used the conjugate symmetry of the Fourier amplitudes $a_\lambda(-\vb{p})=a_\lambda(\vb{p})^*$.
+which together with the plane-wave basis vectors has conjugate symmetry
+\begin{equation}
+	a_\lambda(-\vb{p})
+	=
+	a_\lambda(\vb{p})^*	
+\end{equation}
+because the Maxwell field is real-valued.
 
 \subsection{Canonical field variables in the Hamiltonian}
 
