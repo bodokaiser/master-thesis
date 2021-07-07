@@ -2,7 +2,31 @@
 
 \subsection{Vacuum state}
 
-\subsection{Positive-frequency operator}
+\subsection{Positive and negative frequency operators}
+
+% TODO: cite operator-valued distributions, smeared fields
+
+The positive and negative frequency operators of the Maxwell field
+\begin{align}
+	\hat{\vb{A}}^{(-)}
+	&=
+	\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\hat{a}_\lambda(\vb{p})
+	\vu{e}_\lambda(\vb{p})
+	\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+	\\
+	\hat{\vb{A}}^{(+)}
+	&=
+	\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\hat{a}_\lambda(\vb{p})^\dagger
+	\vu{e}_\lambda(\vb{p})^*
+	\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+\end{align}
+are operator-valued distributions.
 
 \subsection{Number state}
 

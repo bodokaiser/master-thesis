@@ -69,9 +69,146 @@ Expanding the fields into their positive and negative frequency parts and only k
 		\right\}
 	\end{split}
 \end{equation}
-called the rotating wave approximation, see Ref.~\cite[p.~158]{Gardiner2000}, because the non-mixed terms are strongly oscillating.
-An alternative argument given in Ref.~\cite[p.~127]{Haroche2006} justifies keeping only the mixed terms because the non-mixed terms do not conserve energy.
-
-\subsection{Phase-shifter}
+is known as the rotating wave approximation, see~\cite[p.~158]{Gardiner2000}.
+The rotating wave approximation is typically justified by the argument that the non-mixed terms have higher frequency and are therefore highly oscillatory.
+Additionally, Haroche~\cite[p.~127]{Haroche2006} argues that the high-frequency terms do not conserve energy as two particles are created or destroyed in one process.
+However, such processes are, in general, possible in the nonlinear regime~\cite{QuesadaMejia2015}.
+Using the definition of the positive and negative frequency operators, we find
+\begin{equation}
+	\hat{H}_{ab}
+	=
+	-
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+	\hat{a}(\vb{p})
+	e^{-i\omega(\vb{p})t}
+	g(t,\vb{p}-\vb{q})
+	\hat{b}^\dagger(\vb{q})
+	e^{+i\omega(\vb{q})t}
+	+
+	\text{h.c.}
+\end{equation}
+wherein $g(t,\vb{p}-\vb{q})$ is the spatial Fourier transform of the coupling $g(t,\vb{x})$.
+To preserve momentum, we expect the coupling to be strongly peaked where the incoming matches the outgoing momentum, i.e.,
+\begin{equation}
+	g(t,\vb{p}-\vb{q})
+	\approx
+	(2\pi)^3
+	\delta^{(3)}(\vb{q}-\vb{p})
+	g(t)
+\end{equation}
+and the coupling Hamiltonian reduces to
+\begin{equation}
+	\hat{H}_{ab}
+	=
+	-
+	g(t)
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\hat{a}(\vb{p})
+	\hat{b}^\dagger(\vb{p})
+	+
+	\text{h.c.}
+\end{equation}
+from which we can calculate the terms of the Magnus expansion, i.e.,
+\begin{equation}
+	\Omega^{(1)}(t,t_0)
+	=
+	iG(t,t_0)
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\hat{a}(\vb{p})
+	\hat{b}^\dagger(\vb{p})
+	-
+	\text{h.c.}
+\end{equation}
+where we defined
+\begin{equation}
+	G(t,t_0)
+	=
+	\int_{t_0}^t
+	\dd{t^\prime}
+	g(t^\prime)
+	.
+\end{equation}
+For the second term in the Magnus expansion, we first calculate the commutator
+\begin{equation}
+	\comm{\hat{H}_{ab}(t^\prime)}{\hat{H}_{ab}(t^{\prime\prime})}
+	=
+	g(t^\prime)^*
+	g(t^{\prime\prime})
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3(2\omega(\vb{p}))^2}
+	\left[
+		\hat{n}_a(\vb{p})
+		-
+		\hat{n}_b(\vb{p})
+	\right]
+	-
+	\text{h.c.}
+\end{equation}
+where we used the number density operators, e.g., $\hat{n}_a(\vb{p})=\hat{a}^\dagger(\vb{p})\hat{a}(\vb{p})$.
+Using the commutators, we find
+\begin{equation}
+	\comm{\hat{H}_{ab}(t^\prime)}{\hat{H}_{ab}(t^{\prime\prime})}
+	=
+	2i\Im\left\{
+		g(t^\prime)^*
+		g(t^{\prime\prime})
+	\right\}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3(2\omega(\vb{p}))^2}
+	\left[
+		\hat{n}_a(\vb{p})
+		-
+		\hat{n}_b(\vb{p})
+	\right]
+	+
+	\text{const}
+\end{equation}
+and we ignore the constant factor as it only contributes to a constant phase.
+We then find the second term of the Magnus expansion to be
+\begin{equation}
+	\Omega^{(2)}(t,t_0)
+	=
+	-i
+	\int_{t_0}^t
+	\dd{t^\prime}
+	\Im\left\{
+		g(t^\prime)
+		G(t^\prime,t_0)^*
+	\right\}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3(2\omega(\vb{p}))^2}
+	\left[
+		\hat{n}_a(\vb{p})
+		-
+		\hat{n}_b(\vb{p})
+	\right]
+\end{equation}
+which is some product of the coupling correlation and an integral of the the difference in photon number between the modes.
+While the difference in photon number can change for a time-dependent state, we ignore the second Magnus term as it contributes an overall phase to the combined output state, however, for mode couplers used in parallel these phase shifts need to be accounted for!
+In addition, higher order Magnus terms might become significant for high light intensities.
+We conclude that the unitary action of a time-dependent mode coupler is
+\begin{equation}
+	\hat{U}(t,t_0)
+	=
+	\exp\left\{
+		iG(t,t_0)
+		\int_{\mathbb{R}^3}
+		\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\biggl[
+			\hat{a}(\vb{p})
+			\hat{b}^\dagger(\vb{p})
+			+
+			\hat{a}^\dagger(\vb{p})
+			\hat{b}(\vb{p})
+		\biggr]
+	\right\}
+\end{equation}
+which can be considered the field-theoretic time-dependent generalization of the beam splitter action reported in Ref.~\cite{Leonhardt2003,Haroche2006}.
 
 \subsection{Beam splitter}
+
+\subsection{Phase-shifter}
