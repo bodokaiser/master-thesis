@@ -12,6 +12,7 @@
 \usepackage{cleveref}
 \usepackage{physics}
 \usepackage[separate-uncertainty=true]{siunitx}
+\usepackage{standalone}
 %\usepackage[subpreambles=true]{standalone}
 \usepackage{thmtools,thm-restate}
 %\usepackage{subfig}
@@ -144,12 +145,7 @@
 
 	\chapter{Coherent state communication system}
 	\begin{refsection}
-		\section{Baseband}
-		\section{Pulse-shaping}
-		\section{Up-conversion}
-		\section{Channel}
-		\section{Down-conversion}
-		\section{Filter}
+		\include{sections/communication-system}
 
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]

@@ -1,0 +1,24 @@
+\documentclass[tikz]{standalone}
+
+\usetikzlibrary{shapes,arrows,positioning}
+
+\begin{document}
+	\begin{tikzpicture}[
+		block/.style={draw, minimum height=8ex, minimum width=8em}
+	]
+		\node[block] (symbols) {Symbols};
+		\node[block, right=of symbols] (baseband) {Baseband};
+		\node[block, right=of baseband] (pulse-shaping) {Pulse-shaping};
+		\node[block, right=of pulse-shaping] (up-conversion) {Up-conversion};
+		\node[block, below=of up-conversion] (channel) {Channel};
+		\node[block, below=of channel] (down-conversion) {Down-conversion};
+		\node[block, left=of down-conversion] (filter) {Filter};
+		
+		\draw[->] (symbols) edge (baseband);
+		\draw[->] (baseband) edge (pulse-shaping);
+		\draw[->] (pulse-shaping) edge (up-conversion);
+		\draw[->] (up-conversion) edge (channel);
+		\draw[->] (channel) edge (down-conversion);
+		\draw[->] (down-conversion) edge (filter);
+	\end{tikzpicture}
+\end{document}

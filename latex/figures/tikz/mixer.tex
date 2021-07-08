@@ -1,0 +1,13 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{circuitikz}
+
+\begin{document}
+	\begin{circuitikz}
+		\draw (0,0) node[below]{$a(t)$};
+		\draw (3,0) node[mixer](mixer){};
+		\draw[->] (mixer.east) -- ++(2,0) node[below]{$c(t)$};
+		\draw[->] (0,0) -- (mixer.west);
+		\draw[<-] (mixer.north) -- ++(0,2) node[left]{$b(t)$};
+	\end{circuitikz}
+\end{document}
