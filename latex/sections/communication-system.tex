@@ -1,8 +1,63 @@
+\section{Architecture and overview of a communication system}
+
+\begin{figure}[h]
+	\centering
+	\includestandalone[mode=buildnew]{figures/tikz/communication-system}
+	\caption{Flow diagram of a communication system.}
+\end{figure}
+
+\section{Complex baseband representation}
+
+Let $x(t),p(t)$ be two real-valued baseband signals, then their complex baseband representation reads
+\begin{equation}
+	\alpha(t)
+	=
+	x(t)
+	+
+	ip(t)
+	.
+\end{equation}
+While any physical signal is real-valued, the real-part of the complex baseband representation $\alpha(t)$ multiplied by $e^{-i\omega_0t}$ contains both $x(t),p(t)$~\cite[p.~25]{Madhow2008}
+\begin{equation}
+	\Re\left\{
+		\alpha(t)
+		e^{-i\omega_0t}
+	\right\}
+	=
+	x(t)
+	\cos(\omega_0t)
+	+
+	p(t)
+	\sin(\omega_0t)
+	,
+\end{equation}
+and one refers to $x(t)$ as the in-phase and $p(t)$ as the quadrature component of $\alpha(t)$.
+\begin{figure}[h]
+	\centering
+	\includestandalone[mode=buildnew]{figures/tikz/iq-modulator}
+	\caption{Flow diagram of an in-phase and quadrature modulator.}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includestandalone[mode=buildnew]{figures/tikz/iq-demodulator}
+	\caption{Flow diagram of an in-phase and quadrature demodulator.}
+\end{figure}
+
+\subsection{Up- and down-conversion}
+
 \begin{figure}[h]
 	\centering
 	\includestandalone[mode=buildnew]{figures/tikz/mixer}
 	\caption{Flow diagram of a communication system.}
 \end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includestandalone[mode=buildnew]{figures/tikz/det}
+	\caption{Flow diagram of the detector.}
+\end{figure}
+
+\section{Channel}
 
 \begin{figure}[h]
 	\centering
@@ -16,30 +71,3 @@
 	+
 	n(t)
 \end{equation}
-
-\begin{figure}[h]
-	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/communication-system}
-	\caption{Flow diagram of a communication system.}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/iqmod}
-	\caption{Flow diagram of an in-phase and quadrature modulator.}
-\end{figure}
-\begin{equation}
-	y(t)
-	=
-	x_1(t)
-	\cos(\omega_0t)
-	-
-	x_2(t)
-	\sin(\omega_0t)
-\end{equation}
-
-\begin{figure}[h]
-	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/det}
-	\caption{Flow diagram of the detector.}
-\end{figure}
