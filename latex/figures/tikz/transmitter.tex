@@ -1,19 +1,24 @@
 \documentclass[tikz]{standalone}
 
-\usetikzlibrary{arrows.meta,positioning}
+\usepackage{amsmath}
+
+\usetikzlibrary{arrows,positioning}
 
 \begin{document}
-	\setlength{\baselineskip}{16pt}
 	\begin{tikzpicture}[
-		block/.style={draw, align=center, minimum height=12ex, minimum width=8em}
+		node distance=3em,
+		arrow/.style={-latex},
+		block/.style={draw, minimum height=10ex, minimum width=8em, align=center},
 	]
-		\node[block] (sym) {Symbols\\$\alpha_1,\dots\alpha_n$};
-		\node[block, right=of sym] (rec) {Reconstruction\\$\alpha(t)$};
-		\node[block, right=of rec] (up) {Up-conversion\\$\alpha(t)e^{-i\omega_0t}$};
-		\node[block, right=of up] (att) {Attenuation\\$\beta(t)e^{-i\omega_0t}$};
-
-		\draw[-Latex] (sym) -- (rec);
-		\draw[-Latex] (rec) -- (up);
-		\draw[-Latex] (up) -- (att);
+		\coordinate (in) at (0,0);
+		\node (ps) [block, below=of in] {Pulse-shaper};
+		\node (uc) [block, below=of ps] {Up-converter};
+		\node (at) [block, below=of uc] {Attenuator};
+		\coordinate[below=of at] (out);
+		
+		\draw[arrow] (in) -- node[anchor=west]{$\alpha_\text{in}[n]$} (ps);
+		\draw[arrow] (ps) -- node[anchor=west]{$\alpha_\text{ps}(t)$} (uc);
+		\draw[arrow] (uc) -- node[anchor=west]{$\alpha_\text{uc}(t)$} (at);
+		\draw[arrow] (at) -- node[anchor=west]{$\alpha_\text{at}(t)$} (out);
 	\end{tikzpicture}
 \end{document}

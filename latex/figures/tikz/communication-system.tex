@@ -1,20 +1,24 @@
 \documentclass[tikz]{standalone}
 
-\usetikzlibrary{shapes,arrows.meta,positioning}
+\usepackage{amsmath}
+
+\usetikzlibrary{arrows,positioning}
 
 \begin{document}
 	\begin{tikzpicture}[
-		block/.style={draw, minimum height=8ex, minimum width=8em}
+		node distance=3em,
+		arrow/.style={-latex},
+		block/.style={draw, minimum height=10ex, minimum width=8em, align=center},
 	]
-		\node (sym in) {Symbols};
-		\node[block, right=of sym in] (tx) {Transmitter};
-		\node[block, right=of tx] (ch) {Channel};
-		\node[block, right=of ch] (rx) {Receiver};
-		\node[right=of rx] (sym out) {Symbols};
-
-		\draw[-Latex] (sym in) -- (tx);
-		\draw[-Latex] (tx) -- (ch);
-		\draw[-Latex] (ch) -- (rx);
-		\draw[-Latex] (rx) -- (sym out);
+		\coordinate (in) at (0,0);
+		\node (tx) [block, below=of in] {Transmitter};
+		\node (ch) [block, below=of tx] {Channel};
+		\node (rx) [block, below=of ch] {Receiver};
+		\coordinate[below=of rx] (out);
+		
+		\draw[arrow] (in) -- node[anchor=west]{$\alpha_\text{in}[n]$} (tx);
+		\draw[arrow] (tx) -- node[anchor=west]{$\alpha_\text{tx}(t)$} (ch);
+		\draw[arrow] (ch) -- node[anchor=west]{$\alpha_\text{ch}(t)$} (rx);
+		\draw[arrow] (rx) -- node[anchor=west]{$\alpha_\text{out}[nT]$} (out);
 	\end{tikzpicture}
 \end{document}

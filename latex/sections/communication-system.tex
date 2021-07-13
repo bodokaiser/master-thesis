@@ -1,62 +1,56 @@
 The present chapter describes a coherent state communication system from a signal-processing point of view.
 We discuss concepts common to signal-processing, extend the concepts to quantum signals whenever necessary, and give references to the implementation details of the previous chapter.
 In the next chapter, the coherent state communication system is extended to a \gls{cvqkd} communication system by choosing a random sequence of complex symbols, adding classical post-processing, and discussing security aspects.
+% TODO: cite Hans' paper where transmitter and receiver configuration is described
 
+%\begin{wrapfigure}{l}{0.25\textwidth}
 \begin{figure}[htb]
 	\centering
 	\includestandalone[mode=buildnew]{figures/tikz/communication-system}
 	\caption{Flow diagram of an abstract communication system delivering information encoded in a sequence of symbols from the transmitter to the receiver over a physical channel.}\label{fig:communication_system}
 \end{figure}
 \Cref{fig:communication_system} depicts the flow diagram of an abstract communication system.
-A sequence of complex symbols $\alpha_1,\alpha_2,\dots,\alpha_n\in\mathbb{C}$ is  streamed to a transmitter.
-The transmitter converts the symbol stream to an analog signal $\alpha(t)$ which is modulated onto an optical carrier, i.e., $\alpha(t)e^{-i\omega_0t}$, which is supplied to an optical fiber, the channel.
-The signal leaving the channel and entering the receiver $\alpha^\prime(t)e^{-i\omega_0t}$ is related to the signal entering the channel $\alpha(t)e^{-i\omega_0t}$ by attenuation, dispersion, and noise.
-The receiver removes the optical carrier and recovers the decoded symbol sequence from $\alpha^\prime(t)$.
+A sequence of complex symbols $\alpha_1,\dots,\alpha_n\in\mathbb{C}$ is streamed to a transmitter.
+The transmitter converts the symbol stream to an analog signal $\alpha(t)$ and modulates it onto a carrier $\alpha(t)e^{-i\omega_0t}$.
+The signal leaves the channel as $\alpha^\prime(t)e^{-i\omega_0t}$.
+Finally, the receiver removes the carrier and recovers the symbols stream from $\alpha^\prime(t)$.
 
 \section{Transmitter}
+
+The transmitter takes a stream of complex symbols $\alpha_1,\dots,\alpha_n$ and outputs a quantum signal $\alpha^\prime(t)e^{-i\omega_0t}$.
 
 \begin{figure}[htb]
 	\centering
 	\includestandalone[mode=buildnew]{figures/tikz/transmitter}
 	\caption{Flow diagram of the transmitter converting a sequence of complex symbols to a coherent state signal.}\label{fig:transmitter}
 \end{figure}
+\Cref{fig:transmitter} depicts the process steps of the transmitter.
+First, an analog signal $\alpha(t)$ is reconstructed from the symbols.
+Second, the analog signal $\alpha(t)$ is modulated onto a carrier with optical frequency $\omega_0$.
+Finally, a variable-optical attenuator reduces the signal strength down to the quantum regime.
 
-\subsection{Reconstruction}
+\subsection{Pulse-shaping}
 
+Let $\alpha[n]\in\mathbb{C}$ be a complex sample, then we define the corresponding real samples
+\begin{align}
+	x[n]=\Re{\alpha[n]}
+	&&
+	p[n]=\Im{\alpha[n]}
+\end{align}
+through the real and imaginary part.
+The signal reconstruction is performed independent for the real symbol sequences.
 \begin{figure}[htb]
 	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/reconstruction}
-	\caption{Flow diagram of the reconstruction converting a sequence of samples $x_1,\dots,x_n$ to a continuous-time signal $x(t)$}\label{fig:transmitter}
+	\includestandalone[mode=buildnew]{figures/tikz/pulse-shaping}
+	\caption{Flow diagram of the signal reconstruction where an analog signal $x(t)$ is reconstructed from a stream of samples.}\label{fig:transmitter}
 \end{figure}
 
 % TODO: analog <-> digital (mathematical)
 % TODO: samples -> upsampling -> pulse-shaping
 
-Let $\alpha_1,\alpha_2,\dots,\alpha_n\in\mathbb{C}$ be a sequence of complex symbols.
-We define the real symbols
-\begin{align}
-	x_1=\Re{\alpha_1},
-	\dots,
-	x_n=\Re{\alpha_n}
-	\\
-	p_1=\Im{\alpha_1},
-	\dots,
-	p_n=\Im{\alpha_n}
-\end{align}
-through the real and imaginary part.
-
 \subsection{Up-conversion}
 
-Let $x(t),p(t)$ be two real-valued baseband signals, then their complex baseband representation reads
-\begin{equation}
-	\alpha(t)
-	=
-	x(t)
-	+
-	ip(t)
-	.
-\end{equation}
-While any physical signal is real-valued, the real-part of the complex baseband representation $\alpha(t)$ multiplied by $e^{-i\omega_0t}$ contains both $x(t),p(t)$~\cite[p.~25]{Madhow2008}
+Let $x(t),p(t)$ be the analog signals reconstructed from the real respective imaginary parts of the complex symbol sequence, then up-conversion multiplies these signals such that the output signal is~\cite[p.~25]{Madhow2008}
 \begin{equation}
 	\Re\left\{
 		\alpha(t)
@@ -68,19 +62,33 @@ While any physical signal is real-valued, the real-part of the complex baseband 
 	+
 	p(t)
 	\sin(\omega_0t)
-	,
 \end{equation}
 and one refers to $x(t)$ as the in-phase and $p(t)$ as the quadrature component of $\alpha(t)$.
+
+\Cref{fig:iqmod} shows a diagram of an I/Q-modulator which can be used to obtain the previous equation.
 \begin{figure}[htb]
 	\centering
 	\includestandalone[mode=buildnew]{figures/tikz/iq-modulator}
-	\caption{Flow diagram of an in-phase and quadrature modulator.}
+	\caption{Diagram of an in-phase and quadrature modulator which can be used for signal up-conversion.}\label{fig:iqmod}
 \end{figure}
+The output of a sinusoidal oscillator with frequency $\omega_0$ is split into two paths.
+The first path is mixed with the the $p(t)$ signal while the second path is phase-shifted by \SI{90}{\degree} and mixed with the $x(t)$ signal.
+Finally, the outputs of both mixers are combined to obtain the real part of the complex baseband signal
+\begin{equation}
+	\alpha(t)
+	=
+	x(t)
+	+
+	ip(t)
+	.
+\end{equation}
+One often works with the complex signal as up-conversion takes the simple form of a multiplication.
 \begin{figure}[htb]
 	\centering
 	\includestandalone[mode=buildnew]{figures/tikz/up-converter}
-	\caption{Flow diagram of a complex up-converter.}
+	\caption{For a complex signal $\alpha(t)$ up-conversion is simply the multiplication with $e^{-i\omega_0t}$.}
 \end{figure}
+However, one should keep in mind that the true physical signal is real-valued, thus only the real-part of the complex signal has physical relevance!
 
 \subsection{Attenuation}
 
@@ -120,3 +128,5 @@ and one refers to $x(t)$ as the in-phase and $p(t)$ as the quadrature component 
 	\includestandalone[mode=buildnew]{figures/tikz/down-converter}
 	\caption{Flow diagram of a complex down-converter.}
 \end{figure}
+
+\subsection{Reconstruction}
