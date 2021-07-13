@@ -16,9 +16,9 @@
         \draw (splitter.south) to[short] (mixer.north) node[inputarrow, rotate=-90]{};
         \draw (0,4) node[left]{$p(t)$} to[short] (0,4-|mixer.west) node[inputarrow]{} node[mixer, anchor=west](mixer2){};
         \draw (splitter.north) to[short] (mixer2.south) node[inputarrow, rotate=90]{};
-        \draw (splitter) ++(5,0) node[adder](adder){};
-        \draw (mixer.east) to[lowpass, >, l=LP] (mixer-|adder) to[short] (adder.south) node[inputarrow, rotate=90]{};
-        \draw (mixer2.east) to[lowpass, >, l=LP] (mixer2-|adder) to[short] (adder.north) node[inputarrow, rotate=-90]{};
+        \draw (splitter) ++(3,0) node[adder](adder){};
+        \draw (mixer.east) to[short] (mixer-|adder) to[short] (adder.south) node[inputarrow, rotate=90]{};
+        \draw (mixer2.east) to[short] (mixer2-|adder) to[short] (adder.north) node[inputarrow, rotate=-90]{};
         \draw (adder.east) to[short] ++(1,0) node[inputarrow]{} node[right]{$\operatorname{Re}\left\{\alpha(t)e^{-i\omega_0t}\right\}$};
 	\end{tikzpicture}
 \end{document}

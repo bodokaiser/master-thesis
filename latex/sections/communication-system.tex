@@ -1,12 +1,51 @@
-\section{Architecture and overview of a communication system}
+The present chapter describes a coherent state communication system from a signal-processing point of view.
+We discuss concepts common to signal-processing, extend the concepts to quantum signals whenever necessary, and give references to the implementation details of the previous chapter.
+In the next chapter, the coherent state communication system is extended to a \gls{cvqkd} communication system by choosing a random sequence of complex symbols, adding classical post-processing, and discussing security aspects.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 	\centering
 	\includestandalone[mode=buildnew]{figures/tikz/communication-system}
-	\caption{Flow diagram of a communication system.}
+	\caption{Flow diagram of an abstract communication system delivering information encoded in a sequence of symbols from the transmitter to the receiver over a physical channel.}\label{fig:communication_system}
+\end{figure}
+\Cref{fig:communication_system} depicts the flow diagram of an abstract communication system.
+A sequence of complex symbols $\alpha_1,\alpha_2,\dots,\alpha_n\in\mathbb{C}$ is  streamed to a transmitter.
+The transmitter converts the symbol stream to an analog signal $\alpha(t)$ which is modulated onto an optical carrier, i.e., $\alpha(t)e^{-i\omega_0t}$, which is supplied to an optical fiber, the channel.
+The signal leaving the channel and entering the receiver $\alpha^\prime(t)e^{-i\omega_0t}$ is related to the signal entering the channel $\alpha(t)e^{-i\omega_0t}$ by attenuation, dispersion, and noise.
+The receiver removes the optical carrier and recovers the decoded symbol sequence from $\alpha^\prime(t)$.
+
+\section{Transmitter}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone[mode=buildnew]{figures/tikz/transmitter}
+	\caption{Flow diagram of the transmitter converting a sequence of complex symbols to a coherent state signal.}\label{fig:transmitter}
 \end{figure}
 
-\section{Complex baseband representation}
+\subsection{Reconstruction}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone[mode=buildnew]{figures/tikz/reconstruction}
+	\caption{Flow diagram of the reconstruction converting a sequence of samples $x_1,\dots,x_n$ to a continuous-time signal $x(t)$}\label{fig:transmitter}
+\end{figure}
+
+% TODO: analog <-> digital (mathematical)
+% TODO: samples -> upsampling -> pulse-shaping
+
+Let $\alpha_1,\alpha_2,\dots,\alpha_n\in\mathbb{C}$ be a sequence of complex symbols.
+We define the real symbols
+\begin{align}
+	x_1=\Re{\alpha_1},
+	\dots,
+	x_n=\Re{\alpha_n}
+	\\
+	p_1=\Im{\alpha_1},
+	\dots,
+	p_n=\Im{\alpha_n}
+\end{align}
+through the real and imaginary part.
+
+\subsection{Up-conversion}
 
 Let $x(t),p(t)$ be two real-valued baseband signals, then their complex baseband representation reads
 \begin{equation}
@@ -32,34 +71,27 @@ While any physical signal is real-valued, the real-part of the complex baseband 
 	,
 \end{equation}
 and one refers to $x(t)$ as the in-phase and $p(t)$ as the quadrature component of $\alpha(t)$.
-\begin{figure}[h]
+\begin{figure}[htb]
 	\centering
 	\includestandalone[mode=buildnew]{figures/tikz/iq-modulator}
 	\caption{Flow diagram of an in-phase and quadrature modulator.}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[htb]
 	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/iq-demodulator}
-	\caption{Flow diagram of an in-phase and quadrature demodulator.}
+	\includestandalone[mode=buildnew]{figures/tikz/up-converter}
+	\caption{Flow diagram of a complex up-converter.}
 \end{figure}
 
-\subsection{Up- and down-conversion}
-
-\begin{figure}[h]
-	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/mixer}
-	\caption{Flow diagram of a communication system.}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/det}
-	\caption{Flow diagram of the detector.}
-\end{figure}
+\subsection{Attenuation}
 
 \section{Channel}
 
-\begin{figure}[h]
+% TODO: physical effects of a channel
+% TODO: original signal, signal with noise, signal with noise and attenuation
+% TODO: signal-to-noise ratios (?)
+% TODO: quantum analog of noise (?)
+
+\begin{figure}[htb]
 	\centering
 	\includestandalone[mode=buildnew]{figures/tikz/channel}
 	\caption{Flow diagram of a communication system.}
@@ -71,3 +103,20 @@ and one refers to $x(t)$ as the in-phase and $p(t)$ as the quadrature component 
 	+
 	n(t)
 \end{equation}
+
+\section{Receiver}
+
+% TODO: spectrum diagram for down-conversion
+
+\subsection{Down-conversion}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone[mode=buildnew]{figures/tikz/iq-demodulator}
+	\caption{Flow diagram of an in-phase and quadrature demodulator.}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+	\includestandalone[mode=buildnew]{figures/tikz/down-converter}
+	\caption{Flow diagram of a complex down-converter.}
+\end{figure}
