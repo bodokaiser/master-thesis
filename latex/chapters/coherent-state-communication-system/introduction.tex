@@ -1,0 +1,15 @@
+The present chapter describes a coherent state communication system from a signal-processing point of view.
+We discuss concepts common to signal-processing, extend the concepts to quantum signals whenever necessary, and give references to the implementation details of the previous chapter.
+In the next chapter, the coherent state communication system is extended to a \gls{cvqkd} communication system by choosing a random sequence of complex symbols, adding classical post-processing, and discussing security aspects.
+% TODO: cite Hans' paper where transmitter and receiver configuration is described
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone[mode=buildnew]{figures/tikz/communication-system}
+	\caption{Flow diagram of an abstract communication system delivering information encoded in a sequence of symbols from the transmitter to the receiver over a physical channel.}\label{fig:communication_system}
+\end{figure}
+\Cref{fig:communication_system} depicts the flow diagram of an abstract communication system.
+A sequence of complex symbols $\alpha_1,\dots,\alpha_n\in\mathbb{C}$ is streamed to a transmitter.
+The transmitter converts the symbol stream to an analog signal $\alpha(t)$ and modulates it onto a carrier $\alpha(t)e^{-i\omega_0t}$.
+The signal leaves the channel as $\alpha^\prime(t)e^{-i\omega_0t}$.
+Finally, the receiver removes the carrier and recovers the symbols stream from $\alpha^\prime(t)$.

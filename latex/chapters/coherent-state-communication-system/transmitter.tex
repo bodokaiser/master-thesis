@@ -1,20 +1,3 @@
-The present chapter describes a coherent state communication system from a signal-processing point of view.
-We discuss concepts common to signal-processing, extend the concepts to quantum signals whenever necessary, and give references to the implementation details of the previous chapter.
-In the next chapter, the coherent state communication system is extended to a \gls{cvqkd} communication system by choosing a random sequence of complex symbols, adding classical post-processing, and discussing security aspects.
-% TODO: cite Hans' paper where transmitter and receiver configuration is described
-
-%\begin{wrapfigure}{l}{0.25\textwidth}
-\begin{figure}[htb]
-	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/communication-system}
-	\caption{Flow diagram of an abstract communication system delivering information encoded in a sequence of symbols from the transmitter to the receiver over a physical channel.}\label{fig:communication_system}
-\end{figure}
-\Cref{fig:communication_system} depicts the flow diagram of an abstract communication system.
-A sequence of complex symbols $\alpha_1,\dots,\alpha_n\in\mathbb{C}$ is streamed to a transmitter.
-The transmitter converts the symbol stream to an analog signal $\alpha(t)$ and modulates it onto a carrier $\alpha(t)e^{-i\omega_0t}$.
-The signal leaves the channel as $\alpha^\prime(t)e^{-i\omega_0t}$.
-Finally, the receiver removes the carrier and recovers the symbols stream from $\alpha^\prime(t)$.
-
 \section{Transmitter}
 
 The transmitter takes a stream of complex symbols $\alpha_1,\dots,\alpha_n$ and outputs a quantum signal $\alpha^\prime(t)e^{-i\omega_0t}$.
@@ -91,42 +74,3 @@ One often works with the complex signal as up-conversion takes the simple form o
 However, one should keep in mind that the true physical signal is real-valued, thus only the real-part of the complex signal has physical relevance!
 
 \subsection{Attenuation}
-
-\section{Channel}
-
-% TODO: physical effects of a channel
-% TODO: original signal, signal with noise, signal with noise and attenuation
-% TODO: signal-to-noise ratios (?)
-% TODO: quantum analog of noise (?)
-
-\begin{figure}[htb]
-	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/channel}
-	\caption{Flow diagram of a communication system.}
-\end{figure}
-\begin{equation}
-	y(t)
-	=
-	h(t)x(t)
-	+
-	n(t)
-\end{equation}
-
-\section{Receiver}
-
-% TODO: spectrum diagram for down-conversion
-
-\subsection{Down-conversion}
-
-\begin{figure}[htb]
-	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/iq-demodulator}
-	\caption{Flow diagram of an in-phase and quadrature demodulator.}
-\end{figure}
-\begin{figure}[htb]
-	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/down-converter}
-	\caption{Flow diagram of a complex down-converter.}
-\end{figure}
-
-\subsection{Reconstruction}
