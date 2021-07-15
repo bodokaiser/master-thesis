@@ -1,0 +1,364 @@
+\section{Mach-Zehnder modulator}
+
+\Cref{fig:mach_zehnder_modulator} shows an embodiment of a \gls{mzm} using free-ray components comprising two beam splitters BS1 and BS2, two mirrors M1 and M2, and two variable phases shifters with phase shift $+\varphi/2$ respective $-\varphi/2$ (push-pull configuration).
+Beam splitter BS1 combines and distributes the input fields $E_1,E_2$ equally among the interferometer arms.
+In the upper arm, the beam is phase-shifted by $+\varphi/2$ before being directed with mirror M1 onto BS2.
+In the lower arm, the beam is directed with mirror M2 into a phase-shifter with phase-shift $-\varphi/2$ and then directed into the other input of BS2.
+Beam splitter BS2 recombines both inputs into outputs $E_1^\prime,E_2^\prime$.
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/pstricks/mach-zehnder-modulator.pdf}
+    \caption{Embodiment of the \gls{mzm} using free-ray components. The optical inputs $E_1,E_2$ are split into an upper and lower beam path by beam splitter BS1. The phase of each arm is modulated by $\varphi_1$ respective $\varphi_2$ and then recombined by beam splitter BS2 which outputs $E_1^\prime,E_2^\prime$.}\label{fig:mach_zehnder_modulator}
+\end{figure}
+We found in \Cref{sec:beam_splitter} that a real beam splitter is described by the scattering parameters of a complex $4\times 4$ matrix.
+Assuming, an ideal balanced beam splitter, we still have three \gls{dof} per beam splitter.
+To make any progress, we assume an ideal symmetric beam splitter described by \cref{eq:beam_splitter_unitary_transform_balanced_qo}, and that there is no phase difference between the interferometer arms.
+In this case, the complex output fields $\mathcal{E}_1^\prime,\mathcal{E}_2^\prime$ relate to the complex input fields $\mathcal{E}_1,\mathcal{E}_2$ via
+\begin{equation}
+    \begin{pmatrix}
+        \mathcal{E}_1^\prime
+        \\
+        \mathcal{E}_2^\prime
+    \end{pmatrix}
+    =
+    \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+        i & 1
+        \\
+        1 & i
+    \end{pmatrix}
+    \begin{pmatrix}
+        e^{i\pi} & 0
+        \\
+        0 & e^{-i\varphi/2}
+    \end{pmatrix}
+        \begin{pmatrix}
+        e^{+i\varphi/2} & 0
+        \\
+        0 & e^{i\pi}
+    \end{pmatrix}
+    \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+        1 & i
+        \\
+        i & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+        \mathcal{E}_1
+        \\
+        \mathcal{E}_2
+    \end{pmatrix}
+    \label{eq:mzm_transform}
+\end{equation}
+which can be understood as applying the linear transformations corresponding to the optical instruments from right to left.\footnote{The rows of the BS2 matrix are exchanged to keep consistent with the labels.}
+Performing the matrix multiplication, the transformation linking complex input and output fields simplifies to
+\begin{align}
+    U_\text{MZM}(\varphi)
+    &=
+    \frac{1}{2}
+    \begin{pmatrix}
+        i & 1
+        \\
+        1 & i
+    \end{pmatrix}
+    \begin{pmatrix}
+        ie^{+i\varphi/2} & 0
+        \\
+        0 & ie^{-i\varphi/2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & i
+        \\
+        i & 1
+    \end{pmatrix}
+    \\
+    &=
+    \frac{i}{2}
+    \begin{pmatrix}
+        i & 1
+        \\
+        1 & i
+    \end{pmatrix}
+    \begin{pmatrix}
+        e^{+i\varphi/2} & ie^{+i\varphi/2}
+        \\
+        ie^{-i\varphi/2} & e^{-i\varphi/2}
+    \end{pmatrix}
+    \\
+    &=
+    \frac{i}{2}
+    \begin{pmatrix}
+        ie^{+i\varphi/2}+ie^{-i\varphi/2} & -e^{+i\varphi/2}+e^{-i\varphi/2}
+        \\
+        e^{+i\varphi/2}-e^{-i\varphi/2} & ie^{+i\varphi/2}+ie^{-i\varphi/2}
+    \end{pmatrix}
+    \\
+    &=
+    -
+    \begin{pmatrix}
+        \cos(\varphi/2) & -\sin(\varphi/2)
+        \\
+        \sin(\varphi/2) & \cos(\varphi/2)
+    \end{pmatrix}
+    \label{eq:mzm_rotation},
+\end{align}
+resembling a rotation, i.e., the \gls{mzm} effectively mixes the input fields by $\varphi$.
+
+In a more general treatment only assuming the \gls{mzm} to be lossless, every component is represented by a unitary transformation.
+As the unitary transformations represent a group $U(2)$, the multiplication is closed in the sense that the result of a multiplication is also in the group $U(2)$.
+From our discussion of the beam splitter, \cref{eq:beam_splitter_unitary_transform}, we know that an element of $U(2)$ can be parametrized by
+\begin{equation}
+    e^{i\Lambda}
+    \begin{pmatrix}
+        e^{+i\Phi} & 0
+        \\
+        0 & e^{-i\Phi}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \cos\Theta & \sin\Theta
+        \\
+        -\sin\Theta & \cos\Theta
+    \end{pmatrix}
+    \begin{pmatrix}
+        e^{+i\Psi} & 0
+        \\
+        0 & e^{-i\Psi}
+    \end{pmatrix}
+    \in U(2)
+\end{equation}
+which compared to \cref{eq:mzm_rotation} is the same for $\Lambda=\pi,\Theta=\varphi/2,\Psi=0=\Phi$.
+The parameter choice $\Psi=\Phi$ highlights that our model makes very strongs assumptions regarding the phase properties of the \gls{mzm} which are not realistic.
+In fact, finding an operating point of the \gls{mzm} where the phase properties are well-controlled involves quite some engineering.
+
+As our simplified transformation of \cref{eq:mzm_rotation} is not able to explain the sensible phase dependence of the output fields, we are going to neglect the global phase of $-1=e^{i\pi}$ as it does not contribute to the following insights.
+
+\subsubsection{Single-mode and classic}
+
+So far, we assumed non-zero input fields which will become important for the following quantum treatment.
+Yet, the purpose of the \gls{mzm} is to perform amplitude modulation of a single input.
+Setting $E_2=0,E=E_1,E^\prime=E_2^\prime$, the complex output fields become
+\begin{equation}
+    \begin{pmatrix}
+        \mathcal{E}_1^\prime
+        \\
+        \mathcal{E}_2^\prime
+    \end{pmatrix}
+    =
+    \mathcal{E}
+    \begin{pmatrix}
+        \cos(\varphi/2)
+        \\
+        \sin(\varphi/2)
+    \end{pmatrix}
+    \label{eq:mzm_classic_sm}.
+\end{equation}
+One of the outputs, e.g., $E_1^\prime$, is usually monitored with a photodiode as part of a feedback loop to find an operating point of the phases.
+The other field is further processed or transmitted.
+
+One further note needs to be done on the modulation: \cref{eq:mzm_classic_sm} says that we have a non-linear modulation with respect to $\varphi$.
+Therefore, we perform a small-angle approximation near the operating point of our \gls{mzm} which gives us
+\begin{equation}
+    E^\prime(t)
+    =
+    E(t)\sin(\varphi)
+    =
+    E(t)\varphi+\mathcal{O}(\varphi^2)
+\end{equation}
+i.e., an amplitude modulation of the initial electric field input $E(t)$.
+
+\subsubsection{Single-mode and quantum}
+
+Our discussion of the \gls{mzm} so far was limited to the classical case.
+For the generalization to the quantum case, we need to replace the complex electrical field amplitudes $\mathcal{E}$ with the single-mode annihilation operator $\hat{a}$ in \cref{eq:mzm_transform}
+\begin{equation}
+    \begin{pmatrix}
+        \hat{a}_1^\prime
+        \\
+        \hat{a}_2^\prime
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \cos(\varphi/2) & -\sin(\varphi/2)
+        \\
+        \sin(\varphi/2) & \cos(\varphi/2)
+    \end{pmatrix}
+    \begin{pmatrix}
+        \hat{a}_1
+        \\
+        \hat{a}_2
+    \end{pmatrix}
+    \label{eq:mzm_operator_transform_sm}
+\end{equation}
+where it is strictly necessary to include both in- and outputs to further satisfy the commutation relation of the transformed operators $\hat{a}^\prime$.\footnote{If we drop one of the operators, we would find $\comm{\hat{a}^\prime}{\left(\hat{a}^\prime\right)^\dagger}=\pm\sin(\varphi/2)\cos(\varphi/2)\comm{\hat{a}}{\hat{a}^\dagger}<1$.}
+
+The quantum equivalent to a non-zero field with a zero field input is the tensor product of a coherent and the vacuum state $\ket{\alpha,0}$.
+To obtain the corresponding output state, we need to invert \cref{eq:mzm_operator_transform_sm} by noting that $U_\text{MZM}\in O(2)$ is an orthogonal transform for which the inverse is simply the transpose
+\begin{equation}
+    \begin{pmatrix}
+        \hat{a}_1
+        \\
+        \hat{a}_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \cos(\varphi/2) & \sin(\varphi/2)
+        \\
+        -\sin(\varphi/2) & \cos(\varphi/2)
+    \end{pmatrix}
+    \begin{pmatrix}
+        \hat{a}_1^\prime
+        \\
+        \hat{a}_2^\prime
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \hat{a}_1^\prime\cos(\varphi/2) + \hat{a}_2^\prime\sin(\varphi/2)
+        \\
+       -\hat{a}_1^\prime\sin(\varphi/2) + \hat{a}_2^\prime\cos(\varphi/2)
+    \end{pmatrix}
+\label{eq:mzm_operator_transform_inverse_sm}.
+\end{equation}
+Now, we can find the output state by replacing the annihilation and creation operators in the displacement operator describing the input state~\cite[p.~134]{Haroche2006}
+\begin{align}
+    \hat{D}_1(\alpha)
+    =&
+    \exp\left\{\alpha\hat{a}_1^\dagger-\alpha^*\hat{a}_1\right\}
+    \\
+    =&
+    \exp\biggl\{
+        \alpha\left[(\hat{a}_1^\prime)^\dagger\cos(\varphi/2) + (\hat{a}_2^\prime)^\dagger\sin(\varphi/2)\right]
+        \\
+        -&
+        \alpha^*\left[\hat{a}_1^\prime\cos(\varphi/2) + \hat{a}_2^\prime\sin(\varphi/2)\right]
+    \biggr\}
+    \\
+    =&
+    \exp\left\{
+        \left(\alpha\cos(\varphi/2)\right)(\hat{a}_1^\prime)^\dagger
+        -
+        \left(\alpha\cos(\varphi/2)\right)^*\hat{a}_1^\prime
+    \right\}
+    \\
+    &\exp\left\{
+        \left(\alpha\sin(\varphi/2)\right)(\hat{a}_2^\prime)^\dagger
+        -
+        \left(\alpha\sin(\varphi/2)\right)^*\hat{a}_2^\prime
+    \right\}
+    \\
+    =&
+    \hat{D}^\prime_1\left(\alpha\sin(\varphi/2)\right)
+    \hat{D}^\prime_2\left(\alpha\cos(\varphi/2)\right)
+\end{align}
+and thereby express the output state via
+\begin{align}
+    \ket{\alpha,0}
+    &=
+    \hat{D}_1(\alpha)
+    \ket{0,0}
+    \\
+    &=
+    \hat{D}^\prime_1\left(\alpha\sin(\varphi/2)\right)
+    \hat{D}^\prime_2\left(\alpha\cos(\varphi/2)\right)
+    \ket{0,0}
+    \\
+    &=
+    \ket{\alpha\sin(\varphi/2),\alpha\cos(\varphi/2)}
+    .
+\end{align}
+We recognize the output state as the tensor product of two coherent states.
+
+In \cref{eq:operator_number_coherent_mom1_sm} we gave the expectation value of a general coherent state $\ket{\alpha}$, substituting the output states we find
+\begin{align}
+    \expval{\alpha\sin(\varphi/2)}{\hat{E}(t)}
+    &=
+    E(0)\sin(\varphi/2)
+    \\
+    \expval{\alpha\cos(\varphi/2)}{\hat{E}(t)}
+    &=
+    E(0)\cos(\varphi/2)
+\end{align}
+in agreement with the classical prediction.
+In distinction to the classical prediction, the coherent output states have an intrinsic uncertainty of the quantum vacuum noise $\mathcal{E}_0$.
+Classically, we would expect the beam splitter to also divide the uncertainty but this is in contradiction to the observation that a coherent state always has uncertainty $\mathcal{E}_0$.
+Shapiro~\cite{Shapiro2009} offers a resolution to this puzzle: the missing noise is collected by the noise of the second vacuum input which is non-zero.
+
+\subsubsection{Continuous-mode and classic}
+
+For the continuous-mode description of the \gls{mzm}, we need to consider the spectrum of the input fields
+\begin{equation}
+    \mathcal{E}(t)
+    =
+    \int\dd{\omega}\mathcal{E}(\omega)e^{i\omega t}
+\end{equation}
+In general, the parameters of the unitary transformation describing the beam splitter are frequency-dependent
+\begin{equation}
+    \begin{pmatrix}
+        \mathcal{E}_1^\prime(\omega)
+        \\
+        \mathcal{E}_2^\prime(\omega)
+    \end{pmatrix}
+    =
+    e^{i\Lambda(\omega)}
+    \begin{pmatrix}
+        e^{+i\Phi(\omega)} & 0
+        \\
+        0 & e^{-i\Phi(\omega)}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \cos\Theta(\omega) & \sin\Theta(\omega)
+        \\
+        -\sin\Theta(\omega) & \cos\Theta(\omega)
+    \end{pmatrix}
+    \begin{pmatrix}
+        e^{+i\Psi(\omega)} & 0
+        \\
+        0 & e^{-i\Psi(\omega)}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \mathcal{E}_1(\omega)
+        \\
+        \mathcal{E}_2(\omega)
+    \end{pmatrix}
+\end{equation}
+Neglecting phases this simplifies to
+\begin{equation}
+    \begin{pmatrix}
+        \mathcal{E}_1^\prime(\omega)
+        \\
+        \mathcal{E}_2^\prime(\omega)
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \cos\Theta(\omega) & \sin\Theta(\omega)
+        \\
+        -\sin\Theta(\omega) & \cos\Theta(\omega)
+    \end{pmatrix}
+    \begin{pmatrix}
+        \mathcal{E}_1(\omega)
+        \\
+        \mathcal{E}_2(\omega)
+    \end{pmatrix}
+\end{equation}
+and in the time-domain
+\begin{equation}
+    \begin{pmatrix}
+        \mathcal{E}_1^\prime(t)
+        \\
+        \mathcal{E}_2^\prime(t)
+    \end{pmatrix}
+    =
+    \int\dd{\omega}e^{i\omega t}
+    \begin{pmatrix}
+        \cos\Theta(\omega) & \sin\Theta(\omega)
+        \\
+        -\sin\Theta(\omega) & \cos\Theta(\omega)
+    \end{pmatrix}
+    \begin{pmatrix}
+        \mathcal{E}_1(\omega)
+        \\
+        \mathcal{E}_2(\omega)
+    \end{pmatrix}
+\end{equation}
+
+\subsubsection{Continuous-mode and quantum}
+

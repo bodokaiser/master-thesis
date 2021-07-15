@@ -1,0 +1,373 @@
+\section{Homo- and heterodyne detector}
+
+\Cref{fig:balanced_detector_optics} illustrates the essential optical setup for balanced detection:
+a 50:50 beam splitter (depicted by the square with the diagonal line) mixes two optical input fields $E_l,E_s$.
+\begin{figure}[htb]
+    \centering
+    \includestandalone[mode=buildnew]{figures/tikz/balanced-detector-optics}
+    \caption{Optical part of the balanced detector setup comprising a beam splitter and two photodetectors.}\label{fig:balanced_detector_optics}
+\end{figure}
+The intensities of the two optical output fields leaving the beam splitter, represented by $E_\pm$, are separately measured by two photodiodes (depicted by the filled half-circles).
+The photodiodes output a current signal $i_\pm$ proportional to the registered light field's intensity.
+
+$E_l$ is called the \gls{lo} and is assumed monochromatic, i.e.,
+\begin{equation}
+    E_l(t)
+    =
+    E_l(0)\cos(\omega_l t+\theta)
+    \label{eq:efield_lo}.
+\end{equation}
+$E_s$ is a real passband signal with optical carrier frequency $\omega_c$
+\begin{equation}
+    E_s(t)
+    =
+    E_I(t)\cos(\omega_c t)-E_Q(t)\sin(\omega_c t)
+    \label{eq:efield_signal}
+\end{equation}
+with $E_I(t),E_Q(t)$ being the quadrature components of the baseband signal of $E_s(t)$.
+We have factored the relative phase $\theta$ between \gls{lo} and signal to $E_l(t)$.
+
+From our discussions of the beam splitter in \cref{sec:beam_splitter}, we know that
+\begin{equation}
+    E_\pm(t)
+    =
+    \frac{E_s(t)\pm E_l(t)}{\sqrt{2}}
+\end{equation}
+up to some phase factors.
+
+\Cref{fig:balanced_detector_electronics} depicts the electronic circuit of the balanced detector.
+The balanced detector is characterized by two photodiodes PD+ and PD- connected in series and allowing current flow in one direction.
+According to Kirchhoff's current law, the balanced current signal is equal to the difference of the individual photocurrents, i.e., $i_+-i_-$
+In the present embodiment, we include an operational amplifier into the balanced detector configuration.
+\begin{figure}[htb]
+    \centering
+    \includestandalone[mode=buildnew]{figures/tikz/balanced-detector-electronics}
+    \caption{Schematic of the balanced detector circuit.}\label{fig:balanced_detector_electronics}
+\end{figure}
+The operational amplifier is configured as transimpedance amplifier where the non-inverting input is grounded, the inverting input is feed with the input current signal, and the voltage output is coupled through a feedback impedance $Z_f$ with the inverting voltage input.
+For an ideal transimpedance amplifier, the output voltage relates to the photocurrents via
+\begin{equation}
+    V_\text{out}
+    =-Z_f(i_+-i_-).
+\end{equation}
+We end our analysis of the balanced detector to conclude that the photocurrent difference is our relevant quantity we need to discuss.
+
+The photocurrents of the photodectors are proportional to the incident beam power which in turn is proportional to the squared amplitude of the electric field component
+\begin{equation}
+    i_\pm(t)
+    \propto
+    E_\pm(t)^2
+    =
+    \frac{1}{2}
+    \bigl\{
+        E_l(t)^2+E_s(t)^2\pm 2E_l(t)E_s(t)
+    \bigr\}
+    \label{eq:photocurrent_individual}.
+\end{equation}
+From \Cref{fig:balanced_detector_electronics} we know that the current signal of the balanced detector is equal to the difference of the individual photocurrents
+\begin{equation}
+    i(t)
+    =
+    i_+(t)-i_-(t)
+    \propto
+    2E_l(t)E_s(t)
+    \label{eq:photocurrent_difference1}
+\end{equation}
+Inserting \cref{eq:efield_lo} and \cref{eq:efield_signal} into \cref{eq:photocurrent_difference1} yields
+\begin{equation}
+    i(t)
+    \propto
+    2E_l(0)\cos(\omega_lt+\theta)\bigl\{E_I(t)\cos(\omega_ct)-E_Q(t)\sin(\omega_ct)\bigr\}
+    \label{eq:photocurrent_difference3}.
+\end{equation}
+Finally, by using the trigonometric identities
+\begin{align}
+    \cos(x)\cos(y)
+    &=
+    \frac{1}{2}\bigl(\cos(x+y)+\cos(x-y)\bigr)\\
+    \cos(x)\sin(y)
+    &=
+    \frac{1}{2}\bigl(\sin(x+y)-\sin(x-y)\bigr)
+\end{align}
+we can rewrite \cref{eq:photocurrent_difference3} as
+\begin{equation}
+    i(t)
+    \propto
+    E_l(0)\biggl\{
+        E_I(t)\bigl[\cos(\omega_+t+\theta)+\cos(\omega_-t+\theta)\bigr]
+        +
+        E_Q(t)\bigl[\sin(\omega_+t+\theta)-\sin(\omega_-t+\theta)\bigr]
+    \biggr\}
+    \label{eq:photocurrent_difference_final}
+\end{equation}
+where we have defined $\omega_\pm=\omega_l\pm\omega_c$.
+
+So far we neglected the finite response-time of the photodiodes.
+We assume that the photocurrent is attenuated by a low-pass with transfer function $h(\omega)$ and cut-off frequency $\omega_0$.
+The bandwidth-limited balanced detector current signal $i^\prime(t)$ is obtained by convolution of the low-pass transfer function with the infinite bandwidth signal $i(t)$
+\begin{equation}
+    i^\prime(t)
+    =
+    (h*i)(t)
+    =
+    \int_\mathbb{R}\dd{\omega} h(\omega)i(\omega)e^{-i\omega t}
+    \label{eq:photocurrent_difference_bandwidth_limited}
+\end{equation}
+where we invoked the convolution theorem for the last equal.
+The Fourier transform of the unlimited bandwidth balanced detector signal is
+\begin{align}
+    i(\omega)
+    \propto
+    E_l(0)\int_\mathbb{R}\dd{t}e^{i\omega t}
+    \biggl\{
+        &E_I(t)\bigl[\cos(\omega_+t+\theta)+\cos(\omega_-t+\theta)\bigr]\\
+       -&E_Q(t)\bigl[\sin(\omega_+t+\theta)-\sin(\omega_-t+\theta)\bigr]
+    \biggr\}
+    \label{eq:photocurrent_difference_spectrum1}.
+\end{align}
+We can express \cref{eq:photocurrent_difference_spectrum1} in terms of the spectral representation of the in-phase and quadrature components.
+We show this exemplary for the in-phase component
+\begin{align*}
+    \int_\mathbb{R}\dd{t}E_I(t)e^{i\omega t}\cos(\omega_\pm t+\theta)
+    &=
+    \frac{e^{+i\theta}}{2}\underbrace{\int_\mathbb{R}\dd{t}E_I(t)e^{i(\omega+\omega_\pm)t}}_{E_I(\omega+\omega_\pm)}
+    +
+    \frac{e^{-i\theta}}{2}\underbrace{\int_\mathbb{R}\dd{t}E_I(t)e^{i(\omega-\omega_\pm)t}}_{E_I(\omega-\omega_\pm)}\\
+    \int_\mathbb{R}\dd{t}E_Q(t)e^{i\omega t}\sin(\omega_\pm t+\theta)
+    &=
+    \frac{e^{+i\theta}}{2i}\underbrace{\int_\mathbb{R}\dd{t}E_Q(t)e^{i(\omega+\omega_\pm)t}}_{E_Q(\omega+\omega_\pm)}
+    -
+    \frac{e^{-i\theta}}{2i}\underbrace{\int_\mathbb{R}\dd{t}E_Q(t)e^{i(\omega-\omega_\pm)t}}_{E_Q(\omega-\omega_\pm)}
+    .
+\end{align*}
+with this in mind \cref{eq:photocurrent_difference_spectrum1} becomes
+\begin{align*}
+    i(\omega)
+    \propto
+    E_l(0)
+    \biggl\{
+        &\frac{e^{+i\theta}}{2}E_I(\omega+\omega_+)+\frac{e^{-i\theta}}{2}E_I(\omega-\omega_+)\\
+        +&\frac{e^{+i\theta}}{2}E_I(\omega+\omega_-)+\frac{e^{-i\theta}}{2}E_I(\omega-\omega_-)\\
+        -&\frac{e^{+i\theta}}{2i}E_I(\omega+\omega_+)+\frac{e^{-i\theta}}{2i}E_I(\omega-\omega_+)\\
+        +&\frac{e^{+i\theta}}{2i}E_I(\omega+\omega_-)-\frac{e^{-i\theta}}{2i}E_I(\omega-\omega_-)
+    \biggr\}
+\end{align*}
+we factor out the phases
+\begin{align*}
+    i(\omega)
+    \propto
+    \frac{1}{2}
+    E_l(0)
+    \biggl\{
+        &e^{+i\theta}
+        \bigl[
+            E_I(\omega+\omega_+)+E_I(\omega+\omega_-)+iE_Q(\omega+\omega_+)-iE_Q(\omega+\omega_-)
+        \bigr]\\
+        +
+        &e^{-i\theta}
+        \bigl[
+            E_I(\omega-\omega_+)+E_I(\omega-\omega_-)-iE_Q(\omega-\omega_+)+iE_Q(\omega-\omega_-)
+        \bigr]
+    \biggr\},
+\end{align*}
+after defining the complex spectrum
+\begin{equation}
+    A_\pm(\omega)
+    =
+    E_I(\omega)\pm iE_Q(\omega)
+    \label{eq:aux_spectrum},
+\end{equation}
+we find the compact expression
+\begin{align}
+    i(\omega)
+    \propto
+    \frac{1}{2}E_l(0)
+    \biggl\{
+        &e^{+i\theta}
+        \bigl[
+            A_+(\omega+\omega_+)+A_-(\omega+\omega_-)
+        \bigr]\\
+        +
+        &e^{-i\theta}
+        \bigl[
+            A_-(\omega-\omega_+)+A_+(\omega-\omega_-)
+        \bigr]
+    \biggr\}
+\end{align}
+Inserting \cref{eq:photocurrent_difference_spectrum2} into \cref{eq:photocurrent_difference_bandwidth_limited}, we find
+\begin{align}
+    i^\prime(t)
+    \propto
+    \frac{1}{2}E_l(0)
+    \int_\mathbb{R}\dd{\omega}
+    h(\omega)
+    \biggl\{
+        &e^{+i\theta}
+        \bigl[
+            A_+(\omega+\omega_+)+A_-(\omega+\omega_-)
+        \bigr]\\
+        +
+        &e^{-i\theta}
+        \bigl[
+            A_-(\omega-\omega_+)+A_+(\omega-\omega_-)
+        \bigr]
+    \biggr\}
+    e^{-i\omega t}
+    \label{eq:photocurrent_difference_spectrum3}.
+\end{align}
+Usually, the transimpedance amplifier has a smaller bandwidth than the photodiode, and we can approximate the photodiode's transfer function by
+\begin{equation}
+    h(\omega)
+    \approx
+    \begin{cases}
+        1 & \text{if } -B<\omega<+B\\
+        0 & \text{otherwise}
+    \end{cases}
+\end{equation}
+and the balanced detector's bandwidth-limited current signal take the form
+\begin{align}
+    i^\prime(t)
+    \approxprop
+    \frac{1}{2}
+    E_l(0)
+    \int_{-B}^{+B}\dd{\omega}
+    \biggl\{
+        &e^{+i\theta}
+        \bigl[
+            A_+(\omega+\omega_+)+A_-(\omega+\omega_-)
+        \bigr]\\
+        +
+        &e^{-i\theta}
+        \bigl[
+            A_-(\omega-\omega_+)+A_+(\omega-\omega_-)
+        \bigr]
+    \biggr\}
+    e^{-i\omega t}.
+\end{align}
+For real photodiodes, we have $B\ll\omega_+$ which allows us to neglect the $A_+$ terms as they represent complex passband signals, i.e., their signal power is concentrated at $\pm\omega_+$,
+\begin{align}
+    i^\prime(t)
+    &\approxprop
+    \frac{1}{2}
+    E_l(0)
+    \int_{-B}^{+B}\dd{\omega}
+    \biggl\{
+        A_-(\omega+\omega_\text{IF})e^{+i\theta}
+        +
+        A_+(\omega-\omega_\text{IF})e^{-i\theta}
+    \biggr\}
+    e^{-i\omega t}
+\end{align}
+where we now refer to $\omega_-$ as the \gls{if} $\omega_\text{IF}$.
+Using the variable substitution $\omega^\prime=\omega\pm\omega_\text{IF}$, we can write the previous equation as
+\begin{align}
+    i^\prime(t)
+    \approxprop
+    \frac{1}{2}
+    E_l(0)
+    \biggl\{
+        &e^{+i(\omega_\text{IF}t+\theta)}
+        \int_{-B+\omega_\text{IF}}^{+B-\omega_\text{IF}}\dd{\omega^\prime}
+            A_-(\omega^\prime)e^{-i\omega^\prime t}\\
+        +
+        &e^{-i(\omega_\text{IF}t+\theta)}
+        \int_{-B-\omega_\text{IF}}^{+B+\omega_\text{IF}}\dd{\omega^\prime}
+            A_+(\omega^\prime)e^{-i\omega^\prime t}
+    \biggr\}.
+\end{align}
+$A_\pm(\omega)$ inherits a symmetry from the conjugate symmetry of the quadrature baseband signals
+\begin{equation}
+    A_\pm(-\omega)
+    =
+    E_I(-\omega)\pm iE_Q(-\omega)
+    =
+    \bigl(
+    E_I(\omega)\mp iE_Q(\omega)
+    \bigr)^*
+    =
+    A_\mp^*(\omega)
+    .
+\end{equation}
+With this symmetry in mind, we can rewrite the spectrum
+\begin{align}
+    \int_{-(B\mp\omega_\text{IF})}^{+(B\mp\omega_\text{IF})}\dd{\omega^\prime}
+    A_\mp(\omega^\prime)e^{-i\omega^\prime t}
+    =
+    \int_0^{B\mp\omega_\text{IF}}\dd{\omega^\prime}
+    \bigg\{
+        A_\mp(\omega^\prime)e^{-i\omega^\prime t}
+        +
+        A_\pm^*(\omega^\prime)e^{+i\omega^\prime t}
+    \bigg\},
+\end{align}
+and our balanced detector signal becomes
+\begin{align}
+    i^\prime(t)
+    \approxprop
+    \frac{1}{2}E_l(0)
+    \biggl\{
+        &e^{+i(\omega_\text{IF}t+\theta)}
+        \int_{0}^{B-\omega_\text{IF}}\dd{\omega^\prime}
+            \bigl[
+                A_-(\omega^\prime)e^{-i\omega^\prime t}
+                +
+                A_+^*(\omega^\prime)e^{+i\omega^\prime t}
+            \bigr]\\
+            +
+        &e^{-i(\omega_\text{IF}t+\theta)}
+        \int_{0}^{B+\omega_\text{IF}}\dd{\omega^\prime}
+            \bigl[
+                A_+(\omega^\prime)e^{-i\omega^\prime t}
+                +
+                A_-^*(\omega^\prime)e^{+i\omega^\prime t}
+            \bigr]
+    \biggr\}.
+\end{align}
+If we ignore the \gls{if} in the integration domain
+\begin{equation}
+    \int_{-B}^{+B}\dd{\omega}A_\mp(\omega)e^{-i\omega t}
+    =
+    \underbrace{\int_{-B}^{+B}\dd{\omega}E_I(\omega)e^{-i\omega t}}_{\overline{E}_I(t)}
+    \mp
+    i\underbrace{\int_{-B}^{+B}\dd{\omega}E_Q(\omega)e^{-i\omega t}}_{\overline{E}_Q(t)}
+\end{equation}
+we recover the (bandwidth-limited) quadrature signals.
+In summary, the bandwidth-limited balanced detection current signal turns out to be
+\begin{align}
+    i^\prime(t)
+    &\approxprop
+    \frac{1}{2}E_l(0)
+    \biggl\{
+        \bigl[
+            \overline{E}_I(t)-i\overline{E}_Q(t)
+        \bigr]
+        e^{+i(\omega_\text{IF}t+\theta)}
+        +
+        \bigl[
+            \overline{E}_I(t)+i\overline{E}_Q(t)
+        \bigr]
+        e^{-i(\omega_\text{IF}t+\theta)}
+    \biggr\}\\
+    &=
+    E_l(0)
+    \bigl\{
+        \overline{E}_I(t)\cos(\omega_\text{IF}t+\theta)
+        +
+        \overline{E}_Q(t)\sin(\omega_\text{IF}t+\theta)
+    \bigr\}
+    \label{eq:balanced_detection_current_final}.
+\end{align}
+
+In the case of homodyne detection, $\omega_\text{IF}=0$, \cref{eq:balanced_detection_current_final} reduces to
+\begin{equation}
+    i^\prime(t)
+    \propto
+    E_l(0)
+    \bigl\{
+        \overline{E}_I(t)\cos(\theta)
+        +
+        \overline{E}_Q(t)\sin(\theta)
+    \bigr\}.
+\end{equation}
+If the \gls{lo}'s phase $\theta$ runs in sync with the carrier phase $\theta=0$, the current signal is proportional to the bandwidth-limited in-phase baseband $\overline{E}_I(t)$.
+If the \gls{lo}'s phase $\theta$ is shifted by $\theta=\pi$, the current signal is proportional to the bandwidth-limited quadrature baseband $\overline{E}_Q(t)$.
