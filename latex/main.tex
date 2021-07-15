@@ -110,10 +110,11 @@
 
 	\chapter{Introduction}
 	\begin{refsection}
-		\section{Quantum science and technology}
-		\section{Motivation and problem statement}
-        \section{Thesis overview and structure}
-        \section{Notation and conventions}
+        \include{chapters/introduction/introduction}
+        \include{chapters/introduction/secure-quantum-communication}
+        \include{chapters/introduction/problem-statement}
+        \include{chapters/introduction/thesis-overview}
+        \include{chapters/introduction/notation-and-conventions}
 	
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
@@ -158,6 +159,9 @@
 	
 	\chapter{Continuous-variable quantum-key distribution}
 	\begin{refsection}
+		\include{chapters/cv-qkd/introduction}
+		\section{Communication system}
+		\include{chapters/cv-qkd/post-processing}
 
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
