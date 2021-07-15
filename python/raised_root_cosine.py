@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def rrc_coeffs(size, beta, cutoff):
+def transfer(size, beta, cutoff):
     coeffs = np.zeros(size)
     center = size // 2
 

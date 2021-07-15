@@ -1,64 +1,47 @@
 import numpy as np
+import raised_root_cosine as rcc
 
 from matplotlib import pyplot as plt
 
-from raised_root_cosine import rrc_coeffs
-
-# reproducible
 np.random.seed(42)
 
+# number of symbols
+nos = 8
+# samples per symbol
+sps = 4
+
 # random input
-n_in = 8
-T_in = 1e-3
-x_in = np.random.uniform(-1, 1, n_in)
-t_in = np.arange(n_in) * T_in
-X_in = np.fft.fft(x_in)
-P_in = np.abs(X_in) ** 2
-f_in = np.fft.fftfreq(n_in, T_in)
+x1 = np.random.uniform(-1, 1, nos)
+t1 = np.arange(nos)
+f1 = (np.linspace(0, 1, len(x1)) - 0.5) / len(x1)
+P1 = np.abs(np.fft.fft(x1)) ** 2
 
 # upsampling
-us_f = 4
-n_us = n_in * us_f
-T_us = T_in / us_f
-x_us = np.zeros(n_us)
-x_us[::us_f] = x_in
-t_us = np.arange(n_us) * T_us
-X_us = np.fft.fft(x_us)
-P_us = np.abs(X_us) ** 2
-f_us = np.fft.fftfreq(n_us, T_us)
+x2 = np.zeros(nos * sps)
+x2[::sps] = x1
+t2 = np.linspace(0, nos, len(x2))
+f2 = (np.linspace(0, 1, len(x2)) - 0.5) / len(x2)
+P2 = np.abs(np.fft.fft(x2)) ** 2
 
-# digital filtering
-df = rrc_coeffs(32, 0.8, 2)
-n_df = n_us
-T_df = T_us
-t_df = t_us
-X_df = np.multiply(df, X_us)
-P_df = np.abs(X_df) ** 2
-f_df = np.fft.fftfreq(n_df, T_df)
-x_df = np.fft.ifft(X_df).real
+# pulse-shaping
+X3 = np.fft.fft(x2) * rcc.transfer(len(x2), 0.8, len(x2) // (2 * sps))
+x3 = np.fft.ifft(x2).real
+P3 = np.abs(X3) ** 2
 
-# setup time-frequency plot
-fig, axes = plt.subplots(nrows=4, ncols=2, figsize=(10, 14))
-for ax in axes:
-    ax[0].set_ylabel(r"Amplitude $x(t)$")
-    ax[1].set_ylabel(r"Magnitude $\vert X(f)\vert^2/P$")
-    ax[1].set_yscale("log")
-    ax[0].set_xlim([-1, 9])
-    ax[0].set_ylim([-1.2, +1.2])
-    # ax[1].set_ylim([0, 0.4])
-    ax[1].set_xlim([-0.6, 0.6])
-    ax[1].yaxis.set_label_position("right")
-    ax[1].yaxis.tick_right()
-axes[-1][0].set_xlabel(r"Time $t/T$")
-axes[-1][1].set_xlabel(r"Frequency $fT$")
-# add input samples
-axes[0][0].stem(t_in / T_in, x_in)
-axes[0][1].bar(f_in * T_in, P_in / P_in.sum(), 100 * T_in)
-# add upsampled samples
-axes[1][0].stem(t_us / T_in, x_us)
-axes[1][1].bar(f_us * t_us, P_us / P_in.sum(), 100 * T_in)
-# add digital filtered samples
-axes[2][0].stem(t_df / T_in, x_df)
-axes[2][1].bar(f_df * t_df, P_df, 100 * T_in)
-# save as image
+plt.figure(figsize=(10, 6))
+plt.subplot(321)
+plt.stem(t1, x1)
+plt.xlim([-1, 8])
+plt.subplot(322)
+plt.bar(f1, P1, 5e-3)
+plt.subplot(323)
+plt.stem(t2, x2)
+plt.xlim([-1, 8])
+plt.subplot(324)
+plt.bar(f2, P2, 2e-4)
+plt.subplot(325)
+plt.stem(t2, x3)
+plt.xlim([-1, 8])
+plt.subplot(326)
+plt.bar(f2, P3, 2e-4)
 plt.savefig("pulse-shaping.png")

@@ -2,3 +2,7 @@
 *.pdf
 *.log
 *.aux
+
+__pycache__
+*.pyc
+*.asv
