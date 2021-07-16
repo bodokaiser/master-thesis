@@ -30,7 +30,7 @@ if __name__ == "__main__":
     from matplotlib import pyplot as plt
 
     plt.title("Raised-root-cosine")
-    plt.plot(rrc_coeffs(32, 0.0, 4), label=r"\beta=0")
-    plt.plot(rrc_coeffs(32, 0.8, 4), label=r"\beta=0.8")
-    plt.plot(rrc_coeffs(32, 1.0, 4), label=r"\beta=1.0")
+    plt.plot(transfer(32, 0.0, 4), label=r"\beta=0")
+    plt.plot(transfer(32, 0.8, 4), label=r"\beta=0.8")
+    plt.plot(transfer(32, 1.0, 4), label=r"\beta=1.0")
     plt.savefig("raised-root-cosine.png")

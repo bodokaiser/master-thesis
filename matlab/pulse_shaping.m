@@ -1,54 +1,74 @@
-nsym = 8; % number of symbols
-sps = 4; % samples per symbol
+% number of symbols
+nsym = 128;
+% samples per symbol (upsampling factor)
+sps = 4;
 
-x1 = 2*rand(nsym,1) - 1; % random symbols
-x2 = upsample(x1,sps); % upsample to sps
+% complex random symbols
+x1 = 2*rand(nsym, 1) - 1;
+p1 = 2*rand(length(x1), 1) - 1;
+alpha1 = x1 + p1*1i;
 
-% time in units of symbols
-t1 = (0:(length(x1)-1)).';
-t2 = (0:(length(x2)-1)).'/sps;
+% upsampling
+alpha2 = upsample(alpha1, sps);
 
-% raised-root-cosine filter
-rcc = rcosdesign(0.8,16,sps,'sqrt');
-%x3 = filter(rcc,1,x2);
-x3 = upfirdn(x1,rcc,sps);
+% symbol time
+t1 = (0:(length(alpha1) - 1)).';
+t2 = (0:(length(alpha2) - 1)).'/sps;
 
-% fourier transforms
-P1 = abs(fft(x1,length(x1))).^2;
-f1 = ((0:1/length(x1):1-1/length(x1))).';
-P2 = abs(fft(x2,length(x2))).^2;
-f2 = ((0:1/length(x2):1-1/length(x2))).';
-P3 = abs(fft(x3,length(x3))).^2;
+% rrc filtering
+rrc = rcosdesign(0.8, 16, sps, 'sqrt');
+alpha3 = conv(alpha2, rrc / rrc(8*uf+1), 'same');
 
+% lowpass filtering
+[b, a] = butter(7, 0.08);
+alpha4 = filtfilt(b, a, upsample(alpha3, 10));
+t4 = (0:(length(alpha4) - 1)).'/(sps*10);
 
-tl = tiledlayout(3,2,'TileSpacing','Compact','Padding','Compact');
-xlabel(tl,'Samples')
-ylabel(tl,'Signal')
-
+figure
+tl = tiledlayout(4, 1);
+symlims = [10, 30];
+xlabel(tl, 'Symbol number')
+ylabel(tl, 'Signal')
 nexttile
-stem(t1,x1)
-xlim([0,8])
-ylim([-1.2,1.2])
-title('Original (time)')
-
+stem(t1, real(alpha1), '-o')
+hold on
+stem(t1, imag(alpha1), '-x')
+xlim(symlims)
+title('Symbols');
+hold off
 nexttile
-plot(f1,P1)
-title('Original (freq)')
-
+stem(t2, real(alpha2), '-o')
+hold on
+stem(t2, imag(alpha2), '-x')
+xlim(symlims)
+title('Upsampling');
+hold off
 nexttile
-stem(t2,x2)
-ylim([-1.2,1.2])
-title('Upsampled (time)')
-
+stem(t2, real(alpha3), '-o')
+hold on
+stem(t2, imag(alpha3), '-x')
+xlim(symlims)
+title('Root-raised-cosine');
+hold off
 nexttile
-plot(f2,P2)
-title('Upsampled (freq)')
+plot(t4, real(alpha4))
+hold on
+plot(t4, imag(alpha4))
+xlim(symlims)
+title('Lowpass');
+hold off
 
-nexttile
-stem(t2,x3)
-ylim([-1.2,1.2])
-title('Pulse-shaped (time)')
+[pxx1,f1] = pwelch(alpha1, [], [], 'centered');
+[pxx2,f2] = pwelch(alpha2, [], [], 'centered');
+[pxx3,f3] = pwelch(alpha3, [], [], 'centered');
+[pxx4,f4] = pwelch(alpha4, [], [], 'centered');
 
-nexttile
-plot(f2,P3)
-title('Pulse-shaped (freq)')
+figure
+plot(fftshift(f1), fftshift(pxx1) / sum(pxx1))
+hold on
+plot(fftshift(f2), fftshift(pxx2) / sum(pxx2))
+plot(fftshift(f3), fftshift(pxx3) / sum(pxx3))
+plot(fftshift(f4), fftshift(pxx4) / sum(pxx4))
+legend('Symbols', 'Upsampling', 'Root-raised-cosine', 'Lowpass')
+grid on
+hold off
