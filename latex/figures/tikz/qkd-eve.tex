@@ -2,7 +2,7 @@
 
 \usepackage{amsmath}
 
-\usetikzlibrary{arrows,calc}
+\usetikzlibrary{arrows,calc,positioning}
 
 \begin{document}
 	\begin{tikzpicture}[
@@ -11,11 +11,16 @@
 		darrow/.style={latex-latex},
 		block/.style={draw, minimum height=12ex, minimum width=8em, align=center},
 	]
-		\node at (0,0) (tx) {};
-		\node at (5,2) (eve) [block] {Eve};
-		\node at (10,0) (rx) {};
+		\coordinate (in) at (0,0);
+		\node (a1) [below=of in] {};
+		\node (b1) [below=of a1, yshift=-3ex] {};
+		\node (eve) [block, right=of b1, xshift=10em] {Eve};
+		\node (b2) [right=of eve, xshift=10em] {};
+		\node (link) at (a1-|eve.north) [fill, circle, scale=0.3] {};
 		
-		\draw[arrow] ([yshift=4ex]tx.east) -- node[anchor=south, xshift=-6em]{Quantum channel} ([yshift=4ex]rx.west);
-		\draw[darrow] ([yshift=-4ex]tx.east) -- node[anchor=south, xshift=-6em]{Classical channel} ([yshift=-4ex]rx.west);
+		\draw[arrow] (b1) node[above, xshift=2em]{Quantum channel} -- (eve.west);
+		\draw[arrow] (eve.east) -- (b2);
+		\draw[arrow] (a1) node[above, xshift=2em]{Classical channel} -- (a1-|b2);
+		\draw[arrow] (link) -- (eve.north);
 	\end{tikzpicture}
 \end{document}
