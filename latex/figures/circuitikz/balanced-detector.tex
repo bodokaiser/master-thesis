@@ -1,12 +1,9 @@
-\documentclass{standalone}
+\documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
 \usepackage{circuitikz}
 
-%\pgfplotsset{compat=1.17}
-
 \begin{document}
-    \begin{circuitikz}
+    \begin{tikzpicture}
         \draw (0, 0)
             node[op amp] (opamp) {}
             (opamp.out) to ++(1, 0) node[ocirc, label=$V_\text{out}$](vout){}
@@ -27,5 +24,5 @@
 %            to[amp, i>^=${i=i_+-i_-}$] ++(6, 0)
 %            node[ocirc, label=$V_\text{out}$](vout){}
 %            ;
-    \end{circuitikz}
+    \end{tikzpicture}
 \end{document}

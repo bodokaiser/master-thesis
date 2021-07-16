@@ -23,7 +23,7 @@ Finally, we end with a presentation of the scattering parameters of a generic bu
 The most commonly employed (free-ray) designs of the beam splitter are the cubic, plate, and pellicle beam splitters, see \Cref{fig:beam_splitter_types}.
 \begin{figure}[htb]
     \centering
-    \includestandalone[mode=buildnew]{figures/tikz/beam-splitter-types}
+    \includestandalone{figures/tikz/beam-splitter-types}
     \caption{Cubic (a), plate (b), and pellicle (c) beam splitter.}\label{fig:beam_splitter_types}
 \end{figure}
 The cubic beam splitter is made of two triangular prisms. The interface between the two prisms is finished with a dielectric coating.
@@ -42,7 +42,7 @@ Given two input beams, represented by the electrical field components $E_1(t)$ a
 The two input fields $E_1(t),E_2(t)$ are incident to the cubic and plate beam splitter's left and top, while the two output electric fields $E_1^\prime(t),E_2^\prime(t)$ exit the beam splitter at the right and bottom.
 \begin{figure}[htb]
     \centering
-    \includestandalone[mode=buildnew]{figures/tikz/beam-splitter-cubic-plate}
+    \includestandalone{figures/tikz/beam-splitter-cubic-plate}
     \caption{Cubic (left) and plate beam splitter (right) with two input beams represented by the electrical field components $E_1(t),E_2(t)$ and two output beam represented by the electrical field components $E_1^\prime(t),E_2^\prime(t)$. The frequency-dependent complex coefficients $r(\omega),r(\omega)^\prime$ and $t(\omega),t(\omega)^\prime$ fully characterize the reflection and transmission properties of the beam splitter.}\label{fig:beam_splitter_cube_plate}
 \end{figure}
 We assume the beam splitter to be a linear passive optical device, which suggests writing the relation between input and output fields given in the complex representation $\mathcal{E}(\omega)$ of the electric field component\footnote{The physical electrical field component $E(t)$ relates to the complex field $\mathcal{E}(t)$ via $E(t)=\Re\mathcal{E}(t)$. In the complex representation, phase shifts take the simple form of multiplications with a complex exponential. The frequency dependence coefficients are frequency-dependent, the linear transformation only holds in frequency space.} in the frequency domain\footnote{The frequency dependency of the reflection and transmission coefficients requires us to perform the linear transformation in frequency space.} as
@@ -387,7 +387,7 @@ That said, the assumptions of our ideal beam splitter are already very strong an
 
 \begin{figure}[htb]
     \centering
-    \includestandalone[mode=buildnew]{figures/tikz/four-port}
+    \includestandalone{figures/tikz/four-port}
     \caption{In- and outputs of a beam splitter used for the scattering parameter model.}\label{fig:beam_splitter_scattering_parameters}
 \end{figure}
 

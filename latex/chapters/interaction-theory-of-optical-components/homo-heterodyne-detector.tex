@@ -4,7 +4,7 @@
 a 50:50 beam splitter (depicted by the square with the diagonal line) mixes two optical input fields $E_l,E_s$.
 \begin{figure}[htb]
     \centering
-    \includestandalone[mode=buildnew]{figures/tikz/balanced-detector-optics}
+    \includestandalone{figures/tikz/balanced-detector}
     \caption{Optical part of the balanced detector setup comprising a beam splitter and two photodetectors.}\label{fig:balanced_detector_optics}
 \end{figure}
 The intensities of the two optical output fields leaving the beam splitter, represented by $E_\pm$, are separately measured by two photodiodes (depicted by the filled half-circles).
@@ -41,7 +41,7 @@ According to Kirchhoff's current law, the balanced current signal is equal to th
 In the present embodiment, we include an operational amplifier into the balanced detector configuration.
 \begin{figure}[htb]
     \centering
-    \includestandalone[mode=buildnew]{figures/tikz/balanced-detector-electronics}
+    \includestandalone{figures/circuitikz/balanced-detector}
     \caption{Schematic of the balanced detector circuit.}\label{fig:balanced_detector_electronics}
 \end{figure}
 The operational amplifier is configured as transimpedance amplifier where the non-inverting input is grounded, the inverting input is feed with the input current signal, and the voltage output is coupled through a feedback impedance $Z_f$ with the inverting voltage input.

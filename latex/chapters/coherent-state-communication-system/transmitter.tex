@@ -4,7 +4,7 @@ The transmitter takes a stream of complex symbols $\alpha_1,\dots,\alpha_n$ and 
 
 \begin{figure}[htb]
 	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/transmitter}
+	\includestandalone{figures/tikz/transmitter}
 	\caption{Flow diagram of the transmitter converting a sequence of complex symbols to a coherent state signal.}\label{fig:transmitter}
 \end{figure}
 \Cref{fig:transmitter} depicts the process steps of the transmitter.
@@ -51,7 +51,7 @@ and one refers to $x(t)$ as the in-phase and $p(t)$ as the quadrature component 
 \Cref{fig:iqmod} shows a diagram of an I/Q-modulator which can be used to obtain the previous equation.
 \begin{figure}[htb]
 	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/iq-modulator}
+	\includestandalone{figures/circuitikz/iq-modulator}
 	\caption{Diagram of an in-phase and quadrature modulator which can be used for signal up-conversion.}\label{fig:iqmod}
 \end{figure}
 The output of a sinusoidal oscillator with frequency $\omega_0$ is split into two paths.
@@ -68,7 +68,7 @@ Finally, the outputs of both mixers are combined to obtain the real part of the 
 One often works with the complex signal as up-conversion takes the simple form of a multiplication.
 \begin{figure}[htb]
 	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/up-converter}
+	\includestandalone{figures/circuitikz/up-converter}
 	\caption{For a complex signal $\alpha(t)$ up-conversion is simply the multiplication with $e^{-i\omega_0t}$.}
 \end{figure}
 However, one should keep in mind that the true physical signal is real-valued, thus only the real-part of the complex signal has physical relevance!
