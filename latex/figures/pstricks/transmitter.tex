@@ -1,0 +1,33 @@
+\documentclass[pstricks]{standalone}
+
+\usepackage{pst-optexp}
+\usepackage{siunitx}
+
+\begin{document}
+	\begin{pspicture}[showgrid](15,5)
+		\begin{optexp}
+			\psset[optexp]{usefiberstyle}
+			\newpsstyle{Fiber}{linecolor=orange}
+		  	\pnode(2,2.5){Laser}
+		  	\pnode(5,4){MZM1In}
+	  		\pnode(5,1){MZM2In}
+			\pnode(8,4){MZM1Out}
+		  	\pnode(7,1){MZM2Out}
+		  	\pnode(8,1){PS1Out}
+		  	\pnode(11,4){VOA1In}
+		  	\pnode(13,4){VOA1Out}
+		  	\pnode(11,1){PD1In}
+		  	\pnode(13,1){PD1Out}
+		  	\pnode(15,4){FiberOut}
+			\optbox[position=start, optboxsize=2 1, labeloffset=0](Laser)(Laser){\SI{1550}{\nano\meter}}
+			\wdmsplitter(Laser)(MZM1In)(MZM2In)
+			\optmzm(MZM1In)(MZM1Out){$x(t)$}
+			\optmzm(MZM2In)(MZM2Out){$p(t)$}
+			\optbox[optboxsize=1 0.8, labeloffset=0](MZM2Out)(PS1Out){$\pi/2$}
+			\optcoupler(MZM1Out)(PS1Out)(VOA1In)(PD1In)
+			\optmzm(VOA1In)(VOA1Out)
+			\optdetector[dettype=diode](PD1In)(PD1In)
+			\optfiber[addtoFiberOut={arrows=->}](VOA1Out)(FiberOut)
+		\end{optexp}
+	\end{pspicture}
+\end{document}

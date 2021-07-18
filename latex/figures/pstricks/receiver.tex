@@ -1,0 +1,25 @@
+\documentclass[pstricks]{standalone}
+
+\usepackage{pst-optexp}
+\usepackage{siunitx}
+
+\begin{document}
+	\begin{pspicture}[showgrid](11,5)
+		\begin{optexp}
+			\psset[optexp]{usefiberstyle}
+			\newpsstyle{Fiber}{linecolor=orange}
+			\pnode(3,4){Laser}
+		  	\pnode(1,1){FiberIn}
+		  	\pnode(3,1){IsolatorIn}
+		  	\pnode(5,1){IsolatorOut}
+		  	\pnode(9,1){Det1}
+		  	\pnode(9,4){Det2}
+		  	\optbox[position=start, optboxsize=2 1, labeloffset=0](Laser)(Laser){\SI{1550}{\nano\meter}}
+			\optfiber(FiberIn)(IsolatorIn)
+			\optisolator(IsolatorIn)(IsolatorOut)
+			\optcoupler(Laser)(IsolatorOut)(Det1)(Det2)
+			\optdetector[dettype=diode](Det1)(Det1)
+			\optdetector[dettype=diode](Det2)(Det2)
+		\end{optexp}
+	\end{pspicture}
+\end{document}

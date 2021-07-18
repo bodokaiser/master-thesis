@@ -2,6 +2,8 @@
 *.pdf
 *.log
 *.aux
+*.dvi
+*.ps
 
 __pycache__
 *.pyc
