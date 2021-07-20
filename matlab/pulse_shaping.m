@@ -13,10 +13,16 @@ unit_sym = unitsym(num_sym, 16);
 [unit_lp_up2, unit_lp_out2] = low_pass_filter(unit_sym, uf_lp);
 %plot_time(num_sym, [10, 20], unit_sym, unit_ps_up, unit_ps_out, unit_lp_out)
 %plot_freq(length(lp_out), [-0.4, +0.4],  unit_sym, unit_ps_up, unit_ps_out, unit_lp_up, unit_lp_out, unit_lp_out2)
-write_time(num_sym, unit_sym, '../data/pulse-shaping/unit-symbols.csv');
-write_time(num_sym, unit_ps_up, '../data/pulse-shaping/unit-pulse-shape-up.csv');
-write_time(num_sym, unit_ps_out, '../data/pulse-shaping/unit-pulse-shape-out.csv');
-write_time(num_sym, unit_lp_out / max(unit_lp_out), '../data/pulse-shaping/unit-low-pass-out.csv');
+write_time(num_sym, unit_sym, '../data/pulse-shaping/unit-time-sym.csv');
+write_time(num_sym, unit_ps_up, '../data/pulse-shaping/unit-time-psup.csv');
+write_time(num_sym, unit_ps_out, '../data/pulse-shaping/unit-time-psout.csv');
+write_time(num_sym, unit_lp_out / max(unit_lp_out), '../data/pulse-shaping/unit-time-lpout.csv');
+write_freq(num_sym, unit_sym, '../data/pulse-shaping/unit-freq-sym.csv');
+write_freq(num_sym, unit_ps_up, '../data/pulse-shaping/unit-freq-psup.csv');
+write_freq(num_sym, unit_ps_out, '../data/pulse-shaping/unit-freq-psout.csv');
+write_freq(num_sym, unit_lp_up, '../data/pulse-shaping/unit-freq-lpup.csv');
+write_freq(num_sym, unit_lp_out, '../data/pulse-shaping/unit-freq-lpout.csv');
+write_freq(num_sym, unit_lp_out2, '../data/pulse-shaping/unit-freq-lpout2.csv');
 
 % random symbols
 rnd_sym = randsym(num_sym);
@@ -88,6 +94,13 @@ end
 function [] = write_time(n, x, filename)
     t = (0:(length(x) - 1)).' / (length(x) / n);
     c = num2cell([t, x]);
+    m = cell2table(c);
+    writetable(m, filename);
+end
+
+function [] = write_freq(n, x, filename)
+    [pxx, f] = pwelch(x, [], [], [], length(x) / n, 'centered');
+    c = num2cell([f, 10*log10(pxx)]);
     m = cell2table(c);
     writetable(m, filename);
 end

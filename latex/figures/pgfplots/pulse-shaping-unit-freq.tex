@@ -1,0 +1,77 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+
+\usetikzlibrary{positioning}
+\usepgfplotslibrary{groupplots}
+
+\pgfplotsset{compat=1.17}
+
+\begin{document}
+	\begin{tikzpicture}[
+		block/.style={minimum height=5ex, minimum width=6em, fill=white}
+	]
+		\begin{groupplot}[
+			group style={
+				group name=plot,
+				group size=1 by 5,
+				xlabels at=edge bottom,
+				xticklabels at=edge bottom,
+				vertical sep=1ex,
+			},
+			grid=major,
+			width=0.95\linewidth,
+			height=24ex,
+			xlabel={Frequency $f\cdot T_s$ (relative)},
+			yticklabels={},
+		]
+			\nextgroupplot[
+				xmin=-4,
+				xmax=4,
+			]
+			\addplot[
+				no markers,
+				orange!75!red,
+			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-freq-sym.csv};
+			\nextgroupplot[
+				xmin=-4,
+				xmax=4,
+			]
+			\addplot[
+				no markers,
+				orange!75!red,
+			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-freq-psup.csv};
+			\nextgroupplot[
+				ylabel={Power spectral density (logarithmic)},
+				xmin=-4,
+				xmax=4,
+			]
+			\addplot[
+				no markers,
+				orange!75!red,
+			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-freq-psout.csv};
+			\nextgroupplot[
+				xmin=-4,
+				xmax=4,
+			]
+			\addplot[
+				no markers,
+				orange!75!red,
+			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-freq-lpup.csv};
+			\nextgroupplot[
+				xmin=-4,
+				xmax=4,
+			]
+			\addplot[
+				no markers,
+				orange!75!red,
+			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-freq-lpout.csv};
+		\end{groupplot}
+		
+		\node[block, above right=1em of plot c1r1.west] {Symbols};
+		\node[block, above right=1em of plot c1r2.west] {Upsampling ($2\times$)};
+		\node[block, above right=1em of plot c1r3.west] {Pulse-shaping};
+		\node[block, above right=1em of plot c1r4.west] {Upsampling ($4\times$)};
+		\node[block, above right=1em of plot c1r5.west] {Low-passing};
+	\end{tikzpicture}
+\end{document}

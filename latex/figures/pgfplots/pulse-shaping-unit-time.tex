@@ -2,53 +2,74 @@
 
 \usepackage{pgfplots}
 
-\usetikzlibrary{pgfplots.groupplots}
+\usetikzlibrary{positioning}
+\usepgfplotslibrary{groupplots}
+
+\pgfplotsset{compat=1.17}
 
 \begin{document}
-	\pgfplotsset{compat=1.17}
-	\begin{tikzpicture}
+	\begin{tikzpicture}[
+		block/.style={minimum height=5ex, minimum width=6em, fill=white}
+	]
 		\begin{groupplot}[
 			group style={
+				group name=plot,
 				group size=1 by 4,
 				xlabels at=edge bottom,
 				xticklabels at=edge bottom,
-				vertical sep=1em,
+				vertical sep=1ex,
 			},
 			grid=major,
 			width=0.95\linewidth,
-			height=10em,
-			xlabel={$n$},
-			ylabel={$x[n]$},
-			xmin=10,
-			xmax=20,
+			height=24ex,
+			xlabel={Index $n$},
 		]
-			\nextgroupplot
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+			]
 			\addplot[
 				ycomb,
 				mark=o,
 				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[x index=0, y index=1, col sep=comma] {../../../data/pulse-shaping/unit-symbols.csv};
-			\nextgroupplot
+			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-time-sym.csv};
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+				ylabel={Sample $x[n]$},
+				y label style={xshift=-6ex},
+			]
 			\addplot[
 				ycomb,
 				mark=o,
 				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[x index=0, y index=1, col sep=comma] {../../../data/pulse-shaping/unit-pulse-shape-up.csv};
-			\nextgroupplot
+			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-time-psup.csv};
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+			]
 			\addplot[
 				ycomb,
 				mark=o,
 				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[x index=0, y index=1, col sep=comma] {../../../data/pulse-shaping/unit-pulse-shape-out.csv};
-			\nextgroupplot
+			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-time-psout.csv};
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+			]
 			\addplot[
 				no markers,
 				orange!75!red,
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[x index=0, y index=1, col sep=comma] {../../../data/pulse-shaping/unit-low-pass-out.csv};
+			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-time-lpout.csv};
 		\end{groupplot}
+		
+		\node[block, above right=1em of plot c1r1.west] {Symbols};
+		\node[block, above right=1em of plot c1r2.west] {Upsampling ($2\times$)};
+		\node[block, above right=1em of plot c1r3.west] {Pulse-shaping};
+		\node[block, above right=1em of plot c1r4.west] {Low-pass filtering};
 	\end{tikzpicture}
 \end{document}
