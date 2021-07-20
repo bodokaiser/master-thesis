@@ -6,20 +6,25 @@ uf_ps = 2;
 % upsampling factor for low-pass filter
 uf_lp = 4;
 
-% random symbols
-rnd_sym = randsym(num_sym);
-[rnd_ps_up, rnd_ps_out] = pulse_shape_filter(rnd_sym, uf_ps);
-[rnd_lp_up, rnd_lp_out] = low_pass_filter(rnd_ps_out, uf_lp);
-plot_time(num_sym, [10, 20], rnd_sym, rnd_ps_up, rnd_ps_out, rnd_lp_out)
-plot_freq(length(lp_out), [-0.4, +0.4],  rnd_sym, rnd_ps_up, rnd_ps_out, rnd_lp_up, rnd_lp_out)
-
 % unit response
 unit_sym = unitsym(num_sym, 16);
 [unit_ps_up, unit_ps_out] = pulse_shape_filter(unit_sym, uf_ps);
 [unit_lp_up, unit_lp_out] = low_pass_filter(unit_ps_out, uf_lp);
 [unit_lp_up2, unit_lp_out2] = low_pass_filter(unit_sym, uf_lp);
-plot_time(num_sym, [10, 20], unit_sym, unit_ps_up, unit_ps_out, unit_lp_out)
-plot_freq(length(lp_out), [-0.4, +0.4],  unit_sym, unit_ps_up, unit_ps_out, unit_lp_up, unit_lp_out, unit_lp_out2)
+%plot_time(num_sym, [10, 20], unit_sym, unit_ps_up, unit_ps_out, unit_lp_out)
+%plot_freq(length(lp_out), [-0.4, +0.4],  unit_sym, unit_ps_up, unit_ps_out, unit_lp_up, unit_lp_out, unit_lp_out2)
+write_time(num_sym, unit_sym, '../data/pulse-shaping/unit-symbols.csv');
+write_time(num_sym, unit_ps_up, '../data/pulse-shaping/unit-pulse-shape-up.csv');
+write_time(num_sym, unit_ps_out, '../data/pulse-shaping/unit-pulse-shape-out.csv');
+write_time(num_sym, unit_lp_out / max(unit_lp_out), '../data/pulse-shaping/unit-low-pass-out.csv');
+
+% random symbols
+rnd_sym = randsym(num_sym);
+[rnd_ps_up, rnd_ps_out] = pulse_shape_filter(rnd_sym, uf_ps);
+[rnd_lp_up, rnd_lp_out] = low_pass_filter(rnd_ps_out, uf_lp);
+%plot_time(num_sym, [10, 20], rnd_sym, rnd_ps_up, rnd_ps_out, rnd_lp_out)
+%plot_freq(length(lp_out), [-0.4, +0.4],  rnd_sym, rnd_ps_up, rnd_ps_out, rnd_lp_up, rnd_lp_out)
+
 
 function x = unitsym(n, i)
     x = zeros(n, 2) * [1; 1i];
@@ -78,4 +83,11 @@ function [] = plot_freq(n, flim, varargin)
     
     xlabel(tl, 'Frequency')
     ylabel(tl, 'Power spectral density')
+end
+
+function [] = write_time(n, x, filename)
+    t = (0:(length(x) - 1)).' / (length(x) / n);
+    c = num2cell([t, x]);
+    m = cell2table(c);
+    writetable(m, filename);
 end

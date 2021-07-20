@@ -1,0 +1,54 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+
+\usetikzlibrary{pgfplots.groupplots}
+
+\begin{document}
+	\pgfplotsset{compat=1.17}
+	\begin{tikzpicture}
+		\begin{groupplot}[
+			group style={
+				group size=1 by 4,
+				xlabels at=edge bottom,
+				xticklabels at=edge bottom,
+				vertical sep=1em,
+			},
+			grid=major,
+			width=0.95\linewidth,
+			height=10em,
+			xlabel={$n$},
+			ylabel={$x[n]$},
+			xmin=10,
+			xmax=20,
+		]
+			\nextgroupplot
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[x index=0, y index=1, col sep=comma] {../../../data/pulse-shaping/unit-symbols.csv};
+			\nextgroupplot
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[x index=0, y index=1, col sep=comma] {../../../data/pulse-shaping/unit-pulse-shape-up.csv};
+			\nextgroupplot
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[x index=0, y index=1, col sep=comma] {../../../data/pulse-shaping/unit-pulse-shape-out.csv};
+			\nextgroupplot
+			\addplot[
+				no markers,
+				orange!75!red,
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[x index=0, y index=1, col sep=comma] {../../../data/pulse-shaping/unit-low-pass-out.csv};
+		\end{groupplot}
+	\end{tikzpicture}
+\end{document}
