@@ -1,82 +1,81 @@
-% number of symbols
-nsym = 20*128;
-% upsampling RRC
-uf_rrc = 2;
-% upsampling LP
+% total number of symbols
+num_sym = 1024;
+
+% upsampling factor for pulse-shaping filter
+uf_ps = 2;
+% upsampling factor for low-pass filter
 uf_lp = 4;
 
-% complex random symbols
-x1 = 2*rand(nsym, 1) - 1;
-p1 = 2*rand(length(x1), 1) - 1;
-alpha1 = x1 + p1*1i;
+% random symbols
+rnd_sym = randsym(num_sym);
+[rnd_ps_up, rnd_ps_out] = pulse_shape_filter(rnd_sym, uf_ps);
+[rnd_lp_up, rnd_lp_out] = low_pass_filter(rnd_ps_out, uf_lp);
+plot_time(num_sym, [10, 20], rnd_sym, rnd_ps_up, rnd_ps_out, rnd_lp_out)
+plot_freq(length(lp_out), [-0.4, +0.4],  rnd_sym, rnd_ps_up, rnd_ps_out, rnd_lp_up, rnd_lp_out)
 
-% upsampling
-alpha2 = upsample(alpha1, uf_rrc);
+% unit response
+unit_sym = unitsym(num_sym, 16);
+[unit_ps_up, unit_ps_out] = pulse_shape_filter(unit_sym, uf_ps);
+[unit_lp_up, unit_lp_out] = low_pass_filter(unit_ps_out, uf_lp);
+[unit_lp_up2, unit_lp_out2] = low_pass_filter(unit_sym, uf_lp);
+plot_time(num_sym, [10, 20], unit_sym, unit_ps_up, unit_ps_out, unit_lp_out)
+plot_freq(length(lp_out), [-0.4, +0.4],  unit_sym, unit_ps_up, unit_ps_out, unit_lp_up, unit_lp_out, unit_lp_out2)
 
-% symbol time
-t1 = (0:(length(alpha1) - 1)).';
-t2 = (0:(length(alpha2) - 1)).'/uf_rrc;
+function x = unitsym(n, i)
+    x = zeros(n, 2) * [1; 1i];
+    x(i) = 1;
+end
 
-% rrc filtering
-rrc = rcosdesign(0.8, 16, uf_rrc, 'sqrt');
-alpha3 = conv(alpha2, rrc / rrc(8*uf_rrc+1), 'same');
+function x = randsym(n)
+    x = randn(n, 2) * [1; 1i] / sqrt(2);
+end
 
-% lowpass filtering
-[b, a] = butter(7, 0.08);
-alpha4 = filtfilt(b, a, upsample(alpha3, uf_lp));
-t4 = (0:(length(alpha4) - 1)).'/(uf_rrc*uf_lp);
+function [up, out] = pulse_shape_filter(x, uf)
+    b = rcosdesign(0.25, 16, uf, 'sqrt');
+    b = b / b(8*uf + 1);
+    up = upsample(x, uf);
+    out = conv(up, b, 'same');
+end
 
-figure
-tl = tiledlayout(4, 1);
-symlims = [10, 30];
-xlabel(tl, 'Symbol number')
-ylabel(tl, 'Signal')
-nexttile
-stem(t1, real(alpha1), '-o')
-hold on
-stem(t1, imag(alpha1), '-x')
-xlim(symlims)
-title('Symbols');
-hold off
-nexttile
-stem(t2, real(alpha2), '-o')
-hold on
-stem(t2, imag(alpha2), '-x')
-xlim(symlims)
-title('Upsampling');
-hold off
-nexttile
-stem(t2, real(alpha3), '-o')
-hold on
-stem(t2, imag(alpha3), '-x')
-xlim(symlims)
-title('Root-raised-cosine');
-hold off
-nexttile
-plot(t4, real(alpha4))
-hold on
-plot(t4, imag(alpha4))
-xlim(symlims)
-title('Lowpass');
-hold off
+function [up, out] = low_pass_filter(x, uf)
+    [b, a] = butter(7, 0.2);
+    up = upsample(x, uf);
+    out = filtfilt(b, a, up);
+end
 
-%[pxx1,f1] = pwelch(alpha1, [], [], [], 1, 'centered');
-%[pxx2,f2] = pwelch(alpha2, [], [], [], uf_rrc, 'centered');
-%[pxx3,f3] = pwelch(alpha3, [], [], [], uf_rrc, 'centered');
-%[pxx4,f4] = pwelch(alpha4, [], [], [], uf_rrc * uf_lp, 'centered');
+function [] = plot_time(n, nlim, varargin)
+    figure
+    tl = tiledlayout(length(varargin), 1);
+    
+    for i = 1:length(varargin)
+        s = varargin{i};
+        t = (0:(length(s) - 1)).' / (length(s) / n);
+        
+        nexttile
+        stem(t, real(s), '-o')
+        hold on
+        stem(t, imag(s), '-x')
+        xlim(nlim)
+        hold off
+    end
+   
+    xlabel(tl, 'Symbol')
+    ylabel(tl, 'Signal')
+end
 
-figure
-pwelch(alpha4, [], [], [], 1, 'centered');
-%plot(f4, 10*log10(pxx4./max(pxx4)))
-hold on
-pwelch(alpha3, [], [], [], 1/uf_lp, 'centered');
-pwelch(alpha2, [], [], [], 1/uf_lp, 'centered');
-pwelch(alpha1, [], [], [], 1/(uf_lp*uf_rrc), 'centered');
-%plot(f3, 10*log10(pxx3./max(pxx3)))
-%plot(f2, 10*log10(pxx2./max(pxx2)))
-%plot(f1, 10*log10(pxx1./max(pxx1)))
-%xlim([-1,1])
-%plot(fftshift(f4), 10*log10(fftshift(pxx4) / sum(pxx4)))
-%legend('Symbols', 'Upsampling', 'Root-raised-cosine')%, 'Lowpass')
-grid on
-hold off
+function [] = plot_freq(n, flim, varargin)
+    figure
+    tl = tiledlayout(length(varargin), 1);
+    
+    for i = 1:length(varargin)
+        s = varargin{i};
+        [pxx, f] = pwelch(s, [], [], [], length(s) / n, 'centered');
+        
+        nexttile
+        plot(f, 10*log10(pxx))
+        xlim(flim)
+    end
+    
+    xlabel(tl, 'Frequency')
+    ylabel(tl, 'Power spectral density')
+end
