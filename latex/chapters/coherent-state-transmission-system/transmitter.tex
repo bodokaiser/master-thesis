@@ -2,17 +2,15 @@
 
 % TODO: cite Hans' paper where transmitter and receiver configuration is described
 
-The transmitter takes a stream of complex symbols $\alpha_1,\dots,\alpha_n$ and outputs a quantum signal $\alpha^\prime(t)e^{-i\omega_0t}$.
-
+The transmitter encodes the symbols $\alpha_1,\dots,\alpha_n$ onto the coherent state $\ket{\alpha(t)}$ in a process depicted by \Cref{fig:transmitter}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/transmitter}
-	\caption{Flow diagram of the transmitter converting a sequence of complex symbols to a coherent state signal.}\label{fig:transmitter}
+	\caption{Transmitter performing pulse-shaping, up-conversion and attenuation. The pulse-shaping maps the symbols $\alpha_1,\dots,\alpha_n$ onto a continuous signal $\alpha^{\prime\prime}(t)$, modulates it onto an optical carrier in the up-conversion process to $\alpha^{\prime}(t)$, which is attenuated to the coherent state $\ket{\alpha(t)}$.}\label{fig:transmitter}
 \end{figure}
-\Cref{fig:transmitter} depicts the process steps of the transmitter.
-First, an analog signal $\alpha(t)$ is reconstructed from the symbols.
-Second, the analog signal $\alpha(t)$ is modulated onto a carrier with optical frequency $\omega_0$.
-Finally, a variable-optical attenuator reduces the signal strength down to the quantum regime.
+The pulse-shaping transforms the digital symbols $\alpha_1,\dots,\alpha_n$ to the analog signal $\alpha^{\prime\prime}(t)$.
+In the up-conversion step, the electric signal $\alpha^{\prime\prime}(t)$ is modulated onto an optical carrier signal $\alpha^{\prime}(t)$ by an electro-optical \gls{mzm}.
+Finally, a controlled attenuation transforms the classical optical signal $\alpha^{\prime}(t)$ to the coherent state signal $\ket{\alpha(t)}$.
 
 \subsection{Pulse-shaping}
 

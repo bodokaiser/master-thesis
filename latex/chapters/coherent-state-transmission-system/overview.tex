@@ -1,12 +1,8 @@
 \section{Overview}
 
-The principal objective of a digital transmission system is the transmission of discrete symbols $\left\{\alpha_n\right\}_{n\in\mathbb{N}}$ from a transmitter to a spatially distanced receiver through a physical transmission medium, the communication channel, see \Cref{fig:transmission_system}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/transmission-system}
-	\caption{Transmission system delivering a symbol $\alpha_n$ from a transmitter to a spatially distanced receiver over a physical channel. The physical channel transforms a continuous signal $\alpha(t)$ at the transmitter to a continuous signal $\beta(t)$ at the receiver from which the receiver extracts the symbol $\beta_n$ correlated with $\alpha_n$.}\label{fig:transmission_system}
+	\caption{Coherent state transmission system comprising a transmitter, a quantum channel, and a receiver. The transmitter encodes the symbols $\alpha_1,\dots,\alpha_n$ onto a coherent state $\ket{\alpha(t)}$. The channel maps from $\ket{\alpha(t)}$ to a coherent state $\ket{\beta(t)}$. The receiver decodes a symbol sequence $\beta_1\dots,\beta_n$ from $\ket{\beta(t)}$.}\label{fig:transmission_system}
 \end{figure}
-Efficient transmission of information over the physical channel requires the transmitter to encode the discrete symbols $\left\{\alpha_n\right\}_{n\in\mathbb{N}}$ into a continuous signal $\alpha(t)$ tailored to the transmission properties of the channel.
-The physical channel's output signal $\beta(t)$ relates to the input signal $\alpha(t)$ by accounting for physical effects like, for instance, dispersion, attenuation, and noise.
-Finally, the receiver decodes the symbols $\left\{\beta_n\right\}_{n\in\mathbb{N}}$ from the received signal $\beta(t)$.
-In the case of weak light signals, a classical description of the receiver and transmitter signals is insufficient, and a quantum description in terms of the coherent states $\ket{\alpha(t)},\ket{\beta(t)}$ becomes vital.
+Let $\alpha_1,\dots,\alpha_n\in\mathbb{C}$ and $\beta_1,\dots,\beta_n\in\mathbb{C}$ be two sequences of complex numbers, called the symbols, then a coherent state transmission system encodes the symbols $\alpha_1,\dots,\alpha_n$ onto a coherent state $\ket{\alpha(t)}$ in a transmitter and sends it over a quantum channel, which maps $\ket{\alpha(t)}$ to a coherent state $\ket{\beta(t)}$ at a receiver, which decodes the symbols $\beta_1,\dots,\beta_n$ from the coherent state $\ket{\beta(t)}$, see \Cref{fig:transmission_system}.

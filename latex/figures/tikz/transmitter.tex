@@ -1,22 +1,25 @@
 \documentclass[tikz]{standalone}
 
-\usetikzlibrary{arrows,positioning}
+\usepackage{amsmath}
+\usepackage{physics}
+
+\usetikzlibrary{arrows.meta,positioning}
 
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=3em,
+		node distance=4em,
 		arrow/.style={-latex},
 		block/.style={draw, minimum height=10ex, minimum width=8em, align=center},
 	]
 		\coordinate (in) at (0,0);
-		\node (ps) [block, below=of in] {Pulse-shaper};
-		\node (uc) [block, below=of ps] {Up-converter};
-		\node (at) [block, below=of uc] {Attenuator};
-		\coordinate[below=of at] (out);
+		\node (ps) [block, right=5em of in] {Pulse-shaping};
+		\node (uc) [block, right=of ps] {Up-conversion};
+		\node (at) [block, right=of uc] {Attenuation};
+		\coordinate[right=of at] (out);
 		
-		\draw[arrow] (in) -- node[anchor=west]{$\alpha_\text{in}[n]$} (ps);
-		\draw[arrow] (ps) -- node[anchor=west]{$\alpha_\text{ps}(t)$} (uc);
-		\draw[arrow] (uc) -- node[anchor=west]{$\alpha_\text{uc}(t)$} (at);
-		\draw[arrow] (at) -- node[anchor=west]{$\alpha_\text{at}(t)$} (out);
+		\draw[arrow] (in) -- node[above]{$\alpha_1,\dots,\alpha_n$} (ps);
+		\draw[arrow] (ps) -- node[above]{$\alpha^{\prime\prime}(t)$} (uc);
+		\draw[arrow] (uc) -- node[above]{$\alpha^{\prime}(t)$} (at);
+		\draw[arrow] (at) -- node[above]{$\ket{\alpha(t)}$} (out);
 	\end{tikzpicture}
 \end{document}

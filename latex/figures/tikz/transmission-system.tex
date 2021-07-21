@@ -1,24 +1,25 @@
 \documentclass[tikz]{standalone}
 
 \usepackage{amsmath}
+\usepackage{physics}
 
 \usetikzlibrary{arrows.meta,positioning}
 
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=4em,
+		node distance=5em,
 		arrow/.style={-latex},
 		block/.style={draw, minimum height=10ex, minimum width=8em, align=center},
 	]
 		\coordinate (in) at (0,0);
 		\node (tx) [block, right=of in] {Transmitter};
-		\node (ch) [block, right=of tx, minimum height=6ex] {Channel};
-		\node (rx) [block, right=of ch] {Receiver};
+		\node (ch) [block, right=4em of tx, minimum height=6ex] {Channel};
+		\node (rx) [block, right=4em of ch] {Receiver};
 		\coordinate[right=of rx] (out);
 		
-		\draw[arrow] (in) -- node[above]{$\alpha_n$} (tx);
-		\draw[arrow] (tx) -- node[above]{$\alpha(t_n)$} (ch);
-		\draw[arrow] (ch) -- node[above]{$\beta(t_n)$} (rx);
-		\draw[arrow] (rx) -- node[above]{$\beta_n$} (out);
+		\draw[arrow] (in) -- node[above]{$\alpha_1,\dots,\alpha_n$} (tx);
+		\draw[arrow] (tx) -- node[above]{$\ket{\alpha(t)}$} (ch);
+		\draw[arrow] (ch) -- node[above]{$\ket{\beta(t)}$} (rx);
+		\draw[arrow] (rx) -- node[above]{$\beta_1,\dots,\beta_n$} (out);
 	\end{tikzpicture}
 \end{document}
