@@ -1,6 +1,8 @@
 \documentclass[tikz]{standalone}
 
-\usetikzlibrary{arrows,positioning}
+\usepackage{amsmath}
+
+\usetikzlibrary{arrows.meta,positioning}
 
 \begin{document}
 	\begin{tikzpicture}[
@@ -9,14 +11,14 @@
 		block/.style={draw, minimum height=10ex, minimum width=8em, align=center},
 	]
 		\coordinate (in) at (0,0);
-		\node (tx) [block, below=of in] {Transmitter};
-		\node (ch) [block, below=of tx] {Channel};
-		\node (rx) [block, below=of ch] {Receiver};
-		\coordinate[below=of rx] (out);
+		\node (tx) [block, right=of in] {Transmitter};
+		\node (ch) [block, right=of tx, minimum height=6ex] {Channel};
+		\node (rx) [block, right=of ch] {Receiver};
+		\coordinate[right=of rx] (out);
 		
-		\draw[arrow] (in) -- node[anchor=west]{$\alpha_\text{in}[n]$} (tx);
-		\draw[arrow] (tx) -- node[anchor=west]{$\alpha_\text{tx}(t)$} (ch);
-		\draw[arrow] (ch) -- node[anchor=west]{$\alpha_\text{ch}(t)$} (rx);
-		\draw[arrow] (rx) -- node[anchor=west]{$\alpha_\text{out}[nT]$} (out);
+		\draw[arrow] (in) -- node[above]{$\alpha_n$} (tx);
+		\draw[arrow] (tx) -- node[above]{$\alpha(t)$} (ch);
+		\draw[arrow] (ch) -- node[above]{$\beta(t)$} (rx);
+		\draw[arrow] (rx) -- node[above]{$\beta_n$} (out);
 	\end{tikzpicture}
 \end{document}

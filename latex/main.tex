@@ -1,6 +1,12 @@
-\documentclass[a4paper,appendixprefix]{scrreprt}
+\documentclass[
+	a4paper,
+	appendixprefix,
+	chapterprefix,
+	headings=big,
+]{scrreprt}
 
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsthm,amsmath,amssymb}
 \usepackage{authblk}
 \usepackage[english]{babel}
@@ -9,12 +15,14 @@
 %\usepackage{csquotes}
 \usepackage[acronym,nonumberlist,toc]{glossaries}
 \usepackage{hyperref}
+\usepackage{graphicx}
 \usepackage{cleveref}
 \usepackage{physics}
 \usepackage[separate-uncertainty=true]{siunitx}
 \usepackage[mode=buildnew]{standalone}
 %\usepackage[subpreambles=true]{standalone}
-\usepackage{thmtools,thm-restate}
+%\usepackage{thmtools,thm-restate}
+\usepackage{lmodern}
 %\usepackage{subfig}
 \usepackage{wrapfig}
 \usepackage{xcolor}
@@ -22,7 +30,7 @@
 \addbibresource{literature.bib}
 
 % add bibliography as section (not chapter)
-% https://tex.stackexchange.com/questions/568580/make-the-bibliography-as-a-section-in-each-included-chapter
+% https://tex.stackexchange.com/questions/568580/make-the-bibliography-as-a-section-in-each-includ-chapter
 \defbibheading{bibliography}[\bibname]{\section*{#1}}
 
 % approximately proportional to symbol
@@ -53,6 +61,13 @@
 % transpose
 % https://tex.stackexchange.com/questions/403104/small-caps-mathsf-font-for-writing-transpose-of-a-matrix
 \newcommand{\trans}{{\scriptscriptstyle\mathsf{T}}}
+
+% chapter appearence
+% https://tex.stackexchange.com/questions/159502/koma-script-scrreprt-how-to-change-chapter-appearance-and-produce-a-chapter-bas
+\addtokomafont{chapterprefix}{\raggedleft}
+\renewcommand*{\chapterformat}{%
+\mbox{\chapappifchapterprefix{\nobreakspace}%
+\scalebox{3}{\color{gray}\thechapter\autodot}\enskip}}
 
 % theorems
 \newtheorem{theorem}{Theorem}[section]
@@ -110,7 +125,7 @@
 
 	\chapter{Introduction}
 	\begin{refsection}
-        \include{chapters/introduction}
+        \input{chapters/introduction}
 	
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
@@ -118,11 +133,11 @@
 
 	\chapter{Quantum field theory of light}
 	\begin{refsection}
-		\include{chapters/quantum-field-theory-of-light/introduction}
-		\include{chapters/quantum-field-theory-of-light/maxwell}
-		\include{chapters/quantum-field-theory-of-light/states}
-		\include{chapters/quantum-field-theory-of-light/interactions}
-		\include{chapters/quantum-field-theory-of-light/summary}
+		\input{chapters/quantum-field-theory-of-light/introduction}
+		\input{chapters/quantum-field-theory-of-light/maxwell}
+		\input{chapters/quantum-field-theory-of-light/states}
+		\input{chapters/quantum-field-theory-of-light/interactions}
+		\input{chapters/quantum-field-theory-of-light/summary}
 
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
@@ -130,13 +145,12 @@
 	
 	\chapter{Interaction theory of optical components}
 	\begin{refsection}
-		\include{chapters/interaction-theory-of-optical-components/laser}
-		\include{chapters/interaction-theory-of-optical-components/beam-splitter}
-		\include{chapters/interaction-theory-of-optical-components/coupler}
-		\include{chapters/interaction-theory-of-optical-components/splitters-couplers}
-		\include{chapters/interaction-theory-of-optical-components/mach-zehnder-modulator}
-		\include{chapters/interaction-theory-of-optical-components/photodiode}
-		\include{chapters/interaction-theory-of-optical-components/homo-heterodyne-detector}
+		\input{chapters/interaction-theory-of-optical-components/laser}
+		\input{chapters/interaction-theory-of-optical-components/beam-splitter}
+		\input{chapters/interaction-theory-of-optical-components/coupler}
+		\input{chapters/interaction-theory-of-optical-components/mach-zehnder-modulator}
+		\input{chapters/interaction-theory-of-optical-components/photodiode}
+		\input{chapters/interaction-theory-of-optical-components/homo-heterodyne-detector}
 		
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
@@ -144,10 +158,10 @@
 
 	\chapter{Coherent state communication system}
 	\begin{refsection}
-		\include{chapters/coherent-state-communication-system/introduction}
-		\include{chapters/coherent-state-communication-system/transmitter}
-		\include{chapters/coherent-state-communication-system/channel}
-		\include{chapters/coherent-state-communication-system/receiver}
+		\input{chapters/coherent-state-communication-system/introduction}
+		\input{chapters/coherent-state-communication-system/transmitter}
+		\input{chapters/coherent-state-communication-system/channel}
+		\input{chapters/coherent-state-communication-system/receiver}
 
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
@@ -155,10 +169,10 @@
 	
 	\chapter{Continuous-variable quantum-key distribution}
 	\begin{refsection}
-		\include{chapters/cv-qkd/introduction}
-		\include{chapters/cv-qkd/communication-system}
-		\include{chapters/cv-qkd/post-processing}
-		\include{chapters/cv-qkd/security}
+		\input{chapters/cv-qkd/introduction}
+		\input{chapters/cv-qkd/communication-system}
+		\input{chapters/cv-qkd/post-processing}
+		\input{chapters/cv-qkd/security}
 
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
@@ -166,7 +180,7 @@
 
 	\chapter{Conclusion and outlook}
 	\begin{refsection}
-		\include{chapters/conclusion-outlook}
+		\input{chapters/conclusion-outlook}
 
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
