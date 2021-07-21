@@ -69,6 +69,15 @@
 \mbox{\chapappifchapterprefix{\nobreakspace}%
 \scalebox{3}{\color{gray}\thechapter\autodot}\enskip}}
 
+% caption label linebreak
+% https://tex.stackexchange.com/questions/196889/how-can-i-insert-a-line-break-after-the-captionlabel-koma-script-options
+%\setcaphanging
+%\setcapmargin{2ex}
+%\setcapindent{0pt}
+%\setcapwidth[c]{0.8\textwidth}
+%\addtokomafont{caption}{\centering}
+\setkomafont{captionlabel}{\sffamily}
+
 % theorems
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -156,12 +165,13 @@
 		\printbibliography[title=References]
 	\end{refsection}
 
-	\chapter{Coherent state communication system}
+	\chapter{Coherent state transmission system}
 	\begin{refsection}
-		\input{chapters/coherent-state-communication-system/introduction}
-		\input{chapters/coherent-state-communication-system/transmitter}
-		\input{chapters/coherent-state-communication-system/channel}
-		\input{chapters/coherent-state-communication-system/receiver}
+		\textit{The following chapter describes a coherent state transmission system from a signal-processing point of view, bridging the gap between the quantum theory of optical components and the quantum information theory of the \gls{cvqkd} protocol. In particular, we extend the standard description of a digital transmission system as given in, e.g., Ref.~\cite{Nossek2015}, to coherent light states.}
+		\input{chapters/coherent-state-transmission-system/overview}
+		\input{chapters/coherent-state-transmission-system/transmitter}
+		\input{chapters/coherent-state-transmission-system/channel}
+		\input{chapters/coherent-state-transmission-system/receiver}
 
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]

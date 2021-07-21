@@ -6,7 +6,7 @@
 
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=3em,
+		node distance=4em,
 		arrow/.style={-latex},
 		block/.style={draw, minimum height=10ex, minimum width=8em, align=center},
 	]
@@ -17,8 +17,8 @@
 		\coordinate[right=of rx] (out);
 		
 		\draw[arrow] (in) -- node[above]{$\alpha_n$} (tx);
-		\draw[arrow] (tx) -- node[above]{$\alpha(t)$} (ch);
-		\draw[arrow] (ch) -- node[above]{$\beta(t)$} (rx);
+		\draw[arrow] (tx) -- node[above]{$\alpha(t_n)$} (ch);
+		\draw[arrow] (ch) -- node[above]{$\beta(t_n)$} (rx);
 		\draw[arrow] (rx) -- node[above]{$\beta_n$} (out);
 	\end{tikzpicture}
 \end{document}
