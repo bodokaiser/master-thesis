@@ -30,6 +30,14 @@ rnd_sym = randsym(num_sym);
 [rnd_lp_up, rnd_lp_out] = low_pass_filter(rnd_ps_out, uf_lp);
 %plot_time(num_sym, [10, 20], rnd_sym, rnd_ps_up, rnd_ps_out, rnd_lp_out)
 %plot_freq(length(lp_out), [-0.4, +0.4],  rnd_sym, rnd_ps_up, rnd_ps_out, rnd_lp_up, rnd_lp_out)
+write_time(num_sym, real(rnd_sym), '../data/pulse-shaping/rand-time-sym-real.csv');
+write_time(num_sym, imag(rnd_sym), '../data/pulse-shaping/rand-time-sym-imag.csv');
+write_time(num_sym, real(rnd_ps_up), '../data/pulse-shaping/rand-time-psup-real.csv');
+write_time(num_sym, imag(rnd_ps_up), '../data/pulse-shaping/rand-time-psup-imag.csv');
+write_time(num_sym, real(rnd_ps_out), '../data/pulse-shaping/rand-time-psout-real.csv');
+write_time(num_sym, imag(rnd_ps_out), '../data/pulse-shaping/rand-time-psout-imag.csv');
+write_time(num_sym, real(rnd_lp_out / max(real(rnd_lp_out))), '../data/pulse-shaping/rand-time-lpout-real.csv');
+write_time(num_sym, imag(rnd_lp_out / max(imag(rnd_lp_out))), '../data/pulse-shaping/rand-time-lpout-imag.csv');
 
 
 function x = unitsym(n, i)

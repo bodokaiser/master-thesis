@@ -1,0 +1,104 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{positioning}
+\usepgfplotslibrary{groupplots}
+
+\begin{document}
+	\begin{tikzpicture}[
+		block/.style={minimum height=4ex, minimum width=7em, text width=7em, align=left, fill=white}
+	]
+		\begin{groupplot}[
+			group style={
+				group name=plot,
+				group size=1 by 4,
+				xlabels at=edge bottom,
+				xticklabels at=edge bottom,
+				vertical sep=1ex,
+			},
+			grid=major,
+			width=0.95\linewidth,
+			height=22ex,
+			xlabel={Index $n$},
+		]
+			\nextgroupplot[
+				title={Samples $\alpha[n]$},
+				xmin=10,
+				xmax=20,
+				ymin=-2.6,
+				ymax=2.6,
+			]
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-sym-real.csv};
+			\addplot[
+				ycomb,
+				mark=x,
+				mark options={blue!75!yellow},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-sym-imag.csv};
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+				ymin=-2.6,
+				ymax=2.6,
+			]
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-psup-real.csv};
+			\addplot[
+				ycomb,
+				mark=x,
+				mark options={blue!75!yellow},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-psup-imag.csv};
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+				ymin=-2.6,
+				ymax=2.6,
+			]
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-psout-real.csv};
+			\addplot[
+				ycomb,
+				mark=x,
+				mark options={blue!75!yellow},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-psout-imag.csv};
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+				ymin=-2.6,
+				ymax=2.6,
+			]
+			\addplot[
+				no markers,
+				orange!75!red,
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-lpout-real.csv};
+			\addplot[
+				no markers,
+				blue!75!yellow,
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-lpout-imag.csv};
+		\end{groupplot}
+		
+		\node[block, above right=-2.45em and 0pt of plot c1r1.west] {Symbols};
+		\node[block, above right=-2.45em and 0pt of plot c1r2.west] {Upsampling};
+		\node[block, above right=-2.45em and 0pt of plot c1r3.west] {Pulse-shaping};
+		\node[block, above right=-2.45em and 0pt of plot c1r4.west] {Smoothing};
+	\end{tikzpicture}
+\end{document}

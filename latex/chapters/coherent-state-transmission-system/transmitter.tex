@@ -46,20 +46,25 @@ is used as pulse-shaping filter yielding the pulse-shape samples $u^\prime[n]$.
 Combining the first \gls{rrc} for pulse-shaping with a second \gls{rrc} matched-filter at the receiver minimizes intersymbol interference.
 At the boundary of the digital and analog domain, the pulse-shape samples $u^\prime[n]$ are converted to an analog signal $u^\prime$ by a \gls{dac}.
 The \gls{dac} performs a sample-and-hold operation equivalent to the convolution of the pulse-shaped samples with a rectangular pulse.
+\textcolor{red}{Why can we neglect the transfer function of the DAC?}
 
+To illustrate the pulse-shaping, we show first consider a single symbol $\alpha[15]=1$ as depicted in \Cref{fig:pulse_shaping_unit_time}.
 \begin{figure}[htb]
 	\centering
-	\begin{subfigure}{0.49\textwidth}
-		\centering
-		\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-unit-time}
-		\caption{ffoo.}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}{0.49\textwidth}
-		\centering
-		\includestandalone{figures/pgfplots/pulse-shaping-unit-freq}
-		\caption{ffoo.}
-	\end{subfigure}
+	\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-unit-time}
+	\caption{Pulse-shaping steps in the time domain for a single unit symbol.}\label{fig:pulse_shaping_unit_time}
+\end{figure}
+For complex symbols \Cref{fig:pulse_shaping_rand_time} shows the pulse-shaping.
+\begin{figure}[htb]
+	\centering
+	\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-rand-time}
+	\caption{Pulse-shaping steps in the time domain for random symbols from a complex normal distribution.}\label{fig:pulse_shaping_rand_time}
+\end{figure}
+Finally, it is of interest how the pulse-shaping affects the frequency domain.
+\begin{figure}[htb]
+	\centering
+	\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-freq}
+	\caption{Pulse-shaping steps in the frequency domain for unit symbol (orange) and random symbols from a complex normal distribution (blue.}\label{fig:pulse_shaping_freq}
 \end{figure}
 
 \subsection{Up-conversion}
