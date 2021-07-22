@@ -1,34 +1,66 @@
 \section{Transmitter}
 
-The transmitter encodes the symbols $\left\{\alpha_n\right\}_{n\in M}$ onto the coherent state $\ket{\alpha(t)}$ by performing pulse-shaping, modulation and attenuation as illustrated in \Cref{fig:transmitter}.
+The transmitter encodes the symbols $\alpha[n]$ onto the coherent state $\ket{\alpha(t)}$ by performing pulse-shaping, modulation and attenuation as illustrated in \Cref{fig:transmitter}.
 In the process, the signal is transformed from the digital over the analog electrical to the quantum optical domain.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/transmitter}
-	\caption{Transmitter transforming symbols $\left\{\alpha_n\right\}_{n\in M}$ to a coherent state $\ket{\alpha(t)}$ by performing pulse-shaping, modulation and attenuation. The modulator marks the boundary between the electrical and optical signal spectrum while the pulse-shaper and attenuator contain the border between the digital and analog, respective analog (classical) and quantum domain.}\label{fig:transmitter}
+	\caption{Transmitter transforming symbols $\alpha[n]$ to a coherent state $\ket{\alpha(t)}$ by performing pulse-shaping, modulation and attenuation. The modulator marks the boundary between the electrical and optical signal spectrum while the pulse-shaper and attenuator contain the border between the digital and analog, respective analog (classical) and quantum domain.}\label{fig:transmitter}
 \end{figure}
-The pulse-shaping converts the symbols $\left\{\alpha_n\right\}_{n\in M}$ from the digital to the signal $u(t)$ in the analog domain.
+The pulse-shaping converts the symbols $\alpha[n]$ from the digital to the signal $u(t)$ in the analog domain.
 At the modulator, the electrical signal $u(t)$ is modulated onto an optical carrier using a \gls{mzm}, yielding the classical optical signal $v(t)$.
 Finally, a controlled attenuation moves the optical signal $v(t)$ to the quantum regime where an adequate description of the quantum signal is given in terms of the coherent state $\ket{\alpha(t)}$.
 
 \subsection{Pulse-shaping}
 
-Let $\alpha[n]\in\mathbb{C}$ be a complex sample, then we define the corresponding real samples
-\begin{align}
-	x[n]=\Re{\alpha[n]}
-	&&
-	p[n]=\Im{\alpha[n]}
-\end{align}
-through the real and imaginary part.
-The signal reconstruction is performed independent for the real symbol sequences.
+\Cref{fig:pulse_shaping_block} depicts the analog and digital signal-processing of the pulse-shaping process.
 \begin{figure}[htb]
 	\centering
-	\includestandalone[mode=buildnew]{figures/tikz/pulse-shaping}
-	\caption{Flow diagram of the signal reconstruction where an analog signal $x(t)$ is reconstructed from a stream of samples.}\label{fig:transmitter}
+	\includestandalone{figures/circuitikz/pulse-shaping}
+	\caption{Block diagram of the digital and analog signal-processing of the pulse-shaping: First, the symbols $\alpha[n]$ are upsampled with an upsampling factor of two yielding samples $\alpha^\prime[n]$. Second, a \gls{rrc} is applied to the samples $\alpha^\prime[n]$ yielding $u^\prime[n]$. Third, a \gls{dac} performs sample-and-hold to output the analog signal $u^\prime(t)$. Finally, an analog \gls{lp} filter smoothens the output of the \gls{dac}.}\label{fig:pulse_shaping_block}
 \end{figure}
+The symbols $\alpha[n]$ are first upsampled by an upsampling factor of two by adding two zero-valued samples in between the symbols, i.e.,
+\begin{equation}
+	\alpha^\prime[n]
+	=
+	\begin{cases}
+		\alpha[n/2] & \text{if}\ n\mod2=0 \\
+		0 & \text{otherwise}
+	\end{cases}
+	.
+\end{equation}
+Upsampling increases the number of samples by the upsampling factor.
+Applying a digital filter to the upsampled symbols $\alpha^\prime[n]$, we set the additional samples such that there is a smoother transition between the symbols.
+The combined process of upsampling and digital filtering is also referred to as (digital) pulse-shaping.
+Typically, a first \gls{rrc} filter with transfer function~\cite[p.~33]{Nossek2015}
+\begin{equation}
+	h_\text{rrc}\left(f/f_s\right)
+	=
+	\begin{cases}
+		1 & \abs{f/f_s}\leq(1-\alpha) \\
+		\cos\left[\frac{\pi}{4\alpha}\left(\abs{f/f_s}-1+\alpha\right)\right] & 1-\alpha\leq\abs{f/f_s}\leq1+\alpha \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation}
+is used as pulse-shaping filter yielding the pulse-shape samples $u^\prime[n]$.
+Combining the first \gls{rrc} for pulse-shaping with a second \gls{rrc} matched-filter at the receiver minimizes intersymbol interference.
+At the boundary of the digital and analog domain, the pulse-shape samples $u^\prime[n]$ are converted to an analog signal $u^\prime$ by a \gls{dac}.
+The \gls{dac} performs a sample-and-hold operation equivalent to the convolution of the pulse-shaped samples with a rectangular pulse.
 
-% TODO: analog <-> digital (mathematical)
-% TODO: samples -> upsampling -> pulse-shaping
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-unit-time}
+		\caption{ffoo.}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includestandalone{figures/pgfplots/pulse-shaping-unit-freq}
+		\caption{ffoo.}
+	\end{subfigure}
+\end{figure}
 
 \subsection{Up-conversion}
 

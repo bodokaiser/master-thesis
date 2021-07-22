@@ -7,19 +7,19 @@
 
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=5em,
+		node distance=4em,
 		arrow/.style={-latex},
-		block/.style={draw, minimum height=10ex, minimum width=8em, align=center},
+		block/.style={draw, thick, minimum height=10ex, minimum width=6em, align=center},
 	]
 		\coordinate (in) at (0,0);
 		\node (tx) [block, right=of in] {Transmitter};
-		\node (ch) [block, right=4em of tx, minimum height=7ex] {Quantum\\channel};
-		\node (rx) [block, right=4em of ch] {Receiver};
+		\node (ch) [block, right=of tx, minimum height=7ex] {Quantum\\channel};
+		\node (rx) [block, right=of ch] {Receiver};
 		\coordinate[right=of rx] (out);
 		
-		\draw[arrow] (in) -- node[above]{$\left\{\alpha_n\right\}_{n\in M}$} (tx);
+		\draw[arrow] (in) -- node[above]{$\alpha[n]$} (tx);
 		\draw[arrow] (tx) -- node[above]{$\ket{\alpha(t)}$} (ch);
 		\draw[arrow] (ch) -- node[above]{$\ket{\beta(t)}$} (rx);
-		\draw[arrow] (rx) -- node[above]{$\left\{\beta_n\right\}_{n\in M}$} (out);
+		\draw[arrow] (rx) -- node[above]{$\beta[n]$} (out);
 	\end{tikzpicture}
 \end{document}
