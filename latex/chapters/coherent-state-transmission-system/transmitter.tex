@@ -1,16 +1,15 @@
 \section{Transmitter}
 
-% TODO: cite Hans' paper where transmitter and receiver configuration is described
-
-The transmitter encodes the symbols $\alpha_1,\dots,\alpha_n$ onto the coherent state $\ket{\alpha(t)}$ in a process depicted by \Cref{fig:transmitter}.
+The transmitter encodes the symbols $\left\{\alpha_n\right\}_{n\in M}$ onto the coherent state $\ket{\alpha(t)}$ by performing pulse-shaping, modulation and attenuation as illustrated in \Cref{fig:transmitter}.
+In the process, the signal is transformed from the digital over the analog electrical to the quantum optical domain.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/transmitter}
-	\caption{Transmitter performing pulse-shaping, up-conversion and attenuation. The pulse-shaping maps the symbols $\alpha_1,\dots,\alpha_n$ onto a continuous signal $\alpha^{\prime\prime}(t)$, modulates it onto an optical carrier in the up-conversion process to $\alpha^{\prime}(t)$, which is attenuated to the coherent state $\ket{\alpha(t)}$.}\label{fig:transmitter}
+	\caption{Transmitter transforming symbols $\left\{\alpha_n\right\}_{n\in M}$ to a coherent state $\ket{\alpha(t)}$ by performing pulse-shaping, modulation and attenuation. The modulator marks the boundary between the electrical and optical signal spectrum while the pulse-shaper and attenuator contain the border between the digital and analog, respective analog (classical) and quantum domain.}\label{fig:transmitter}
 \end{figure}
-The pulse-shaping transforms the digital symbols $\alpha_1,\dots,\alpha_n$ to the analog signal $\alpha^{\prime\prime}(t)$.
-In the up-conversion step, the electric signal $\alpha^{\prime\prime}(t)$ is modulated onto an optical carrier signal $\alpha^{\prime}(t)$ by an electro-optical \gls{mzm}.
-Finally, a controlled attenuation transforms the classical optical signal $\alpha^{\prime}(t)$ to the coherent state signal $\ket{\alpha(t)}$.
+The pulse-shaping converts the symbols $\left\{\alpha_n\right\}_{n\in M}$ from the digital to the signal $u(t)$ in the analog domain.
+At the modulator, the electrical signal $u(t)$ is modulated onto an optical carrier using a \gls{mzm}, yielding the classical optical signal $v(t)$.
+Finally, a controlled attenuation moves the optical signal $v(t)$ to the quantum regime where an adequate description of the quantum signal is given in terms of the coherent state $\ket{\alpha(t)}$.
 
 \subsection{Pulse-shaping}
 

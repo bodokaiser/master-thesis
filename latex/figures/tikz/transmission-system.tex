@@ -13,13 +13,13 @@
 	]
 		\coordinate (in) at (0,0);
 		\node (tx) [block, right=of in] {Transmitter};
-		\node (ch) [block, right=4em of tx, minimum height=6ex] {Channel};
+		\node (ch) [block, right=4em of tx, minimum height=7ex] {Quantum\\channel};
 		\node (rx) [block, right=4em of ch] {Receiver};
 		\coordinate[right=of rx] (out);
 		
-		\draw[arrow] (in) -- node[above]{$\alpha_1,\dots,\alpha_n$} (tx);
+		\draw[arrow] (in) -- node[above]{$\left\{\alpha_n\right\}_{n\in M}$} (tx);
 		\draw[arrow] (tx) -- node[above]{$\ket{\alpha(t)}$} (ch);
 		\draw[arrow] (ch) -- node[above]{$\ket{\beta(t)}$} (rx);
-		\draw[arrow] (rx) -- node[above]{$\beta_1,\dots,\beta_n$} (out);
+		\draw[arrow] (rx) -- node[above]{$\left\{\beta_n\right\}_{n\in M}$} (out);
 	\end{tikzpicture}
 \end{document}
