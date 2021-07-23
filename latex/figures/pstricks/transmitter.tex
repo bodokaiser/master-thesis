@@ -4,30 +4,35 @@
 \usepackage{siunitx}
 
 \begin{document}
-	\begin{pspicture}[showgrid](15,5)
+	\begin{pspicture}(14,7)
 		\begin{optexp}
 			\psset[optexp]{usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
-		  	\pnode(2,2.5){Laser}
-		  	\pnode(5,4){MZM1In}
-	  		\pnode(5,1){MZM2In}
-			\pnode(8,4){MZM1Out}
-		  	\pnode(7,1){MZM2Out}
-		  	\pnode(8,1){PS1Out}
-		  	\pnode(11,4){VOA1In}
-		  	\pnode(13,4){VOA1Out}
-		  	\pnode(11,1){PD1In}
-		  	\pnode(13,1){PD1Out}
-		  	\pnode(15,4){FiberOut}
+			
+		  	\pnode(3,3.5){Laser}
+		  	\pnode(3,6){OscX}
+		  	\pnode(3,1){OscP}
+		  	\pnode(5,5){MzmX}
+		  	\pnode(5,2){MzmP}
+		  	\pnode(9,5){MzmA}
+		  	\pnode(7,2){Pwm}
+		  	\pnode(10,3){PwrCtrl}
+		  	
 			\optbox[position=start, optboxsize=2 1, labeloffset=0](Laser)(Laser){\SI{1550}{\nano\meter}}
-			\wdmsplitter(Laser)(MZM1In)(MZM2In)
-			\optmzm(MZM1In)(MZM1Out){$x(t)$}
-			\optmzm(MZM2In)(MZM2Out){$p(t)$}
-			\optbox[optboxsize=1 0.8, labeloffset=0](MZM2Out)(PS1Out){$\pi/2$}
-			\optcoupler(MZM1Out)(PS1Out)(VOA1In)(PD1In)
-			\optmzm(VOA1In)(VOA1Out)
-			\optdetector[dettype=diode](PD1In)(PD1In)
-			\optfiber[addtoFiberOut={arrows=->}](VOA1Out)(FiberOut)
+			\elecsynthesizer[compname=OscX, wire=none, labeloffset=1.2, labelangle=-90](OscX)([Xnodesep=1]OscX){$x(t)$}
+			\elecsynthesizer[compname=OscP, wire=none, labeloffset=1.2, labelangle=-90](OscP)([Xnodesep=1]OscP){$p(t)e^{i\pi/2}$}
+			\optmzm[compname=MzmX, extnode=t](MzmX)([Xnodesep=1]MzmX){MZM 1}
+			\optmzm[compname=MzmP, extnode=b]([Xnodesep=1]MzmP)(MzmP){MZM 2}
+			\wdmsplitter[labeloffset=0.5](Laser)(MzmX)(MzmP){50:50}
+			\drawwire[wireangleB=-90]{OscX}(\oenodeExt{MzmX})
+			\drawwire[wireangleB=-90]{OscP}([offset=-0.35]\oenodeExt{MzmP})
+			\optcoupler[labeloffset=0.5]([Xnodesep=1]MzmX)([Xnodesep=1]MzmP)(MzmA)([Xnodesep=1]Pwm){50:50}
+			\optmzm[compname=MzmA, extnode=b]([Xnodesep=1]MzmA)(MzmA){MZM 3}
+			\optdetector[compname=PD, extnode=r, dettype=diode](Pwm)([Xnodesep=1]Pwm){PD}
+			\optbox[compname=PwrCtrl, labeloffset=0, optboxsize=2 1](PwrCtrl)([Xnodesep=2]PwrCtrl){\begin{tabular}{@{}c@{}}Power\\controller\end{tabular}}
+			\drawwire[wireangleB=-90]{PwrCtrl}(\oenodeExt{MzmA})
+			\drawwire(\oenodeExt{PD})(11,2)(11,2.5)
+			\optfiber[addtoFiberOut={arrows=->}]([Xnodesep=1]MzmA)([Xnodesep=4]MzmA){\begin{tabular}{@{}c@{}}Fiber\\out\end{tabular}}
 		\end{optexp}
 	\end{pspicture}
 \end{document}
