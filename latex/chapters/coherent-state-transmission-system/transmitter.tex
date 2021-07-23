@@ -67,8 +67,9 @@ Finally, it is of interest how the pulse-shaping affects the frequency domain.
 	\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-freq}
 	\caption{Pulse-shaping steps in the frequency domain for unit symbol (orange) and random symbols from a complex normal distribution (blue.}\label{fig:pulse_shaping_freq}
 \end{figure}
+\FloatBarrier
 
-\subsection{Up-conversion}
+\subsection{Modulation}
 
 Let $x(t),p(t)$ be the analog signals reconstructed from the real respective imaginary parts of the complex symbol sequence, then up-conversion multiplies these signals such that the output signal is~\cite[p.~25]{Madhow2008}
 \begin{equation}
@@ -103,11 +104,6 @@ Finally, the outputs of both mixers are combined to obtain the real part of the 
 	.
 \end{equation}
 One often works with the complex signal as up-conversion takes the simple form of a multiplication.
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/circuitikz/up-converter}
-	\caption{For a complex signal $\alpha(t)$ up-conversion is simply the multiplication with $e^{-i\omega_0t}$.}
-\end{figure}
 However, one should keep in mind that the true physical signal is real-valued, thus only the real-part of the complex signal has physical relevance!
 
 \subsection{Attenuation}

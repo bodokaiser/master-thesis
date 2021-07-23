@@ -1,29 +1,49 @@
 \documentclass[tikz]{standalone}
 
+\usepackage{amsmath}
 \usepackage{circuitikz}
 
 \usetikzlibrary{positioning}
 
+\let\Re\undefined
+\let\Im\undefined
+\DeclareMathOperator{\Re}{\operatorname{Re}}
+\DeclareMathOperator{\Im}{\operatorname{Im}}
+
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=5em,
+		node distance=4em,
 	]
-		\coordinate (in) at (0,0);		
-		\node (ups) [twoportshape, right=of in, t=$\uparrow2$] {};
-		\node (psh) [twoportshape, right=of ups, t=\textsf{RRC}] {};
-		\node (dac) [dacshape, right=of psh] {};
-		\node (lwp) [lowpassshape, right=of dac] {};
-		\coordinate[right=of lwp] (out);
+		\coordinate (in) at (0,0);
+		\node (cri) [twoportsplitshape, right=of in, circuitikz/t1=\textsf{Re}, circuitikz/t2=\textsf{Im}] {};
+		\node (ups1) [twoportshape, above right=of cri, t=$\uparrow2$] {};
+		\node (psh1) [twoportshape, right=of ups1, t=\textsf{RRC}] {};
+		\node (dac1) [dacshape, right=of psh1] {};
+		\node (lwp1) [lowpassshape, right=of dac1] {};
+		\coordinate[right=of lwp1] (out1);
+		\node (ups2) [twoportshape, below right=of cri, t=$\uparrow2$] {};
+		\node (psh2) [twoportshape, right=of ups2, t=\textsf{RRC}] {};
+		\node (dac2) [dacshape, right=of psh2] {};
+		\node (lwp2) [lowpassshape, right=of dac2] {};
+		\coordinate[right=of lwp2] (out2);
 		
-		\draw (in) -- (ups.west) node[above, midway, sloped]{$\alpha[n]$} node[inputarrow]{};
-		\draw (ups.east) -- (psh.west) node[above, midway, sloped]{$\alpha^\prime[n]$} node[inputarrow]{};
-		\draw (psh.east) -- (dac.west) node[above, midway, sloped]{$u^\prime[n]$} node[inputarrow]{};
-		\draw (dac.east) -- (lwp.west) node[above, midway, sloped]{$u^\prime(t)$} node[inputarrow]{};
-		\draw (lwp.east) -- (out) node[above, midway, sloped]{$u(t)$} node[inputarrow]{};
+		\draw (in) -- (cri.west) node[above, midway, sloped]{$\alpha[n]$} node[inputarrow]{};
+
+		\draw (cri.north) -- (cri.north|-ups1.west) -- (ups1.west) node[above, midway, sloped]{$\Re{\alpha[n]}$} node[inputarrow]{};
+		\draw (ups1.east) -- (psh1.west) node[above, midway, sloped]{$\Re{\alpha^\prime[n]}$} node[inputarrow]{};
+		\draw (psh1.east) -- (dac1.west) node[above, midway, sloped]{$x^\prime[n]$} node[inputarrow]{};
+		\draw (dac1.east) -- (lwp1.west) node[above, midway, sloped]{$x^\prime(t)$} node[inputarrow]{};
+		\draw (lwp1.east) -- (out1) node[above, midway, sloped]{$x(t)$} node[inputarrow]{};
+
+		\draw (cri.south) -- (cri.south|-ups2.west) -- (ups2.west) node[above, midway, sloped]{$\Im{\alpha[n]}$} node[inputarrow]{};
+		\draw (ups2.east) -- (psh2.west) node[above, midway, sloped]{$\Im{\alpha^\prime[n]}$} node[inputarrow]{};
+		\draw (psh2.east) -- (dac2.west) node[above, midway, sloped]{$p^\prime[n]$} node[inputarrow]{};
+		\draw (dac2.east) -- (lwp2.west) node[above, midway, sloped]{$p^\prime(t)$} node[inputarrow]{};
+		\draw (lwp2.east) -- (out2) node[above, midway, sloped]{$p(t)$} node[inputarrow]{};
 		
-		\node at (ups.north) [above]{Upsampling};
-		\node at (psh.north) [above]{Pulse-shaping};
-		\node at (dac.north) [above]{Sample-and-hold};
-		\node at (lwp.north) [above]{Smoothing};
+		\node at (ups1.north|-cri) [rotate=90] {Upsampling};
+		\node at (psh1.north|-cri) [rotate=90] {Pulse-shaping};
+		\node at (dac1.north|-cri) [rotate=90] {Sample-and-hold};
+		\node at (lwp1.north|-cri) [rotate=90] {Smoothing};
 	\end{tikzpicture}
 \end{document}
