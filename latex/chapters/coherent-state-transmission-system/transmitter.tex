@@ -71,49 +71,69 @@ Finally, it is of interest how the pulse-shaping affects the frequency domain.
 
 \subsection{Modulation}
 
-Let $x(t),p(t)$ be the analog signals reconstructed from the real respective imaginary parts of the complex symbol sequence, then up-conversion multiplies these signals such that the output signal is~\cite[p.~25]{Madhow2008}
-\begin{equation}
-	\Re\left\{
-		\alpha(t)
-		e^{-i\omega_0t}
-	\right\}
-	=
-	x(t)
-	\cos(\omega_0t)
-	+
-	p(t)
-	\sin(\omega_0t)
-\end{equation}
-and one refers to $x(t)$ as the in-phase and $p(t)$ as the quadrature component of $\alpha(t)$.
-
-\Cref{fig:iqmod} shows a diagram of an I/Q-modulator which can be used to obtain the previous equation.
+We modulate the signals $x(t)$ and $p(t)$ onto an optical carrier with frequency $\omega_c$ for two reasons:
+First, the transmission properties of the channel dictates the frequency bands, for instance, \SI{1550}{\nano\meter} in standard telecommunication optical fiber, for efficient transmission.
+Second, the orthogonality of sine and cosine, concerning a fixed frequency $\omega_c$, allows transmitting two real signals $x(t)$ and $p(t)$.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/circuitikz/iq-modulator}
-	\caption{Diagram of an in-phase and quadrature modulator which can be used for signal up-conversion.}\label{fig:iqmod}
+	\caption{Block diagram of an \gls{iq}-modulator.}\label{fig:iqmod}
 \end{figure}
-The output of a sinusoidal oscillator with frequency $\omega_0$ is split into two paths.
-The first path is mixed with the the $p(t)$ signal while the second path is phase-shifted by \SI{90}{\degree} and mixed with the $x(t)$ signal.
-Finally, the outputs of both mixers are combined to obtain the real part of the complex baseband signal
+\Cref{fig:iqmod} shows a block diagram of an \gls{iq}-modulator.
+A sinusoidal oscillator running at frequency $\omega_c$ is split into two branches with a relative phase shift of $\pi/2$ between the branches.
+We define the upper branch as the phase reference.
+The upper branch is mixed with the $p(t)$ signal yielding $p(t)\sin(\omega_ct)$.
+The lower branch is mixed with the $x(t)$ signal yielding $x(t)\cos(\omega_ct)$.
+Finally, upper and lower branch are added to
 \begin{equation}
-	\alpha(t)
+	x(t)
+	\cos(\omega_ct)
+	+
+	p(t)
+	\sin(\omega_ct)
+	=
+	\Re\left\{
+		\alpha^\prime(t)
+		e^{-i\omega_ct}
+	\right\}
+	\label{eq:passband_signal}.
+\end{equation}
+In the signal-processing literature, e.g., Ref.~\cite[p.~25]{Madhow2008}, $x(t)$ and $p(t)$ are referred to as baseband signals while, for instance, $x(t)\cos(\omega_ct)$ is referred to as a passband signal because $x(t)$ would pass a lowpass filter but $x(t)\cos(\omega_ct)$ would only pass a bandpass filter (around $\omega_c$).
+\Cref{eq:passband_signal} suggests the definition of the complex baseband signal
+\begin{equation}
+	\alpha^\prime(t)
 	=
 	x(t)
 	+
 	ip(t)
-	.
 \end{equation}
-One often works with the complex signal as up-conversion takes the simple form of a multiplication.
-However, one should keep in mind that the true physical signal is real-valued, thus only the real-part of the complex signal has physical relevance!
+and the complex passband signal $\alpha^\prime(t)e^{-i\omega_ct}$.
+While the physical signal is always real-valued, i.e., \cref{eq:passband_signal}, it is often convenient to work with the complex representation.
+In the complex representation, \gls{iq}-modulation is equivalent to the multiplication of the complex baseband $\alpha^\prime(t)$ with $e^{-i\omega_ct}$.
+The multiplication of the complex representation of a signal with a complex exponential $e^{-i\omega t}$ is also called up-conversion.
+
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/transmitter}
-	\caption{Optical transmitter setup.}
+	\caption{Optical transmitter setup.}\label{fig:optical_transmitter}
 \end{figure}
+\Cref{fig:optical_transmitter} shows the configuration of the fiber-optical transmitter.
+An ultra-narrow-linewidth continuous-wave laser with center wavelength $\lambda_c=\SI{1550}{\nano\meter}$ is connected to a phase-symmetric and balanced 50:50 coupler which separates into an upper and lower branch.
+The upper branch is coupled with a first \gls{mzm}, MZM1.
+The lower branch is coupled with a second \gls{mzm}, MZM2.
+MZM1 operates in the linear regime and is driven by the baseband signal $x(t)$ while MZM2 is driven by $p(t)e^{i\pi/2}$.
+The complex exponential factor of $e^{i\pi/2}$ accounts for the relative phase shift between the branches and can be added in the digital domain before the pulse-shaping.
+The output of MZM1 and MZM2 is coupled to a second fiber coupler.
+The majority of the output power, \SI{99}{\percent}, of the second fiber coupler is feed into a third \gls{mzm}, MZM3.
+The remaining minority of the output power of the second fiber coupler is monitored by a power meter photodiode, PD.
+The output of PD is used as the control input for a power controller which controls MZM3.
+The power controller operates on a timescale much larger than the modulation time scale and compensates for (thermal) power fluctuations of the laser while ensuring that the output power makes a description in terms of optical coherent state necessary.
+
+% explain implementation of optical setup (in particular, show relevant quantum properties)
 
 \FloatBarrier
-
 \subsection{Attenuation}
 
-% on what time scale is the power controller operating?
+% should we really have a subsection about attenuation or should we have a subsection about the implementation?
+% where does the quantum description enter?
