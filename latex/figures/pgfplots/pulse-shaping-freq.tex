@@ -9,7 +9,7 @@
 
 \begin{document}
 	\begin{tikzpicture}[
-		block/.style={minimum height=5ex, minimum width=6em, fill=white}
+		block/.style={minimum height=4ex, minimum width=8em, text width=8em, align=left, fill=white}
 	]
 		\begin{groupplot}[
 			group style={
@@ -21,58 +21,93 @@
 			},
 			grid=major,
 			width=0.95\linewidth,
-			height=24ex,
+			height=22ex,
 			xlabel={Frequency $f\cdot T_s$ (relative)},
 			yticklabels={},
 		]
 			\nextgroupplot[
-				title={Power spectral density (logarithmic)},
+				title={Log power spectral density},
 				xmin=-4,
 				xmax=4,
+				ymin=-60,
+				ymax=5,
 			]
 			\addplot[
+				thick,
 				no markers,
 				orange!75!red,
 			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-freq-sym.csv};
+			\addplot[
+				no markers,
+				blue!75!green,
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-freq-sym.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
+				ymin=-60,
+				ymax=5,
 			]
 			\addplot[
+				thick,
 				no markers,
 				orange!75!red,
 			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-freq-psup.csv};
+			\addplot[
+				no markers,
+				blue!75!green,
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-freq-psup.csv};
 			\nextgroupplot[
 %				ylabel={Power spectral density (logarithmic)},
 				xmin=-4,
 				xmax=4,
+				ymin=-60,
+				ymax=5,
 			]
 			\addplot[
+				thick,
 				no markers,
 				orange!75!red,
 			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-freq-psout.csv};
+			\addplot[
+				no markers,
+				blue!75!green,
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-freq-psout.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
+				ymin=-60,
+				ymax=5,
 			]
 			\addplot[
+				thick,
 				no markers,
 				orange!75!red,
 			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-freq-lpup.csv};
+			\addplot[
+				no markers,
+				blue!75!green,
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-freq-lpup.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
+				ymin=-60,
+				ymax=5,
 			]
 			\addplot[
+				thick,
 				no markers,
 				orange!75!red,
 			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-freq-lpout.csv};
+			\addplot[
+				no markers,
+				blue!75!green,
+			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-freq-lpout.csv};
 		\end{groupplot}
 		
-		\node[block, above right=1em of plot c1r1.west] {Symbols};
-		\node[block, above right=1em of plot c1r2.west] {Upsampling ($2\times$)};
-		\node[block, above right=1em of plot c1r3.west] {Pulse-shaping};
-		\node[block, above right=1em of plot c1r4.west] {Upsampling ($4\times$)};
-		\node[block, above right=1em of plot c1r5.west] {Low-passing};
+		\node[block, above right=0.7em and 0pt of plot c1r1.west] {Symbols};
+		\node[block, above right=0.7em and 0pt of plot c1r2.west] {Upsampling ($2\times$)};
+		\node[block, above right=0.7em and 0pt of plot c1r3.west] {Pulse-shaping};
+		\node[block, above right=0.7em and 0pt of plot c1r4.west] {Upsampling ($4\times$)};
+		\node[block, above right=0.7em and 0pt of plot c1r5.west] {Smoothing};
 	\end{tikzpicture}
 \end{document}

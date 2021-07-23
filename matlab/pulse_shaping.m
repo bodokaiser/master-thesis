@@ -36,8 +36,13 @@ write_time(num_sym, real(rnd_ps_up), '../data/pulse-shaping/rand-time-psup-real.
 write_time(num_sym, imag(rnd_ps_up), '../data/pulse-shaping/rand-time-psup-imag.csv');
 write_time(num_sym, real(rnd_ps_out), '../data/pulse-shaping/rand-time-psout-real.csv');
 write_time(num_sym, imag(rnd_ps_out), '../data/pulse-shaping/rand-time-psout-imag.csv');
-write_time(num_sym, real(rnd_lp_out / max(real(rnd_lp_out))), '../data/pulse-shaping/rand-time-lpout-real.csv');
-write_time(num_sym, imag(rnd_lp_out / max(imag(rnd_lp_out))), '../data/pulse-shaping/rand-time-lpout-imag.csv');
+write_time(num_sym, 4*real(rnd_lp_out), '../data/pulse-shaping/rand-time-lpout-real.csv');
+write_time(num_sym, 4*imag(rnd_lp_out), '../data/pulse-shaping/rand-time-lpout-imag.csv');
+write_freq(num_sym, rnd_sym, '../data/pulse-shaping/rand-freq-sym.csv');
+write_freq(num_sym, rnd_ps_up, '../data/pulse-shaping/rand-freq-psup.csv');
+write_freq(num_sym, rnd_ps_out, '../data/pulse-shaping/rand-freq-psout.csv');
+write_freq(num_sym, rnd_lp_up, '../data/pulse-shaping/rand-freq-lpup.csv');
+write_freq(num_sym, rnd_lp_out, '../data/pulse-shaping/rand-freq-lpout.csv');
 
 
 function x = unitsym(n, i)
@@ -108,7 +113,7 @@ end
 
 function [] = write_freq(n, x, filename)
     [pxx, f] = pwelch(x, [], [], [], length(x) / n, 'centered');
-    c = num2cell([f, 10*log10(pxx)]);
+    c = num2cell([f, 10*log10(pxx / max(pxx))]);
     m = cell2table(c);
     writetable(m, filename);
 end

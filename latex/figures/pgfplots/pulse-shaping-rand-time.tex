@@ -39,7 +39,7 @@
 			\addplot[
 				ycomb,
 				mark=x,
-				mark options={blue!75!yellow},
+				mark options={blue!75!green},
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-sym-imag.csv};
 			\nextgroupplot[
@@ -57,7 +57,7 @@
 			\addplot[
 				ycomb,
 				mark=x,
-				mark options={blue!75!yellow},
+				mark options={blue!75!green},
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-psup-imag.csv};
 			\nextgroupplot[
@@ -75,7 +75,7 @@
 			\addplot[
 				ycomb,
 				mark=x,
-				mark options={blue!75!yellow},
+				mark options={blue!75!green},
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-psout-imag.csv};
 			\nextgroupplot[
@@ -91,7 +91,7 @@
 			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-lpout-real.csv};
 			\addplot[
 				no markers,
-				blue!75!yellow,
+				blue!75!green,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/pulse-shaping/rand-time-lpout-imag.csv};
 		\end{groupplot}
