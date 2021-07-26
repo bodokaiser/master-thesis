@@ -1,51 +1,64 @@
-\section{Beam splitter and mode coupler}
+\section{Optical splitters and couplers}
 
-Optical combiners and splitters, including the beam splitter and fiber coupler, are essential for many sophisticated experiments and devices.
-For example, in quantum information theory, the beam splitter is an experimental realization of a quantum NOT gate~\cite{Adami1998}.
-While an optical combiner superimposes (mixes) two optical signals, an optical splitter divides an input's power among two outputs.
-From a physical perspective, the distinction between optical combiners and splitters becomes obsolete: the optical combiner and splitter are special cases of a linear passive optical component with two in- and outputs where either one in- or output is blocked.
-More interestingly, a quantum mechanical description strictly requires two in- and outputs where one of the in- or outputs is assumed to be in the vacuum state.
+Optical splitters and couplers are essential for many sophisticated experiments and devices ranging from classical interferometers to experimental realization of quantum NOT gates~\cite{Adami1998}.
+An optical coupler superimposes (mixes) two optical fields, an optical splitter divides an input's power among two outputs.
+From a physical perspective, the distinction between splitters and couplers is somewhat artificial, and a description using two inputs and two outputs turns out to be strictly necessary.
 
-A plethora of approaches towards the (quantum) beam splitter exists~\cite{Leonhardt2010,Gerry2005,Loudon2000}, ending with a unitary transform relating the electrical output to the input fields.\footnote{The optical beams are electromagnetic waves, yet given the electric field component, the magnetic field component follows from Maxwell's equations.}
-We find that most of these descriptions are based on rather strong, not well-stated assumptions, leading to misconception and confusion, for example, regarding the phases and symmetry of the beam splitter.
-In addition, we miss the link to imperfect implementations and the generalization to fiber components.
+The present section starts with a discussion of the classical free-ray beam splitter. Employing energy conservation between the complex in- and output field modes leads to a unitary transformation that can be easily extended to the quantum regime as done in the standard quantum optics literature~\cite{Leonhardt2010,Gerry2005,Loudon2000}.
+A different approach closely related to network analysis in electrical engineering defines the optical coupler as a linear passive optical four-port and requires no further assumptions.
+The measurement of the scattering parameters can fully characterize the linear passive optical four-port.
+Finally, using mode-coupling theory~\cite[p.~359]{Luks2009}, we present a more natural quantum model specific to the waveguide coupler.
+We close the section with general input-output relations for coherent states to discuss the limiting cases, e.g., the optical splitter.
 
-The chapter starts with a detailed review of the classical free-ray beam splitter, followed by a short review of the fiber coupler. After that, we present a generic model of a quantum mode coupler and provide extensions of the beam splitter and fiber coupler to quantum effects.
+\subsection{Classical free-ray beam splitters}
 
-We start the review of the classical beam splitter with typical embodiments as a free-ray component.
-We will find that there are only a few fundamental constraints on a generic beam splitter transformation.
-Nevertheless, given the materials and dimensions, it is possible to model the transformation properties correctly.
-Being sensitized for the difficulties of finding a general transformation for the beam splitter, we move on to an in-depth discussion of the ideal beam splitter described by a unitary transformation.
-Finally, we end with a presentation of the scattering parameters of a generic but real beam splitter.
-
-\subsection{Classical free-ray beam splitter}
-
-The most commonly employed (free-ray) designs of the beam splitter are the cubic, plate, and pellicle beam splitters, see \Cref{fig:beam_splitter_types}.
-\begin{figure}[htb]
-    \centering
-    \includestandalone{figures/tikz/beam-splitter-types}
-    \caption{Cubic (a), plate (b), and pellicle (c) beam splitter.}\label{fig:beam_splitter_types}
-\end{figure}
-The cubic beam splitter is made of two triangular prisms. The interface between the two prisms is finished with a dielectric coating.
-The outward-facing surface of the prisms is grafted with an \gls{ar} coating.\footnote{The incident angle of the electric field is perpendicular to the surface of the cubic beam splitter. As the reflection angle is equal to the incidence angle, we have back-reflection of the input fields. Back-reflection is discussed in \cref{sec:beam_splitter_scattering_parameters}.}
+The most commonly employed (free-ray) designs of the beam splitter are the cubic, plate, and pellicle beam splitters depicted in \Cref{fig:beam_splitter_types}.
+The cubic beam splitter is made of two triangular prisms.
+The interface between the two prisms is finished with a dielectric coating.
+The outward-facing surface of the prisms is grafted with an \gls{ar} coating.
 Compared to the plate and pellicle beam splitter, the cubic beam splitter has the highest loss and aberrations.
-Nonetheless, the cubic beam splitter is a popular choice because of its simple integration into an optical setup.\footnote{The cubic beam splitter is significantly less sensitive to angular misalignment and mechanical vibrations.}
+Nonetheless, the cubic beam splitter is a popular choice because of its simple integration into an optical setup.
 The pellicle beam splitter consists of a few micrometer thin membrane, optionally with a one-sided coating.
 The small thickness of the membrane makes the pellicle beam splitter the most performant in terms of absorption and aberrations among the three designs.
 Furthermore, the pellicle embodiment of the beam splitter supports a broad wavelength range.
 The drawback of using a pellicle beam splitter is that they are highly susceptible to acoustic noise and require a precise angle to the incident beam.
 The plate beam splitter is like a thick pellicle beam splitter made of glass.
 Compared to the cubic and pellicle beam splitter's performance, the plate beam splitter is in-between concerning absorption, aberrations, and wavelength range.
-
-Given two input beams, represented by the electrical field components $E_1(t)$ and $E_2(t)$, a beam splitter gives rise to two output beams, represented by the electrical field components $E_1^\prime(t)$ and $E_2^\prime(t)$.
+\begin{figure}[htb]
+    \centering
+    \includestandalone{figures/tikz/beam-splitter-types}
+    \caption{Cubic (a), plate (b), and pellicle (c) beam splitter.}\label{fig:beam_splitter_types}
+\end{figure}
+Given two input beams, represented by the electrical field components $E_1(t)$ and $E_2(t)$, a beam splitter gives rise to two output beams, represented by the electrical field components $E_1^\prime(t)$ and $E_2^\prime(t)$.
 \Cref{fig:beam_splitter_cube_plate} illustrates how the input and output fields emerge in the cubic and plate beam splitter.
 The two input fields $E_1(t),E_2(t)$ are incident to the cubic and plate beam splitter's left and top, while the two output electric fields $E_1^\prime(t),E_2^\prime(t)$ exit the beam splitter at the right and bottom.
 \begin{figure}[htb]
     \centering
     \includestandalone{figures/tikz/beam-splitter-cubic-plate}
-    \caption{Cubic (left) and plate beam splitter (right) with two input beams represented by the electrical field components $E_1(t),E_2(t)$ and two output beam represented by the electrical field components $E_1^\prime(t),E_2^\prime(t)$. The frequency-dependent complex coefficients $r(\omega),r(\omega)^\prime$ and $t(\omega),t(\omega)^\prime$ fully characterize the reflection and transmission properties of the beam splitter.}\label{fig:beam_splitter_cube_plate}
+    \caption{Cubic (left) and plate beam splitter (right) with two input beams represented by the electrical field components $E_1(t),E_2(t)$ and two output beam represented by the electrical field components $E_1^\prime(t),E_2^\prime(t)$.}\label{fig:beam_splitter_cube_plate}
 \end{figure}
-We assume the beam splitter to be a linear passive optical device, which suggests writing the relation between input and output fields given in the complex representation $\mathcal{E}(\omega)$ of the electric field component\footnote{The physical electrical field component $E(t)$ relates to the complex field $\mathcal{E}(t)$ via $E(t)=\Re\mathcal{E}(t)$. In the complex representation, phase shifts take the simple form of multiplications with a complex exponential. The frequency dependence coefficients are frequency-dependent, the linear transformation only holds in frequency space.} in the frequency domain\footnote{The frequency dependency of the reflection and transmission coefficients requires us to perform the linear transformation in frequency space.} as
+
+Inside the beam splitter the electric field $\vb{E}(t,\vb{x})$ satisfies the inhomogeneous wave equation
+\begin{equation}
+	\laplacian\vb{E}(t,\vb{x})
+	-
+	\mu\pdv[2]{t}\vb{E}(t,\vb{x})
+	=
+	\mu\pdv[2]{t}\vb{P}(t,\vb{x})
+\end{equation}
+where $\mu$ is the magnetic permeability and $\vb{P}(t,\vb{x})$ is the macroscopic polarization~\cite[p.~86]{Murti2014}.
+In frequency space, the components of the macroscopic polarization are~\cite[p.~1070]{Mandel1995}
+\begin{equation}
+	P_i(\omega)
+	=
+	\chi^{(1)}_{ij}(\omega)E^j(\omega)
+	+
+	\chi^{(2)}_{ijk}(\omega,\omega^\prime)E^j(\omega)E^k(\omega^\prime)
+	+
+	\dots
+\end{equation}
+where $\chi^{(n)}$ denotes the $n$th-order of the electric susceptibility tensor.
+For a useful beam splitter, we want the electric susceptibility to be linear in frequency space suggesting the Fourier amplitudes of the in- and output fields to relate via
 \begin{equation}
     \begin{pmatrix}
         \mathcal{E}_1^\prime(\omega)
@@ -63,225 +76,48 @@ We assume the beam splitter to be a linear passive optical device, which suggest
         \\
         \mathcal{E}_2(\omega)
     \end{pmatrix}
-    \label{eq:beam_splitter_coefficients_transform}
+    \label{eq:beam_splitter_transform}
 \end{equation}
-wherein $r(\omega),r^\prime(\omega)$ and $t(\omega),t^\prime(\omega)$ are the complex reflection respective transmission coefficients of the beam splitter.
+wherein $r(\omega),r^\prime(\omega)$ and $t(\omega),t^\prime(\omega)$ are complex coefficients.
+Setting either one of the input Fourier amplitudes, $\mathcal{E}_1(\omega)$ or $\mathcal{E}_2(\omega)$, to zero and reviewing \Cref{fig:beam_splitter_cube_plate}, suggests $r(\omega),r^\prime(\omega)$ and $t(\omega),t^\prime(\omega)$ to quantify the reflection respective transmission properties of the beam splitter.
 The absolute value of the transmission $\abs{t(\omega)},\abs{t^\prime(\omega)}$ and reflection coefficients $\abs{r(\omega)},\abs{r^\prime(\omega)}$ determine the splitting ratio of the input power among the outputs.
 The complex phase factor of the reflection and transmission coefficients characterize the phase shifts with which the input fields contribute to the output fields.
 
-The beam splitter is a passive device, therefore, the optical output power is bound by the input power
+The beam splitter including the in- and output fields constitute an isolated system.
+Ignoring thermal energy exchange between the electric fields and the beam splitter medium, the sum of the field energies before and after the interaction need to be conserved, i.e.,
 \begin{equation}
     \abs{\mathcal{E}_1^\prime(\omega)}^2
     +
     \abs{\mathcal{E}_2^\prime(\omega)}^2
-    \leq
+    =
     \abs{\mathcal{E}_1(\omega)}^2
     +
     \abs{\mathcal{E}_2(\omega)}^2
-    \label{eq:beam_splitter_passive}.
+    \label{eq:beam_splitter_energy_conservation}
+    .
 \end{equation}
-Inserting \cref{eq:beam_splitter_coefficients_transform} into \cref{eq:beam_splitter_passive} and setting the one of the input fields to zero, constraints the coefficients to
+Inserting \cref{eq:beam_splitter_transform} into \cref{eq:beam_splitter_energy_conservation} and setting the one of the input fields to zero, constraints the coefficients by
 \begin{align}
-    \abs{r(\omega)}^2+\abs{t(\omega)}^2\leq1,
+    \abs{r(\omega)}^2+\abs{t(\omega)}^2
+    =
+    1,
     &&
-    \abs{r^\prime(\omega)}^2+\abs{t^\prime(\omega)}^2\leq1
-    \label{eq:beam_splitter_coefficients_constraint}.
+    \abs{r^\prime(\omega)}^2+\abs{t^\prime(\omega)}^2
+    =
+    1
+    \label{eq:beam_splitter_coefficients_constraint}
+    .
 \end{align}
-Except for \cref{eq:beam_splitter_coefficients_constraint}, there are no further constraints to the coefficients describing a linear passive optical four-port in \cref{eq:beam_splitter_coefficients_transform}.
-% TODO: is this even true? Don't we already assume with eq. (3.1.1) that there is no back-reflection?
-Theorists often claim the transformation in \cref{eq:beam_splitter_coefficients_transform} to be symmetric (or reciprocal) due to Maxwell's equations~\cite[p.~129]{Haroche2006}.
-Linear passive optical two-ports are only reciprocal for optical system with a single dielectric layer~\cite{Potton2004} but most physical beam splitters comprise multiple dielectric layers.\footnote{For example, cubic beam splitters have a coating followed by optical cement between the prisms breaking reciprocal symmetry of the system.}
+Theorists often claim the transformation in \cref{eq:beam_splitter_transform} to be symmetric (or reciprocal) due to Maxwell's equations~\cite[p.~129]{Haroche2006}.
+However, according Ref.~\cite{Potton2004} only optical system with a single dielectric layer are reciprocal but most physical beam splitters comprise multiple dielectric layers.\footnote{For example, cubic beam splitters have a coating followed by optical cement between the prisms breaking reciprocal symmetry of the system.}
 
 Using classical wave optics and perfect knowledge of the dimensions and material properties, it is possible to derive exact expressions of the complex reflection $r(\omega),r^\prime(\omega)$ and transmission coefficients $t(\omega),t^\prime(\omega)$.
 For example, Hénault~\cite{Henault2015} derived an exact expression for the reflected and transmitted amplitudes of a plate beam splitter with one input and a single dielectric layer.
 Likewise, Hamilton~\cite{Hamilton2000} discusses the cubic beam splitter with two inputs and different coatings.
 In general, the complex reflection and transmission coefficients need to account for multiple reflections at different dielectric layers inside the beam splitter.
 
-We conclude that given exact knowledge of the design parameters, we can find a physical model describing the complex reflection and transmission coefficients.
-Unfortunately, these parameters are rarely available and are subject to manufacturing variations.
-The situation worsens for fiber optics, where only limited physical parameters are accessible without breaking the device.
-% TODO: conclusion?
-% TODO: cite reference where reflection and transmission properties are measured\begin{figure}[htb]
-    \centering
-    \includestandalone{figures/tikz/four-port}
-    \caption{In- and outputs of a beam splitter used for the scattering parameter model.}\label{fig:beam_splitter_scattering_parameters}
-\end{figure}
-
-\begin{equation}
-    \begin{pmatrix}
-        \mathcal{E}_{1,\text{out}} \\
-        \mathcal{E}_{2,\text{out}} \\
-        \mathcal{E}_{3,\text{out}} \\
-        \mathcal{E}_{4,\text{out}}
-    \end{pmatrix}
-    =
-    T
-    \begin{pmatrix}
-        \mathcal{E}_{1,\text{in}} \\
-        \mathcal{E}_{2,\text{in}} \\
-        \mathcal{E}_{3,\text{in}} \\
-        \mathcal{E}_{4,\text{in}}
-    \end{pmatrix}
-\end{equation}
-where $T\in\mathbb{C}^{4\times4}$.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics{figures/pstricks/optical-network-analyzer}
-    \caption{Experimental setup of an optical network analyzer measuring the scattering parameters of a real beam splitter.}\label{fig:beam_splitter_network_analyzer}
-\end{figure}
-
-
-
-\subsection{Quantum mode coupler}
-
-% theoretical models:
-% - coupled mode theory \cite[p.~359]{Luks2009}
-% - nonclassical fields in a linear coupler \cite{Lai1991}
-% - generalized non-linear coupling in \cite{Abdalla2000}
-% - macroscopic reflection and transmission using topological Chern-Simons term \cite{Pismak2014}
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/tikz/fiber-coupler}
-	\caption{Two-dimensional model of a fiber-optical coupler.}\label{fig:fiber_coupler}
-\end{figure}
-
-The mode coupler is a generalization of the beam splitter and is described by the Hamiltonian
-\begin{equation}
-	\hat{H}
-	=
-	\hat{H}_0
-	+
-	\hat{H}_\text{int}(t)
-\end{equation}
-where we have the Hamiltonian of the scalar Maxwell field
-\begin{equation}
-	\hat{H}_0
-	=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
-	\omega(\vb{p})
-	\hat{a}^\dagger(\vb{p})
-	\hat{a}(\vb{p})
-\end{equation}
-and the interaction Hamiltonian
-\begin{equation}
-	\hat{H}_\text{int}(t)
-	=
-	-
-	\int\dd[3]{x}
-	g(t,\vb{x})
-	\hat{A}(t,\vb{x})
-	\hat{A}(t,\vb{x})
-	.
-\end{equation}
-We expand the fields into their positive and negative frequency parts and only keep the mixed terms known as the rotating wave approximation~\cite[p.~158]{Gardiner2000}
-\begin{equation}
-	\hat{H}_\text{int}(t)
-	=
-	-
-	\int\dd[3]{x}
-	g(t,\vb{x})
-	\left[
-		\hat{A}^{(-)}(t,\vb{x})
-		\hat{A}^{(+)}(t,\vb{x})
-		+
-		\hat{A}^{(+)}(t,\vb{x})
-		\hat{A}^{(-)}(t,\vb{x})
-	\right]
-	.
-\end{equation}
-The rotating wave approximation is justified when for long time scales relative to the highly oscillating terms.
-Additionally, Haroche~\cite[p.~127]{Haroche2006} argues that the high-frequency terms do not conserve energy as two particles are created or destroyed in one process.
-However, such processes are, in general, possible in the nonlinear regime~\cite{QuesadaMejia2015}.
-Inserting the definition of the positive and negative frequency operators, we find
-\begin{equation}
-	\hat{H}_\text{int}(t)
-	=
-	-
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-	\hat{a}(\vb{p})
-	e^{-i\omega(\vb{p})t}
-	g(t,\vb{p}-\vb{q})
-	\hat{a}^\dagger(\vb{q})
-	e^{+i\omega(\vb{q})t}
-	+
-	\text{h.c.}
-\end{equation}
-wherein we used the spatial Fourier transform of the coupling
-\begin{equation}
-	g(t,\vb{p}-\vb{q})
-	=
-	\int_{\mathbb{R}^3}\dd[3]{x}
-	g(t,\vb{x})
-	e^{-i(\vb{p}-\vb{q})\vdot\vb{x}}
-	.
-\end{equation}
-Assuming the mode coupler to be linear and passive, we make the ansatz
-\begin{equation}
-	g(t,\vb{p}-\vb{q})
-	=
-	(2\pi)
-	\delta^{(1)}\left(\omega(\vb{q})-\omega(\vb{p})\right)
-	h\left(t,\omega(\vb{p}),\vu{e}_p,\vu{e}_q\right)
-\end{equation}
-and reduce the interaction Hamiltonian to
-\begin{equation}
-	\hat{H}_{ab}
-	=
-	-
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-	\hat{a}(\vb{p})
-	g(t,\vb{p}-\vb{q})
-	\hat{a}^\dagger(\vb{q})
-	+
-	\text{h.c.}
-	.
-\end{equation}
-The time-evolution operator is dominated by the first term of the Magnus expansion
-\begin{equation}
-	\Omega^{(1)}(t,t_0)
-	=
-	i
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\hat{a}(\vb{p})
-	\hat{a}^\dagger(\vb{q})
-	\int_{t_0}^t
-	\dd{t^\prime}
-	g(t^\prime,\vb{p}-\vb{q})
-	-
-	\text{h.c.}
-\end{equation}
-and the main unitary action of turns out to be
-\begin{equation}
-	\hat{U}(t,t_0)
-	=
-	\exp\left\{
-		i
-		\int_{\mathbb{R}^3}
-		\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\hat{a}(\vb{p})
-		\int_{\mathbb{R}^3}
-		\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		\hat{a}^\dagger(\vb{q})
-		\int_{t_0}^t
-		\dd{t^\prime}
-		g(t^\prime,\vb{p}-\vb{q})
-		-
-		\text{h.c.}
-	\right\}
-\end{equation}
-which can be considered the field-theoretic time-dependent generalization of the beam splitter action reported in Ref.~\cite{Leonhardt2003,Haroche2006}.
-
-\subsection{Unitary transformation of an ideal beam splitter}
+\FloatBarrier
+\subsection{Unitary transformation between quantum modes}
 
 We define an ideal beam splitter as a linear passive optical four-port that is
 \begin{enumerate}
@@ -559,3 +395,187 @@ Removing the global phase and choosing the phase reference such that $\phi+\Delt
 The assumption of a symmetric beam splitter is not justified for most physical beam splitters\footnote{See the discussion of physcial beam splitter types in \cref{sec:beam_splitter}.}.
 Furthermore, the requirement that the optical system comprises only two beams massively restricts the use of \cref{eq:beam_splitter_unitary_transform_balanced_qo}.
 That said, the assumptions of our ideal beam splitter are already very strong and in contrast to \cref{eq:beam_splitter_unitary_transform_balanced}, \cref{eq:beam_splitter_unitary_transform_balanced_qo} and \cref{eq:beam_splitter_unitary_transform_balanced_qc} allow simple calculations.
+
+\FloatBarrier
+\subsection{Linear passive four-port}
+% TODO: cite reference where reflection and transmission properties are measured\begin{figure}[htb]
+    \centering
+    \includestandalone{figures/tikz/four-port}
+    \caption{In- and outputs of a beam splitter used for the scattering parameter model.}\label{fig:beam_splitter_scattering_parameters}
+\end{figure}
+
+\begin{equation}
+    \begin{pmatrix}
+        \mathcal{E}_{1,\text{out}} \\
+        \mathcal{E}_{2,\text{out}} \\
+        \mathcal{E}_{3,\text{out}} \\
+        \mathcal{E}_{4,\text{out}}
+    \end{pmatrix}
+    =
+    T
+    \begin{pmatrix}
+        \mathcal{E}_{1,\text{in}} \\
+        \mathcal{E}_{2,\text{in}} \\
+        \mathcal{E}_{3,\text{in}} \\
+        \mathcal{E}_{4,\text{in}}
+    \end{pmatrix}
+\end{equation}
+where $T\in\mathbb{C}^{4\times4}$.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/pstricks/optical-network-analyzer}
+    \caption{Experimental setup of an optical network analyzer measuring the scattering parameters of a real beam splitter.}\label{fig:beam_splitter_network_analyzer}
+\end{figure}
+
+\FloatBarrier
+\subsection{Quantum mode coupler}
+
+% theoretical models:
+% - coupled mode theory \cite[p.~359]{Luks2009}
+% - nonclassical fields in a linear coupler \cite{Lai1991}
+% - generalized non-linear coupling in \cite{Abdalla2000}
+% - macroscopic reflection and transmission using topological Chern-Simons term \cite{Pismak2014}
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/fiber-coupler}
+	\caption{Two-dimensional model of a fiber-optical coupler.}\label{fig:fiber_coupler}
+\end{figure}
+
+The mode coupler is a generalization of the beam splitter and is described by the Hamiltonian
+\begin{equation}
+	\hat{H}
+	=
+	\hat{H}_0
+	+
+	\hat{H}_\text{int}(t)
+\end{equation}
+where we have the Hamiltonian of the scalar Maxwell field
+\begin{equation}
+	\hat{H}_0
+	=
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\omega(\vb{p})
+	\hat{a}^\dagger(\vb{p})
+	\hat{a}(\vb{p})
+\end{equation}
+and the interaction Hamiltonian
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	-
+	\int\dd[3]{x}
+	g(t,\vb{x})
+	\hat{A}(t,\vb{x})
+	\hat{A}(t,\vb{x})
+	.
+\end{equation}
+We expand the fields into their positive and negative frequency parts and only keep the mixed terms known as the rotating wave approximation~\cite[p.~158]{Gardiner2000}
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	-
+	\int\dd[3]{x}
+	g(t,\vb{x})
+	\left[
+		\hat{A}^{(-)}(t,\vb{x})
+		\hat{A}^{(+)}(t,\vb{x})
+		+
+		\hat{A}^{(+)}(t,\vb{x})
+		\hat{A}^{(-)}(t,\vb{x})
+	\right]
+	.
+\end{equation}
+The rotating wave approximation is justified when for long time scales relative to the highly oscillating terms.
+Additionally, Haroche~\cite[p.~127]{Haroche2006} argues that the high-frequency terms do not conserve energy as two particles are created or destroyed in one process.
+However, such processes are, in general, possible in the nonlinear regime~\cite{QuesadaMejia2015}.
+Inserting the definition of the positive and negative frequency operators, we find
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	-
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+	\hat{a}(\vb{p})
+	e^{-i\omega(\vb{p})t}
+	g(t,\vb{p}-\vb{q})
+	\hat{a}^\dagger(\vb{q})
+	e^{+i\omega(\vb{q})t}
+	+
+	\text{h.c.}
+\end{equation}
+wherein we used the spatial Fourier transform of the coupling
+\begin{equation}
+	g(t,\vb{p}-\vb{q})
+	=
+	\int_{\mathbb{R}^3}\dd[3]{x}
+	g(t,\vb{x})
+	e^{-i(\vb{p}-\vb{q})\vdot\vb{x}}
+	.
+\end{equation}
+Assuming the mode coupler to be linear and passive, we make the ansatz
+\begin{equation}
+	g(t,\vb{p}-\vb{q})
+	=
+	(2\pi)
+	\delta^{(1)}\left(\omega(\vb{q})-\omega(\vb{p})\right)
+	h\left(t,\omega(\vb{p}),\vu{e}_p,\vu{e}_q\right)
+\end{equation}
+and reduce the interaction Hamiltonian to
+\begin{equation}
+	\hat{H}_{ab}
+	=
+	-
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+	\hat{a}(\vb{p})
+	g(t,\vb{p}-\vb{q})
+	\hat{a}^\dagger(\vb{q})
+	+
+	\text{h.c.}
+	.
+\end{equation}
+The time-evolution operator is dominated by the first term of the Magnus expansion
+\begin{equation}
+	\Omega^{(1)}(t,t_0)
+	=
+	i
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\hat{a}(\vb{p})
+	\hat{a}^\dagger(\vb{q})
+	\int_{t_0}^t
+	\dd{t^\prime}
+	g(t^\prime,\vb{p}-\vb{q})
+	-
+	\text{h.c.}
+\end{equation}
+and the main unitary action of turns out to be
+\begin{equation}
+	\hat{U}(t,t_0)
+	=
+	\exp\left\{
+		i
+		\int_{\mathbb{R}^3}
+		\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\hat{a}(\vb{p})
+		\int_{\mathbb{R}^3}
+		\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		\hat{a}^\dagger(\vb{q})
+		\int_{t_0}^t
+		\dd{t^\prime}
+		g(t^\prime,\vb{p}-\vb{q})
+		-
+		\text{h.c.}
+	\right\}
+\end{equation}
+which can be considered the field-theoretic time-dependent generalization of the beam splitter action reported in Ref.~\cite{Leonhardt2003,Haroche2006}.
+
+\FloatBarrier
+\subsection{Input-output relations for coherent state}
