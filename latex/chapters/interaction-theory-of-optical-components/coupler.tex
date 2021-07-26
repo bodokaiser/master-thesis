@@ -379,7 +379,7 @@ While accounting for back reflection of the mode coupler is almost never conside
 \FloatBarrier
 \subsection{Fiber-optical coupler}
 
-% - coupled mode theory \cite[p.~359]{Luks2009}
+Coupled-mode theory is described in Ref.~\cite[p.~359]{Luks2009}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/fiber-coupler}
@@ -398,7 +398,65 @@ While accounting for back reflection of the mode coupler is almost never conside
 % - coupled mode theory \cite[p.~359]{Luks2009}
 % - nonclassical fields in a linear coupler \cite{Lai1991}
 % - generalized non-linear coupling in \cite{Abdalla2000}
-% - macroscopic reflection and transmission using topological Chern-Simons term \cite{Pismak2014}
+% - macroscopic reflection and transmission using topological Chern-Simons term 
+
+We are aware of three approaches to a motivate a quantum mode coupler, i.e., a theoretical model which allows us to mix two plane-waves which share the same frequency.
+The first approach extends the unitary transformation of the beam splitter by analogy with the coherent state.
+The second approach starts from a linear interaction Hamiltonian.
+The third extends mode-coupling theory to the quantum regime.
+All three approaches appear somewhat ad-hoc:
+Experiments have confirmed the beam splitter transformation and now we try in hindsight to find theoretical arguments but we do not get far.
+The main reason being that beam splitter (or actually any optical component) are macroscopic while quantum mechanics is microscopic.
+There have been attempts to incorporate macroscopic medias into quantum theory, for instance, Snell's law was recovered by employing Chern-Simons theory, a form of topological quantum field theory, from a microscopic Lagrangian, see Ref.~\cite{Pismak2014}.
+Unfortunately, these attempts require very advanced mathematics and appear to be still in development.
+Therefore we limit the present discussions to the three approaches mentioned in the beginning.
+
+For the first approach, we start with the unitary beam splitter transformation $\hat{U}\in\text{SU}(2)$ \cref{eq:beam_splitter_transform} which relates the in- and output Fourier amplitudes via
+\begin{equation}
+	\begin{pmatrix}
+		\mathcal{E}_1^\prime(\omega)
+		\\
+		\mathcal{E}_2^\prime(\omega)
+	\end{pmatrix}
+	=
+	\hat{U}
+	\begin{pmatrix}
+		\mathcal{E}_1(\omega)
+		\\
+		\mathcal{E}_2(\omega)
+	\end{pmatrix}
+	.
+\end{equation}
+We know that the classical Fourier amplitudes of the electric field correspond to the expectation value of the creation operator, i.e., \textcolor{red}{be more precise here!}
+\begin{equation}
+	\mathcal{E}(\omega)
+	\propto
+	\expval{\hat{a}(\omega)}
+\end{equation}
+where $\hat{a}(\omega)$ is the annihilation operator corresponding to a plane-wave with frequency $\omega$.
+By linearity we expect
+\begin{equation}
+	\begin{pmatrix}
+		\hat{a}_1^\prime(\omega)
+		\\
+		\hat{a}_2^\prime(\omega)
+	\end{pmatrix}
+	=
+	\hat{U}
+	\begin{pmatrix}
+		\hat{a}_1(\omega)
+		\\
+		\hat{a}_2(\omega)
+	\end{pmatrix}
+\end{equation}
+where $\hat{a}_i^\prime(\omega)$ denotes the annihilation operators of the output modes and $\hat{a}_i(\omega)$ denotes the annihilation operators of the input modes.
+In quantum field theory, there is only one photon field.
+However, space-like separated operators commute and we could identifty
+\begin{align}
+	\hat{a}^\prime_i(\omega)
+	=
+	\hat{a}(\omega,)
+\end{align}
 
 The mode coupler is a generalization of the beam splitter and is described by the Hamiltonian
 \begin{equation}
