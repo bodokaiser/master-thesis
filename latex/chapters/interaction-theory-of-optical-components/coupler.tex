@@ -117,284 +117,179 @@ Likewise, Hamilton~\cite{Hamilton2000} discusses the cubic beam splitter with tw
 In general, the complex reflection and transmission coefficients need to account for multiple reflections at different dielectric layers inside the beam splitter.
 
 \FloatBarrier
-\subsection{Unitary transformation between quantum modes}
+\subsection{Unitary beam splitter transform}
 
-We define an ideal beam splitter as a linear passive optical four-port that is
-\begin{enumerate}
-    \item lossless (the energy of the input fields is equal to the energy of the output fields), and
-    \item independent of frequency (for the frequency range of the input fields).
-\end{enumerate}
-In this case, the transformation relating the output with the input fields is unitary.\footnote{Unitary transformations preserve the inner product and $\abs{\mathcal{E}_1}^2+\abs{\mathcal{E}_2}^2=\abs{\mathcal{E}^\prime_1}^2+\abs{\mathcal{E}^\prime_2}^2$ is the norm of the input and output vectors induced by the inner product. As a consequence, a unitary transform $\hat{U}$ satisfies $\hat{U}^{-1}=\hat{U}^\dagger$.}
-In general, the unitary transformation describing a lossless beam splitter has four \gls{dof}.\footnote{The beam splitter is described by a linear map $\hat{U}\colon\mathbb{C}^2\to\mathbb{C}^2$ which has eight \gls{dof}. $\hat{U}\hat{U}^\dagger=\mathbb{1}$ removes four \gls{dof}.}
-Different parametrizations towards a two-dimensional unitary transformation exist.
-In the previous section, we used a parametrization, \cref{eq:beam_splitter_coefficients_transform}, based on the polar representation of the complex reflection and transmission coefficients.
-Alternatively, a parametrization involving the Pauli matrices is used in the literature, see, for instance, Ref.~\cite{Zeilinger1981}.
-In the following, we use a parametrization introduced by Leonhardt~\cite[p.~92]{Leonhardt2010}
+Assuming an ideal beam splitter, i.e., a linear lossless optical device with two in- and two output fields, we notice that energy conservation \cref{eq:beam_splitter_energy_conservation} corresponds to an inner product which is automatically preserved if \cref{eq:beam_splitter_transform} is unitary.
+A particular useful parametrization of the unitary transformation is introduced by Leonhardt~\cite[p.~92]{Leonhardt2010}
 \begin{equation}
+	U
+	=
+    e^{i\Lambda(\omega)}
     \begin{pmatrix}
-        \mathcal{E}_1^\prime(t)
+        e^{+i\Phi(\omega)} & 0
         \\
-        \mathcal{E}_2^\prime(t)
-    \end{pmatrix}
-    =
-    e^{i\Lambda}
-    \begin{pmatrix}
-        e^{+i\Phi} & 0
-        \\
-        0 & e^{-i\Phi}
+        0 & e^{-i\Phi(\omega)}
     \end{pmatrix}
     \begin{pmatrix}
-        \cos\Theta & \sin\Theta
+        \cos\Theta(\omega) & \sin\Theta(\omega)
         \\
-        -\sin\Theta & \cos\Theta
+        -\sin\Theta(\omega) & \cos\Theta(\omega)
     \end{pmatrix}
     \begin{pmatrix}
-        e^{+i\Psi} & 0
+        e^{+i\Psi(\omega)} & 0
         \\
-        0 & e^{-i\Psi}
-    \end{pmatrix}
-    \begin{pmatrix}
-        \mathcal{E}_1(t)
-        \\
-        \mathcal{E}_2(t)
+        0 & e^{-i\Psi(\omega)}
     \end{pmatrix}
     \label{eq:beam_splitter_unitary_transform}
 \end{equation}
-parametrized by the angles $\Lambda,\Theta,\Psi,\Phi\in\mathbb{R}$.
-The parametrization of \cref{eq:beam_splitter_unitary_transform} allows for a physical interpretation without assumptions of a physical model.
-More precisely, the matrix product in \cref{eq:beam_splitter_unitary_transform} reads as the composition of a phase transform of $\pm\Psi$ applied to the input fields, a mixing of the input fields with angle $\Theta$, and a phase transform of $\pm\Phi$ applied to the mixed fields, in addition, the output fields pick up a global phase $\Lambda$ from the optical path length common to the beams.\footnote{Even the global phase $\Lambda$ becomes local, and thereby measurable, if we consider the beam splitter to be only part of a subsystem, see \cref{sec:mach_zehnder_modulator}.}
+with frequency-dependent angles $\Lambda(\omega),\Theta(\omega),\Psi(\omega),\Phi(\omega)\in\mathbb{R}$.
+An alternative parametrization involving Pauli matrices is discussed, for instance, in Ref.~\cite{Zeilinger1981}.
+The parametrization of \cref{eq:beam_splitter_unitary_transform} allows for a physical interpretation without assumptions of a macroscopic model.
+More precisely, the matrix product in \cref{eq:beam_splitter_unitary_transform} reads as the composition of a phase transform of $\pm\Psi(\omega)$ applied to the input fields, a mixing of the input fields with angle $\Theta(\omega)$, and a phase transform of $\pm\Phi(\omega)$ applied to the mixed fields, in addition, the output fields pick up a global phase $\Lambda(\omega)$ from the optical path length common to the beams.
+If the beam splitter is part of a subsystem, then the global phase $\Lambda(\omega)$ becomes local, thereby measurable, and cannot be neglected.
 
-If we carry out the matrix multiplication in \cref{eq:beam_splitter_unitary_transform}, we find
+Carrying out the matrix multiplication in \cref{eq:beam_splitter_unitary_transform}, we find
 \begin{equation}
+	U
+	=
+    e^{i\Lambda(\omega)}
     \begin{pmatrix}
-        \mathcal{E}_1^\prime(t)
+        e^{+i\psi(\omega)/2}\cos\Theta(\omega) & e^{i\phi(\omega)/2}\sin\Theta(\omega)
         \\
-        \mathcal{E}_2^\prime(t)
+        e^{-i\phi(\omega)/2+i\pi}\sin\Theta(\omega) & e^{-i\psi(\omega)/2}\cos\Theta(\omega)
     \end{pmatrix}
-    =
-    e^{i\Lambda}
-    \begin{pmatrix}
-        e^{i(+\Phi+\Psi)}\cos\Theta & e^{i(+\Phi-\Psi)}\sin\Theta
-        \\
-        -e^{i(-\Psi+\Phi)}\sin\Theta & e^{i(-\Psi-\Phi)}\cos\Theta
-    \end{pmatrix}
-    \begin{pmatrix}
-        \mathcal{E}_1(t)
-        \\
-        \mathcal{E}_2(t)
-    \end{pmatrix},
+    \label{eq:beam_splitter_unitary_transform_expanded}
 \end{equation}
-we introduce $\phi=(\Phi+\Psi)/2,\psi=(\Phi-\Psi)/2$ and write
+where we introduced $\phi(\omega)=(\Phi(\omega)+\Psi(\omega))/2,\psi(\omega)=(\Phi(\omega)-\Psi(\omega))/2$.
+For $\Theta(\omega)=0$ and $\Theta(\omega)=\pi/2$ there is no mixing, yet, there is a subtle difference between these cases.
+In the case of $\Theta(\omega)=0$, the output fields relate to the input fields via
 \begin{equation}
     \begin{pmatrix}
-        \mathcal{E}_1^\prime(t)
+        \mathcal{E}_1^\prime(\omega)
         \\
-        \mathcal{E}_2^\prime(t)
+        \mathcal{E}_2^\prime(\omega)
     \end{pmatrix}
     =
-    e^{i\Lambda}
+    e^{i\Lambda(\omega)}
     \begin{pmatrix}
-        e^{+i\psi/2}\cos\Theta & e^{i\phi/2}\sin\Theta
+        \mathcal{E}_1(\omega)e^{+i\psi(\omega)/2}
         \\
-        e^{-i\phi/2+i\pi}\sin\Theta & e^{-i\psi/2}\cos\Theta
-    \end{pmatrix}
-    \begin{pmatrix}
-        \mathcal{E}_1(t)
-        \\
-        \mathcal{E}_2(t)
-    \end{pmatrix}
-    \label{eq:beam_splitter_unitary_transform_expanded}.
-\end{equation}
-For $\Theta=0$ and $\Theta=\pi/2$ there is no mixing, yet, there is a subtle difference between these cases.
-In the case of $\Theta=0$, \cref{eq:beam_splitter_unitary_transform_expanded} becomes
-\begin{equation}
-    \begin{pmatrix}
-        \mathcal{E}_1^\prime(t)
-        \\
-        \mathcal{E}_2^\prime(t)
-    \end{pmatrix}
-    =
-    e^{i\Lambda}
-    \begin{pmatrix}
-        e^{+i\psi/2} & 0
-        \\
-        0 & e^{-i\psi/2}
-    \end{pmatrix}
-    \begin{pmatrix}
-        \mathcal{E}_1(t)
-        \\
-        \mathcal{E}_2(t)
-    \end{pmatrix}
-    =
-    e^{i\Lambda}
-    \begin{pmatrix}
-        \mathcal{E}_1(t)e^{+i\psi/2}
-        \\
-        \mathcal{E}_2(t)e^{-i\psi/2}
+        \mathcal{E}_2(\omega)e^{-i\psi(\omega)/2}
     \end{pmatrix}
     \label{eq:beam_splitter_unitary_transform_transmission},
 \end{equation}
-in other words, an additional phase difference of $\psi$ is added between the output fields.
-In the case of $\Theta=\pi/2$, \cref{eq:beam_splitter_unitary_transform_expanded} becomes
+in other words, an additional phase difference of $\psi(\omega)$ is added between the output fields.
+In the case of $\Theta(\omega)=\pi/2$, \cref{eq:beam_splitter_unitary_transform_expanded} becomes
 \begin{equation}
     \begin{pmatrix}
-        \mathcal{E}_1^\prime(t)
+        \mathcal{E}_1^\prime(\omega)
         \\
-        \mathcal{E}_2^\prime(t)
-    \end{pmatrix}
+        \mathcal{E}_2^\prime(\omega)
+	\end{pmatrix}
     =
-    e^{i\Lambda}
+    e^{i\Lambda(\omega)}
     \begin{pmatrix}
-        0 & e^{+i\phi/2}
+        \mathcal{E}_2(\omega)e^{+i\phi(\omega)/2}
         \\
-        e^{-i\psi/2+i\pi} & 0
-    \end{pmatrix}
-    \begin{pmatrix}
-        \mathcal{E}_1(t)
-        \\
-        \mathcal{E}_2(t)
-    \end{pmatrix}
-    =
-    e^{i\Lambda}
-    \begin{pmatrix}
-        \mathcal{E}_2(t)e^{+i\phi/2}
-        \\
-        \mathcal{E}_1(t)e^{-i\phi/2+i\pi}
+        \mathcal{E}_1(\omega)e^{-i\phi(\omega)/2+i\pi}
     \end{pmatrix}
     \label{eq:beam_splitter_unitary_transform_reflection},
 \end{equation}
-and a phase difference of $\pi-\phi$ is added between the output fields.
-The difference between these two phase shifts between the output fields yields $\phi+\psi=\pi$.
-If we identify $\Theta=0$ with the transmitted and $\Theta=\pi/2$ with the reflected field\footnote{Only the physical models have a notion of reflectance and transmittance. For the unitary transformation there is no fundamental difference between $\Theta=0,\pi/2$ as the $\pi$ phase can be moved around by reparamtrization.}, we recover the statement~\cite{Zeilinger1981} that the phase shift between the transmitted and reflected fields of an ideal beam splitter adds up to $\pi$.\footnote{The statement should not be confused with the statement that the phase difference between the output fields are phase-shifted by $\pi$.}
+and a phase difference of $\pi(\omega)-\phi(\omega)$ is added between the output fields.
+The difference between these two phase shifts between the output fields yields $\phi(\omega)+\psi(\omega)=\pi$.
+If we identify $\Theta(\omega)=0$ with the transmitted and $\Theta(\omega)=\pi/2$ with the reflected field\footnote{Only the physical models have a notion of reflectance and transmittance. For the unitary transformation there is no fundamental difference between $\Theta(\omega)=0,\pi/2$ as the $\pi$ phase can be moved around by reparamtrization.}, we recover the statement~\cite{Zeilinger1981} that the phase shift between the transmitted and reflected fields of an ideal beam splitter adds up to $\pi$.\footnote{The statement should not be confused with the statement that the phase difference between the output fields are phase-shifted by $\pi$.}
 
-Evidently, the phases $\psi,\phi$ are a source of confusion and require a thorough examination.
+Evidently, the phases $\psi(\omega),\phi(\omega)$ are a source of confusion and require a thorough examination.
 For simplicity, we assume a balanced lossless beam splitter which distributes the input power equally among the outputs.
-The corresponding transformation is obtained by setting $\Theta=\pi/4$ in \cref{eq:beam_splitter_unitary_transform}
+The corresponding transformation is obtained by setting $\Theta(\omega)=\pi/4$ in \cref{eq:beam_splitter_unitary_transform}
 \begin{equation}
+	U_{50:50}
+	=
+    \frac{1}{\sqrt{2}}
     \begin{pmatrix}
-        \mathcal{E}_1^\prime(t)
+        e^{i\phi(\omega)} & e^{i\psi(\omega)}
         \\
-        \mathcal{E}_2^\prime(t)
+        -e^{-i\psi(\omega)} & e^{-i\phi(\omega)}
     \end{pmatrix}
-    =
-    \frac{e^{i\Lambda}}{\sqrt{2}}
-    \begin{pmatrix}
-        e^{i\phi} & e^{i\psi}
-        \\
-        -e^{-i\psi} & e^{-i\phi}
-    \end{pmatrix}
-    \begin{pmatrix}
-        \mathcal{E}_1(t)
-        \\
-        \mathcal{E}_2(t)
-    \end{pmatrix}
-    =
-    \frac{e^{i\Lambda}}{\sqrt{2}}
-    \begin{pmatrix}
-        \mathcal{E}_1(t)e^{i\phi}+\mathcal{E}_2(t)e^{i\psi}
-        \\
-        \mathcal{E}_1(t)e^{-i\psi+i\pi}+\mathcal{E}_2(t)e^{-i\phi}
-    \end{pmatrix}
-    \label{eq:beam_splitter_unitary_transform_balanced}.
+    e^{i\Lambda(\omega)}
+    \label{eq:beam_splitter_unitary_transform_balanced}
+    .
 \end{equation}
-\Cref{eq:beam_splitter_unitary_transform_balanced} cannot be simplified without further assumptions\footnote{In principle, the dimensions, materials and coatings of a physical beam splitter can be chosen such that $\psi,\phi,\Lambda$ can take arbitrary values.}.
-In the quantum optics literature, for instance, Ref.~\cite[p.~138]{Gerry2005}, we frequently find the claim that
-\begin{equation}
-    \begin{pmatrix}
-        \mathcal{E}_1^\prime(t)
-        \\
-        \mathcal{E}_2^\prime(t)
-    \end{pmatrix}
-    =
+\Cref{eq:beam_splitter_unitary_transform_balanced} cannot be simplified without further assumptions.
+In principle, the dimensions, materials and coatings of a physical beam splitter can be tailored for specific $\psi(\omega),\phi(\omega),\Lambda(\omega)$.
+\begin{align}
+	U_{50:50}^\text{qo}
+	=
     \frac{1}{\sqrt{2}}
     \begin{pmatrix}
         1 & i\\
         i & 1
     \end{pmatrix}
-    \begin{pmatrix}
-        \mathcal{E}_1(t)
-        \\
-        \mathcal{E}_2(t)
-    \end{pmatrix}
-    \label{eq:beam_splitter_unitary_transform_balanced_qo}
-\end{equation}
-describes an ideal balanced beam splitter.
-Moreover, the quantum communication literature, for example, Ref.~\cite{Shapiro2009}, uses
-\begin{equation}
-    \begin{pmatrix}
-        \mathcal{E}_1^\prime(t)
-        \\
-        \mathcal{E}_2^\prime(t)
-    \end{pmatrix}
+    &&
+	U_{50:50}^\text{qc}
     =
     \frac{1}{\sqrt{2}}
     \begin{pmatrix}
         1 & -1\\
         1 & 1
     \end{pmatrix}
-    \begin{pmatrix}
-        \mathcal{E}_1(t)
-        \\
-        \mathcal{E}_2(t)
-    \end{pmatrix}
-    \label{eq:beam_splitter_unitary_transform_balanced_qc},
-\end{equation}
-which has the merit that we can write $\mathcal{E}_\pm(t)=\left(\mathcal{E}_1(t)\pm\mathcal{E}_2(t)\right)/\sqrt{2}$, as the transformation of an ideal balanced beam splitter.
-While \cref{eq:beam_splitter_unitary_transform_balanced_qo} corresponds to $\Lambda=0,\psi=0,\phi=\pi/2$ in \cref{eq:beam_splitter_unitary_transform_balanced}, and \cref{eq:beam_splitter_unitary_transform_balanced_qc} can be obtained with $\Lambda=0,\phi=0,\psi=\pi$, we rarely find a justification to remove three physical \gls{dof}.
-If we assume an ideal beam splitter to be
-\begin{enumerate}
-    \item no other fields except for the input fields to be in the system, and
-    \item symmetric with respect to the input fields,
-\end{enumerate}
-it is possible to derive \cref{eq:beam_splitter_unitary_transform_balanced_qo} from \cref{eq:beam_splitter_unitary_transform_balanced}.
-The first assumption lets us remove two \gls{dof}: first, $\Lambda$ is a global phase that cannot be measured, and we are free to choose $\Lambda$ as convenient, second, we are allowed to choose a common phase origin.
-Let us explicitly write $\mathcal{E}_1(t)e^{i\delta_1}$ and $\mathcal{E}_2(t)e^{i\delta_2}$.
-By adjusting the global phase $\Lambda$ accordingly, this is equivalent to $\mathcal{E}_1(t)e^{i\Delta\delta}$ and $\mathcal{E}_2(t)$ wherein $\Delta\delta=\delta_1-\delta_2$, and we can rewrite \cref{eq:beam_splitter_unitary_transform_balanced} as
+    \label{eq:beam_splitter_unitary_transform_balanced_qoqc},
+\end{align}
+We frequently find the claim in the quantum optics literature, for instance, Ref.~\cite[p.~138]{Gerry2005} that $U_{50:50}^\text{qo}$ describes an ideal balanced beam splitter.
+In contrast, the quantum communication literature, for example, Ref.~\cite{Shapiro2009}, postulates $U_{50:50}^\text{qc}$ as the transformation of an ideal balanced beam splitter.\footnote{$U_{50:50}^\text{qc}$ let us write the compact expression $\mathcal{E}_\pm(\omega)=\left(\mathcal{E}_1(\omega)\pm\mathcal{E}_2(\omega)\right)/\sqrt{2}$ for the output fields.} 
+While $U_{50:50}^\text{qo}$ corresponds to $\Lambda(\omega)=0,\psi(\omega)=0,\phi(\omega)=\pi/2$ in \cref{eq:beam_splitter_unitary_transform_balanced}, and $U_{50:50}^\text{qc}$ can be obtained with $\Lambda(\omega)=0,\phi(\omega)=0,\psi(\omega)=\pi$, we rarely find a justification to remove three physical \gls{dof}.
+If we assume an ideal beam splitter's global phase to be truly global and the other phases to be symmetric with respect to the input fields, it is possible to derive $U_{50:50}^\text{qo}$ from \cref{eq:beam_splitter_unitary_transform_balanced}.
+The first assumption lets us remove two \gls{dof}:
+First, $\Lambda(\omega)$ is a global phase that cannot be measured, and we are free to choose $\Lambda(\omega)$ as convenient.
+Second, we are allowed to choose a common phase origin.
+Let us explicitly write $\mathcal{E}_1(\omega)e^{i\delta_1}$ and $\mathcal{E}_2(\omega)e^{i\delta_2}$.
+By adjusting the global phase $\Lambda(\omega)$ accordingly, this is equivalent to $\mathcal{E}_1(\omega)e^{i\Delta\delta}$ and $\mathcal{E}_2(\omega)$ wherein $\Delta\delta=\delta_1-\delta_2$, and we can rewrite \cref{eq:beam_splitter_unitary_transform_balanced} together with the field amplitudes as
 \begin{equation}
     \begin{pmatrix}
-        \mathcal{E}_1^\prime(t)
+        \mathcal{E}_1^\prime(\omega)
         \\
-        \mathcal{E}_2^\prime(t)
+        \mathcal{E}_2^\prime(\omega)
     \end{pmatrix}
     =
     \frac{1}{\sqrt{2}}
     \begin{pmatrix}
-        e^{i(\phi/2+\Delta\theta)} & e^{i\psi/2}
+        e^{i(\phi(\omega)/2+\Delta\delta)} & e^{i\psi(\omega)/2}
         \\
-        -e^{-i(\psi/2-\Delta\theta)} & e^{-i\phi/2}
+        -e^{-i(\psi(\omega)/2-\Delta\delta)} & e^{-i\phi(\omega)/2}
     \end{pmatrix}
     \begin{pmatrix}
-        \mathcal{E}_1(t)
+        \mathcal{E}_1(\omega)
         \\
-        \mathcal{E}_2(t)
+        \mathcal{E}_2(\omega)
     \end{pmatrix}
     \label{eq:beam_splitter_unitary_transform_balanced_phase_origin}.
 \end{equation}
-By the second assumption, $e^{i\psi/2}=-e^{i(\psi/2-\Delta\delta)}$, or equivalently, $\psi=\pi/2+\Delta\delta/2$ and \cref{eq:beam_splitter_unitary_transform_balanced_phase_origin} becomes
+By the second assumption, $e^{i\psi(\omega)/2}=-e^{i(\psi(\omega)/2-\Delta\delta)}$, or equivalently, $\psi(\omega)=\pi/2+\Delta\delta/2$ and \cref{eq:beam_splitter_unitary_transform_balanced_phase_origin} becomes
 \begin{equation}
     \begin{pmatrix}
-        \mathcal{E}_1^\prime(t)
+        \mathcal{E}_1^\prime(\omega)
         \\
-        \mathcal{E}_2^\prime(t)
+        \mathcal{E}_2^\prime(\omega)
     \end{pmatrix}
     =
-    \frac{e^{i\Delta\delta/2}}{\sqrt{2}}
+    \frac{1}{\sqrt{2}}
     \begin{pmatrix}
-        e^{i(\phi+\Delta\delta/2)} & i
+        e^{i(\phi(\omega)+\Delta\delta/2)} & i
         \\
-        i & e^{-i(\phi+\Delta\delta/2)}
+        i & e^{-i(\phi(\omega)+\Delta\delta/2)}
     \end{pmatrix}
+    e^{i\Delta\delta/2}
     \begin{pmatrix}
-        \mathcal{E}_1(t)
+        \mathcal{E}_1(\omega)
         \\
-        \mathcal{E}_2(t)
+        \mathcal{E}_2(\omega)
     \end{pmatrix}
     .
 \end{equation}
-Removing the global phase and choosing the phase reference such that $\phi+\Delta\delta=0$ finally yields \cref{eq:beam_splitter_unitary_transform_balanced_qo}.
-The assumption of a symmetric beam splitter is not justified for most physical beam splitters\footnote{See the discussion of physcial beam splitter types in \cref{sec:beam_splitter}.}.
-Furthermore, the requirement that the optical system comprises only two beams massively restricts the use of \cref{eq:beam_splitter_unitary_transform_balanced_qo}.
-That said, the assumptions of our ideal beam splitter are already very strong and in contrast to \cref{eq:beam_splitter_unitary_transform_balanced}, \cref{eq:beam_splitter_unitary_transform_balanced_qo} and \cref{eq:beam_splitter_unitary_transform_balanced_qc} allow simple calculations.
+Removing the global phase and choosing the phase reference such that $\phi(\omega)+\Delta\delta=0$ finally yields $U_{50:50}^\text{qo}$.
+It should be clear from our initial discussion that the assumption of a symmetric beam splitter is not justified in general for most practical beam splitter designs.
+In particular, engineering of control loops to find operating points in modulators comprising beam splitters, for instance, in automatic bias control of \gls{mzm}, requires a throughout analysis of relevant phases in a system.
+That said, as long as we are only interested in specific aspects of a system, it is perfectly fine to chose the phases such that the calculation become as simple as possible.
 
 \FloatBarrier
 \subsection{Linear passive four-port}
@@ -429,18 +324,28 @@ where $T\in\mathbb{C}^{4\times4}$.
 \end{figure}
 
 \FloatBarrier
+\subsection{Fiber-optical coupler}
+
+% - coupled mode theory \cite[p.~359]{Luks2009}
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/fiber-coupler}
+	\caption{Two-dimensional model of a fiber-optical coupler.}\label{fig:fiber_coupler}
+\end{figure}
+
+\FloatBarrier
 \subsection{Quantum mode coupler}
+
+% approaches:
+% a) extend concept of unitary transform to annihilation operators
+% b) use linear interaction Hamiltonian (Haroche)
+% c) use mode-coupling theory
 
 % theoretical models:
 % - coupled mode theory \cite[p.~359]{Luks2009}
 % - nonclassical fields in a linear coupler \cite{Lai1991}
 % - generalized non-linear coupling in \cite{Abdalla2000}
 % - macroscopic reflection and transmission using topological Chern-Simons term \cite{Pismak2014}
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/tikz/fiber-coupler}
-	\caption{Two-dimensional model of a fiber-optical coupler.}\label{fig:fiber_coupler}
-\end{figure}
 
 The mode coupler is a generalization of the beam splitter and is described by the Hamiltonian
 \begin{equation}
@@ -578,4 +483,4 @@ and the main unitary action of turns out to be
 which can be considered the field-theoretic time-dependent generalization of the beam splitter action reported in Ref.~\cite{Leonhardt2003,Haroche2006}.
 
 \FloatBarrier
-\subsection{Input-output relations for coherent state}
+\subsection{Input-output relations for coherent states}
