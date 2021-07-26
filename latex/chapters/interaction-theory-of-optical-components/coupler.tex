@@ -293,35 +293,88 @@ That said, as long as we are only interested in specific aspects of a system, it
 
 \FloatBarrier
 \subsection{Linear passive four-port}
-% TODO: cite reference where reflection and transmission properties are measured\begin{figure}[htb]
+
+% TODO: cite reference where reflection and transmission properties are measured
+
+In electrical and optical network theory, it is common practice to model devices by their number of in- and outputs while assuming linear operation of the components.
+One advantage of such an approach is that one does not need to know the internals of the components at hand.
+Another advantage is that the component can be fully characterized by measuring the in- and output scattering parameters.
+\begin{figure}[htb]
     \centering
     \includestandalone{figures/tikz/four-port}
-    \caption{In- and outputs of a beam splitter used for the scattering parameter model.}\label{fig:beam_splitter_scattering_parameters}
+    \caption{Linear optical four-port with input field..}\label{fig:four_port}
 \end{figure}
-
-\begin{equation}
-    \begin{pmatrix}
-        \mathcal{E}_{1,\text{out}} \\
-        \mathcal{E}_{2,\text{out}} \\
-        \mathcal{E}_{3,\text{out}} \\
-        \mathcal{E}_{4,\text{out}}
-    \end{pmatrix}
-    =
-    T
-    \begin{pmatrix}
-        \mathcal{E}_{1,\text{in}} \\
-        \mathcal{E}_{2,\text{in}} \\
-        \mathcal{E}_{3,\text{in}} \\
-        \mathcal{E}_{4,\text{in}}
-    \end{pmatrix}
-\end{equation}
-where $T\in\mathbb{C}^{4\times4}$.
-
+\Cref{fig:four_port} shows a linear optical four-port.
+In contrast to our beam splitter model, does the four-port account for backscattering (or back reflection) and we discussed for the practical beam splitters that back reflection indeed occurs for the cubic beam splitter.
+For fiber-optical components the scattering parameters are usually specified in the technical datasheet.
+Alternatively, an optical network analyzer, see the setup in \Cref{fig:optical_network_analyzer}, is able to determine the scattering parameters.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/pstricks/optical-network-analyzer}
-    \caption{Experimental setup of an optical network analyzer measuring the scattering parameters of a real beam splitter.}\label{fig:beam_splitter_network_analyzer}
+    \caption{Experimental setup of an optical network analyzer measuring the scattering parameters of an optical four-port.}\label{fig:optical_network_analyzer}
 \end{figure}
+The complex scattering parameters are the elements of the scattering matrix $S(\omega)\in\mathbb{C}^{4\times4}$ which relates the in- and output field amplitudes via
+\begin{equation}
+    \begin{pmatrix}
+        \mathcal{E}_{1}^\text{out}(\omega) \\
+        \mathcal{E}_{2}^\text{out}(\omega) \\
+        \mathcal{E}_{3}^\text{out}(\omega) \\
+        \mathcal{E}_{4}^\text{out}(\omega)
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    	s_{11}(\omega) & s_{12}(\omega) & s_{13}(\omega) & s_{14}(\omega) \\
+    	s_{21}(\omega) & s_{22}(\omega) & s_{23}(\omega) & s_{24}(\omega) \\
+    	s_{31}(\omega) & s_{32}(\omega) & s_{33}(\omega) & s_{34}(\omega) \\
+    	s_{41}(\omega) & s_{42}(\omega) & s_{43}(\omega) & s_{44}(\omega)
+    \end{pmatrix}
+    \begin{pmatrix}
+        \mathcal{E}_{1}^\text{in}(\omega) \\
+        \mathcal{E}_{2}^\text{in}(\omega) \\
+        \mathcal{E}_{3}^\text{in}(\omega) \\
+        \mathcal{E}_{4}^\text{in}(\omega)
+    \end{pmatrix}
+\end{equation}
+and accounts for reflection, transmission, cross-talk, and coupling of the ports.
+For a passive four-port the energy of the output field amplitudes must be less or equal to the energy of the input field amplitudes and strictly equal for a lossless passive four-port.
+Most fiber components are reciprocal~\cite{NBS1981} and the scattering matrix $S(\omega)$ is transpose symmetric.
+
+The beam splitter transformation is the special case
+\begin{equation}
+    \begin{pmatrix}
+        \mathcal{E}_{1}^\text{out} \\
+        \mathcal{E}_{2}^\text{out} \\
+        \mathcal{E}_{3}^\text{out} \\
+        \mathcal{E}_{4}^\text{out}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    	0 & 0 & 0 & 0 \\
+    	0 & 0 & 0 & 0 \\
+    	s_{31}(\omega) & s_{32}(\omega) & 0 & 0 \\
+    	s_{41}(\omega) & s_{42}(\omega) & 0 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        \mathcal{E}_{1}^\text{in}(\omega) \\
+        \mathcal{E}_{2}^\text{in}(\omega) \\
+        \mathcal{E}_{3}^\text{in}(\omega) \\
+        \mathcal{E}_{4}^\text{in}(\omega)
+    \end{pmatrix}
+\end{equation}
+with the identifications $\mathcal{E}_i^\text{in}=\mathcal{E}_i,\mathcal{E}_i^\text{out}=\mathcal{E}_i^\prime$ and
+\begin{equation}
+    \begin{pmatrix}
+    	s_{31}(\omega) & s_{32}(\omega) \\
+    	s_{41}(\omega) & s_{42}(\omega)
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    	t(\omega) & r(\omega) \\
+    	r(\omega) & t(\omega)
+    \end{pmatrix}
+    .
+\end{equation}
+While accounting for back reflection of the mode coupler is almost never considered by physicists, our receiver is optimized for such low light intensities that back reflection of the strong \gls{lo} laser is observed and needs to be removed with an optical isolator. 
 
 \FloatBarrier
 \subsection{Fiber-optical coupler}
