@@ -122,7 +122,7 @@ In general, the complex reflection and transmission coefficients need to account
 Assuming an ideal beam splitter, i.e., a linear lossless optical device with two in- and two output fields, we notice that energy conservation \cref{eq:beam_splitter_energy_conservation} corresponds to an inner product which is automatically preserved if \cref{eq:beam_splitter_transform} is unitary.
 A particular useful parametrization of the unitary transformation is introduced by Leonhardt~\cite[p.~92]{Leonhardt2010}
 \begin{equation}
-	U
+	U(\omega)
 	=
     e^{i\Lambda(\omega)}
     \begin{pmatrix}
@@ -150,13 +150,13 @@ If the beam splitter is part of a subsystem, then the global phase $\Lambda(\ome
 
 Carrying out the matrix multiplication in \cref{eq:beam_splitter_unitary_transform}, we find
 \begin{equation}
-	U
+	U(\omega)
 	=
     e^{i\Lambda(\omega)}
     \begin{pmatrix}
         e^{+i\psi(\omega)/2}\cos\Theta(\omega) & e^{i\phi(\omega)/2}\sin\Theta(\omega)
         \\
-        e^{-i\phi(\omega)/2+i\pi}\sin\Theta(\omega) & e^{-i\psi(\omega)/2}\cos\Theta(\omega)
+        ie^{-i\phi(\omega)/2}\sin\Theta(\omega) & e^{-i\psi(\omega)/2}\cos\Theta(\omega)
     \end{pmatrix}
     \label{eq:beam_splitter_unitary_transform_expanded}
 \end{equation}
@@ -203,7 +203,7 @@ Evidently, the phases $\psi(\omega),\phi(\omega)$ are a source of confusion and 
 For simplicity, we assume a balanced lossless beam splitter which distributes the input power equally among the outputs.
 The corresponding transformation is obtained by setting $\Theta(\omega)=\pi/4$ in \cref{eq:beam_splitter_unitary_transform}
 \begin{equation}
-	U_{50:50}
+	U_{50:50}(\omega)
 	=
     \frac{1}{\sqrt{2}}
     \begin{pmatrix}
@@ -227,7 +227,7 @@ In principle, the dimensions, materials and coatings of a physical beam splitter
     \end{pmatrix}
     &&
 	U_{50:50}^\text{qc}
-    =
+	=
     \frac{1}{\sqrt{2}}
     \begin{pmatrix}
         1 & -1\\
@@ -419,7 +419,7 @@ For the first approach, we start with the unitary beam splitter transformation $
 		\mathcal{E}_2^\prime(\omega)
 	\end{pmatrix}
 	=
-	\hat{U}
+	\hat{U}(\omega)
 	\begin{pmatrix}
 		\mathcal{E}_1(\omega)
 		\\
@@ -427,14 +427,14 @@ For the first approach, we start with the unitary beam splitter transformation $
 	\end{pmatrix}
 	.
 \end{equation}
-We know that the classical Fourier amplitudes of the electric field correspond to the expectation value of the creation operator, i.e., \textcolor{red}{be more precise here!}
+We know that the classical Fourier amplitudes of the electric field correspond to the expectation value of the creation operator, i.e., \textcolor{red}{unprecise!}
 \begin{equation}
 	\mathcal{E}(\omega)
 	\propto
 	\expval{\hat{a}(\omega)}
 \end{equation}
 where $\hat{a}(\omega)$ is the annihilation operator corresponding to a plane-wave with frequency $\omega$.
-By linearity we expect
+By linearity we therefore expect
 \begin{equation}
 	\begin{pmatrix}
 		\hat{a}_1^\prime(\omega)
@@ -442,7 +442,7 @@ By linearity we expect
 		\hat{a}_2^\prime(\omega)
 	\end{pmatrix}
 	=
-	\hat{U}
+	\hat{U}(\omega)
 	\begin{pmatrix}
 		\hat{a}_1(\omega)
 		\\
@@ -450,148 +450,59 @@ By linearity we expect
 	\end{pmatrix}
 \end{equation}
 where $\hat{a}_i^\prime(\omega)$ denotes the annihilation operators of the output modes and $\hat{a}_i(\omega)$ denotes the annihilation operators of the input modes.
-In quantum field theory, there is only one photon field.
-However, space-like separated operators commute and we could identifty
+Inserting \cref{eq:beam_splitter_unitary_transform_expanded} and carrying out the matrix multiplication, we find
+\begin{equation}
+	\begin{pmatrix}
+		\hat{a}_1^\prime(\omega)
+		\\
+		\hat{a}_2^\prime(\omega)
+	\end{pmatrix}
+	=
+	e^{i\Lambda(\omega)}
+    \begin{pmatrix}
+        \hat{a}_1(\omega)e^{+i\psi(\omega)/2}\cos\Theta(\omega) +\hat{a}_2(\omega)e^{+i\phi(\omega)/2}\sin\Theta(\omega)
+        \\
+        \hat{a}_1(\omega)ie^{-i\phi(\omega)/2}\sin\Theta(\omega) + \hat{a}_2(\omega)e^{-i\psi(\omega)/2}\cos\Theta(\omega)
+    \end{pmatrix}
+\end{equation}
+Assuming the input operators satisfy the canonical commutation relations
 \begin{align}
-	\hat{a}^\prime_i(\omega)
+	\comm{\hat{a}_i(\omega)}{\hat{a}_j(\omega^\prime)}
 	=
-	\hat{a}(\omega,)
+	0
+	=
+	\comm{\hat{a}_i^\dagger(\omega)}{\hat{a}_j^\dagger(\omega^\prime)}
+	,
+	&&
+	\comm{\hat{a}_i(\omega)}{\hat{a}_j^\dagger(\omega^\prime)}
+	=
+	(2\pi)\delta^{(1)}(\omega^\prime-\omega)\delta_{ij},
 \end{align}
+then the output operators
+% TODO: check that canonical commutation relations are retained for transformation in (3.2.20)!
 
-The mode coupler is a generalization of the beam splitter and is described by the Hamiltonian
-\begin{equation}
-	\hat{H}
-	=
-	\hat{H}_0
-	+
-	\hat{H}_\text{int}(t)
-\end{equation}
-where we have the Hamiltonian of the scalar Maxwell field
-\begin{equation}
-	\hat{H}_0
-	=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
-	\omega(\vb{p})
-	\hat{a}^\dagger(\vb{p})
-	\hat{a}(\vb{p})
-\end{equation}
-and the interaction Hamiltonian
-\begin{equation}
-	\hat{H}_\text{int}(t)
-	=
-	-
-	\int\dd[3]{x}
-	g(t,\vb{x})
-	\hat{A}(t,\vb{x})
-	\hat{A}(t,\vb{x})
-	.
-\end{equation}
-We expand the fields into their positive and negative frequency parts and only keep the mixed terms known as the rotating wave approximation~\cite[p.~158]{Gardiner2000}
-\begin{equation}
-	\hat{H}_\text{int}(t)
-	=
-	-
-	\int\dd[3]{x}
-	g(t,\vb{x})
-	\left[
-		\hat{A}^{(-)}(t,\vb{x})
-		\hat{A}^{(+)}(t,\vb{x})
-		+
-		\hat{A}^{(+)}(t,\vb{x})
-		\hat{A}^{(-)}(t,\vb{x})
-	\right]
-	.
-\end{equation}
-The rotating wave approximation is justified when for long time scales relative to the highly oscillating terms.
-Additionally, Haroche~\cite[p.~127]{Haroche2006} argues that the high-frequency terms do not conserve energy as two particles are created or destroyed in one process.
-However, such processes are, in general, possible in the nonlinear regime~\cite{QuesadaMejia2015}.
-Inserting the definition of the positive and negative frequency operators, we find
-\begin{equation}
-	\hat{H}_\text{int}(t)
-	=
-	-
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-	\hat{a}(\vb{p})
-	e^{-i\omega(\vb{p})t}
-	g(t,\vb{p}-\vb{q})
-	\hat{a}^\dagger(\vb{q})
-	e^{+i\omega(\vb{q})t}
-	+
-	\text{h.c.}
-\end{equation}
-wherein we used the spatial Fourier transform of the coupling
-\begin{equation}
-	g(t,\vb{p}-\vb{q})
-	=
-	\int_{\mathbb{R}^3}\dd[3]{x}
-	g(t,\vb{x})
-	e^{-i(\vb{p}-\vb{q})\vdot\vb{x}}
-	.
-\end{equation}
-Assuming the mode coupler to be linear and passive, we make the ansatz
-\begin{equation}
-	g(t,\vb{p}-\vb{q})
-	=
-	(2\pi)
-	\delta^{(1)}\left(\omega(\vb{q})-\omega(\vb{p})\right)
-	h\left(t,\omega(\vb{p}),\vu{e}_p,\vu{e}_q\right)
-\end{equation}
-and reduce the interaction Hamiltonian to
-\begin{equation}
-	\hat{H}_{ab}
-	=
-	-
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-	\hat{a}(\vb{p})
-	g(t,\vb{p}-\vb{q})
-	\hat{a}^\dagger(\vb{q})
-	+
-	\text{h.c.}
-	.
-\end{equation}
-The time-evolution operator is dominated by the first term of the Magnus expansion
-\begin{equation}
-	\Omega^{(1)}(t,t_0)
-	=
-	i
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	\hat{a}(\vb{p})
-	\hat{a}^\dagger(\vb{q})
-	\int_{t_0}^t
-	\dd{t^\prime}
-	g(t^\prime,\vb{p}-\vb{q})
-	-
-	\text{h.c.}
-\end{equation}
-and the main unitary action of turns out to be
-\begin{equation}
-	\hat{U}(t,t_0)
-	=
-	\exp\left\{
-		i
-		\int_{\mathbb{R}^3}
-		\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\hat{a}(\vb{p})
-		\int_{\mathbb{R}^3}
-		\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-		\hat{a}^\dagger(\vb{q})
-		\int_{t_0}^t
-		\dd{t^\prime}
-		g(t^\prime,\vb{p}-\vb{q})
-		-
-		\text{h.c.}
-	\right\}
-\end{equation}
-which can be considered the field-theoretic time-dependent generalization of the beam splitter action reported in Ref.~\cite{Leonhardt2003,Haroche2006}.
+% TOOD: extend interaction model of Haroche to mode-continuum
+
+% field-theoretic generalizations of Ref.~\cite{Leonhardt2003,Haroche2006}.
 
 \FloatBarrier
 \subsection{Input-output relations for coherent states}
+
+Let $\ket{\alpha(t)}$ be a polarized time-dependent continuous-mode coherent state traveling in some (not further specified) direction $\vu{e}_p$
+\begin{equation}
+	\ket{\alpha(t)}
+	=
+	\exp\left\{
+		\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
+		\left\{
+			\alpha(t,p)
+			\hat{a}(p\vu{e}_p)
+			-
+			\alpha(t,p)^*
+			\hat{a}^\dagger(p\vu{e}_p)
+		\right\}
+	\right\}
+	\ket{0}
+\end{equation}
+where $\alpha(t,p)$ is the time-dependent Fourier amplitude of energy and momentum $p$.
+Furthermore, let 
