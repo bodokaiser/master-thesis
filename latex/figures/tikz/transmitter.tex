@@ -9,23 +9,27 @@
 	\begin{tikzpicture}[
 		node distance=4em,
 		arrow/.style={-latex},
-		block/.style={draw, very thick, fill=white, minimum height=12ex, minimum width=6em, align=center},
+		block/.style={draw, very thick, fill=white, minimum height=12ex, minimum width=8em, align=center},
 	]
 		\coordinate (in) at (0,0);
-		\node (psh) [block, right=of in] {Pulse-shaping};
-		\node (mod) [block, right=of psh] {Modulation};
-		\node (att) [block, right=of mod] {Attenuation};
-		\coordinate[right=of att] (out);
-				
-		\draw[arrow, dashed] (in) -- node[above]{$\alpha[n]$} (psh);
-		\draw[arrow] ([yshift=4ex]psh.east) -- node[above]{$x(t)$} ([yshift=4ex]mod.west);
-		\draw[arrow, dashed] ([yshift=-4ex]psh.east) -- node[above]{$p(t)$} ([yshift=-4ex]mod.west);
-		\draw[arrow] (mod) -- node[above]{$\ket{\alpha^\prime(t)}$} (att);
-		\draw[arrow] (att) -- node[above]{$\ket{\alpha(t)}$} (out);
-
-		\begin{scope}[on background layer]
-			\node[draw, dashed, fit=(psh.north) (psh.south) (in) (mod.north), label={Electrical}, inner ysep=1em, inner xsep=0pt] {};
-			\node[draw, dashed, fit=(att.north) (att.south) (mod.north) (out), label={Optical}, inner ysep=1em, inner xsep=0pt] {};
-		\end{scope}
+		\node (cod) [block, right=of in] {Coding};
+		\node (ups) [block, right=of cod] {Upsampling};
+		\node (dsp) [block, right=of ups] {Digital\\signal-processing};
+		\node (dac) [block, right=of dsp] {Digital-to-analog\\conversion};
+		\node (asp) [block, below=of dac] {Analog\\signal-processing};
+		\node (mod) [block, left=of asp] {Modulation};
+		\node (osp) [block, below=of mod] {Optical\\signal-processing};
+		\coordinate[right=of osp] (out);
+		
+		\draw[arrow] (cod) -- (ups) node[midway, above]{$\alpha[n]$};
+		\draw[arrow] (ups) -- (dsp) node[midway, above]{$\alpha^\prime[m]$};
+		\draw[arrow] ([yshift=4ex]dsp.east) -- ([yshift=4ex]dac.west) node[midway, above]{$x^\prime[m]$};
+		\draw[arrow] ([yshift=-4ex]dsp.east) -- ([yshift=-4ex]dac.west) node[midway, above]{$p^\prime[m]$};
+		\draw[arrow] ([xshift=-1em]dac.south) -- ([xshift=-1em]asp.north) node[midway, left]{$x^\prime(t)$};
+		\draw[arrow] ([xshift=1em]dac.south) -- ([xshift=1em]asp.north) node[midway, right]{$p^\prime(t)$};
+		\draw[arrow] ([yshift=4ex]asp.west) -- ([yshift=4ex]mod.east) node[midway, above]{$x(t)$};
+		\draw[arrow] ([yshift=-4ex]asp.west) -- ([yshift=-4ex]mod.east) node[midway, above]{$p(t)$};
+		\draw[arrow] (mod) -- (osp) node[midway, right]{$\ket{\alpha^\prime(t)}$};
+		\draw[arrow] (osp) -- (out) node[midway, above]{$\ket{\alpha(t)}$};
 	\end{tikzpicture}
 \end{document}
