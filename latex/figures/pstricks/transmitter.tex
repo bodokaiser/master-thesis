@@ -4,7 +4,7 @@
 \usepackage{siunitx}
 
 \begin{document}
-	\begin{pspicture}(14,7)
+	\begin{pspicture}(16,7)
 		\begin{optexp}
 			\psset[optexp]{usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
@@ -12,15 +12,15 @@
 		  	\pnode(3,3.5){Laser}
 		  	\pnode(3,6){OscX}
 		  	\pnode(3,1){OscP}
-		  	\pnode(5,5){MzmX}
-		  	\pnode(5,2){MzmP}
-		  	\pnode(9,5){MzmA}
-		  	\pnode(7,2){Pwm}
-		  	\pnode(10,3){PwrCtrl}
+		  	\pnode(6,5){MzmX}
+		  	\pnode(6,2){MzmP}
+		  	\pnode(11,5){MzmA}
+		  	\pnode(10,1){Pwm}
+		  	\pnode(12,3){PwrCtrl}
 		  	
 			\optbox[position=start, optboxsize=2 1, labeloffset=0](Laser)(Laser){\SI{1550}{\nano\meter}}
-			\elecsynthesizer[compname=OscX, wire=none, labeloffset=1.2, labelangle=-90](OscX)([Xnodesep=1]OscX){$x(t)$}
-			\elecsynthesizer[compname=OscP, wire=none, labeloffset=1.2, labelangle=-90](OscP)([Xnodesep=1]OscP){$p(t)e^{i\pi/2}$}
+			\elecsynthesizer[compname=OscX, wire=none, labelangle=-90](OscX)([Xnodesep=1]OscX){$x(t)$}
+			\elecsynthesizer[compname=OscP, wire=none, labelangle=-90](OscP)([Xnodesep=1]OscP){$p(t)$}
 			\optmzm[compname=MzmX, extnode=t](MzmX)([Xnodesep=1]MzmX){MZM 1}
 			\optmzm[compname=MzmP, extnode=b]([Xnodesep=1]MzmP)(MzmP){MZM 2}
 			\wdmsplitter[labeloffset=0.5](Laser)(MzmX)(MzmP){50:50}
@@ -31,8 +31,8 @@
 			\optdetector[compname=PD, extnode=r, dettype=diode](Pwm)([Xnodesep=1]Pwm){PD}
 			\optbox[compname=PwrCtrl, labeloffset=0, optboxsize=2 1](PwrCtrl)([Xnodesep=2]PwrCtrl){\begin{tabular}{@{}c@{}}Power\\controller\end{tabular}}
 			\drawwire[wireangleB=-90]{PwrCtrl}(\oenodeExt{MzmA})
-			\drawwire(\oenodeExt{PD})(11,2)(11,2.5)
-			\optfiber[addtoFiberOut={arrows=->}]([Xnodesep=1]MzmA)([Xnodesep=4]MzmA){\begin{tabular}{@{}c@{}}Fiber\\out\end{tabular}}
+			\drawwire(\oenodeExt{PD})(13,1)(13,2.5)
+			\optfiber[addtoFiberOut={arrows=->}]([Xnodesep=1]MzmA)([Xnodesep=4]MzmA)
 		\end{optexp}
 	\end{pspicture}
 \end{document}

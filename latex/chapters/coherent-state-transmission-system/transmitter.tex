@@ -19,17 +19,17 @@ Finally, a controlled attenuation moves the optical signal $v(t)$ to the quantum
 	\includestandalone{figures/circuitikz/pulse-shaping}
 	\caption{Block diagram of the digital and analog signal-processing of the pulse-shaping: First, the symbols $\alpha[n]$ are upsampled with an upsampling factor of two yielding samples $\alpha^\prime[n]$. Second, a \gls{rrc} is applied to the samples $\alpha^\prime[n]$ yielding $u^\prime[n]$. Third, a \gls{dac} performs sample-and-hold to output the analog signal $u^\prime(t)$. Finally, an analog \gls{lp} filter smoothens the output of the \gls{dac}.}\label{fig:pulse_shaping_block}
 \end{figure}
-The symbols $\alpha[n]$ are first upsampled by an upsampling factor of two by adding two zero-valued samples in between the symbols, i.e.,
+The symbols $\alpha[n]$ are first upsampled by an upsampling factor of two by adding one zero-valued samples in between the symbols, i.e.,
 \begin{equation}
-	\alpha^\prime[n]
+	\alpha^\prime[m]
 	=
 	\begin{cases}
-		\alpha[n/2] & \text{if}\ n\mod2=0 \\
+		\alpha[m/2] & \text{if}\ m\mod2=0 \\
 		0 & \text{otherwise}
 	\end{cases}
 	.
 \end{equation}
-Upsampling increases the number of samples by the upsampling factor.
+For higher upsampling rates as many zero-valued samples are inserted in-between the original samples until the number of output samples equals the number of input samples times the upsampling factor.
 Applying a digital filter to the upsampled symbols $\alpha^\prime[n]$, we set the additional samples such that there is a smoother transition between the symbols.
 The combined process of upsampling and digital filtering is also referred to as (digital) pulse-shaping.
 Typically, a first \gls{rrc} filter with transfer function~\cite[p.~33]{Nossek2015}
@@ -131,10 +131,4 @@ The remaining minority of the output power of the second fiber coupler is monito
 The output of PD is used as the control input for a power controller which controls MZM3.
 The power controller operates on a timescale much larger than the modulation time scale and compensates for (thermal) power fluctuations of the laser while ensuring that the output power makes a description in terms of optical coherent state necessary.
 
-% explain implementation of optical setup (in particular, show relevant quantum properties)
-
-\FloatBarrier
-\subsection{Attenuation}
-
-% should we really have a subsection about attenuation or should we have a subsection about the implementation?
-% where does the quantum description enter?
+% TODO: explain implementation of optical setup (in particular, show relevant quantum properties)
