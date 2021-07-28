@@ -481,28 +481,233 @@ Assuming the input operators satisfy the canonical commutation relations
 then the output operators
 % TODO: check that canonical commutation relations are retained for transformation in (3.2.20)!
 
-% TOOD: extend interaction model of Haroche to mode-continuum
-
-% field-theoretic generalizations of Ref.~\cite{Leonhardt2003,Haroche2006}.
+In a second approach based on Ref.~\cite[p.~131]{Haroche2006} and Ref.~\cite[p.~17]{QuesadaMejia2015} but extended for a mode-continuum:
+We use an interaction Hamiltonian to evolve the operators to a time after the interaction with the beam splitter.
+The "interaction approach" lets us see how the beam splitter transformation fits into the standard framework of quantum mechanics.
+The Hamiltonian of the system comprising two independent continuous field modes and the mode coupling interaction is
+\begin{equation}
+	\hat{H}
+	=
+	\hat{H}_1
+	+
+	\hat{H}_2
+	+
+	\hat{H}_\text{int}
+\end{equation}
+where the first two terms correspond to the free field Hamiltonians
+\begin{equation}
+	\hat{H}_i
+	=
+	\int\frac{\dd{p}}{2\pi}
+	\omega(p)
+	\hat{a}_i^\dagger(p)
+	\hat{a}_i(p)
+\end{equation}
+with $\omega(p)=p$ and the third term corresponds to the linear coupling of the field modes including a complex-valued frequency-dependent coupling constant $g(p)$\footnote{The negative sign is required for the final results to follow the sign convention of the literature.}
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	-
+	\int\frac{\dd{p}}{2\pi}
+	\left\{
+		g(p)
+		\hat{a}_1^\dagger(p)
+		\hat{a}_2(p)
+		+
+		g(p)^*
+		\hat{a}_2^\dagger(p)
+		\hat{a}_1(p)
+	\right\}
+	.
+\end{equation}
+The interaction Hamiltonian is time-independent in the Schrödinger and Heisenberg picture, the interaction time-evolution operator is given exactly by the first term in the Magnus expansion
+\begin{equation}
+	\hat{U}_\text{int}(t_1,t_0)
+	=
+	\exp\left\{
+		-i\int_{t_0}^{t_1}\dd{t}
+		\hat{H}_\text{int}
+	\right\}
+	=
+	\exp\left\{
+		-i
+		\hat{H}_\text{int}
+		T
+	\right\}
+\end{equation}
+where $T$ is the interaction time.
+For instance, for a fiber coupler the interaction time is equal to the length where the waveguides are in close proximity parallel to another $L$ and the speed of light in the medium $v$, $T=L/v$.
+We combine the interaction time $T$ and the complex-valued coupling   constant $g(p)$ into a new real-valued coupling constant $\theta(p)$ and a phase factor $e^{i\varphi(p)}$, the time-evolution operator then simplifies to
+\begin{equation}
+	\hat{U}
+	=
+	\exp\left\{
+		i
+		\int\frac{\dd{p}}{2\pi}
+		\theta(p)
+		\left[
+			\hat{a}_1^\dagger(p)
+			\hat{a}_2(p)
+			e^{+i\varphi(p)}
+			+
+			\hat{a}_2^\dagger(p)
+			\hat{a}_1(p)
+			e^{-i\varphi(p)}
+		\right]
+	\right\}
+	.
+\end{equation}
+In the interaction picture, the annihilation operators are time-dependent
+\begin{equation}
+	\hat{a}_i(p,t)
+	=
+	\hat{a}_i(p)e^{-ipt}
+\end{equation}
+and the coupling action transforms the operators according to
+\begin{equation}
+	\hat{b}_i(p,t)
+	=
+	\hat{U}^\dagger
+	\hat{a}_i(p,t)
+	\hat{U}
+\end{equation}
+which solves the Heisenberg equations of motion in the interaction picture.
+Using a specific kind of \gls{bch} formula
+\begin{equation}
+	e^{\hat{X}}
+	\hat{Y}
+	e^{-\hat{X}}
+	=
+	\hat{Y}
+	+
+	\comm{\hat{X}}{\hat{Y}}
+	+
+	\frac{1}{2!}
+	\comm{\hat{X}}{\comm{\hat{X}}{\hat{Y}}}
+	+
+	\frac{1}{3!}
+	\comm{\hat{X}}{\comm{\hat{X}}{\comm{\hat{X}}{\hat{Y}}}}
+	+
+	\dots
+\end{equation}
+with which we the output modes turn out to be
+\begin{align}
+	\hat{b}_1(p,t)
+	&=
+	\cos[\theta(p)]
+	\hat{a}_1(p,t)
+	+
+	i\sin[\theta(p)]
+	e^{+i\varphi(p)}
+	\hat{a}_2(p,t)
+	\\
+	\hat{b}_2(p,t)
+	&=
+	i\sin[\theta(p)]
+	e^{-i\varphi(p)}
+	\hat{a}_1(p,t)
+	+
+	\cos[\theta(p)]
+	\hat{a}_2(p,t)
+	.
+\end{align}
+In compact matrix notation, we recover the heuristic beam splitter transform
+\begin{equation}
+	\begin{pmatrix}
+		\hat{b}_1(p,t)
+		\\
+		\hat{b}_2(p,t)
+	\end{pmatrix}
+	=
+	\hat{U}^\dagger
+	\begin{pmatrix}
+		\hat{a}_1(p,t)
+		\\
+		\hat{a}_2(p,t)
+	\end{pmatrix}
+	\hat{U}
+	=
+	\begin{pmatrix}
+		\cos[\theta(p)] & i\sin[\theta(p)]e^{+i\varphi(p)}
+		\\
+		i\sin[\theta(p)]e^{-i\varphi(p)} & \cos[\theta(p)]
+	\end{pmatrix}
+	\begin{pmatrix}
+		\hat{a}_1(p,t)
+		\\
+		\hat{a}_2(p,t)
+	\end{pmatrix}
+\end{equation}
+which is also given for the single-mode case in Ref.~\cite[p.~96]{Leonhardt2003} and Ref.~\cite[p.~130]{Haroche2006}.
+An interesting remark is that the so derived beam splitter transform has only two \gls{dof} and it is not possible to accommodate more \gls{dof} in the coupling constant of the interaction Hamiltonian.
+The absence of the global phase is easily explained by the fact that our Hamiltonian is invariant under global phase transformations.
+The absence of a second local phase depends on the extension of the beam splitter component:
+In the discussion of the general unitary transformation, a phase difference can be added between the incident and between the outgoing beams, requiring two local phase parameters in the transform.
+However, the phase difference of the incident beams can also be factored into the coherent state of the incident beams.
 
 \FloatBarrier
 \subsection{Input-output relations for coherent states}
 
-Let $\ket{\alpha(t)}$ be a polarized time-dependent continuous-mode coherent state traveling in some (not further specified) direction $\vu{e}_p$
+Let $\ket{\alpha_i(t)}$ be a polarized time-dependent continuous-mode coherent state at the $i$th input of an optical coupler
 \begin{equation}
-	\ket{\alpha(t)}
+	\ket{\alpha_i(t)}
 	=
-	\exp\left\{
-		\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
-		\left\{
-			\alpha(t,p)
-			\hat{a}(p\vu{e}_p)
-			-
-			\alpha(t,p)^*
-			\hat{a}^\dagger(p\vu{e}_p)
-		\right\}
-	\right\}
+	\hat{D}_i[\alpha_i(t,\vb{p})]
 	\ket{0}
 \end{equation}
-where $\alpha(t,p)$ is the time-dependent Fourier amplitude of energy and momentum $p$.
-Furthermore, let 
+wherein $\hat{D}_i$ is the displacement operator-valued distribution creating a coherent state at the $i$th input defined by
+\begin{equation}
+	\hat{D}_i[\alpha_i(t,\vb{p})]
+	=
+	\exp\left\{
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{\omega(\vb{p})}}
+		\left[
+			\alpha(t,\vb{p})
+			\hat{a}_i(\vb{p})
+			-
+			\alpha(t,\vb{p})^*
+			\hat{a}_i(\vb{p})^\dagger
+		\right]
+	\right\}
+	.
+\end{equation}
+In the previous section we showed that the beam splitter transform arises as time-evolution operator of a linear mode coupling interaction.
+In particular, we found the time-evolution operator to be~\cite[p.~131]{Haroche2006}
+\begin{equation}
+	\hat{U}(\theta,\varphi)
+	=
+	\exp\left\{
+		i\frac{\theta}{2}
+		\left[
+			\hat{a}_1
+			\hat{a}_2^\dagger
+			e^{-i\varphi}
+			+
+			\hat{a}_1^\dagger
+			\hat{a}_2
+			e^{+i\varphi}
+		\right]
+	\right\}
+\end{equation}
+and transforming the input to output annihilation operators
+\begin{align}
+	\hat{b}_1
+	&=
+	\hat{U}(\theta,\varphi)^\dagger
+	\hat{a}_1
+	\hat{U}(\theta,\varphi)
+	=
+	\cos(\theta/2)\hat{a}_1
+	+
+	ie^{+i\varphi}\sin(\theta/2)\hat{a}_2
+	\\
+	\hat{b}_2
+	&=
+	\hat{U}(\theta,\varphi)^\dagger
+	\hat{a}_2
+	\hat{U}(\theta,\varphi)
+	=
+	ie^{-i\varphi}\sin(\theta/2)\hat{a}_1
+	+
+	\cos(\theta/2)\hat{a}_2
+\end{align}
