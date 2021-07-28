@@ -5,7 +5,7 @@ In the process, the signal is transformed from the digital over the analog elect
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/transmitter}
-	\caption{Transmitter transforming symbols $\alpha[n]$ to a coherent state $\ket{\alpha(t)}$ by performing pulse-shaping, modulation and attenuation. The modulator marks the boundary between the electrical and optical signal spectrum while the pulse-shaper and attenuator contain the border between the digital and analog, respective analog (classical) and quantum domain.}\label{fig:transmitter}
+	\caption{Block diagram showing the signal flow across the transmitter: Information is coded into complex-valued symbols $\alpha[n]$, the complex-valued symbols $\alpha[n]$ are converted to samples $\alpha^\prime[m]$ by upsampling and provided to the \gls{dsp}. The \gls{dsp} outputs the real-valued samples $x^\prime[m],p^\prime[m]$ which are converted to physical voltage signals $x^\prime(t),p^\prime(t)$ by digital-to-analog conversion and provided to the \gls{asp}. The \gls{asp} outputs the real-valued voltage signals $x(t),p(t)$ which are modulated onto a coherent state $\ket{\alpha^\prime(t)}$. Finally, \gls{osp} transforms $\ket{\alpha^\prime(t)}$ to $\ket{\alpha(t)}$.}\label{fig:transmitter}
 \end{figure}
 The pulse-shaping converts the symbols $\alpha[n]$ from the digital to the signal $u(t)$ in the analog domain.
 At the modulator, the electrical signal $u(t)$ is modulated onto an optical carrier using a \gls{mzm}, yielding the classical optical signal $v(t)$.
