@@ -1,4 +1,4 @@
-\section{Optical splitters and couplers}
+\section{Coupler}
 
 Optical splitters and couplers are essential for many sophisticated experiments and devices ranging from classical interferometers to experimental realization of quantum NOT gates~\cite{Adami1998}.
 An optical coupler superimposes (mixes) two optical fields, an optical splitter divides an input's power among two outputs.
@@ -650,64 +650,206 @@ However, the phase difference of the incident beams can also be factored into th
 
 Let $\ket{\alpha_i(t)}$ be a polarized time-dependent continuous-mode coherent state at the $i$th input of an optical coupler
 \begin{equation}
-	\ket{\alpha_i(t)}
+	\ket{\alpha(t)}_i
 	=
-	\hat{D}_i[\alpha_i(t,\vb{p})]
-	\ket{0}
+	\hat{D}_i[\alpha(t,p)]
+	\ket{0}_i
 \end{equation}
 wherein $\hat{D}_i$ is the displacement operator-valued distribution creating a coherent state at the $i$th input defined by
 \begin{equation}
-	\hat{D}_i[\alpha_i(t,\vb{p})]
+	\hat{D}_i[\alpha(t,p)]
 	=
 	\exp\left\{
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{\omega(\vb{p})}}
+		\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
 		\left[
-			\alpha(t,\vb{p})
-			\hat{a}_i(\vb{p})
+			\alpha(t,p)
+			\hat{a}_i^\dagger(p)
 			-
-			\alpha(t,\vb{p})^*
-			\hat{a}_i(\vb{p})^\dagger
+			\alpha(t,p)^*
+			\hat{a}_i(p)
 		\right]
 	\right\}
 	.
 \end{equation}
-In the previous section we showed that the beam splitter transform arises as time-evolution operator of a linear mode coupling interaction.
-In particular, we found the time-evolution operator to be~\cite[p.~131]{Haroche2006}
+We find the action of the coupler by applying the unitary transform
 \begin{equation}
-	\hat{U}(\theta,\varphi)
+	\hat{U}
 	=
-	\exp\left\{
-		i\frac{\theta}{2}
-		\left[
-			\hat{a}_1
-			\hat{a}_2^\dagger
-			e^{-i\varphi}
-			+
-			\hat{a}_1^\dagger
-			\hat{a}_2
-			e^{+i\varphi}
-		\right]
-	\right\}
+	e^{+i\hat{G}}
 \end{equation}
-and transforming the input to output annihilation operators
-\begin{align}
-	\hat{b}_1
-	&=
-	\hat{U}(\theta,\varphi)^\dagger
-	\hat{a}_1
-	\hat{U}(\theta,\varphi)
+with
+\begin{equation}
+	\hat{G}
 	=
-	\cos(\theta/2)\hat{a}_1
-	+
-	ie^{+i\varphi}\sin(\theta/2)\hat{a}_2
-	\\
-	\hat{b}_2
-	&=
-	\hat{U}(\theta,\varphi)^\dagger
-	\hat{a}_2
-	\hat{U}(\theta,\varphi)
+	\int\frac{\dd{q}}{2\pi}
+	\theta(q)
+	\left[
+		\hat{a}_1^\dagger(q)
+		\hat{a}_2(q)
+		e^{+i\varphi(q)}
+		+
+		\hat{a}_2^\dagger(q)
+		\hat{a}_1(q)
+		e^{-i\varphi(q)}
+	\right]
+\end{equation}
+to each of the input states, i.e.,
+\begin{equation}
+	\hat{U}
+	\ket{\alpha(t)}_i
 	=
-	ie^{-i\varphi}\sin(\theta/2)\hat{a}_1
-	+
-	\cos(\theta/2)\hat{a}_2
-\end{align}
+	\hat{U}
+	\hat{D}_i[\alpha(t,p)]
+	\hat{U}^\dagger
+	\ket{0}_i
+\end{equation}
+where we used the invariance of the vacuum state $\hat{U}\ket{0}_i=\ket{0}_i$.
+Using the operator identity
+\begin{equation}
+	\hat{U}
+	e^{\hat{X}}
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\hat{U}
+	\hat{X}^n
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\left(
+		\hat{U}
+		\hat{X}
+		\hat{U}^\dagger
+	\right)^n
+	=
+	e^{\hat{U}\hat{X}\hat{U}^\dagger}
+\end{equation}
+we find the coupler to amend the displacement operator to
+\begin{equation}
+	\begin{split}
+		\hat{U}
+		\hat{D}_i[\alpha(t,p)]
+		\hat{U}^\dagger
+		&=
+		\exp\left\{
+			\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
+			\left[
+				\alpha(t,p)
+				\hat{U}
+				\hat{a}_i^\dagger(p)
+				\hat{U}^\dagger
+				-
+				\alpha(t,p)^*
+				\hat{U}
+				\hat{a}_i(p)
+				\hat{U}^\dagger
+			\right]
+		\right\}
+	\end{split}
+\end{equation}
+and we are left to calculate
+\begin{equation}
+	\begin{split}
+		\hat{U}
+		\hat{a}_1^\dagger(p)
+		\hat{U}^\dagger
+		&=
+		e^{+i\hat{G}}
+		\hat{a}_1^\dagger(p)
+		e^{-i\hat{G}}
+		\\
+		&=
+		\hat{a}_1^\dagger(p)
+		+
+		\comm{i\hat{G}}{\hat{a}_1^\dagger(p)}
+		+
+		\frac{1}{2}
+		\comm{i\hat{G}}{\comm{i\hat{G}}{\hat{a}_1^\dagger(p)}}
+		+
+		\dots
+		\\
+		&=
+		\hat{a}_1^\dagger(p)
+		+
+		i\theta(p)e^{-i\varphi(p)}
+		\hat{a}_2^\dagger(p)
+		-
+		\frac{1}{2}
+		\theta(p)^2
+		\hat{a}_1^\dagger(p)
+		+
+		\dots
+		\\
+		&=
+		\cos\theta(p)
+		\hat{a}_1^\dagger(p)
+		+
+		ie^{-i\varphi(p)}
+		\sin\theta(p)
+		\hat{a}_2^\dagger(p)
+	\end{split}
+\end{equation}
+and
+\begin{equation}
+	\begin{split}
+		\hat{U}
+		\hat{a}_1(p)
+		\hat{U}^\dagger
+		&=
+		e^{+i\hat{G}}
+		\hat{a}_1(p)
+		e^{-i\hat{G}}
+		\\
+		&=
+		\hat{a}_1(p)
+		+
+		\comm{i\hat{G}}{\hat{a}_1(p)}
+		+
+		\frac{1}{2}
+		\comm{i\hat{G}}{\comm{i\hat{G}}{\hat{a}_1(p)}}
+		+
+		\dots
+		\\
+		&=
+		\hat{a}_1(p)
+		-
+		i\theta(p)e^{-i\varphi(p)}
+		\hat{a}_2(p)
+		-
+		\frac{1}{2}
+		\theta(p)^2
+		\hat{a}_1(p)
+		+
+		\dots
+		\\
+		&=
+		\cos\theta(p)
+		\hat{a}_1(p)
+		-
+		ie^{-i\varphi(p)}
+		\sin\theta(p)
+		\hat{a}_2(p)
+	\end{split}
+\end{equation}
+which leads to
+\begin{equation}
+	\begin{split}
+		\hat{U}
+		\hat{D}_1[\alpha(t,p)]
+		\hat{U}^\dagger
+		&=
+		\hat{D}_1[\cos\theta(p)\alpha(t,p)]
+		\hat{D}_2[i\sin\theta(p)\alpha(t,p)e^{+\varphi(p)}]
+	\end{split}
+\end{equation}
+similar we find
+\begin{equation}
+	\begin{split}
+		\hat{U}
+		\hat{D}_2[\alpha(t,p)]
+		\hat{U}^\dagger
+		&=
+	\end{split}
+\end{equation}
