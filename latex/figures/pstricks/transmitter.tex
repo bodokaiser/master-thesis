@@ -4,35 +4,46 @@
 \usepackage{siunitx}
 
 \begin{document}
-	\begin{pspicture}(16,7)
+	\begin{pspicture}(0,-0.5)(14,5.5)
 		\begin{optexp}
-			\psset[optexp]{usefiberstyle}
+			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
 			
-		  	\pnode(3,3.5){Laser}
-		  	\pnode(3,6){OscX}
-		  	\pnode(3,1){OscP}
-		  	\pnode(6,5){MzmX}
-		  	\pnode(6,2){MzmP}
-		  	\pnode(11,5){MzmA}
-		  	\pnode(10,1){Pwm}
-		  	\pnode(12,3){PwrCtrl}
+		  	\pnodes(2,2.5){LaserIn}(4,2.5){LaserOut}
+		  	\pnodes(3,0.25){OscXIn}(6,0.25){OscXOut}
+		  	\pnodes(3,4.75){OscPIn}(6,4.75){OscPOut}
+		  	\pnodes(5,1){PsIn}(6,1){PsOut}
+		  	\pnodes(6,1){MzmXIn}(8,1){MzmXOut}
+		  	\pnodes(5,4){MzmPIn}(7,4){MzmPOut}
+		  	\pnodes(10,1){MzmAIn}(11,1){MzmAOut}
+		  	\pnodes(9,4.5){PdIn}(10,4.5){PdOut}
+		  	\pnodes(12,3){CtrlIn}(13,3){CtrlOut}
+		  	\pnodes(12,1){IsoIn}(13,1){IsoOut}(14,1){FiberOut}
 		  	
-			\optbox[position=start, optboxsize=2 1, labeloffset=0](Laser)(Laser){\SI{1550}{\nano\meter}}
-			\elecsynthesizer[compname=OscX, wire=none, labelangle=-90](OscX)([Xnodesep=1]OscX){$x(t)$}
-			\elecsynthesizer[compname=OscP, wire=none, labelangle=-90](OscP)([Xnodesep=1]OscP){$p(t)$}
-			\optmzm[compname=MzmX, extnode=t](MzmX)([Xnodesep=1]MzmX){MZM 1}
-			\optmzm[compname=MzmP, extnode=b]([Xnodesep=1]MzmP)(MzmP){MZM 2}
-			\wdmsplitter[labeloffset=0.5](Laser)(MzmX)(MzmP){50:50}
-			\drawwire[wireangleB=-90]{OscX}(\oenodeExt{MzmX})
-			\drawwire[wireangleB=-90]{OscP}([offset=-0.35]\oenodeExt{MzmP})
-			\optcoupler[labeloffset=0.5]([Xnodesep=1]MzmX)([Xnodesep=1]MzmP)(MzmA)([Xnodesep=1]Pwm){99:1}
-			\optmzm[compname=MzmA, extnode=b]([Xnodesep=1]MzmA)(MzmA){MZM 3}
-			\optdetector[compname=PD, extnode=r, dettype=diode](Pwm)([Xnodesep=1]Pwm){PD}
-			\optbox[compname=PwrCtrl, labeloffset=0, optboxsize=2 1](PwrCtrl)([Xnodesep=2]PwrCtrl){\begin{tabular}{@{}c@{}}Power\\controller\end{tabular}}
-			\drawwire[wireangleB=-90]{PwrCtrl}(\oenodeExt{MzmA})
-			\drawwire(\oenodeExt{PD})(13,1)(13,2.5)
-			\optfiber[addtoFiberOut={arrows=->}]([Xnodesep=1]MzmA)([Xnodesep=4]MzmA)
+			\optbox[compname=Laser, position=start, optboxsize=2 1, labeloffset=0](LaserIn)(LaserOut){\SI{1550}{\nano\meter}}
+			\elecsynthesizer[compname=OscX, wire=none, labelangle=-90](OscXIn)(OscXOut){$x(t)$}
+			\elecsynthesizer[compname=OscP, wire=none, labelangle=-90](OscPIn)(OscPOut){$p(t)$}
+			
+			\optbox[compname=Ps, optboxsize=1 0.8, labeloffset=0](PsIn)(PsOut){$\pi/2$}
+			\optmzm[compname=MzmX, extnode=b, labelangle=180](MzmXIn)(MzmXOut){MZM 1}
+			\optmzm[compname=MzmP, extnode=t](MzmPIn)(MzmPOut){MZM 2}
+			\wdmsplitter[compname=Splitter, labeloffset=0.5](LaserIn)(MzmXIn)(MzmPIn){50:50}
+			
+			\optcoupler[compname=Coupler, labeloffset=0.5](MzmXOut)(MzmPOut)(PdIn)(MzmAIn){99:1}
+			\optmzm[compname=MzmA, extnode=t](MzmAIn)(MzmAOut){MZM 3}
+			\optisolator[compname=Iso](IsoIn)(IsoOut)
+			\optdetector[compname=Pd, extnode=r, dettype=diode, labelangle=180](PdIn)(PdOut){PD}
+			\optbox[compname=Ctrl, extnode=b, optboxsize=1.8 1.2, labeloffset=0](CtrlIn)(CtrlOut){\begin{tabular}{@{}c@{}}Power\\controller\end{tabular}}
+	
+			\drawfiber{Laser}{Splitter}{Ps}{MzmX}{Coupler}{MzmA}{Iso}
+			\drawfiber[ArrowInside=->]{Iso}(FiberOut)
+			\drawfiber{Splitter}{MzmP}{Coupler}{Pd}
+
+			\drawwire(\oenodeExt{Pd}){Ctrl}
+			\drawwire[wireangleA=65, wireangleB=65](\oenodeExt{MzmA})(\oenodeExt{Ctrl})
+
+			\drawwire[wireangleA=-90, wireangleB=-90]{OscP}(\oenodeExt{MzmP})
+			\drawwire[wireangleA=90, wireangleB=90]{OscX}(\oenodeExt{MzmX})
 		\end{optexp}
 	\end{pspicture}
 \end{document}
