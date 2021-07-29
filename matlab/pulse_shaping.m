@@ -51,7 +51,7 @@ function x = unitsym(n, i)
 end
 
 function x = randsym(n)
-    x = randn(n, 2) * [1; 1i] / sqrt(2);
+    x = (2*rand(n, 2) - 1) * [1; 1i];
 end
 
 function [up, out] = pulse_shape_filter(x, uf)

@@ -3,12 +3,14 @@
 \usepackage{amsmath}
 \usepackage{pgfplots}
 
-\let\Re\undefined
-\DeclareMathOperator{\Re}{\operatorname{Re}}
-
 \pgfplotsset{compat=1.17}
 \usetikzlibrary{positioning}
 \usepgfplotslibrary{groupplots}
+
+\let\Re\undefined
+\let\Im\undefined
+\DeclareMathOperator{\Re}{\operatorname{Re}}
+\DeclareMathOperator{\Im}{\operatorname{Im}}
 
 \begin{document}
 	\begin{tikzpicture}[
@@ -18,21 +20,24 @@
 			group style={
 				group name=plot,
 				group size=1 by 4,
-				xlabels at=edge bottom,
-				xticklabels at=edge bottom,
+%				xlabels at=edge bottom,
+%				xticklabels at=edge bottom,
 				vertical sep=1ex,
 			},
+			ylabel style={align=center},
 			grid=major,
 			width=0.95\linewidth,
 			height=22ex,
-			xlabel={Index $n$},
 		]
 			\nextgroupplot[
-				title={Samples $\Re{\alpha[n]}$},
 				xmin=10,
 				xmax=20,
+				xlabel={Symbol index $n$},
+				xlabel near ticks,
+				xticklabel pos=top,
 				ymin=-0.2,
 				ymax=1.2,
+				ylabel={Symbols\\$\Re\alpha[n]$},
 			]
 			\addplot[
 				ycomb,
@@ -43,8 +48,11 @@
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
-				ymin=-0.4,
-				ymax=1.4,
+				xlabel={},
+				xticklabels={},
+				ymin=-0.2,
+				ymax=1.2,
+				ylabel={Samples\\$\Re\alpha^\prime[m]$},
 			]
 			\addplot[
 				ycomb,
@@ -55,8 +63,11 @@
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
-				ymin=-0.4,
-				ymax=1.4,
+				xlabel={},
+				xticklabels={},
+				ymin=-0.2,
+				ymax=1.2,
+				ylabel={Pulse-shape\\$x^\prime[m]$},
 			]
 			\addplot[
 				ycomb,
@@ -67,8 +78,10 @@
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
-				ymin=-0.4,
-				ymax=1.4,
+				xlabel={Signal time $t/T_s$},
+				ymin=-0.2,
+				ymax=1.2,
+				ylabel={Voltage\\$x^\prime(t)$},
 			]
 			\addplot[
 				no markers,
@@ -76,10 +89,5 @@
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-time-lpout.csv};
 		\end{groupplot}
-		
-		\node[block, above right=0.7em and 0pt of plot c1r1.west] {Symbols};
-		\node[block, above right=0.7em and 0pt of plot c1r2.west] {Upsampling};
-		\node[block, above right=0.7em and 0pt of plot c1r3.west] {Pulse-shaping};
-		\node[block, above right=0.7em and 0pt of plot c1r4.west] {Smoothing};
 	\end{tikzpicture}
 \end{document}
