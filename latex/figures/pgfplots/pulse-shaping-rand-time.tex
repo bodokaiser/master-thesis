@@ -14,7 +14,8 @@
 
 \begin{document}
 	\begin{tikzpicture}[
-		block/.style={minimum height=4ex, minimum width=7em, text width=7em, align=left, fill=white}
+		block/.style={minimum height=4ex, minimum width=7em, text width=7em, align=left, fill=white},
+		font=\small,
 	]
 		\begin{groupplot}[
 			group style={
@@ -27,7 +28,7 @@
 			ylabel style={align=center},
 			grid=major,
 			width=0.95\linewidth,
-			height=28ex,
+			height=24ex,
 		]
 			\nextgroupplot[
 				xmin=10,
@@ -37,7 +38,7 @@
 				xticklabel pos=top,
 				ymin=-1.2,
 				ymax=1.2,
-				ylabel={Symbols\\$\Re\alpha[n],\Im\alpha[n]$},
+				ylabel={Symbols\\$\alpha[n]$},
 			]
 			\addplot[
 				ycomb,
@@ -58,7 +59,7 @@
 				xticklabels={},
 				ymin=-1.2,
 				ymax=1.2,
-				ylabel={Samples\\$\Re\alpha^\prime[m],\Im\alpha^\prime[m]$},
+				ylabel={Samples\\$\alpha^\prime[m]$},
 			]
 			\addplot[
 				ycomb,
@@ -79,7 +80,7 @@
 				xticklabels={},
 				ymin=-1.2,
 				ymax=1.2,
-				ylabel={Pulse-shape\\$x^\prime[m],p^\prime[m]$},
+				ylabel={Pulse-shape\\$x^\prime[m]+ip^\prime[m]$},
 			]
 			\addplot[
 				ycomb,
@@ -99,7 +100,7 @@
 				xlabel={Signal time $t/T_s$},
 				ymin=-1.2,
 				ymax=1.2,
-				ylabel={Voltage\\$x^\prime(t),p^\prime(t)$},
+				ylabel={Voltage\\$x(t)+ip(t)$},
 			]
 			\addplot[
 				no markers,
