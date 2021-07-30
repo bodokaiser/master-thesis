@@ -555,14 +555,16 @@ However, the phase difference of the incident beams can also be factored into th
 \FloatBarrier
 \subsection{Input-output relations for coherent states}
 
-Let $\ket{\alpha_i(t)}$ be a polarized time-dependent continuous-mode coherent state at the $i$th input of an optical coupler
+We are finally ready to show that the classical relations between the in- and output field amplitudes also holds for coherent states.
+Let us initially start with two polarized time-dependent continuous-mode coherent states
 \begin{equation}
-	\ket{\alpha(t)}_i
+	\ket{\alpha_1(t),\alpha_2(t)}
 	=
-	\hat{D}_i[\alpha(t,p)]
-	\ket{0}_i
+	\hat{D}_1[\alpha_1(t,p)]
+	\hat{D}_2[\alpha_2(t,p)]
+	\ket{0}
 \end{equation}
-wherein $\hat{D}_i$ is the displacement operator-valued distribution creating a coherent state at the $i$th input defined by
+wherein $\hat{D}_i$ is the displacement operator-valued distribution creating a coherent state at the $i$th mode continuum
 \begin{equation}
 	\hat{D}_i[\alpha(t,p)]
 	=
@@ -578,39 +580,24 @@ wherein $\hat{D}_i$ is the displacement operator-valued distribution creating a 
 	\right\}
 	.
 \end{equation}
-We find the action of the coupler by applying the unitary transform
+The action of the coupler on the initial state is equivalent to applying the unitary transform to each of the states in the tensor product
 \begin{equation}
 	\hat{U}
+	\ket{\alpha_1(t),\alpha_2(t)}
 	=
-	e^{+i\hat{G}}
+	\left(
+		\hat{U}
+		\hat{D}_1[\alpha_1(t,p)]
+		\hat{U}^\dagger
+	\right)
+	\left(
+		\hat{U}
+		\hat{D}_2[\alpha_2(t,p)]
+		\hat{U}^\dagger
+	\right)
+	\ket{0}
 \end{equation}
-with
-\begin{equation}
-	\hat{G}
-	=
-	\int\frac{\dd{q}}{2\pi}
-	\theta(q)
-	\left[
-		\hat{a}_1^\dagger(q)
-		\hat{a}_2(q)
-		e^{+i\varphi(q)}
-		+
-		\hat{a}_2^\dagger(q)
-		\hat{a}_1(q)
-		e^{-i\varphi(q)}
-	\right]
-\end{equation}
-to each of the input states, i.e.,
-\begin{equation}
-	\hat{U}
-	\ket{\alpha(t)}_i
-	=
-	\hat{U}
-	\hat{D}_i[\alpha(t,p)]
-	\hat{U}^\dagger
-	\ket{0}_i
-\end{equation}
-where we used the invariance of the vacuum state $\hat{U}\ket{0}_i=\ket{0}_i$.
+where we used the uniqueness of the vacuum state and inserted $\hat{U}^\dagger\hat{U}=\mathbb{I}$ between the displacement operators.
 Using the operator identity
 \begin{equation}
 	\hat{U}
@@ -633,22 +620,24 @@ Using the operator identity
 	=
 	e^{\hat{U}\hat{X}\hat{U}^\dagger}
 \end{equation}
-we find the coupler to amend the displacement operator to
+we find the transformed displacement operator to be
 \begin{equation}
 	\begin{split}
 		\hat{U}
-		\hat{D}_i[\alpha(t,p)]
+		\hat{D}_i[\alpha_i(t,p)]
 		\hat{U}^\dagger
 		&=
 		\exp\left\{
 			\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
 			\left[
-				\alpha(t,p)
-				\hat{U}
-				\hat{a}_i^\dagger(p)
-				\hat{U}^\dagger
+				\alpha_i(t,p)
+				\left(
+					\hat{U}
+					\hat{a}_i(p)
+					\hat{U}^\dagger
+				\right)^\dagger
 				-
-				\alpha(t,p)^*
+				\alpha_i(t,p)^*
 				\hat{U}
 				\hat{a}_i(p)
 				\hat{U}^\dagger
@@ -656,107 +645,127 @@ we find the coupler to amend the displacement operator to
 		\right\}
 	\end{split}
 \end{equation}
-and we are left to calculate
+and we are left to calculate the intermediate result
+\begin{align}
+	\hat{U}
+	\hat{a}_1(p)
+	\hat{U}^\dagger
+	&=
+	\cos\theta(p)
+	\hat{a}_1(p)
+	-
+	ie^{+i\varphi}
+	\sin\theta(p)
+	\hat{a}_2(p)
+	\\
+	\hat{U}
+	\hat{a}_2(p)
+	\hat{U}^\dagger
+	&=
+	\cos\theta(p)
+	\hat{a}_2(p)
+	-
+	ie^{-i\varphi}
+	\sin\theta(p)
+	\hat{a}_1(p)
+\end{align}
+and note that
+\begin{align}
+	\hat{U}
+	\hat{D}_1[\alpha_1(t,p)]
+	\hat{U}^\dagger
+	&=
+	\hat{D}_1[\cos\theta(p)\alpha_1(t,p)]
+	\hat{D}_2[-i\sin\theta(p)e^{+i\varphi(p)}\alpha_1(t,p)]
+	\\
+	\hat{U}
+	\hat{D}_2[\alpha_2(t,p)]
+	\hat{U}^\dagger
+	&=
+	\hat{D}_1[-i\sin\theta(p)e^{-i\varphi(p)}\alpha_2(t,p)]
+	\hat{D}_2[\cos\theta(p)\alpha_2(t,p)]
+\end{align}
+with which we obtain the transformed state
 \begin{equation}
 	\begin{split}
 		\hat{U}
-		\hat{a}_1^\dagger(p)
-		\hat{U}^\dagger
+		\ket{\alpha_1(t),\alpha_2(t)}
 		&=
-		e^{+i\hat{G}}
-		\hat{a}_1^\dagger(p)
-		e^{-i\hat{G}}
+		\hat{D}_1[\cos\theta(p)\alpha_1(t,p)]
+		\hat{D}_1[-i\sin\theta(p)e^{-i\varphi(p)}\alpha_2(t,p)]
 		\\
-		&=
-		\hat{a}_1^\dagger(p)
-		+
-		\comm{i\hat{G}}{\hat{a}_1^\dagger(p)}
-		+
-		\frac{1}{2}
-		\comm{i\hat{G}}{\comm{i\hat{G}}{\hat{a}_1^\dagger(p)}}
-		+
-		\dots
+		&\times
+		\hat{D}_2[-i\sin\theta(p)e^{+i\varphi(p)}\alpha_1(t,p)]
+		\hat{D}_2[\cos\theta(p)\alpha_2(t,p)]
+		\ket{0}
+	\end{split}
+	.
+\end{equation}
+The product of the first displacement operators is equal to
+\begin{equation}
+	\begin{split}
+		&\
+		\hat{D}_1[\cos\theta(p)\alpha_1(t,p)]
+		\hat{D}_1[-i\sin\theta(p)e^{-i\varphi(p)}\alpha_2(t,p)]
 		\\
-		&=
-		\hat{a}_1^\dagger(p)
-		+
-		i\theta(p)e^{-i\varphi(p)}
-		\hat{a}_2^\dagger(p)
-		-
-		\frac{1}{2}
-		\theta(p)^2
-		\hat{a}_1^\dagger(p)
-		+
-		\dots
+		=&\
+		\hat{D}_1[\cos\theta(p)\alpha_1(t,p)-i\sin\theta(p)e^{-i\varphi(p)}\alpha_2(t,p)]
 		\\
-		&=
-		\cos\theta(p)
-		\hat{a}_1^\dagger(p)
-		+
-		ie^{-i\varphi(p)}
-		\sin\theta(p)
-		\hat{a}_2^\dagger(p)
+		\times &\
+		\exp\left\{
+			i\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
+			\Im[
+				\cos\theta(p)\alpha_1(t,p)
+				i\sin\theta(p)e^{+i\varphi(p)}\alpha_2(t,p)^*
+			]
+		\right\}
 	\end{split}
 \end{equation}
-and
+and the product of the second displacement operators is equal to
 \begin{equation}
 	\begin{split}
-		\hat{U}
-		\hat{a}_1(p)
-		\hat{U}^\dagger
-		&=
-		e^{+i\hat{G}}
-		\hat{a}_1(p)
-		e^{-i\hat{G}}
+		&\
+		\hat{D}_2[\cos\theta(p)\alpha_2(t,p)]
+		\hat{D}_2[-i\sin\theta(p)e^{+i\varphi(p)}\alpha_1(t,p)]
 		\\
-		&=
-		\hat{a}_1(p)
-		+
-		\comm{i\hat{G}}{\hat{a}_1(p)}
-		+
-		\frac{1}{2}
-		\comm{i\hat{G}}{\comm{i\hat{G}}{\hat{a}_1(p)}}
-		+
-		\dots
+		=&\
+		\hat{D}_2[\cos\theta(p)\alpha_2(t,p)-i\sin\theta(p)e^{+i\varphi(p)}\alpha_1(t,p)]
 		\\
-		&=
-		\hat{a}_1(p)
-		-
-		i\theta(p)e^{-i\varphi(p)}
-		\hat{a}_2(p)
-		-
-		\frac{1}{2}
-		\theta(p)^2
-		\hat{a}_1(p)
-		+
-		\dots
-		\\
-		&=
-		\cos\theta(p)
-		\hat{a}_1(p)
-		-
-		ie^{-i\varphi(p)}
-		\sin\theta(p)
-		\hat{a}_2(p)
+		\times &\
+		\exp\left\{
+			i\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
+			\Im[
+				\cos\theta(p)\alpha_2(t,p)
+				i\sin\theta(p)e^{-i\varphi(p)}\alpha_1(t,p)^*
+			]
+		\right\}
 	\end{split}
 \end{equation}
-which leads to
+which together give us
 \begin{equation}
 	\begin{split}
 		\hat{U}
-		\hat{D}_1[\alpha(t,p)]
-		\hat{U}^\dagger
+		\ket{\alpha_1(t),\alpha_2(t)}
 		&=
-		\hat{D}_1[\cos\theta(p)\alpha(t,p)]
-		\hat{D}_2[i\sin\theta(p)\alpha(t,p)e^{+\varphi(p)}]
-	\end{split}
-\end{equation}
-similar we find
-\begin{equation}
-	\begin{split}
-		\hat{U}
-		\hat{D}_2[\alpha(t,p)]
-		\hat{U}^\dagger
-		&=
+		\exp\left\{
+			i\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
+			\Im[
+				\cos\theta(p)\alpha_1(t,p)
+				i\sin\theta(p)e^{+i\varphi(p)}\alpha_2(t,p)^*
+			]
+		\right\}
+		\\
+		&\times
+		\exp\left\{
+			i\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
+			\Im[
+				\cos\theta(p)\alpha_2(t,p)
+				i\sin\theta(p)e^{-i\varphi(p)}\alpha_1(t,p)^*
+			]
+		\right\}
+		\\
+		&\times
+		\ket{\cos\theta(p)\alpha_1(t,p)-i\sin\theta(p)e^{-i\varphi(p)}\alpha_2(t,p),
+			\cos\theta(p)\alpha_2(t,p)-i\sin\theta(p)e^{+i\varphi(p)}\alpha_1(t,p)}
 	\end{split}
 \end{equation}
