@@ -400,115 +400,30 @@ Coupled-mode theory is described in Ref.~\cite[p.~359]{Luks2009}.
 % - generalized non-linear coupling in \cite{Abdalla2000}
 % - macroscopic reflection and transmission using topological Chern-Simons term 
 
-We are aware of three approaches to a motivate a quantum mode coupler, i.e., a theoretical model which allows us to mix two plane-waves which share the same frequency.
-The first approach extends the unitary transformation of the beam splitter by analogy with the coherent state.
-The second approach starts from a linear interaction Hamiltonian.
-The third extends mode-coupling theory to the quantum regime.
-All three approaches appear somewhat ad-hoc:
-Experiments have confirmed the beam splitter transformation and now we try in hindsight to find theoretical arguments but we do not get far.
-The main reason being that beam splitter (or actually any optical component) are macroscopic while quantum mechanics is microscopic.
-There have been attempts to incorporate macroscopic medias into quantum theory, for instance, Snell's law was recovered by employing Chern-Simons theory, a form of topological quantum field theory, from a microscopic Lagrangian, see Ref.~\cite{Pismak2014}.
-Unfortunately, these attempts require very advanced mathematics and appear to be still in development.
-Therefore we limit the present discussions to the three approaches mentioned in the beginning.
+A quantum mode coupler superimposes two quantized plane-wave modes of the same frequency, represented by annihilation and creation operators.
+The most popular approach to extend the classical optical coupler to the quantum optical regime found in the quantum optics literature proposes replacing the classical electrical Fourier amplitudes with the quantum annihilation operators of the respective field modes, see Refs.~\cite{Leonhardt2010,Fox2006,Gerry2005}.
+The approach successfully recovers the classical relations due to the linear relation between the classical field amplitudes and the expectation value of the electric field operator.
+Furthermore, the predictions for non-classical states, e.g., number states, match the experimental observations.
+Despite the success, the popular ad-hoc approach does not integrate well into the existing framework of quantum mechanics.
+An alternative approach, which we follow here and extend to a mode continuum, is presented in Ref.~\cite[p.~131]{Haroche2006} and Ref.~\cite[p.~17]{QuesadaMejia2015}, uses interaction theory to derive the unitary beam splitter transformation from an interaction Hamiltonian.
 
-For the first approach, we start with the unitary beam splitter transformation $\hat{U}\in\text{SU}(2)$ \cref{eq:beam_splitter_transform} which relates the in- and output Fourier amplitudes via
-\begin{equation}
-	\begin{pmatrix}
-		\mathcal{E}_1^\prime(\omega)
-		\\
-		\mathcal{E}_2^\prime(\omega)
-	\end{pmatrix}
-	=
-	\hat{U}(\omega)
-	\begin{pmatrix}
-		\mathcal{E}_1(\omega)
-		\\
-		\mathcal{E}_2(\omega)
-	\end{pmatrix}
-	.
-\end{equation}
-We know that the classical Fourier amplitudes of the electric field correspond to the expectation value of the creation operator, i.e., \textcolor{red}{unprecise!}
-\begin{equation}
-	\mathcal{E}(\omega)
-	\propto
-	\expval{\hat{a}(\omega)}
-\end{equation}
-where $\hat{a}(\omega)$ is the annihilation operator corresponding to a plane-wave with frequency $\omega$.
-By linearity we therefore expect
-\begin{equation}
-	\begin{pmatrix}
-		\hat{a}_1^\prime(\omega)
-		\\
-		\hat{a}_2^\prime(\omega)
-	\end{pmatrix}
-	=
-	\hat{U}(\omega)
-	\begin{pmatrix}
-		\hat{a}_1(\omega)
-		\\
-		\hat{a}_2(\omega)
-	\end{pmatrix}
-\end{equation}
-where $\hat{a}_i^\prime(\omega)$ denotes the annihilation operators of the output modes and $\hat{a}_i(\omega)$ denotes the annihilation operators of the input modes.
-Inserting \cref{eq:beam_splitter_unitary_transform_expanded} and carrying out the matrix multiplication, we find
-\begin{equation}
-	\begin{pmatrix}
-		\hat{a}_1^\prime(\omega)
-		\\
-		\hat{a}_2^\prime(\omega)
-	\end{pmatrix}
-	=
-	e^{i\Lambda(\omega)}
-    \begin{pmatrix}
-        \hat{a}_1(\omega)e^{+i\psi(\omega)/2}\cos\Theta(\omega) +\hat{a}_2(\omega)e^{+i\phi(\omega)/2}\sin\Theta(\omega)
-        \\
-        \hat{a}_1(\omega)ie^{-i\phi(\omega)/2}\sin\Theta(\omega) + \hat{a}_2(\omega)e^{-i\psi(\omega)/2}\cos\Theta(\omega)
-    \end{pmatrix}
-\end{equation}
-Assuming the input operators satisfy the canonical commutation relations
-\begin{align}
-	\comm{\hat{a}_i(\omega)}{\hat{a}_j(\omega^\prime)}
-	=
-	0
-	=
-	\comm{\hat{a}_i^\dagger(\omega)}{\hat{a}_j^\dagger(\omega^\prime)}
-	,
-	&&
-	\comm{\hat{a}_i(\omega)}{\hat{a}_j^\dagger(\omega^\prime)}
-	=
-	(2\pi)\delta^{(1)}(\omega^\prime-\omega)\delta_{ij},
-\end{align}
-then the output operators
-% TODO: check that canonical commutation relations are retained for transformation in (3.2.20)!
-
-In a second approach based on Ref.~\cite[p.~131]{Haroche2006} and Ref.~\cite[p.~17]{QuesadaMejia2015} but extended for a mode-continuum:
-We use an interaction Hamiltonian to evolve the operators to a time after the interaction with the beam splitter.
-The "interaction approach" lets us see how the beam splitter transformation fits into the standard framework of quantum mechanics.
-The Hamiltonian of the system comprising two independent continuous field modes and the mode coupling interaction is
-\begin{equation}
-	\hat{H}
-	=
-	\hat{H}_1
-	+
-	\hat{H}_2
-	+
-	\hat{H}_\text{int}
-\end{equation}
-where the first two terms correspond to the free field Hamiltonians
+The theoretical system under consideration can be best thought as the fiber-optical coupler where we have two independent, e.g., spatially separated, propagating mode continuums.
+Without interaction, the propagating mode continuums are described by the two free field Hamiltonians $\hat{H}_1,\hat{H}_2$ of the form
 \begin{equation}
 	\hat{H}_i
 	=
-	\int\frac{\dd{p}}{2\pi}
+	\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
 	\omega(p)
 	\hat{a}_i^\dagger(p)
 	\hat{a}_i(p)
 \end{equation}
-with $\omega(p)=p$ and the third term corresponds to the linear coupling of the field modes including a complex-valued frequency-dependent coupling constant $g(p)$\footnote{The negative sign is required for the final results to follow the sign convention of the literature.}
+where the mode frequency is equal to the momentum in the propagation direction $\omega(p)=p$.
+With interaction, we add an interaction term
 \begin{equation}
 	\hat{H}_\text{int}
 	=
 	-
-	\int\frac{\dd{p}}{2\pi}
+	\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
 	\left\{
 		g(p)
 		\hat{a}_1^\dagger(p)
@@ -518,26 +433,39 @@ with $\omega(p)=p$ and the third term corresponds to the linear coupling of the 
 		\hat{a}_2^\dagger(p)
 		\hat{a}_1(p)
 	\right\}
-	.
 \end{equation}
-The interaction Hamiltonian is time-independent in the Schrödinger and Heisenberg picture, the interaction time-evolution operator is given exactly by the first term in the Magnus expansion
+describing a linear coupling with complex coupling factor $g(p)$.
+The negative sign of the interaction Hamiltonian $\hat{H}_\text{int}$ ensures that our results are compatible with the sign conventions used in the literature.
+
+An inherent problem of interaction theory in quantum optics is that while the electromagnetic field is perfectly microscopic, the interactions of optical components are impossible to describe microscopically.
+There have been attempts to incorporate the key properties of macroscopic medias into quantum field theory by employing topological Chern-Simons theory, for instance, Ref.~\cite{Pismak2014} recovers Snell's law - a macroscopic effect.
+Unfortunately, these attempts require very advanced mathematics and appear to be still in development, meaning that the particular form of our interaction Hamiltonian appears still somewhat unsatisfyingly ad-hoc.
+Another implicit assumption in quantum optics model is the independence of electromagnetic field modes.
+In traditional quantum field theory, there is only one Maxwell field.
+In quantum optics, we use macroscopic means to guide beams independent from another, i.e., space-like separated, justifying a description as independent fields.
+However, one should acknowledge that there exists a theoretic gap in the correspondence of macroscopic interactions in terms of some effective parameters in quantum field theory.
+
+The interaction Hamiltonian is time-independent and the interaction-picture time-evolution operator is exact with the first term of the Magnus expansion
 \begin{equation}
-	\hat{U}_\text{int}(t_1,t_0)
+	\hat{U}
 	=
 	\exp\left\{
-		-i\int_{t_0}^{t_1}\dd{t}
-		\hat{H}_\text{int}
-	\right\}
-	=
-	\exp\left\{
-		-i
-		\hat{H}_\text{int}
-		T
+		iT
+		\int\frac{\dd{p}}{(2\pi)\sqrt{2p}}
+		\left[
+			g(p)
+			\hat{a}_1^\dagger(p)
+			\hat{a}_2(p)
+			+
+			g(p)^*
+			\hat{a}_2^\dagger(p)
+			\hat{a}_1(p)
+		\right]
 	\right\}
 \end{equation}
-where $T$ is the interaction time.
-For instance, for a fiber coupler the interaction time is equal to the length where the waveguides are in close proximity parallel to another $L$ and the speed of light in the medium $v$, $T=L/v$.
-We combine the interaction time $T$ and the complex-valued coupling   constant $g(p)$ into a new real-valued coupling constant $\theta(p)$ and a phase factor $e^{i\varphi(p)}$, the time-evolution operator then simplifies to
+with $T=t_1-t_0$ denoting the interaction time.
+For instance, for a fiber coupler the interaction time $T$ is equal to the length $L$ where the waveguides are in close proximity parallel to another $L$ divided by the propagation speed of the medium $v$.
+We reparametrize the couplings by incorporating the interaction time $T$ and the Lorentz-factor $1/\sqrt{2p}$ together with the absolute value of the complex coupling factor $g(p)$ into a real-valued coupling $\theta(p)$ and a phase-factor $e^{i\varphi(p)}$
 \begin{equation}
 	\hat{U}
 	=
@@ -565,7 +493,7 @@ In the interaction picture, the annihilation operators are time-dependent
 \end{equation}
 and the coupling action transforms the operators according to
 \begin{equation}
-	\hat{b}_i(p,t)
+	\hat{a}_i^\prime(p,t)
 	=
 	\hat{U}^\dagger
 	\hat{a}_i(p,t)
@@ -590,33 +518,12 @@ Using a specific kind of \gls{bch} formula
 	+
 	\dots
 \end{equation}
-with which we the output modes turn out to be
-\begin{align}
-	\hat{b}_1(p,t)
-	&=
-	\cos[\theta(p)]
-	\hat{a}_1(p,t)
-	+
-	i\sin[\theta(p)]
-	e^{+i\varphi(p)}
-	\hat{a}_2(p,t)
-	\\
-	\hat{b}_2(p,t)
-	&=
-	i\sin[\theta(p)]
-	e^{-i\varphi(p)}
-	\hat{a}_1(p,t)
-	+
-	\cos[\theta(p)]
-	\hat{a}_2(p,t)
-	.
-\end{align}
-In compact matrix notation, we recover the heuristic beam splitter transform
+we define the transformed modes as output modes which in compact matrix notation
 \begin{equation}
 	\begin{pmatrix}
-		\hat{b}_1(p,t)
+		\hat{a}_1^\prime(p,t)
 		\\
-		\hat{b}_2(p,t)
+		\hat{a}_2^\prime(p,t)
 	\end{pmatrix}
 	=
 	\hat{U}^\dagger
@@ -638,7 +545,7 @@ In compact matrix notation, we recover the heuristic beam splitter transform
 		\hat{a}_2(p,t)
 	\end{pmatrix}
 \end{equation}
-which is also given for the single-mode case in Ref.~\cite[p.~96]{Leonhardt2003} and Ref.~\cite[p.~130]{Haroche2006}.
+recovers the unitary beam splitter transform in agreement with the single-mode transform reported in Ref.~\cite[p.~96]{Leonhardt2003} and Ref.~\cite[p.~130]{Haroche2006}.
 An interesting remark is that the so derived beam splitter transform has only two \gls{dof} and it is not possible to accommodate more \gls{dof} in the coupling constant of the interaction Hamiltonian.
 The absence of the global phase is easily explained by the fact that our Hamiltonian is invariant under global phase transformations.
 The absence of a second local phase depends on the extension of the beam splitter component:
