@@ -1,11 +1,16 @@
 \section{Overview}
 
-Let $\alpha[n],\beta[n]$ be two complex sequences, referred to as symbols.
-A coherent state transmission system comprises a transmitter, a quantum channel, and a receiver, see \Cref{fig:transmission_system}.
+In analogy with the classical communication system known from information theory, we propose a coherent state transmission system comprising a transmitter, a channel, and a receiver.
+In contrast to the classical communication system, the channel is quantum in nature and maps a time-dependent coherent state from the transmitter to the receiver.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/transmission-system}
-	\caption{Coherent state transmission system comprising a transmitter, a quantum channel, and a receiver. The transmitter encodes the symbol $\alpha[n]$ onto a coherent state $\ket{\alpha(t)}$. The channel maps from $\ket{\alpha(t)}$ to a coherent state $\ket{\beta(t)}$. The receiver decodes a symbol sequence $\beta[n]$ from $\ket{\beta(t)}$.}\label{fig:transmission_system}
+	\caption{Coherent state transmission system comprising a transmitter, a quantum channel, and a receiver. The transmitter encodes the symbols $\alpha[n]$ onto a coherent state $\ket{\alpha(t)}$. The channel maps from the coherent state at the transmitter $\ket{\alpha(t)}$ to a coherent state at the receiver $\ket{\beta(t)}$. The receiver decodes symbols $\beta[n]$ from the coherent state $\ket{\beta(t)}$.}\label{fig:transmission_system}
 \end{figure}
-The transmitter encodes the symbols $\alpha[n]$ onto a coherent state $\ket{\alpha(t)}$ and passes it to the quantum channel.
-The quantum channel maps $\ket{\alpha(t)}$ to a coherent state $\ket{\beta(t)}$ at a receiver, which decodes the symbols $\beta[n]$ from the coherent state $\ket{\beta(t)}$.
+\Cref{fig:transmission_system} illustrates the information flow of the coherent state transmission system:
+First, a sequence of complex numbers $\alpha[n]$, referred to as symbols, is supplied as input to the transmitter.
+The transmitter encodes the symbols $\alpha[n]$ onto a coherent state $\ket{\alpha(t)}$.
+The quantum channel takes the transmitter's coherent state $\ket{\alpha(t)}$ and forwards it as another coherent state $\ket{\beta(t)}$ to the receiver.
+For an ideal lossless quantum channel, the coherent states are perfectly correlated, i.e., identical.
+The receiver decodes the symbols $\beta[n]$ from the coherent state $\ket{\beta(t)}$.
+Compared with the classical communication system, the transmitter and receiver symbols are never perfectly correlated, not even for a perfect quantum channel, as the measurement is probabilistic.
