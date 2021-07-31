@@ -17,7 +17,7 @@ Finally, a controlled attenuation moves the optical signal $v(t)$ to the quantum
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/circuitikz/pulse-shaping}
-	\caption{Block diagram of the digital and analog signal-processing of the pulse-shaping: First, the symbols $\alpha[n]$ are upsampled with an upsampling factor of two yielding samples $\alpha^\prime[n]$. Second, a \gls{rrc} is applied to the samples $\alpha^\prime[n]$ yielding $u^\prime[n]$. Third, a \gls{dac} performs sample-and-hold to output the analog signal $u^\prime(t)$. Finally, an analog \gls{lp} filter smoothens the output of the \gls{dac}.}\label{fig:pulse_shaping_block}
+	\caption{Block diagram of the digital and analog signal-processing of the pulse-shaping: First, the real and imaginary part of the symbols $\alpha[n]$ are upsampled to yield the samples $\alpha^\prime[m]$. Second, the samples $\alpha^\prime[m]$ are \gls{rrc} filtered yielding the samples $x^\prime[m]$ for real respective $p^\prime[m]$ for the imaginary part. Third, a \gls{dac} converts $x^\prime[m]$ and the $p^\prime[m]$ to the analog signals $x^\prime(t)$ and $p^\prime(t)$. Finally, an analog \gls{lp} filter removes aliases and smoothens the output of the \gls{dac}.}\label{fig:pulse_shaping_block}
 \end{figure}
 The symbols $\alpha[n]$ are first upsampled by an upsampling factor of two by adding one zero-valued samples in between the symbols, i.e.,
 \begin{equation}
@@ -53,20 +53,20 @@ To illustrate the pulse-shaping, we show first consider a single symbol $\alpha[
 \begin{figure}[htb]
 	\centering
 	\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-unit-time}
-	\caption{Pulse-shaping steps in the time domain for a single unit symbol.}\label{fig:pulse_shaping_unit_time}
+	\caption{Pulse-shaping steps in the time domain for a single unit symbol: A unit symbol sequence $\Re\alpha[n]$ (first row) is upsampled by two (second row) to yield the samples $\Re\alpha^\prime[m]$. The digital \gls{rrc} filter is applied to the samples $x^\prime[m]$ determining the pulse-shape (third row). We can observe the diminishing ripple for the unit response of the filter to reduce the bandwidth. Finally, the pulse-shape $x^\prime[m]$ is converted to an analog signal and filtered by a \gls{lp} filter for smoothing and anti-aliasing.}\label{fig:pulse_shaping_unit_time}
 \end{figure}
 For complex symbols \Cref{fig:pulse_shaping_rand_time} shows the pulse-shaping.
 \begin{figure}[htb]
 	\centering
 	\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-rand-time}
-	\caption{Pulse-shaping steps in the time domain for random symbols from a complex normal distribution.}\label{fig:pulse_shaping_rand_time}
+	\caption{Pulse-shaping steps in the time domain for random symbols from a complex uniform distribution over the interval $[-1,+1]$. The first row shows the real (orange) and imaginary part (blue) of the complex symbols $\alpha[n]$ at their corresponding symbol index $n$. The second row shows the symbols after upsampling to $\alpha^\prime[m]$. The third row shows the samples after applying the \gls{rrc} filter $x^\prime[m]+ip^\prime[m]$. The fourth row shows the anti-aliased analog signal $x(t)+ip(t)$.}\label{fig:pulse_shaping_rand_time}
 \end{figure}
 Finally, it is of interest how the pulse-shaping affects the frequency domain.
 \Cref{fig:pulse_shaping_freq} shows the logarithmic power spectral density of the different pulse-shaping steps for the unit symbol and random symbols.
 \begin{figure}[htb]
 	\centering
 	\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-freq}
-	\caption{Pulse-shaping steps in the frequency domain for unit symbol (orange) and random symbols from a complex normal distribution (blue.}\label{fig:pulse_shaping_freq}
+	\caption{Pulse-shaping steps in the frequency domain (showing the relative \gls{psd}) for unit symbol (orange) and random symbols from a complex uniform distribution over the interval $[-1,+1]$ (blue). The unit response symbols have a perfectly flat power spectrum (first row). The random symbols have an approximately flat power spectrum (first row). Both symbol spectra (first row) occupy the Nyquist bandwidth. Upsampling doubles the Nyquist bandwidth by aliasing the spectrum (second row). Pulse-shaping acts as a bandpass by strongly suppressing the frequency components outside the original Nyquist bandwidth. Conversion to an analog signal (fourth row) is equivalent to infinite upsampling or adding infinitely many aliases to occupy the complete frequency spectrum. Finally, filtering with a \gls{lp} removes aliases.}\label{fig:pulse_shaping_freq}
 \end{figure}
 
 \FloatBarrier
@@ -78,7 +78,7 @@ Second, the orthogonality of sine and cosine, concerning a fixed frequency $\ome
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/circuitikz/iq-modulator}
-	\caption{Block diagram of an \gls{iq}-modulator.}\label{fig:iqmod}
+	\caption{Block diagram of an electro-optical \gls{iq}-modulator: A sinusoidal oscillator with carrier frequency $\omega_c$ is equally split into two branches. The upper branch is mixed with the baseband signal $p(t)$ while the lower branch is phase-shifted by $\pi/2$ and mixed with the baseband signal $x(t)$. The output of both mixers are added and yield the \gls{iq} passband signal.}\label{fig:iqmod}
 \end{figure}
 \Cref{fig:iqmod} shows a block diagram of an \gls{iq}-modulator.
 A sinusoidal oscillator running at frequency $\omega_c$ is split into two branches with a relative phase shift of $\pi/2$ between the branches.
@@ -117,7 +117,7 @@ The multiplication of the complex representation of a signal with a complex expo
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/transmitter}
-	\caption{Optical transmitter setup.}\label{fig:optical_transmitter}
+	\caption{Electro-optical transmitter configuration implementing the \gls{iq}-modulator: The output of a coherent laser source with telecommunication wavelength \SI{1550}{\nano\meter} is equally split into two branches. The lower branch is optically phase-shifted by $\pi/2$ and passed to a \gls{mzm} MZM1 which is electro-optically modulated by the analog baseband signal $x(t)$. The upper branch is directly passed to MZM2 which is modulated by the analog baseband signal $p(t)$. The output of MZM1 is combined with MZM2 in an optical coupler. \SI{99}{\percent} of the output power is monitored by a photodiode PD. \SI{1}{\percent} of the output power is passed to a third \gls{mzm} MZM3 which is controlled by a power controller which uses the electrical signal of PD as input. Finally, the output of MZM3 is passed through an optical isolator.}\label{fig:optical_transmitter}
 \end{figure}
 \Cref{fig:optical_transmitter} shows the configuration of the fiber-optical transmitter.
 An ultra-narrow-linewidth continuous-wave laser with center wavelength $\lambda_c=\SI{1550}{\nano\meter}$ is connected to a phase-symmetric and balanced 50:50 coupler which separates into an upper and lower branch.

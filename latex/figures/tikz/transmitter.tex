@@ -20,12 +20,12 @@
 		\coordinate[right=of osp] (out);
 		
 		\draw[arrow] (in) -- (dsp) node[midway, above]{$\alpha[n]$};
-		\draw[arrow] ([yshift=2ex]dsp.east) -- ([yshift=2ex]dac.west) node[midway, above]{$x^\prime[m]$};
-		\draw[arrow] ([yshift=-2ex]dsp.east) -- ([yshift=-2ex]dac.west) node[midway, above]{$p^\prime[m]$};
-		\draw[arrow] ([yshift=-2ex]dac.east) -- ([yshift=-2ex]asp.west) node[midway, above]{$x^\prime(t)$};
-		\draw[arrow] ([yshift=2ex]dac.east) -- ([yshift=2ex]asp.west) node[midway, above]{$p^\prime(t)$};
-		\draw[arrow] ([yshift=2ex]asp.east) -- ([yshift=2ex]mod.west) node[midway, above]{$x(t)$};
-		\draw[arrow] ([yshift=-2ex]asp.east) -- ([yshift=-2ex]mod.west) node[midway, above]{$p(t)$};
+		\draw[arrow] ([yshift=2.5ex]dsp.east) -- ([yshift=2.5ex]dac.west) node[midway, above]{$x^\prime[m]$};
+		\draw[arrow] ([yshift=-2.5ex]dsp.east) -- ([yshift=-2.5ex]dac.west) node[midway, above]{$p^\prime[m]$};
+		\draw[arrow] ([yshift=-2.5ex]dac.east) -- ([yshift=-2.5ex]asp.west) node[midway, above]{$x^\prime(t)$};
+		\draw[arrow] ([yshift=2.5ex]dac.east) -- ([yshift=2.5ex]asp.west) node[midway, above]{$p^\prime(t)$};
+		\draw[arrow] ([yshift=2.5ex]asp.east) -- ([yshift=2.5ex]mod.west) node[midway, above]{$x(t)$};
+		\draw[arrow] ([yshift=-2.5ex]asp.east) -- ([yshift=-2.5ex]mod.west) node[midway, above]{$p(t)$};
 		\draw[arrow] (mod) -- (osp) node[midway, above]{$\ket{\alpha^\prime(t)}$};
 		\draw[arrow] (osp) -- (out) node[midway, above]{$\ket{\alpha(t)}$};
 	\end{tikzpicture}

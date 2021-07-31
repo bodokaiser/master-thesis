@@ -12,7 +12,7 @@
 
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=4em,
+		node distance=4.5em,
 	]
 		\coordinate (in) at (0,0);
 		\node (cri) [twoportsplitshape, right=of in, circuitikz/t1=\textsf{Re}, circuitikz/t2=\textsf{Im}] {};
@@ -30,14 +30,14 @@
 		\draw (in) -- (cri.west) node[above, midway, sloped]{$\alpha[n]$} node[inputarrow]{};
 
 		\draw (cri.north) -- (cri.north|-ups1.west) -- (ups1.west) node[above, midway, sloped]{$\Re{\alpha[n]}$} node[inputarrow]{};
-		\draw (ups1.east) -- (psh1.west) node[above, midway, sloped]{$\Re{\alpha^\prime[n]}$} node[inputarrow]{};
-		\draw (psh1.east) -- (dac1.west) node[above, midway, sloped]{$x^\prime[n]$} node[inputarrow]{};
+		\draw (ups1.east) -- (psh1.west) node[above, midway, sloped]{$\Re{\alpha^\prime[m]}$} node[inputarrow]{};
+		\draw (psh1.east) -- (dac1.west) node[above, midway, sloped]{$x^\prime[m]$} node[inputarrow]{};
 		\draw (dac1.east) -- (lwp1.west) node[above, midway, sloped]{$x^\prime(t)$} node[inputarrow]{};
 		\draw (lwp1.east) -- (out1) node[above, midway, sloped]{$x(t)$} node[inputarrow]{};
 
 		\draw (cri.south) -- (cri.south|-ups2.west) -- (ups2.west) node[above, midway, sloped]{$\Im{\alpha[n]}$} node[inputarrow]{};
-		\draw (ups2.east) -- (psh2.west) node[above, midway, sloped]{$\Im{\alpha^\prime[n]}$} node[inputarrow]{};
-		\draw (psh2.east) -- (dac2.west) node[above, midway, sloped]{$p^\prime[n]$} node[inputarrow]{};
+		\draw (ups2.east) -- (psh2.west) node[above, midway, sloped]{$\Im{\alpha^\prime[m]}$} node[inputarrow]{};
+		\draw (psh2.east) -- (dac2.west) node[above, midway, sloped]{$p^\prime[m]$} node[inputarrow]{};
 		\draw (dac2.east) -- (lwp2.west) node[above, midway, sloped]{$p^\prime(t)$} node[inputarrow]{};
 		\draw (lwp2.east) -- (out2) node[above, midway, sloped]{$p(t)$} node[inputarrow]{};
 		
