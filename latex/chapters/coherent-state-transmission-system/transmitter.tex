@@ -1,15 +1,20 @@
 \section{Transmitter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
-The transmitter encodes the symbols $\alpha[n]$ onto the coherent state $\ket{\alpha(t)}$ by performing pulse-shaping, modulation and attenuation as illustrated in \Cref{fig:transmitter}.
-In the process, the signal is transformed from the digital over the analog electrical to the quantum optical domain.
+We introduced the transmitter in the coherent state transmission system model as a device that encodes symbols $\alpha[n]$ onto a coherent state $\ket{\alpha(t)}$.
+The far-reaching significance of electronic processing in our present state-of-the-art strongly suggests the symbols $\alpha[n]$ to be electrically encoded while the coherent state resides in the optical domain.
+Therefore, any practical transmitter requires at least converting the symbols in the electrical domain to the coherent state in the optical domain.
+Integration of the transmitter as a subsystem, for instance, as part of a \gls{cvqkd} system, highly suggests processing the symbols digitally as this is possible without loss of precision.
+Additionally, digital signal processing can be defined on the software side, which allows for a more flexible and updatable design which is especially beneficial to update \gls{cvqkd} protocols.
+In summary, the considerations made strongly advocate to start the signal processing of the transmitter in the software-defined digital domain and end the signal processing in the optical domain with analog signal processing mediating between these two ends.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/transmitter}
 	\caption{Block diagram showing the signal flow across the transmitter: Information is coded into complex-valued symbols $\alpha[n]$, the complex-valued symbols $\alpha[n]$ are converted to samples $\alpha^\prime[m]$ by upsampling and provided to the \gls{dsp}. The \gls{dsp} outputs the real-valued samples $x^\prime[m],p^\prime[m]$ which are converted to physical voltage signals $x^\prime(t),p^\prime(t)$ by digital-to-analog conversion and provided to the \gls{asp}. The \gls{asp} outputs the real-valued voltage signals $x(t),p(t)$ which are modulated onto a coherent state $\ket{\alpha^\prime(t)}$. Finally, \gls{osp} transforms $\ket{\alpha^\prime(t)}$ to $\ket{\alpha(t)}$.}\label{fig:transmitter}
 \end{figure}
-The pulse-shaping converts the symbols $\alpha[n]$ from the digital to the signal $u(t)$ in the analog domain.
-At the modulator, the electrical signal $u(t)$ is modulated onto an optical carrier using a \gls{mzm}, yielding the classical optical signal $v(t)$.
-Finally, a controlled attenuation moves the optical signal $v(t)$ to the quantum regime where an adequate description of the quantum signal is given in terms of the coherent state $\ket{\alpha(t)}$.
+\Cref{fig:transmitter} depicts the proposed signal processing pipeline across the different domains.
+Using software-defined \gls{dsp}, the digital symbols $\alpha[n]$ are encoded into the digital pulse shapes $x^\prime[m]$ and $p^\prime[m]$, which are converted to the analog signals $x^\prime(t)$ and $p^\prime(t)$.
+An \gls{asp} stage prepares the analog signals $x(t),p(t)$ to drive the optical modulator.
+The optical modulator encodes the analog signals $x(t), p(t)$ onto the coherent state $\ket{\alpha^\prime(t)}$, which might be further subject to a last \gls{osp} stage to output $\ket{\alpha(t)}$.
 
 \subsection{Pulse-shaping}
 

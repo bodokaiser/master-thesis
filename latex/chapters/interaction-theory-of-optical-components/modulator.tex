@@ -1,6 +1,14 @@
+\FloatBarrier
 \section{Modulator}
 
-\subsection{Phase-shifter}
+Modulators are devices that change the properties of a periodic waveform, the carrier signal.
+We are concerned with electro-optical modulators, i.e., modulators that change an optical carrier's waveform using the electro-optical effect.
+In contrast to electro-optical modulators, acousto-optical modulators first transform an electric signal to an acoustic (mechanical) signal using a transducer.
+
+Our setup uses the Mach-Zehnder modulator exclusively, but to understand the Mach-Zehnder modulator, we first need to understand the operating principle of an optical phase-shifter, in particular, the Pockels cell phase-shifter.
+
+\FloatBarrier
+\subsection{Pockels cell (phase)}
 
 % TODO:
 % figure with input and output beam, electrical signal source, phase-shifter medium, refractive index
@@ -9,8 +17,88 @@
 % relationship between change in refractive index and coherent state (omega^\prime -> omega n(omega)?)
 % how to write down an interaction Hamiltonian which changes the refractive index? Is this even possible?
 % Jacobi-Anger expansion to move modulation term in complex exponential to sum of exponentials
+% Saleh. Fundamentals of photonics. Ch. 18
+% Transit time modulation and corresponding bandwidth (int delta n(t-T) u(t) ?)
+% Can we write down an interaction time-evolution operator?
+% How does the refractive index correspond to the polarization? How does a change of the refractive index affect the phase?
 
-\subsection{Mach-Zehnder modulator}
+The phase-shifter adds a time-dependent phase $\varphi(t)$ to our coherent state $\ket{\alpha(t)}$
+\begin{equation}
+	\hat{U}
+	\ket{\alpha(t)}
+	=
+	e^{i\varphi(t)}
+	\ket{\alpha(t)}
+	.
+\end{equation}
+The time-dependent phase-shift is typically caused by a change in the refractive index $\Delta n(t,\omega)$ of a dielectric material which the optical signal passes.
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/circuitikz/phase-shifter}
+    \caption{Time-dependent phase-shifter using a change in the refractive index $\Delta n(t)$ to add a time-dependent to a coherent state $\ket{\alpha(t)}$. The change in the refractive index $\Delta n(t)$ is driven by an analog electric signal $x(t)$ for an electro-optical phase-shifter.}\label{fig:phase_shifter}
+\end{figure}
+
+According to Ref.~\cite[p.~14]{Murti2014}, the Pockels effect is second-order in the electric susceptibility $\chi_{ijk}^{(2)}$ and the corresponding macroscopic polarization is symbollically
+\begin{equation}
+	P_i^{(2)}
+	=
+	\varepsilon_0
+	\chi_{ijk}^{(2)}
+	E^jE^k
+\end{equation}
+where one of the electric fields is applied to the Pockels cell and the other is the optical field propagating through the Pockels cell.
+In the time-domain, the macroscopic polarization explicitly reads~\cite[p.~17]{Murti2014}
+\begin{equation}
+	P_i^{(2)}(t)
+	=
+	\varepsilon_0
+	\int_{-\infty}^t\dd{t_1^\prime}
+	\int_{-\infty}^t\dd{t_2^\prime}
+	G^{(2)}(t-t_1^\prime,t-t_2^\prime)
+	E^j(t-t_1^\prime)
+	E^k(t-t_2^\prime)
+\end{equation}
+where $G^{(2)}$ is a response function.
+Inserting the frequency representation of the electric fields
+\begin{equation}
+	E^i(t)
+	=
+	\int_\mathbb{R}\dd{\omega}
+	E^i(\omega)e^{-i\omega t}
+	,
+\end{equation}
+the macroscopic polarization becomes~\cite[p.~20]{Murti2014}
+\begin{equation}
+	P_i^{(2)}(t)
+	=
+	\varepsilon_0
+	\int_\mathbb{R}\dd{\omega_1}
+	\int_\mathbb{R}\dd{\omega_2}
+	\chi_{ijk}^{(2)}(\omega_1,\omega_2)
+	E^j(\omega_1)
+	E^k(\omega_2)
+	\delta^{(1)}(\omega_1+\omega_2)
+	e^{-i(\omega_1+\omega_2)t}
+	.
+\end{equation}
+For non-magnetic dielectric media, the refractive index is given by
+\begin{equation}
+	n(\omega)
+	=
+	\sqrt{\varepsilon(\omega)}
+\end{equation}
+and the Pockels effect is linear in the electric field~\cite[p.~698]{Saleh2007}
+\begin{equation}
+	n(E)
+	=
+	n
+	-
+	\frac{1}{2}
+	rn^3E
+\end{equation}
+
+\FloatBarrier
+\subsection{Mach-Zehnder (amplitude)}
 
 \Cref{fig:mach_zehnder_modulator} shows an embodiment of a \gls{mzm} using free-ray components comprising two beam splitters BS1 and BS2, two mirrors M1 and M2, and two variable phases shifters with phase shift $+\varphi/2$ respective $-\varphi/2$ (push-pull configuration).
 Beam splitter BS1 combines and distributes the input fields $E_1,E_2$ equally among the interferometer arms.
@@ -373,4 +461,3 @@ and in the time-domain
 \end{equation}
 
 \subsubsection{Continuous-mode and quantum}
-
