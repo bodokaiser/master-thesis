@@ -15,6 +15,12 @@ In summary, the considerations made strongly advocate to start the signal proces
 Using software-defined \gls{dsp}, the digital symbols $\alpha[n]$ are encoded into the digital pulse shapes $x^\prime[m]$ and $p^\prime[m]$, which are converted to the analog signals $x^\prime(t)$ and $p^\prime(t)$.
 An \gls{asp} stage prepares the analog signals $x(t),p(t)$ to drive the optical modulator.
 The optical modulator encodes the analog signals $x(t), p(t)$ onto the coherent state $\ket{\alpha^\prime(t)}$, which might be further subject to a last \gls{osp} stage to output $\ket{\alpha(t)}$.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/transmit-spectrum}
+	\caption{Transmit spectrum of the transmitter.}\label{fig:transmit_spectrum}
+\end{figure}
+% TODO: explain components (and artifacts?) of the transmit spectrum and which of them we are going to discuss and why
 
 \subsection{Pulse-shaping}
 
