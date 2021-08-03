@@ -20,7 +20,7 @@
 		  	\pnodes(12,3){CtrlIn}(13,3){CtrlOut}
 		  	\pnodes(12,1){IsoIn}(13,1){IsoOut}(14,1){FiberOut}
 		  	
-			\optbox[compname=Laser, position=start, optboxsize=2 1, labeloffset=0](LaserIn)(LaserOut){\SI{1550}{\nano\meter}}
+			\optbox[compname=Laser, position=start, optboxsize=2 1.2, labeloffset=0](LaserIn)(LaserOut){{\begin{tabular}{@{}c@{}}Transmit\\laser\end{tabular}}}
 			\elecsynthesizer[compname=OscX, wire=none, labelangle=-90](OscXIn)(OscXOut){$x(t)$}
 			\elecsynthesizer[compname=OscP, wire=none, labelangle=-90](OscPIn)(OscPOut){$p(t)$}
 			
@@ -31,7 +31,7 @@
 			
 			\optcoupler[compname=Coupler, labeloffset=0.5](MzmXOut)(MzmPOut)(PdIn)(MzmAIn){99:1}
 			\optmzm[compname=MzmA, extnode=t](MzmAIn)(MzmAOut){MZM 3}
-			\optisolator[compname=Iso](IsoIn)(IsoOut)
+			\optisolator[compname=Iso](IsoIn)(IsoOut){\begin{tabular}{@{}c@{}}Optical\\isolator\end{tabular}}
 			\optdetector[compname=Pd, extnode=r, dettype=diode, labelangle=180](PdIn)(PdOut){PD}
 			\optbox[compname=Ctrl, extnode=b, optboxsize=1.8 1.2, labeloffset=0](CtrlIn)(CtrlOut){\begin{tabular}{@{}c@{}}Power\\controller\end{tabular}}
 	

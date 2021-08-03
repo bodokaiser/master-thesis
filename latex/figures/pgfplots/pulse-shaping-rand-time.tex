@@ -14,8 +14,7 @@
 
 \begin{document}
 	\begin{tikzpicture}[
-		block/.style={minimum height=4ex, minimum width=7em, text width=7em, align=left, fill=white},
-		font=\small,
+		font=\fontsize{8}{9}\selectfont,
 	]
 		\begin{groupplot}[
 			group style={
@@ -25,10 +24,10 @@
 %				xticklabels at=edge bottom,
 				vertical sep=1ex,
 			},
-			ylabel style={align=center},
+			ylabel style={align=center, font=\fontsize{7}{8}\selectfont},
 			grid=major,
-			width=0.95\linewidth,
-			height=24ex,
+			width=0.8\linewidth,
+			height=22ex,
 		]
 			\nextgroupplot[
 				xmin=10,
