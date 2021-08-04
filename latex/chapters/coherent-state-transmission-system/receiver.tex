@@ -1,14 +1,10 @@
 \section{Receiver}
 
-% TODO: spectrum diagram for down-conversion
+% compare receiver architectures and motivation for low-complexity receiver
+% See Ref.~\cite{Kikuchi2016} for introduction to coherent architecture
+% See Ref.~\cite{Brunner2017} for coherent receiver architectures for CV-QKD
 
-\subsection{Optical signal processing and demodulation}
-
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/circuitikz/demodulator}
-	\caption{Block diagram of the \gls{iq}-demodulator: The sinusoidal local oscillator is divided into two branches. The upper branch is mixed with the real passband signal $\Re\{\alpha(t)e^{-i\omega_ct}\}$, anti-aliased by a \gls{lp} filter to give the baseband signal $p(t)$. The lower branch is phase-shifted by $\pi/2$, nixed with the real passband signal $\Re\{\alpha(t)e^{-i\omega_ct}\}$, anti-aliased by a \gls{lp} filter to give the baseband signal $x(t)$.}\label{fig:demodulator}
-\end{figure}
+\subsection{Optical and analog-to-digital conversion}
 
 \begin{figure}[htb]
 	\centering
@@ -16,6 +12,19 @@
 	\caption{Fiber-optical \gls{iq}-demodulator: The fiber output passes through an optical isolator and is coupled with a \gls{lo} laser in a balanced optical coupler. The coupler outputs are monitored by the photodiodes PD1 and PD2 in balanced photodetection configuration. The balanced photocurrent is amplified by an \gls{tia}.}
 \end{figure}
 
-\subsection{Analog-to-digital conversion and digital signal processing}
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/circuitikz/receiver-asp}
+	\caption{Foo}
+\end{figure}
+
+\FloatBarrier
+\subsection{Digital signal processing}
 
 % what happens here?
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/circuitikz/receiver-dsp}
+	\caption{Foo foo}
+\end{figure}

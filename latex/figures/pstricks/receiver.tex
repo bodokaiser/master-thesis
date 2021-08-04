@@ -1,19 +1,18 @@
+
 \documentclass[pstricks]{standalone}
 
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(11,5)
+	\begin{pspicture}(10,5)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
 			\pnodes(2,4){LaserIn}(4,4){LaserOut}
 		  	\pnodes(0,1){FiberIn}(2,1){FiberOut}
 		  	\pnodes(2,1){IsolatorIn}(4,1){IsolatorOut}
-		  	\pnodes(6,1){Detector1In}(7,1){Detector1Out}
-		  	\pnodes(6,4){Detector2In}(7,4){Detector2Out}
-		  	\pnodes(9,2.5){TIAmpIn}(10,2.5){TIAmpOut}
-		  	\pnodes(10.1,2.5){WireIn}(10.8,2.5){WireOut}
+		  	\pnodes(8,1){Detector1In}(9,1){Detector1Out}
+		  	\pnodes(8,4){Detector2In}(9,4){Detector2Out}
 
 		  	\optbox[compname=Laser, position=start, optboxsize=2 1.4, labeloffset=0](LaserIn)(LaserOut){{\begin{tabular}{@{}c@{}}Local\\oscillator\\laser\end{tabular}}}
 			\optfiber[compname=Fiber](FiberIn)(FiberOut)
@@ -21,14 +20,9 @@
 			\optcoupler[compname=Coupler](LaserOut)(IsolatorOut)(Detector2In)(Detector1In){50:50}
 			\optdetector[compname=PD1, dettype=diode, extnode=r](Detector1In)(Detector1Out){PD1}
 			\optdetector[compname=PD2, dettype=diode, extnode=r](Detector2In)(Detector2Out){PD2}
-		  	\optbox[compname=TIAmp, optboxsize=1.2 1, labeloffset=0, extnode=l](TIAmpIn)(TIAmpOut){TIA}
 		
 			\drawfiber{Laser}{Coupler}{PD2}
 			\drawfiber(FiberIn){Fiber}{Isolator}{Coupler}{PD1}
-			
-			\drawwire[wireangleA=-54, wireangleB=-54](\oenodeExt{PD1})(\oenodeExt{TIAmp})
-			\drawwire[wireangleA=54, wireangleB=54](\oenodeExt{PD2})(\oenodeExt{TIAmp})
-			\drawwire[arrows=->](WireIn)(WireOut)
 		\end{optexp}
 	\end{pspicture}
 \end{document}

@@ -1,0 +1,26 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{amsmath}
+\usepackage{circuitikz}
+
+\usetikzlibrary{positioning}
+
+\let\Re\undefined
+\let\Im\undefined
+\DeclareMathOperator{\Re}{\operatorname{Re}}
+\DeclareMathOperator{\Im}{\operatorname{Im}}
+
+\begin{document}
+	\begin{tikzpicture}[
+		node distance=4.5em,
+	]
+		\coordinate (in) at (0,0);
+		\node [twoportshape, t=\sffamily{RRC}, right=of in] (rrc) {};
+		\node [twoportshape, t=$\downarrow$, right=of rrc] (dwn) {};
+		\coordinate[right=of dwn] (out);
+		
+		\draw (in) to[short, l={$V[m]$}] (rrc.west) node[inputarrow]{};
+		\draw (rrc.east) to[short, l={$\beta^\prime[m]$}] (dwn.west) node[inputarrow]{};
+		\draw (dwn.east) to[short, l={$\beta[n]$}] (out) node[inputarrow]{};
+	\end{tikzpicture}
+\end{document}
