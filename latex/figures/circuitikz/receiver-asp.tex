@@ -10,15 +10,15 @@
 		\node at (0,-3) [detectorshape, label=below:PD2] (pd2) {};
 		\node at (in) [adder] (adder) {};
 		\node at (3,0) [ampshape, label=TIA] (amp) {};
-		\node at (6,0) [lowpassshape, label=LP] (lp) {};
-		\node at (9,0) [adcshape, label=ADC] (adc) {};
-		\coordinate (out) at (11.5,0);
+		\node at (7,0) [lowpassshape, label=LP] (lp) {};
+		\node at (11,0) [adcshape, label=ADC] (adc) {};
+		\coordinate (out) at (14,0);
 		
 		\draw (pd1.south) to[short, l=$+i_1(t)$] (adder.north) node[inputarrow, rotate=-90]{};
 		\draw (pd2.north) to[short, l_=$-i_2(t)$] (adder.south) node[inputarrow, rotate=90]{};
 		\draw (adder.east) to[short, l={$\Delta i(t)$}] node[inputarrow]{} (amp.west);
-		\draw (amp.east) to[short, l=$V^\prime(t)$] node[inputarrow]{} (lp.west);
-		\draw (lp.east) to[short, l=$V(t)$] node[inputarrow]{} (adc.west);
-		\draw (adc.east) to[short, l={$V[m]$}] node[inputarrow]{} (out);
+		\draw (amp.east) to[short, l=$\beta^{\prime\prime}(t)e^{-i\omega_it}$] node[inputarrow]{} (lp.west);
+		\draw (lp.east) to[short, l=$\beta^\prime(t)e^{-i\omega_it}$] node[inputarrow]{} (adc.west);
+		\draw (adc.east) to[short, l={$\beta^\prime[m]e^{-i\omega_it}$}] node[inputarrow]{} (out);
 	\end{tikzpicture}
 \end{document}
