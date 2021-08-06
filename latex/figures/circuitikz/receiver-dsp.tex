@@ -15,12 +15,16 @@
 		node distance=4.5em,
 	]
 		\coordinate (in) at (0,0);
-		\node [twoportshape, t=\sffamily{RRC}, right=of in] (rrc) {};
+		\node [mixer, right=of in] (mixer) {};
+		\node [twoportshape, t=\sffamily{RRC}, right=of mixer] (rrc) {};
 		\node [twoportshape, t=$\downarrow$, right=of rrc] (dwn) {};
 		\coordinate[right=of dwn] (out);
+		\node [below=of mixer] (osc) {$\exp(i\omega_lt)$};
 		
-		\draw (in) to[short, l={$V[m]$}] (rrc.west) node[inputarrow]{};
+		\draw (in) to[short, l={$V[m]$}] (mixer.west) node[inputarrow]{};
+		\draw (mixer.east) to[short, l={$V[m]e^{i\omega_lt}$}] (rrc.west) node[inputarrow]{};
 		\draw (rrc.east) to[short, l={$\beta^\prime[m]$}] (dwn.west) node[inputarrow]{};
 		\draw (dwn.east) to[short, l={$\beta[n]$}] (out) node[inputarrow]{};
+		\draw (osc) to[short] (mixer.south) node[inputarrow, rotate=90]{};
 	\end{tikzpicture}
 \end{document}
