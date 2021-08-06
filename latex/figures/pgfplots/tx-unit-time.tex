@@ -36,8 +36,8 @@
 				xlabel={Symbol index $n$},
 				xlabel near ticks,
 				xticklabel pos=top,
-				ymin=-0.2,
-				ymax=1.2,
+%				ymin=-0.2,
+%				ymax=1.2,
 				ylabel={Symbols\\$\Re\alpha[n]$},
 			]
 			\addplot[
@@ -45,14 +45,14 @@
 				mark=o,
 				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-time-sym.csv};
+			] plot table[col sep=comma] {../../../data/signal-processing/unit-time-tx-sym.csv};
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
 				xlabel={},
 				xticklabels={},
-				ymin=-0.2,
-				ymax=1.2,
+%				ymin=-0.2,
+%				ymax=1.2,
 				ylabel={Samples\\$\Re\alpha^\prime[m]$},
 			]
 			\addplot[
@@ -60,14 +60,14 @@
 				mark=o,
 				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-time-psup.csv};
+			] plot table[col sep=comma] {../../../data/signal-processing/unit-time-tx-up.csv};
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
 				xlabel={},
 				xticklabels={},
-				ymin=-0.2,
-				ymax=1.2,
+%				ymin=-0.2,
+%				ymax=1.2,
 				ylabel={Pulse-shape\\$x^\prime[m]$},
 			]
 			\addplot[
@@ -75,20 +75,20 @@
 				mark=o,
 				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-time-psout.csv};
+			] plot table[col sep=comma] {../../../data/signal-processing/unit-time-tx-rrc.csv};
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
 				xlabel={Signal time $t/T_s$},
-				ymin=-0.2,
-				ymax=1.2,
+%				ymin=-0.2,
+%				ymax=1.2,
 				ylabel={Analog\\(anti-aliased)\\$x^\prime(t)$},
 			]
 			\addplot[
 				no markers,
 				orange!75!red,
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/pulse-shaping/unit-time-lpout.csv};
+			] plot table[col sep=comma] {../../../data/signal-processing/unit-time-tx-lp.csv};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}

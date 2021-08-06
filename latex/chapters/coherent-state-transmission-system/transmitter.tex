@@ -42,7 +42,7 @@ The pulse-shaped samples $x^\prime[m]$ are converted to an analog waveform $x^\p
 
 \begin{figure}[htb]
 	\centering
-	\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-unit-time}
+	\includestandalone[width=\textwidth]{figures/pgfplots/tx-unit-time}
 	\caption{Pulse-shaping steps in the time domain for a single unit symbol: A unit symbol sequence $\Re\alpha[n]$ (first row) is upsampled by two (second row) to yield the samples $\Re\alpha^\prime[m]$. The digital \gls{rrc} filter is applied to the samples $x^\prime[m]$ determining the pulse-shape (third row). We can observe the diminishing ripple for the unit response of the filter to reduce the bandwidth. Finally, the pulse-shape $x^\prime[m]$ is converted to an analog signal and filtered by a \gls{lp} filter for smoothing and anti-aliasing.}\label{fig:pulse_shaping_unit_time}
 \end{figure}
 
@@ -70,7 +70,7 @@ The Nyquist criteria states that the samples $x[m]$ together with a sampling fre
 
 \begin{figure}[htb]
 	\centering
-	\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-rand-time}
+	\includestandalone[width=\textwidth]{figures/pgfplots/tx-rand-time}
 	\caption{Pulse-shaping steps in the time domain for random symbols from a complex uniform distribution over the interval $[-1,+1]$. The first row shows the real (orange) and imaginary part (blue) of the complex symbols $\alpha[n]$ at their corresponding symbol index $n$. The second row shows the symbols after upsampling to $\alpha^\prime[m]$. The third row shows the samples after applying the \gls{rrc} filter $x^\prime[m]+ip^\prime[m]$. The fourth row shows the anti-aliased analog signal $x(t)+ip(t)$.}\label{fig:pulse_shaping_rand_time}
 \end{figure}
 
@@ -116,7 +116,7 @@ We illustrated the pulse-shaping using a single unit symbol $\alpha[15]=1$ in \C
 Furthermore, \Cref{fig:pulse_shaping_freq} visualizes the pulse-shaping steps in the frequency domain.
 \begin{figure}[htb]
 	\centering
-	\includestandalone[width=\textwidth]{figures/pgfplots/pulse-shaping-freq}
+	\includestandalone[width=\textwidth]{figures/pgfplots/tx-frequency}
 	\caption{Pulse-shaping steps in the frequency domain (showing the relative \gls{psd}) for unit symbol (orange) and random symbols from a complex uniform distribution over the interval $[-1,+1]$ (blue). The unit response symbols have a perfectly flat power spectrum (first row). The random symbols have an approximately flat power spectrum (first row). Both symbol spectra (first row) occupy the Nyquist bandwidth. Upsampling doubles the Nyquist bandwidth by aliasing the spectrum (second row). Pulse-shaping acts as a bandpass by strongly suppressing the frequency components outside the original Nyquist bandwidth. Conversion to an analog signal (fourth row) is equivalent to infinite upsampling or adding infinitely many aliases to occupy the complete frequency spectrum. Finally, filtering with a \gls{lp} removes aliases.}\label{fig:pulse_shaping_freq}
 \end{figure}
 
