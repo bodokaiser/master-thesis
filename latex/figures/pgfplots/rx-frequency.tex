@@ -1,0 +1,81 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+
+\usetikzlibrary{positioning}
+\usepgfplotslibrary{groupplots}
+
+\pgfplotsset{compat=1.17}
+
+\begin{document}
+	\begin{tikzpicture}[
+		block/.style={minimum height=4ex, minimum width=8em, text width=8em, align=left, fill=white},
+		font=\small,
+	]
+		\begin{groupplot}[
+			group style={
+				group name=plot,
+				group size=1 by 4,
+				xlabels at=edge bottom,
+				xticklabels at=edge bottom,
+				vertical sep=1ex,
+			},
+			grid=major,
+			width=0.95\linewidth,
+			height=24ex,
+			xlabel={Frequency $f/f_s$},
+			yticklabels={},
+			ylabel style={align=center},
+		]
+			\nextgroupplot[
+				title={Relative power spectral density},
+				xmin=-4,
+				xmax=4,
+				xtick distance=0.5,
+				ymin=-60,
+				ymax=5,
+				ylabel={Detection\\$\beta^\prime[m]e^{-i\omega_it}$},
+			]
+			\addplot[
+				no markers,
+				orange!75!red,
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-freq-rx-det.csv};
+			\nextgroupplot[
+				xmin=-4,
+				xmax=4,
+				xtick distance=0.5,
+				ymin=-60,
+				ymax=5,
+				ylabel={Down-\\conversion\\$\beta^\prime[m]$},
+			]
+			\addplot[
+				no markers,
+				orange!75!red,
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-freq-tx-lp.csv};
+			\nextgroupplot[
+				xmin=-4,
+				xmax=4,
+				xtick distance=0.5,
+				ymin=-60,
+				ymax=5,
+				ylabel={Matched filter\\$\beta[m]$},
+			]
+			\addplot[
+				no markers,
+				orange!75!red,
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-freq-rx-rrc.csv};
+			\nextgroupplot[
+				xmin=-4,
+				xmax=4,
+				xtick distance=0.5,
+				ymin=-60,
+				ymax=5,
+				ylabel={Symbols\\$\beta[n]$},
+			]
+			\addplot[
+				no markers,
+				orange!75!red,
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-freq-rx-dwn.csv};
+		\end{groupplot}
+	\end{tikzpicture}
+\end{document}

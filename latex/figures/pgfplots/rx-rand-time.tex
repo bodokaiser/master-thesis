@@ -1,0 +1,118 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{amsmath}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{positioning}
+\usepgfplotslibrary{groupplots}
+
+\let\Re\undefined
+\let\Im\undefined
+\DeclareMathOperator{\Re}{\operatorname{Re}}
+\DeclareMathOperator{\Im}{\operatorname{Im}}
+
+\begin{document}
+	\begin{tikzpicture}[
+		font=\fontsize{8}{9}\selectfont,
+	]
+		\begin{groupplot}[
+			group style={
+				group name=plot,
+				group size=1 by 4,
+%				xlabels at=edge bottom,
+%				xticklabels at=edge bottom,
+				vertical sep=1ex,
+			},
+			ylabel style={align=center, font=\fontsize{7}{8}\selectfont},
+			grid=major,
+			width=0.8\linewidth,
+			height=22ex,
+		]
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+				xlabel={Signal time $t/T_s$},
+				xlabel near ticks,
+				xticklabel pos=top,
+%				ymin=-1.2,
+%				ymax=1.2,
+				ylabel={Samples\\$\beta^\prime[n]e^{-i\omega_it}$},
+			]
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-rx-det-real.csv};
+			\addplot[
+				ycomb,
+				mark=x,
+				mark options={blue!75!green},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-rx-det-imag.csv};
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+				xlabel={},
+				xticklabels={},
+%				ymin=-1.2,
+%				ymax=1.2,
+				ylabel={Down-\\conversion\\$\beta^\prime[m]$},
+			]
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-lp-real.csv};
+			\addplot[
+				ycomb,
+				mark=x,
+				mark options={blue!75!green},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-lp-imag.csv};
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+				xlabel={},
+				xticklabels={},
+%				ymin=-1.2,
+%				ymax=1.2,
+				ylabel={Matched filter\\$\beta[m]$},
+			]
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-rx-rrc-real.csv};
+			\addplot[
+				ycomb,
+				mark=x,
+				mark options={blue!75!green},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-rx-rrc-imag.csv};
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+				xlabel={Symbol index $n$},
+%				ymin=-1.2,
+%				ymax=1.2,
+				ylabel={Symbols\\$\beta[n]$},
+			]
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-rx-dwn-real.csv};
+			\addplot[
+				ycomb,
+				mark=x,
+				mark options={blue!75!green},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-rx-dwn-imag.csv};
+		\end{groupplot}
+	\end{tikzpicture}
+\end{document}

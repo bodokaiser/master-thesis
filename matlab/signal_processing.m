@@ -73,7 +73,6 @@ write_freq(num_sym, rand_tx_rrc, fullfile(datadir, 'rand-freq-tx-rrc.csv'));
 write_freq(num_sym, rand_tx_dac, fullfile(datadir, 'rand-freq-tx-dac.csv'));
 write_freq(num_sym, rand_tx_lp, fullfile(datadir, 'rand-freq-tx-lp.csv'));
 write_freq(num_sym, rand_rx_det, fullfile(datadir, 'rand-freq-rx-det.csv'));
-write_freq(num_sym, rand_rx_dwnc, fullfile(datadir, 'rand-freq-rx-dwnc.csv'));
 write_freq(num_sym, rand_rx_rrc, fullfile(datadir, 'rand-freq-rx-rrc.csv'));
 write_freq(num_sym, rand_rx_dwn, fullfile(datadir, 'rand-freq-rx-dwn.csv'));
 
