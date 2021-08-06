@@ -20,7 +20,7 @@
 		\node [twoportshape, t=\sffamily{RRC}, right=of dwn1] (rrc) {};
 		\node [twoportshape, t=$\downarrow$, right=of rrc] (dwn2) {};
 		\coordinate[right=of dwn2] (out);
-		\node [below=2em of mixer] (osc) {$\exp(i\omega_lt)$};
+		\node [below=2em of mixer] (osc) {$e^{+i\omega_it}$};
 		
 		\draw (in) to[short, l={$\beta^\prime[m]e^{-i\omega_it}$}] (mixer.west) node[inputarrow]{};
 		\draw (mixer.east) to[short, l={$\beta^\prime[m]$}] (dwn1.west) node[inputarrow]{};

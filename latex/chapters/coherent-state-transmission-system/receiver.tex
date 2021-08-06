@@ -15,7 +15,7 @@
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/circuitikz/receiver-asp}
-	\caption{Foo}
+	\caption{Block diagram of the receiver's analog-to-digital conversion: The photodetectors output the photocurrents $i_1(t),i_2(t)$ and the difference $\Delta i(t)=i_1(t)-i_2(t)$ is created. A \gls{tia} converts the current signal to $\Delta i(t)$ a voltage signal $\beta^{\prime\prime}(t)e^{-i\omega_it}$ where $\beta^{\prime\prime}$ denotes the complex signal baseband and $\omega_i=\omega_c-\omega_l$ is the intermediate frequency. A \gls{lp} filter reduces the signal bandwidth to half the sampling rate of the \gls{adc} to satisfy the Nyquist criteria.}
 \end{figure}
 
 \FloatBarrier
@@ -26,17 +26,17 @@
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/receiver-dsp}
-	\caption{Foo foo}
+	\caption{Block diagram of the receiver's \gls{dsp}: First, the intermediate frequency is removed by multiplying the time-domain samples with the \gls{lo} frequency $e^{+i\omega_lt}$. Second, the samples $\beta^\prime[m]$ are downsampled to be compatible with the \gls{rrc} (matched) filter coefficients of the transmitter. Finally, the output of the matched filter $\beta^\prime[l]$ is downsampled to reveal the symbols $\beta[n]$.}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
 	\includestandalone[width=\textwidth]{figures/pgfplots/rx-rand-time}
-	\caption{Foo bar}
+	\caption{Time domain plot of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The samples from the \gls{adc} (first row) are multiplied by the complex exponential $e^{+i\omega_it}$ to remove the intermediate frequency (second row). The samples without the intermediate frequency are downsampled to the same sampling rate of the transmitter and filtered by the. matched \gls{rrc} (third row). Finally, the matched filtered samples are downsampled to reveal the receiver's symbol sequence $\beta[n]$ (last row).}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
 	\includestandalone[width=\textwidth]{figures/pgfplots/rx-frequency}
-	\caption{Foo bar}
+	\caption{Power spectral density plott of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The spectrum from the \gls{adc} samples is shifted by the intermediate frequency $\omega_i$ (first row). Down-conversion centers the spectrum (second row). Downsampling and applying the matched \gls{rrc} filter increases the steepness of the spectrum (third row). Downsampling to the symbols removes the steep band edges (last row).}
 \end{figure}
