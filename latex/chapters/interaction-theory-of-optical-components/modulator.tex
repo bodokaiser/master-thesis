@@ -8,7 +8,7 @@ In contrast to electro-optical modulators, acousto-optical modulators first tran
 Our setup uses the Mach-Zehnder modulator exclusively, but to understand the Mach-Zehnder modulator, we first need to understand the operating principle of an optical phase-shifter, in particular, the Pockels cell phase-shifter.
 
 \FloatBarrier
-\subsection{Pockels cell (phase)}
+\subsection{Pockels phase modulator}
 
 % TODO:
 % figure with input and output beam, electrical signal source, phase-shifter medium, refractive index
@@ -27,15 +27,22 @@ The phase-shifter adds a time-dependent phase $\varphi(t)$ to our coherent state
 	\hat{U}
 	\ket{\alpha(t)}
 	=
-	e^{i\varphi(t)}
-	\ket{\alpha(t)}
+	\ket{\alpha^\prime(t)}
+	=
+	\ket{e^{i\varphi(t)}\alpha(t)}
 	.
 \end{equation}
 The time-dependent phase-shift is typically caused by a change in the refractive index $\Delta n(t,\omega)$ of a dielectric material which the optical signal passes.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/circuitikz/phase-shifter}
-    \caption{Time-dependent phase-shifter using a change in the refractive index $\Delta n(t)$ to add a time-dependent to a coherent state $\ket{\alpha(t)}$. The change in the refractive index $\Delta n(t)$ is driven by an analog electric signal $x(t)$ for an electro-optical phase-shifter.}\label{fig:phase_shifter}
+    \caption{Block diagram of a time-dependent phase-shifter driven by a modulation signal $x(t)$ with input and output coherent states $\ket{\alpha(t)}$ and $\ket{\alpha^\prime(t)}$.}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/phase-shifter}
+    \caption{Pockels cell of length $L$ and thickness $d$ embedded in a waveguide with constant dielectric permittivity $\varepsilon$: The dielectric permittivity depends on the electric field $E_\text{mod}(t)$ across the Pockels cell plates. The optical field $E_\text{opt}(t)$ enters the Pockels cell from the left and leaves it to the right as $E^\prime_\text{opt}(t)$.}
 \end{figure}
 
 According to Ref.~\cite[p.~14]{Murti2014}, the Pockels effect is second-order in the electric susceptibility $\chi_{ijk}^{(2)}$ and the corresponding macroscopic polarization is symbollically

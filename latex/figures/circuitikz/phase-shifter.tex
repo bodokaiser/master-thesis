@@ -8,17 +8,14 @@
 \begin{document}
 	\begin{tikzpicture}[
 		node distance=4em,
-		arrow/.style={-latex},
-		block/.style={draw, very thick, fill=white, minimum height=10ex, minimum width=8em},
 	]
 		\coordinate (in) at (0,0);
-		\node (pc) [block, right=of in, align=center] {$\Delta n(\omega,t)$};
-		node[below right] {};	
-		\node (osc) [vsourcesinshape, above=3em of pc, rotate=90, anchor=west] {};
-		\coordinate [right=of pc] (out);
+		\node (phs) [vphaseshiftershape, right=of in] {};
+		\node (osc) [vcoshape, above=3em of phs] {};
+		\coordinate [right=of phs] (out);
 		
-		\draw[arrow] (in) -- (pc) node[above, midway] {$\ket{\alpha(t)}$};
-		\draw[arrow] (pc) -- (out) node[above, midway] {$\ket{\alpha^\prime(t)}$};
-		\draw[arrow] (osc.west) -- (pc.north) node[left, midway] {$x(t)$};
+		\draw (osc.south) to[short, l=$x(t)$] (phs.north) node[inputarrow, rotate=-90]{};
+		\draw (in) to[short, l=$\ket{\alpha(t)}$] (phs.west) node[inputarrow]{};
+		\draw (phs.east) to[short, l=$\ket{\alpha^\prime(t)}$] (out) node[inputarrow]{};
 	\end{tikzpicture}
 \end{document}
