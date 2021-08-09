@@ -10,40 +10,120 @@ Our setup uses the Mach-Zehnder modulator exclusively, but to understand the Mac
 \FloatBarrier
 \subsection{Pockels phase modulator}
 
-% TODO:
-% figure with input and output beam, electrical signal source, phase-shifter medium, refractive index
-% Linear electro-optical effect (Pockels effect)
-% relationship signal applied to LiNiob and change in refractive index
-% relationship between change in refractive index and coherent state (omega^\prime -> omega n(omega)?)
-% how to write down an interaction Hamiltonian which changes the refractive index? Is this even possible?
-% Jacobi-Anger expansion to move modulation term in complex exponential to sum of exponentials
-% Saleh. Fundamentals of photonics. Ch. 18
-% Transit time modulation and corresponding bandwidth (int delta n(t-T) u(t) ?)
-% Can we write down an interaction time-evolution operator?
-% How does the refractive index correspond to the polarization? How does a change of the refractive index affect the phase?
-
-The phase-shifter adds a time-dependent phase $\varphi(t)$ to our coherent state $\ket{\alpha(t)}$
-\begin{equation}
-	\hat{U}
-	\ket{\alpha(t)}
+The phase-shifter or phase modulator adds a phase of $\phi_2+\varphi+2(t)$ to a coherent state compared to a coherent state following the unmodulated path, see \Cref{fig:phase_shifter}.
+The phase difference between the two coherent states is
+\begin{align}
+	\Delta\varphi(t)
 	=
-	\ket{\alpha^\prime(t)}
+	\varphi_2(t)
+	+
+	\Delta\phi
+	&&
+	\Delta\phi
 	=
-	\ket{e^{i\varphi(t)}\alpha(t)}
+	\phi_2
+	-
+	\phi_1
 	.
-\end{equation}
-The time-dependent phase-shift is typically caused by a change in the refractive index $\Delta n(t,\omega)$ of a dielectric material which the optical signal passes.
+\end{align}
+It is common practice to only refer to the phase difference $\Delta\varphi(t)$ by defining an appropriate global phase reference or equivalently applying a global gauge transformation to remove the constant phase difference $\Delta\phi$.
+If multiple phase modulators are present in parallel the constant phase difference $\Delta\phi$ becomes relevant but can be compensated electronically through the time-dependent part $\varphi_2(t)$.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/circuitikz/phase-shifter}
-    \caption{Block diagram of a time-dependent phase-shifter driven by a modulation signal $x(t)$ with input and output coherent states $\ket{\alpha(t)}$ and $\ket{\alpha^\prime(t)}$.}
+    \caption{Block diagram of a time-dependent phase-shifter: An initial coherent state $\ket{\alpha(t)}$ is split with equal power into an upper and lower branch. The lower branch corresponds to the coherent state $\ket{\frac{1}{\sqrt{2}}\alpha(t)e^{i\phi_1}}$ which accumulated a constant phase of $\phi_1$ due to the splitting and the lower optical path length. The upper branch passes a variable phase-shifter driven by the electric signal $x(t)$ which adds a phase $\phi_2+\varphi_2(t)$ compared to the initial coherent state.}\label{fig:phase_shifter}
 \end{figure}
+In the following, we focus on the physics of phase-shifters utilizing the Pockels effect and motivate the postulated phase relation between the in- and output coherent states.
 
+Starting with a phenomenological approach, the Pockels effect - also known as the linear electro-optical effect - describes a linear change of the refractive index of a dielectric material in the presence of an external electric field $E$
+\begin{equation}
+	n(E)
+	=
+	n^{(0)}
+	+
+	n^{(1)}E
+\end{equation}
+wherein $n^{(0)}=n(0)$ is the refractive index without an external field and $n^{(1)}$ is a proportionality constant.
+One way to create the external electric field $E$ is to place the Pockels dielectric inside a plate capacitor and apply a voltage $V$ to the plates separated by a distance $d$ which yields an electric field of $E=V/d$ neglecting boundary effects.
+Such a configuration is known as Pockels cell and depicted in \Cref{fig:pockels_cell} where the external field is labeled $E_x(t)$.
 \begin{figure}[htb]
     \centering
-    \includegraphics{figures/tikz/phase-shifter}
-    \caption{Pockels cell of length $L$ and thickness $d$ embedded in a waveguide with constant dielectric permittivity $\varepsilon$: The dielectric permittivity depends on the electric field $E_\text{mod}(t)$ across the Pockels cell plates. The optical field $E_\text{opt}(t)$ enters the Pockels cell from the left and leaves it to the right as $E^\prime_\text{opt}(t)$.}
+    \includegraphics{figures/tikz/pockels-cell}
+    \caption{Pockels cell of length $l$ and thickness $d$ embedded in a waveguide with constant dielectric permittivity $\varepsilon_1$: The dielectric permittivity of the Pockels cell $\varepsilon_2(t)$ depends on the electric field $E_x(t)$ across the Pockels cell plates. The optical field $E_z(t)$ enters the Pockels cell from the left and leaves it to the right as $E^\prime_z(t)$.}\label{fig:pockels_cell}
 \end{figure}
+Let us first consider a monochromatic electromagnetic wave of frequency $\omega_0$ propagating through a dielectric of length $l$ with refractive index $n_1^{(0)}=\sqrt{\varepsilon_1}$.
+Inside the dielectric, the wave propagates with phase velocity $v_p=1/n_1^{(0)}$ and the transmit time is $T_1=l/v_{1p}$ such that it accumulates a total phase shift of
+\begin{equation*}
+	\phi_1
+	=
+	\omega_0T_1
+	=
+	2\pi f\frac{l}{v_{1p}}
+	=
+	2\pi\frac{n_1^{(0)}l}{\lambda_0}
+\end{equation*}
+where $\lambda_0=1/f$ is the vacuum wave length and $f=\omega/(2\pi)$ the wave frequency.
+If we now consider the same monochromatic electromagnetic wave propagating through a Pockels dielectric of length $l$ it will accumulate a total phase shift of
+\begin{equation}
+	\phi_2+\varphi_2(t)
+	=
+	\omega_0T_2
+	=
+	2\pi f\frac{l}{v_{2p}}
+	=
+	2\pi
+	\left[
+		\frac{n_2^{(0)} l}{\lambda_0}
+		+
+		\frac{n_2^{(1)}El}{\lambda_0}
+	\right]
+\end{equation}
+leading to the phase parameters
+\begin{align}
+	\varphi_2(t)
+	=
+	2\pi\frac{n_2^{(1)}E}{\lambda_0}l
+	&&
+	\Delta\phi
+	=
+	2\pi\frac{n_2^{(0)}-n_1^{(0)}}{\lambda_0}l
+	.
+\end{align}
+Extending our discussion to wave packets, we need to replace the phase velocity $v_p$ with the group velocity $v_g$ which relates to the refractive index via~\cite[p.~211]{Jackson2007}
+\begin{equation}
+	v_g(\omega)
+	=
+	\left[
+		n
+		+
+		\omega
+		\pdv{n}{\omega}
+	\right]^{-1}
+	.
+\end{equation}
+and we find for the phase difference
+\begin{equation}
+	\varphi_2(t)
+	=
+	\dots
+\end{equation}
+
+On a more fundamental level, we need want investigate why we can consider the modulation to be de-facto DC, i.e., why we can neglect the time-dependency of the Pockels field.
+We achieve this by noting that the refractive index $n(\omega)$ for a medium with electric permittivity $\varepsilon(\omega)$, magnetic permeability $\mu(\omega)$ and chirality $\vb{\xi}$.
+\begin{equation}
+	n(\omega)
+	=
+	\sqrt{\varepsilon(\omega)\mu(\omega)}
+\end{equation}
+where for non-magnetic media $\mu(\omega)=1$ which we will assume here.
+The electric permittivity can be expressed expanded for time-invariant media to\cite[eq.~(16)]{Rerat2020}
+\begin{equation}
+	\varepsilon(\omega)
+	=
+	1
+	+
+	\chi
+\end{equation}
 
 According to Ref.~\cite[p.~14]{Murti2014}, the Pockels effect is second-order in the electric susceptibility $\chi_{ijk}^{(2)}$ and the corresponding macroscopic polarization is symbollically
 \begin{equation}
@@ -94,15 +174,7 @@ For non-magnetic dielectric media, the refractive index is given by
 	=
 	\sqrt{\varepsilon(\omega)}
 \end{equation}
-and the Pockels effect is linear in the electric field~\cite[p.~698]{Saleh2007}
-\begin{equation}
-	n(E)
-	=
-	n
-	-
-	\frac{1}{2}
-	rn^3E
-\end{equation}
+
 
 \FloatBarrier
 \subsection{Mach-Zehnder (amplitude)}

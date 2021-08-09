@@ -3,7 +3,6 @@
 \usepackage{amsmath}
 
 \usetikzlibrary{arrows.meta,patterns}
-%\usetikzlibrary{arrows.meta,backgrounds,fit,positioning}
 
 \begin{document}
 	\begin{tikzpicture}
@@ -19,17 +18,17 @@
 		
 		\draw[pattern=north west lines, pattern color=gray] (5,0) rectangle ++(3,2);		
 		
-		\node at (2.5,0.5) {$\varepsilon$};
-		\node at (10.5,0.5) {$\varepsilon$};
-		\node at (6.5,0.5) {$\varepsilon^\prime(t)$};
+		\node at (2.5,0.5) {$\varepsilon_1$};
+		\node at (10.5,0.5) {$\varepsilon_1$};
+		\node at (6.5,0.5) {$\varepsilon_2(t)$};
 		
 		\draw[fill=black] (5,0) rectangle ++(3,-0.1);
 		\draw[fill=black] (5,2) rectangle ++(3,+0.1);
 		
-		\draw[-Latex] (1,1) -- ++(3,0) node[midway, above]{$E_\text{opt}(t)$};
-		\draw[-Latex] (9,1) -- ++(3,0) node[midway, above]{$E^\prime_\text{opt}(t)$};
-		\draw[-Latex] (5.5,2) -- ++(0,-2) node[midway, above right]{$E_\text{mod}(t)$};
+		\draw[-Latex] (1,1) -- ++(3,0) node[midway, above]{$E_z(t)$};
+		\draw[-Latex] (9,1) -- ++(3,0) node[midway, above]{$E^\prime_z(t)$};
+		\draw[-Latex] (5.5,2) -- ++(0,-2) node[midway, above right]{$E_x(t)$};
 		\draw[to-to] (8.25,2) -- ++(0,-2) node[midway, right]{$d$};
-		\draw[to-to] (5,2.2) -- ++(3,0) node[midway, above]{$L$};
+		\draw[to-to] (5,2.2) -- ++(3,0) node[midway, above]{$l$};
 	\end{tikzpicture}
 \end{document}
