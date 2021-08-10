@@ -33,9 +33,13 @@ If multiple phase modulators are present in parallel the constant phase differen
     \includegraphics{figures/circuitikz/phase-shifter}
     \caption{Block diagram of a time-dependent phase-shifter: An initial coherent state $\ket{\alpha(t)}$ is split with equal power into an upper and lower branch. The lower branch corresponds to the coherent state $\ket{\frac{1}{\sqrt{2}}\alpha(t)e^{i\phi_1}}$ which accumulated a constant phase of $\phi_1$ due to the splitting and the lower optical path length. The upper branch passes a variable phase-shifter driven by the electric signal $x(t)$ which adds a phase $\phi_2+\varphi_2(t)$ compared to the initial coherent state.}\label{fig:phase_shifter}
 \end{figure}
-In the following, we focus on the physics of phase-shifters utilizing the Pockels effect and motivate the postulated phase relation between the in- and output coherent states.
 
-Starting with a phenomenological approach, the Pockels effect - also known as the linear electro-optical effect - describes a linear change of the refractive index of a dielectric material in the presence of an external electric field $E$
+In the following, we justify the postulated the phase relations between the in- and output states for a phase-shifter utilizing the Pockels effect in three steps:
+First, we discuss the Pockels effect in a simplified setting where the Pockels effect is static, i.e., time-independent and the analysis is based on classical wave mechanics.
+Second, we analyze the time-dependency which arises in continuous modulation but still in a classical setting.
+Third, we use the previous result to justify why we can treat the modulation to be effectively static and summarize a quantum approach from the literature to derive the unitary transformation relating in- and output states.
+
+From a purely phenomenological point of view, the Pockels effect - also known as the linear electro-optical effect - describes a linear change of the refractive index of a dielectric material in the presence of an external electric field $E$, i.e.,
 \begin{equation}
 	n(E)
 	=
@@ -44,137 +48,145 @@ Starting with a phenomenological approach, the Pockels effect - also known as th
 	n^{(1)}E
 \end{equation}
 wherein $n^{(0)}=n(0)$ is the refractive index without an external field and $n^{(1)}$ is a proportionality constant.
-One way to create the external electric field $E$ is to place the Pockels dielectric inside a plate capacitor and apply a voltage $V$ to the plates separated by a distance $d$ which yields an electric field of $E=V/d$ neglecting boundary effects.
-Such a configuration is known as Pockels cell and depicted in \Cref{fig:pockels_cell} where the external field is labeled $E_x(t)$.
+One way to create the external electric field $E$ is to place the Pockels dielectric inside a plate capacitor and apply a voltage $V$ to the plates.
+Neglecting boundary effects, we find a homogeneous static electric field between the plates of $E=V/d$ where $d$ is the plate distance.
+Such a configuration is known as Pockels cell and depicted in \Cref{fig:pockels_cell} where the field inside the Pockels cell is labeled $E_x(t)$.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/pockels-cell}
     \caption{Pockels cell of length $l$ and thickness $d$ embedded in a waveguide with constant dielectric permittivity $\varepsilon_1$: The dielectric permittivity of the Pockels cell $\varepsilon_2(t)$ depends on the electric field $E_x(t)$ across the Pockels cell plates. The optical field $E_z(t)$ enters the Pockels cell from the left and leaves it to the right as $E^\prime_z(t)$.}\label{fig:pockels_cell}
 \end{figure}
 Let us first consider a monochromatic electromagnetic wave of frequency $\omega_0$ propagating through a dielectric of length $l$ with refractive index $n_1^{(0)}=\sqrt{\varepsilon_1}$.
-Inside the dielectric, the wave propagates with phase velocity $v_p=1/n_1^{(0)}$ and the transmit time is $T_1=l/v_{1p}$ such that it accumulates a total phase shift of
+Inside the dielectric, the wave propagates with phase velocity $c/n_1^{(0)}$ and takes $T_1=ln_1^{(0)}/c$ to pass through the dielectric.
+Directly after the transit, the wave accumulated a total phase shift of
 \begin{equation*}
 	\phi_1
 	=
 	\omega_0T_1
 	=
-	2\pi f\frac{l}{v_{1p}}
-	=
 	2\pi\frac{n_1^{(0)}l}{\lambda_0}
 \end{equation*}
-where $\lambda_0=1/f$ is the vacuum wave length and $f=\omega/(2\pi)$ the wave frequency.
-If we now consider the same monochromatic electromagnetic wave propagating through a Pockels dielectric of length $l$ it will accumulate a total phase shift of
+where $\lambda_0=c/f$ is the vacuum wave length.
+If we now consider the same monochromatic electromagnetic wave propagating through a Pockels cell of the same length $l$ but without applied voltage, the wave would accumulate a phase shift of
 \begin{equation}
-	\phi_2+\varphi_2(t)
+	\phi_2
 	=
 	\omega_0T_2
 	=
-	2\pi f\frac{l}{v_{2p}}
-	=
-	2\pi
-	\left[
-		\frac{n_2^{(0)} l}{\lambda_0}
-		+
-		\frac{n_2^{(1)}El}{\lambda_0}
-	\right]
+	2\pi\frac{n_2^{(0)}l}{\lambda_0}
+	.
 \end{equation}
-leading to the phase parameters
-\begin{align}
-	\varphi_2(t)
-	=
-	2\pi\frac{n_2^{(1)}E}{\lambda_0}l
-	&&
+So even when there is no electric field inside the Pockels cell, we find a phase difference of
+\begin{equation}
 	\Delta\phi
 	=
+	\phi_2
+	-
+	\phi_1
+	=
 	2\pi\frac{n_2^{(0)}-n_1^{(0)}}{\lambda_0}l
-	.
-\end{align}
-Extending our discussion to wave packets, we need to replace the phase velocity $v_p$ with the group velocity $v_g$ which relates to the refractive index via~\cite[p.~211]{Jackson2007}
+\end{equation}
+because of the different dielectric constants of the materials.
+If we apply a voltage to the Pockels cell, the refractive index of the Pockels dielectric contributes a second phase shift of
 \begin{equation}
-	v_g(\omega)
+	\varphi_2
+	=
+	2\pi\frac{n_2^{(1)}E}{\lambda_0}l
+\end{equation}
+and the total phase difference is $\varphi_2+\Delta\phi$.
+Extending our discussion to wave packets in dispersive media, we need to replace the phase velocity $v_p$ with the group velocity $v_g$.
+The group velocity can be expressed in terms of the refractive index via~\cite[p.~211]{Jackson2007}
+\begin{equation}
+	v_g(\omega_0)
 	=
 	\left[
 		n
 		+
 		\omega
 		\pdv{n}{\omega}
-	\right]^{-1}
-	.
+	\right]^{-1}_{\omega=\omega_0}
 \end{equation}
-and we find for the phase difference
-\begin{equation}
-	\varphi_2(t)
-	=
-	\dots
-\end{equation}
+where $\omega_0$ is the center frequency of the wave packet.
+The concept of group velocity can be extended to quantum states, see, for instance, Ref.~\cite[p.~3]{Naumov2013}.
+We refrain from a further discussion which would require specific knowledge of the wave packet's pulse shape and frequency-dependency of the refractive index.
 
-On a more fundamental level, we need want investigate why we can consider the modulation to be de-facto DC, i.e., why we can neglect the time-dependency of the Pockels field.
-We achieve this by noting that the refractive index $n(\omega)$ for a medium with electric permittivity $\varepsilon(\omega)$, magnetic permeability $\mu(\omega)$ and chirality $\vb{\xi}$.
+Thus far, we have treated a static electric field in the Pockels cell.
+We are now going to extend our model to allow for time-dependent electric field inside the Pockels cell and justify why we can treat the time-dependency of the modulation field to be effectively static.
+An external electric field induces a dipole moment in the constituents of a dielectric.
+The average dipole moment per volume is referred to the macroscopic polarization $\vb{P}$.
+Assuming the dielectric to be a time-invariant system, i.e., to be memoryless, we can expand each component of the macroscopic polarization $P^i$ up to second-order in terms of electric susceptibility tensors $\chi$~\cite[p.~17]{Murti2014}
 \begin{equation}
-	n(\omega)
+	P_i(t)
 	=
-	\sqrt{\varepsilon(\omega)\mu(\omega)}
-\end{equation}
-where for non-magnetic media $\mu(\omega)=1$ which we will assume here.
-The electric permittivity can be expressed expanded for time-invariant media to\cite[eq.~(16)]{Rerat2020}
-\begin{equation}
-	\varepsilon(\omega)
-	=
-	1
+	\int_{\mathbb{R}}\dd{t^\prime}
+	\chi^{(1)}_{ij}(t-t^\prime)
+	E^j(t^\prime)
 	+
-	\chi
+	\iint_{\mathbb{R}^2}\dd{t^\prime}\dd{t^{\prime\prime}}
+	\chi^{(2)}_{ijk}(t-t^\prime,t-t^{\prime\prime})
+	E^j(t^\prime)E^k(t^{\prime\prime})
 \end{equation}
-
-According to Ref.~\cite[p.~14]{Murti2014}, the Pockels effect is second-order in the electric susceptibility $\chi_{ijk}^{(2)}$ and the corresponding macroscopic polarization is symbollically
+where causality demands $\chi^{(n)}(t-t^\prime)=0$ for $t^\prime>t$.
+Inserting the Fourier representation, we find
 \begin{equation}
-	P_i^{(2)}
+	P_i(t)
 	=
-	\varepsilon_0
-	\chi_{ijk}^{(2)}
-	E^jE^k
-\end{equation}
-where one of the electric fields is applied to the Pockels cell and the other is the optical field propagating through the Pockels cell.
-In the time-domain, the macroscopic polarization explicitly reads~\cite[p.~17]{Murti2014}
-\begin{equation}
-	P_i^{(2)}(t)
-	=
-	\varepsilon_0
-	\int_{-\infty}^t\dd{t_1^\prime}
-	\int_{-\infty}^t\dd{t_2^\prime}
-	G^{(2)}(t-t_1^\prime,t-t_2^\prime)
-	E^j(t-t_1^\prime)
-	E^k(t-t_2^\prime)
-\end{equation}
-where $G^{(2)}$ is a response function.
-Inserting the frequency representation of the electric fields
-\begin{equation}
-	E^i(t)
-	=
-	\int_\mathbb{R}\dd{\omega}
-	E^i(\omega)e^{-i\omega t}
-	,
-\end{equation}
-the macroscopic polarization becomes~\cite[p.~20]{Murti2014}
-\begin{equation}
-	P_i^{(2)}(t)
-	=
-	\varepsilon_0
-	\int_\mathbb{R}\dd{\omega_1}
-	\int_\mathbb{R}\dd{\omega_2}
-	\chi_{ijk}^{(2)}(\omega_1,\omega_2)
+	\int_{\mathbb{R}}\dd{\omega_1}
+	\chi^{(1)}_{ij}(\omega_1)
 	E^j(\omega_1)
-	E^k(\omega_2)
-	\delta^{(1)}(\omega_1+\omega_2)
+	e^{-i\omega_1t}
+	+
+	\iint_{\mathbb{R}^2}\dd{\omega_1}\dd{\omega_2}
+	\chi^{(2)}_{ijk}(\omega_1,\omega_2)
+	E^j(\omega_1)E^k(\omega_2)
 	e^{-i(\omega_1+\omega_2)t}
+\end{equation}
+and the Fourier component of the macroscopic polarization components turns out to be~\cite[p.~1070]{Mandel1995}
+\begin{equation}
+	P_i(\omega)
+	=
+	\int\dd{\omega_1}
+	\chi^{(1)}_{ij}(\omega_1)
+	E^j(\omega_1)
+	\delta^{(1)}(\omega_1-\omega)
+	+
+	\iint\dd{\omega_1}\dd{\omega_2}
+	\chi^{(2)}_{ijk}(\omega_1,\omega_2)
+	E^j(\omega_1)E^k(\omega_2)
+	\delta^{(1)}(\omega+\omega_1+\omega_2)
+\end{equation}
+where the delta distribution ensures energy conservation in the process.
+The electric susceptibility tensor $\varepsilon_{ij}(\omega,t)$ is usually defined implicitly through the displacement field
+\begin{equation}
+	D_i(\omega)
+	=
+	E_i(\omega)
+	+
+	P_i(\omega)
+	=
+	\varepsilon_{ij}E^j(\omega)
+\end{equation}
+where $\star$ indicates a convolution.
+Comparing the expansion of the macroscopic polarization, we find the electric susceptibility tensor to be
+\begin{equation}
+	\varepsilon_{ij}(t)
+	=
+	\chi^{(1)}_{ij}(t)
+	+
+	\int_{\mathbb{R}}\dd{t^\prime}
+	\chi^{(2)}_{ijk}(t,t-t^\prime)
+	E^j(t^\prime)
 	.
 \end{equation}
-For non-magnetic dielectric media, the refractive index is given by
+For a dielectric, non-magnetic and non-chiral medium, the refractive index tensor is given by~\cite[eq.~16]{Rerat2020}
 \begin{equation}
-	n(\omega)
+	n_{ij}
 	=
-	\sqrt{\varepsilon(\omega)}
+	\sqrt{\varepsilon_{ij}}
+	=
 \end{equation}
 
+% form of the susceptibility tensor for LiNiob, see Yariv p. 237
 
 \FloatBarrier
 \subsection{Mach-Zehnder (amplitude)}
