@@ -19,16 +19,17 @@ unit_tx_rrc = conv(unit_tx_up, rrc_b, 'same');
 unit_tx_dac = upsample(unit_tx_rrc, uf_ps);
 unit_tx_lp = filtfilt(lp_b, lp_a, unit_tx_dac);
 
-% random symbols
-rand_tx_sym = (2*rand(num_sym, 2) - 1) * [1; 1i];
+% random QPSK symbols
+%rand_tx_sym = (2*rand(num_sym, 2) - 1) * [1; 1i];
+rand_tx_sym = 2*((rand(num_sym, 2) > 0.5) - 0.5) * [1; 1i];
 rand_tx_up = upsample(rand_tx_sym, uf_ps);
-rand_tx_rrc = conv(rand_tx_up, rrc, 'same');
+rand_tx_rrc = conv(rand_tx_up, rrc_b, 'same');
 rand_tx_dac = upsample(rand_tx_rrc, uf_lp);
 rand_tx_lp = filtfilt(lp_b, lp_a, rand_tx_dac);
 rand_rx_det = rand_tx_lp .* exp(2*pi*1i*0.8 * (0:(length(rand_tx_lp) - 1)).' / (length(rand_tx_lp) / num_sym));
 rand_rx_dwnc = rand_tx_lp;
 rand_rx_adc = downsample(rand_rx_dwnc, uf_lp);
-rand_rx_rrc = conv(rand_rx_adc, rrc, 'same');
+rand_rx_rrc = conv(rand_rx_adc, rrc_b, 'same');
 rand_rx_dwn = downsample(rand_rx_rrc, uf_ps);
 
 % visualize

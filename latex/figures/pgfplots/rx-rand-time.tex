@@ -19,7 +19,7 @@
 		\begin{groupplot}[
 			group style={
 				group name=plot,
-				group size=1 by 4,
+				group size=1 by 5,
 %				xlabels at=edge bottom,
 %				xticklabels at=edge bottom,
 				vertical sep=1ex,
@@ -96,7 +96,8 @@
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
-				xlabel={Symbol index $n$},
+				xlabel={},
+				xticklabels={},
 %				ymin=-1.2,
 %				ymax=1.2,
 				ylabel={Symbols\\$\beta[n]$},
@@ -113,6 +114,26 @@
 				mark options={blue!75!green},
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-rx-dwn-imag.csv};
+			\nextgroupplot[
+				xmin=10,
+				xmax=20,
+				xlabel={Symbol index $n$},
+%				ymin=-1.2,
+%				ymax=1.2,
+				ylabel={Symbols\\$\alpha[n]$},
+			]
+			\addplot[
+				ycomb,
+				mark=o,
+				mark options={orange!75!red},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-sym-real.csv};
+			\addplot[
+				ycomb,
+				mark=x,
+				mark options={blue!75!green},
+				restrict expr to domain={\thisrow{c1}}{10:20},
+			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-sym-imag.csv};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}
