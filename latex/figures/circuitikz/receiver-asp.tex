@@ -3,22 +3,26 @@
 \usepackage{amsmath}
 \usepackage{circuitikz}
 
+\usetikzlibrary{positioning}
+
 \begin{document}
-	\begin{tikzpicture}
+	\begin{tikzpicture}[
+		node distance=5em,
+	]
 		\coordinate (in) at (0,0);
-		\node at (0,3) [detectorshape, label=PD1] (pd1) {};
-		\node at (0,-3) [detectorshape, label=below:PD2] (pd2) {};
-		\node at (in) [adder] (adder) {};
-		\node at (3,0) [ampshape, label=TIA] (amp) {};
-		\node at (7,0) [lowpassshape, label=LP] (lp) {};
-		\node at (11,0) [adcshape, label=ADC] (adc) {};
-		\coordinate (out) at (14,0);
+		\node [adder, right=of in] (adder) {};
+		\node [detectorshape, above left=2em and 4em of adder, label=right:PD1, rotate=90, anchor=west] (pd1) {};
+		\node [detectorshape, below left=2em and 4em of adder, label=right:PD2, rotate=90, anchor=east] (pd2) {};
+		\node [ampshape, right=of adder, label=TIA] (tia) {};
+		\node [lowpassshape, right=of tia, label=LP] (lp) {};
+		\node [adcshape, right=of lp, label=ADC] (adc) {};
+		\coordinate [right=of adc] (out);
 		
-		\draw (pd1.south) to[short, l=$+i_1(t)$] (adder.north) node[inputarrow, rotate=-90]{};
-		\draw (pd2.north) to[short, l_=$-i_2(t)$] (adder.south) node[inputarrow, rotate=90]{};
-		\draw (adder.east) to[short, l={$\Delta i(t)$}] node[inputarrow]{} (amp.west);
-		\draw (amp.east) to[short, l=$\beta^{\prime\prime}(t)e^{-i\omega_it}$] node[inputarrow]{} (lp.west);
-		\draw (lp.east) to[short, l=$\beta^\prime(t)e^{-i\omega_it}$] node[inputarrow]{} (adc.west);
-		\draw (adc.east) to[short, l={$\beta^\prime[m]e^{-i\omega_it}$}] node[inputarrow]{} (out);
+		\draw (pd1.south) -- (pd1.south-|adder.north) to[short, l=$+i_1(t)$] (adder.north) node[inputarrow, rotate=-90]{};
+		\draw (pd2.south) -- (pd2.south-|adder.south) to[short, l_=$-i_2(t)$] (adder.south) node[inputarrow, rotate=90]{};
+		\draw (adder.east) to[short, l={$\Delta i(t)$}] (tia.west) node[inputarrow]{};
+		\draw (tia.east) -- node[inputarrow]{} (lp.west);
+		\draw (lp.east) to[short, l=$\beta^{\prime\prime}(t)$] (adc.west) node[inputarrow]{};
+		\draw (adc.east) to[short, l={$\beta^{\prime\prime}[m]$}] (out) node[inputarrow]{};
 	\end{tikzpicture}
 \end{document}

@@ -9,13 +9,13 @@
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/receiver}
-	\caption{Fiber-optical \gls{iq}-demodulator: The fiber output passes through an optical isolator and is coupled with a \gls{lo} laser in a balanced optical coupler. The coupler outputs are monitored by the photodiodes PD1 and PD2 in balanced photodetection configuration. The balanced photocurrent is amplified by an \gls{tia}.}
+	\caption{Fiber-optical coherent detector: The fiber output passes through an optical isolator and is coupled with a \gls{lo} laser in a balanced optical coupler. The coupler outputs are monitored by the photodiodes PD1 and PD2 in balanced photodetection configuration.}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/circuitikz/receiver-asp}
-	\caption{Block diagram of the receiver's analog-to-digital conversion: The photodetectors output the photocurrents $i_1(t),i_2(t)$ and the difference $\Delta i(t)=i_1(t)-i_2(t)$ is created. A \gls{tia} converts the current signal to $\Delta i(t)$ a voltage signal $\beta^{\prime\prime}(t)e^{-i\omega_it}$ where $\beta^{\prime\prime}$ denotes the complex signal baseband and $\omega_i=\omega_c-\omega_l$ is the intermediate frequency. A \gls{lp} filter reduces the signal bandwidth to half the sampling rate of the \gls{adc} to satisfy the Nyquist criteria.}
+	\caption{Block diagram of the receiver's \gls{asp} and analog-to-digital conversion: The photodetectors output the photocurrents $i_1(t),i_2(t)$ and the difference $\Delta i(t)=i_1(t)-i_2(t)$ is created. A \gls{tia} converts the current signal to $\Delta i(t)$ a voltage signal which is filtered by a \gls{lp} filter to remove high-frequency noise from the \gls{tia} and reduce the bandwidth to half the sampling rate of the \gls{adc} to satisfy the Nyquist criteria. The signal $\beta^{\prime\prime}(t)$ is then sampled by the \gls{adc} and yields the samples $\beta^{\prime\prime}[m]$.}
 \end{figure}
 
 \FloatBarrier
@@ -26,7 +26,7 @@
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/receiver-dsp}
-	\caption{Block diagram of the receiver's \gls{dsp}: First, the intermediate frequency is removed by multiplying the time-domain samples with the \gls{lo} frequency $e^{+i\omega_lt}$. Second, the samples $\beta^\prime[m]$ are downsampled to be compatible with the \gls{rrc} (matched) filter coefficients of the transmitter. Finally, the output of the matched filter $\beta^\prime[l]$ is downsampled to reveal the symbols $\beta[n]$.}
+	\caption{Block diagram of the receiver's \gls{dsp}: First, the intermediate frequency is removed from $\beta^{\prime\prime}[m]$ by multiplying the time-domain samples with the \gls{lo} frequency $e^{+i\omega_lt}$. Second, the samples $\beta^\prime[m]$ are downsampled to be compatible with the \gls{rrc} (matched) filter coefficients of the transmitter. Finally, the output of the matched filter $\beta^\prime[l]$ is downsampled to reveal the symbols $\beta[n]$.}
 \end{figure}
 
 \begin{figure}[htb]

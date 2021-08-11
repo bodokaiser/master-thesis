@@ -18,7 +18,7 @@ The optical modulator encodes the analog signals $x(t), p(t)$ onto the coherent 
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/transmit-spectrum}
-	\caption{Transmit spectrum of the transmitter.}\label{fig:transmit_spectrum}
+	\caption{Transmit spectrum.}\label{fig:transmit_spectrum}
 \end{figure}
 % TODO: explain components (and artifacts?) of the transmit spectrum and which of them we are going to discuss and why
 
@@ -29,8 +29,8 @@ The essential steps are digitally constructing a waveform encoding the complex s
 
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/circuitikz/pulse-shaping}
-	\caption{Block diagram of the digital and analog signal-processing of the pulse-shaping: First, the real and imaginary part of the symbols $\alpha[n]$ are upsampled to yield the samples $\alpha^\prime[m]$. Second, the samples $\alpha^\prime[m]$ are \gls{rrc} filtered yielding the samples $x^\prime[m]$ for real respective $p^\prime[m]$ for the imaginary part. Third, a \gls{dac} converts $x^\prime[m]$ and the $p^\prime[m]$ to the analog signals $x^\prime(t)$ and $p^\prime(t)$. Finally, an analog \gls{lp} filter removes aliases and smoothens the output of the \gls{dac}.}\label{fig:pulse_shaping_block}
+	\includestandalone{figures/circuitikz/transmitter-dsp}
+	\caption{Block diagram of the digital and analog signal-processing of the pulse-shaping: First, the real and imaginary part of the symbols $\alpha[n]$ are upsampled to yield the samples $\alpha^\prime[m]$. Second, the samples $\alpha^\prime[m]$ are \gls{rrc} filtered yielding the samples $x^\prime[m]$ for real respective $p^\prime[m]$ for the imaginary part. Third, a \gls{dac} converts $x^\prime[m]$ and the $p^\prime[m]$ to the analog signals $x^\prime(t)$ and $p^\prime(t)$. Finally, an analog \gls{lp} filter removes aliases from the \gls{dac} output.}\label{fig:pulse_shaping_block}
 \end{figure}
 
 \Cref{fig:pulse_shaping_block} presents the digital and analog signal processing steps involved for the baseband signal synthesis:
