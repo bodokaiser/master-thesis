@@ -2,22 +2,20 @@ sps = 32;
 
 rrc_b = rcosdesign(0.25, 16, sps, 'sqrt');
 
-x = [zeros(10,1); 1; zeros(10,1)];
+x = [zeros(3,1); 1; zeros(3,1)];
 y = upfirdn(x, rrc_b, sps);
-
-n = 0:length(y) - 1;
 
 y_tx = y(32:8:end);
 y_rx = y(6:8:end-26);
-n_tx = sps*(0:length(y_tx) - 1);
-n_rx = sps*(0:length(y_rx) - 1);
+n_tx = (0:length(y_tx) - 1);
+n_rx = (0:length(y_rx) - 1);
 
 tiledlayout(5, 1)
 nexttile
 plot(n_tx, y_tx)
 hold on
 stem(n_tx, y_tx)
-xlim([1000, 3500])
+%xlim([1000, 3500])
 title('Transmitter DAC')
 hold off
 
@@ -25,7 +23,7 @@ nexttile
 plot(n_rx, y_rx)
 hold on
 stem(n_rx, y_rx)
-xlim([1000, 3500])
+%xlim([1000, 3500])
 title('Receiver ADC')
 hold off
 
@@ -65,3 +63,7 @@ hold off
 nexttile
 plot(f_rx, phi_rx - phi_tx)
 title('Phase difference between Rx and Tx')
+
+datadir = '../data';
+writetable(cell2table(num2cell([n_tx.', y_tx])), fullfile(datadir, 'adc-sync-tx.csv'));
+writetable(cell2table(num2cell([n_rx.', y_rx])), fullfile(datadir, 'adc-sync-rx.csv'));
