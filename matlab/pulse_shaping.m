@@ -12,11 +12,11 @@ rrc_b = rcosdesign(0.25, 16, uf_ps, 'sqrt');
 [lp_b, lp_a] = butter(7, 0.2);
 
 % unit symbol
-unit_tx_sym = zeros(num_sym, 2) * [1; 1i];
+unit_tx_sym = zeros(num_sym, 1);
 unit_tx_sym(16) = 1;
 unit_tx_up = upsample(unit_tx_sym, uf_ps);
 unit_tx_rrc = conv(unit_tx_up, rrc_b, 'same');
-unit_tx_dac = upsample(unit_tx_rrc, uf_ps);
+unit_tx_dac = upsample(unit_tx_rrc, uf_lp);
 unit_tx_lp = filtfilt(lp_b, lp_a, unit_tx_dac);
 
 % random QPSK symbols
