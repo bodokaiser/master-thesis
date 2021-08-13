@@ -21,14 +21,13 @@
 			group style={
 				group name=plot,
 				group size=1 by 4,
-%				xlabels at=edge bottom,
-%				xticklabels at=edge bottom,
 				vertical sep=1ex,
 			},
 			ylabel style={align=center, font=\fontsize{7}{8}\selectfont},
 			grid=major,
 			width=0.8\linewidth,
 			height=20ex,
+			cycle list name=exotic,
 		]
 			\nextgroupplot[
 				xmin=10,
@@ -40,55 +39,45 @@
 %				ymax=1.2,
 				ylabel={Symbols\\$\Re\alpha[n]$},
 			]
-			\addplot[
+			\addplot+[
 				ycomb,
 				mark=o,
-				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/unit-time-tx-sym.csv};
+			] plot table[col sep=comma] {../../../data/unit-time-tx-sym.csv};
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
 				xlabel={},
 				xticklabels={},
-%				ymin=-0.2,
-%				ymax=1.2,
 				ylabel={Samples\\$\Re\alpha^\prime[m]$},
 			]
-			\addplot[
+			\addplot+[
 				ycomb,
 				mark=o,
-				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/unit-time-tx-up.csv};
+			] plot table[col sep=comma] {../../../data/unit-time-tx-up.csv};
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
 				xlabel={},
 				xticklabels={},
-%				ymin=-0.2,
-%				ymax=1.2,
-				ylabel={Pulse-shape\\$x^\prime[m]$},
+				ylabel={Pulse-shaped\\$x^\prime[m]$},
 			]
-			\addplot[
+			\addplot+[
 				ycomb,
 				mark=o,
-				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/unit-time-tx-rrc.csv};
+			] plot table[col sep=comma] {../../../data/unit-time-tx-rrc.csv};
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
 				xlabel={Signal time $t/T_s$},
-%				ymin=-0.2,
-%				ymax=1.2,
 				ylabel={Analog\\(anti-aliased)\\$x^\prime(t)$},
 			]
-			\addplot[
+			\addplot+[
 				no markers,
-				orange!75!red,
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/unit-time-tx-lp.csv};
+			] plot table[col sep=comma] {../../../data/unit-time-tx-lp.csv};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}

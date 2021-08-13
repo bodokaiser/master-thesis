@@ -23,10 +23,8 @@
 		\draw[arrow] (osp) -- (det) node[midway, above]{$\ket{\beta^\prime(t)}$};
 		\draw[arrow] ([yshift=2.5ex]det.east) -- ([yshift=2.5ex]asp.west) node[midway, above]{$i_1(t)$};
 		\draw[arrow] ([yshift=-2.5ex]det.east) -- ([yshift=-2.5ex]asp.west) node[midway, above]{$i_2(t)$};
-		\draw[arrow] ([yshift=2.5ex]asp.east) -- ([yshift=2.5ex]adc.west) node[midway, above]{$u_1(t)$};
-		\draw[arrow] ([yshift=-2.5ex]asp.east) -- ([yshift=-2.5ex]adc.west) node[midway, above]{$u_2(t)$};
-		\draw[arrow] ([yshift=2.5ex]adc.east) -- ([yshift=2.5ex]dsp.west) node[midway, above]{$u_1[m]$};
-		\draw[arrow] ([yshift=-2.5ex]adc.east) -- ([yshift=-2.5ex]dsp.west) node[midway, above]{$u_2[m]$};
+		\draw[arrow] (asp) -- (adc) node[midway, above]{$\beta^\prime(t)$};
+		\draw[arrow] (adc) -- (dsp) node[midway, above]{$\beta^\prime[m]$};
 		\draw[arrow] (dsp) -- (out) node[midway, above]{$\beta[n]$};
 	\end{tikzpicture}
 \end{document}

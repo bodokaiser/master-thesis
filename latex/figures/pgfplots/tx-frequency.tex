@@ -9,7 +9,6 @@
 
 \begin{document}
 	\begin{tikzpicture}[
-		block/.style={minimum height=4ex, minimum width=8em, text width=8em, align=left, fill=white},
 		font=\small,
 	]
 		\begin{groupplot}[
@@ -26,6 +25,7 @@
 			xlabel={Frequency $f/f_s$},
 			yticklabels={},
 			ylabel style={align=center},
+			cycle list name=exotic,
 		]
 			\nextgroupplot[
 				title={Relative power spectral density},
@@ -36,15 +36,13 @@
 				ymax=5,
 				ylabel={Symbols\\$\alpha[n]$},
 			]
-			\addplot[
+			\addplot+[
 				thick,
 				no markers,
-				orange!75!red,
-			] plot table[col sep=comma] {../../../data/signal-processing/unit-freq-tx-sym.csv};
-			\addplot[
+			] plot table[col sep=comma] {../../../data/unit-freq-tx-sym.csv};
+			\addplot+[
 				no markers,
-				blue!75!green,
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-freq-tx-sym.csv};
+			] plot table[col sep=comma] {../../../data/rand-freq-tx-sym.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
@@ -53,32 +51,28 @@
 				ymax=5,
 				ylabel={Samples\\$\alpha^\prime[m]$},
 			]
-			\addplot[
+			\addplot+[
 				thick,
 				no markers,
-				orange!75!red,
-			] plot table[col sep=comma] {../../../data/signal-processing/unit-freq-tx-up.csv};
-			\addplot[
+			] plot table[col sep=comma] {../../../data/unit-freq-tx-up.csv};
+			\addplot+[
 				no markers,
-				blue!75!green,
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-freq-tx-up.csv};
+			] plot table[col sep=comma] {../../../data/rand-freq-tx-up.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Pulse-shape\\$x^\prime[m]+ip^\prime[m]$},
+				ylabel={Pulse-shaped\\$x^\prime[m]+ip^\prime[m]$},
 			]
-			\addplot[
+			\addplot+[
 				thick,
 				no markers,
-				orange!75!red,
-			] plot table[col sep=comma] {../../../data/signal-processing/unit-freq-tx-rrc.csv};
-			\addplot[
+			] plot table[col sep=comma] {../../../data/unit-freq-tx-rrc.csv};
+			\addplot+[
 				no markers,
-				blue!75!green,
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-freq-tx-rrc.csv};
+			] plot table[col sep=comma] {../../../data/rand-freq-tx-rrc.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
@@ -87,15 +81,13 @@
 				ymax=5,
 				ylabel={Analog\\$x^\prime(t)+ip^\prime(t)$},
 			]
-			\addplot[
+			\addplot+[
 				thick,
 				no markers,
-				orange!75!red,
-			] plot table[col sep=comma] {../../../data/signal-processing/unit-freq-tx-dac.csv};
-			\addplot[
+			] plot table[col sep=comma] {../../../data/unit-freq-tx-dac.csv};
+			\addplot+[
 				no markers,
-				blue!75!green,
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-freq-tx-dac.csv};
+			] plot table[col sep=comma] {../../../data/rand-freq-tx-dac.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
@@ -104,15 +96,13 @@
 				ymax=5,
 				ylabel={Anti-aliased\\$x(t)+ip(t)$},
 			]
-			\addplot[
+			\addplot+[
 				thick,
 				no markers,
-				orange!75!red,
-			] plot table[col sep=comma] {../../../data/signal-processing/unit-freq-tx-lp.csv};
-			\addplot[
+			] plot table[col sep=comma] {../../../data/unit-freq-tx-lp.csv};
+			\addplot+[
 				no markers,
-				blue!75!green,
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-freq-tx-lp.csv};
+			] plot table[col sep=comma] {../../../data/rand-freq-tx-lp.csv};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}

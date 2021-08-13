@@ -38,7 +38,7 @@ rand_rx_dwn = downsample(rand_rx_rrc, uf_ps);
 %plot_time(num_sym, [10, 20], rand_tx_sym, rand_tx_up, rand_tx_rrc, rand_tx_lp, rand_rx_det, rand_rx_adc, rand_rx_rrc, rand_rx_dwn)
 %plot_freq(length(rand_tx_lp), [-0.4, +0.4],  rand_tx_sym, rand_tx_up, rand_tx_rrc, rand_tx_dac, rand_tx_lp, rand_rx_det, rand_rx_dwnc, rand_rx_adc, rand_rx_rrc, rand_rx_dwn)
 
-datadir = '../data/signal-processing';
+datadir = '../data';
 
 % export csv
 write_time(num_sym, unit_tx_sym, fullfile(datadir, 'unit-time-tx-sym.csv'));

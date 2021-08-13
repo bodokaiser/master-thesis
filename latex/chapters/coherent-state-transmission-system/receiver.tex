@@ -44,16 +44,32 @@
 \begin{figure}[htb]
 	\centering
 	\includestandalone[width=\textwidth]{figures/pgfplots/rx-frequency}
-	\caption{Power spectral density plott of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The spectrum from the \gls{adc} samples is shifted by the intermediate frequency $\omega_i$ (first row). Down-conversion centers the spectrum (second row). Downsampling and applying the matched \gls{rrc} filter increases the steepness of the spectrum (third row). Downsampling to the symbols removes the steep band edges (last row).}
+	\caption{Power spectral density plot of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The spectrum from the \gls{adc} samples is shifted by the intermediate frequency $\omega_i$ (first row). Down-conversion centers the spectrum (second row). Downsampling and applying the matched \gls{rrc} filter increases the steepness of the spectrum (third row). Downsampling to the symbols removes the steep band edges (last row).}
 \end{figure}
 
 \FloatBarrier
 \subsection{Syncronization}
 
+% Citations:
 % Proakis p. 359
+% Precise Noise Calibration for CV-QKD (https://ieeexplore.ieee.org/abstract/document/9203405)
+% Derivation of RRC filter / proof that it is optimal for ISI and matched-filter for AWGN channel
+% Godard algorithm (D.N.Godard. Passband timing recovery in an all-digital modem receiver. 1978)
+% Wiener filter
 
 So far we have assumed perfect syncronization between the transmitter and the receiver.
 In practice, however, the clocks in the transmitter and the receiver are independent and only accurate to finite precision.
 In the following, we discuss different schemes employed to correct for syncronization errors.
 
 The most important syncronization concerns the transmitter's and receiver's \gls{lo}:
+\begin{figure}[htb]
+	\centering
+	\includestandalone[width=\textwidth]{figures/pgfplots/laser-sync}
+	\caption{Power spectral density of the transmitted and received pilot tone.}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/frame}
+	\caption{Transmission frames.}
+\end{figure}

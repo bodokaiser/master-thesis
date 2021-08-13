@@ -20,14 +20,13 @@
 			group style={
 				group name=plot,
 				group size=1 by 4,
-%				xlabels at=edge bottom,
-%				xticklabels at=edge bottom,
 				vertical sep=1ex,
 			},
 			ylabel style={align=center, font=\fontsize{7}{8}\selectfont},
 			grid=major,
 			width=0.8\linewidth,
 			height=22ex,
+			cycle list name=exotic,
 		]
 			\nextgroupplot[
 				xmin=10,
@@ -35,82 +34,66 @@
 				xlabel={Symbol index $n$},
 				xlabel near ticks,
 				xticklabel pos=top,
-%				ymin=-1.2,
-%				ymax=1.2,
 				ylabel={Symbols\\$\alpha[n]$},
 			]
-			\addplot[
+			\addplot+[
 				ycomb,
 				mark=o,
-				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-sym-real.csv};
-			\addplot[
+			] plot table[col sep=comma] {../../../data/rand-time-tx-sym-real.csv};
+			\addplot+[
 				ycomb,
 				mark=x,
-				mark options={blue!75!green},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-sym-imag.csv};
+			] plot table[col sep=comma] {../../../data/rand-time-tx-sym-imag.csv};
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
 				xlabel={},
 				xticklabels={},
-%				ymin=-1.2,
-%				ymax=1.2,
 				ylabel={Samples\\$\alpha^\prime[m]$},
 			]
-			\addplot[
+			\addplot+[
 				ycomb,
 				mark=o,
-				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-up-real.csv};
-			\addplot[
+			] plot table[col sep=comma] {../../../data/rand-time-tx-up-real.csv};
+			\addplot+[
 				ycomb,
 				mark=x,
-				mark options={blue!75!green},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-up-imag.csv};
+			] plot table[col sep=comma] {../../../data/rand-time-tx-up-imag.csv};
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
 				xlabel={},
 				xticklabels={},
-%				ymin=-1.2,
-%				ymax=1.2,
 				ylabel={Pulse-shape\\$x^\prime[m]+ip^\prime[m]$},
 			]
-			\addplot[
+			\addplot+[
 				ycomb,
 				mark=o,
-				mark options={orange!75!red},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-rrc-real.csv};
-			\addplot[
+			] plot table[col sep=comma] {../../../data/rand-time-tx-rrc-real.csv};
+			\addplot+[
 				ycomb,
 				mark=x,
-				mark options={blue!75!green},
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-rrc-imag.csv};
+			] plot table[col sep=comma] {../../../data/rand-time-tx-rrc-imag.csv};
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
 				xlabel={Signal time $t/T_s$},
-%				ymin=-1.2,
-%				ymax=1.2,
 				ylabel={Analog\\(anti-aliased)\\$x(t)+ip(t)$},
 			]
-			\addplot[
+			\addplot+[
 				no markers,
-				orange!75!red,
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-lp-real.csv};
-			\addplot[
+			] plot table[col sep=comma] {../../../data/rand-time-tx-lp-real.csv};
+			\addplot+[
 				no markers,
-				blue!75!green,
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/signal-processing/rand-time-tx-lp-imag.csv};
+			] plot table[col sep=comma] {../../../data/rand-time-tx-lp-imag.csv};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}
