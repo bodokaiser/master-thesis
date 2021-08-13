@@ -4,6 +4,24 @@
 % See Ref.~\cite{Kikuchi2016} for introduction to coherent architecture
 % See Ref.~\cite{Brunner2017} for coherent receiver architectures for CV-QKD
 
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{ccl}
+    \toprule
+      Device & Amount \\
+    \midrule
+      sds & 1\\
+      Oscilloscope & 1\\
+      \SI{\pm15}{\volt} voltage supply & 1\\
+      Shielded LEMO4 cable & 1\\
+      Shielded cable & 3\\
+      adapters & 3\\
+    \bottomrule
+  \end{tabular}
+  \captionsetup{width=.8\textwidth}
+  \caption{Electrical equipment required to operate the \gls{psd}}\label{tab:equipment}
+\end{table}
+
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/receiver}
@@ -51,11 +69,12 @@
 \subsection{Syncronization}
 
 % Citations:
-% Proakis p. 359
-% Precise Noise Calibration for CV-QKD (https://ieeexplore.ieee.org/abstract/document/9203405)
-% Derivation of RRC filter / proof that it is optimal for ISI and matched-filter for AWGN channel
-% Godard algorithm (D.N.Godard. Passband timing recovery in an all-digital modem receiver. 1978)
-% Wiener filter
+% \cite{Gallager2008} \cite{Oppenheim1998} general signal processing concepts (baseband, ...)
+% Proakis p. 359 \cite[p.~359]{Proakis2007}
+% Precise Noise Calibration for CV-QKD (https://ieeexplore.ieee.org/abstract/document/9203405) \cite{Brunner2020}
+% Derivation of RRC filter / proof that it is optimal for ISI and matched-filter for AWGN channel \cite{Cubukcu2012}
+% Godard algorithm (D.N.Godard. Passband timing recovery in an all-digital modem receiver. 1978) \cite{Godard1978}
+% Wiener filter \cite{Chen2006}
 
 So far we have assumed perfect syncronization between the transmitter and the receiver.
 In practice, however, the clocks in the transmitter and the receiver are independent and only accurate to finite precision.
