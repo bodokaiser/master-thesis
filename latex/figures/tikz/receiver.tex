@@ -1,0 +1,32 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{amsmath}
+\usepackage{physics}
+
+\usetikzlibrary{arrows.meta,backgrounds,fit,positioning}
+
+\begin{document}
+	\begin{tikzpicture}[
+		node distance=3.5em,
+		arrow/.style={-latex},
+		block/.style={draw, very thick, fill=white, minimum height=8ex, minimum width=3.5em},
+	]
+		\coordinate (in) at (0,0);
+		\node (osp) [block, right=of in] {\textsf{OSP}};
+		\node (det) [block, right=of osp] {\textsf{DET}};
+		\node (asp) [block, right=of det] {\textsf{ASP}};
+		\node (adc) [block, right=of asp] {\textsf{ADC}};
+		\node (dsp) [block, right=of adc] {\textsf{DSP}};
+		\coordinate[right=of dsp] (out);
+		
+		\draw[arrow] (in) -- (osp) node[midway, above]{$\ket{\beta(t)}$};
+		\draw[arrow] (osp) -- (det) node[midway, above]{$\ket{\beta^\prime(t)}$};
+		\draw[arrow] ([yshift=2.5ex]det.east) -- ([yshift=2.5ex]asp.west) node[midway, above]{$i_1(t)$};
+		\draw[arrow] ([yshift=-2.5ex]det.east) -- ([yshift=-2.5ex]asp.west) node[midway, above]{$i_2(t)$};
+		\draw[arrow] ([yshift=2.5ex]asp.east) -- ([yshift=2.5ex]adc.west) node[midway, above]{$u_1(t)$};
+		\draw[arrow] ([yshift=-2.5ex]asp.east) -- ([yshift=-2.5ex]adc.west) node[midway, above]{$u_2(t)$};
+		\draw[arrow] ([yshift=2.5ex]adc.east) -- ([yshift=2.5ex]dsp.west) node[midway, above]{$u_1[m]$};
+		\draw[arrow] ([yshift=-2.5ex]adc.east) -- ([yshift=-2.5ex]dsp.west) node[midway, above]{$u_2[m]$};
+		\draw[arrow] (dsp) -- (out) node[midway, above]{$\beta[n]$};
+	\end{tikzpicture}
+\end{document}
