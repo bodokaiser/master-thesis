@@ -22,7 +22,7 @@ The optical modulator encodes the analog signals $x(t), p(t)$ onto the coherent 
 \end{figure}
 % TODO: explain components (and artifacts?) of the transmit spectrum and which of them we are going to discuss and why
 
-\subsection{Digital signal processing and analog-to-digital conversion}
+\subsection{Digital signal-processing and analog conversion}
 
 In the first half of the transmitter's signal processing, we aim to synthesize two analog baseband signals that encode the real respective imaginary part of the complex symbols later modulated onto the optical carrier.
 The essential steps are digitally constructing a waveform encoding the complex symbols that satisfy our bandwidth requirements and converting the digital waveform to the analog domain.
@@ -106,7 +106,7 @@ However, the optimal approach uses an \gls{rc} filter with absolute value of the
 	\end{cases}
 	.
 \end{equation}
-In the presence of stochastic white noise, placing the square-root of the raised-cosine filter, the \gls{rrc} filter $h_\text{rrc}=\sqrt{h_\text{rc}}$, at both the transmitter and receiver side further improves the \gls{snr} which we adapt here.
+In the presence of stochastic white noise, placing the square-root of the raised-cosine filter, the \gls{rrc} filter $h_\text{rrc}=\sqrt{h_\text{rc}}$, at both the transmitter and receiver side further improves the \gls{snr} which we adapt here~\cite{Cubukcu2012}.
 
 At the boundary of the digital and analog domain, the pulse-shaped samples $x^\prime[m]$ and $p^\prime[m]$ are converted to an analog signal $x^\prime(t)$ respectively $p^\prime(t)$ by a \gls{dac}.
 In the following, we assume an ideal \gls{dac} which performs digital-to-analog conversion by infinite upsampling instead of sample-and-hold (convolution with a rectangular response function).
