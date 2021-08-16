@@ -4,42 +4,38 @@
 % See Ref.~\cite{Kikuchi2016} for introduction to coherent architecture
 % See Ref.~\cite{Brunner2017} for coherent receiver architectures for CV-QKD
 
-\begin{table}[htb]
-  \centering
-  \begin{tabular}{ccl}
-    \toprule
-      Device & Amount \\
-    \midrule
-      sds & 1\\
-      Oscilloscope & 1\\
-      \SI{\pm15}{\volt} voltage supply & 1\\
-      Shielded LEMO4 cable & 1\\
-      Shielded cable & 3\\
-      adapters & 3\\
-    \bottomrule
-  \end{tabular}
-  \captionsetup{width=.8\textwidth}
-  \caption{Electrical equipment required to operate the \gls{psd}}\label{tab:equipment}
-\end{table}
-
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/receiver}
-	\caption{Block diagram showing the signal flow across the receiver: }\label{fig:receiver}
+	\caption{Block diagram of he receiver's signal flow: \gls{osp} is performed on a received coherent state $\ket{\beta(t)}$ yielding a coherent state $\ket{\beta^\prime(t)}$ which is converted to two photocurrents $i_1(t),i_2(t)$ during detection. \gls{asp} transforms the photocurrents to the signal $\beta^\prime(t)$ which is sampled by a \gls{adc}. Finally, the symbols $\beta[n]$ are extracted from the samples $\beta^\prime[m]$ using \gls{dsp}.}
 \end{figure}
+
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{lcccc}
+    \toprule
+      Detection & Detectors & Quadratures & Complexity & Bandwidth \\
+    \midrule
+      Single quadrature intradyne & \num{1} & \num{1} & Low & High \\
+      Dual quadrature intradyne & \num{2} & \num{2} & High & High \\
+      Software-defined heterodyne & \num{1} & \num{2} & Low & Low \\
+    \bottomrule
+  \end{tabular}
+  \caption{Comparison of receiver implementations according to Ref.~\cite{Brunner2017}: The two intradyne detection schemes refer to specific cases of homodyne detection. While the single quadrature intradyne detection offers low (electro-optical) complexity and high bandwidth it only resolves one of two quadratures. The dual quadrature intradyne detection resolves both quadratures and has high bandwidth but requires two balanced detectors increasing the complexity. The software-defined heterodyne detection schemes resolves both quadratures with low complexity at the cost of bandwidth.}
+\end{table}
 
 \subsection{Optical and analog-to-digital conversion}
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/receiver}
-	\caption{Fiber-optical coherent detector: The fiber output passes through an optical isolator and is coupled with a \gls{lo} laser in a balanced optical coupler. The coupler outputs are monitored by the photodiodes PD1 and PD2 in balanced photodetection configuration.}
+	\caption{Fiber-optical heterodyne detector: First, the fiber output passes through an optical isolator to limit signal loss through back scattering. Second, the isolated optical signal is coupled with a \gls{lo} laser in a balanced optical coupler. Third, the coupler outputs are detected by  the balanced photodetector comprising the photodiodes PD1 and PD2.}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/circuitikz/receiver-asp}
-	\caption{Block diagram of the receiver's \gls{asp} and analog-to-digital conversion: The photodetectors output the photocurrents $i_1(t),i_2(t)$ and the difference $\Delta i(t)=i_1(t)-i_2(t)$ is created. A \gls{tia} converts the current signal to $\Delta i(t)$ a voltage signal which is filtered by a \gls{lp} filter to remove high-frequency noise from the \gls{tia} and reduce the bandwidth to half the sampling rate of the \gls{adc} to satisfy the Nyquist criteria. The signal $\beta^{\prime\prime}(t)$ is then sampled by the \gls{adc} and yields the samples $\beta^{\prime\prime}[m]$.}
+	\caption{Block diagram of the receiver's \gls{asp} and analog-to-digital conversion: The photodetectors output the photocurrents $i_1(t),i_2(t)$ and the balanced signal $\Delta i(t)=i_1(t)-i_2(t)$ is formed. A \gls{tia} converts the balanced current signal $\Delta i(t)$ a voltage signal which is filtered by a \gls{lp} filter to remove high-frequency noise from the \gls{tia} and reduce the bandwidth for the \gls{adc}. A \gls{adc} converts the filtered voltage signal $\beta^\prime(t)e^{-i\omega_it}$ to the digital samples $\beta^\prime[m]e^{-i\omega_it}$ completing the analog-to-digital conversion.}
 \end{figure}
 
 \FloatBarrier
@@ -50,19 +46,19 @@
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/receiver-dsp}
-	\caption{Block diagram of the receiver's \gls{dsp}: First, the intermediate frequency is removed from $\beta^{\prime\prime}[m]$ by multiplying the time-domain samples with the \gls{lo} frequency $e^{+i\omega_lt}$. Second, the samples $\beta^\prime[m]$ are downsampled to be compatible with the \gls{rrc} (matched) filter coefficients of the transmitter. Finally, the output of the matched filter $\beta^\prime[l]$ is downsampled to reveal the symbols $\beta[n]$.}
-\end{figure}
-
-\begin{figure}[htb]
-	\centering
-	\includestandalone[width=\textwidth]{figures/pgfplots/rx-rand-time}
-	\caption{Time domain plot of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The samples from the \gls{adc} (first row) are multiplied by the complex exponential $e^{+i\omega_it}$ to remove the intermediate frequency (second row). The samples without the intermediate frequency are downsampled to the same sampling rate of the transmitter and filtered by the. matched \gls{rrc} (third row). Finally, the matched filtered samples are downsampled to reveal the receiver's symbol sequence $\beta[n]$ (last row).}
+	\caption{Block diagram of the receiver's \gls{dsp}: First, the intermediate frequency $\omega_i$ is removed from the samples $\beta^\prime[m]e^{-i\omega_it}$ by multiplying the time-domain samples with $e^{+i\omega_lt}$. Second, the samples $\beta^\prime[m]$ are downsampled to be compatible with the \gls{rrc} (matched) filter coefficients of the transmitter. Third, the output of the matched filter $\beta^\prime[l]$ is downsampled to reveal the symbols $\beta[n]$.}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
 	\includestandalone[width=\textwidth]{figures/pgfplots/rx-frequency}
-	\caption{Power spectral density plot of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The spectrum from the \gls{adc} samples is shifted by the intermediate frequency $\omega_i$ (first row). Down-conversion centers the spectrum (second row). Downsampling and applying the matched \gls{rrc} filter increases the steepness of the spectrum (third row). Downsampling to the symbols removes the steep band edges (last row).}
+	\caption{Frequency domain of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The spectrum of the \gls{adc} samples $\beta^\prime[m]e^{-i\omega_it}$ (first row) has a frequency offset equal to the intermediate frequency $\omega_i$ (first row). Down-conversion centers the spectrum (second row) by removing the intermediate frequency. Downsampling and applying the matched \gls{rrc} filter increases the steepness of the spectrum (third row). Finally, downsampling removes the steep band edges (last row) and reveals the symbols $\beta[n]$.}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone[width=\textwidth]{figures/pgfplots/rx-rand-time}
+	\caption{Time domain of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The samples from the \gls{adc} $\beta^\prime[m]e^{-i\omega_it}$ (first row) are multiplied by the complex exponential $e^{+i\omega_it}$ to remove the intermediate frequency (second row). Then, the samples without the intermediate frequency $\beta^\prime[m]$ are downsampled for the matched \gls{rrc} filter (third row). Finally, the matched filtered samples $\beta[m]$ are downsampled to reveal the receiver's symbol sequence $\beta[n]$ (last row).}
 \end{figure}
 
 \FloatBarrier
@@ -84,16 +80,16 @@ The most important syncronization concerns the transmitter's and receiver's \gls
 \begin{figure}[htb]
 	\centering
 	\includestandalone[width=\textwidth]{figures/pgfplots/laser-sync}
-	\caption{Power spectral density of the transmitted and received pilot tone.}
+	\caption{Frequency spectrum of the transmitted and received pilot tone: The transmitted pilot tone (green) represents a perfect sinusoidal. The received pilot tone (orange) is broadened by phase variations and shifted by the offset between the transmitter and receiver \gls{lo}.}
 \end{figure}
 \begin{figure}[htb]
 	\centering
 	\includestandalone[width=\textwidth]{figures/pgfplots/adc-sync}
-	\caption{Samples at the transmitter and the receiver.}
+	\caption{Timing offset compensation of the \gls{adc} clock: The sampling at the receiver is delayed and not in sync with the symbols compared to the receiver.}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/frame}
-	\caption{Transmission frames.}
+	\caption{Layout of the transmission frames: A frame comprises a training and data sequence. The training sequence is the same for all frames and used to detect the start of a frame and perform calibration for the data sequence which contains the actual transmission data.}
 \end{figure}
