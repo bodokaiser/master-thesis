@@ -1,28 +1,43 @@
+\FloatBarrier
 \section{Receiver}
 
-% compare receiver architectures and motivation for low-complexity receiver
-% See Ref.~\cite{Kikuchi2016} for introduction to coherent architecture
-% See Ref.~\cite{Brunner2017} for coherent receiver architectures for CV-QKD
+The receiver extracts a symbol sequence $\beta[n]$ from the received coherent state $\ket{\beta(t)}$.
 
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/tikz/receiver}
-	\caption{Block diagram of he receiver's signal flow: \gls{osp} is performed on a received coherent state $\ket{\beta(t)}$ yielding a coherent state $\ket{\beta^\prime(t)}$ which is converted to two photocurrents $i_1(t),i_2(t)$ during detection. \gls{asp} transforms the photocurrents to the signal $\beta^\prime(t)$ which is sampled by a \gls{adc}. Finally, the symbols $\beta[n]$ are extracted from the samples $\beta^\prime[m]$ using \gls{dsp}.}
-\end{figure}
-
+In contrast to the transmitter, the receiver is more complex:
+On the one hand, the receiver must orient itself towards the sender.
+In this sense, the sender has the freedom to define specific parameters that the recipient does not have.
+In addition, the receiver needs to compensate for signal deterioration.
+The increased complexity of the receiver leaves room for a variety of receiver designs.
+For an overview of practical, coherent receiver designs, see Ref. 1~\cite{Kikuchi2016}.
+Specific to \gls{cvqkd}, Ref.~\cite{Brunner2017} compares the single and dual quadrature intradyne and software-defined heterodyne receivers, see \Cref{tab:receivers}.
 \begin{table}[htb]
   \centering
   \begin{tabular}{lcccc}
     \toprule
-      Detection & Detectors & Quadratures & Complexity & Bandwidth \\
+      Receiver & Detectors & Quadratures & Complexity & Bandwidth \\
     \midrule
       Single quadrature intradyne & \num{1} & \num{1} & Low & High \\
       Dual quadrature intradyne & \num{2} & \num{2} & High & High \\
       Software-defined heterodyne & \num{1} & \num{2} & Low & Low \\
     \bottomrule
   \end{tabular}
-  \caption{Comparison of receiver implementations according to Ref.~\cite{Brunner2017}: The two intradyne detection schemes refer to specific cases of homodyne detection. While the single quadrature intradyne detection offers low (electro-optical) complexity and high bandwidth it only resolves one of two quadratures. The dual quadrature intradyne detection resolves both quadratures and has high bandwidth but requires two balanced detectors increasing the complexity. The software-defined heterodyne detection schemes resolves both quadratures with low complexity at the cost of bandwidth.}
+  \caption{Comparison of receiver implementations according to Ref.~\cite{Brunner2017}: The two intradyne detection schemes refer to specific cases of homodyne detection. While the single quadrature intradyne detection offers low (electro-optical) complexity and high bandwidth it only resolves one of two quadratures. The dual quadrature intradyne detection resolves both quadratures and has high bandwidth but requires two balanced detectors increasing the complexity. The software-defined heterodyne detection schemes resolves both quadratures with low complexity at the cost of bandwidth.}\label{tab:receivers}
 \end{table}
+The single and dual quadrature intradyne receivers use homodyne detection, i.e., mixing the received signal with a \gls{lo} such that the intermediate frequency is zero $\omega_i=0$ where the heterodyne receiver uses a non-zero intermedia frequency.
+While the homodyne detection schemes are conceptional simpler in the sense that the detection result directly corresponds to the transmitted baseband, resolving both quadratures is only possible at the expense of increased electro-optical complexity.
+If we are willing to give up bandwidth - which is reasonable for \gls{cvqkd} - a software-defined heterodyne receiver lets us resolve both quadratures while keeping the complexity low.
+Furthermore, having most of the signal-processing to be software-defined makes protocol updates using the same hardware possible.
+We therefore follow the conclusion of Ref.~\cite{Brunner2017} and limit the discussions of the receiver to that of a software-defined heterodyne kind.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/receiver}
+	\caption{Block diagram of a software-defined heterodyne receiver's signal flow: \gls{osp} is performed on a received coherent state $\ket{\beta(t)}$ yielding two coherent states $\ket{\beta_1(t)},\ket{\beta_2(t)}$ which are converted to two photocurrents $i_1(t),i_2(t)$ during photodetection. \gls{asp} transforms the photocurrents to the signal $\beta^\prime(t)$ which is sampled by a \gls{adc}. Finally, the symbols $\beta[n]$ are extracted from the samples $\beta^\prime[m]$ using \gls{dsp}.}\label{fig:receiver_signal_flow}
+\end{figure}
+\Cref{fig:receiver_signal_flow} illustrates the signal flow of a software-defined heterodyne receiver.
+The \gls{osp} maps from the received coherent state $\ket{\beta(t)}$ to two coherent states $\ket{\beta_1(t)}$ and $\ket{\beta_2(t)}$ which represents the output of the mixing of $\ket{\beta(t)}$ with the \gls{lo}.
+The signal encoded in the two coherent states $\ket{\beta_1(t)}$ and $\ket{\beta_2(t)}$ is passed onto two photocurrents $i_1(t),i_2(t)$ in the process of photodetection.
+With the \gls{asp}, we convert the two photocurrents to a single analog signal $\beta^\prime(t)$ which we convert to a digital signal. $\beta^\prime[m]$ using a \gls{adc}.
+Finally, we employ \gls{dsp} to extract the symbols $\beta[n]$ from the digital signal $\beta^\prime[m]$.
 
 \subsection{Optical and analog-to-digital conversion}
 
@@ -65,8 +80,7 @@
 \subsection{Syncronization}
 
 % Citations:
-% \cite{Gallager2008} \cite{Oppenheim1998} general signal processing concepts (baseband, ...)
-% Proakis p. 359 \cite[p.~359]{Proakis2007}
+% Symbol timing estimation Proakis p. 359 \cite[p.~359]{Proakis2007}
 % Precise Noise Calibration for CV-QKD (https://ieeexplore.ieee.org/abstract/document/9203405) \cite{Brunner2020}
 % Derivation of RRC filter / proof that it is optimal for ISI and matched-filter for AWGN channel \cite{Cubukcu2012}
 % Godard algorithm (D.N.Godard. Passband timing recovery in an all-digital modem receiver. 1978) \cite{Godard1978}

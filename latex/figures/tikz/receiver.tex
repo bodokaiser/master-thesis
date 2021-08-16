@@ -20,7 +20,8 @@
 		\coordinate[right=of dsp] (out);
 		
 		\draw[arrow] (in) -- (osp) node[midway, above]{$\ket{\beta(t)}$};
-		\draw[arrow] (osp) -- (det) node[midway, above]{$\ket{\beta^\prime(t)}$};
+		\draw[arrow] ([yshift=2.5ex]osp.east) -- ([yshift=2.5ex]det.west) node[midway, above]{$\ket{\beta_1(t)}$};
+		\draw[arrow] ([yshift=-2.5ex]osp.east) -- ([yshift=-2.5ex]det.west) node[midway, above]{$\ket{\beta_2(t)}$};
 		\draw[arrow] ([yshift=2.5ex]det.east) -- ([yshift=2.5ex]asp.west) node[midway, above]{$i_1(t)$};
 		\draw[arrow] ([yshift=-2.5ex]det.east) -- ([yshift=-2.5ex]asp.west) node[midway, above]{$i_2(t)$};
 		\draw[arrow] (asp) -- (adc) node[midway, above]{$\beta^\prime(t)$};
