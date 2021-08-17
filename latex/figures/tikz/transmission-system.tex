@@ -8,12 +8,12 @@
 \begin{document}
 	\begin{tikzpicture}[
 		node distance=4em,
-		arrow/.style={-latex},
+		arrow/.style={-Latex},
 		block/.style={draw, very thick, minimum height=10ex, minimum width=6em, align=center},
 	]
 		\coordinate (in) at (0,0);
 		\node (tx) [block, right=of in] {Transmitter};
-		\node (ch) [block, right=of tx, minimum height=7ex] {Quantum\\channel};
+		\node (ch) [block, right=of tx] {Quantum\\channel};
 		\node (rx) [block, right=of ch] {Receiver};
 		\coordinate[right=of rx] (out);
 		
