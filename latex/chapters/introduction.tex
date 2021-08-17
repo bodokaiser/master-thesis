@@ -38,8 +38,22 @@ Quantum technologies are seen as critical technologies for the upcoming decades,
 \section{Quantum-key distribution}
 
 % very basic idea
+% assumptions
+% protocol (Alice sends state, Bob measures)
 % dv most simple, developed in academia, difficult for practical use because of ....
 % cv developed in industry because of benefits ...
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/qkd-parties}
+	\caption{\Gls{qkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob, secret to a third party, Eve. Eve has full access to the quantum channel but can only read information from the classical authenticated channel.}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/phase-space}
+	\caption{Phase space density plot of the $X,P$ variables of a coherent state $\ket{\alpha}$.}
+\end{figure}
 
 \section{Problem statement and motivation}
 
