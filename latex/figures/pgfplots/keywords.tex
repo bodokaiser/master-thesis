@@ -1,0 +1,35 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.17}
+
+\begin{document}
+	\begin{tikzpicture}[
+		font=\small,
+	]
+		\begin{axis}[
+			grid=both,
+			width=0.95\linewidth,
+			title={Quantum technology trends in Google Scholar},
+			xmin=2000,
+			xmax=2022,
+			xtick distance=2,
+			xticklabel style={/pgf/number format/1000 sep=, rotate=60, anchor=east},
+			xlabel={Year of publication},
+			ymin=1000,
+			ymax=95000,
+			ytick distance=10000,
+			ylabel={Number of publications found per keyword},
+			cycle list name=exotic,
+			scaled y ticks=false,
+			legend style={at={(0.05,0.95)}, anchor=north west,legend columns=1},
+		]
+			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-computing.csv};
+			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-simulation.csv};
+			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-sensing.csv};
+			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-metrology.csv};
+			\legend{Computing,Simulation,Sensing,Metrology}
+		\end{axis}
+	\end{tikzpicture}
+\end{document}
