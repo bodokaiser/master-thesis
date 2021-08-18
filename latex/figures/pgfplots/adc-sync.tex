@@ -19,16 +19,16 @@
 			ylabel style={align=center, font=\fontsize{7}{8}\selectfont},
 			grid=major,
 			width=0.8\linewidth,
-			height=20ex,
+			height=26ex,
 			cycle list name=exotic,
 		]
 			\nextgroupplot[
-%				xmin=0,
-%				xmax=80,
+				xmin=350,
+				xmax=420,
 				xlabel={Sample index $n$},
 				xlabel near ticks,
 				xticklabel pos=top,
-				ylabel={Transmitter},
+				ylabel={Transmitter\\signal},
 			]
 			\addplot+[
 				ycomb,
@@ -39,11 +39,11 @@
 				no markers,
 			] plot table[col sep=comma] {../../../data/adc-sync-time-tx.csv};
 			\nextgroupplot[
-%				xmin=0,
-%				xmax=80,
+				xmin=350,
+				xmax=420,
 				xlabel={},
 				xticklabels={},
-				ylabel={Receiver},
+				ylabel={Receiver\\signal},
 			]
 			\addplot+[
 				ycomb,
@@ -54,11 +54,18 @@
 				no markers,
 			] plot table[col sep=comma] {../../../data/adc-sync-time-rx.csv};
 			\nextgroupplot[
-%				xmin=10,
-%				xmax=20,
-				xlabel={},
-				xticklabels={},
-				ylabel={Phase},
+				xmin=-0.04,
+				xmax=+0.04,
+				xlabel={Relative frequency $f/f_s$},
+				ymin=24,
+				ymax=27,
+				ylabel={Transmitted\\phase (unwrapped)},
+				ylabel style={align=center},
+				xticklabel style={
+			        /pgf/number format/fixed,
+			        /pgf/number format/precision=2
+				},
+				scaled x ticks=false,
 			]
 			\addplot+[
 				thick,
@@ -68,7 +75,6 @@
 				thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/adc-sync-phase-rx.csv};
-			\legend{Transmitter,Receiver};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}
