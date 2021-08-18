@@ -9,8 +9,9 @@
 % eternal secure communication
 % symmetric ciphers
 
-\subsection{Public-key algorithms}
+\subsection{Algorithmic key exchange}
 
+% public-key ciphers
 % asymmetric ciphers for key-exchange
 % problems with asymmetric ciphers
 
@@ -18,15 +19,29 @@
 
 \subsection{Quantum-key distribution}
 
-% actually quantum communication -> quantum key-distribution
-% most mature quantum technology
-% commercial adaption (name some examples, QKD networks)
+
 
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/qkd-parties}
 	\caption{\Gls{qkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob, secret to a third party, Eve. Eve has full access to the quantum channel but can only read information from the classical authenticated channel.}
 \end{figure}
+
+% explain superoperator (effect of quantum channel)
+
+% how does this transfer to the time-continuous case? -> in the previous chapter we should have argued how we can recover symbols
+% derive an equation how Bob's beta relates to Alice's alpha (quantum channel, quantum uncertainty in measurement)
+% show that the coherent state's quadratures are a bivariate normal random variable
+% chapter overview: what is awaiting the user and why is it important?
+% rough idea why CV-QKD is secure (plot with bivariate Gaussian, Eve's measurement, Bob's measurement -> two sigma)
+
+\begin{enumerate}
+	\item Alice samples $n$ complex symbols $\alpha_1,\dots,\alpha_n\in\mathbb{C}$ from a complex normal distribution.
+	\item Alice encodes the complex symbols onto a coherent state $\ket{\alpha(t)}$ and sends it through a quantum channel.
+	\item The quantum channel maps the coherent state $\ket{\alpha(t)}$ to a coherent state $\ket{\alpha(t)}$ by a superoperator.
+	\item Bob decodes the complex symbols $\beta_1,\dots,\beta_n\in\mathbb{C}$ from the received coherent state $\ket{\beta(t)}$.
+	\item Alice and Bob perform the classical post-processing over the authenticated classical communication channel to distill a shared secret bit string from the correlated symbols $\alpha_1,\dots,\alpha_n$ and $\beta_1,\dots,\beta_n$.
+\end{enumerate}
 
 % very basic idea
 % assumptions
