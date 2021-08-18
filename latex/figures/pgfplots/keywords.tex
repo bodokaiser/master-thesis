@@ -29,7 +29,9 @@
 			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-simulation.csv};
 			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-sensing.csv};
 			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-metrology.csv};
-			\legend{Computing,Simulation,Sensing,Metrology}
+			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-communication.csv};
+			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-qkd.csv};
+		\legend{Computing,Simulation,Sensing,Metrology,Communication}
 		\end{axis}
 	\end{tikzpicture}
 \end{document}

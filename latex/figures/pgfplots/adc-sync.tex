@@ -23,43 +23,52 @@
 			cycle list name=exotic,
 		]
 			\nextgroupplot[
-				xmin=0,
-				xmax=80,
+%				xmin=0,
+%				xmax=80,
 				xlabel={Sample index $n$},
 				xlabel near ticks,
 				xticklabel pos=top,
-				ylabel={Transmitted},
+				ylabel={Transmitter},
 			]
 			\addplot+[
 				ycomb,
 				mark=o,
-			] plot table[col sep=comma] {../../../data/adc-sync-tx.csv};
+			] plot table[col sep=comma] {../../../data/adc-sync-time-tx.csv};
 			\addplot+[
 				thick,
 				no markers,
-			] plot table[col sep=comma] {../../../data/adc-sync-tx.csv};
+			] plot table[col sep=comma] {../../../data/adc-sync-time-tx.csv};
 			\nextgroupplot[
-				xmin=0,
-				xmax=80,
+%				xmin=0,
+%				xmax=80,
 				xlabel={},
 				xticklabels={},
-				ylabel={Received},
+				ylabel={Receiver},
 			]
 			\addplot+[
 				ycomb,
 				mark=o,
-			] plot table[col sep=comma] {../../../data/adc-sync-rx.csv};
+			] plot table[col sep=comma] {../../../data/adc-sync-time-rx.csv};
 			\addplot+[
 				thick,
 				no markers,
-			] plot table[col sep=comma] {../../../data/adc-sync-rx.csv};
+			] plot table[col sep=comma] {../../../data/adc-sync-time-rx.csv};
 			\nextgroupplot[
-				xmin=10,
-				xmax=20,
+%				xmin=10,
+%				xmax=20,
 				xlabel={},
 				xticklabels={},
 				ylabel={Phase},
 			]
+			\addplot+[
+				thick,
+				no markers,
+			] plot table[col sep=comma] {../../../data/adc-sync-phase-tx.csv};
+			\addplot+[
+				thick,
+				no markers,
+			] plot table[col sep=comma] {../../../data/adc-sync-phase-rx.csv};
+			\legend{Transmitter,Receiver};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}

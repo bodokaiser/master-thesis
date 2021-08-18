@@ -1,29 +1,31 @@
-sps = 32;
+N = 128;
+beta = 0.25;
+H_RC = [zeros(1,N/2), ones(1,N), zeros(1,N/2)];
+H_inner_range = round(N/2*(1-beta)):round(N/2*(1+beta));
+H_RC(H_inner_range) = 0.5*(1-cos(linspace(0, pi, numel(H_inner_range))));
+H_RC(H_inner_range+N) = 0.5*(1-cos(linspace(pi, 0, numel(H_inner_range))));
+H_RRC = sqrt(H_RC);
+h_rrc = real(ifft(fftshift(H_RRC)));
+y = h_rrc/max(h_rrc);
 
-rrc_b = rcosdesign(0.25, 16, sps, 'sqrt');
-
-x = [zeros(3,1); 1; zeros(3,1)];
-y = upfirdn(x, rrc_b, sps);
-
-y_tx = y(32:8:end);
-y_rx = y(6:8:end-26);
+y_tx = y(1:end);
+y_rx = [y(2:end), y(1)];
 n_tx = (0:length(y_tx) - 1);
 n_rx = (0:length(y_rx) - 1);
 
-tiledlayout(5, 1)
-nexttile
-plot(n_tx, y_tx)
+close all;
+
+figure
+plot(n_tx, [y_tx(129:end), y_tx(1:128)])
 hold on
-stem(n_tx, y_tx)
-%xlim([1000, 3500])
+stem(n_tx, [y_tx(129:end), y_tx(1:128)])
 title('Transmitter DAC')
 hold off
 
-nexttile
-plot(n_rx, y_rx)
+figure
+plot(n_rx, [y_rx(129:end), y_rx(1:128)])
 hold on
-stem(n_rx, y_rx)
-%xlim([1000, 3500])
+stem(n_rx, [y_rx(129:end), y_rx(1:128)])
 title('Receiver ADC')
 hold off
 
@@ -36,7 +38,7 @@ f_tx = (-length(X_tx)/2:length(X_tx)/2-1) / (length(X));
 X_rx = fftshift(fft(y_rx));
 f_rx = (-length(X_rx)/2:length(X_rx)/2-1) / length(X);
 
-nexttile
+figure
 plot(f, log10(abs(X).^2 / length(X)))
 hold on
 plot(f_tx, log10(sqrt(sps) * abs(X_tx).^2  / length(X_tx)))
@@ -50,20 +52,21 @@ phi = unwrap(angle(X));
 phi_tx = unwrap(angle(X_tx));
 phi_rx = unwrap(angle(X_rx));
 
-nexttile
-plot(f, phi)
-hold on
+figure
 plot(f_tx, phi_tx)
+hold on
 plot(f_rx, phi_rx)
 xlim([-0.1, 0.1])
 title('Phase')
-legend('Original', 'Downsampled (Tx)', 'Downsampled (Rx)')
+legend('Downsampled (Tx)', 'Downsampled (Rx)')
 hold off
 
-nexttile
+figure
 plot(f_rx, phi_rx - phi_tx)
 title('Phase difference between Rx and Tx')
 
-datadir = '../data';
-writetable(cell2table(num2cell([n_tx.', y_tx])), fullfile(datadir, 'adc-sync-tx.csv'));
-writetable(cell2table(num2cell([n_rx.', y_rx])), fullfile(datadir, 'adc-sync-rx.csv'));
+datadir = '.';
+writetable(cell2table(num2cell([n_tx; [y_tx(129:end), y_tx(1:128)]].')), fullfile(datadir, 'adc-sync-time-tx.csv'));
+writetable(cell2table(num2cell([n_rx; [y_rx(129:end), y_rx(1:128)]].')), fullfile(datadir, 'adc-sync-time-rx.csv'));
+writetable(cell2table(num2cell([f_tx; phi_tx].')), fullfile(datadir, 'adc-sync-phase-tx.csv'));
+writetable(cell2table(num2cell([f_rx; phi_rx].')), fullfile(datadir, 'adc-sync-phase-rx.csv'));
