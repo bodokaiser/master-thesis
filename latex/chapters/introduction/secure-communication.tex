@@ -22,20 +22,38 @@ Given a truly random and secret key $k$ shared between Alice and Bob such a syst
 However, one needs to employ a practical mechanism to generate and distribute the key securely.
 
 \FloatBarrier
-\subsection{Algorithmic key exchange}
+\subsection{Public-key distribution}
 
-% public-key ciphers
-% asymmetric ciphers for key-exchange
-% problems with asymmetric ciphers
-
-% post-quantum algorithms
+The standard attempt to solve the secret key distribution problem is to use an asymmetric cipher.
+Asymmetric ciphers like RSA, comprise a public key for encryption and a private key for decryption.
+Using such an asymmetric cipher, secret key distribution between Alice and Bob involves the following steps:
+\begin{enumerate}
+	\item Bob generates a public and a private key.
+	\item Alice generates a secret key.
+	\item Bob discloses the public key to Alice.
+	\item Alice encrypts the secret key with the public key and sends it to Bob.
+	\item Bob decrypts Alice secret key with the private key.
+\end{enumerate}
+Assuming the asymmetric cipher to be secure, Alice and Bob now share a secret key.
+Public-key distribution algorithms, for instance, Diffie-Hellman~\cite{Diffie1976} and variants thereof, e.g., \gls{ecdh}, are heavily employed in todays internet for key agreement.
+One of the advantages of public-key distribution is that it is software-defined, allowing for easy installation and upgrades.
+The core principle behind asymmetric ciphers is the concept of one-way functions:
+Functions that are easy to compute but difficult to invert.
+A typical class of one-way functions appears in prime number factorization: Given two prime numbers $p$ and $q$, it is easy to compute the product $pq$ but difficult to factorize $pq$ into its prime numbers $p$ and $q$.
+Here, easy and difficult refer to the computational complexity, which gives an upper bound of the best (known) algorithm to solve the problem.
+So far, there has been no mathematical proof that one-way functions are indeed computational complex, and it may be that we are just not yet aware of efficient algorithms placing asymmetric cryptography at all in a questionable position.
+With the advent of quantum computers, new algorithms with significant speed up to their classical counterpart were found.
+Shor, for example, presented an algorithm for prime number factorization in polynomial time~\cite{Shor1994} - the same task used by the Diffie-Hellman key exchange.
+Consequently, post-quantum algorithms have been proposed~\cite{Bernstein2017,Chen2016} to use a different class of one-way functions where no efficient (quantum) algorithm is known.
+As long as there is no proof for the computational complexity for a specific family of one-way functions, public-key distribution is only safe for key lengths that are not computationally feasible.
+However, what is not computationally feasible today might be tomorrow, and it is conceivable that encrypted communication recorded today will be broken in the feature.
 
 \FloatBarrier
 \subsection{Quantum-key distribution}
 
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/tikz/qkd-parties}
+	\includestandalone{figures/tikz/qkd-system}
 	\caption{\Gls{qkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob, secret to a third party, Eve. Eve has full access to the quantum channel but can only read information from the classical authenticated channel.}
 \end{figure}
 
