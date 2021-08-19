@@ -1,14 +1,27 @@
 \section{Secure communication}
 
+Two spatially distanced parties, Alice and Bob, share a communication channel that allows them to send and receive information.
+We assume the communication channel to be a one-to-one map between Alice and Bob, i.e., information is received as transmitted, for instance, by employing some error correction, e.g., LDPC codes~\cite{Gallager1962}.
+How do we enable secure communication between Alice and Bob?
+To promote the communication channel to be secure against an adversarial third party, Eve, we need to extend the communication protocol to assure
+\begin{enumerate}
+	\item \textbf{confidentiality}, and
+	\item \textbf{integrity}.
+\end{enumerate}
+Confidentiality ensures that Eve cannot read messages and is implemented using symmetric encryption like the \gls{otp}~\cite{Shannon1949} or the more practical \gls{aes}~\cite{Daemen1999}.
+Integrity ensures that Eve cannot alter messages in transit and is implemented using a \gls{mac}, e.g., universal hash functions~\cite{Carter1979}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/secure-communication}
-	\caption{Foobar}
+	\caption{Secure communication between Alice and Bob using a classical channel to which an adversarial third party, Eve, has read and write access: A plaintext $p$ is encrypted with a secret key $k$ through a symmetric encryption function $e(k,p)$ yielding a ciphertext $c$. The ciphertext is amended by a hashing function $h(k,c)$ yielding the message $m$. The message is sent through an error-free channel to Bob. Bob checks the integrity of the message using his copy of the secret key $k$ and the hash inside the message $m$. If he finds the message $m$ to be genuine, he removes the hash to obtain the ciphertext $c$ which he decrypts using his key $k$ and the decryption function $d(k,c)$. After decryption, Bob has access to the plaintext $p$ initially prepared by Alice.}\label{fig:secure_communication}
 \end{figure}
+\Cref{fig:secure_communication} depicts a communication between Alice and Bob secure against a third adversarial party, Eve.
+The plaintext is first encrypted and then appended a \gls{mac} as advised by Ref.~\cite{Kohno2003,Krawczyk2001,Bellare2000}.
 
-% eternal secure communication
-% symmetric ciphers
+Given a truly random and secret key $k$ shared between Alice and Bob such a system has been proven to be eternal secure when using the \gls{otp} encryption scheme~\cite{Shannon1949}.
+However, one needs to employ a practical mechanism to generate and distribute the key securely.
 
+\FloatBarrier
 \subsection{Algorithmic key exchange}
 
 % public-key ciphers
@@ -17,9 +30,8 @@
 
 % post-quantum algorithms
 
+\FloatBarrier
 \subsection{Quantum-key distribution}
-
-
 
 \begin{figure}[htb]
 	\centering
