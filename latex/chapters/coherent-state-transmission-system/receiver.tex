@@ -12,20 +12,25 @@ For an overview of practical, coherent receiver designs, see Ref. 1~\cite{Kikuch
 Specific to \gls{cvqkd}, Ref.~\cite{Brunner2017} compares the single and dual quadrature intradyne and software-defined heterodyne receivers, see \Cref{tab:receivers}.
 \begin{table}[htb]
   \centering
-  \begin{tabular}{lcccc}
+  \begin{tabular}{lccccc}
     \toprule
-      Receiver & Detectors & Quadratures & Complexity & Bandwidth \\
+    Receiver design & Homodyne (single) & Homodyne (dual) & Heterodyne \\
     \midrule
-      Single quadrature intradyne & \num{1} & \num{1} & Low & High \\
-      Dual quadrature intradyne & \num{2} & \num{2} & High & High \\
-      Software-defined heterodyne & \num{1} & \num{2} & Low & Low \\
+    Balanced detectors & \num{1} & \num{2} & \num{1} \\
+    Quadratures & \num{1} & \num{2} & \num{2} \\
+    Optical complexity & Low & High & Low \\
+    Signal bandwidth & High & High & Low \\
+    \gls{lo} synchronization & Frequency and phase & Frequency & Bandwidth \\
     \bottomrule
   \end{tabular}
-  \caption{Comparison of receiver implementations according to Ref.~\cite{Brunner2017}: The two intradyne detection schemes refer to specific cases of homodyne detection. While the single quadrature intradyne detection offers low (electro-optical) complexity and high bandwidth it only resolves one of two quadratures. The dual quadrature intradyne detection resolves both quadratures and has high bandwidth but requires two balanced detectors increasing the complexity. The software-defined heterodyne detection schemes resolves both quadratures with low complexity at the cost of bandwidth.}\label{tab:receivers}
+  \caption{Comparison of receiver implementations according to Ref.~\cite{Brunner2017}: The single quadrature homodyne detection offers low optical complexity and high bandwidth but only resolves one of two quadratures and required frequency and phase synchronization of the \gls{lo}. The dual quadrature homodyne detection resolves both quadratures with high bandwidth but requires two balanced detectors increasing the optical complexity and phase synchronization of the \gls{lo}. The heterodyne detection schemes resolves both quadratures with low complexity and no requirements on \gls{lo} synchronization at the cost of signal bandwidth.}\label{tab:receivers}
 \end{table}
-The single and dual quadrature intradyne receivers use homodyne detection, i.e., mixing the received signal with a \gls{lo} such that the intermediate frequency is zero $\omega_i=0$ where the heterodyne receiver uses a non-zero intermedia frequency.
-While the homodyne detection schemes are conceptional simpler in the sense that the detection result directly corresponds to the transmitted baseband, resolving both quadratures is only possible at the expense of increased electro-optical complexity.
-If we are willing to give up bandwidth - which is reasonable for \gls{cvqkd} - a software-defined heterodyne receiver lets us resolve both quadratures while keeping the complexity low.
+The single and dual quadrature homodyne receivers mix the received signal with the receiver \gls{lo} tuned to the carrier frequency whereas the heterodyne receivers tune the \gls{lo} to have an offset to the carrier frequency of $\omega_i$, the intermediate frequency.
+The homodyne detection schemes are conceptional simpler as the detected signal directly corresponds to the transmitted baseband.
+However, homodyne receivers require precise calibration of the \gls{lo} which turns out to be practically challenging.
+In addition to the problem of \gls{lo} synchronization, is the optical simple homodyne design only able to resolve one quadrature.
+The dual quadrature homodyne receiver requires twice the detectors to resolve both signal quadratures at the same time.
+If we are willing to give up bandwidth - which is reasonable for \gls{cvqkd} - the heterodyne receiver moves the problem of synchronization to the digital domain and lets us resolve both quadratures while keeping the complexity low.
 Furthermore, having most of the signal-processing to be software-defined makes protocol updates using the same hardware possible.
 Finally, syncronization (of the \gls{lo}s) turns out to be more challenging using the homodyne receivers as these are highly sensitive to phase noise.
 We therefore follow the conclusion of Ref.~\cite{Brunner2017} and limit the discussions of the receiver to that of a software-defined heterodyne kind.
