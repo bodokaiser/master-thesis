@@ -50,14 +50,14 @@ The conversion of the optical to the digital signal and the symbol extraction.
 For both these stages we will assume the receiver to be perfectly in sync with the transmitter to focus on the essential signal-processing.
 In a last part, we give a rough overview of syncronization challenges and possible mitigations.
 
-\subsection{Optical signal processing and digital conversion}
+\subsection{Balanced detection and digital conversion}
 
 The optical-to-digital conversion in the software-defined heterodyne receiver describes the conversion of a received coherent state $\ket{\beta(t)}$ to the digital samples $\beta^\prime[m]$.
 In the optical domain, we superimpose the received optical signal with a \gls{lo} in an optical coupler or beam splitter and monitor the two outputs using two photodiodes as depicted in \Cref{fig:fiber_optical_heterodyne_detector}.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/pstricks/receiver}
-	\caption{Fiber-optical heterodyne detector: First, the fiber output passes through an optical isolator to limit signal loss through back scattering. Second, the isolated optical signal is coupled with a \gls{lo} laser in a balanced optical coupler. Third, the coupler outputs are detected by  the balanced photodetector comprising the photodiodes PD1 and PD2.}\label{fig:fiber_optical_heterodyne_detector}
+	\includegraphics{figures/pstricks/balanced-detector}
+	\caption{Fiber-optical balanced detector detector: First, the fiber output passes through an optical isolator to limit signal loss through back scattering. Second, the isolated optical signal is coupled with a \gls{lo} laser in a balanced optical coupler. Third, the coupler outputs are detected by  the balanced photodetector comprising the photodiodes PD1 and PD2.}\label{fig:fiber_optical_balanced_detector}
 \end{figure}
 The first photodiode PD1 outputs a photocurrent $i_1(t)$ while the second photodiode PD2 outputs a photocurrent $i_2(t)$.
 The two photodiodes form together a balanced detector if one subtracts the photocurrents from another with the balanced detection signal being $\Delta i(t)=i_1(t)-i_2(t)$.

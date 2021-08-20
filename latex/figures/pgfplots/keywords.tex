@@ -13,7 +13,7 @@
 			width=0.95\linewidth,
 			title={Quantum technology trends in Google Scholar},
 			xmin=2000,
-			xmax=2022,
+			xmax=2020,
 			xtick distance=2,
 			xticklabel style={/pgf/number format/1000 sep=, rotate=60, anchor=east},
 			xlabel={Year of publication},
@@ -28,11 +28,12 @@
 			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-computing.csv};
 			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-simulation.csv};
 			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-sensing.csv};
-			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-metrology.csv};
+			%\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-metrology.csv};
 			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-communication.csv};
-			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-qkd.csv};
-			\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-key-distribution.csv};
-		\legend{Computing,Simulation,Sensing,Metrology,Communication,QKD,Quantum-key distribution}
+			%\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-qkd.csv};
+			%\addplot+[thick] plot table[col sep=comma] {../../../data/keywords-quantum-key-distribution.csv};
+		%\legend{Computing,Simulation,Sensing,Metrology,Communication,QKD,Quantum-key distribution}
+		\legend{Computing,Simulation,Sensing,Communication}
 		\end{axis}
 	\end{tikzpicture}
 \end{document}
