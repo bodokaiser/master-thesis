@@ -35,6 +35,11 @@ Using such an asymmetric cipher, secret key distribution between Alice and Bob i
 	\item Bob decrypts Alice secret key with the private key.
 \end{enumerate}
 Assuming the asymmetric cipher to be secure, Alice and Bob now share a secret key.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/pkd-system}
+	\caption{\Gls{pkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob.}\label{fig:pkd_system}
+\end{figure}
 Public-key distribution algorithms, for instance, Diffie-Hellman~\cite{Diffie1976} and variants thereof, e.g., \gls{ecdh}, are heavily employed in todays internet for key agreement.
 One of the advantages of public-key distribution is that it is software-defined, allowing for easy installation and upgrades.
 The core principle behind asymmetric ciphers is the concept of one-way functions:
@@ -44,40 +49,53 @@ Here, easy and difficult refer to the computational complexity, which gives an u
 So far, there has been no mathematical proof that one-way functions are indeed computational complex, and it may be that we are just not yet aware of efficient algorithms placing asymmetric cryptography at all in a questionable position.
 With the advent of quantum computers, new algorithms with significant speed up to their classical counterpart were found.
 Shor, for example, presented an algorithm for prime number factorization in polynomial time~\cite{Shor1994} - the same task used by the Diffie-Hellman key exchange.
-Consequently, post-quantum algorithms have been proposed~\cite{Bernstein2017,Chen2016} to use a different class of one-way functions where no efficient (quantum) algorithm is known.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/runtime}
+	\caption{Computational runtimes for prime number factorization algorithms: The most efficient known classical algorithm is the \gls{gnfs}~\cite{Lenstra1993} and Shor's algorithm~\cite{Shor1994}.}
+\end{figure}
+Consequently, post-quantum algorithms have been proposed~\cite{Bernstein2017,Chen2016} to use a different class of one-way functions where no efficient (quantum) algorithm is (yet) known.
 As long as there is no proof for the computational complexity for a specific family of one-way functions, public-key distribution is only safe for key lengths that are not computationally feasible.
-However, what is not computationally feasible today might be tomorrow, and it is conceivable that encrypted communication recorded today will be broken in the feature.
+However, what is not computationally feasible today might be tomorrow, and it is conceivable that encrypted communication recorded today will be broken in the feature with specialized hardware.
+Therefore, public-key distribution is not considered to be forward secure.
 
 \FloatBarrier
 \subsection{Quantum-key distribution}
 
+The chance of public-key distribution becoming a critical vulnerability in secure communication infrastructure inflamed a demand for a practical and information-theoretical provable alternative key distribution.
+\gls{qkd} claims to be such a practical and information-theoretical secure key distribution.
+In summary, \gls{qkd} exploits the inherent uncertainty in measuring non-orthogonal quantum states for shared random number generation:
+\begin{enumerate}
+	\item Alice samples some random variables $\alpha_1,\dots,\alpha_n$ and encodes them onto a quantum state $\ket{\psi(t)}$.
+	\item Bob performs measurements of the quantum state $\ket{\psi(t)}$ yielding $\beta_1,\dots,\beta_n$.
+	\item Alice's $\alpha_1,\dots,\alpha_n$ and Bob's $\beta_1,\dots,\beta_n$ are correlated random variables from which a shared secret key can be distilled using classical algorithms (post-processing).
+\end{enumerate}
+On a more practical level, a typical \gls{qkd} system comprises a transmitter, a receiver, a quantum and classical communication channel as illustrated in \Cref{fig:qkd_system}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/qkd-system}
-	\caption{\Gls{qkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob, secret to a third party, Eve. Eve has full access to the quantum channel but can only read information from the classical authenticated channel.}
+	\caption{\Gls{qkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob, secret to a third party, Eve. Eve has full access to the quantum channel but can only read information from the classical authenticated channel.}\label{fig:qkd_system}
 \end{figure}
-
+A potential adverse eavesdropper, Eve, has full access to the quantum channel, i.e., can intercept and temper with quantum states sent by Alice, but has only read access to the classical channel.
+More precisely, the classical channel is an authenticated channel to prevent man-in-the-middle attacks.
+Authentication can be implemented classically using \gls{mac} as discussed for the secure communication system.
+% assumptions to Eve and what kind of attacks she can do (coherent, ?)
 % explain superoperator (effect of quantum channel)
 
-% how does this transfer to the time-continuous case? -> in the previous chapter we should have argued how we can recover symbols
-% derive an equation how Bob's beta relates to Alice's alpha (quantum channel, quantum uncertainty in measurement)
-% show that the coherent state's quadratures are a bivariate normal random variable
-% chapter overview: what is awaiting the user and why is it important?
-% rough idea why CV-QKD is secure (plot with bivariate Gaussian, Eve's measurement, Bob's measurement -> two sigma)
+% comparison cv/dv on a quantum level (possible quantum states) and on a practical level (fiber, free-space)
 
-\begin{enumerate}
-	\item Alice samples $n$ complex symbols $\alpha_1,\dots,\alpha_n\in\mathbb{C}$ from a complex normal distribution.
-	\item Alice encodes the complex symbols onto a coherent state $\ket{\alpha(t)}$ and sends it through a quantum channel.
-	\item The quantum channel maps the coherent state $\ket{\alpha(t)}$ to a coherent state $\ket{\alpha(t)}$ by a superoperator.
-	\item Bob decodes the complex symbols $\beta_1,\dots,\beta_n\in\mathbb{C}$ from the received coherent state $\ket{\beta(t)}$.
-	\item Alice and Bob perform the classical post-processing over the authenticated classical communication channel to distill a shared secret bit string from the correlated symbols $\alpha_1,\dots,\alpha_n$ and $\beta_1,\dots,\beta_n$.
-\end{enumerate}
+% dv-qkd (BB84)
+% citation
+% basic experimental setup
+% protocol table (last slide of PP)
+% error estimation, QBER 
 
-% very basic idea
-% assumptions
-% protocol (Alice sends state, Bob measures)
-% dv most simple, developed in academia, difficult for practical use because of ....
-% cv developed in industry because of benefits ...
+% cv-qkd
+% basic experimental setup (?)
+% protocol table
+% equation for correlation between random variables
+% CV-QKD figure (plot with bivariate Gaussian, Eve's measurement, Bob's measurement -> two sigma)
+% advantages of CV-QKD compared to DV-QKD
 
 \begin{figure}[htb]
 	\centering
