@@ -1,0 +1,27 @@
+\documentclass[pstricks]{standalone}
+
+\usepackage{amsmath}
+\usepackage{pst-optexp}
+
+\begin{document}
+	\begin{pspicture}(0.25,0.5)(15.25,5.5)
+		\begin{optexp}
+			\psset[optexp]{fiber=none, usefiberstyle}
+			\newpsstyle{Fiber}{linecolor=orange}
+		  	
+			\optbox[compname=Source, position=start, labeloffset=1](2,2)(4,2){{\begin{tabular}{@{}c@{}}Single-photon\\source\end{tabular}}}
+			\optmzm[compname=Modulator, labeloffset=1](3,2)(5,2){{\begin{tabular}{@{}c@{}}Mach-Zehnder\\modulator\end{tabular}}}
+			\optfiber[compname=Fiber](6,2)(7,2)
+			\wdmsplitter[compname=Splitter, coupleralign=bottom](7,2)(7,5)(10,2){Splitter}
+			\optbox[compname=PhaseShifter, optboxsize=1 0.8, labeloffset=0](9,4)(11,4){$\varphi$}
+			\optcoupler[compname=Coupler, coupleralign=bottom](9,4)(9,2)(14,4)(14,2){Coupler}
+			\optdetector[compname=Detector1, labelangle=180, labeloffset=1](13,4)(14,4){{\begin{tabular}{@{}c@{}}Single-photon\\detector\end{tabular}}}
+			\optdetector[compname=Detector2, labeloffset=1](13,2)(14,2){{\begin{tabular}{@{}c@{}}Single-photon\\source\end{tabular}}}
+			
+			\drawfiber{Source}{Modulator}{Fiber}{Splitter}{PhaseShifter}{Coupler}{Detector1}
+			\drawfiber{Splitter}{Coupler}{Detector2}
+
+			\rput(10,5){Phase-shifter}
+		\end{optexp}
+	\end{pspicture}
+\end{document}

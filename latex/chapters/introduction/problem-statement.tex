@@ -1,10 +1,23 @@
 \section{Problem statement}
 
-Shortcomings of the state of the art:
- Most \gls{qkd} literature is extremely specific to the authors background, e.g., quantum optics, communication engineering, quantum information theory, while neglecting the view points of other fields.
-However, one needs to the integrate all the view points and agree on a common language to get the whole picture.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/tensor-product-transmission-system}
+	\caption{Tensor-product coherent state transmission system: A transmitter encodes a sequence of complex symbols $\alpha_1,\dots,\alpha_n$ onto a tensor product of coherent states $\ket{\alpha_1,\dots,\alpha_n}$. The quantum channel maps the coherent state $\ket{\alpha_1,\dots,\alpha_n}$ to a coherent state $\ket{\beta_1,\dots,\beta_n}$ from which the receiver decodes the complex symbols $\beta_1,\dots,\beta_n$. Each symbol pair is completely independent and a received symbol $\beta_k$ is a random variable following a complex normal distribution with mean $\alpha_k$ and variance $\sigma^2$ where the variance is equal to the quantum shot noise.}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/time-continuous-transmission-system}
+	\caption{Time-continuous coherent state transmission system: A transmitter encodes a sequence of complex symbols $\alpha_1,\dots,\alpha_n$ onto a time-continuous coherent state $\ket{\alpha(t)}$. The quantum channel maps the coherent state $\ket{\alpha(t)}$ to a coherent state $\ket{\beta(t)}$ from which the receiver decodes the complex symbols $\beta_1,\dots,\beta_n$. In general, each symbol pair depends on the other symbols and a received symbol $\beta_k$ is a random variable following a complex normal distribution with mean $f(\alpha_1,\dots,\alpha_n)$ and variance $\sigma$.}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/logical-quantum-channel}
+	\caption{Logical quantum channel comprising a quantum encoder, a physical quantum channel, and a quantum decoder. The quantum encoder encodes a tensor product of coherent states $\ket{\alpha_1,\dots,\alpha_n}$ onto a time-continuous coherent state $\ket{\alpha(t)}$. The physical quantum channel maps the coherent state $\ket{\alpha(t)}$ to $\ket{\beta(t)}$. The quantum decoder decodes a tensor product of coherent states $\ket{\beta_1,\dots,\beta_n}$ from the time-continuous coherent state $\ket{\beta(t)}$.}
+\end{figure}
 
-To the best of our knowledge, our work is the first complete description of a \gls{cvqkd} implementation incorporating a time-dependent continuous-mode description of quantum states.
-
-On an intellectual level, the complete description of a \gls{cvqkd} device heavily challenges us our understanding of physics.
-In particular, we found that there are many implicit assumptions made to carry classical results over to a quantum model.
+Additional motivation:
+\begin{enumerate}
+	\item First complete description of a practical \gls{cvqkd} implementation incorporating the different viewpoints of the involved disciplines, e.g., quantum optics, communication engineering, and quantum information theory.
+	\item Intellectual challenge of applying the reductionistic quantum optics framework to a practical system involving imperfections.
+\end{enumerate}

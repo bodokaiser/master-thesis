@@ -82,7 +82,80 @@ Authentication can be implemented classically using \gls{mac} as discussed for t
 % assumptions to Eve and what kind of attacks she can do (coherent, ?)
 % explain superoperator (effect of quantum channel)
 
-% comparison cv/dv on a quantum level (possible quantum states) and on a practical level (fiber, free-space)
+% entanglement- vs. prepare-and-measure -> EB used for proofs but otherwise PM used practical
+% comparison cv/dv on a quantum level (possible quantum states) and on a practical level (fiber, free-space) -> CV and DV depends on state space of the receiver
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{lll}
+		\toprule
+		Encoding variable & State space & Information support \\
+		\midrule
+		Polarization & Finite & Polarization state \\
+		Photon number & Countable & Number state \\
+		Quadratures & Uncountable & Coherent state \\
+		Squeezing & Uncountable & Squeezed state \\
+		Time-bin & Finite & Time of arrival \\
+		Phase-bin & Finite & Phase \\
+		\bottomrule
+	\end{tabular}
+	\caption{Encoding variables to use for \gls{qkd}: Variables with uncountable state space are considered for \gls{cvqkd} while variables with (possibly restricted) countable state space are considered for \gls{dvqkd}.}
+\end{table}
+
+% dv-qkd (BB84)
+% qubit/spin-state system (Pauli eigenbasis)
+% equations for phase-encoding QKD
+\cite{Bennett1984} % BB84
+\cite{Shor2000} % security proof of BB84
+\cite{Bennett1992} % BB92 (also using phase-encoding)
+\begin{table}[htb]
+	\centering	
+	\begin{tabular}{lcc}
+		\toprule
+		& \multicolumn{2}{c}{Standard basis} \\
+		\cmidrule{2-3}
+		Encoding variable & $\ket{0}$ & $\ket{1}$ \\
+		\midrule
+		Polarization & Horizontal & Vertical \\
+		Photon number & Vacuum & Single-photon \\
+		Squeezing & Amplitude & Phase \\
+		Time-bin & Early & Late \\
+		Phase-bin & \SI{0}{\deg} & \SI{180}{\deg} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Encoding variables and their usual assigned basis state for two-state \gls{dvqkd}: The specific choice of the encoding variable does not matter as long as the encoding variable can be described as a two-state quantum (qubit) system.}
+\end{table}
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/phase-encoding-bb84}
+	\caption{Fiber-optical setup of the phase-encoding BB84 DV-QKD protocol: Alice entangles a single-photon with a variable phase $\theta=(0,\pi),(\pi/2,3\pi/2)$, corresponding to the rectangular and diagonal basis of BB84, using a \gls{mzm} and sends it to Bob. Bob detects the single-photon using a \gls{mzi} with variable phase $\varphi=0,\pi/2$, corresponding to a measurement in the rectangular or diagonal basis, and two single-photon detectors.}
+\end{figure}
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{llccccc}
+		\toprule
+		& & \multicolumn{5}{c}{Transmission} \\
+		\cmidrule{3-7}
+		Party & Step & 1 & 2 & 3 & 4 & 5 \\ 
+		\midrule
+		\multirow{3}{*}{Alice} & Initial key bit & \num{0} & \num{1} & \num{1} & \num{0} & \num{0} \\
+		& State basis & $Z$ & $X$ & $X$ & $Z$ & $X$ \\
+		& Prepared state & $\ket{z_+}$ & $\ket{x_-}$ & $\ket{x_-}$ & $\ket{z_+}$ & $\ket{x_+}$ \\
+		\cmidrule{1-1}
+		\multirow{3}{*}{Bob} & Measurement basis & $X$ & $Z$ & $X$ & $Z$ & $Z$ \\
+		& Possible outcomes & \num{0},\num{1} & \num{0},\num{1} & \num{1} & \num{0} & \num{0},\num{1} \\
+		& Sifted key bit & - & - & 1 & 0 & - \\
+		\bottomrule
+	\end{tabular}
+	\caption{Possible prepare-and-measure sequence for BB84: Alice randomly selects an initial key bit \num{0} or \num{1} and a state basis $X$ or $Z$ where $X$ respective $Z$ denote the eigenbasis of the Pauli $\sigma_x$ respective $\sigma_z$ matrix. Alice's initial key bit and selected basis determine the quantum state she prepares and sends to Bob. Bob randomly chooses a measurement basis. Only if Alice's and Bob's basis agree, the key bit is not discarded.}
+\end{table}
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/post-processing-dv}
+	\caption{Post-processing procedure for \gls{dvqkd} protocols: First Alice's and Bob's key bits are correlated and partially secret. Key sifting discards key bits where Alice and Bob chose a different basis or where Bob did not detect an event while error correction removes the remaining differences between Alice's and Bob's partially secret key bits. Comparing the correlated key bits with the corrected key bits, Alice and Bob can estimate an error and thereby an upper bound on information loss to an adversary. Alice and Bob can remove the remaining partial information an adversary potentially has by performing privacy amplification. Finally, Alice and Bob share a secret key bit string.}
+\end{figure}
+\cite{Duvsek2006} % overview of DV-QKD protocols
+% variants to DV-QKD (six state, decoy states, active/passive)
+% active vs passive basis selection on the receiver (compare homodyne/heterodyne measurement with polarization filter vs. beam splitter + polarization filters)
 
 % citations:
 % \cite{Scarani2009} The Security of Practical QKD
@@ -95,15 +168,7 @@ Authentication can be implemented classically using \gls{mac} as discussed for t
 % \cite{Lodewyck2007} complete description of CV-QKD device (theoretical and experimental)
 % \cite{Laudenbach2018} notions of secrutiy, key rate, noise and detection models, parameter estimation
 % \cite{Fung2010} security analysis of post-processing
-% \cite{Shor2000} security proof of BB84
 % \cite{Renner2005} security of privacy amplification
-% \cite{Duvsek2006} overview of DV-QKD protocols
-
-% dv-qkd (BB84)
-% citation
-% basic experimental setup
-% protocol table (last slide of PP)
-% error estimation, QBER 
 
 % cv-qkd
 % basic experimental setup (?)
