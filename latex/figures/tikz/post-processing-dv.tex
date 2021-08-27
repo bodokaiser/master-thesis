@@ -14,7 +14,7 @@
 		\node (kb2) [block, below=of kb1] {\textsf{Partially secret key bits}};
 		\node (kb3) [block, below=of kb2] {\textsf{Secret key bits}};
 		
-		\draw[-Latex] (kb1) -- (kb2) node[midway, fill=white] {\textsf{Key sifting and error correction}};
+		\draw[-Latex] (kb1) -- (kb2) node[midway, fill=white] {\textsf{Base sifting and error correction}};
 		\draw[-Latex] (kb2) -- (kb3) node[midway, fill=white] {\textsf{Privacy amplification}};
 		
 		\node (abort) [block, right=of kb3, text width=5em] {\textsf{Protocol abort}};

@@ -4,24 +4,30 @@
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(0.25,0.5)(15.25,5.5)
+	\begin{pspicture}(0.25,-0.5)(15.25,5)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
 		  	
 			\optbox[compname=Source, position=start, labeloffset=1](2,2)(4,2){{\begin{tabular}{@{}c@{}}Single-photon\\source\end{tabular}}}
-			\optmzm[compname=Modulator, labeloffset=1](3,2)(5,2){{\begin{tabular}{@{}c@{}}Mach-Zehnder\\modulator\end{tabular}}}
-			\optfiber[compname=Fiber](6,2)(7,2)
-			\wdmsplitter[compname=Splitter, coupleralign=bottom](7,2)(7,5)(10,2){Splitter}
-			\optbox[compname=PhaseShifter, optboxsize=1 0.8, labeloffset=0](9,4)(11,4){$\varphi$}
-			\optcoupler[compname=Coupler, coupleralign=bottom](9,4)(9,2)(14,4)(14,2){Coupler}
-			\optdetector[compname=Detector1, labelangle=180, labeloffset=1](13,4)(14,4){{\begin{tabular}{@{}c@{}}Single-photon\\detector\end{tabular}}}
-			\optdetector[compname=Detector2, labeloffset=1](13,2)(14,2){{\begin{tabular}{@{}c@{}}Single-photon\\source\end{tabular}}}
+			\wdmsplitter[compname=Splitter1, coupleralign=bottom](3,2)(4,4)(4,2){Splitter}
+			\optbox[compname=PhaseShifter1, optboxsize=0.8 0.6, innerlabel](4.5,4)(5,4){$\theta$}
+			\wdmcoupler[compname=Coupler1, coupleralign=bottom](5,4)(5,2)(7,2){Coupler}
+			\optfiber[compname=Fiber](7,2)(9,2){{\begin{tabular}{@{}c@{}}Quantum\\channel\end{tabular}}}
+			\wdmsplitter[compname=Splitter2, coupleralign=top, labelangle=180](9,2)(11,2)(11,0){Splitter}
+			\optbox[compname=PhaseShifter2, optboxsize=0.8 0.6, innerlabel](10,0)(12.5,0){$\phi$}
+			\optcoupler[compname=Coupler2, coupleralign=top, labelangle=180](12,2)(12,0)(13,2)(13,0){Coupler}
+			\optdetector[compname=Detector1, labelangle=180, labeloffset=1](13,3.5)(14,3.5){{\begin{tabular}{@{}c@{}}Single-photon\\detector\end{tabular}}}
+			\optdetector[compname=Detector2, labeloffset=1](13,1)(14,1){{\begin{tabular}{@{}c@{}}Single-photon\\source\end{tabular}}}
 			
-			\drawfiber{Source}{Modulator}{Fiber}{Splitter}{PhaseShifter}{Coupler}{Detector1}
-			\drawfiber{Splitter}{Coupler}{Detector2}
+			\drawfiber{Source}{Splitter1}{PhaseShifter1}{Coupler1}{Fiber}{Splitter2}{PhaseShifter2}{Coupler2}{Detector1}
+			\drawfiber{Splitter1}{Coupler1}
+			\drawfiber{Splitter2}{Coupler2}{Detector2}
+%			\drawfiber{Source}{Modulator}{Fiber}{Splitter}{PhaseShifter1}{Coupler}{Detector1}
+%			\drawfiber{Splitter}{PhaseShifter2}{Coupler}{Detector2}
 
-			\rput(10,5){Phase-shifter}
+%			\rput(10.5,4.8){Phase-shifter}
+%			\rput(10.5,1.2){Phase-shifter}
 		\end{optexp}
 	\end{pspicture}
 \end{document}

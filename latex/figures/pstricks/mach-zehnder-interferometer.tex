@@ -3,7 +3,7 @@
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(11,7)
+	\begin{pspicture}(0.5,1)(10.5,6)
         \addtopsstyle{Beam}{beamwidth=0.1, fillstyle=solid, fillcolor=green!40}
         \pnode(0,5){IN1}
         \pnode([Xnodesep=2]IN1){BS1}
@@ -17,23 +17,11 @@
         \pnode([offset=-2]BS2){OUT2}
         \begin{optexp}
             \beamsplitter[compname=BS1, labelangle=45, labeloffset=1](IN1)(BS1)(M2){BS1}
-            \optbox[compname=PS1, innerlabel](BS1)(M1){$+\varphi/2$}
+            \optbox[compname=PS1, innerlabel, optboxsize=1.0 0.8](BS1)(M1){$\varphi$}
             \mirror[compname=M1, labeloffset=0.6](BS1)(M1)(BS2){M1}
             \beamsplitter[compname=BS2, labelangle=-45, labeloffset=1](M1)(BS2)(M2){BS2}
-            \mirror[compname=M2, labeloffset=0.6](BS1)(M2)(BS2){M2}
-            \optbox[compname=PS2, innerlabel](M2)(BS2){$-\varphi/2$}
-            \drawwidebeam(IN1){BS1}
-            \drawwidebeam{BS1}{PS1}
-            \drawwidebeam{PS1}{M1}{BS2}
-            \drawwidebeam{BS2}(OUT2)
-            \drawwidebeam(IN2){BS1}
-            \drawwidebeam{BS1}{M2}{PS2}
-            \drawwidebeam{PS2}{BS2}
-            \drawwidebeam{BS2}(OUT1)
-        \end{optexp}
-        \rput([offset=-0.4, Xnodesep=0.8]IN1){$E_1(t)$}
-        \rput([offset=-0.8, Xnodesep=0.6]IN2){$E_2(t)$}
-        \rput([offset=0.4, Xnodesep=-0.8]OUT1){$E^\prime_1(t)$}
-        \rput([offset=0.8, Xnodesep=-0.6]OUT2){$E^\prime_2(t)$}
+            \mirror[compname=M2, labeloffset=0.6](BS1)(M2)(BS2){M2}			\drawbeam(IN1){BS1}{M2}{BS2}(OUT1)
+			\drawbeam(IN1){BS1}{PS1}
+			\drawbeam{PS1}{M1}{BS2}(OUT2)        \end{optexp}
     \end{pspicture}
 \end{document}

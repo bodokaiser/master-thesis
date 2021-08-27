@@ -13,23 +13,10 @@
 \pgfplotsset{compat=1.17}
 
 \begin{document}
-	\begin{tikzpicture}
-		\begin{axis}[
-			cycle list name=exotic,
-		    xlabel={$x=\Re{\alpha}$},
-		    ylabel={$p=\Im{\alpha}$},
-		    zlabel={$P(x,p)$},
-		    width=0.95\linewidth,
-		    view={45}{65},
-		    grid=major,
-		    domain=-1:1,
-		    y domain=-1:1,
-		]
-			\addplot3[
-				mesh,
-%				samples=50,
-%			    domain=-8:8,
-			]{sin(deg(sqrt(x^2+y^2)))/sqrt(x^2+y^2)};
-		\end{axis}
+	\begin{tikzpicture}[
+	    declare function={
+			normal(\ma,\mb,\s)=exp(-((x-\ma)^2/\s^2 + (y-\mb)^2/\s^2))/(2*pi*\s*\s);
+	    },
+	]
 	\end{tikzpicture}
 \end{document}

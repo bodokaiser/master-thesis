@@ -154,7 +154,7 @@
 		    \vspace{.8em}
 			\begin{figure}[htb]
 				\centering
-				\includestandalone{figures/pgfplots/phase-space}
+				%\includestandalone{figures/pgfplots/phase-space}
 			\end{figure}
 
 		    \vspace{.6em}
@@ -188,6 +188,15 @@
         \input{chapters/introduction/thesis-structure}
         \input{chapters/introduction/conventions-notation}
 	
+		\addcontentsline{toc}{section}{References}
+		\printbibliography[title=References]
+	\end{refsection}
+	
+	\chapter{Quantum-key distribution}
+	\begin{refsection}
+		\input{chapters/quantum-key-distribution/discrete}
+		\input{chapters/quantum-key-distribution/continuous}
+
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
 	\end{refsection}
