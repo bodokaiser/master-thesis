@@ -1,0 +1,30 @@
+\documentclass[pstricks]{standalone}
+
+\usepackage{amsmath}
+\usepackage{pst-optexp}
+
+\begin{document}
+	\begin{pspicture}(0,-3)(14,7.5)
+		\begin{optexp}
+			\psset[optexp]{fiber=none, usefiberstyle}
+			\newpsstyle{Fiber}{linecolor=orange}
+		  	
+			\optbox[compname=Source, position=start, labeloffset=1](2,2)(4,2){{\begin{tabular}{@{}c@{}}Single-photon\\source\end{tabular}}}
+			\optfiberpolarizer[compname=Pol1, labeloffset=0.75](3,2)(4,2){Polarizer}
+			\optfiber[compname=Fiber](5,2)(7,2){{\begin{tabular}{@{}c@{}}Quantum\\channel\end{tabular}}}
+			\optfiberpolarizer[compname=Pol2, labeloffset=0.75](8,2)(9,2){Polarizer}
+			\wdmsplitter[compname=Splitter1](10,2)(11,5)(11,-1)
+			\wdmsplitter[compname=Splitter2a](11,5)(12,6)(12,4)
+			\wdmsplitter[compname=Splitter2b](11,-1)(12,0)(12,-2)
+			\optdetector[compname=Det1a, labeloffset=1, labelangle=180](12,6)(13,6){{\begin{tabular}{@{}c@{}}Single-photon\\detector\end{tabular}}}
+			\optdetector[compname=Det1b, labeloffset=1](12,4)(13,4){{\begin{tabular}{@{}c@{}}Single-photon\\detector\end{tabular}}}
+			\optdetector[compname=Det2a, labeloffset=1, labelangle=180](12,0)(13,0){{\begin{tabular}{@{}c@{}}Single-photon\\detector\end{tabular}}}
+			\optdetector[compname=Det2b, labeloffset=1](12,-2)(13,-2){{\begin{tabular}{@{}c@{}}Single-photon\\detector\end{tabular}}}
+			
+			\drawfiber{Source}{Pol1}{Fiber}{Pol2}{Splitter1}{Splitter2a}{Det1a}
+			\drawfiber{Splitter2a}{Det1b}
+			\drawfiber{Splitter1}{Splitter2b}{Det2a}
+			\drawfiber{Splitter2b}{Det2b}
+		\end{optexp}
+	\end{pspicture}
+\end{document}

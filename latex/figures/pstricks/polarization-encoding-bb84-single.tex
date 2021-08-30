@@ -1,0 +1,24 @@
+\documentclass[pstricks]{standalone}
+
+\usepackage{amsmath}
+\usepackage{pst-optexp}
+
+\begin{document}
+	\begin{pspicture}(0,-0.5)(14,5)
+		\begin{optexp}
+			\psset[optexp]{fiber=none, usefiberstyle}
+			\newpsstyle{Fiber}{linecolor=orange}
+		  	
+			\optbox[compname=Source, position=start, labeloffset=1](2,2)(4,2){{\begin{tabular}{@{}c@{}}Single-photon\\source\end{tabular}}}
+			\optfiberpolarizer[compname=Pol1, labeloffset=0.75](3,2)(4,2){Polarizer}
+			\optfiber[compname=Fiber](5,2)(7,2){{\begin{tabular}{@{}c@{}}Quantum\\channel\end{tabular}}}
+			\optfiberpolarizer[compname=Pol2, labeloffset=0.75](8,2)(9,2){Polarizer}
+			\wdmsplitter[compname=Splitter](10,2)(11,3)(11,1)
+			\optdetector[compname=Det1, labeloffset=1, labelangle=180](11,3)(12,3){{\begin{tabular}{@{}c@{}}Single-photon\\detector\end{tabular}}}
+			\optdetector[compname=Det2, labeloffset=1](11,1)(12,1){{\begin{tabular}{@{}c@{}}Single-photon\\detector\end{tabular}}}
+			
+			\drawfiber{Source}{Pol1}{Fiber}{Pol2}{Splitter}{Det1}
+			\drawfiber{Splitter}{Det2}
+		\end{optexp}
+	\end{pspicture}
+\end{document}

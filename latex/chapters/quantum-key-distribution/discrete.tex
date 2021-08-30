@@ -1,11 +1,5 @@
 \section{Discrete-variable}
 
-% variants to DV-QKD (six state, decoy states, active/passive)
-% active vs passive basis selection on the receiver (compare homodyne/heterodyne measurement with polarization filter vs. beam splitter + polarization filters)
-% dv-qkd (BB84)
-% qubit/spin-state system (Pauli eigenbasis)
-% equations for phase-encoding QKD
-
 In \gls{dvqkd}, the receiver performs a discrete measurement.
 Many variants of \gls{dvqkd} exist. For an overview of protocols, see Ref.~\cite{Duvsek2006}.
 The most popular protocol is BB84~\cite{Bennett1984} because of its simplicity and well-developed security proof~\cite{Shor2000}.
@@ -86,6 +80,20 @@ While BB84~\cite{Bennett1984} was initially proposed with polarization-encoding,
 
 \FloatBarrier
 \subsection{Polarization-encoding}
+
+% active vs passive basis selection on the receiver (compare homodyne/heterodyne measurement with polarization filter vs. beam splitter + polarization filters)
+% equations
+%~\cite{Bennett1984}
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/polarization-encoding-bb84-single}
+	\caption{Foo.}
+\end{figure}
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/polarization-encoding-bb84-dual}
+	\caption{Foo.}
+\end{figure}
 
 \FloatBarrier
 \subsection{Time-phase-encoding}
