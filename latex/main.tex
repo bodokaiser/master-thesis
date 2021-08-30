@@ -141,6 +141,7 @@
 \newacronym{qkd}{QKD}{quantum-key distribution}
 \newacronym{rsa}{RSA}{Rivest–Shamir–Adleman}
 \newacronym{ecdh}{ECDH}{elliptic-curve Diffie-Hellman}
+\newacronym{qber}{QBER}{quantum-bit error-rate}
 
 \begin{document}
 	\begin{titlepage}
@@ -181,7 +182,7 @@
 
 	\chapter{Introduction}
 	\begin{refsection}
-		\textit{The following chapter presents the context, problem and motivation of the present thesis. Furthermore, we introduce the reader to the structure of the thesis as well as the adapted conventions and notation.}
+		\textit{The following chapter presents the fundamental idea of quantum-key distribution and its many facets, usually overlooked in the introductory material.}
         \input{chapters/introduction/quantum-technologies}
         \input{chapters/introduction/secure-communication}
         \input{chapters/introduction/problem-statement}
@@ -193,6 +194,7 @@
 	\end{refsection}
 	
 	\chapter{Quantum-key distribution}
+	\textit{The following chapter presents the fundamental idea of quantum-key distribution and its many facets, usually overlooked in the introductory material. First, we dedicate our attention to \gls{dvqkd} as it is more familiar than its counterpart \gls{cvqkd} which we discuss in the second part. For \gls{dvqkd}, we focus on the most common BB84 protocol, which we first discuss on an abstract protocol level and then practical implementations, particularly the polarization and time-phase encoding. We hope to convey to the reader the difference between the protocol and the encoding, which is not apparent when considering the basic polarization-encoding BB84. However, the difference between protocol and encoding will become central in the later stages of the CV-QKD thesis.}
 	\begin{refsection}
 		\input{chapters/quantum-key-distribution/discrete}
 		\input{chapters/quantum-key-distribution/continuous}
