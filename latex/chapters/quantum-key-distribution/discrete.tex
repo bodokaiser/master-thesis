@@ -1,7 +1,17 @@
 \section{Discrete-variable (BB84)}
 
+% variants to DV-QKD (six state, decoy states, active/passive)
+% active vs passive basis selection on the receiver (compare homodyne/heterodyne measurement with polarization filter vs. beam splitter + polarization filters)
+% dv-qkd (BB84)
+% qubit/spin-state system (Pauli eigenbasis)
+% equations for phase-encoding QKD
+
+For an overview of \gls{dvqkd} protocols, see Ref.~\cite{Duvsek2006}
+
+% why BB84?
+
 BB84~\cite{Bennett1984} is one of the most popular \gls{dvqkd} protocols and is commonly used as foundation for more practical protocols due to its simple security proof~\cite{Shor2000}.
-While the original BB84~\cite{Bennett1984} uses polariation-encoding, many different encodings are possible, see, for instance, \Cref{tab:dvqkd_encodings}.
+While the original BB84~\cite{Bennett1984} uses polarization-encoding, many different encodings are possible, see, for instance, \Cref{tab:dvqkd_encodings}.
 \begin{table}[htb]
 	\centering	
 	\begin{tabular}{lcc}
@@ -19,20 +29,53 @@ While the original BB84~\cite{Bennett1984} uses polariation-encoding, many diffe
 	\end{tabular}
 	\caption{Encoding variables and their usual assigned basis state for two-state \gls{dvqkd}: The specific choice of the encoding variable does not matter as long as the encoding variable can be described as a two-state quantum (qubit) system.}\label{tab:dvqkd_encodings}
 \end{table}
+
+\subsection{Polarization-encoding}
+
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{llccccc}
+		\toprule
+		& & \multicolumn{5}{c}{Transmission} \\
+		\cmidrule{3-7}
+		Party & Step & 1 & 2 & 3 & 4 & 5 \\ 
+		\midrule
+		\multirow{3}{*}{Alice} & Initial key bit & \num{0} & \num{1} & \num{1} & \num{0} & \num{0} \\
+		& State basis & $Z$ & $X$ & $X$ & $Z$ & $X$ \\
+		& Prepared state & $\ket{z_+}$ & $\ket{x_-}$ & $\ket{x_-}$ & $\ket{z_+}$ & $\ket{x_+}$ \\
+		\cmidrule{1-1}
+		\multirow{3}{*}{Bob} & Measurement basis & $X$ & $Z$ & $X$ & $Z$ & $Z$ \\
+		& Possible outcomes & \num{0},\num{1} & \num{0},\num{1} & \num{1} & \num{0} & \num{0},\num{1} \\
+		& Sifted key bit & - & - & 1 & 0 & - \\
+		\bottomrule
+	\end{tabular}
+	\caption{Possible prepare-and-measure sequence for BB84: Alice randomly selects an initial key bit \num{0} or \num{1} and a state basis $X$ or $Z$ where $X$ respective $Z$ denote the eigenbasis of the Pauli $\sigma_x$ respective $\sigma_z$ matrix. Alice's initial key bit and selected basis determine the quantum state she prepares and sends to Bob. Bob randomly chooses a measurement basis. Only if Alice's and Bob's basis agree, the key bit is not discarded.}
+\end{table}
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/post-processing-dv}
+	\caption{Post-processing procedure for \gls{dvqkd} protocols: First Alice's and Bob's key bits are correlated and partially secret. Key sifting discards key bits where Alice and Bob chose a different basis or where Bob did not detect an event while error correction removes the remaining differences between Alice's and Bob's partially secret key bits. Comparing the correlated key bits with the corrected key bits, Alice and Bob can estimate an error and thereby an upper bound on information loss to an adversary. Alice and Bob can remove the remaining partial information an adversary potentially has by performing privacy amplification. Finally, Alice and Bob share a secret key bit string.}
+\end{figure}
+
+\FloatBarrier
+\subsection{Time-phase-encoding}
+
 In the following, we discuss the practical time-phase-encoding BB84 protocol and show its equivalence to the polarization-encoding BB84.
+The idea of using phase-encoding was first proposed as part of the BB92 protocol~\cite{Bennett1992}.
 The basic setup is illustrated in \Cref{fig:time_phase_encoding_bb84} and comprises a single-photon source and a first \gls{mzi} on Alice's side as well as a second \gls{mzi} and two single-photon detecctors on Bob's side.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/phase-encoding-bb84}
 	\caption{Fiber-optical setup of the phase-encoding BB84 DV-QKD protocol: Alice creates an entangled photon state using a first \gls{mzi} with phase $\theta=0,\pi/2,\pi,3\pi/2$ and sends it to Bob. Bob detects the photon state using a second \gls{mzi} with phase $\phi=0,\pi$ and two single-photon detectors monitoring the outputs.}\label{fig:time_phase_encoding_bb84}
 \end{figure}
+
 To understand the time-phase encoding, we analyze the action of the (asymmetric) \gls{mzi} with variable phase $\varphi$ on a photon pulse $\ket{t_0}$ arriving at time $t_0$, see \Cref{fig:mzi_asym}.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/pstricks/mzi-asym}
-     \caption{Asymmetric \gls{mzi} comprising two beam splitters, two mirrors and a phase shifter: An input state enters the first beam splitter BS1 to the left. BS1 splits the state to a longer upper path and a shorter lower path. The lower path}\label{fig:mzi_asym}
+     \caption{Asymmetric \gls{mzi} adding a constant time delay and variable phase difference between the upper and lower path: A pulsed state enters the first beam splitter BS1 to the left and is split among a longer upper path and a shorter lower path. A first mirror M1 directs the pulse from the upper path to a phase shifter which adds a relative phase of $\varphi$ between the upper and lower path. A second mirror M2 directs the pulse from the phase shifter to a second beam splitter BS2 while the lower path is between BS1 and BS2.}\label{fig:mzi_asym}
 \end{figure}
-An ideal (lossless) and symmetric beam splitter transforms the single-photon input states into a superposition according to~\cite[p.~134]{Haroche2006}
+An ideal (lossless) and symmetric beam splitter transforms the single-photon input states into a superposition according to\footnote{See Ref.~\cite[p.~137]{Haroche2006} and Ref.~\cite[p.~143]{Gerry2005}}
 \begin{align}
 	\hat{U}_\text{BS}
 	\ket{1,0}
@@ -64,10 +107,9 @@ The phase shifter adds a relative phase of $\varphi$ between the upper and lower
 	=
 	\frac{1}{\sqrt{2}}
 	\left(
-		e^{i\varphi}
 		\ket{t_0+\tau,0}
 		+
-		i
+		ie^{i\varphi}
 		\ket{0,t_0+\tau+\Delta\tau}
 	\right)
 \end{equation}
@@ -84,166 +126,194 @@ The output state of BS2 is equal to the action of the \gls{mzi}
 		\ket{t_0,0}
 		\\
 		&=
-		\frac{1}{\sqrt{2}}
+		\frac{1}{2}
 		\biggl[
-			e^{i\varphi}
 			\left(
 				\ket{t_0+\tau,0}
 				+
 				i\ket{0,t_0+\tau}
 			\right)
 			+
-			i
+			ie^{i\varphi}
 			\left(
-				i\ket{t_0+\tau,0}
+				i\ket{t_0+\tau+\Delta\tau,0}
 				+
-				\ket{0,t_0+\tau}
+				\ket{0,t_0+\tau+\Delta\tau}
 			\right)
 		\biggr]
-	\end{split}
-\end{equation}
-
-% dv-qkd (BB84)
-% qubit/spin-state system (Pauli eigenbasis)
-% equations for phase-encoding QKD
-\cite{Bennett1992} % BB92 (also using phase-encoding)
-
-
-When Alice sends a single-photon $\ket{1}$ through her \gls{mzm} with phase $\theta$, she creates the entangled state\footnote{See Ref.~\cite[p.~137]{Haroche2006} and Ref.~\cite[p.~143]{Gerry2005} for a discussion of the \gls{mzi} with photon number states.}
-\begin{equation}
-	\ket{\theta}
-	=
-	\frac{1}{2}
-	\left(1+e^{i\theta}\right)
-	\ket{0}
-	+
-	\frac{i}{2}
-	\left(1-e^{i\theta}\right)
-	\ket{1}
-\end{equation}
-which we can express in the $Z$ and $Y$ Pauli eigenbasis
-\begin{equation}
-	\begin{split}
-		\ket{\theta}
-		=
+		\\
+		&=
 		\frac{1}{2}
-		\left(1+e^{i\theta}\right)
-		\ket{z_+}
-		+
-		\frac{i}{2}
-		\left(1-e^{i\theta}\right)
-		\ket{z_i}
-		=
-		\frac{1}{\sqrt{2}}
-		\left(
-			\ket{y_+}
+		\biggl[
+			\ket{t_0+\tau,0}
+			-
+			e^{i\varphi}
+			\ket{t_0+\tau+\Delta\tau,0}
 			+
-			e^{i\theta}
-			\ket{y_-}
-		\right)
+			i
+			\left(
+				\ket{0,t_0+\tau}
+				+
+				e^{i\varphi}
+				\ket{0,t_0+\tau+\Delta\tau}
+			\right)
+		\biggr]
 		.
 	\end{split}
+	\label{eq:mzi_asym}
 \end{equation}
-For the discrete values of the phase $\theta$, Alice's state reduces to the $X,Z$ eigenbasis of the Pauli matrices, i.e.,
-\begin{align}
-	\ket{z_+}
-	=
-	\ket{\theta=0}
-	&&
-	\ket{z_-}
-	=
-	\ket{\theta=\pi}
-	&&
-	\ket{x_+}
-	=
-	\ket{\theta=\frac{\pi}{2}}
-	&&
-	\ket{x_-}
-	=
-	\ket{\theta=\frac{3\pi}{2}}
-\end{align}
-suggesting equivalence to the BB84 protocol on the transmitter side.
-On the receiver side, Bob is to measure the state
+
+Back to the time-phase-encoding BB84 setup depicted in \Cref{fig:time_phase_encoding_bb84}, we note that Alice's transmitter consists of a single-photon source and an asymmetric \gls{mzi} where on output is dumped.
+Therefore, Alice's states are parametrized by the relative phase $\theta$,
 \begin{equation}
-	\ket{\theta,\varphi}
+	\ket{t_0,\theta}
+	=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\ket{t_0}
+		-
+		e^{i\theta}
+		\ket{t_0+\Delta\tau}
+	\right)
+	,
+\end{equation}
+which is obtained from \cref{eq:mzi_asym} by absorbing the time delay of the shorter path $\tau$ into the time reference $t_0$ and projecting the first output mode of the \gls{mzi}.
+By adding a time delay to the states of $\Delta\tau$, we receive the states for the time-delayed signal
+\begin{align}
+	\ket{t_1,\phi}_1
+	&=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\ket{t_1}
+		-
+		e^{i\phi}
+		\ket{t_1+\Delta\tau}
+	\right)
+	\\
+	\ket{t_1,\phi}_2
+	&=
+	\frac{i}{\sqrt{2}}
+	\left(
+		\ket{t_1}
+		+
+		e^{i\phi}
+		\ket{t_1+\Delta\tau}
+	\right)
+	\label{eq:tp_bb84_bob_nodelay}
+\end{align}
+where we again choose the time $t_1$ such that it cancels the time delay of the short path $\tau$.
+If Bob receives a pulse with time delay $\Delta\tau$ at some time $t_1$, i.e., $\ket{t_1+\Delta\tau}$, then his \gls{mzi} provides the two detectors with the states
+\begin{align}
+	\ket{t_1+\Delta\tau,\phi}_1
+	&=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\ket{t_1+\Delta\tau}
+		-
+		e^{i\phi}
+		\ket{t_1+2\Delta\tau}
+	\right)
+	\\
+	\ket{t_1+\Delta\tau,\phi}_2
+	&=
+	\frac{i}{\sqrt{2}}
+	\left(
+		\ket{t_1+\Delta\tau}
+		+
+		e^{i\phi}
+		\ket{t_1+2\Delta\tau}
+	\right)
+	.
+	\label{eq:tp_bb84_bob_delay}
+\end{align}
+We note that these are superpositions of states at three different time instances $0,\Delta\tau,2\Delta\tau$.
+Alice's state is a superposition of \cref{eq:tp_bb84_bob_nodelay} and \cref{eq:tp_bb84_bob_delay}, so Bob's detectors will receive the states
+\begin{align}
+	\ket{\theta,\phi}_1
+	&=
+	\frac{1}{2}
+	\left[
+		\ket{\Delta\tau=0}
+		-
+		\left(
+			e^{i\phi}
+			+
+			e^{i\theta}
+		\right)
+		\ket{\Delta\tau=1}
+		+
+		e^{i(\phi+\theta)}
+		\ket{\Delta\tau=2}
+	\right]
+	\\
+	\ket{\theta,\phi}_2
+	&=
+	\frac{i}{2}
+	\left[
+		\ket{\Delta\tau=0}
+		+
+		\left(
+			e^{i\phi}
+			-
+			e^{i\theta}
+		\right)
+		\ket{\Delta\tau=1}
+		-
+		e^{i(\phi+\theta)}
+		\ket{\Delta\tau=2}
+	\right]
+	\label{eq:tp_bb84_bob}
+\end{align}
+where we dropped the pulse time.
+The no time delay and twice time delay states, $\ket{\Delta\tau=0}$ respective $\ket{\Delta\tau=2}$ occur with constant probability $1/4$ and thereby provide no information about the received state.
+However, the superposition of one time delay states $\ket{\Delta\tau=1}$ have probability amplitudes $(e^{i\phi}\pm e^{i\theta})/2$.
+We define the projector
+\begin{equation}
+	\hat{P}_{\Delta\tau=1}
+	=
+	\ketbra{\Delta\tau=1}
+\end{equation}
+and find the probability for a click at $\Delta\tau=1$ to be
+\begin{align}
+	p_1
+	&=
+	\trace{\hat\rho_1\hat{P}_{\Delta\tau=1}}
 	=
 	\frac{1}{2}
-	\left(1+e^{i\theta}\right)
-	\ket{0,0}
-	+
-	\frac{i}{4}
-	\left(1-e^{i\theta}\right)
-	\biggl[
-		\left(1+e^{i\varphi}\right)
-		\ket{0,1}
-		+
-		i\left(1-e^{i\varphi}\right)
-		\ket{1,0}
-	\biggr]
-	.
-\end{equation}
-More precisely, the probabilities that Bob's detectors click are
-\begin{align}
-	P_1(\theta,\varphi)
+	\left(1+\cos(\theta-\phi)\right)
+	\\
+	p_2
+	&=
+	\trace{\hat\rho_2\hat{P}_{\Delta\tau=1}}
 	=
-	\frac{1}{4}
-	\left(1-\cos\theta\right)
-	\left(1-\cos\varphi\right)
-	&&
-	P_2(\theta,\varphi)
-	=
-	\frac{1}{4}
-	\left(1-\cos\theta\right)
-	\left(1+\cos\varphi\right)
+	\frac{1}{2}
+	\left(1-\textcolor{red}{\cos(\theta-\phi)}\right)
 \end{align}
+where we used the density matrices $\hat\rho_i={}_i\ketbra{\theta,\phi}_i$.
+Restricting Alice's possible phases to $\theta=0,\pi,\pi/2,3\pi/2$ and Bob's possible phases to $0,\pi/2$, we find the click probabilities of the detectors as presented in \Cref{tab:tp_bb84_probabilities}.
 \begin{table}[htb]
 	\centering
-	\begin{tabular}{cccc}
+	\begin{tabular}{ccccc}
 		\toprule
-		\multicolumn{2}{c}{Phase} & \multicolumn{2}{c}{Detector click probability} \\
-		\cmidrule{1-2}
-		\cmidrule{3-4}
-		$\theta$ & $\varphi$ & $P_1(\theta,\varphi)$ & $P_2(\theta,\varphi)$ \\
+		\multicolumn{3}{c}{Phase} & \multicolumn{2}{c}{Detector click probability} \\
+		\cmidrule{1-3}
+		\cmidrule{4-5}
+		$\theta$ & $\phi$ & $\theta-\phi$ & $p_i(\theta-\phi)$ & $p_i(\theta-\phi)$ \\
 		\midrule
-		\multirow{2}{*}{$0$} & $0$ & \SI{0}{\percent} & \SI{0}{\percent} \\
-		& $\pi$ & \SI{0}{\percent} & \SI{0}{\percent} \\
-		\cmidrule{1-2}
-		\multirow{2}{*}{$\pi$} & $0$ & \SI{0}{\percent} & \SI{100}{\percent} \\
-		& $\pi$ & \SI{100}{\percent} & \SI{0}{\percent} \\
-		\cmidrule{1-2}
-		\multirow{2}{*}{$\frac{\pi}{2}$} & $0$ & \SI{0}{\percent} & \SI{100}{\percent} \\
-		& $\pi$ & \SI{100}{\percent} & \SI{0}{\percent} \\
-		\cmidrule{1-2}
-		\multirow{2}{*}{$\frac{3\pi}{2}$} & $0$ & \SI{0}{\percent} & \SI{100}{\percent} \\
-		& $\pi$ & \SI{100}{\percent} & \SI{0}{\percent} \\
+		\multirow{2}{*}{$0$} & $0$ & $0$ & \SI{100}{\percent} & \SI{0}{\percent} \\
+		& $\frac{\pi}{2}$ & $-\frac{\pi}{2}$ & \SI{50}{\percent} & \SI{50}{\percent} \\
+		\cmidrule{1-3}
+		\multirow{2}{*}{$\pi$} & $0$ & $\pi$ & \SI{0}{\percent} & \SI{100}{\percent} \\
+		& $\frac{\pi}{2}$ & $\frac{\pi}{2}$ & \SI{50}{\percent} & \SI{50}{\percent} \\
+		\cmidrule{1-3}
+		\multirow{2}{*}{$\frac{\pi}{2}$} & $0$ & $\frac{\pi}{2}$ & \SI{50}{\percent} & \SI{50}{\percent} \\
+		& $\frac{\pi}{2}$ & $0$ & \SI{100}{\percent} & \SI{0}{\percent} \\
+		\cmidrule{1-3}
+		\multirow{2}{*}{$\frac{3\pi}{2}$} & $0$ & $\frac{3\pi}{2}$ & \SI{50}{\percent} & \SI{50}{\percent} \\
+		& $\frac{\pi}{2}$ & $\pi$ & \SI{0}{\percent} & \SI{100}{\percent} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Foobar}
+	\caption{Foobar}\label{tab:tp_bb84_probabilities}
 \end{table}
-\begin{table}[htb]
-	\centering
-	\begin{tabular}{llccccc}
-		\toprule
-		& & \multicolumn{5}{c}{Transmission} \\
-		\cmidrule{3-7}
-		Party & Step & 1 & 2 & 3 & 4 & 5 \\ 
-		\midrule
-		\multirow{3}{*}{Alice} & Initial key bit & \num{0} & \num{1} & \num{1} & \num{0} & \num{0} \\
-		& State basis & $Z$ & $X$ & $X$ & $Z$ & $X$ \\
-		& Prepared state & $\ket{z_+}$ & $\ket{x_-}$ & $\ket{x_-}$ & $\ket{z_+}$ & $\ket{x_+}$ \\
-		\cmidrule{1-1}
-		\multirow{3}{*}{Bob} & Measurement basis & $X$ & $Z$ & $X$ & $Z$ & $Z$ \\
-		& Possible outcomes & \num{0},\num{1} & \num{0},\num{1} & \num{1} & \num{0} & \num{0},\num{1} \\
-		& Sifted key bit & - & - & 1 & 0 & - \\
-		\bottomrule
-	\end{tabular}
-	\caption{Possible prepare-and-measure sequence for BB84: Alice randomly selects an initial key bit \num{0} or \num{1} and a state basis $X$ or $Z$ where $X$ respective $Z$ denote the eigenbasis of the Pauli $\sigma_x$ respective $\sigma_z$ matrix. Alice's initial key bit and selected basis determine the quantum state she prepares and sends to Bob. Bob randomly chooses a measurement basis. Only if Alice's and Bob's basis agree, the key bit is not discarded.}
-\end{table}
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/tikz/post-processing-dv}
-	\caption{Post-processing procedure for \gls{dvqkd} protocols: First Alice's and Bob's key bits are correlated and partially secret. Key sifting discards key bits where Alice and Bob chose a different basis or where Bob did not detect an event while error correction removes the remaining differences between Alice's and Bob's partially secret key bits. Comparing the correlated key bits with the corrected key bits, Alice and Bob can estimate an error and thereby an upper bound on information loss to an adversary. Alice and Bob can remove the remaining partial information an adversary potentially has by performing privacy amplification. Finally, Alice and Bob share a secret key bit string.}
-\end{figure}
-\cite{Duvsek2006} % overview of DV-QKD protocols
-% variants to DV-QKD (six state, decoy states, active/passive)
-% active vs passive basis selection on the receiver (compare homodyne/heterodyne measurement with polarization filter vs. beam splitter + polarization filters)
+
+\subsection{Equivalence between polarization- and time-phase-encoding}
