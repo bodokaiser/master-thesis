@@ -1,24 +1,24 @@
 \section{Continuous-variable}
 
+In \gls{cvqkd}, the receiver performs a continuous-value measurement, i.e., the set of possible outcomes is uncountable.
+In comparison to \gls{dvqkd}, \gls{cvqkd} generates random bits faster but with higher error.
+Grosshans initially proposed \gls{cvqkd} in 2002 as an alternative to DV-QKD~\cite{Grosshans2002}.
+Today, CV-QKD has grown into solid competition with DV-QKD~\cite{Diamanti2016}.
+One significant advantage of CV-QKD over DV-QKD is that the CV-QKD receiver uses standard telecommunication components allowing for cheap high-performance integration.
+
+% relevance of Gaussian RV to CV-QKD?
+For an introduction to 
+
 % citations:
-% \cite{Scarani2009} The Security of Practical QKD
 % \cite{Weedbrook2012,Ferraro2005} Gaussian quantum information (quantum channel, cv-qkd, measurements)
-% \cite{Renner2009} - overview attacks, reduction of coherent attacks to collective attacks
-% \cite{Grosshans2002} - first proposal of CV-QKD?
-% \cite{Diamanti2016} - practical challenges for QKD / outlook (photonic integrationo, MIDI) and why DV-QKD is more practical
-% \cite{Lo2014} Introduction to security proof of QKD (quantum hacking)
-% \cite{Diamanti2015} security analysis of CV-QKD
 % \cite{Lodewyck2007} complete description of CV-QKD device (theoretical and experimental)
-% \cite{Laudenbach2018} notions of secrutiy, key rate, noise and detection models, parameter estimation
-% \cite{Fung2010} security analysis of post-processing
-% \cite{Renner2005} security of privacy amplification
 
-% cv-qkd
-% advantages of CV-QKD compared to DV-QKD
+% measurement of a Gaussian variable (1d)
 % protocol table
-% equation for correlation between random variables (with figure of two gaussians)
+% post-processing
 
-\subsection{Phase-encoding}
+\subsection{Amplitude-encoding}
+
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/phase-encoding-cvqkd}
@@ -29,3 +29,5 @@
 
 % dual homodyne
 % tensor product input state
+
+\subsection{Comparison to DV-QKD}

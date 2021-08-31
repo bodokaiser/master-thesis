@@ -49,12 +49,7 @@ Otherwise, an opposing third party, Eve, might have tempered with the transmissi
 	\caption{Possible prepare-and-measure sequence for BB84: Alice randomly selects an initial key bit \num{0} or \num{1} and a state basis $X$ or $Z$ where $X$ respective $Z$ denote the eigenbasis of the Pauli $\sigma_x$ respective $\sigma_z$ matrix. Alice's initial key bit and selected basis determine the quantum state she prepares and sends to Bob. Bob randomly chooses a measurement basis. Only if Alice's and Bob's basis agree, the key bit is not discarded.}\label{tab:dvqkd_transmission_sequence}
 \end{table}
 The base sifting where Alice or Bob announce their chosen basis is part of the classical post-processing.
-The post-processing distills a secret key bit string from the partially secret and correlated bit string Alice and Bob obtained from the transmission, see \Cref{fig:dvqkd_post_processing} for details.
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/tikz/post-processing-dv}
-	\caption{Post-processing procedure for \gls{dvqkd} protocols: First Alice's and Bob's key bits are correlated and partially secret. Key sifting discards key bits where Alice and Bob chose a different basis or where Bob did not detect an event while error correction removes the remaining differences between Alice's and Bob's partially secret key bits. Comparing the correlated key bits with the corrected key bits, Alice and Bob can estimate an error and thereby an upper bound on information loss to an adversary. Alice and Bob can remove the remaining partial information an adversary potentially has by performing privacy amplification. Finally, Alice and Bob share a secret key bit string.}\label{fig:dvqkd_post_processing}
-\end{figure}
+The post-processing distills a secret key bit string from the partially secret and correlated bit string Alice and Bob obtained from the transmission, see \Cref{fig:post_processing} for details.
 
 So far, we assumed Alice to send a qubit (state) to Bob, but we have not discussed the physical system underlying, i.e., encoding, the qubit.
 \Cref{tab:dvqkd_encodings} lists different physical means to encode a qubit.
@@ -79,7 +74,7 @@ While BB84~\cite{Bennett1984} was initially proposed with polarization-encoding,
 \end{table}
 
 \FloatBarrier
-\subsection{Polarization-encoding}
+\subsection{Polarization-encoding BB84}
 
 % active vs passive basis selection on the receiver (compare homodyne/heterodyne measurement with polarization filter vs. beam splitter + polarization filters)
 % equations
@@ -96,7 +91,7 @@ While BB84~\cite{Bennett1984} was initially proposed with polarization-encoding,
 \end{figure}
 
 \FloatBarrier
-\subsection{Time-phase-encoding}
+\subsection{Time-phase-encoding BB84}
 
 In the following, we discuss the practical time-phase-encoding BB84 protocol and show its equivalence to the polarization-encoding BB84.
 The idea of using phase-encoding was first proposed as part of the BB92 protocol~\cite{Bennett1992}.
@@ -354,4 +349,4 @@ Restricting Alice's possible phases to $\theta=0,\pi,\pi/2,3\pi/2$ and Bob's pos
 	\caption{Foobar}\label{tab:tp_bb84_probabilities}
 \end{table}
 
-\subsection{Equivalence between polarization- and time-phase-encoding}
+\subsection{Equivalence between polarization- and time-phase-encoding BB84}
