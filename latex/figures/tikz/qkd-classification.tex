@@ -9,7 +9,7 @@
 		concept color=orange,
 		level 1/.append style={
 			concept color=orange!70,
-			sibling angle=120,
+			sibling angle=72,
 		},
 		level 2/.append style={
 			concept color=orange!30,
@@ -20,7 +20,7 @@
 		},
 	]
 		\node[text=white] {\textsf{QKD}}
-			child { node[text=white] {\textsf{Variable}}
+			child { node[text=white] {\textsf{Logical state space}}
 				child { node {\textsf{Discrete}} }
 				child { node {\textsf{Continuous}} }
 			}
@@ -31,6 +31,15 @@
 			child { node[text=white] {\textsf{Measurement basis selection}}
 				child { node {\textsf{Active}} }
 				child { node {\textsf{Passive}} }
+			}
+			child { node[text=white] {\textsf{Physical encoding}}
+				child { node {\textsf{Polarization}} }
+				child { node {\textsf{Quadratures}} }
+				child { node {\textsf{Squeezing}} }
+			}
+			child { node[text=white] {\textsf{Detection}}
+				child { node {\textsf{Coherent}} }
+				child { node {\textsf{Single-photon}} }
 			}
 		;
 	\end{tikzpicture}
