@@ -1,37 +1,63 @@
 \section{Qubit-based protocols}
 
-In qubit-based protocols, like, e.g., BB84~\cite{Bennett1984}, the logical quantum system is a qubit.
-
-
-In \gls{dvqkd}, the receiver performs a discrete measurement.
-Many variants of \gls{dvqkd} exist. For an overview of protocols, see Ref.~\cite{Duvsek2006}.
-The most popular protocol is  because of its simplicity and well-developed security proof~\cite{Shor2000}.
-BB84 is frequently used as the foundation for more practical protocols which do not rely upon a (perfect) single-photon source.
-
-We find an innate understanding of BB84's operating principle by considering the measurement of a general two-state quantum system: a qubit.
-A qubit is an element $\ket{\psi}$ of a two-dimensional complex Hilbert space which absolute squared is normalized to one $\abs{\braket{\psi}}^2=1$.
-We define $\ket{0},\ket{1}$ to be the standard basis and write a qubit state as $\ket{\psi}=c_1\ket{0}+c_2\ket{1}$ wherein $\abs{c_1}^2+\abs{c_2}^2=1$.
-The state space then equals the surface of a three-dimensional unit sphere, the Bloch sphere, illustrated in \Cref{fig:bloch_sphere}.
+Many DV-QKD protocols, e.g., the BB84~\cite{Bennett1984} or six-state protocol~\cite{Bechmann1999}, are qubit-based in that the logical quantum system underlying the key generation is a two-state quantum system.
+A qubit state $\ket{\psi}$ is an element of a two-dimensional complex Hilbert space with norm one, i.e., $\abs{\braket{\psi}}^2=1$.
+In the qubit basis $\{\ket{0},\ket{1}\}$, a generic qubit state takes the form
+\begin{align}
+	\ket{\psi}
+	=
+	c_1\ket{0}
+	+
+	c_2\ket{1}
+	&&
+	\text{with}\
+	\abs{c_1}^2
+	+
+	\abs{c_2}^2
+	=
+	1
+	.
+\end{align}
+The state space equals the surface of a three-dimensional unit sphere.
+A useful visualization of qubit states is the Bloch sphere, see \Cref{fig:bloch_sphere}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/bloch-sphere}
-	\caption{Two-state quantum system in the Bloch sphere representation: A (pure) quantum state  $\ket{\psi}=c_1\ket{0}+c_2\ket{1}$ with $\abs{c_1}^2+\abs{c_2}^2=1$ takes a point on the surface of the (Bloch) sphere which has unit radius. By convention, the standard basis $\left\{\ket{0},\ket{1}\right\}$ is set to equal the $Z$ Pauli eigenbasis $\left\{\ket{z_+},\ket{z_-}\right\}$. The $Y,Z$ Pauli eigenbasis are both orthogonal to the $Z$ basis.}\label{fig:bloch_sphere}
+	\caption{Two-state quantum system in the Bloch sphere representation: A (pure) quantum state  $\ket{\psi}=c_1\ket{0}+c_2\ket{1}$ with $\abs{c_1}^2+\abs{c_2}^2=1$ takes a point on the surface on a unit radius sphere. By convention, the standard basis $\left\{\ket{0},\ket{1}\right\}$ is set to equal the $Z$ Pauli eigenbasis $\left\{\ket{z_+},\ket{z_-}\right\}$. The $Y,Z$ Pauli eigenbasis are both orthogonal to the $Z$ basis.}\label{fig:bloch_sphere}
 \end{figure}
-Contrary to Euclidean space, two antiparallel axes piercing the Bloch sphere correspond to orthogonal elements.
-The Bloch sphere is embedded in three-dimensional space, and there are in total three independent bases.
-The Pauli algebra relates to two-dimensional rotations and thereby describes state transitions on the Bloch sphere.
-When working with the Bloch sphere, it is convenient to select the three Pauli eigenbasis as an orthogonal basis triplet.
-By convention one identifies the $Z$ Pauli eigenbasis with the standard basis $\left\{\ket{0},\ket{1}\right\}$.
+The Bloch sphere is embedded in three-dimensional space, and there are three independent bases.
+Two antiparallel vectors on the Bloch sphere denote two orthonormal basis elements.
+The Pauli algebra representing two-dimensional rotations describes state transitions on the Bloch sphere.
+It is convenient to select the three Pauli eigenbasis as an orthogonal basis triplet.
+By convention one identifies the $Z$ Pauli eigenbasis with the qubit basis $\left\{\ket{0},\ket{1}\right\}$.
+\Cref{tab:qubit_encodings} lists different physical quantum systems  which allow encoding of a qubit.
+\begin{table}[htb]
+	\centering	
+	\begin{tabular}{lcc}
+		\toprule
+		& \multicolumn{2}{c}{Standard basis} \\
+		\cmidrule{2-3}
+		Encoding variable & $\ket{0}$ & $\ket{1}$ \\
+		\midrule
+		Polarization & Horizontal & Vertical \\
+		Photon number & Vacuum & Single-photon \\
+		Time-bin & Early & Late \\
+		Phase-bin & \SI{0}{\deg} & \SI{180}{\deg} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Possible physical systems to encode a qubit. Many of the physical systems have a much higher dimension than the qubit space but can pre reduced to a qubit space by a proper mapping.}\label{tab:qubit_encodings}
+\end{table}
 
-Having introduced the Bloch sphere, we can visually explain the main idea of \gls{dvqkd}:
-Alice and Bob agree on two (or three) orthogonal bases and map the respective basis elements to the zero and one bit.
-Alice now chooses randomly a basis and a vector of that basis which she sends to Bob.
-Bob randomly chooses a basis to measure the state he received from Alice.
+For qubit-based \gls{qkd}, Alice and Bob must agree on two (or three) orthogonal bases and a mapping between the basis states and some bit sequence, then
+\begin{enumerate}
+	\item Alice encodes her bits into the state $\ket{\psi}$ and sends it to Bob.
+	\item Bob receives the state $\ket{\psi}$ from Alice and performs a measurement decoding some bits.
+\end{enumerate}
 If Alice and Bob select the same basis, Bob can accurately decode Alice's key bit from the measurement.
-Alice and Bob's probability of choosing the same basis for one transmission is one divided by the number of orthogonal bases Alice and Bob have agreed on, e.g., \SI{25}{\percent} if Alice and Bob agreed to use the $X$ and $Z$ Pauli eigenbasis, also called the \gls{qber}.
+Alice and Bob's probability of choosing the same basis for one transmission is one divided by the number of orthogonal bases Alice and Bob have agreed on, e.g., \SI{50}{\percent} if Alice and Bob agreed to use the $X$ and $Z$ Pauli eigenbasis, also called the \gls{qber}.
 In the asymptotic limit of many transmissions, the \gls{qber} should approach the theoretical limit.
 Otherwise, an opposing third party, Eve, might have tempered with the transmission.
-\Cref{tab:dvqkd_transmission_sequence} displays a possible BB84 prepare-and-measure sequence where Alice and Bob agreed to use the $X$ and $Z$ bases.
+\Cref{tab:dvqkd_transmission_sequence} displays a possible transmission sequence between Alice and Bob.
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{llccccc}
@@ -49,32 +75,9 @@ Otherwise, an opposing third party, Eve, might have tempered with the transmissi
 		& Sifted key bit & - & - & 1 & 0 & - \\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible prepare-and-measure sequence for BB84: Alice randomly selects an initial key bit \num{0} or \num{1} and a state basis $X$ or $Z$ where $X$ respective $Z$ denote the eigenbasis of the Pauli $\sigma_x$ respective $\sigma_z$ matrix. Alice's initial key bit and selected basis determine the quantum state she prepares and sends to Bob. Bob randomly chooses a measurement basis. Only if Alice's and Bob's basis agree, the key bit is not discarded.}\label{tab:dvqkd_transmission_sequence}
+	\caption{Possible transmission sequence for qubit-based \gls{qkd}: Alice randomly selects an initial key bit \num{0} or \num{1} and a state basis $X$ or $Z$ where $X$ respective $Z$ denote the eigenbasis of the Pauli $\sigma_x$ respective $\sigma_z$ matrix. Alice's initial key bit and selected basis determine the quantum state she prepares and sends to Bob. Bob randomly chooses a measurement basis. Only if Alice's and Bob's basis agree, the key bit is not discarded.}\label{tab:dvqkd_transmission_sequence}
 \end{table}
-The base sifting where Alice or Bob announce their chosen basis is part of the classical post-processing.
-The post-processing distills a secret key bit string from the partially secret and correlated bit string Alice and Bob obtained from the transmission, see \Cref{fig:post_processing} for details.
-
-So far, we assumed Alice to send a qubit (state) to Bob, but we have not discussed the physical system underlying, i.e., encoding, the qubit.
-\Cref{tab:dvqkd_encodings} lists different physical means to encode a qubit.
-For example, the polarization of light behaves like a qubit system, with the three orthogonal bases being circular, linear, and diagonal polarization.
-While BB84~\cite{Bennett1984} was initially proposed with polarization-encoding, other encodings appear more practicable when considering transmission properties of the physical quantum channel.
-\begin{table}[htb]
-	\centering	
-	\begin{tabular}{lcc}
-		\toprule
-		& \multicolumn{2}{c}{Standard basis} \\
-		\cmidrule{2-3}
-		Encoding variable & $\ket{0}$ & $\ket{1}$ \\
-		\midrule
-		Polarization & Horizontal & Vertical \\
-		Photon number & Vacuum & Single-photon \\
-		Squeezing & Amplitude & Phase \\
-		Time-bin & Early & Late \\
-		Phase-bin & \SI{0}{\deg} & \SI{180}{\deg} \\
-		\bottomrule
-	\end{tabular}
-	\caption{Encoding variables and their usual assigned basis state for two-state \gls{dvqkd}: The specific choice of the encoding variable does not matter as long as the encoding variable can be described as a two-state quantum (qubit) system.}\label{tab:dvqkd_encodings}
-\end{table}
+After the transmission sequence, Alice and Bob hold a partially correlated and partially secret bit string from which they can distill a shared secret bit string using classical post-processing.
 
 \FloatBarrier
 \subsection{Polarization-encoding}
