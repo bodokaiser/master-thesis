@@ -194,11 +194,12 @@
 	\end{refsection}
 	
 	\chapter{Quantum-key distribution}
-	\textit{The following chapter presents the fundamental idea of quantum-key distribution and its many facets, usually overlooked in the introductory material. First, we dedicate our attention to \gls{dvqkd} as it is more familiar than its counterpart \gls{cvqkd} which we discuss in the second part. For \gls{dvqkd}, we focus on the most common BB84 protocol, which we first discuss on an abstract protocol level and then practical implementations, particularly the polarization and time-phase encoding. We hope to convey to the reader the difference between the protocol and the encoding, which is not apparent when considering the basic polarization-encoding BB84. However, the difference between protocol and encoding will become central in the later stages of the CV-QKD thesis.}
 	\begin{refsection}
-		\input{chapters/quantum-key-distribution/overview}	
-		\input{chapters/quantum-key-distribution/discrete}
-		\input{chapters/quantum-key-distribution/continuous}
+		\input{chapters/quantum-key-distribution/introduction}	
+		\input{chapters/quantum-key-distribution/bb84}
+		\input{chapters/quantum-key-distribution/gaussian}
+		\input{chapters/quantum-key-distribution/post-processing}
+		\input{chapters/quantum-key-distribution/security}
 
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
@@ -234,18 +235,6 @@
 		\input{chapters/coherent-state-transmission-system/overview}
 		\input{chapters/coherent-state-transmission-system/transmitter}
 		\input{chapters/coherent-state-transmission-system/receiver}
-
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
-	
-	\chapter{Classical post-processing}
-	\begin{refsection}
-		\textit{The following chapter describes a \gls{cvqkd} system by extending the previously discussed coherent state transmission system with the missing pieces to create a shared secret key from the correlated measurements of the coherent states.}
-		\input{chapters/classical-post-processing/overview}
-		\input{chapters/classical-post-processing/reconciliation}
-		\input{chapters/classical-post-processing/error-correction}
-		\input{chapters/classical-post-processing/privacy-amplification}
 
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
