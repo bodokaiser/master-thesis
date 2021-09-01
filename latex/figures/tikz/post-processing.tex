@@ -1,20 +1,24 @@
 \documentclass[tikz]{standalone}
 
-\usetikzlibrary{arrows.meta,positioning}
+\usepackage{amsmath}
+\usepackage{physics}
+
+\usetikzlibrary{arrows.meta,fit,positioning}
 
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=3ex,
-		arrow/.style={-latex},
-		block/.style={draw, minimum height=10ex, minimum width=12em, align=center},
+		node distance=4em,
+		block/.style={draw, very thick, minimum height=8ex, minimum width=3.5em, align=center, text width=12em},
 	]
-		\node (av) [block] {Alice's\\partially secret\\variables};
-		\node (bv) [block, below=of av] {Bob's\\partially secret \\variables};
-		\node (sb) at (12,-1) [block] {Alice's and Bob's\\asymptotically secret\\key bits};
-		\node (n) at ([xshift=-10em]sb.west) {Post-processing};
+		\node (kb1) [block] {\textsf{Partially secret and correlated key bits}};
+		\node (kb2) [block, below=of kb1] {\textsf{Partially secret key bits}};
+		\node (kb3) [block, below=of kb2] {\textsf{Secret key bits}};
 		
-		\draw (av.east) to[out=0, in=180] (n);
-		\draw (bv.east) to[out=0, in=180] (n);
-		\draw[arrow] (n) -- (sb.west);
+		\draw[-Latex] (kb1) -- (kb2) node[midway, fill=white] {\textsf{Base sifting and error correction}};
+		\draw[-Latex] (kb2) -- (kb3) node[midway, fill=white] {\textsf{Privacy amplification}};
+		
+		\node (abort) [block, right=of kb3, text width=5em] {\textsf{Protocol abort}};
+		\draw[-Latex] (kb2) -- (abort|-kb2) -- (abort) node[midway, fill=white] {\textsf{Error estimation}};
+		\draw (kb1) -- (abort|-kb1) -- (abort|-kb2);
 	\end{tikzpicture}
 \end{document}

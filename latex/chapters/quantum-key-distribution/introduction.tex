@@ -1,19 +1,24 @@
-\textit{The following chapter presents the fundamental idea of quantum-key distribution and its many facets, usually overlooked in the introductory material. First, we dedicate our attention to \gls{dvqkd} as it is more familiar than its counterpart \gls{cvqkd} which we discuss in the second part. For \gls{dvqkd}, we focus on the most common BB84 protocol, which we first discuss on an abstract protocol level and then practical implementations, particularly the polarization and time-phase encoding. We hope to convey to the reader the difference between the protocol and the encoding, which is not apparent when considering the basic polarization-encoding BB84. However, the difference between protocol and encoding will become central in the later stages of the CV-QKD thesis.}
+The present chapter attempts to formalize a \gls{qkd} protocol by classifying the rich diversity of \gls{qkd} protocols and identifying common characteristics.
+We apply our results by presenting the popular BB84 and Gaussian \gls{cvqkd} protocols.
 
-core principle: non-orthogonality of quantum states?
-
-% internet layer for QKD protocols: bit encoder/decoder, logical quantum system, physical quantum system
-
-%  -> EB for security proof, PM for implementation (cite equivalence)
-
-\begin{enumerate}
-	\item entanglement-based (EB) vs prepare-and-measure (PM)
-	\item continuous- vs. discrete (definition)
-	\item active vs passive measurement
-\end{enumerate}
+\Cref{fig:qkd_classification} presents an attempt to characterize \gls{qkd} protocols among three properties:
+the type of random variable, the schema, and the measurement basis selection.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/qkd-classification}
+	\caption{An attempt to classify \gls{qkd} protocol: The random variable generating the random numbers can be either discrete or continuous. The schema can be either prepare-and-measure or entanglement-based. The basis selection for the basis can be either active or passive.}\label{fig:qkd_classification}
+\end{figure}
+The type of the random variable used for random number generation can be either continuous or discrete, i.e., the random number generator's domain is either an uncountable or countable set.
+It is ambiguous to discriminate among \gls{dvqkd} and \gls{cvqkd} protocols based on the detector, i.e., click or coherent, as recently demonstrated by Qi~\cite{Qi2021}.
+Concerning measurement basis selection, Bob can either actively choose a random measurement basis for every transmission or passively measure all (orthogonal) bases for measurement basis selection.
+We will cover both active and passive measurement basis selection in the discussion of the polarization-encoding BB84 protocol.
+Finally, the \gls{qkd} schema determines if either Alice prepares a state and sends it to Bob for measurement (prepare-and-measure) or if Alice and Bob share an entangled state (entanglement-based).
+Most practical \gls{qkd} implementations use prepare-and-measure.
+On a theoretical level, both schemas are equivalent, and security proofs are often more convenient in an entanglement-based setting.
 
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/tikz/post-processing-dv}
-	\caption{Post-processing procedure for \gls{dvqkd} protocols: First Alice's and Bob's key bits are correlated and partially secret. Key sifting discards key bits where Alice and Bob chose a different basis or where Bob did not detect an event while error correction removes the remaining differences between Alice's and Bob's partially secret key bits. Comparing the correlated key bits with the corrected key bits, Alice and Bob can estimate an error and thereby an upper bound on information loss to an adversary. Alice and Bob can remove the remaining partial information an adversary potentially has by performing privacy amplification. Finally, Alice and Bob share a secret key bit string.}\label{fig:post_processing}
+	\includestandalone{figures/tikz/qkd-protocol}
+	\caption{A \gls{qkd} protocol comprises a binary encoder, a logical quantum system, and a binary decoder. The binary encoder maps bits $\vb{b}\in\{0,1\}^n$ onto a quantum state of the logical quantum system $\ket{\psi}$. The binary decoder extracts the bits $\vb{b}$ back from the quantum state $\ket{\psi^\prime}$. The logical quantum system is a subspace of a larger physical quantum system. The state encoder and decoder map between the logical and physical quantum states.}
 \end{figure}
+

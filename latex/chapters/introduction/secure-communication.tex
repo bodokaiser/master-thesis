@@ -100,3 +100,9 @@ Authentication can be implemented classically using \gls{mac} as discussed for t
 	\end{tabular}
 	\caption{Encoding variables to use for \gls{qkd}: Variables with uncountable state space are considered for \gls{cvqkd} while variables with (possibly restricted) countable state space are considered for \gls{dvqkd}.}
 \end{table}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/post-processing}
+	\caption{Post-processing procedure for \gls{qkd} protocols: First Alice's and Bob's key bits are correlated and partially secret. Key sifting discards key bits where Alice and Bob chose a different basis or where Bob did not detect an event while error correction removes the remaining differences between Alice's and Bob's partially secret key bits. Comparing the correlated key bits with the corrected key bits, Alice and Bob can estimate an error and thereby an upper bound on information loss to an adversary. Alice and Bob can remove the remaining partial information an adversary potentially has by performing privacy amplification. Finally, Alice and Bob share a secret key bit string.}\label{fig:post_processing}
+\end{figure}
