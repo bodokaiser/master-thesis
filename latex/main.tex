@@ -64,6 +64,15 @@
 % https://tex.stackexchange.com/questions/403104/small-caps-mathsf-font-for-writing-transpose-of-a-matrix
 \newcommand{\trans}{{\scriptscriptstyle\mathsf{T}}}
 
+% diagonal double arrows
+% https://tex.stackexchange.com/questions/145006/nearrow-and-swarrow-together
+\DeclareRobustCommand{\neswarrow}{
+  \mathrel{\text{\ooalign{$\swarrow$\cr$\nearrow$}}}%
+}
+\DeclareRobustCommand{\nwsearrow}{
+  \mathrel{\text{\ooalign{$\searrow$\cr$\nwarrow$}}}%
+}
+
 % chapter appearence
 % https://tex.stackexchange.com/questions/159502/koma-script-scrreprt-how-to-change-chapter-appearance-and-produce-a-chapter-bas
 \addtokomafont{chapterprefix}{\raggedleft}
@@ -142,6 +151,7 @@
 \newacronym{rsa}{RSA}{Rivest–Shamir–Adleman}
 \newacronym{ecdh}{ECDH}{elliptic-curve Diffie-Hellman}
 \newacronym{qber}{QBER}{quantum-bit error-rate}
+\newacronym{dps}{DPS}{differential-phase-shift}
 
 \begin{document}
 	\begin{titlepage}

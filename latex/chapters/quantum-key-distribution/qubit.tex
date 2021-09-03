@@ -82,14 +82,70 @@ After the transmission sequence, Alice and Bob hold a partially correlated and p
 \FloatBarrier
 \subsection{Polarization-encoding}
 
-% active vs passive basis selection on the receiver (compare homodyne/heterodyne measurement with polarization filter vs. beam splitter + polarization filters)
-% equations
-%~\cite{Bennett1984}
+In polarization-encoding qubit-based \gls{qkd} protocols, the polarization of light is used as physical quantum system to encode the logical qubit system.
+Classically, the Jones formalism is used to describe polarization states and transformations~\cite[p.~199]{Saleh2007}.
+Let $\ket{\leftrightarrow}$ and $\ket{\updownarrow}$ denote the horizontal respective vertical polarization states forming the rectilinear basis.
+Let $\ket{\nwsearrow}$ and $\ket{\neswarrow}$ denote the left- and right-diagonal polarization states forming the diagonal basis.
+Let $\ket{\circlearrowleft}$ and $\ket{\circlearrowright}$ denote the left- and right-circular polarization states forming the circular basis.
+We can express the diagonal and circular basis elements in terms of the rectilinear basis elements:
+\begin{align}
+	\ket{\nwsearrow}
+	&=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\ket{\leftrightarrow}
+		+
+		\ket{\updownarrow}
+	\right)
+	&
+	\ket{\neswarrow}
+	&=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\ket{\leftrightarrow}
+		-
+		\ket{\updownarrow}
+	\right)
+	\\
+	\ket{\circlearrowleft}
+	&=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\ket{\leftrightarrow}
+		+
+		i\ket{\updownarrow}
+	\right)
+	&
+	\ket{\circlearrowright}
+	&=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\ket{\leftrightarrow}
+		-
+		i\ket{\updownarrow}
+	\right)
+\end{align}
+For clarity, we restrict the following discussion to qubit-based \gls{qkd} protocols where two orthogonal bases are used, e.g., BB84, instead of three orthogonal bases, e.g., six-state protocol.
+A possible optical setup to implement such polarization-encoding is depicted in \Cref{fig:polarization_encoding_single}.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/polarization-encoding-bb84-single}
-	\caption{Foo.}
+	\includestandalone{figures/pstricks/polarization-encoding-bb84-active}
+	\caption{Possible optical setup for polarization-encoding BB84 with active basis selection at the receiver: Alice configures her linear polarizer for horizontal, vertical, left-, or right-diagonal polarization. Bob configures his polarizer for horizontal or left-diagonal polarization and uses a polarized beam splitter to }\label{fig:polarization_encoding_active}
 \end{figure}
+Alice can prepare the $X$ and $Z$ Pauli eigenbasis states by selecting $\theta=0,\pi,\pi/2,3\pi/2$ which we can compactly write
+\begin{equation}
+	\ket{\theta}
+	=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\ket{y_+}
+		+
+		e^{i\theta}
+		\ket{y_-}
+	\right)
+	.
+\end{equation}
+Bob's retarder 
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/polarization-encoding-bb84-dual}
@@ -101,7 +157,7 @@ After the transmission sequence, Alice and Bob hold a partially correlated and p
 
 In the following, we discuss the practical time-phase-encoding BB84 protocol and show its equivalence to the polarization-encoding BB84.
 The idea of using phase-encoding was first proposed as part of the BB92 protocol~\cite{Bennett1992}.
-The basic setup is illustrated in \Cref{fig:time_phase_encoding_bb84} and comprises a single-photon source and a first \gls{mzi} on Alice's side as well as a second \gls{mzi} and two single-photon detecctors on Bob's side.
+The basic setup is illustrated in \Cref{fig:time_phase_encoding_bb84} and comprises a single-photon source and a first \gls{mzi} on Alice's side as well as a second \gls{mzi} and two single-photon detectors on Bob's side.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/phase-encoding-bb84}
