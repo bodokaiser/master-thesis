@@ -129,7 +129,7 @@ For clarity, we restrict the following discussion to qubit-based \gls{qkd} proto
 A possible optical setup to implement such polarization-encoding is depicted in \Cref{fig:polarization_encoding_single}.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/polarization-encoding-bb84-active}
+	\includestandalone{figures/pstricks/qubit-polarization-active}
 	\caption{Possible optical setup for polarization-encoding BB84 with active basis selection at the receiver: Alice configures her linear polarizer for horizontal, vertical, left-, or right-diagonal polarization. Bob configures his polarizer for horizontal or left-diagonal polarization and uses a polarized beam splitter to }\label{fig:polarization_encoding_active}
 \end{figure}
 Alice can prepare the $X$ and $Z$ Pauli eigenbasis states by selecting $\theta=0,\pi,\pi/2,3\pi/2$ which we can compactly write
@@ -148,7 +148,7 @@ Alice can prepare the $X$ and $Z$ Pauli eigenbasis states by selecting $\theta=0
 Bob's retarder 
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/polarization-encoding-bb84-dual}
+	\includestandalone{figures/pstricks/qubit-polarization-passive}
 	\caption{Foo.}
 \end{figure}
 
@@ -157,18 +157,18 @@ Bob's retarder
 
 In the following, we discuss the practical time-phase-encoding BB84 protocol and show its equivalence to the polarization-encoding BB84.
 The idea of using phase-encoding was first proposed as part of the BB92 protocol~\cite{Bennett1992}.
-The basic setup is illustrated in \Cref{fig:time_phase_encoding_bb84} and comprises a single-photon source and a first \gls{mzi} on Alice's side as well as a second \gls{mzi} and two single-photon detectors on Bob's side.
+The basic setup is illustrated in \Cref{fig:qubit_time_phase_active} and comprises a single-photon source and a first \gls{mzi} on Alice's side as well as a second \gls{mzi} and two single-photon detectors on Bob's side.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/phase-encoding-bb84}
-	\caption{Fiber-optical setup of the phase-encoding BB84 DV-QKD protocol: Alice creates an entangled photon state using a first \gls{mzi} with phase $\theta=0,\pi/2,\pi,3\pi/2$ and sends it to Bob. Bob detects the photon state using a second \gls{mzi} with phase $\phi=0,\pi$ and two single-photon detectors monitoring the outputs.}\label{fig:time_phase_encoding_bb84}
+	\includestandalone{figures/pstricks/qubit-time-phase-active}
+	\caption{Fiber-optical setup of the phase-encoding BB84 DV-QKD protocol: Alice creates an entangled photon state using a first \gls{mzi} with phase $\theta=0,\pi/2,\pi,3\pi/2$ and sends it to Bob. Bob detects the photon state using a second \gls{mzi} with phase $\phi=0,\pi$ and two single-photon detectors monitoring the outputs.}\label{fig:qubit_time_phase_active}
 \end{figure}
 
-To understand the time-phase encoding, we analyze the action of the (asymmetric) \gls{mzi} with variable phase $\varphi$ on a photon pulse $\ket{t_0}$ arriving at time $t_0$, see \Cref{fig:mzi_asym}.
+To understand the time-phase encoding, we analyze the action of the (asymmetric) \gls{mzi} with variable phase $\varphi$ on a photon pulse $\ket{t_0}$ arriving at time $t_0$, see \Cref{fig:mzi_asymmetric}.
 \begin{figure}[htb]
     \centering
-    \includegraphics{figures/pstricks/mzi-asym}
-     \caption{Asymmetric \gls{mzi} adding a constant time delay and variable phase difference between the upper and lower path: A pulsed state enters the first beam splitter BS1 to the left and is split among a longer upper path and a shorter lower path. A first mirror M1 directs the pulse from the upper path to a phase shifter which adds a relative phase of $\varphi$ between the upper and lower path. A second mirror M2 directs the pulse from the phase shifter to a second beam splitter BS2 while the lower path is between BS1 and BS2.}\label{fig:mzi_asym}
+    \includegraphics{figures/pstricks/mzi-asymmetric}
+     \caption{Asymmetric \gls{mzi} adding a constant time delay and variable phase difference between the upper and lower path: A pulsed state enters the first beam splitter BS1 to the left and is split among a longer upper path and a shorter lower path. A first mirror M1 directs the pulse from the upper path to a phase shifter which adds a relative phase of $\varphi$ between the upper and lower path. A second mirror M2 directs the pulse from the phase shifter to a second beam splitter BS2 while the lower path is between BS1 and BS2.}\label{fig:mzi_asymmetric}
 \end{figure}
 An ideal (lossless) and symmetric beam splitter transforms the single-photon input states into a superposition according to\footnote{See Ref.~\cite[p.~137]{Haroche2006} and Ref.~\cite[p.~143]{Gerry2005}}
 \begin{align}
@@ -185,7 +185,7 @@ An ideal (lossless) and symmetric beam splitter transforms the single-photon inp
 	\left(i\ket{1,0}+\ket{0,1}\right)
 	.
 \end{align}
-Then, the first beam splitter BS1 in \Cref{fig:mzi_asym} (instantly) splits a photon pulse $\ket{t_0}$ arriving at $t_0$ into the superposition
+Then, the first beam splitter BS1 in \Cref{fig:mzi_asymmetric} (instantly) splits a photon pulse $\ket{t_0}$ arriving at $t_0$ into the superposition
 \begin{equation}
 	\hat{U}_\text{BS}
 	\ket{t_0,0}
@@ -193,7 +193,7 @@ Then, the first beam splitter BS1 in \Cref{fig:mzi_asym} (instantly) splits a ph
 	\frac{1}{\sqrt{2}}
 	\left(\ket{t_0,0}+i\ket{0,t_0}\right)
 \end{equation}
-where the first mode corresponds to the upper and the second mode to the lower optical path in \Cref{fig:mzi_asym}.
+where the first mode corresponds to the upper and the second mode to the lower optical path in \Cref{fig:mzi_asymmetric}.
 The phase shifter adds a relative phase of $\varphi$ between the upper and lower path and the input state to the second beam splitter BS2 is
 \begin{equation}
 	\hat{U}_\text{PS}
@@ -255,10 +255,10 @@ The output state of BS2 is equal to the action of the \gls{mzi}
 		\biggr]
 		.
 	\end{split}
-	\label{eq:mzi_asym}
+	\label{eq:mzi_asymmetric}
 \end{equation}
 
-Back to the time-phase-encoding BB84 setup depicted in \Cref{fig:time_phase_encoding_bb84}, we note that Alice's transmitter consists of a single-photon source and an asymmetric \gls{mzi} where on output is dumped.
+Back to the time-phase-encoding BB84 setup depicted in \Cref{fig:qubit_time_phase_active}, we note that Alice's transmitter consists of a single-photon source and an asymmetric \gls{mzi} where on output is dumped.
 Therefore, Alice's states are parametrized by the relative phase $\theta$,
 \begin{equation}
 	\ket{t_0,\theta}
@@ -272,7 +272,7 @@ Therefore, Alice's states are parametrized by the relative phase $\theta$,
 	\right)
 	,
 \end{equation}
-which is obtained from \cref{eq:mzi_asym} by absorbing the time delay of the shorter path $\tau$ into the time reference $t_0$ and projecting the first output mode of the \gls{mzi}.
+which is obtained from \cref{eq:mzi_asymmetric} by absorbing the time delay of the shorter path $\tau$ into the time reference $t_0$ and projecting the first output mode of the \gls{mzi}.
 By adding a time delay to the states of $\Delta\tau$, we receive the states for the time-delayed signal
 \begin{align}
 	\ket{t_1,\phi}_1
@@ -294,7 +294,7 @@ By adding a time delay to the states of $\Delta\tau$, we receive the states for 
 		e^{i\phi}
 		\ket{t_1+\Delta\tau}
 	\right)
-	\label{eq:tp_bb84_bob_nodelay}
+	\label{eq:qubit_time_phase_bob_nodelay}
 \end{align}
 where we again choose the time $t_1$ such that it cancels the time delay of the short path $\tau$.
 If Bob receives a pulse with time delay $\Delta\tau$ at some time $t_1$, i.e., $\ket{t_1+\Delta\tau}$, then his \gls{mzi} provides the two detectors with the states
@@ -319,10 +319,10 @@ If Bob receives a pulse with time delay $\Delta\tau$ at some time $t_1$, i.e., $
 		\ket{t_1+2\Delta\tau}
 	\right)
 	.
-	\label{eq:tp_bb84_bob_delay}
+	\label{eq:qubit_time_phase_bob_nodelay}
 \end{align}
 We note that these are superpositions of states at three different time instances $0,\Delta\tau,2\Delta\tau$.
-Alice's state is a superposition of \cref{eq:tp_bb84_bob_nodelay} and \cref{eq:tp_bb84_bob_delay}, so Bob's detectors will receive the states
+Alice's state is a superposition of \cref{eq:qubit_time_phase_bob_nodelay} and \cref{eq:qubit_time_phase_bob_delay}, so Bob's detectors will receive the states
 \begin{align}
 	\ket{\theta,\phi}_1
 	&=
@@ -357,7 +357,7 @@ Alice's state is a superposition of \cref{eq:tp_bb84_bob_nodelay} and \cref{eq:t
 		e^{i(\phi+\theta)}
 		\ket{\Delta\tau=2}
 	\right]
-	\label{eq:tp_bb84_bob}
+	\label{eq:qubit_time_phase_bob}
 \end{align}
 where we dropped the pulse time.
 The no time delay and twice time delay states, $\ket{\Delta\tau=0}$ respective $\ket{\Delta\tau=2}$ occur with constant probability $1/4$ and thereby provide no information about the received state.
@@ -382,31 +382,31 @@ and find the probability for a click at $\Delta\tau=1$ to be
 	\trace{\hat\rho_2\hat{P}_{\Delta\tau=1}}
 	=
 	\frac{1}{2}
-	\left(1-\textcolor{red}{\cos(\theta-\phi)}\right)
+	\left(1-\cos(\theta-\phi)\right)
 \end{align}
 where we used the density matrices $\hat\rho_i={}_i\ketbra{\theta,\phi}_i$.
-Restricting Alice's possible phases to $\theta=0,\pi,\pi/2,3\pi/2$ and Bob's possible phases to $0,\pi/2$, we find the click probabilities of the detectors as presented in \Cref{tab:tp_bb84_probabilities}.
+Restricting Alice's possible phases to $\theta=0,\pi,\pi/2,3\pi/2$ and Bob's possible phases to $0,\pi/2$, we find the click probabilities of the detectors as presented in \Cref{tab:qubit_time_phase_clicks}.
 \begin{table}[htb]
 	\centering
-	\begin{tabular}{ccccc}
+	\begin{tabular}{cccc}
 		\toprule
-		\multicolumn{3}{c}{Phase} & \multicolumn{2}{c}{Detector click probability} \\
-		\cmidrule{1-3}
-		\cmidrule{4-5}
-		$\theta$ & $\phi$ & $\theta-\phi$ & $p_i(\theta-\phi)$ & $p_i(\theta-\phi)$ \\
+		\multicolumn{2}{c}{Phase} & \multicolumn{2}{c}{Detector click probability} \\
+		\cmidrule{1-2}
+		\cmidrule{3-4}
+		$\theta$ & $\phi$ & $p_1(\theta-\phi)$ & $p_2(\theta-\phi)$ \\
 		\midrule
-		\multirow{2}{*}{$0$} & $0$ & $0$ & \SI{100}{\percent} & \SI{0}{\percent} \\
-		& $\frac{\pi}{2}$ & $-\frac{\pi}{2}$ & \SI{50}{\percent} & \SI{50}{\percent} \\
-		\cmidrule{1-3}
-		\multirow{2}{*}{$\pi$} & $0$ & $\pi$ & \SI{0}{\percent} & \SI{100}{\percent} \\
-		& $\frac{\pi}{2}$ & $\frac{\pi}{2}$ & \SI{50}{\percent} & \SI{50}{\percent} \\
-		\cmidrule{1-3}
-		\multirow{2}{*}{$\frac{\pi}{2}$} & $0$ & $\frac{\pi}{2}$ & \SI{50}{\percent} & \SI{50}{\percent} \\
-		& $\frac{\pi}{2}$ & $0$ & \SI{100}{\percent} & \SI{0}{\percent} \\
-		\cmidrule{1-3}
-		\multirow{2}{*}{$\frac{3\pi}{2}$} & $0$ & $\frac{3\pi}{2}$ & \SI{50}{\percent} & \SI{50}{\percent} \\
-		& $\frac{\pi}{2}$ & $\pi$ & \SI{0}{\percent} & \SI{100}{\percent} \\
+		\multirow{2}{*}{$0$} & $0$ & \SI{100}{\percent} & \SI{0}{\percent} \\
+		& $\pi/2$ & \SI{50}{\percent} & \SI{50}{\percent} \\
+		\cmidrule{1-2}
+		\multirow{2}{*}{$\pi$} & $0$ & \SI{0}{\percent} & \SI{100}{\percent} \\
+		& $\pi/2$ & \SI{50}{\percent} & \SI{50}{\percent} \\
+		\cmidrule{1-2}
+		\multirow{2}{*}{$\pi/2$} & $0$ & \SI{50}{\percent} & \SI{50}{\percent} \\
+		& $\pi/2$ & \SI{100}{\percent} & \SI{0}{\percent} \\
+		\cmidrule{1-2}
+		\multirow{2}{*}{$3\pi/2$} & $0$ & \SI{50}{\percent} & \SI{50}{\percent} \\
+		& $\pi/2$ & \SI{0}{\percent} & \SI{100}{\percent} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Foobar}\label{tab:tp_bb84_probabilities}
+	\caption{Foobar}\label{tab:qubit_time_phase_clicks}
 \end{table}
