@@ -3,11 +3,11 @@
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(0.5,1)(10.5,6)
+	\begin{pspicture}(0.5,1)(10.5,4.75)
         \addtopsstyle{Beam}{beamwidth=0.1, fillstyle=solid, fillcolor=green!40}
         \pnode(0,2){IN1}
         \pnode([Xnodesep=2]IN1){BS1}
-        \pnode([offset=3]BS1){M1}
+        \pnode([offset=2]BS1){M1}
         \pnode([Xnodesep=3.5]M1){PS1}
         \pnode([Xnodesep=3.5]PS1){M2}
         \pnode(M2|BS1){BS2}
