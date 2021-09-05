@@ -48,6 +48,12 @@ By convention one identifies the $Z$ Pauli eigenbasis with the qubit basis $\lef
 	\caption{Possible physical systems to encode a qubit. Many of the physical systems have a much higher dimension than the qubit space but can pre reduced to a qubit space by a proper mapping.}\label{tab:qubit_encodings}
 \end{table}
 
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/state-space-qubit}
+	\caption{Two-dimensional state space spanned by the $X,Z$ Pauli eigenbases: Projecting the $\ket{x_-}$ state onto the $Z$ eigenbasis yields a constant probability amplitude of $1/\sqrt{2}$.}
+\end{figure}
+
 For qubit-based \gls{qkd}, Alice and Bob must agree on two (or three) orthogonal bases and a mapping between the basis states and some bit sequence, then
 \begin{enumerate}
 	\item Alice encodes her bits into the state $\ket{\psi}$ and sends it to Bob.

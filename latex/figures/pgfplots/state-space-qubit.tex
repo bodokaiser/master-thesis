@@ -1,0 +1,47 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{amsmath}
+\usepackage{lmodern}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+\let\Re\undefined
+\let\Im\undefined
+\DeclareMathOperator{\Re}{\operatorname{Re}}
+\DeclareMathOperator{\Im}{\operatorname{Im}}
+
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+    \begin{tikzpicture}[
+        font=\fontsize{8}{9}\selectfont,
+    ]
+        \begin{axis}[
+       		width=0.95\linewidth,
+            axis lines=center,
+        	axis equal image,
+            axis line style=thick,
+            cycle list name=exotic,
+            xmin=-1.2,
+            xmax=+1.2,
+            ymin=0,
+            ymax=+1.2,
+            xlabel={$\ket{z_+}$},
+			xtick={-1,0.707,1},
+			xticklabels={$-1$,$\frac{1}{\sqrt{2}}$,$1$},
+			ytick={0.707,1},
+			yticklabels={$\frac{1}{\sqrt{2}}$,$1$},
+            ylabel={$\ket{z_-}$},
+            x label style={anchor=north},
+            y label style={anchor=south},
+        ]
+        	\draw[-Latex, gray] (axis cs:0,0) -- (axis cs:1,1);
+        	\draw[-Latex, gray] (axis cs:0,0) -- (axis cs:-1,1);
+        	\draw (axis cs:-1.0,1.06) node[]{$\ket{x_+}$};
+        	\draw (axis cs:1.0,1.06) node[]{$\ket{x_-}$};
+        	\addplot+[thick] coordinates {(0.707,.707)};
+        	\addplot+[thick, no markers] coordinates {(0,.707) (.707,.707) (.707,0)};
+        \end{axis}
+    \end{tikzpicture}
+\end{document}
