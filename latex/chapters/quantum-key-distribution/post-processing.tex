@@ -1,11 +1,5 @@
 \section{Post-processing}
 
-\begin{enumerate}
-	\item bit mapping (encoding,decoding)
-	\item error correction and estimation
-	\item privacy amplification
-\end{enumerate}
-
 
 % aim of classical post-processing (correlated variables -> shared secret, estimate error -> protocol abortion)}
 
@@ -14,7 +8,7 @@
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/post-processing}
-	\caption{\Gls{qkd} transmission system from a signal-processing perspective.}
+	\caption{First, the raw data from the quantum transmission is partitioned into data for calibration and data for key generation. The parameter estimation estimates an upper bound of Eve's information and the channel characteristics from the raw calibration data. If Eve's information exceeds a certain threshold, the protocol is aborted, or the current data frame is discarded. Symbol mapping, including basis sifting, transforms the raw key data to correlated key data. Information reconciliation corrects errors in the correlated key data and discards data where error correction failed. Eve's information on the partially secret key is reduced to epsilon using privacy amplification. Finally, Alice and Bob verify that the post-processing was successful by comparing a hash of their secret key. If the hashes mismatch, the protocol is aborted, or the transmission block discarded.}\label{fig:post_processing}
 \end{figure}
 
 % citations
@@ -26,6 +20,7 @@
 \cite{Leverrier2008} % multidimensional (sphere) 
 \cite{Elkouss2011} % simpler reconciliation scheme
 
+\FloatBarrier
 \subsection{Information reconciliation}
 
 Information reconciliation summarizes methods required for Alice and Bob to agree on shared data.
@@ -36,7 +31,7 @@ Error correction is a subdiscipline of coding theory, or more precisely, channel
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/error-correction-codes}
-	\caption{Taxonomy of codes in coding theory with emphasis on linear block codes for error correction.}\label{fig:error_correction_codes}
+	\caption{Taxonomy of codes in coding theory with emphasis on linear block codes for error correction: The linear block codes are distinguished by the constraints on their generator matrix.}\label{fig:error_correction_codes}
 \end{figure}
 
 \subsection{Privacy amplification}
