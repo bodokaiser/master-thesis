@@ -28,11 +28,103 @@ It includes error correction, and discarding of data failed to correct.
 
 Let us first consider procedures for error correction.
 Error correction is a subdiscipline of coding theory, or more precisely, channel coding, which studies the arrangement of data for efficient and reliable transmission, see \Cref{fig:error_correction_codes}.
+The following discussion is a very brief introduction to binary linear codes based of Ref.~\cite{MacKay2003,Mildenberger2013}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/error-correction-codes}
 	\caption{Taxonomy of codes in coding theory with emphasis on linear block codes for error correction: The linear block codes are distinguished by the constraints on their generator matrix.}\label{fig:error_correction_codes}
 \end{figure}
+A $(n,k)$ binary linear code encodes $k$-bit messagewords into $n$-bit codewords.
+The additional $n-k$ check bits are used to detect and correct errors, e.g., bit flips.
+In general, it is impossible to correct for all errors although practical linear block codes closely approach the theoretical (Shannon) limit set by the noisy-channel coding theorem.
+
+Let $\vb{x}\in\{0,1\}^k$ be a messageword, then the generator matrix
+\begin{equation}
+	G
+	=
+	\begin{pmatrix}[c|c]
+		I_k & -A^\trans
+	\end{pmatrix}
+	=
+	\begin{pmatrix}[cccc|cccc]
+		1 & 0 & \cdots & 0 & a_{1,1} & a_{2,1} & \cdots & a_{m,1} \\
+		0 & 1 & \cdots & 0 & a_{1,2} & a_{2,2} & \cdots & a_{m,2}\\
+		\vdots & \vdots  & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \cdots & 1 & a_{1,n-m} & a_{2,n-m} & \cdots & a_{m,n-m} \\
+	\end{pmatrix}
+	\in\{0,1\}^{k\times n}
+	,
+\end{equation}
+where we used $-a=a\in\mathbb{F}_2$ for elements on the binary field $\mathbb{F}_2$, encodes the messageword $\vb{x}$ into the codeword
+\begin{equation}
+	\vb{y}
+	=
+	\vb{x}G
+	\in\{0,1\}^n
+\end{equation}
+and the matrix multiplication is defined on the binary field $\mathbb{F}_2$\footnote{Alternatively, we can define the addition and multiplication on the real field with modulo two.}.
+The explicit form of the generator matrix depends on the linear block code.
+For instance, the $(n,1)$ repetition code has the generator matrix
+\begin{equation}
+	G
+	=
+	\begin{pmatrix}
+		1 & 1 & \cdots & 1
+	\end{pmatrix}
+	\in\{0,1\}^{1\times n}
+\end{equation}
+and the $(7,4)$ Hamming code has the generator matrix
+\begin{equation}
+	G
+	=
+	\begin{pmatrix}
+		1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+		0 & 1 & 0 & 0 & 1 & 0 & 1 \\
+		0 & 0 & 1 & 0 & 0 & 1 & 1 \\
+		0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+	\end{pmatrix}
+	\in\{0,1\}^{4\times 7}
+	.
+\end{equation}
+\Cref{tab:repetition_code} and \Cref{tab:hamming_code} show the possible codewords for the $(3,1)$ repetition and $(7,4)$ Hamming code.
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{c|c|ccc}
+		\toprule
+		Nr. & Information & \multicolumn{3}{c}{Check} \\
+		\midrule
+			1 & 0 & 0 & 0 & 0 \\
+			2 & 1 & 1 & 1 & 1 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Possible codewords for $(3,1)$ repetition code.}\label{tab:repetition_code}
+\end{table}
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{c|cccc|ccc}
+		\toprule
+		Nr. & \multicolumn{4}{c}{Information} & \multicolumn{3}{c}{Check} \\
+		\midrule
+			1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+			2 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+			3 & 0 & 0 & 1 & 0 & 1 & 1 & 0 \\
+			4 & 0 & 0 & 1 & 1 & 0 & 0 & 1 \\
+			5 & 0 & 1 & 0 & 0 & 1 & 0 & 1 \\
+			6 & 0 & 1 & 0 & 1 & 0 & 1 & 0 \\
+			7 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\
+			8 & 0 & 1 & 1 & 1 & 1 & 0 & 0 \\
+			9 & 1 & 0 & 0 & 0 & 0 & 1 & 1 \\
+			10 & 1 & 0 & 0 & 1 & 1 & 0 & 0 \\
+			11 & 1 & 0 & 1 & 0 & 1 & 0 & 1 \\
+			12 & 1 & 0 & 1 & 1 & 0 & 1 & 0 \\
+			13 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+			14 & 1 & 1 & 0 & 1 & 0 & 0 & 1 \\
+			15 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+			16 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Possible codewords for $(7,4)$ Hamming code~\cite[p.~109]{Mildenberger2013}.}\label{tab:hamming_code}
+\end{table}
 
 \subsection{Privacy amplification}
 
