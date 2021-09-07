@@ -26,11 +26,20 @@
 \cite{Leverrier2008} % multidimensional (sphere) 
 \cite{Elkouss2011} % simpler reconciliation scheme
 
-%\subsection{Error correction}
+\subsection{Information reconciliation}
 
-% LDPC codes
+Information reconciliation summarizes methods required for Alice and Bob to agree on shared data.
+It includes error correction, and discarding of data failed to correct.
 
-%\subsection{Privacy amplification}
+Let us first consider procedures for error correction.
+Error correction is a subdiscipline of coding theory, or more precisely, channel coding, which studies the arrangement of data for efficient and reliable transmission, see \Cref{fig:error_correction_codes}.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/error-correction-codes}
+	\caption{Taxonomy of codes in coding theory with emphasis on linear block codes for error correction.}\label{fig:error_correction_codes}
+\end{figure}
+
+\subsection{Privacy amplification}
 
 % XOR-ing using Toeplitz matrices
 
