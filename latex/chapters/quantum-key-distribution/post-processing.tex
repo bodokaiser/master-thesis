@@ -38,28 +38,29 @@ A $(n,k)$ binary linear code encodes $k$-bit messagewords into $n$-bit codewords
 The additional $n-k$ check bits are used to detect and correct errors, e.g., bit flips.
 In general, it is impossible to correct for all errors although practical linear block codes closely approach the theoretical (Shannon) limit set by the noisy-channel coding theorem.
 
-Let $\vb{x}\in\{0,1\}^k$ be a messageword, then the generator matrix
+Let $\vb{m}\in\{0,1\}^{1\times k}$ be a messageword, then the generator matrix
 \begin{equation}
 	G
 	=
 	\begin{pmatrix}[c|c]
-		I_k & -A^\trans
+		I_k & P
 	\end{pmatrix}
 	=
 	\begin{pmatrix}[cccc|cccc]
-		1 & 0 & \cdots & 0 & a_{1,1} & a_{2,1} & \cdots & a_{m,1} \\
-		0 & 1 & \cdots & 0 & a_{1,2} & a_{2,2} & \cdots & a_{m,2}\\
+		1 & 0 & \cdots & 0 & p_{1,1} & p_{1,2} & \cdots & p_{1,m} \\
+		0 & 1 & \cdots & 0 & p_{2,1} & p_{2,2} & \cdots & p_{2,m}\\
 		\vdots & \vdots  & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
-		0 & 0 & \cdots & 1 & a_{1,n-m} & a_{2,n-m} & \cdots & a_{m,n-m} \\
+		0 & 0 & \cdots & 1 & p_{n-m,1} & p_{n-m,2} & \cdots & p_{n-m,m} \\
 	\end{pmatrix}
 	\in\{0,1\}^{k\times n}
 	,
 \end{equation}
-where we used $-a=a\in\mathbb{F}_2$ for elements on the binary field $\mathbb{F}_2$, encodes the messageword $\vb{x}$ into the codeword
+wherein $I_k\in\{0,1\}^{k\times k}$ denotes an identity matrix and $P\in\{0,1\}^{k\times(n-k)}$ denotes the (parity) check matrix,
+encodes the messageword $\vb{m}$ into the codeword
 \begin{equation}
-	\vb{y}
+	\vb{x}
 	=
-	\vb{x}G
+	\vb{m}G
 	\in\{0,1\}^n
 \end{equation}
 and the matrix multiplication is defined on the binary field $\mathbb{F}_2$\footnote{Alternatively, we can define the addition and multiplication on the real field with modulo two.}.
@@ -86,19 +87,22 @@ and the $(7,4)$ Hamming code has the generator matrix
 	\in\{0,1\}^{4\times 7}
 	.
 \end{equation}
-\Cref{tab:repetition_code} and \Cref{tab:hamming_code} show the possible codewords for the $(3,1)$ repetition and $(7,4)$ Hamming code.
+\Cref{tab:repetition_codewords} and \Cref{tab:hamming_codewords} show the possible codewords for the $(3,1)$ repetition and $(7,4)$ Hamming code.
+From \Cref{tab:repetition_codewords}, we note that the repetition code repeats the message word $n-k$ times.
+The $(n,1)$ repetition code is able to detect all bit errors except the error when all bits are flipped and correct up to $\floor{(n-1)/2}$ bit errors~\cite[p.~5]{MacKay2003}.
 \begin{table}[htb]
 	\centering
-	\begin{tabular}{c|c|ccc}
+	\begin{tabular}{c|c|cc}
 		\toprule
-		Nr. & Information & \multicolumn{3}{c}{Check} \\
+		Nr. & Information & \multicolumn{2}{c}{Check} \\
 		\midrule
-			1 & 0 & 0 & 0 & 0 \\
-			2 & 1 & 1 & 1 & 1 \\
+			1 & 0 & 0 & 0 \\
+			2 & 1 & 1 & 1 \\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible codewords for $(3,1)$ repetition code.}\label{tab:repetition_code}
+	\caption{Possible codewords for $(3,1)$ repetition code.}\label{tab:repetition_codewords}
 \end{table}
+The $(7,4)$ Hamming code is a more efficient block code which uses parity checks to detect and correct single-bit errors~\cite[p.~10]{MacKay2003}.
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{c|cccc|ccc}
@@ -123,9 +127,108 @@ and the $(7,4)$ Hamming code has the generator matrix
 			16 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible codewords for $(7,4)$ Hamming code~\cite[p.~109]{Mildenberger2013}.}\label{tab:hamming_code}
+	\caption{Possible codewords for $(7,4)$ Hamming code~\cite[p.~109]{Mildenberger2013}.}\label{tab:hamming_codewords}
+\end{table}
+The received codeword $\vb{y}$ of a linear channel equals the sent codeword $\vb{x}$ plus a noise (row) vector $\vb{n}$, i.e.,
+\begin{equation}
+	\vb{y}
+	=
+	\vb{x}
+	+
+	\vb{n}
+	\in\{0,1\}^n
+	.
+\end{equation}
+The noise vector introduces bit flips according to an assumed channel model, for example, the binary symmetric channel where a single bit flip occurs with probability $p$, see, e.g., Ref.~\cite[p.~148]{MacKay2003}.
+To detect errors of a received codeword $\vb{y}$, one uses the parity-check matrix
+\begin{equation}
+	H
+	=
+	\begin{pmatrix}[c|c]
+		-P^\trans & I_{n-k}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		p_{1,1} & p_{2,1} & \cdots & p_{n-m,1} & 1 & 0 & \cdots & 0 \\
+		p_{1,2} & p_{2,2} & \cdots & p_{n-m,2} & 0 & 1 & \cdots & 0 \\
+		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+		p_{1,m} & p_{2,m} & \cdots & p_{n-m,m} & 0 & 0 & \cdots & 1 \\
+	\end{pmatrix}
+	\in\{0,1\}^{(n-k)\times n}
+\end{equation}
+where we used $-p_{i,j}=p_{i,j}$ for elements of the binary field $p_{i,j}\in\mathbb{F}_2$.
+The parity-check matrix is orthogonal to the generator matrix~\cite[p.~95]{Mildenberger2013}, i.e.,
+\begin{equation}
+	GH^\trans
+	=
+	\vb{0}
+	=
+	HG^\trans
+	.
+\end{equation}
+The orthogonality between generator and parity-check matrix implies that for the received codeword $\vb{y}$, the parity-check matrix yields, a binary vector called the syndrom (column) vector
+\begin{equation}
+	\vb{s}
+	=
+	H\vb{y}^\trans
+	=
+	HG^\trans\vb{m}^\trans
+	+
+	H\vb{n}^\trans
+	=
+	H\vb{n}^\trans
+\end{equation}
+which only depends on the noise (row) vector $\vb{n}$.
+If the block code does not detect any error, we have $\vb{s}=0$.
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{c|cccc|ccc}
+		\toprule
+		Nr. & \multicolumn{4}{c}{Received codeword} & \multicolumn{3}{c}{Syndrome} \\
+		\midrule
+			1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+			2 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+			3 & 0 & 0 & 1 & 0 & 0 & 1 & 0 \\
+			4 & 0 & 0 & 1 & 1 & 0 & 1 & 1 \\
+			5 & 0 & 1 & 0 & 0 & 1 & 0 & 0 \\
+			6 & 0 & 1 & 0 & 1 & 1 & 0 & 1 \\
+			7 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
+			8 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\
+			9 & 1 & 0 & 0 & 0 & 1 & 1 & 1 \\
+			10 & 1 & 0 & 0 & 1 & 1 & 1 & 0 \\
+			11 & 1 & 0 & 1 & 0 & 1 & 0 & 1 \\
+			12 & 1 & 0 & 1 & 1 & 1 & 0 & 0 \\
+			13 & 1 & 1 & 0 & 0 & 0 & 1 & 1 \\
+			14 & 1 & 1 & 0 & 1 & 0 & 1 & 0 \\
+			15 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \\
+			16 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Possible syndroms for the $(3,1)$ repetition code: The first and last row are correct codewords (without noise) and yield a zero syndrome indicating no error. All other received codewords contain bit flips and thereby non-zero syndroms.}\label{tab:repetition_syndroms}
+\end{table}
+\Cref{tab:repetition_syndroms} lists the possible syndroms for the $(3,1)$ repetition code.
+To correct the error, one looks up the calculated syndrom in an error correction table.
+For example, \Cref{tab:hamming_correction} lists the bit-error corrections assigned to each syndrom of the $(7,4)$ Hamming code.
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{cccccccc}
+		\toprule
+		Syndrome $\vb{s}$ & $001$ & $010$ & $011$ & $100$ & $101$ & $110$ & $111$ \\
+		Unflip bit & $y_7$ & $y_6$ & $y_4$ & $y_5$ & $y_1$ & $y_2$ & $y_3$ \\
+		\bottomrule
+	\end{tabular}
+	\caption{Bit-error correction lookup table for the $(7,4)$ Hamming code~\cite[p.~11]{MacKay2003}.}\label{tab:hamming_correction}
 \end{table}
 
+So far, we have implicitly assumed the (parity) check bits to be transmitted together with the data bits such that errors can be directly detected and corrected (forward error correction).
+Forward error correction does not make sense for \gls{qkd} as the data bits are a result of the post-processing and not directly transmitted.
+Instead of exchanging the check bits together with a data index as part of the error correction in \gls{qkd}, one instead directly calculates the syndromes and transmits these depending on the implementation details.
+
+There cannot exist a perfect error correction protocol as it is always possible that bits are flipped such that a different valid codeword is received.
+However, we have no use of data blocks where error correction have failed and we can simply discard them.
+To identify these data blocks, Alice and Bob exchange hashes of their data blocks to verify success of the error correction.
+
+\FloatBarrier
 \subsection{Privacy amplification}
 
 % XOR-ing using Toeplitz matrices
