@@ -61,9 +61,9 @@ encodes the messageword $\vb{m}$ into the codeword
 	\vb{x}
 	=
 	\vb{m}G
-	\in\{0,1\}^n
+	\in\{0,1\}^{1\times n}
 \end{equation}
-and the matrix multiplication is defined on the binary field $\mathbb{F}_2$\footnote{Alternatively, we can define the addition and multiplication on the real field with modulo two.}.
+with the matrix multiplication being defined on the binary field $\mathbb{F}_2$\footnote{Alternatively, we can define the addition and multiplication on the real field with modulo two.}.
 The explicit form of the generator matrix depends on the linear block code.
 For instance, the $(n,1)$ repetition code has the generator matrix
 \begin{equation}
@@ -87,6 +87,7 @@ and the $(7,4)$ Hamming code has the generator matrix
 	\in\{0,1\}^{4\times 7}
 	.
 \end{equation}
+For the post-processing, we use \gls{ldpc}~\cite{Gallager1962} where the generator matrix is a sparse random matrix.
 \Cref{tab:repetition_codewords} and \Cref{tab:hamming_codewords} show the possible codewords for the $(3,1)$ repetition and $(7,4)$ Hamming code.
 From \Cref{tab:repetition_codewords}, we note that the repetition code repeats the message word $n-k$ times.
 The $(n,1)$ repetition code is able to detect all bit errors except the error when all bits are flipped and correct up to $\floor{(n-1)/2}$ bit errors~\cite[p.~5]{MacKay2003}.
