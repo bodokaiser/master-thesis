@@ -1,0 +1,37 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+\usepackage[binary-units]{siunitx}
+
+\DeclareSIUnit\symbol{sym}
+\DeclareSIUnit\shotnoiseunits{SNU}
+
+\pgfplotsset{compat=1.17}
+
+\begin{document}
+	\begin{tikzpicture}[
+		font=\small,
+	]
+		\begin{axis}[
+			grid=both,
+			width=0.95\linewidth,
+			xmin=0,
+			xmax=140,
+			ymode=log,
+			xlabel={Channel length $L$ (\si{\kilo\meter})},		
+			ymin=1e-4,
+			ymax=1,
+			ylabel={Secret key rate $r$ (\si{\bit\per\symbol})},
+			cycle list name=exotic,
+			scaled y ticks=false,
+			no markers,
+		]
+			\addplot+[thick] plot table[col sep=semicolon] {../../../data/cvsim-0.1mSNU.csv};
+			\addlegendentry{\SI{0.1}{\milli\shotnoiseunits}};
+			\addplot+[thick] plot table[col sep=semicolon] {../../../data/cvsim-1.0mSNU.csv};
+			\addlegendentry{\SI{1.0}{\milli\shotnoiseunits}};
+			\addplot+[thick] plot table[col sep=semicolon] {../../../data/cvsim-5.0mSNU.csv};
+			\addlegendentry{\SI{5.0}{\milli\shotnoiseunits}};
+		\end{axis}
+	\end{tikzpicture}
+\end{document}
