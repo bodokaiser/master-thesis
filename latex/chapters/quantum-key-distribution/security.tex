@@ -90,9 +90,11 @@ wherein $r_\text{raw}$ is the raw transmission rate, $\nu$ is the fraction of da
 	\includestandalone{figures/pgfplots/cvsim}
 	\caption{Estimated minimum secret key rate for our \gls{cvqkd} protocol as a function of the channel length for different values of excess noise.}\label{fig:cvsim}
 \end{figure}
-A systematic approach to security proofs first converts a prepare-and-measure to an entanglement-based protocol.
-See, for example, Ref.~\cite[p.~106]{Wolf2021} to show equivalence between prepare-and-measure and entanglement-based BB84.
-In the entanglement-based picture, quantum post-processing steps distill key qubit states from the quantum system of Alice and Eve.
-The qubit states attributed to Eve's state after quantum post-processing directly estimate Eve's information about the key.
-Shor and Peskill first suggested the entanglement distillation-based security proofs in providing a simple proof for BB84~\cite{Shor2000}.
-Finally, one shows the equivalence of the quantum post-processing to the classical post-processing.
+
+A systematic approach to security proofs, first pioneered by Lo and Chau~\cite{Lo1999} and later extended by Shor~\cite{Shor2000}, includes the following steps:
+\begin{enumerate}
+	\item Convert the prepare-and-measure to an entanglement-based description.\footnote{If the protocol is entanglement-based, we can skip this step. For an equivalence proof of the BB84, see Ref.~\cite[p.~106]{Wolf2021}.}
+	\item Employ quantum error correction codes to correct Alice's and Bob's qubits.
+	\item Estimate how many qubits Eve holds after quantum error correction.
+	\item Show equivalence of classical with quantum post-processing.
+\end{enumerate}
