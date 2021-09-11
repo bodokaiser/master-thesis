@@ -23,6 +23,7 @@
 \usepackage[separate-uncertainty=true]{siunitx}
 \usepackage[mode=buildnew]{standalone}
 %\usepackage{thmtools,thm-restate}
+\usepackage{tensor}
 \usepackage{lmodern}
 \usepackage{multirow}
 %\usepackage{subcaption}
@@ -153,6 +154,7 @@
 \newacronym{qpsk}{QPSK}{quadrature phase-shift keying}
 
 % cryptography
+\newacronym{iid}{i.i.d.}{independent and identically distributed}
 \newacronym{aes}{AES}{advanced encryption standard}
 \newacronym{cvqkd}{CV-QKD}{continuous-variable quantum-key distribution}
 \newacronym{dvqkd}{DV-QKD}{discrete-variable quantum-key distribution}
@@ -219,7 +221,9 @@
 	
 	\chapter{Quantum-key distribution}
 	\begin{refsection}
-		\input{chapters/quantum-key-distribution/introduction}	
+		\input{chapters/quantum-key-distribution/introduction}
+		\input{chapters/quantum-key-distribution/state-discrimination}
+		\input{chapters/quantum-key-distribution/protocol}
 		\input{chapters/quantum-key-distribution/qubit}
 		\input{chapters/quantum-key-distribution/quadrature}
 		\input{chapters/quantum-key-distribution/post-processing}

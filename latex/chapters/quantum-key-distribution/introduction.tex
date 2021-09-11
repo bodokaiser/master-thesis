@@ -1,32 +1,3 @@
 The present chapter identifies common characteristics of \gls{qkd} protocols and attempts to formalize the notion of a \gls{qkd} protocol.
 We test the proposed formula with qubit-based \gls{qkd} protocols like BB84 and the six-state protocol as well as Gaussian \gls{cvqkd} protocols.
 The chapter ends with a summary and literature review regarding practical \gls{qkd} protocols' post-processing and security analysis.
-
-\Cref{fig:qkd_protocol} illustrates our proposed notion of a \gls{qkd} protocol, with the feature being a logical quantum system from which the random bits are encoded and decoded.
-The logical quantum system is a subspace of the physical quantum system.
-The physical quantum system depends strongly on the physical implementation and quantum encoding.
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/tikz/qkd-protocol}
-	\caption{A \gls{qkd} protocol comprises a binary encoder, a logical quantum system, and a binary decoder. The binary encoder maps bits $\vb{b}\in\{0,1\}^n$ onto a quantum state of the logical quantum system $\ket{\psi}$. The binary decoder extracts the bits $\vb{b}$ back from the quantum state $\ket{\psi^\prime}$. The logical quantum system is a subspace of a larger physical quantum system. The state encoder and decoder map between the logical and physical quantum states.}\label{fig:qkd_protocol}
-\end{figure}
-The distinction between logical and quantum systems is vital to separate the implementation and security concerns.
-Many security proofs show equivalence between the physical implementation and the logical system to use an established security proof.
-One should keep in mind that such a separation implicitly assumes no loopholes from the particular implementation.
-
-\Cref{fig:qkd_classification} illustrates common features among the \gls{qkd} protocols.
-For an overview of \gls{qkd} protocols, see Ref.~\cite{Duvsek2006}.
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/tikz/qkd-classification}
-	\caption{Common features among \gls{qkd} protocols: Detection, physical encoding, logical state space, measurement basis selection and schema.}\label{fig:qkd_classification}
-\end{figure}
-Every \gls{qkd} system requires a detector, e.g., a coherent detector or a single-photon (click) detector.
-The detection does not necessarily imply the dimension of the logical state space.
-For instance, BB84 having a two-dimensional logical state space has been implemented with coherent detection~\cite{Qi2021} having an uncountable detection space.
-It remains to discuss where to place differential-phase-shift \gls{dps} \gls{qkd} into the proposed categories.
-Concerning measurement basis selection, Bob can either actively choose a random measurement basis for every transmission or passively measure all (orthogonal) bases for measurement basis selection.
-We will cover both active and passive measurement basis selection in the discussion of the polarization-encoding BB84 protocol.
-Finally, the \gls{qkd} schema determines if either Alice prepares a state and sends it to Bob for measurement (prepare-and-measure) or if Alice and Bob share an entangled state (entanglement-based).
-Most practical \gls{qkd} implementations use prepare-and-measure.
-On a theoretical level, both schemas are equivalent, and security proofs are often more convenient in an entanglement-based setting.

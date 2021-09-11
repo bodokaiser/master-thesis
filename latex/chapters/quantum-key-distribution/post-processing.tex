@@ -1,10 +1,4 @@
 \section{Post-processing}
-
-
-% aim of classical post-processing (correlated variables -> shared secret, estimate error -> protocol abortion)}
-
-% what about (base) sifting?
-
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/post-processing}
@@ -13,10 +7,10 @@
 
 % citations
 \cite{Silberhorn2002} % post-selection mechanism to mitigate beam splitter attack
-\cite{Fung2010} % security analysis and overview of post-processing
 
-%\subsection{Reconciliation}
-% reconciliation
+\FloatBarrier
+\subsection{Symbol mapping}
+
 \cite{Leverrier2008} % multidimensional (sphere) 
 \cite{Elkouss2011} % simpler reconciliation scheme
 
@@ -232,6 +226,117 @@ To identify these data blocks, Alice and Bob exchange hashes of their data block
 \FloatBarrier
 \subsection{Privacy amplification}
 
-% XOR-ing using Toeplitz matrices
+The final step of most \gls{qkd} protocols is privacy amplification which removes Eve's information from the key.
+More formally, let us assume a key of length $n$, $s\in\{0,1\}^n$, and that Eve has partial information over the key equivalent to $k$ bits.
+For privacy amplification, Alice and Bob need to agree on a map $f\colon\{0,1\}^n\to\{0,1\}^r$ with $r\leq n-k$ which extracts Eve's information from the key.
 
-\cite{Bennett1995} % Generalized privacy amplfication
+Bennett and Brassard proposed privacy amplification four years after BB84 in 1988.
+An information-secure proof that privacy amplification is possible was published one year later, now known as the leftover-hash-lemma~\cite{Impagliazzo1989} and later extended to the quantum leftover-hash-lemma~\cite{Renner2005}.
+In 1995, Bennett and Brassard generalized the privacy amplification outside of \gls{qkd}~\cite{Bennett1995}.
+
+In practice, privacy amplification is performed by randomly XOR the bits of a key.
+Let us illustrate this using a partially secret key $(s_1,s_2,s_3)\in\{0,1\}^3$ where Eve knows the value of $s_3$.
+After privacy amplification the initial key could for example $(s_1\oplus s_3,s_2\oplus s_3)$ or $(s_1\oplus s_2,s_2\oplus s_3)$ and Eve's knowledge of the key bit $s_3$ does not help her infering a bit of the new secret key.
+
+For further understanding, it may be helpful to consider the following Gedankenexperiment:
+Let us assume Alice and Bob generate a key by flipping a coin $n$ times and assigning heads to zero and tails to one.
+Eve having no information about the key corresponds to Alice and Bob using an unbiased coin yielding heads and tails with equal probability.
+Eve having full information about the key corresponds to Alice and Bob using a biased coin always yielding, e.g., heads.
+Therefore, we can use the probability of the coin yielding heads, $p\in[0,1]$, to indicate Eve's information.
+If we now start to XOR all outcomes, we see the probability for obtaining either a one or zero to approach $1/2$.
+More precisely, let $X_1,X_2,\dots,X_N$ be \gls{iid} Bernoulli random variables with probability $p$, $X_i\sim\text{Bern}(p)$, then the probability that XOR of all outcomes equals one is
+\begin{equation}
+	\mathbb{P}\left[
+		\text{"XOR of outcomes equals one"}
+	\right]
+	=
+	\mathbb{P}\left[
+		\sum_{n=1}^NX_n\bmod2
+		=
+		1
+	\right]
+	.
+\end{equation}
+The sum of \gls{iid} Bernoulli random variables $X_1,\dots,X_n$ equals a Binomial random variable $Y=\sum_{n=1}^NX_n\sim\text{Binom}(N,p)$, yielding
+\begin{equation}
+	\mathbb{P}\left[
+		Y\bmod2
+		=
+		1
+	\right]
+	=
+	\sum^N_{k\text{ odd}}
+	\mathbb{P}\left[Y=k\right]
+	=
+	\sum^N_{k\text{ odd}}
+	\binom{N}{k}
+	p^k(1-p)^{N-k}
+	\label{eq:xoring_prop}
+	.
+\end{equation}
+Using the identity from Ref.~\cite{stackexchange2528974}, we can simplify \cref{eq:xoring_prop} to
+\begin{equation}
+	\mathbb{P}\left[
+		Y\bmod2
+		=
+		1
+	\right]
+	=
+	\frac{1}{2}
+	\left(
+		1-(2p-1)^N
+	\right)
+	\xrightarrow{N\to\infty}
+	\frac{1}{2}
+\end{equation}
+where limit is true for $p\in]0,1[$ so even for $p=0.9999$.
+Moreover, for any $\varepsilon>0$ we can choose $N$ such that $\mathbb{P}\left[Y\bmod2=1\right]-1/2<\varepsilon$, meaning that we can arbitrarily reduce Eve's information by XORing more coin flips.
+
+For practical applications, privacy amplification operates on the class of linear maps,
+\begin{equation}
+	\begin{split}
+		f\colon\{0,1\}^n&\to \{0,1\}^{n-k}\\
+		\vb{s}&\mapsto M\vb{s}\bmod{2}
+	\end{split}
+\end{equation}
+where $M\in\{0,1\}^{r\times n}$ is a random boolean matrix with at least $k+1$ ones.
+For construction of $M$ it is convenient to use Toeplitz matrices.
+A $n\times m$ Toeplitz matrix $A$ has the form
+\begin{equation}
+	A
+	=
+	\begin{pmatrix}
+		a_{i,j}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		a_{i-j}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		a_0 & a_{-1} & \cdots & a_{1-m} \\
+		a_1 & a_0 & \cdots & a_{2-m} \\
+		\vdots & \ddots & \cdots & \vdots \\
+		a_{n-1} & a_{n-2} & \cdots & a_{n-m} \\
+	\end{pmatrix}
+	.
+\end{equation}
+For example, if Alice and Bob estimate Eve to know three bits, they could agree on the Toeplitz coefficients $(a_{-4},a_{-3},\dots,a_1,a_2)=(0,1,1,1,0,1,0)$ yielding the mapping
+\begin{equation}
+	f(\vb{s})
+	=
+	\begin{pmatrix}
+		0 & 1 & 1 & 1 & 0 \\
+		1 & 0 & 1 & 1 & 1 \\
+		0 & 1 & 0 & 1 & 1 \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		0 \\
+		1 \\
+		1 \\
+		0 \\
+		1 \\
+	\end{pmatrix}
+	\bmod{2}
+\end{equation}
+which for the key $\vb{s}=(0,1,1,0,1)$ would yield the secret ket $\vb{s}^\prime=(0,0,0)$.
