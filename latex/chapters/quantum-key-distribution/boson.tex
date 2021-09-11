@@ -1,0 +1,172 @@
+\section{Boson-based protocols}
+
+The quantum system of interest in boson-based protocols is a single bosonic mode, i.e., a quantum harmonic oscillator.
+Contrary to a qubit's Hilbert space which has dimension two, the Hilbert space of a single bosonic mode is uncountable.
+Consequently, different bases of a bosonic system are related by a Fourier transform, while different bases of a qubit are related by a rotation.
+We distinguish between the position $\left\{\ket{x}\right\}_{x\in\mathbb{R}}$ and the momentum eigenbasis $\left\{\ket{p}\right\}_{p\in\mathbb{R}}$.
+Position and momentum eigenstates satisfy the eigenvalue equations
+\begin{align}
+	\hat{X}\ket{x}
+	&=
+	x\ket{x}
+	&
+	\hat{P}\ket{p}
+	&=
+	p\ket{p}
+\end{align}
+where $\hat{X}$ and $\hat{P}$ are the position and momentum operator with canonical commutation relation
+\begin{align}
+	\comm{\hat{X}}{\hat{X}}
+	&=
+	0
+	&
+	\comm{\hat{X}}{\hat{P}}
+	&=
+	i
+	&
+	\comm{\hat{P}}{\hat{P}}
+	&=
+	0
+	.
+\end{align}
+Using the eigenvalue equations and the commutators, we can show that position and momentum eigenstates
+are non-orthogonal~\cite[p.~29]{Mukhanov2007}
+\begin{equation}
+	\braket{x}{p}
+	=
+	\frac{e^{ipx}}{\sqrt{2\pi}}
+\end{equation}
+and therefore perfectly suited for \gls{qkd}.
+
+We can construct a boson-based \gls{qkd} protocol similar to the qubit-based BB84:
+\begin{enumerate}
+	\item Alice prepares either a position eigenstate $\ket{x_i}$ or a momentum eigenstate $\ket{p_j}$ and sends it to Bob.
+	\item Bob performs a measurement either in the position $\left\{\ket{x}\right\}_{x\in\mathbb{R}}$ or the momentum eigenbasis $\left\{\ket{p}\right\}_{p\in\mathbb{R}}$.
+\end{enumerate}
+If Bob measures in the correct basis, he (theoretically) is able to resolve perfectly $x_i,p_j\in\mathbb{R}$.
+Otherwise, Bob measures an outcome completely uncorrelated with what Alice has prepared, see \Cref{tab:boson_transmission_sequence}.
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{llccccc}
+		\toprule
+		& & \multicolumn{5}{c}{Transmission} \\
+		\cmidrule{3-7}
+		Party & Step & 1 & 2 & 3 & 4 & 5 \\ 
+		\midrule
+		\multirow{3}{*}{Alice} & State value & $p_1$ & $x_1$ & $x_2$ & $p_2$ & $x_3$ \\
+		& State basis & $P$ & $X$ & $X$ & $P$ & $X$ \\
+		& Prepared state & $\ket{p_1}$ & $\ket{x_1}$ & $\ket{x_2}$ & $\ket{p_2}$ & $\ket{x_3}$ \\
+		\cmidrule{1-1}
+		\multirow{2}{*}{Bob} & Measurement basis & $X$ & $P$ & $X$ & $P$ & $P$ \\
+		& Sifted outcome & - & - & $x_2$ & $p_2$ & - \\
+		\bottomrule
+	\end{tabular}
+	\caption{Possible transmission sequence for boson-based BB84: Alice randomly selects a value and a basis, encodes this information into a quantum state and sends it to Bob. Bob randomly selects a measurement outcome. Only if Alice's and Bob's basis match, is Bob's outcome correlated with Alice's value.}\label{tab:boson_transmission_sequence}
+\end{table}
+While the suggested boson-based BB84 highlights the true differences of boson- with qubit-based QKD it is cannot be implemented as there are no true position or momentum eigenstates.
+
+However, we can use squeezed states as an approximation to the position and momentum eigenstates.
+We are going to discuss such a squeeze-encoding in the subsequent section.
+For more information on boson information theory, see Ref.~\cite{Weedbrook2012,Ferraro2005}.
+
+\FloatBarrier
+\subsection{Squeeze-encoding}
+
+The generalized quadrature operator in the single-mode quantum optics is~\cite[p.~36]{Barnett2002}
+\begin{equation}
+	\hat{X}(\theta)
+	=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\hat{a}
+		e^{-i\theta}
+		+
+		\hat{a}^\dagger
+		e^{+i\theta}
+	\right)
+	.
+\end{equation}
+For a single-mode coherent state $\ket{\alpha}$, we find mean expectation value
+\begin{equation}
+	\expval{\hat{X}(\theta)}{\alpha}
+	=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\alpha
+		e^{-i\theta}
+		+
+		\alpha^*
+		e^{+i\theta}
+	\right)
+	=
+	\sqrt{2}
+	\Re\left(
+		\alpha
+		e^{-i\theta}
+	\right)
+	=
+	\sqrt{2}
+	\abs{\alpha}
+	\cos(\phi-\theta)
+\end{equation}
+where we used the complex polar representation $\alpha=\abs{\alpha}e^{i\phi}$ and variance~\cite[p.~59]{Barnett2002}
+\begin{equation}
+	\expval{\left(\Delta\hat{X}(\theta)\right)^2}{\alpha}
+	=
+	\frac{1}{2}
+	.
+\end{equation}
+
+% distinction between tensor- and time-encoding purely on a signal/conceptional level
+
+\FloatBarrier
+\subsection{Coherent-encoding}
+
+% citations:
+% Gaussian quantum information (quantum channel, cv-qkd, measurements)
+% \cite{Lodewyck2007} complete description of CV-QKD device (theoretical and experimental)
+
+%In \gls{cvqkd}, the receiver performs a continuous-value measurement, i.e., the set of possible outcomes is uncountable.
+%In comparison to \gls{dvqkd}, \gls{cvqkd} generates random bits faster but with higher error.
+%Grosshans initially proposed \gls{cvqkd} in 2002 as an alternative to DV-QKD~\cite{Grosshans2002}.
+%Today, CV-QKD has grown into solid competition with DV-QKD~\cite{Diamanti2016}.
+%One significant advantage of CV-QKD over DV-QKD is that the CV-QKD receiver uses standard telecommunication components allowing for cheap high-performance integration.
+
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/state-space-quadrature}
+	\caption{Phase space representation of coherent states: Alice prepares a coherent state $\ket{\alpha}$ with mean $\alpha$ and shot noise variance (blue circle). Bob receives the attenuated coherent state $\ket{\beta}$ with mean $\beta$ and shot noise variance (green circle). Bob's measurement (orange circle) has an increased variance due to other noise sources, e.g., electronic noise.}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/state-space-quadrature-cloning}
+	\caption{Phase space representation of coherent states: Alice prepares a coherent state $\ket{\alpha}$ with mean $\alpha$ and shot noise variance (blue circle). Bob receives the attenuated coherent state $\ket{\beta}$ with mean $\beta$ and shot noise variance (green circle). Bob's measurement (orange circle) has an increased variance due to other noise sources, e.g., electronic noise.}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/state-space-quadrature-squeezing}
+	\caption{Phase space representation of coherent states: Alice prepares a coherent state $\ket{\alpha}$ with mean $\alpha$ and shot noise variance (blue circle). Bob receives the attenuated coherent state $\ket{\beta}$ with mean $\beta$ and shot noise variance (green circle). Bob's measurement (orange circle) has an increased variance due to other noise sources, e.g., electronic noise.}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/coherent-transmitter}
+	\caption{Fiber-optical setup of the phase-encoding \gls{cvqkd} protocol:}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/coherent-receiver-active}
+	\caption{Fiber-optical setup of the phase-encoding \gls{cvqkd} protocol:}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/coherent-receiver-passive}
+	\caption{Fiber-optical setup of the phase-encoding \gls{cvqkd} protocol:}
+\end{figure}
+
+% outlook encoding symbols continuously on a time-continuous coherent state
