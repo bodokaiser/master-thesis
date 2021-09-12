@@ -1,44 +1,89 @@
-\section{Boson-based protocols}
+\section{Boson- or quadrature-based protocols}
 
 The quantum system of interest in boson-based protocols is a single bosonic mode, i.e., a quantum harmonic oscillator.
-Contrary to a qubit's Hilbert space which has dimension two, the Hilbert space of a single bosonic mode is uncountable.
-Consequently, different bases of a bosonic system are related by a Fourier transform, while different bases of a qubit are related by a rotation.
-We distinguish between the position $\left\{\ket{x}\right\}_{x\in\mathbb{R}}$ and the momentum eigenbasis $\left\{\ket{p}\right\}_{p\in\mathbb{R}}$.
-Position and momentum eigenstates satisfy the eigenvalue equations
+
+The central observable is the generalized quadrature operator~\cite[p.~36]{Barnett2002}
+\begin{equation}
+	\hat{X}(\vartheta)
+	=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\hat{a}
+		e^{-i\vartheta}
+		+
+		\hat{a}^\dagger
+		e^{+i\vartheta}
+	\right)
+	=
+	\hat{X}
+	\cos\vartheta
+	+
+	\hat{P}
+	\sin\vartheta
+\end{equation}
+where $\hat{X}=\hat{X}(0)$ and $\hat{P}=\hat{X}(\pi/2)$ are the position respectively momentum operators.
+The generalized quadrature operator has commutator
+\begin{equation}
+	\comm{\hat{X}(\vartheta)}{\hat{X}(\vartheta+\Delta\vartheta)}
+	=
+	i\sin\Delta\vartheta
+\end{equation}
+implying maximal uncertainty for orthogonal quadratures $\Delta\vartheta=\pi/2$.
+The Robertson uncertainty relation provides a lower bound for the product of quadrature variances differing by the angle $\Delta\vartheta$
+\begin{equation}
+	\expval{\Delta\hat{X}(\vartheta)}
+	\expval{\Delta\hat{X}(\vartheta+\Delta\vartheta)}
+	\geq
+	\frac{1}{2}
+	\abs{\expval{\comm{\hat{X}(\vartheta)}{\hat{X}(\vartheta+\Delta\vartheta)}}}
+	=
+	\frac{1}{2}
+	\sin\Delta\vartheta
+\end{equation}
+and thereby generalizing Heisenberg's uncertainty principle.
+Let us assume the existence of position $\ket{x}$ and momentum $\ket{p}$ eigenstates satisfying
 \begin{align}
-	\hat{X}\ket{x}
+	\hat{X}(\vartheta)
+	\ket{x}
 	&=
-	x\ket{x}
+	x
+	\ket{x}
 	&
-	\hat{P}\ket{p}
+	\hat{X}(\vartheta+\pi/2)
+	\ket{p}
 	&=
-	p\ket{p}
+	p
+	\ket{p}
+	,
 \end{align}
-where $\hat{X}$ and $\hat{P}$ are the position and momentum operator with canonical commutation relation
-\begin{align}
-	\comm{\hat{X}}{\hat{X}}
-	&=
-	0
-	&
-	\comm{\hat{X}}{\hat{P}}
-	&=
-	i
-	&
-	\comm{\hat{P}}{\hat{P}}
-	&=
-	0
-	.
-\end{align}
-Using the eigenvalue equations and the commutators, we can show that position and momentum eigenstates
-are non-orthogonal~\cite[p.~29]{Mukhanov2007}
+then the uncertainty relation implies that position and momentum are conjugate variables, i.e., increasing the precision of one variable decreases the precision of the other.
+Unsurprisingly, we can show that position and momentum eigenstates are non-orthogonal~\cite[p.~29]{Mukhanov2007}
 \begin{equation}
 	\braket{x}{p}
 	=
 	\frac{e^{ipx}}{\sqrt{2\pi}}
+	\label{eq:position_momentum_product}
+	.
 \end{equation}
-and therefore perfectly suited for \gls{qkd}.
+Using \cref{eq:position_momentum_product} and the completeness of the position and momentum basis, we can relate them by a unitary transform, the Fourier transform,
+\begin{equation}
+	\ket{x}
+	=
+	\int\dd{p}
+	\braket{p}{x}
+	\ket{p}
+	=
+	\int\frac{\dd{p}}{\sqrt{2\pi}}
+	e^{-ipx}
+	\ket{p}
+	=
+	\hat{U}
+	\ket{p}
+	.
+\end{equation}
+Therefore, we can view the uncertainty relation between position and momentum in a semi-classical picture as encoded in the Fourier transform.
 
-We can construct a boson-based \gls{qkd} protocol similar to the qubit-based BB84:
+The non-orthogonality of position and momentum eigenstates, makes the bosonic system a perfect candidate for \gls{qkd} and we can easily construct a boson-based \gls{qkd} protocol similar to the qubit-based BB84:
 \begin{enumerate}
 	\item Alice prepares either a position eigenstate $\ket{x_i}$ or a momentum eigenstate $\ket{p_j}$ and sends it to Bob.
 	\item Bob performs a measurement either in the position $\left\{\ket{x}\right\}_{x\in\mathbb{R}}$ or the momentum eigenbasis $\left\{\ket{p}\right\}_{p\in\mathbb{R}}$.
@@ -63,7 +108,7 @@ Otherwise, Bob measures an outcome completely uncorrelated with what Alice has p
 	\end{tabular}
 	\caption{Possible transmission sequence for boson-based BB84: Alice randomly selects a value and a basis, encodes this information into a quantum state and sends it to Bob. Bob randomly selects a measurement outcome. Only if Alice's and Bob's basis match, is Bob's outcome correlated with Alice's value.}\label{tab:boson_transmission_sequence}
 \end{table}
-While the suggested boson-based BB84 highlights the true differences of boson- with qubit-based QKD it is cannot be implemented as there are no true position or momentum eigenstates.
+While the suggested boson-based BB84 highlights the differences of boson- with qubit-based \gls{qkd} it cannot be implemented as there are no physical position or momentum eigenstates as there is always an uncertainty involved.
 
 However, we can use squeezed states as an approximation to the position and momentum eigenstates.
 We are going to discuss such a squeeze-encoding in the subsequent section.
@@ -72,20 +117,12 @@ For more information on boson information theory, see Ref.~\cite{Weedbrook2012,F
 \FloatBarrier
 \subsection{Squeeze-encoding}
 
-The generalized quadrature operator in the single-mode quantum optics is~\cite[p.~36]{Barnett2002}
-\begin{equation}
-	\hat{X}(\theta)
-	=
-	\frac{1}{\sqrt{2}}
-	\left(
-		\hat{a}
-		e^{-i\theta}
-		+
-		\hat{a}^\dagger
-		e^{+i\theta}
-	\right)
-	.
-\end{equation}
+We are not going 
+
+\FloatBarrier
+\subsection{Coherent-encoding}
+
+The generalized quadrature operator in the single-mode quantum optics is~
 For a single-mode coherent state $\ket{\alpha}$, we find mean expectation value
 \begin{equation}
 	\expval{\hat{X}(\theta)}{\alpha}
@@ -116,11 +153,6 @@ where we used the complex polar representation $\alpha=\abs{\alpha}e^{i\phi}$ an
 	\frac{1}{2}
 	.
 \end{equation}
-
-% distinction between tensor- and time-encoding purely on a signal/conceptional level
-
-\FloatBarrier
-\subsection{Coherent-encoding}
 
 % citations:
 % Gaussian quantum information (quantum channel, cv-qkd, measurements)
