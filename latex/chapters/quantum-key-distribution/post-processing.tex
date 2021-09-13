@@ -12,8 +12,38 @@
 \FloatBarrier
 \subsection{Symbol mapping}
 
-\cite{Leverrier2008} % multidimensional (sphere) 
-\cite{Elkouss2011} % simpler reconciliation scheme
+The symbol mapping takes a sequence of symbols and maps it to a sequence of bits.
+The two basis elements of qubit-based \gls{qkd} protocols have a natural interpretation as bits, i.e.,
+\begin{equation}
+	\begin{split}
+		\vb{s}\colon\Omega&\to\{0,1\} \\
+		\omega &\mapsto \vb{s}(\omega)
+		=
+		\begin{cases}
+			1 & \text{"click"} \\
+			0 & \text{"no click"}
+		\end{cases}
+		.
+	\end{split}
+\end{equation}
+Not so the quadrature value in boson-based \gls{qkd} protocol.
+While we can assign bits according to the sign of the quadrature
+\begin{equation}
+	\begin{split}
+		\vb{s}\colon X\subseteq\mathbb{R}&\to\{0,1\} \\
+		x &\mapsto \vb{s}(i)
+		=
+		\begin{cases}
+			1 & x\geq0 \\
+			0 & x<0
+		\end{cases}
+	\end{split}
+	,
+\end{equation}
+such a symbol mapping turns out to be highly inefficient and more powerful techniques have been developed~\cite{VanAsche2004,Leverrier2008}.
+
+Many \gls{cvqkd} protocols implement slice reconciliation~\cite{Grosshans2002} which includes a first error correction.
+The idea of slice reconciliation is to partition the value range into $2^m$ bins of equal width and assign them a bit string according to the binary representation of their index number.
 
 \FloatBarrier
 \subsection{Information reconciliation}

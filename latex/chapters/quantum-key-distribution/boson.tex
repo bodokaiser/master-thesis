@@ -108,6 +108,7 @@ Otherwise, Bob measures an outcome completely uncorrelated with what Alice has p
 	\end{tabular}
 	\caption{Possible transmission sequence for boson-based BB84: Alice randomly selects a value and a basis, encodes this information into a quantum state and sends it to Bob. Bob randomly selects a measurement outcome. Only if Alice's and Bob's basis match, is Bob's outcome correlated with Alice's value.}\label{tab:boson_transmission_sequence}
 \end{table}
+To convert the sifted outcome to bits, we can simply assign the bit value according to the sign.
 While the suggested boson-based BB84 highlights the differences of boson- with qubit-based \gls{qkd} it cannot be implemented as there are no physical position or momentum eigenstates as there is always an uncertainty involved.
 
 However, we can use squeezed states as an approximation to the position and momentum eigenstates.
@@ -115,9 +116,55 @@ We are going to discuss such a squeeze-encoding in the subsequent section.
 For more information on boson information theory, see Ref.~\cite{Weedbrook2012,Ferraro2005}.
 
 \FloatBarrier
-\subsection{Squeeze-encoding}
+\subsection{Squeezed-coherent-encoding}
 
-We are not going 
+A squeezed coherent state, denoted $\ket{\alpha,\xi}$, has quadrature variance~\cite[p.~95]{Vogel2006}
+\begin{equation}
+	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi}
+	=
+	\abs{\mu e^{+i\vartheta}-\nu^* e^{-i\vartheta}}
+\end{equation}
+wherein parameters $\nu,\mu$ relate to the complex squeezing parameter $\xi=\abs{\xi}e^{i\varphi_\xi}$ via~\cite[p.~90]{Vogel2006}
+\begin{align}
+	\mu
+	&=
+	\cosh\abs{\xi}
+	&
+	\nu
+	&=
+	e^{i\varphi_\xi}
+	\sinh\abs{\xi}
+	.
+\end{align}
+For a specific choice of $\vartheta,\varphi_\xi$, we obtain the minimum and maximum quadrature uncertainties~\cite[p.~96]{Vogel2006}
+\begin{align}
+	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi}_{\vartheta=\vartheta_\text{min}}
+	&=
+	e^{-2\abs{\xi}}
+	\\
+	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi}_{\vartheta=\vartheta_\text{max}}
+	&=
+	e^{+2\abs{\xi}}
+\end{align}
+such that in the limit of $\abs{\xi}\to\infty$ we obtain position and momentum eigenstates for $\hat{X}(\vartheta_\text{min})$ and $\hat{X}(\vartheta_\text{max})=\hat{X}(\vartheta_\text{min}+\pi/2)$.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/state-space-squeezed-quadrature}
+	\caption{Phase space representation of squeezed-coherent states where the minimum uncertainty is in the $\hat{X}$ quadrature (orange) and the $\hat{P}$ quadrature (green).}
+\end{figure}
+For detection, we can employ a coherent receiver using a single homodyne detector for active measurement basis selection, see \Cref{fig:coherent_receiver_active}.
+The 
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/coherent-receiver-active}
+	\caption{Fiber-optical setup of a coherent receiver using a single homodyne detector for active measurement basis section: A \gls{lo} is synced to the optical carrier and phase-shifted by either $0,\pi/2$ to select one of two orthogonal quadratures. The phase-shifted \gls{lo} is superimposed with the received signal in a balanced coupler. The two coupler outputs are monitored by photodiodes in balanced configuration.}\label{fig:coherent_receiver_active}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/coherent-receiver-passive}
+	\caption{Fiber-optical setup of the phase-encoding \gls{cvqkd} protocol:}
+\end{figure}
 
 \FloatBarrier
 \subsection{Coherent-encoding}
@@ -186,18 +233,6 @@ where we used the complex polar representation $\alpha=\abs{\alpha}e^{i\phi}$ an
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/coherent-transmitter}
-	\caption{Fiber-optical setup of the phase-encoding \gls{cvqkd} protocol:}
-\end{figure}
-
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/pstricks/coherent-receiver-active}
-	\caption{Fiber-optical setup of the phase-encoding \gls{cvqkd} protocol:}
-\end{figure}
-
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/pstricks/coherent-receiver-passive}
 	\caption{Fiber-optical setup of the phase-encoding \gls{cvqkd} protocol:}
 \end{figure}
 

@@ -1,0 +1,52 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{amsmath}
+\usepackage{lmodern}
+\usepackage{pgfplots}
+%\usepackage{physics}
+
+\let\Re\undefined
+\let\Im\undefined
+\DeclareMathOperator{\Re}{\operatorname{Re}}
+\DeclareMathOperator{\Im}{\operatorname{Im}}
+
+\usetikzlibrary{arrows.meta}
+%\pgfplotsset{compat=1.17}
+
+\definecolor{exotic orange}{RGB}{255,128,0}
+\definecolor{exotic green}{RGB}{0,102,102}
+\definecolor{exotic blue}{RGB}{67,132,161}
+
+\begin{document}
+	\begin{tikzpicture}[
+		font=\fontsize{8}{9}\selectfont,
+	]
+		\begin{axis}[
+			width=0.95\linewidth,
+			axis lines=center,
+			axis equal image,
+			xlabel={$\hat{X}$},
+			ylabel={$\hat{P}$},
+			ticks=none,
+			xmin=-1,
+			xmax=+1,
+			ymin=-1,
+			ymax=+1,
+			domain=-180:180,
+			samples=100,
+			axis line style={thick},
+			x label style={
+				at={(axis description cs:1.0,0.5)},
+				anchor=north,
+%				rotate=90,
+			},
+			y label style={
+				at={(axis description cs:0.5,1.0)},
+				anchor=south,
+			},
+		]
+			\shadedraw[inner color=exotic green, outer color=exotic blue!40, draw=none] (axis cs:0.0,0.8) ellipse (100 and 2);
+			\shadedraw[inner color=exotic orange, outer color=exotic orange!40, draw=none] (axis cs:0.4,0.0) ellipse (2 and 100);
+		\end{axis}
+	\end{tikzpicture}
+\end{document}
