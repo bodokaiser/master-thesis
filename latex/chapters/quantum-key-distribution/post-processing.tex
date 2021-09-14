@@ -31,7 +31,7 @@ While we can assign bits according to the sign of the quadrature
 \begin{equation}
 	\begin{split}
 		\vb{s}\colon X\subseteq\mathbb{R}&\to\{0,1\} \\
-		x &\mapsto \vb{s}(i)
+		x &\mapsto \vb{s}(x)
 		=
 		\begin{cases}
 			1 & x\geq0 \\
@@ -44,6 +44,11 @@ such a symbol mapping turns out to be highly inefficient and more powerful techn
 
 Many \gls{cvqkd} protocols implement slice reconciliation~\cite{Grosshans2002} which includes a first error correction.
 The idea of slice reconciliation is to partition the value range into $2^m$ bins of equal width and assign them a bit string according to the binary representation of their index number.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/slice-reconciliation}
+	\caption{Slice reconciliation for $m=3$ with $2^m=8$ bins for samples from a standard normal distribution. Alice prepared the values $x_1,x_2$ and Bob measured the values $x_1^\prime,x_2^\prime$. $x_1$ and $x_1^\prime$ are located in the same bin $3$ but $x_2$ and $x_2^\prime$ are located in bin $4$ respectively bin $5$ but slice reconciliation is able to detect and correct such errors with high probability.}\label{fig:slice_reconciliation}
+\end{figure}
 
 \FloatBarrier
 \subsection{Information reconciliation}
