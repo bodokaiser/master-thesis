@@ -113,105 +113,138 @@ While the suggested boson-based BB84 highlights the differences of boson- with q
 
 However, we can use squeezed states as an approximation to the position and momentum eigenstates.
 We are going to discuss such a squeeze-encoding in the subsequent section.
-For more information on boson information theory, see Ref.~\cite{Weedbrook2012,Ferraro2005}.
 
 \FloatBarrier
 \subsection{Squeezed-coherent-encoding}
 
-A squeezed coherent state, denoted $\ket{\alpha,\xi}$, has quadrature variance~\cite[p.~95]{Vogel2006}
+A squeezed coherent state, denoted $\ket{\alpha,\xi}$, has expected quadrature~\cite[p.~91,94]{Vogel2006}
+\begin{equation}
+	\expval{\hat{X}(\vartheta)}{\alpha,\xi}
+	=
+	\frac{1}{\sqrt{2}}
+	\left[
+		\left(\mu\beta-\nu\beta^*\right)
+		e^{+i\vartheta}
+		+
+		\text{c.c.}
+	\right]
+\end{equation}
+with standard deviation~\cite[p.~95]{Vogel2006}
 \begin{equation}
 	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi}
 	=
 	\abs{\mu e^{+i\vartheta}-\nu^* e^{-i\vartheta}}
+	\label{eq:squeezed_quadrature_std}
 \end{equation}
 wherein parameters $\nu,\mu$ relate to the complex squeezing parameter $\xi=\abs{\xi}e^{i\varphi_\xi}$ via~\cite[p.~90]{Vogel2006}
 \begin{align}
 	\mu
 	&=
 	\cosh\abs{\xi}
+	=
+	1+\abs{\nu}^2
 	&
 	\nu
 	&=
 	e^{i\varphi_\xi}
 	\sinh\abs{\xi}
+	=
+	\abs{\nu}
+	e^{i\varphi_\xi}
+	\label{eq:squeezing_parameters}
 	.
 \end{align}
-For a specific choice of $\vartheta,\varphi_\xi$, we obtain the minimum and maximum quadrature uncertainties~\cite[p.~96]{Vogel2006}
-\begin{align}
-	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi}_{\vartheta=\vartheta_\text{min}}
-	&=
-	e^{-2\abs{\xi}}
-	\\
-	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi}_{\vartheta=\vartheta_\text{max}}
-	&=
-	e^{+2\abs{\xi}}
-\end{align}
-such that in the limit of $\abs{\xi}\to\infty$ we obtain position and momentum eigenstates for $\hat{X}(\vartheta_\text{min})$ and $\hat{X}(\vartheta_\text{max})=\hat{X}(\vartheta_\text{min}+\pi/2)$.
+Inserting the polar representation of the squeezing parameters \cref{eq:squeezing_parameters} into the qaudrature standard deviation \cref{eq:squeezed_quadrature_std}, we find that there exists two phase relation between $\vartheta$ and $\varphi_\xi$ which yield minimum and maximum quadrature uncertainties~\cite[p.~96]{Vogel2006}
+\begin{equation}
+	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi}_{\vartheta=\vartheta_{\text{max}/\text{min}}}
+	=
+	e^{\pm\abs{\xi}}
+	.
+\end{equation}
+In the limit of infinite squeezing magnitude $\abs{\xi}\to\infty$, we obtain position and momentum eigenstates for $\hat{X}(\vartheta_\text{min})$ and $\hat{X}(\vartheta_\text{max})=\hat{X}(\vartheta_\text{min}+\pi/2)$.
+\Cref{fig:state_space_squeezed_quadrature} depicts the optical phase space of two highly squeezed states.
+The green ellipsis indicates the variances of a $\hat{P}$-quadrature squeezed state and the orange ellipsis indicated the variance of a $\hat{X}$-quadrature squeezed state.
+If Alice prepares such states and Bob attempts to measure them, then his outcome will have almost no correlation if he selects the unsqueezed quadrature as measurement basis.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/state-space-squeezed-quadrature}
-	\caption{Phase space representation of squeezed-coherent states where the minimum uncertainty is in the $\hat{X}$ quadrature (orange) and the $\hat{P}$ quadrature (green).}
+	\caption{Phase space representation of squeezed-coherent states where the minimum uncertainty is in the $\hat{X}$ quadrature (orange) and the $\hat{P}$ quadrature (green).}\label{fig:state_space_squeezed_quadrature}
 \end{figure}
-For detection, we can employ a coherent receiver using a single homodyne detector for active measurement basis selection, see \Cref{fig:coherent_receiver_active}.
-The 
+To implement the quadrature measurement, we can employ a homodyne detection.
+A fiber-optical setup for homodyne detection is depicted in \Cref{fig:coherent_receiver_active}.
+At its heart, the homodyne detector consists of a \gls{lo}, a balanced coupler (or beam splitter) and two photodiodes in balanced configuration.
+The \gls{lo} is superimposed with the signal through the coupler and the two coupler outputs are monitored by one photodiode.
+In balanced configuration, the photocurrent of the photodiodes is subtracted removing the constant power of the signal and \gls{lo}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/coherent-receiver-active}
-	\caption{Fiber-optical setup of a coherent receiver using a single homodyne detector for active measurement basis section: A \gls{lo} is synced to the optical carrier and phase-shifted by either $0,\pi/2$ to select one of two orthogonal quadratures. The phase-shifted \gls{lo} is superimposed with the received signal in a balanced coupler. The two coupler outputs are monitored by photodiodes in balanced configuration.}\label{fig:coherent_receiver_active}
+	\caption{Fiber-optical setup of a single homodyne detector implementing active measurement basis section: A \gls{lo} is synced to the optical carrier and phase-shifted by either $0,\pi/2$ to select one of two orthogonal quadratures. The phase-shifted \gls{lo} is superimposed with the received signal in a balanced coupler. The two coupler outputs are monitored by photodiodes in balanced configuration.}\label{fig:coherent_receiver_active}
 \end{figure}
-
+Assuming a perfect detector and strong \gls{lo} with coherent state $\ket{\alpha_l}$ and $\abs{\alpha_l}\gg1$, the mean balanced photodiode current is proportional to~\cite[p.~217]{Vogel2006}
+\begin{equation*}
+	\expval{\Delta\hat{N}^\prime}
+	=
+	\expval{\hat{N}_1^\prime}
+	-
+	\expval{\hat{N}_2^\prime}
+	=
+	\abs{\alpha_l}
+	\expval{\hat{X}(\vartheta)}
+\end{equation*}
+wherein $\vartheta$ is the phase difference between the signal and the \gls{lo}.
+Moreover, it can be shown that the \gls{povm} of an ideal homodyne detector is~\cite[p.~220]{Vogel2006}
+\begin{equation}
+	\left\{\hat{P}_{\Delta n}=\frac{1}{\abs{\alpha_l}}\ketbra{x(\vartheta)}\right\}_{\Delta n\in\mathbb{N}_0}
+\end{equation}
+wherein $\abs{x(\varphi)}=\Delta n/\abs{\alpha_l}$.
+The single homodyne detector corresponds to an active measurement basis selection of Bob.
+As in the case of the polarization-encoding qubit-based \gls{qkd}, Bob can also use a second homodyne detector to implement passive measurement basis selection.
+Such a setup is illustrated in \Cref{fig:coherent_receiver_passive}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/coherent-receiver-passive}
-	\caption{Fiber-optical setup of the phase-encoding \gls{cvqkd} protocol:}
+	\caption{Fiber-optical setup of a dual homodyne detector implementing passive measurement basis section: A \gls{lo} is synced to the optical carrier and split into two branches. The first branch is used for a first homodyne detector while the second branch is phase-shifted by $\pi/2$ and used for a second homodyne detector. As the two homodyne detectors have orthogonal \gls{lo}, the two orthogonal quadratures can be resolved at the same time.}\label{fig:coherent_receiver_passive}
 \end{figure}
+The squeezed-coherent-encoding is a more realistic implementation of a boson-based \gls{qkd} protocol as squeezed-coherent states are physically contrary to position and momentum states.
+The production of squeezed-coherent states requires nonlinear interactions, which are challenging to control.
+Furthermore, squeezed-coherent states quickly lose their squeezing by attenuation.
 
 \FloatBarrier
 \subsection{Coherent-encoding}
 
-The generalized quadrature operator in the single-mode quantum optics is~
-For a single-mode coherent state $\ket{\alpha}$, we find mean expectation value
+Coherent-encoding is the most practical encoding for boson-based \gls{qkd}:
+It is easier to create and manipulate coherent states using standard telecommunication hardware, and channel loss only deteriorates the amplitude but does not change the kind of quantum state.
+The expected quadrature of a coherent state $\ket{\alpha}$ is
 \begin{equation}
-	\expval{\hat{X}(\theta)}{\alpha}
+	\expval{\hat{X}(\vartheta)}{\alpha}
 	=
 	\frac{1}{\sqrt{2}}
 	\left(
 		\alpha
-		e^{-i\theta}
+		e^{-i\vartheta}
 		+
 		\alpha^*
-		e^{+i\theta}
+		e^{+i\vartheta}
 	\right)
 	=
 	\sqrt{2}
 	\Re\left(
 		\alpha
-		e^{-i\theta}
+		e^{-i\vartheta}
 	\right)
 	=
 	\sqrt{2}
 	\abs{\alpha}
-	\cos(\phi-\theta)
+	\cos(\phi-\vartheta)
 \end{equation}
 where we used the complex polar representation $\alpha=\abs{\alpha}e^{i\phi}$ and variance~\cite[p.~59]{Barnett2002}
 \begin{equation}
-	\expval{\left(\Delta\hat{X}(\theta)\right)^2}{\alpha}
+	\expval{\Delta\hat{X}(\vartheta)}{\alpha}
 	=
-	\frac{1}{2}
+	\frac{1}{\sqrt{2}}
 	.
 \end{equation}
-
-% citations:
-% Gaussian quantum information (quantum channel, cv-qkd, measurements)
-% \cite{Lodewyck2007} complete description of CV-QKD device (theoretical and experimental)
-
-%In \gls{cvqkd}, the receiver performs a continuous-value measurement, i.e., the set of possible outcomes is uncountable.
-%In comparison to \gls{dvqkd}, \gls{cvqkd} generates random bits faster but with higher error.
-%Grosshans initially proposed \gls{cvqkd} in 2002 as an alternative to DV-QKD~\cite{Grosshans2002}.
-%Today, CV-QKD has grown into solid competition with DV-QKD~\cite{Diamanti2016}.
-%One significant advantage of CV-QKD over DV-QKD is that the CV-QKD receiver uses standard telecommunication components allowing for cheap high-performance integration.
-
-
+Consequently, coherent states have equal uncertainty in both quadratures and Bob's measurements will always be off Alice's encoded symbol requiring sophisticated error correction techniques.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/state-space-quadrature}
