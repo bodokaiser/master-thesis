@@ -162,13 +162,13 @@ Inserting the polar representation of the squeezing parameters \cref{eq:squeezin
 	.
 \end{equation}
 In the limit of infinite squeezing magnitude $\abs{\xi}\to\infty$, we obtain position and momentum eigenstates for $\hat{X}(\vartheta_\text{min})$ and $\hat{X}(\vartheta_\text{max})=\hat{X}(\vartheta_\text{min}+\pi/2)$.
-\Cref{fig:state_space_squeezed_quadrature} depicts the optical phase space of two highly squeezed states.
+\Cref{fig:state_space_squeezed} depicts the optical phase space of two highly squeezed states.
 The green ellipsis indicates the variances of a $\hat{P}$-quadrature squeezed state and the orange ellipsis indicated the variance of a $\hat{X}$-quadrature squeezed state.
 If Alice prepares such states and Bob attempts to measure them, then his outcome will have almost no correlation if he selects the unsqueezed quadrature as measurement basis.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/state-space-squeezed-quadrature}
-	\caption{Phase space representation of squeezed-coherent states where the minimum uncertainty is in the $\hat{X}$ quadrature (orange) and the $\hat{P}$ quadrature (green).}\label{fig:state_space_squeezed_quadrature}
+	\includestandalone{figures/pgfplots/phase-space-squeezed}
+	\caption{Phase space representation of squeezed-coherent states where the minimum uncertainty is in the $\hat{X}$ quadrature (orange) and the $\hat{P}$ quadrature (green).}\label{fig:phase_space_squeezed}
 \end{figure}
 To implement the quadrature measurement, we can employ a homodyne detection.
 A fiber-optical setup for homodyne detection is depicted in \Cref{fig:coherent_receiver_active}.
@@ -245,28 +245,37 @@ where we used the complex polar representation $\alpha=\abs{\alpha}e^{i\phi}$ an
 	.
 \end{equation}
 Consequently, coherent states have equal uncertainty in both quadratures and Bob's measurements will always be off Alice's encoded symbol requiring sophisticated error correction techniques.
+Let us use visualize the quantum transmission of coherent-encoding boson-based \gls{qkd} in phase space.
+\Cref{fig:phase_space_coherent} depicts the variance of Alice's prepared coherent state (blue) and how it looses amplitude through attenuation of the channel (green).
+The variance of Bob's measurement is highlighted by the orange circle which includes electronic noise from the detector.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/state-space-quadrature}
-	\caption{Phase space representation of coherent states: Alice prepares a coherent state $\ket{\alpha}$ with mean $\alpha$ and shot noise variance (blue circle). Bob receives the attenuated coherent state $\ket{\beta}$ with mean $\beta$ and shot noise variance (green circle). Bob's measurement (orange circle) has an increased variance due to other noise sources, e.g., electronic noise.}
+	\includestandalone{figures/pgfplots/phase-space-coherent}
+	\caption{Phase space representation of quantum transmission in coherent-encoding boson-based \gls{qkd}: Alice prepares a coherent state with mean and shot noise variance (blue circle). Bob receives the attenuated coherent state with mean and shot noise variance (green circle). Bob's measurement (orange circle) has an increased variance due to other noise sources, e.g., electronic noise.}\label{fig:phase_space_coherent}
 \end{figure}
-
+If Eve attempts an intercept-resend attack (\Cref{fig:phase_space_intercept_resend}), she measures Alice's coherent state with some outcome most likely in the blue circle but unlikely to be the exact value Alice used for encoding.
+Eve's best guess is to prepare a new state onto which she encodes her measurement outcome (red circle).
+The channel attenuation reduces the power of Eve's state.
+Including electronic noise, Bob measures an outcome most likely inside the orange circle.
+When Alice and Bob perform error correction they will notice a higher than usual error from Eve's attempt to copy Alice's state.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/state-space-quadrature-cloning}
-	\caption{Phase space representation of coherent states: Alice prepares a coherent state $\ket{\alpha}$ with mean $\alpha$ and shot noise variance (blue circle). Bob receives the attenuated coherent state $\ket{\beta}$ with mean $\beta$ and shot noise variance (green circle). Bob's measurement (orange circle) has an increased variance due to other noise sources, e.g., electronic noise.}
+	\includestandalone{figures/pgfplots/phase-space-intercept-resend}
+	\caption{Phase space representation of quantum transmission in coherent-encoding boson-based \gls{qkd} including intercept-resend attack from Eve: Alice prepares a coherent state with mean and shot noise variance (blue circle). Eve intercepts the state and resends a new state to Bob (red ellipse). Bob receives the Eve's modified coherent state and performs a measurement. When Alice and Bob perform error correction the imperfect copy Eve sent increases the error noticeable.}\label{fig:phase_space_intercept_resend}
 \end{figure}
-
+\Cref{fig:phase_space_intercept_resend_squeezed} illustrates Eve's intercept-resent attack if she uses a squeezed state in an attempt to "hide" her error.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/state-space-quadrature-squeezing}
-	\caption{Phase space representation of coherent states: Alice prepares a coherent state $\ket{\alpha}$ with mean $\alpha$ and shot noise variance (blue circle). Bob receives the attenuated coherent state $\ket{\beta}$ with mean $\beta$ and shot noise variance (green circle). Bob's measurement (orange circle) has an increased variance due to other noise sources, e.g., electronic noise.}
+	\includestandalone{figures/pgfplots/phase-space-intercept-resend-squeezed}
+	\caption{Phase space representation of quantum transmission in coherent-encoding boson-based \gls{qkd} including intercept-resend attack from Eve using squeezing: Eve intercepts Alice's coherent state and prepares a squeezed state to reduce the error she introduced. Bobs measurement variance is now comparable to an untampered transmission for one quadrature but the variance of the other quadrature is dramatically increased. If Bob uses passive measurement basis selection, he will instantly notice the high error in the other quadrature. If Bob uses active measurement basis selection, he will too notice a large error introduced by Eve in the asymptotic limit of many measurements.}\label{fig:phase_space_intercept_resend_squeezed}
 \end{figure}
+If Bob uses a dual homodyne receiver, he will directly notice the increase of noise in one of the quadratures.
+If Bob uses a single homodyne receiver, he will only notice every second measurement on average, which is still sufficient to detect Eve's tempering.
 
+To implement coherent-encoding, we can use the same receiver setup as described for squeezed-coherent-encoding.
+A possible transmitter setup is presented in \label{fig:coherent_transmitter}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/coherent-transmitter}
-	\caption{Fiber-optical setup of the phase-encoding \gls{cvqkd} protocol:}
+	\caption{Fiber-optical setup of a coherent transmitter for coherent-encoding boson-based \gls{qkd}: \gls{iq}-modulation is performed on a transmit laser to encode the complex symbol onto the optical carrier. A \gls{voa} reduces the power of the transmit signal such that the signal strength is comparable to the quantum noise.}\label{fig:coherent_transmitter}
 \end{figure}
-
-% outlook encoding symbols continuously on a time-continuous coherent state
