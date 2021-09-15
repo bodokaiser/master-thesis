@@ -179,23 +179,24 @@
 		    \vspace{0.8em}
 			\huge
 		    \textbf{\textsf{A theoretical framework for quantum optical communication - towards CV-QKD}}\\
-
-		    \vspace{.8em}
+			
+			\vspace{1.2em}
 			\begin{figure}[htb]
 				\centering
-				%\includestandalone{figures/pgfplots/phase-space}
+			    \includestandalone[scale=1.2]{figures/pgfplots/phase-space-intercept-resend}
 			\end{figure}
-
-		    \vspace{.6em}
+			
+			\vspace{.6em}
 		    \large
 		    \textbf{Master thesis by}\\
-   		    \vspace{.8em}
+			\vspace{.8em}
 		    \large
 			Bodo Kaiser\\
-		    \vspace{.2em}not
+		    \vspace{.2em}
 			\textit{bodo.kaiser@physik.uni-muenchen.de}
 
-		    \usekomafont{date}
+		    %\usekomafont{date}
+		    \large
 		    \today
 
 		    \vspace{1.9em}
@@ -224,13 +225,14 @@
 	\chapter{Quantum-key distribution}
 	\begin{refsection}
 		\input{chapters/quantum-key-distribution/introduction}
-		\input{chapters/quantum-key-distribution/measurements}
 		\input{chapters/quantum-key-distribution/taxonomy}
 		\input{chapters/quantum-key-distribution/qubit}
 		\input{chapters/quantum-key-distribution/boson}
 		\input{chapters/quantum-key-distribution/post-processing}
 		\input{chapters/quantum-key-distribution/security}
 
+		\addcontentsline{toc}{section}{Summary}
+		\input{chapters/quantum-key-distribution/summary}
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
 	\end{refsection}
