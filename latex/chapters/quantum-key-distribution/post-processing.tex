@@ -44,11 +44,29 @@ such a symbol mapping turns out to be highly inefficient and more powerful techn
 
 Many \gls{cvqkd} protocols implement slice reconciliation~\cite{Grosshans2002} which includes a first error correction.
 The idea of slice reconciliation is to partition the value range into $2^m$ bins of equal width and assign them a bit string according to the binary representation of their index number.
+\Cref{fig:slice_reconciliation} illustrates slice reconciliation for $m=3$ yielding $2^m=8$ different bins for a standard normal distributed random variable.
+Alice's $x_i$ and Bob's variables $x_i^\prime$ are not equal but correlated.
+Alice and Bob assign bits to their variable according to the binning scheme.
+If Alice and Bob are lucky, the assignment yields the same bit sequence.
+For example, Alice and Bob both assign $x_1$ and $x_1^\prime$ to the third bin and now share bit string $011$.
+However, it happens that Alice and Bob assign different bins, see, for instance, $x_2$ and $x_2^\prime$ which are assigned to the fourth bin (Alice) and the fifth bin (Bob).
+In this particular case, if Bob knows the least significant bit from Alice, he is able to correct his bit string assignment to $100$.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/slice-reconciliation}
 	\caption{Slice reconciliation for $m=3$ with $2^m=8$ bins for samples from a standard normal distribution. Alice prepared the values $x_1,x_2$ and Bob measured the values $x_1^\prime,x_2^\prime$. $x_1$ and $x_1^\prime$ are located in the same bin $3$ but $x_2$ and $x_2^\prime$ are located in bin $4$ respectively bin $5$ but slice reconciliation is able to detect and correct such errors with high probability.}\label{fig:slice_reconciliation}
 \end{figure}
+
+In an alternative scheme, known as multidimensional reconciliation~\cite{Leverrier2008}, Alice and Bob combine multiple variables into a $d$-dimensional vector, e.g., $\vb{x}=(x_1,\dots,x_d)$ respectively $\vb{x}^\prime=(x_1^\prime,\dots,x_d^\prime)$ and agree on a set of symbol vectors $\vu{v}_1,\dots,\vu{v}_m\in\mathbb{R}^d$.
+Now, Bob finds a rotation matrix $R^\prime\in\mathbb{R}^{d\times d}$ which maps his variable vector onto a symbol vector $\vb{v}_j=R^\prime\vb{x}^\prime$.
+Bob then discloses the parameters of his rotation matrix $R^\prime$ to Alice.
+Alice rotates her variable vector $R\vb{x}$ and finds the symbol vector $\vb{v}_k$ most with least distance to $R\vb{x}$.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/multidimensional-reconciliation}
+	\caption{Multidimensional reconciliation in $\mathbb{R}^2$: Alice and Bob encoded their prepared and measured values into a the two-dimensional vectors $\vb{x}$ (red unfilled diamond) respectively $\vb{x}^\prime$ (red unfilled square). Bob estimates the $11$ symbol vector $\vu{v}_4$ (top right dark green circle) to have the least distance to $\vb{x}^\prime$. He calculates a rotation matrix $R$ which rotates $\vb{x}^\prime$ close to $\vu{v}_4$ as $R\vb{x}$ (bright green filled diamond) and shares the rotational parameters with Alice. Alice applies the rotation to her vector $R\vb{x}$ (bright green filled square). The rotated vectors of Alice and Bob $R\vb{x}$ and $R\vb{x}^\prime$ are close to the symbol vector $\vu{v}_4$ completing the reconciliation procedure.}\label{fig:multidimensional_reconciliation}
+\end{figure}
+Multidimensional reconciliation works best in high-dimensional spaces as the norm of random vector approaches one (unit sphere) for $n\to\infty$.
 
 \FloatBarrier
 \subsection{Information reconciliation}

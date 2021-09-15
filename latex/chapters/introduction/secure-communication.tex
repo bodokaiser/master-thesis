@@ -101,8 +101,51 @@ Authentication can be implemented classically using \gls{mac} as discussed for t
 	\caption{Encoding variables to use for \gls{qkd}: Variables with uncountable state space are considered for \gls{cvqkd} while variables with (possibly restricted) countable state space are considered for \gls{dvqkd}.}
 \end{table}
 
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/tikz/post-processing}
-	\caption{Post-processing procedure for \gls{qkd} protocols: First Alice's and Bob's key bits are correlated and partially secret. Key sifting discards key bits where Alice and Bob chose a different basis or where Bob did not detect an event while error correction removes the remaining differences between Alice's and Bob's partially secret key bits. Comparing the correlated key bits with the corrected key bits, Alice and Bob can estimate an error and thereby an upper bound on information loss to an adversary. Alice and Bob can remove the remaining partial information an adversary potentially has by performing privacy amplification. Finally, Alice and Bob share a secret key bit string.}\label{fig:post_processing}
-\end{figure}
+At the heart of 
+\begin{align}
+	\hat\rho_A
+	&=
+	\int\dd{x}p_A(x)
+	\tensor[_A]{\ketbra{x}}{_A}
+	&
+	\hat\rho_B
+	&=
+	\int\dd{x}p_B(x)
+	\tensor[_B]{\ketbra{x}}{_B}
+\end{align}
+\begin{equation}
+	\hat{F}(y)
+	=
+	\int\dd{z}
+	\hat{F}_A(y\vert z)
+	\otimes
+	\tensor[_B]{\ketbra{z}}{_B}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		p(y)
+		&=
+		\tr\left[
+			\hat{F}(y)
+			\left(\hat\rho_A\otimes\hat\rho_B\right)
+		\right]
+		\\
+		&=
+		\int\dd{z}
+		\tr_A\biggl[
+			\hat{F}_A(x\vert z)
+			\hat\rho_A
+		\biggr]
+		\tr_B\biggl[
+			\tensor[_B]{\ketbra{z}}{_B}
+			\hat\rho_B
+		\biggr]
+		\\
+		&=
+		\int\dd{x}
+		\int\dd{z}
+		p_A(x)
+		p(y\vert x,z)
+		p_B(z)		
+	\end{split}
+\end{equation}
