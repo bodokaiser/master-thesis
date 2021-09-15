@@ -4,7 +4,7 @@
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(0,0.5)(14.25,4.5)
+	\begin{pspicture}(0,0.5)(13,4)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
@@ -13,13 +13,12 @@
 			\optfiberpolarizer[compname=Pol1, labeloffset=1](2.5,2)(3.5,2){{\begin{tabular}{@{}c@{}}Linear\\polarizer\end{tabular}}}
 			\optfiber[compname=Fiber, labeloffset=1](4.5,2)(5.5,2){{\begin{tabular}{@{}c@{}}Quantum\\channel\end{tabular}}}
 			\polcontrol[compname=PolCtrl, labeloffset=1](6.5,2)(7.5,2){{\begin{tabular}{@{}c@{}}Polarization\\controller\end{tabular}}}
-			\optfiberpolarizer[compname=Pol2, labeloffset=1](8.5,2)(9.5,2){{\begin{tabular}{@{}c@{}}Linear\\polarizer\end{tabular}}}
-			\fibercollimator[compname=Colimator, labelangle=180, labeloffset=1](11.25,2)(10.25,2){{\begin{tabular}{@{}c@{}}Fiber\\colimator\end{tabular}}}
-			\beamsplitter[compname=BeamSplitter, labelangle=-90, labeloffset=1](11.25,2)(12.75,2)(12.75,3){{\begin{tabular}{@{}c@{}}Polarized\\beam splitter\end{tabular}}}
-			\optdetector[compname=Det1](12.75,2)(13.75,2)
-			\optdetector[compname=Det2, labeloffset=0.7, labelangle=90](12.75,2)(12.75,3){{\begin{tabular}{@{}c@{}}Single-photon\\detector\end{tabular}}}
+			\fibercollimator[compname=Colimator, labelangle=180, labeloffset=1](9.25,2)(8.25,2){{\begin{tabular}{@{}c@{}}Fiber\\colimator\end{tabular}}}
+			\beamsplitter[compname=BeamSplitter, labelangle=-90, labeloffset=1](10,2)(11,2)(11,3){{\begin{tabular}{@{}c@{}}Rotatable polarized\\beam splitter\end{tabular}}}
+			\optdetector[compname=Det1, labelangle=180, labeloffset=1.2](11,2)(12,2){{\begin{tabular}{@{}c@{}}Single-\\photon\\detector\end{tabular}}}
+			\optdetector[compname=Det2](11,2)(11,3)
 			
-			\drawfiber{Source}{Pol1}{Fiber}{PolCtrl}{Pol2}{Colimator}
+			\drawfiber{Source}{Pol1}{Fiber}{PolCtrl}{Colimator}
 			\drawbeam{Colimator}{BeamSplitter}{Det2}
 			\drawbeam{Colimator}{BeamSplitter}{Det1}
 		\end{optexp}

@@ -39,29 +39,29 @@ More formally, we define a $\epsilon$-secure key obtained by a \gls{qkd} protoco
 	\varepsilon
 	\label{eq:qkd_security}
 \end{equation}
-where $\rho_{AE}$ is the quantum state encoding the correlations between Alice's final key\footnote{It is sufficient to only consider Alice's state as Bob's shares the exact same state after post-processing.} and Eve, $\rho_U$ is the mixed state of possible key configurations, and $\rho_E$ is a generic state of Eve.
+where $\rho_{AE}$ is the quantum state encoding the correlations between Alice's final key\footnote{It is sufficient to only consider Alice's state as Bob's shares the exact same state after post-processing.} and Eve, $\rho_U$ is the mixed state of possible key configurations, $\rho_E$ is a generic state of Eve, and $\norm{\cdot}_{\trace{}}$ is the trace norm which measures the distance between quantum states, see Ref.~\cite[p.~49]{Wolf2021}.
 Intuitively \Cref{eq:qkd_security} encodes the distance between an ideal key state $\rho_U\otimes\rho_E$ and a real key state $\rho_{AE}$.
 The real key state $\rho_{AE}$ may be entangled with Eve's system while for the ideal key state, Eve's state $\rho_E$ factorizes as a tensor product with the key state $\rho_U$, i.e., $\rho_E$ and $\rho_U$ describe independent systems.
 Further definitions with respect to security, for instance, $\epsilon$-correctness, -robustness, and composability, are formalized in Ref.~\cite[p.~119]{Wolf2021}.
-Additionally, one classifies Eve's eavesdropping strategies according to how her ancillas interact with the states Alice sends and wether she performs a local or global measurement of her ancillas, see \Cref{tab:eavesdropping_strategies}.
+Additionally, one classifies Eve's eavesdropping strategies according to how her ancillas interact with the states Alice sends and whether she performs a local or global measurement of her ancillas, see \Cref{tab:eavesdropping_strategies}.
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{ccccc}
 		\toprule
 			Attack & Alice's & \multicolumn{3}{c}{Eve's} \\
 			\cmidrule{3-5}
-			& State & Ancillas & Unitary & Measurement \\
+			& State & Unitary & Measurement \\
 		\midrule
-			Individual & $\rho_A^j$ & $n$ & Local & Local \\
-			Collective & $\rho_A^j$ & $n$ & Global & Global \\
-			Coherent & $\bigotimes_{j=1}^n\rho_A^j$ & $1$ & Global & Global \\
+			Individual & $\rho_A^j$ & Local & Local \\
+			Collective & $\rho_A^j$ & Local & Global \\
+			Coherent & $\bigotimes_{j=1}^n\rho_A^j$ & Global & Global \\
 		\bottomrule
 	\end{tabular}
 	\caption{Summary of Eve's attacks according to Ref.~\cite[p.~128]{Wolf2021}: Alice sends $n$ quantum states $\rho_A^1,\dots,\rho_A^n$ to Bob. For the individual attack, Eve attaches a single ancilla system to each of Alice's states $\rho_A^j$, applies a local unitary transformation and performs a separate measurement. The collective attack generalizes the individual attack by Eve performing a global measurement of all ancillas. For the coherent attack, Eve interacts with all of Alice's states $\bigotimes_{j=1}^n\rho_A^j$ at once and performs a single global measurement.}\label{tab:eavesdropping_strategies}
 \end{table}
 Sometimes it is possible to reduce coherent attacks, the most powerful attacks, to collective attacks, see the de Finetti theorem~\cite[p.~148]{Wolf2021}.
 
-The ultimate objective of a security proof is to prove an inequality of the form~\cite[p.~11]{Scarani2009}
+One approach for a security proof is to derive an inequality of the form~\cite[p.~11]{Scarani2009}
 \begin{equation}
 	\mathbb{P}\left[
 		\frac{1}{2}
@@ -76,15 +76,15 @@ The ultimate objective of a security proof is to prove an inequality of the form
 where $l$ is the secret key length and $F$ is the secret key length reference scale.
 The secret key length reference scale $F$ depends on the protocol and channel parameters.
 For secure key generation, the secret key length must be chosen smaller than the secret key length reference scale, i.e., $l\ll F$.
-\Cref{eq:qkd_inequality} is often casted as lower bound for the secret key rate~\cite{Brunner2017}
+In another approach, the Devetak-Winter rate~\cite[p.~144]{Wolf2021} is derived.
+The Devetak-Winter rate provides a lower bound on the asymptotic secret key rate
 \begin{equation}
 	r_\text{sec}
-	\propto
+	\approxprop
 	r_\text{raw}
-	(1-\nu)
-	(\beta I_{AB}-\chi_{BE})
+	(I_{AB}-\chi_{BE})
 \end{equation}
-wherein $r_\text{raw}$ is the raw transmission rate, $\nu$ is the fraction of data revealed for parameter estimation, $\beta$ is the error correction efficiency, $I_{AB}$ is the mutual information between Alice and Bob, and $\chi_{BE}$ is the Holevo information encoding Eve's information on Bob's measurements.
+wherein $r_\text{raw}$ is the raw transmission rate, $I_{AB}$ is the mutual information between Alice and Bob, and $\chi_{BE}$ is the Holevo information encoding Eve's information on Bob's measurements.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/cvsim}
@@ -94,7 +94,6 @@ wherein $r_\text{raw}$ is the raw transmission rate, $\nu$ is the fraction of da
 A systematic approach to security proofs, first pioneered by Lo and Chau~\cite{Lo1999} and later extended by Shor~\cite{Shor2000}, includes the following steps:
 \begin{enumerate}
 	\item Convert the prepare-and-measure to an entanglement-based description.\footnote{If the protocol is entanglement-based, we can skip this step. For an equivalence proof of the BB84, see Ref.~\cite[p.~106]{Wolf2021}.}
-	\item Employ quantum error correction codes to correct Alice's and Bob's qubits.
-	\item Estimate how many qubits Eve holds after quantum error correction.
+	\item Employ quantum error correction codes to correct Alice's and Bob's qubits which then equals the secret key state.
 	\item Show equivalence of classical with quantum post-processing.
 \end{enumerate}

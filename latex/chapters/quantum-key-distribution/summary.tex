@@ -1,5 +1,13 @@
-We want to summarize the following points:
-\begin{enumerate}
-	\item a
-	\item b
-\end{enumerate}
+\section*{Summary}
+
+\Cref{fig:qkd_protocol} illustrates our proposed notion of a \gls{qkd} protocol, with the feature being a logical quantum system from which the random bits are encoded and decoded.
+The logical quantum system is a subspace of the physical quantum system.
+The physical quantum system depends strongly on the physical implementation and quantum encoding.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/qkd-protocol}
+	\caption{A \gls{qkd} protocol comprises a binary encoder, a logical quantum system, and a binary decoder. The binary encoder maps bits $\vb{b}\in\{0,1\}^n$ onto a quantum state of the logical quantum system $\ket{\psi}$. The binary decoder extracts the bits $\vb{b}$ back from the quantum state $\ket{\psi^\prime}$. The logical quantum system is a subspace of a larger physical quantum system. The state encoder and decoder map between the logical and physical quantum states.}\label{fig:qkd_protocol}
+\end{figure}
+The distinction between logical and quantum systems is vital to separate the implementation and security concerns.
+Many security proofs show equivalence between the physical implementation and the logical system to use an established security proof.
+One should keep in mind that such a separation implicitly assumes no loopholes from the particular implementation.

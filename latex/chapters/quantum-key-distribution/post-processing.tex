@@ -6,9 +6,6 @@
 	\caption{First, the raw data from the quantum transmission is partitioned into data for calibration and data for key generation. The parameter estimation estimates an upper bound of Eve's information and the channel characteristics from the raw calibration data. If Eve's information exceeds a certain threshold, the protocol is aborted, or the current data frame is discarded. Symbol mapping, including basis sifting, transforms the raw key data to correlated key data. Information reconciliation corrects errors in the correlated key data and discards data where error correction failed. Eve's information on the partially secret key is reduced to epsilon using privacy amplification. Finally, Alice and Bob verify that the post-processing was successful by comparing a hash of their secret key. If the hashes mismatch, the protocol is aborted, or the transmission block discarded.}\label{fig:post_processing}
 \end{figure}
 
-% citations
-\cite{Silberhorn2002} % post-selection mechanism to mitigate beam splitter attack
-
 \FloatBarrier
 \subsection{Symbol mapping}
 
@@ -57,14 +54,14 @@ In this particular case, if Bob knows the least significant bit from Alice, he i
 	\caption{Slice reconciliation for $m=3$ with $2^m=8$ bins for samples from a standard normal distribution. Alice prepared the values $x_1,x_2$ and Bob measured the values $x_1^\prime,x_2^\prime$. $x_1$ and $x_1^\prime$ are located in the same bin $3$ but $x_2$ and $x_2^\prime$ are located in bin $4$ respectively bin $5$ but slice reconciliation is able to detect and correct such errors with high probability.}\label{fig:slice_reconciliation}
 \end{figure}
 
-In an alternative scheme, known as multidimensional reconciliation~\cite{Leverrier2008}, Alice and Bob combine multiple variables into a $d$-dimensional vector, e.g., $\vb{x}=(x_1,\dots,x_d)$ respectively $\vb{x}^\prime=(x_1^\prime,\dots,x_d^\prime)$ and agree on a set of symbol vectors $\vu{v}_1,\dots,\vu{v}_m\in\mathbb{R}^d$.
+In an alternative scheme, known as multidimensional reconciliation~\cite{Leverrier2008}, Alice and Bob combine multiple variables into a $d$-dimensional vector, e.g., $\vb{x}=(x_1,\dots,x_d)$ respectively $\vb{x}^\prime=(x_1^\prime,\dots,x_d^\prime)$ and agree on a set of equally-spaced apart symbol vectors $\vu{v}_1,\dots,\vu{v}_m\in\mathbb{R}^d$.
 Now, Bob finds a rotation matrix $R^\prime\in\mathbb{R}^{d\times d}$ which maps his variable vector onto a symbol vector $\vb{v}_j=R^\prime\vb{x}^\prime$.
 Bob then discloses the parameters of his rotation matrix $R^\prime$ to Alice.
 Alice rotates her variable vector $R\vb{x}$ and finds the symbol vector $\vb{v}_k$ most with least distance to $R\vb{x}$.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/multidimensional-reconciliation}
-	\caption{Multidimensional reconciliation in $\mathbb{R}^2$: Alice and Bob encoded their prepared and measured values into a the two-dimensional vectors $\vb{x}$ (red unfilled diamond) respectively $\vb{x}^\prime$ (red unfilled square). Bob estimates the $11$ symbol vector $\vu{v}_4$ (top right dark green circle) to have the least distance to $\vb{x}^\prime$. He calculates a rotation matrix $R$ which rotates $\vb{x}^\prime$ close to $\vu{v}_4$ as $R\vb{x}$ (bright green filled diamond) and shares the rotational parameters with Alice. Alice applies the rotation to her vector $R\vb{x}$ (bright green filled square). The rotated vectors of Alice and Bob $R\vb{x}$ and $R\vb{x}^\prime$ are close to the symbol vector $\vu{v}_4$ completing the reconciliation procedure.}\label{fig:multidimensional_reconciliation}
+	\caption{Multidimensional reconciliation in $\mathbb{R}^2$: Alice and Bob encoded their prepared and measured values into two-dimensional vectors $\vb{x}$ and $\vb{x}^\prime$. Bob calculates the rotation matrix $R$ that rotates $\vb{x}^\prime$ close to the symbol vector $\vu{v}_4$ and shares the rotational parameters with Alice. Alice applies the rotation to her vector $R\vb{x}$ e). Both rotated vectors of Alice and Bob $R\vb{x}$ and $R\vb{x}^\prime$ are assigned the $11$ bit string with high confidence.}\label{fig:multidimensional_reconciliation}
 \end{figure}
 Multidimensional reconciliation works best in high-dimensional spaces as the norm of random vector approaches one (unit sphere) for $n\to\infty$.
 
@@ -215,7 +212,7 @@ The parity-check matrix is orthogonal to the generator matrix~\cite[p.~95]{Milde
 	HG^\trans
 	.
 \end{equation}
-The orthogonality between generator and parity-check matrix implies that for the received codeword $\vb{y}$, the parity-check matrix yields, a binary vector called the syndrom (column) vector
+The orthogonality between generator and parity-check matrix implies that for the received codeword $\vb{y}$, the parity-check matrix yields, a binary vector called the syndrome (column) vector
 \begin{equation}
 	\vb{s}
 	=
@@ -253,11 +250,11 @@ If the block code does not detect any error, we have $\vb{s}=0$.
 			16 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible syndroms for the $(3,1)$ repetition code: The first and last row are correct codewords (without noise) and yield a zero syndrome indicating no error. All other received codewords contain bit flips and thereby non-zero syndroms.}\label{tab:repetition_syndroms}
+	\caption{Possible syndromes for the $(3,1)$ repetition code: The first and last row are correct codewords (without noise) and yield a zero syndrome indicating no error. All other received codewords contain bit flips and thereby non-zero syndromes.}\label{tab:repetition_syndromes}
 \end{table}
-\Cref{tab:repetition_syndroms} lists the possible syndroms for the $(3,1)$ repetition code.
-To correct the error, one looks up the calculated syndrom in an error correction table.
-For example, \Cref{tab:hamming_correction} lists the bit-error corrections assigned to each syndrom of the $(7,4)$ Hamming code.
+\Cref{tab:repetition_syndromes} lists the possible syndromes for the $(3,1)$ repetition code.
+To correct the error, one looks up the calculated syndrome in an error correction table.
+For example, \Cref{tab:hamming_correction} lists the bit-error corrections assigned to each syndrome of the $(7,4)$ Hamming code.
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{cccccccc}
@@ -292,13 +289,13 @@ In practice, privacy amplification is performed by randomly XOR the bits of a ke
 Let us illustrate this using a partially secret key $(s_1,s_2,s_3)\in\{0,1\}^3$ where Eve knows the value of $s_3$.
 After privacy amplification the initial key could for example $(s_1\oplus s_3,s_2\oplus s_3)$ or $(s_1\oplus s_2,s_2\oplus s_3)$ and Eve's knowledge of the key bit $s_3$ does not help her infering a bit of the new secret key.
 
-For further understanding, it may be helpful to consider the following Gedankenexperiment:
+Although not directly related to privacy amplification, it is helpful to consider the following Gedankenexperiment to gain intuition about XORing:
 Let us assume Alice and Bob generate a key by flipping a coin $n$ times and assigning heads to zero and tails to one.
 Eve having no information about the key corresponds to Alice and Bob using an unbiased coin yielding heads and tails with equal probability.
 Eve having full information about the key corresponds to Alice and Bob using a biased coin always yielding, e.g., heads.
 Therefore, we can use the probability of the coin yielding heads, $p\in[0,1]$, to indicate Eve's information.
 If we now start to XOR all outcomes, we see the probability for obtaining either a one or zero to approach $1/2$.
-More precisely, let $X_1,X_2,\dots,X_N$ be \gls{iid} Bernoulli random variables with probability $p$, $X_i\sim\text{Bern}(p)$, then the probability that XOR of all outcomes equals one is
+More precisely, let $X_1,X_2,\dots,X_N$ be \gls{iid} Bernoulli random variables with probability $p$, $X_i\sim\text{Bern}(p)$, then the probability that XORing of all outcomes equals one is
 \begin{equation}
 	\mathbb{P}\left[
 		\text{"XOR of outcomes equals one"}

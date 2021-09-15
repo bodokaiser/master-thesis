@@ -14,22 +14,29 @@ The central observable is the generalized quadrature operator~\cite[p.~36]{Barne
 		\hat{a}^\dagger
 		e^{+i\vartheta}
 	\right)
-	=
-	\hat{X}
-	\cos\vartheta
-	+
-	\hat{P}
-	\sin\vartheta
 \end{equation}
-where $\hat{X}=\hat{X}(0)$ and $\hat{P}=\hat{X}(\pi/2)$ are the position respectively momentum operators.
-The generalized quadrature operator has commutator
+wherein $\hat{a}^\dagger,\hat{a}$ are the bosonic creation and annihilation operators satisfying the canonical commutation relation
+\begin{align}
+	\comm{\hat{a}}{\hat{a}^\dagger}
+	=
+	1
+	&&
+	\comm{\hat{a}}{\hat{a}}
+	=
+	0
+	=
+	\comm{\hat{a}^\dagger}{\hat{a}^\dagger}
+	.
+\end{align}
+It follows that the generalized quadrature operator satisfies the commutator
 \begin{equation}
 	\comm{\hat{X}(\vartheta)}{\hat{X}(\vartheta+\Delta\vartheta)}
 	=
 	i\sin\Delta\vartheta
+	.
 \end{equation}
-implying maximal uncertainty for orthogonal quadratures $\Delta\vartheta=\pi/2$.
-The Robertson uncertainty relation provides a lower bound for the product of quadrature variances differing by the angle $\Delta\vartheta$
+The Robertson uncertainty relation provides a lower bound for the product of the standard deviation of two operators in terms of their commutator.
+The Robertson uncertainty relation for the generalized quadrature operator,
 \begin{equation}
 	\expval{\Delta\hat{X}(\vartheta)}
 	\expval{\Delta\hat{X}(\vartheta+\Delta\vartheta)}
@@ -39,54 +46,33 @@ The Robertson uncertainty relation provides a lower bound for the product of qua
 	=
 	\frac{1}{2}
 	\sin\Delta\vartheta
-\end{equation}
-and thereby generalizing Heisenberg's uncertainty principle.
-Let us assume the existence of position $\ket{x}$ and momentum $\ket{p}$ eigenstates satisfying
-\begin{align}
-	\hat{X}(\vartheta)
-	\ket{x}
-	&=
-	x
-	\ket{x}
-	&
-	\hat{X}(\vartheta+\pi/2)
-	\ket{p}
-	&=
-	p
-	\ket{p}
 	,
-\end{align}
-then the uncertainty relation implies that position and momentum are conjugate variables, i.e., increasing the precision of one variable decreases the precision of the other.
-Unsurprisingly, we can show that position and momentum eigenstates are non-orthogonal~\cite[p.~29]{Mukhanov2007}
+\end{equation}
+generalizes Heisenberg's uncertainty relation and implies maximal uncertainty for orthogonal quadratures $\Delta\vartheta=\pi/2$.
+Let us assume the existence of an eigenstate $\ket{x,\vartheta}$ of the generalized quadrature operator $\Delta\hat{X}(\vartheta)$ with eigenvalue $x\in\mathbb{R}$\footnote{Actually, the quadrature eigenstates only exist on the extended Hilbert space as they itself are not square-integrable.}, i.e.,
 \begin{equation}
-	\braket{x}{p}
+	\hat{X}(\vartheta)
+	\ket{x,\vartheta}
+	=
+	x(\vartheta)
+	\ket{x,\vartheta}
+	,
+\end{equation}
+then the uncertainty relation implies that $\ket{x,\vartheta}$ and $\ket{x(\vartheta+\Delta\vartheta)}$, corresponding to position and momentum, are conjugate variables, i.e., increasing the precision of one variable decreases the precision of the other.
+Unsurprisingly, we can show that these eigenstates are non-orthogonal~\cite[p.~29]{Mukhanov2007}
+\begin{equation}
+	\braket{x,\vartheta}{x,\vartheta+\Delta\vartheta}
 	=
 	\frac{e^{ipx}}{\sqrt{2\pi}}
 	\label{eq:position_momentum_product}
-	.
 \end{equation}
-Using \cref{eq:position_momentum_product} and the completeness of the position and momentum basis, we can relate them by a unitary transform, the Fourier transform,
-\begin{equation}
-	\ket{x}
-	=
-	\int\dd{p}
-	\braket{p}{x}
-	\ket{p}
-	=
-	\int\frac{\dd{p}}{\sqrt{2\pi}}
-	e^{-ipx}
-	\ket{p}
-	=
-	\hat{U}
-	\ket{p}
-	.
-\end{equation}
-Therefore, we can view the uncertainty relation between position and momentum in a semi-classical picture as encoded in the Fourier transform.
+and related by a Fourier transform.\footnote{This can be shown combining the completeness relation and \cref{eq:position_momentum_product}.}
 
-The non-orthogonality of position and momentum eigenstates, makes the bosonic system a perfect candidate for \gls{qkd} and we can easily construct a boson-based \gls{qkd} protocol similar to the qubit-based BB84:
+The non-orthogonality of the quadrature eigenstates, makes the bosonic system a candidate for \gls{qkd}.
+For instance, we can envision boson-based BB84 protocol:
 \begin{enumerate}
-	\item Alice prepares either a position eigenstate $\ket{x_i}$ or a momentum eigenstate $\ket{p_j}$ and sends it to Bob.
-	\item Bob performs a measurement either in the position $\left\{\ket{x}\right\}_{x\in\mathbb{R}}$ or the momentum eigenbasis $\left\{\ket{p}\right\}_{p\in\mathbb{R}}$.
+	\item Alice prepares the state $\ket{x(\vartheta+\Delta\vartheta)}$ where she randomly picks $x=\pm x_0$ and $\Delta\vartheta=0,\pi/2$.
+	\item Bob performs a homodyne measurement represented by the \gls{povm} $\left\{\ketbra{x,\theta+\Delta\theta}\right\}_{x\in\mathbb{R}}$.
 \end{enumerate}
 If Bob measures in the correct basis, he (theoretically) is able to resolve perfectly $x_i,p_j\in\mathbb{R}$.
 Otherwise, Bob measures an outcome completely uncorrelated with what Alice has prepared, see \Cref{tab:boson_transmission_sequence}.
@@ -123,7 +109,7 @@ A squeezed coherent state, denoted $\ket{\alpha,\xi}$, has expected quadrature~\
 	=
 	\frac{1}{\sqrt{2}}
 	\left[
-		\left(\mu\beta-\nu\beta^*\right)
+		\left(\mu\alpha-\nu\alpha^*\right)
 		e^{+i\vartheta}
 		+
 		\text{c.c.}
@@ -162,7 +148,7 @@ Inserting the polar representation of the squeezing parameters \cref{eq:squeezin
 	.
 \end{equation}
 In the limit of infinite squeezing magnitude $\abs{\xi}\to\infty$, we obtain position and momentum eigenstates for $\hat{X}(\vartheta_\text{min})$ and $\hat{X}(\vartheta_\text{max})=\hat{X}(\vartheta_\text{min}+\pi/2)$.
-\Cref{fig:state_space_squeezed} depicts the optical phase space of two highly squeezed states.
+\Cref{fig:phase_space_squeezed} depicts the optical phase space of two highly squeezed states.
 The green ellipsis indicates the variances of a $\hat{P}$-quadrature squeezed state and the orange ellipsis indicated the variance of a $\hat{X}$-quadrature squeezed state.
 If Alice prepares such states and Bob attempts to measure them, then his outcome will have almost no correlation if he selects the unsqueezed quadrature as measurement basis.
 \begin{figure}[htb]
@@ -181,7 +167,7 @@ In balanced configuration, the photocurrent of the photodiodes is subtracted rem
 	\caption{Fiber-optical setup of a single homodyne detector implementing active measurement basis section: A \gls{lo} is synced to the optical carrier and phase-shifted by either $0,\pi/2$ to select one of two orthogonal quadratures. The phase-shifted \gls{lo} is superimposed with the received signal in a balanced coupler. The two coupler outputs are monitored by photodiodes in balanced configuration.}\label{fig:coherent_receiver_active}
 \end{figure}
 Assuming a perfect detector and strong \gls{lo} with coherent state $\ket{\alpha_l}$ and $\abs{\alpha_l}\gg1$, the mean balanced photodiode current is proportional to~\cite[p.~217]{Vogel2006}
-\begin{equation*}
+\begin{equation}
 	\expval{\Delta\hat{N}^\prime}
 	=
 	\expval{\hat{N}_1^\prime}
@@ -190,13 +176,13 @@ Assuming a perfect detector and strong \gls{lo} with coherent state $\ket{\alpha
 	=
 	\abs{\alpha_l}
 	\expval{\hat{X}(\vartheta)}
-\end{equation*}
+\end{equation}
 wherein $\vartheta$ is the phase difference between the signal and the \gls{lo}.
 Moreover, it can be shown that the \gls{povm} of an ideal homodyne detector is~\cite[p.~220]{Vogel2006}
 \begin{equation}
-	\left\{\hat{P}_{\Delta n}=\frac{1}{\abs{\alpha_l}}\ketbra{x(\vartheta)}\right\}_{\Delta n\in\mathbb{N}_0}
+	\left\{\hat{P}_{\Delta n}=\frac{1}{\abs{\alpha_l}}\ketbra{x,\vartheta}\right\}_{\Delta n\in\mathbb{Z}}
 \end{equation}
-wherein $\abs{x(\varphi)}=\Delta n/\abs{\alpha_l}$.
+wherein $\ket{x,\vartheta}$ has quadrature eigenvalue $x=\Delta n/\abs{\alpha_l}$.
 The single homodyne detector corresponds to an active measurement basis selection of Bob.
 As in the case of the polarization-encoding qubit-based \gls{qkd}, Bob can also use a second homodyne detector to implement passive measurement basis selection.
 Such a setup is illustrated in \Cref{fig:coherent_receiver_passive}.
@@ -261,7 +247,7 @@ When Alice and Bob perform error correction they will notice a higher than usual
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/phase-space-intercept-resend}
-	\caption{Phase space representation of quantum transmission in coherent-encoding boson-based \gls{qkd} including intercept-resend attack from Eve: Alice prepares a coherent state with mean and shot noise variance (blue circle). Eve intercepts the state and resends a new state to Bob (red ellipse). Bob receives the Eve's modified coherent state and performs a measurement. When Alice and Bob perform error correction the imperfect copy Eve sent increases the error noticeable.}\label{fig:phase_space_intercept_resend}
+	\caption{Phase space representation of quantum transmission in coherent-encoding boson-based \gls{qkd} including intercept-resend attack from Eve: Alice prepares a coherent state with mean and shot noise variance (blue circle). Eve intercepts the state and resends a new state to Bob (red circle). Bob receives the Eve's modified coherent state and performs a measurement. When Alice and Bob perform error correction the imperfect copy Eve sent increases the error noticeable.}\label{fig:phase_space_intercept_resend}
 \end{figure}
 \Cref{fig:phase_space_intercept_resend_squeezed} illustrates Eve's intercept-resent attack if she uses a squeezed state in an attempt to "hide" her error.
 \begin{figure}[htb]
