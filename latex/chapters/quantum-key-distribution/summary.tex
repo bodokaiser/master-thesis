@@ -1,5 +1,23 @@
 \section*{Summary}
 
+\begin{table}[htb]
+	\centering	
+	\begin{tabular}{lcc}
+		\toprule
+			& Qubit (spin) & Boson (quadrature) \\
+		\midrule
+			Visualization & Bloch sphere & Phase space \\
+			Hilbert space (dim) & Finite (two) & Uncountable (infinite) \\
+			Description & Density matrix & Wigner distribution \\
+			Observable & $\vb{\hat{S}}(\vb{n})=\hat{S}_in^i$ & $\hat{X}(\vartheta)=\frac{1}{\sqrt{2}}\left(\hat{a}e^{-i\vartheta}+\hat{a}^\dagger e^{+i\vartheta}\right)$ \\
+			Standard basis & $\left\{\ket{0},\ket{1}\right\}$ & $\left\{\ket{x}\right\}_{x\in\mathbb{R}}$ or $\left\{\ket{p}\right\}_{p\in\mathbb{R}}$ \\
+			Basis transformation & Rotation & Unitary \\
+			Other relevant states & $\ket{x_\pm},\ket{y_\pm},\ket{z_\pm}$ & $\ket{n},\ket{\alpha},\ket{\alpha,\xi}$ \\
+		\bottomrule
+	\end{tabular}
+	\caption{Possible physical systems to encode a qubit. Many of the physical systems have a much higher dimension than the qubit space but can pre reduced to a qubit space by a proper mapping.}
+\end{table}
+
 \Cref{fig:qkd_protocol} illustrates our proposed notion of a \gls{qkd} protocol, with the feature being a logical quantum system from which the random bits are encoded and decoded.
 The logical quantum system is a subspace of the physical quantum system.
 The physical quantum system depends strongly on the physical implementation and quantum encoding.

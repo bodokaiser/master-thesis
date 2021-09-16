@@ -49,33 +49,51 @@ The Robertson uncertainty relation for the generalized quadrature operator,
 	,
 \end{equation}
 generalizes Heisenberg's uncertainty relation and implies maximal uncertainty for orthogonal quadratures $\Delta\vartheta=\pi/2$.
-Let us assume the existence of an eigenstate $\ket{x,\vartheta}$ of the generalized quadrature operator $\Delta\hat{X}(\vartheta)$ with eigenvalue $x\in\mathbb{R}$\footnote{Actually, the quadrature eigenstates only exist on the extended Hilbert space as they itself are not square-integrable.}, i.e.,
+Let us assume the existence of an eigenstate $\ket{x,\vartheta}$ of the generalized quadrature operator $\Delta\hat{X}(\vartheta)$ with eigenvalue $x\in\mathbb{R}$, i.e.,\footnote{Actually, the quadrature eigenstates only exist on the extended Hilbert space as they itself are not square-integrable.}
 \begin{equation}
 	\hat{X}(\vartheta)
 	\ket{x,\vartheta}
 	=
-	x(\vartheta)
-	\ket{x,\vartheta}
+	x\ket{x,\vartheta}
 	,
 \end{equation}
-then the uncertainty relation implies that $\ket{x,\vartheta}$ and $\ket{x(\vartheta+\Delta\vartheta)}$, corresponding to position and momentum, are conjugate variables, i.e., increasing the precision of one variable decreases the precision of the other.
+then the uncertainty relation implies that $\ket{x,\vartheta}$ and $\ket{p,\vartheta+\Delta\vartheta}$ for $\Delta\vartheta>0$ are conjugate variables, i.e., increasing the precision of one variable decreases the precision of the other.
 Unsurprisingly, we can show that these eigenstates are non-orthogonal~\cite[p.~29]{Mukhanov2007}
 \begin{equation}
-	\braket{x,\vartheta}{x,\vartheta+\Delta\vartheta}
+	\braket{x,\vartheta}{p,\vartheta+\Delta\vartheta}
 	=
 	\frac{e^{ipx}}{\sqrt{2\pi}}
 	\label{eq:position_momentum_product}
+	.
 \end{equation}
-and related by a Fourier transform.\footnote{This can be shown combining the completeness relation and \cref{eq:position_momentum_product}.}
-
+Furthermore, by using the completeness of eigenstates, we can show that the eigenstates of orthogonal quadratures are related by an unitary transform,
+\begin{equation}
+	\ket{x,\vartheta}
+	=
+	\int\frac{\dd{p}}{\sqrt{2\pi}}
+	e^{-ipx}
+	\ket{p,\vartheta+\pi/2}
+	=
+	\hat{U}
+	\ket{p,\vartheta+\pi/2}
+	,
+\end{equation}
+the Fourier transform.
 The non-orthogonality of the quadrature eigenstates, makes the bosonic system a candidate for \gls{qkd}.
-For instance, we can envision boson-based BB84 protocol:
+For instance, we can envision a bosonic BB84 protocol:
 \begin{enumerate}
-	\item Alice prepares the state $\ket{x(\vartheta+\Delta\vartheta)}$ where she randomly picks $x=\pm x_0$ and $\Delta\vartheta=0,\pi/2$.
-	\item Bob performs a homodyne measurement represented by the \gls{povm} $\left\{\ketbra{x,\theta+\Delta\theta}\right\}_{x\in\mathbb{R}}$.
+	\item Alice prepares the state $\ket{\pm x,\vartheta+\Delta\vartheta}$ where she randomly picks the sign of the eigenvalue $\pm x$ and $\Delta\vartheta=0,\pi/2$.
+	\item Bob performs a homodyne measurement of one (active) or both (passive) quadratures.
 \end{enumerate}
-If Bob measures in the correct basis, he (theoretically) is able to resolve perfectly $x_i,p_j\in\mathbb{R}$.
-Otherwise, Bob measures an outcome completely uncorrelated with what Alice has prepared, see \Cref{tab:boson_transmission_sequence}.
+\Cref{fig:phase_space_quadrature} visualizes Alice's four quantum states in the optical phase space.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/phase-space-quadrature}
+	\caption{Phase space representation of Alice's quantum states in bosonic BB84: The analog of Alice's basis selection is to choose between the two orthogonal quadratures with $\Delta\vartheta=\pi/2$. The analog of Alice's basis element selection is to choose the sign of the eigenvalue $\pm x$.}\label{fig:phase_space_quadrature}
+\end{figure}
+If she chooses the quadrature corresponding to $\Delta\vartheta=0$, a measurement in the orthogonal quadrature eigenbasis yields a completely uncorrelated outcome.
+Only if Bob measures in the same quadrature, can he decode the sign of the eigenvalue.
+\Cref{tab:boson_transmission_sequence} summarizes a possible quantum transmission sequence of bosonic BB84.
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{llccccc}
@@ -84,21 +102,22 @@ Otherwise, Bob measures an outcome completely uncorrelated with what Alice has p
 		\cmidrule{3-7}
 		Party & Step & 1 & 2 & 3 & 4 & 5 \\ 
 		\midrule
-		\multirow{3}{*}{Alice} & State value & $p_1$ & $x_1$ & $x_2$ & $p_2$ & $x_3$ \\
-		& State basis & $P$ & $X$ & $X$ & $P$ & $X$ \\
-		& Prepared state & $\ket{p_1}$ & $\ket{x_1}$ & $\ket{x_2}$ & $\ket{p_2}$ & $\ket{x_3}$ \\
-		\cmidrule{1-1}
-		\multirow{2}{*}{Bob} & Measurement basis & $X$ & $P$ & $X$ & $P$ & $P$ \\
-		& Sifted outcome & - & - & $x_2$ & $p_2$ & - \\
+		\multirow{3}{*}{Alice} & Quadrature value & $+x$ & $-x$ & $-x$ & $+x$ & $-x$ \\
+		& Quadrature angle & $0$ & $\pi/2$ & $0$ & $\pi/2$ & $0$ \\
+		& Prepared state & $\ket{+x,0}$ & $\ket{-x,\pi/2}$ & $\ket{-x,0}$ & $\ket{+x,\pi/2}$ & $\ket{-x,0}$ \\
+		\cmidrule{1-2}
+		\multirow{2}{*}{Bob} & Quadrature angle & $\pi/2$ & $\pi/2$ & $0$ & $\pi/2$ & $0$ \\
+		& Sifted outcome & - & $-x$ & $-x$ & $+x$ & $-x$ \\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible transmission sequence for boson-based BB84: Alice randomly selects a value and a basis, encodes this information into a quantum state and sends it to Bob. Bob randomly selects a measurement outcome. Only if Alice's and Bob's basis match, is Bob's outcome correlated with Alice's value.}\label{tab:boson_transmission_sequence}
+	\caption{Possible quantum transmission sequence for bosonic BB84 with active basis selection: Alice randomly selects the eigenvalue sign $x/\abs{x}$ and a quadrature $\vartheta=0,\pi/2$ which she encodes into a quantum state $\ket{\pm x,\vartheta}$ and sends it to Bob. Bob selects a quadrature for measurement. Only if Alice's and Bob's basis match, is Bob's outcome correlated with Alice's value.}\label{tab:boson_transmission_sequence}
 \end{table}
 To convert the sifted outcome to bits, we can simply assign the bit value according to the sign.
-While the suggested boson-based BB84 highlights the differences of boson- with qubit-based \gls{qkd} it cannot be implemented as there are no physical position or momentum eigenstates as there is always an uncertainty involved.
+More advanced symbol mapping techniques are discussed in the post-processing section.
 
-However, we can use squeezed states as an approximation to the position and momentum eigenstates.
-We are going to discuss such a squeeze-encoding in the subsequent section.
+The suggested bosonic BB84 highlights the differences and similarities of boson- and qubit-based \gls{qkd}.
+However, it cannot be implemented as no quadrature eigenstates exist - not even theoretically on the Hilbert space!
+That said, we can use coherent-squeezed states as an approximation for quadrature eigenstates as discussed in the next section.
 
 \FloatBarrier
 \subsection{Squeezed-coherent-encoding}

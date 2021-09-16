@@ -1,7 +1,5 @@
 \section{Taxonomy of protocols}
 
-\subsection{Common features among the protocol zoo}
-
 \Cref{fig:qkd_classification} illustrates common features among the \gls{qkd} protocols.
 For an overview of \gls{qkd} protocols, see Ref.~\cite{Duvsek2006}.
 \begin{figure}[htb]
@@ -19,34 +17,4 @@ Finally, the \gls{qkd} schema determines if either Alice prepares a state and se
 Most practical \gls{qkd} implementations use prepare-and-measure.
 On a theoretical level, both schemas are equivalent, and security proofs are often more convenient in an entanglement-based setting.
 
-\subsection{Comparison of qubit- and boson-based protocols}
-
 % TODO: critic about CV-, DV-QKD, DPS-QKD
-
-For more information on boson information theory, see Ref.~\cite{Weedbrook2012,Ferraro2005}.
-% Gaussian quantum information (quantum channel, cv-qkd, measurements)
-% \cite{Lodewyck2007} complete description of CV-QKD device (theoretical and experimental)
-
-%In \gls{cvqkd}, the receiver performs a continuous-value measurement, i.e., the set of possible outcomes is uncountable.
-%In comparison to \gls{dvqkd}, \gls{cvqkd} generates random bits faster but with higher error.
-%Grosshans initially proposed \gls{cvqkd} in 2002 as an alternative to DV-QKD~\cite{Grosshans2002}.
-%Today, CV-QKD has grown into solid competition with DV-QKD~\cite{Diamanti2016}.
-%One significant advantage of CV-QKD over DV-QKD is that the CV-QKD receiver uses standard telecommunication components allowing for cheap high-performance integration.
-
-\begin{table}[htb]
-	\centering	
-	\begin{tabular}{lcc}
-		\toprule
-			& Qubit (spin) & Boson (quadrature) \\
-		\midrule
-			Visualization & Bloch sphere & Phase space \\
-			Hilbert space (dim) & Finite (two) & Uncountable (infinite) \\
-			Description & Density matrix & Wigner distribution \\
-			Observable & $\vb{\hat{S}}(\vb{n})=\hat{S}_in^i$ & $\hat{X}(\vartheta)=\frac{1}{\sqrt{2}}\left(\hat{a}e^{-i\vartheta}+\hat{a}^\dagger e^{+i\vartheta}\right)$ \\
-			Standard basis & $\left\{\ket{0},\ket{1}\right\}$ & $\left\{\ket{x}\right\}_{x\in\mathbb{R}}$ or $\left\{\ket{p}\right\}_{p\in\mathbb{R}}$ \\
-			Basis transformation & Rotation & Unitary \\
-			Other relevant states & $\ket{x_\pm},\ket{y_\pm},\ket{z_\pm}$ & $\ket{n},\ket{\alpha},\ket{\alpha,\xi}$ \\
-		\bottomrule
-	\end{tabular}
-	\caption{Possible physical systems to encode a qubit. Many of the physical systems have a much higher dimension than the qubit space but can pre reduced to a qubit space by a proper mapping.}
-\end{table}
