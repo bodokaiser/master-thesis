@@ -117,31 +117,19 @@ More advanced symbol mapping techniques are discussed in the post-processing sec
 
 The suggested bosonic BB84 highlights the differences and similarities of boson- and qubit-based \gls{qkd}.
 However, it cannot be implemented as no quadrature eigenstates exist - not even theoretically on the Hilbert space!
-That said, we can use coherent-squeezed states as an approximation for quadrature eigenstates as discussed in the next section.
+That said, we can use squeezed coherent states as an approximation for quadrature eigenstates as discussed in the next section.
 
 \FloatBarrier
 \subsection{Squeezed-coherent-encoding}
 
-A squeezed coherent state, denoted $\ket{\alpha,\xi}$, has expected quadrature~\cite[p.~91,94]{Vogel2006}
-\begin{equation}
-	\expval{\hat{X}(\vartheta)}{\alpha,\xi}
-	=
-	\frac{1}{\sqrt{2}}
-	\left[
-		\left(\mu\alpha-\nu\alpha^*\right)
-		e^{+i\vartheta}
-		+
-		\text{c.c.}
-	\right]
-\end{equation}
-with standard deviation~\cite[p.~95]{Vogel2006}
+A squeezed coherent state, denoted $\ket{\alpha,\xi}$, has the special property that the quadrature standard deviation is parametrized~\cite[p.~95]{Vogel2006}
 \begin{equation}
 	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi}
 	=
 	\abs{\mu e^{+i\vartheta}-\nu^* e^{-i\vartheta}}
 	\label{eq:squeezed_quadrature_std}
 \end{equation}
-wherein parameters $\nu,\mu$ relate to the complex squeezing parameter $\xi=\abs{\xi}e^{i\varphi_\xi}$ via~\cite[p.~90]{Vogel2006}
+wherein parameters $\nu,\mu$ relate to the complex squeezing parameter $\xi=\abs{\xi}e^{i\varphi}$ via~\cite[p.~90]{Vogel2006}
 \begin{align}
 	\mu
 	&=
@@ -151,31 +139,33 @@ wherein parameters $\nu,\mu$ relate to the complex squeezing parameter $\xi=\abs
 	&
 	\nu
 	&=
-	e^{i\varphi_\xi}
+	e^{i\varphi}
 	\sinh\abs{\xi}
 	=
 	\abs{\nu}
-	e^{i\varphi_\xi}
+	e^{i\varphi}
 	\label{eq:squeezing_parameters}
 	.
 \end{align}
-Inserting the polar representation of the squeezing parameters \cref{eq:squeezing_parameters} into the qaudrature standard deviation \cref{eq:squeezed_quadrature_std}, we find that there exists two phase relation between $\vartheta$ and $\varphi_\xi$ which yield minimum and maximum quadrature uncertainties~\cite[p.~96]{Vogel2006}
+If the squeezing angle $\varphi$ satisfies a particular phase relation with the quadrature angle $\vartheta$, the quadrature standard deviation takes the form~\cite[p.~96]{Vogel2006}
 \begin{equation}
-	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi}_{\vartheta=\vartheta_{\text{max}/\text{min}}}
+	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi_{\text{max}/\text{min}}}
 	=
-	e^{\pm\abs{\xi}}
+	\exp(\pm\abs{\xi_{\text{max}/\text{min}}})
 	.
 \end{equation}
-In the limit of infinite squeezing magnitude $\abs{\xi}\to\infty$, we obtain position and momentum eigenstates for $\hat{X}(\vartheta_\text{min})$ and $\hat{X}(\vartheta_\text{max})=\hat{X}(\vartheta_\text{min}+\pi/2)$.
-\Cref{fig:phase_space_squeezed} depicts the optical phase space of two highly squeezed states.
-The green ellipsis indicates the variances of a $\hat{P}$-quadrature squeezed state and the orange ellipsis indicated the variance of a $\hat{X}$-quadrature squeezed state.
-If Alice prepares such states and Bob attempts to measure them, then his outcome will have almost no correlation if he selects the unsqueezed quadrature as measurement basis.
+In the limit of infinite squeezing magnitude $\abs{\xi_{\text{max}/\text{min}}}\to\infty$, we obtain the previously discussed quadrature eigenstates $\ket{x,\vartheta}$.
+Therefore, we can implement bosonic BB84 using strongly squeezed coherent states.
+\Cref{fig:phase_space_squeezed} depicts the optical phase space for Alice's strongly squeezed coherent states for bosonic BB84.
+Contrary to quadrature eigenstates, the uncertainty in the unsqueezed quadrature is not infinite.
+Measurements of the unsqueezed quadrature are not completely uncorrelated.
+However, the squeezing magnitude $\abs{\xi}$ can (in theory) be chosen arbitrarily large such that the correlation can be arbitrarily reduced.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/phase-space-squeezed}
 	\caption{Phase space representation of squeezed-coherent states where the minimum uncertainty is in the $\hat{X}$ quadrature (orange) and the $\hat{P}$ quadrature (green).}\label{fig:phase_space_squeezed}
 \end{figure}
-To implement the quadrature measurement, we can employ a homodyne detection.
+To implement the quadrature measurement, Bob can employ a homodyne detection.
 A fiber-optical setup for homodyne detection is depicted in \Cref{fig:coherent_receiver_active}.
 At its heart, the homodyne detector consists of a \gls{lo}, a balanced coupler (or beam splitter) and two photodiodes in balanced configuration.
 The \gls{lo} is superimposed with the signal through the coupler and the two coupler outputs are monitored by one photodiode.
@@ -210,77 +200,51 @@ Such a setup is illustrated in \Cref{fig:coherent_receiver_passive}.
 	\includestandalone{figures/pstricks/coherent-receiver-passive}
 	\caption{Fiber-optical setup of a dual homodyne detector implementing passive measurement basis section: A \gls{lo} is synced to the optical carrier and split into two branches. The first branch is used for a first homodyne detector while the second branch is phase-shifted by $\pi/2$ and used for a second homodyne detector. As the two homodyne detectors have orthogonal \gls{lo}, the two orthogonal quadratures can be resolved at the same time.}\label{fig:coherent_receiver_passive}
 \end{figure}
-The squeezed-coherent-encoding is a more realistic implementation of a boson-based \gls{qkd} protocol as squeezed-coherent states are physically contrary to position and momentum states.
-The production of squeezed-coherent states requires nonlinear interactions, which are challenging to control.
-Furthermore, squeezed-coherent states quickly lose their squeezing by attenuation.
+Contrary to the quadrature eigenstates, squeezed coherent states are physical and have been produced.
+However, the production of squeezed coherent states requires nonlinear interactions, which are challenging to control and require with the current state of art a complex optical setup.
+Additionally, squeezed states quickly loose their squeezing by attenuation.
+We conclude that although squeezed coherent states present a possible quantum state for boson-based \gls{qkd}, we prefer a more practical and reliable quantum state.
 
 \FloatBarrier
 \subsection{Coherent-encoding}
 
-Coherent-encoding is the most practical encoding for boson-based \gls{qkd}:
-It is easier to create and manipulate coherent states using standard telecommunication hardware, and channel loss only deteriorates the amplitude but does not change the kind of quantum state.
-The expected quadrature of a coherent state $\ket{\alpha}$ is
-\begin{equation}
-	\expval{\hat{X}(\vartheta)}{\alpha}
-	=
-	\frac{1}{\sqrt{2}}
-	\left(
-		\alpha
-		e^{-i\vartheta}
-		+
-		\alpha^*
-		e^{+i\vartheta}
-	\right)
-	=
-	\sqrt{2}
-	\Re\left(
-		\alpha
-		e^{-i\vartheta}
-	\right)
-	=
-	\sqrt{2}
-	\abs{\alpha}
-	\cos(\phi-\vartheta)
-\end{equation}
-where we used the complex polar representation $\alpha=\abs{\alpha}e^{i\phi}$ and variance~\cite[p.~59]{Barnett2002}
+Coherent states are the "most classical" quantum states and can be prepared using standard telecommunication components, see, for instance, \Cref{fig:coherent_transmitter}.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/coherent-transmitter}
+	\caption{Fiber-optical setup of a coherent transmitter for coherent-encoding boson-based \gls{qkd}: \gls{iq}-modulation is performed on a transmit laser to encode the complex symbol onto the optical carrier. A \gls{voa} reduces the power of the transmit signal such that the signal strength is comparable to the quantum noise.}\label{fig:coherent_transmitter}
+\end{figure}
+Moreover, coherent states do not deteriorate to a different quantum state when interacting with the environment, e.g., inside a fiber channel.
+In sum, coherent states seem to be the most practical quantum states.
+One apparent disadvantage of coherent states is that the quadrature standard deviation is independent of the quadrature angle and the state parameters~\cite[p.~59]{Barnett2002}
 \begin{equation}
 	\expval{\Delta\hat{X}(\vartheta)}{\alpha}
 	=
 	\frac{1}{\sqrt{2}}
 	.
 \end{equation}
-Consequently, coherent states have equal uncertainty in both quadratures and Bob's measurements will always be off Alice's encoded symbol requiring sophisticated error correction techniques.
-Let us use visualize the quantum transmission of coherent-encoding boson-based \gls{qkd} in phase space.
-\Cref{fig:phase_space_coherent} depicts the variance of Alice's prepared coherent state (blue) and how it looses amplitude through attenuation of the channel (green).
-The variance of Bob's measurement is highlighted by the orange circle which includes electronic noise from the detector.
+We cannot emulate a basis selection by changing the statistics of the quadratures and we need to rethink our approach to \gls{qkd}:
+Instead of slowly producing highly correlated variables, we quickly produce hardly correlated variables.
+By employing sophisticated error correction techniques, Alice and Bob can still distill a shared bit string, see the post-processing section for details.
+
+\Cref{fig:phase_space_coherent} highlights the quantum transmission of two coherent states in coherent-encoding boson-based \gls{qkd}.
+The mean (quadrature) of the coherent state is indicated by the colored marker.
+The variance of the coherent state is indicated by the shaded circles around the markers.
+The channel attenuates the coherent state by reducing the mean but the variance remains constant.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/phase-space-coherent}
-	\caption{Phase space representation of quantum transmission in coherent-encoding boson-based \gls{qkd}: Alice prepares a coherent state with mean and shot noise variance (blue circle). Bob receives the attenuated coherent state with mean and shot noise variance (green circle). Bob's measurement (orange circle) has an increased variance due to other noise sources, e.g., electronic noise.}\label{fig:phase_space_coherent}
+	\caption{Phase space representation of two coherent state transmissions: Alice prepares the coherent states $\ket{\alpha_1}$ (green), $\ket{\alpha_2}$ (blue) with mean quadratures $\alpha_1$ (green dot) respectively $\alpha_2$ (blue dot) and sends them to Bob. Bob receives the attenuated coherent states $\ket{\alpha_1^\prime}$ (orange) and $\ket{\alpha_2^\prime}$ (red). Every coherent state has variance $1/2$ per quadrature indicated by the shaded circles.}\label{fig:phase_space_coherent}
 \end{figure}
-If Eve attempts an intercept-resend attack (\Cref{fig:phase_space_intercept_resend}), she measures Alice's coherent state with some outcome most likely in the blue circle but unlikely to be the exact value Alice used for encoding.
-Eve's best guess is to prepare a new state onto which she encodes her measurement outcome (red circle).
-The channel attenuation reduces the power of Eve's state.
-Including electronic noise, Bob measures an outcome most likely inside the orange circle.
-When Alice and Bob perform error correction they will notice a higher than usual error from Eve's attempt to copy Alice's state.
+An intercept-resend attempt by Eve is illustrated in \Cref{fig:phase_space_intercept_resend}.
+When Eve intercepts and measures Alice's coherent state $\ket{\alpha}$, her outcome $\beta$ (red star) is distributed around the mean $\alpha$ due to the quadrature uncertainty.
+Eve's best guess is to prepare a new (squeezed) coherent state $\ket{\beta}$ ($\ket{\beta,\xi}$) where she prepares the mean $\beta$ to be equal to her measurement outcome $\beta$.
+Although, the channel attenuation strongly deteriorates the \gls{snr}, Bob's measurement distribution will be ragged due to Eve's imperfect state copy.
+Alice and Bob notice a higher than usual error when performing error correction.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/phase-space-intercept-resend}
-	\caption{Phase space representation of quantum transmission in coherent-encoding boson-based \gls{qkd} including intercept-resend attack from Eve: Alice prepares a coherent state with mean and shot noise variance (blue circle). Eve intercepts the state and resends a new state to Bob (red circle). Bob receives the Eve's modified coherent state and performs a measurement. When Alice and Bob perform error correction the imperfect copy Eve sent increases the error noticeable.}\label{fig:phase_space_intercept_resend}
-\end{figure}
-\Cref{fig:phase_space_intercept_resend_squeezed} illustrates Eve's intercept-resent attack if she uses a squeezed state in an attempt to "hide" her error.
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/pgfplots/phase-space-intercept-resend-squeezed}
-	\caption{Phase space representation of quantum transmission in coherent-encoding boson-based \gls{qkd} including intercept-resend attack from Eve using squeezing: Eve intercepts Alice's coherent state and prepares a squeezed state to reduce the error she introduced. Bobs measurement variance is now comparable to an untampered transmission for one quadrature but the variance of the other quadrature is dramatically increased. If Bob uses passive measurement basis selection, he will instantly notice the high error in the other quadrature. If Bob uses active measurement basis selection, he will too notice a large error introduced by Eve in the asymptotic limit of many measurements.}\label{fig:phase_space_intercept_resend_squeezed}
+	\caption{Phase space representation of coherent state transmission with an intercept-resend attack from Eve using a coherent state (left) and a squeezed coherent state (right). When Eve intercepts and measures Alice's coherent state $\ket{\alpha}$, her outcome (red star) is distributed around the mean $\alpha$ (green circle). }\label{fig:phase_space_intercept_resend}
 \end{figure}
 If Bob uses a dual homodyne receiver, he will directly notice the increase of noise in one of the quadratures.
 If Bob uses a single homodyne receiver, he will only notice every second measurement on average, which is still sufficient to detect Eve's tempering.
-
-To implement coherent-encoding, we can use the same receiver setup as described for squeezed-coherent-encoding.
-A possible transmitter setup is presented in \label{fig:coherent_transmitter}.
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/pstricks/coherent-transmitter}
-	\caption{Fiber-optical setup of a coherent transmitter for coherent-encoding boson-based \gls{qkd}: \gls{iq}-modulation is performed on a transmit laser to encode the complex symbol onto the optical carrier. A \gls{voa} reduces the power of the transmit signal such that the signal strength is comparable to the quantum noise.}\label{fig:coherent_transmitter}
-\end{figure}
