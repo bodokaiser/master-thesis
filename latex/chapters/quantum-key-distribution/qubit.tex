@@ -1,6 +1,7 @@
 \section{Qubit- or spin-based protocols}
 
 Many \gls{dvqkd} protocols, e.g., the BB84~\cite{Bennett1984} or six-state protocol~\cite{Bechmann1999}, are qubit-based in that the logical quantum system underlying the key generation is a two-state quantum system.
+
 A qubit state $\ket{\psi}$ is an element of a two-dimensional complex Hilbert space with norm one, i.e., $\abs{\braket{\psi}}^2=1$.
 In the qubit basis $\{\ket{0},\ket{1}\}$, a generic qubit state takes the form
 \begin{align}
@@ -27,8 +28,68 @@ A useful visualization of qubit states is the Bloch sphere, see \Cref{fig:bloch_
 \end{figure}
 The Bloch sphere is embedded in three-dimensional space, and there are three independent bases.
 Two antiparallel vectors on the Bloch sphere denote two orthonormal basis elements.
-The Pauli algebra representing two-dimensional rotations describes state transitions on the Bloch sphere.
-It is convenient to select the three Pauli eigenbasis as an orthogonal basis triplet.
+The observable operator central to the qubit is the generalized spin operator
+\begin{equation}
+	\hat{S}(\vu{n})
+	=
+	\vb{\hat{S}}\vdot\vu{n}
+	=
+	\frac{1}{2}
+	\hat{\sigma}_jn^j
+	=
+	\begin{pmatrix}
+		n_3 & n_1 - in_2 \\
+		n_1 + in_2 & -n+3
+	\end{pmatrix}
+\end{equation}
+wherein $\vu{n}\in\mathbb{R}^3$ is a unit norm vector and $\hat{\sigma}_j$ is the $j$th Pauli matrix.
+Let $\ket{\pm,\vu{n}}$ be the eigenstate of the generalized spin operator $\hat{S}(\vu{n})$ to eigenvalues $\pm1/2$, i.e.,
+\begin{equation}
+	\hat{S}(\vu{n})
+	\ket{\pm,\vu{n}}
+	=
+	\pm\frac{1}{2}
+	\ket{\pm,\vu{n}},
+\end{equation}
+then for $\vu{n}=\vu{e}_j$ we obtain the $\hat{\sigma}_j$ Pauli eigenstates, i.e.,
+\begin{align}
+	\hat{S}_x
+	\ket{x_\pm}
+	=	
+	\vb{\hat{S}}(\vu{e}_x)
+	\ket{\pm,\vu{e}_x}
+	&=
+	\pm\frac{1}{2}
+	\ket{\pm,\vu{e}_x}
+	=
+	\pm\frac{1}{2}
+	\ket{x_\pm}
+	\\
+	\hat{S}_y
+	\ket{y_\pm}
+	=	
+	\vb{\hat{S}}(\vu{e}_y)
+	\ket{\pm,\vu{e}_y}
+	&=
+	\pm\frac{1}{2}
+	\ket{\pm,\vu{e}_y}
+	=
+	\pm\frac{1}{2}
+	\ket{y_\pm}
+	\\
+	\hat{S}_z
+	\ket{z_\pm}
+	=	
+	\vb{\hat{S}}(\vu{e}_z)
+	\ket{\pm,\vu{e}_z}
+	&=
+	\pm\frac{1}{2}
+	\ket{\pm,\vu{e}_z}
+	=
+	\pm\frac{1}{2}
+	\ket{z_\pm}
+	.
+\end{align}
 By convention one identifies the $Z$ Pauli eigenbasis with the qubit basis $\left\{\ket{0},\ket{1}\right\}$.
 \Cref{tab:qubit_encodings} lists different physical quantum systems  which allow encoding of a qubit.
 \begin{table}[htb]
@@ -47,14 +108,13 @@ By convention one identifies the $Z$ Pauli eigenbasis with the qubit basis $\lef
 	\end{tabular}
 	\caption{Possible physical systems to encode a qubit. Many of the physical systems have a much higher dimension than the qubit space but can pre reduced to a qubit space by a proper mapping.}\label{tab:qubit_encodings}
 \end{table}
-
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/state-space-qubit}
 	\caption{Two-dimensional state space spanned by the $X,Z$ Pauli eigenbases: Projecting the $\ket{x_-}$ state onto the $Z$ eigenbasis yields a constant probability amplitude of $1/\sqrt{2}$.}
 \end{figure}
 
-For qubit-based \gls{qkd}, Alice and Bob must agree on two (or three) orthogonal bases and a mapping between the basis states and some bit sequence, then
+For the BB84 (six state) protocol, Alice and Bob must agree on two (or three) orthogonal bases\footnote{BB92 using non-orthogonal bases can be implemented by using the generalized spin operator with non-orthogonal vectors.} and a mapping between the basis states and some bit sequence, then
 \begin{enumerate}
 	\item Alice encodes her bits into the state $\ket{\psi}$ and sends it to Bob.
 	\item Bob receives the state $\ket{\psi}$ from Alice and performs a measurement decoding some bits.
@@ -84,15 +144,6 @@ Otherwise, an opposing third party, Eve, might have tempered with the transmissi
 	\caption{Possible transmission sequence for qubit-based \gls{qkd}: Alice randomly selects an initial key bit \num{0} or \num{1} and a state basis $X$ or $Z$ where $X$ respective $Z$ denote the eigenbasis of the Pauli $\sigma_x$ respective $\sigma_z$ matrix. Alice's initial key bit and selected basis determine the quantum state she prepares and sends to Bob. Bob randomly chooses a measurement basis. Only if Alice's and Bob's basis agree, the key bit is not discarded.}\label{tab:qubit_transmission_sequence}
 \end{table}
 After the transmission sequence, Alice and Bob hold a partially correlated and partially secret bit string from which they can distill a shared secret bit string using classical post-processing.
-
-While we formulated the measurement in terms of basis projections, we can also describe the measurement in terms of observable operators.
-For example, for a set of three-dimensional unit vectors $\left\{\vu{n}\right\}$, the generalized spin operator
-\begin{equation}
-	\vb{\hat{S}}(\vu{n})
-	=
-	\hat{S}_jn^j
-\end{equation}
-can be used to construct a \gls{povm} for BB84-like protocols using non-orthogonal bases like BB92.
 
 \FloatBarrier
 \subsection{Polarization-encoding}
