@@ -4,7 +4,7 @@
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(0,0)(11.5,6)
+	\begin{pspicture}(0,0)(11.7,6)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
@@ -23,6 +23,8 @@
 			\drawfiber(0,4){Fiber}{PolCtrl}{Iso}{Coupler}{Det2}
 			
 			\drawwire(\oenodeExt{Det1})(\oenodeExt{Det2})
+			\drawwire[arrows=->](10.4,3)(11,3)
+			\rput(11.4,3){$i(t)$}
 		\end{optexp}
 	\end{pspicture}
 \end{document}

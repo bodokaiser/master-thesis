@@ -16,16 +16,21 @@
 		\node[block, fit=(senc) (sdec), inner xsep=1em, inner ysep=2ex, label={\textsf{Logical quantum system}}] (log){};
 		\node[block, left=of senc] (benc) {\textsf{Binary encoder}};
 		\node[block, right=of sdec] (bdec) {\textsf{Binary decoder}};
-		\node[block, fit=(benc) (bdec), label={\textsf{QKD Protocol}}, inner xsep=1em, inner ysep=6ex, yshift=1ex] (proto) {};
+		\node[block, below=0.3 of log, minimum width=36em, text width=12em, minimum height=8ex] (pp) {\textsf{Post-processing}};
+		\node[block, fit=(benc) (bdec) (pp), label={\textsf{QKD Protocol}}, inner xsep=1em, inner ysep=5ex, yshift=2.5ex] (proto) {};
 
 		\coordinate[left=of benc] (in);
 		\coordinate[right=of bdec] (out);
 		
-		\draw[-Latex] (in) node[above right]{$\vb{b}$} -- (benc);
-		\draw[-Latex] (benc) -- (senc) node[midway, above, xshift=-0.5em]{$\ket{\psi}$};
-		\draw[-Latex] (senc) -- (phy) node[midway, above]{$\ket{\Psi}$};
-		\draw[-Latex] (phy) -- (sdec) node[midway, above]{$\ket{\Psi^\prime}$};
-		\draw[-Latex] (sdec) -- (bdec) node[midway, above, xshift=0.5em]{$\ket{\psi^\prime}$};
-		\draw[-Latex] (bdec) -- (out) node[above left]{$\vb{b}$};
+		\draw[-Latex] (in) -- (benc);
+		\draw[-Latex] (benc) -- (senc);
+		\draw[-Latex] (senc) -- (phy) ;
+		\draw[-Latex] (phy) -- (sdec);
+		\draw[-Latex] (sdec) -- (bdec);
+		\draw[-Latex] (bdec) -- (out);
+		\draw[Latex-Latex] (benc) -- (benc|-pp.north);
+		\draw[Latex-Latex] (bdec) -- (bdec|-pp.north);
+		\draw[Latex-Latex] (sdec) -- (sdec|-pp.north);
+		\draw[Latex-Latex] (senc) -- (senc|-pp.north);
 	\end{tikzpicture}
 \end{document}

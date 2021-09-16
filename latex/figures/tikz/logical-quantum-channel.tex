@@ -14,6 +14,7 @@
 		\node (pch) [block, right=of enc] {Physical\\quantum\\channel};
 		\node (dec) [block, right=of pch] {Quantum\\decoder};
 		\node[block, fit=(enc) (dec), label={Logical quantum channel}] (lqc) {};
+%		\node[block, below=0.8cm of lqc, minimum height=8ex, minimum width=12em] {Post-processing};
 		
 		\coordinate[left=6em of lqc] (in);
 		\coordinate[right=6em of lqc] (out);

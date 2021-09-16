@@ -4,7 +4,7 @@
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(0,-0.5)(13.5,7)
+	\begin{pspicture}(0,-0.5)(13.8,7)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
@@ -38,6 +38,11 @@
 			
 			\drawwire(\oenodeExt{Det1a})(\oenodeExt{Det1b})
 			\drawwire(\oenodeExt{Det2a})(\oenodeExt{Det2b})
+
+			\drawwire[arrows=->](12.4,4.75)(13,4.75)
+			\rput(13.4,4.75){$i_1(t)$}			
+			\drawwire[arrows=->](12.4,1.75)(13,1.75)
+			\rput(13.4,1.75){$i_2(t)$}
 		\end{optexp}
 	\end{pspicture}
 \end{document}
