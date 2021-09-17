@@ -3,7 +3,7 @@
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/post-processing}
-	\caption{First, the raw data from the quantum transmission is partitioned into data for calibration and data for key generation. The parameter estimation estimates an upper bound of Eve's information and the channel characteristics from the raw calibration data. If Eve's information exceeds a certain threshold, the protocol is aborted, or the current data frame is discarded. Symbol mapping, including basis sifting, transforms the raw key data to correlated key data. Information reconciliation corrects errors in the correlated key data and discards data where error correction failed. Eve's information on the partially secret key is reduced to epsilon using privacy amplification. Finally, Alice and Bob verify that the post-processing was successful by comparing a hash of their secret key. If the hashes mismatch, the protocol is aborted, or the transmission block discarded.}\label{fig:post_processing}
+	\caption{Generic post-processing procedure for \gls{qkd}: First, the raw data from the quantum transmission is partitioned into data for calibration and data for key generation. The parameter estimation estimates an upper bound of Eve's information and the channel characteristics from the raw calibration data. If Eve's information exceeds a certain threshold, the protocol is aborted, or the current data frame is discarded. Symbol mapping, including basis sifting, transforms the raw key data to correlated key data. Information reconciliation corrects errors in the correlated key data and discards data blocks where error correction failed. Eve's information on the partially secret key is reduced to epsilon using privacy amplification. Finally, Alice and Bob verify that the post-processing was successful by comparing a hash of their secret key. If the hashes mismatch, the protocol is aborted, or the transmission block discarded.}\label{fig:post_processing}
 \end{figure}
 
 \FloatBarrier
@@ -51,7 +51,7 @@ In this particular case, if Bob knows the least significant bit from Alice, he i
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/slice-reconciliation}
-	\caption{Slice reconciliation for $m=3$ with $2^m=8$ bins for samples from a standard normal distribution. Alice prepared the values $x_1,x_2$ and Bob measured the values $x_1^\prime,x_2^\prime$. $x_1$ and $x_1^\prime$ are located in the same bin $3$ but $x_2$ and $x_2^\prime$ are located in bin $4$ respectively bin $5$ but slice reconciliation is able to detect and correct such errors with high probability.}\label{fig:slice_reconciliation}
+	\caption{Slice reconciliation for $m=3$ with $2^m=8$ bins for samples from a standard normal distribution. Alice prepared the values $x_1,x_2$ and Bob measured the values $x_1^\prime,x_2^\prime$. $x_1$ and $x_1^\prime$ are located in the same bin $3$ but $x_2$ and $x_2^\prime$ are located in bin $4$ respectively bin $5$. Slice reconciliation is able to detect and correct such errors with high probability.}\label{fig:slice_reconciliation}
 \end{figure}
 
 In an alternative scheme, known as multidimensional reconciliation~\cite{Leverrier2008}, Alice and Bob combine multiple variables into a $d$-dimensional vector, e.g., $\vb{x}=(x_1,\dots,x_d)$ respectively $\vb{x}^\prime=(x_1^\prime,\dots,x_d^\prime)$ and agree on a set of equally-spaced apart symbol vectors $\vu{v}_1,\dots,\vu{v}_m\in\mathbb{R}^d$.
@@ -61,7 +61,7 @@ Alice rotates her variable vector $R\vb{x}$ and finds the symbol vector $\vb{v}_
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pgfplots/multidimensional-reconciliation}
-	\caption{Multidimensional reconciliation in $\mathbb{R}^2$: Alice and Bob encoded their prepared and measured values into two-dimensional vectors $\vb{x}$ and $\vb{x}^\prime$. Bob calculates the rotation matrix $R$ that rotates $\vb{x}^\prime$ close to the symbol vector $\vu{v}_4$ and shares the rotational parameters with Alice. Alice applies the rotation to her vector $R\vb{x}$ e). Both rotated vectors of Alice and Bob $R\vb{x}$ and $R\vb{x}^\prime$ are assigned the $11$ bit string with high confidence.}\label{fig:multidimensional_reconciliation}
+	\caption{Multidimensional reconciliation in $\mathbb{R}^2$: Alice and Bob encoded their prepared and measured values into two-dimensional vectors $\vb{x}$ and $\vb{x}^\prime$. Bob calculates the rotation matrix $R$ that rotates $\vb{x}^\prime$ close to the symbol vector $\vu{v}_4$ and shares the rotational parameters with Alice. Alice applies the rotation to her vector $R\vb{x}$. Both rotated vectors of Alice and Bob $R\vb{x}$ and $R\vb{x}^\prime$ are assigned the $11$ bit string with high confidence.}\label{fig:multidimensional_reconciliation}
 \end{figure}
 Multidimensional reconciliation works best in high-dimensional spaces as the norm of random vector approaches one (unit sphere) for $n\to\infty$.
 
@@ -230,7 +230,8 @@ If the block code does not detect any error, we have $\vb{s}=0$.
 	\centering
 	\begin{tabular}{c|cccc|ccc}
 		\toprule
-		Nr. & \multicolumn{4}{c}{Received codeword} & \multicolumn{3}{c}{Syndrome} \\
+		\multirow{2}{*}{Nr.} & \multicolumn{4}{c}{Received} & \multicolumn{3}{c}{Syn-} \\
+		& \multicolumn{4}{c}{codeword} & \multicolumn{3}{c}{drome} \\
 		\midrule
 			1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
 			2 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\

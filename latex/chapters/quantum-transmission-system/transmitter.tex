@@ -1,34 +1,58 @@
 \section{Transmitter}
 
-Let us consider a tensor product of $n$ coherent states
+% TODO: overview figure of how we show "equivalence" between the tensor product of coherent states with the time-continuous coherent state for the transmitter
+
+\subsection{Pulse-shaping}
+
+Pulse-shaping turns a sequence of (complex) symbols into a time-continuous signal.
+For practical implementations, the pulse-shaping is performed in the digital domain.
+Moving the pulse-shaping to the optical domain allows for a quantum mechanical description.
+\begin{figure}[htb]
+	\centering
+    \includestandalone{figures/pstricks/quantum-pulse-shaping}
+    \caption{Optical setup to perform pulse-shaping in the (quantum) optical domain: First, a single coherent state is modulated and a time delay corresponding to the symbol index is added. Second, the pulses are superimposed and optically filtered.}
+\end{figure}
+
+The \gls{iq}-modulated coherent state in the Schrödinger picture is
 \begin{equation}
-	\ket{\alpha_1,\dots,\alpha_n}
+	\ket{\alpha(p)}
 	=
-	\ket{\alpha_1}
-	\otimes
-	\ket{\alpha_2}
-	\otimes
-	\cdots
-	\otimes
-	\ket{\alpha_n}
-\end{equation}
-with the coherent state 
-\begin{equation}
-	\ket{\alpha_j}
-	=
-	\hat{D}_j[\alpha_j]
-	\ket{0}
-	=
-	e^{-\overline{n}_j/2}
+	e^{-\overline{n}/2}
 	\exp\left\{
-		\int\dd{p}
-		\alpha_j
-		\delta^{(1)}(p-p_0)
-		\hat{a}_j^\dagger(p)
+		\int_0^\infty\dd{p}
+		\alpha(p)
+		\hat{a}^\dagger(p)
 	\right\}
 	\ket{0}
 \end{equation}
-having mean photon number $\overline{n}_j=\expval{\hat{N}}{\alpha_j}$ and fundamental frequency $p_0$.
+wherein $\overline{n}$ is the mean photon number and
+\begin{equation}
+	\alpha(p)
+	\propto
+	\exp\left\{
+		-\frac{1}{4}\left(\frac{p-p_0}{\sigma}\right)^2
+	\right\}
+\end{equation}
+is a (complex) Gaussian spectrum centered at $p_0$ with spread $\sigma$.
+In the limit of an extremely peaked Gaussian spectrum $\sigma\to0$, the Gaussian spectrum becomes a delta distribution
+\begin{equation}
+	\alpha(p)
+	\xrightarrow{\sigma\to0}
+	\alpha(p_0)
+	\delta^{(1)}(p-p_0)
+\end{equation}
+and we obtain the single-mode coherent state
+\begin{equation}
+	\ket{\alpha(p_0)}
+	=
+	e^{-\overline{n}/2}
+	\exp\left\{
+		\alpha(p_0)
+		\hat{a}^\dagger(p_0)
+	\right\}
+	\ket{0}
+\end{equation}
+usually used in quantum information theory.
 
 % step 1: convert frequency- to time-pulse
 % use a frequency-dependent beam splitter as optical filter?
@@ -40,5 +64,8 @@ having mean photon number $\overline{n}_j=\expval{\hat{N}}{\alpha_j}$ and fundam
 % step 4: perform pulse-shaping
 
 % step 5: perform up-conversion using sum-to-frequency generation
+
+\FloatBarrier
+\subsection{Up-conversion}
 
 % step 6: perform attenuation using beam splitter

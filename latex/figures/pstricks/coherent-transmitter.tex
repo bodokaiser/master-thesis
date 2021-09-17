@@ -1,23 +1,23 @@
 \documentclass[pstricks]{standalone}
 
-\usepackage{amsmath}
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(0.5,0)(13,6)
+	\begin{pspicture}(0,0.8)(14,5.5)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
 		  	
-			\optsource[compname=Source, position=start, labeloffset=1](2,2)(4,2){{\begin{tabular}{@{}c@{}}Transmit\\laser\end{tabular}}}
-			\optmzm[compname=Modulator, labeloffset=1.2](3,2)(5,2){{\begin{tabular}{@{}c@{}}In-phase\\quadrature\\modulator\end{tabular}}}
-			\optbox[compname=Attenuator, labeloffset=1.2](6,2)(7,2){{\begin{tabular}{@{}c@{}}Variable\\optical\\attenuator\end{tabular}}}
-			\wdmsplitter[compname=Splitter, coupleralign=b, labeloffset=1](8,2)(11,4)(11,2){{\begin{tabular}{@{}c@{}}Splitter\\(99:1)\end{tabular}}}
-			\optdetector[compname=Detector, dettype=diode, labeloffset=1](11,2)(12,2){{\begin{tabular}{@{}c@{}}Power\\meter\end{tabular}}}
-			\optfiber[compname=Fiber, labelangle=180, labeloffset=1.4](11,4)(12,4){{\begin{tabular}{@{}c@{}}Fiber\\channel\end{tabular}}}
+			\optsource[compname=Source, position=start](2,2)(4,2){Transmitter laser}
+			\optmzm[compname=Modulator](3,2)(5,2){I/Q-Modulator}
+			\optbox[compname=Attenuator](6,2)(7,2){VOA}
+			\wdmsplitter[compname=Splitter, coupleralign=b, labeloffset=0.8](7,2)(10,4)(10,2){Splitter (99:1)}
+			\optdetector[compname=Detector, dettype=diode](10,2)(11,2){Power meter}
+			\optisolator[compname=Isolator, labelangle=180](10,4)(11,4){Optical isolator}
+			\optfiber[compname=Fiber, labelangle=180, labeloffset=1.2](12.25,4)(13.25,4){Fiber channel}
 			
 			\drawfiber{Source}{Modulator}{Attenuator}{Splitter}{Detector}
-			\drawfiber{Splitter}{Fiber}(13,4)
+			\drawfiber{Splitter}{Isolator}{Fiber}(14,4)
 		\end{optexp}
 	\end{pspicture}
 \end{document}

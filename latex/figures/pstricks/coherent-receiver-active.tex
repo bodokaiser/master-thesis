@@ -4,20 +4,21 @@
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(0,0)(11.7,6)
+	\begin{pspicture}(0,0.8)(12,6)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
 		  	
-			\optsource[compname=Source, labeloffset=1.2, position=end](1,2)(2,2){{\begin{tabular}{@{}c@{}}Local\\oscillator\\laser\end{tabular}}}
-			\optbox[compname=PhaseShift, optboxsize=1 0.8, labeloffset=1](5,2)(6,2){{\begin{tabular}{@{}c@{}}Phase\\shifter\end{tabular}}}
+			\optsource[compname=Source, position=end](1,2)(2,2){Receiver laser}
+			\optbox[compname=PhaseShift, optboxsize=1 0.8](5,2)(6,2){Phase shifter}
+			\optbox[optboxsize=1 0.8, innerlabel](5,2)(6,2){$\varphi$}
 			\optfiber[compname=Fiber, labelangle=180, labeloffset=1.4](0.5,4)(2,4){{\begin{tabular}{@{}c@{}}Fiber\\channel\end{tabular}}}
 			\polcontrol[compname=PolCtrl, labelangle=180, labeloffset=1](3,4)(4,4){{\begin{tabular}{@{}c@{}}Polarization\\controller\end{tabular}}}
 			\optisolator[compname=Iso, labelangle=180, labeloffset=1](5,4)(6,4){{\begin{tabular}{@{}c@{}}Optical\\isolator\end{tabular}}}
-			\optcoupler[compname=Coupler, labeloffset=1](7,4)(7,2)(9,4)(9,2){{\begin{tabular}{@{}c@{}}Coupler\\(50:50)\end{tabular}}}
+			\optcoupler[compname=Coupler, labeloffset=0.8](7,4)(7,2)(9,4)(9,2){{\begin{tabular}{@{}c@{}}Coupler\\(50:50)\end{tabular}}}
 			
 			\optdetector[compname=Det1, dettype=diode, extnode=b](9,4)(10,4)
-			\optdetector[compname=Det2, dettype=diode, extnode=t, labeloffset=1](9,2)(10,2){{\begin{tabular}{@{}c@{}}Balanced\\detector\end{tabular}}}
+			\optdetector[compname=Det2, dettype=diode, extnode=t](9,2)(10,2){Balanced detector}
 			
 			\drawfiber{Source}{PhaseShift}{Coupler}{Det1}
 			\drawfiber(0,4){Fiber}{PolCtrl}{Iso}{Coupler}{Det2}

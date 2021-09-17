@@ -1,0 +1,35 @@
+\documentclass[pstricks]{standalone}
+
+\usepackage{amsmath}
+\usepackage{pst-optexp}
+
+\begin{document}
+	\begin{pspicture}(-1.2,-1)(12.5,4.5)
+		\begin{optexp}
+			\psset[optexp]{fiber=none, usefiberstyle}
+			\newpsstyle{Fiber}{linecolor=orange,ArrowInside=->}
+			
+%			\fiberbox[compname=Coupler, fiberboxcount=3x1, showifcnodes, fiberboxheight=1.5, labeloffset=1.2](7,2)(8,2){Coupler}
+			\wdmcoupler[compname=Coupler](6,4)(6,2)(6,0)(8.5,2){Coupler}
+		  	
+			\optsource[compname=Source1](0.5,0)(2,0){Pulsed laser}
+			\optmzm[compname=Mod1, labeloffset=0.84](2,0)(3,0){I/Q modulator}
+			\fiberdelayline[compname=Delay1](4.5,0)(5.5,0){Delay line}
+			\drawfiber{Source1}{Mod1}{Delay1}{Coupler}
+			
+			\optsource[compname=Source2](0.5,2)(2,2){Pulsed laser}
+			\optmzm[compname=Mod2, labeloffset=0.84](2,2)(3,2){I/Q modulator}
+			\fiberdelayline[compname=Delay2](4.5,2)(5.5,2){Delay line}
+			\drawfiber{Source2}{Mod2}{Delay2}{Coupler}
+			
+			\optsource[compname=Source3](0.5,4)(2,4){Pulsed laser}
+			\optmzm[compname=Mod3, labeloffset=0.84](2,4)(3,4){I/Q modulator}
+			\fiberdelayline[compname=Delay3](4.5,4)(5.5,4){Delay line}
+			\drawfiber{Source3}{Mod3}{Delay3}{Coupler}
+			
+			\optfilter[compname=Filter, filtertype=lowpass, labeloffset=1.1](9,2)(10,2){{\begin{tabular}{@{}c@{}}Optical\\lowpass\end{tabular}}}
+			\optfiber[compname=Fiber](11,2)(12,2){Fiber}
+			\drawfiber{Coupler}{Filter}{Fiber}(13,2)
+		\end{optexp}
+	\end{pspicture}
+\end{document}

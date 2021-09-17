@@ -4,7 +4,7 @@
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(0,0.5)(13,4)
+	\begin{pspicture}(0,0)(13,4)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
@@ -14,7 +14,7 @@
 			\optfiber[compname=Fiber, labeloffset=1](4.5,2)(5.5,2){{\begin{tabular}{@{}c@{}}Quantum\\channel\end{tabular}}}
 			\polcontrol[compname=PolCtrl, labeloffset=1](6.5,2)(7.5,2){{\begin{tabular}{@{}c@{}}Polarization\\controller\end{tabular}}}
 			\fibercollimator[compname=Colimator, labelangle=180, labeloffset=1](9.25,2)(8.25,2){{\begin{tabular}{@{}c@{}}Fiber\\colimator\end{tabular}}}
-			\beamsplitter[compname=BeamSplitter, labelangle=-90, labeloffset=1](10,2)(11,2)(11,3){{\begin{tabular}{@{}c@{}}Rotatable polarized\\beam splitter\end{tabular}}}
+			\beamsplitter[compname=BeamSplitter, labelangle=-90, labeloffset=1.2](10,2)(11,2)(11,3){{\begin{tabular}{@{}c@{}}Rotatable rectilinear\\polarized\\beam splitter\end{tabular}}}
 			\optdetector[compname=Det1, labelangle=180, labeloffset=1.2](11,2)(12,2){{\begin{tabular}{@{}c@{}}Single-\\photon\\detector\end{tabular}}}
 			\optdetector[compname=Det2](11,2)(11,3)
 			

@@ -106,7 +106,7 @@ By convention one identifies the $Z$ Pauli eigenbasis with the qubit basis $\lef
 		Phase-bin & \SI{0}{\deg} & \SI{180}{\deg} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible physical systems to encode a qubit. Many of the physical systems have a much higher dimension than the qubit space but can pre reduced to a qubit space by a proper mapping.}\label{tab:qubit_encodings}
+	\caption{Possible physical systems to encode a qubit. Many of the physical systems have a much higher dimension than the qubit space but can be reduced to a qubit space.}\label{tab:qubit_encodings}
 \end{table}
 \begin{figure}[htb]
 	\centering
@@ -196,8 +196,8 @@ Other protocols exist that use three orthogonal bases (six-state protocol) or ev
 A possible optical setup to implement such polarization-encoding is depicted in \Cref{fig:polarization_encoding_active}.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/qubit-polarization-active}
-	\caption{Optical setup to implement polarization-encoding BB84 with active basis selection at the receiver: Alice configures her linear polarizer to select a basis element of the rectilinear or diagonal polarization. Bob rotates a rectilinear polarized beam splitter by either \SI{0}{\degree} or \SI{45}{\degree} to detect either rectilinear or diagonal polarized light with his two single-photon detectors placed at the beam splitter output.}\label{fig:polarization_encoding_active}
+	\includestandalone{figures/pstricks/bb84-polarization-active}
+	\caption{Optical setup to implement polarization-encoding BB84 with active basis selection at the receiver: Alice configures her linear polarizer to select a basis element of the rectilinear or diagonal polarization basis. Bob receives Alice's polarization state through the polarization controlled quantum channel. He rotates a rectilinear polarized beam splitter by either \SI{0}{\degree} or \SI{45}{\degree} to detect either rectilinear or diagonal polarized photons with his two single-photon detectors placed at the beam splitter output.}\label{fig:polarization_encoding_active}
 \end{figure}
 Alice selects one of four polarization states $\ket{\leftrightarrow},\ket{\updownarrow},\ket{\nwsearrow},\ket{\neswarrow}$ by adjusting her linear polarizer to one of four angles $\theta=0,\pi,\pi/2,3\pi/2$.
 We can write Alice's state as
@@ -244,8 +244,8 @@ One polarization detector comprises a rectilinear-polarized beam splitter and tw
 Another polarization detector comprises a diagonal-polarized beam splitter.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/qubit-polarization-passive}
-	\caption{Optical setup to implement polarization-encoding BB84 with passive basis selection at the receiver: Alice configures her linear polarizer to select a basis element of the rectilinear or diagonal polarization. Bob first splits the incoming light into two branches. For the first branch a polarization measurement in the rectilinear basis is performed. For the second branch a polarization measurement in the diagonal basis is performed.}\label{fig:polarization_encoding_passive}
+	\includestandalone{figures/pstricks/bb84-polarization-passive}
+	\caption{Optical setup to implement polarization-encoding BB84 with passive basis selection at the receiver: Alice configures her linear polarizer to select a basis element of the rectilinear or diagonal polarization. Bob receives Alice's polarization state through the polarization controlled quantum channel. He first splits the incoming light into two branches. For the first branch a polarization measurement in the rectilinear basis is performed. For the second branch a polarization measurement in the diagonal basis is performed.}\label{fig:polarization_encoding_passive}
 \end{figure}
 The \gls{povm} describing Bob's measurement with passive basis selection is
 \begin{equation}
@@ -296,11 +296,11 @@ The idea of using phase-encoding was first proposed as part of the BB92 protocol
 The basic setup is illustrated in \Cref{fig:qubit_time_phase_active} and comprises a single-photon source and a first \gls{mzi} on Alice's side as well as a second \gls{mzi} and two single-photon detectors on Bob's side.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/qubit-time-phase-active}
-	\caption{Fiber-optical setup of the phase-encoding BB84 DV-QKD protocol: Alice creates an entangled photon state using a first \gls{mzi} with phase $\theta=0,\pi/2,\pi,3\pi/2$ and sends it to Bob. Bob detects the photon state using a second \gls{mzi} with phase $\phi=0,\pi/2$ and two single-photon detectors monitoring the outputs.}\label{fig:qubit_time_phase_active}
+	\includestandalone{figures/pstricks/bb84-time-phase-active}
+	\caption{Fiber-optical setup of the phase-encoding BB84: Alice creates an entangled photon state using a first \gls{mzi} with phase $\theta\in\{0,\pi/2,\pi,3\pi/2\}$ and sends it to Bob. Bob detects the photon state using a second \gls{mzi} with phase $\phi\in\{0,\pi/2\}$ and two single-photon detectors monitoring the outputs.}\label{fig:qubit_time_phase_active}
 \end{figure}
 
-To understand the time-phase encoding, we analyze the action of the (asymmetric) \gls{mzi} with variable phase $\varphi$ on a photon pulse $\ket{t_0}$ arriving at time $t_0$, see \Cref{fig:mzi_asymmetric}.
+To understand the time-phase encoding, we analyze the action of the asymmetric \gls{mzi} with variable phase $\varphi$ on a photon pulse $\ket{t_0}$ arriving at time $t_0$, see \Cref{fig:mzi_asymmetric}.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/pstricks/mzi-asymmetric}
@@ -549,7 +549,7 @@ If we configure the detectors to trigger only on the $m=1$ time slot, we find th
 		& $\pi/2$ & \SI{0}{\percent} & \SI{100}{\percent} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Click probabilities for the time-phase-encoding BB84 protocol: Alice choosing $\theta=0,\pi$ corresponds to choosing the $Z$ eigenbasis while $\theta=\pi/2,3\pi/2$ corresponds to her choosing the $X$ eigenbasis. Bob using no phase shift $\phi=0$ corresponds to a selection of the $X$ basis while Bob adding a phase shift of $\phi=\pi/2$ corresponds to selection of $X$ as measurement basis. Only if Alice and Bob choose the same basis, Bob's click is perfectly correlated with Alice's choice for a basis element. Otherwise, it is completely random.}\label{tab:qubit_time_phase_clicks}
+	\caption{Click probabilities for the time-phase-encoding BB84 protocol: Alice choosing $\theta\in\{0,\pi\}$ corresponds to choosing the $Z$ eigenbasis while $\theta\in\{\pi/2,3\pi/2\}$ corresponds to her choosing the $X$ eigenbasis. Bob using no phase shift $\phi=0$ corresponds to a selection of the $X$ basis while Bob adding a phase shift of $\phi=\pi/2$ corresponds to selection of $X$ as measurement basis. Only if Alice and Bob choose the same basis, Bob's click is perfectly correlated with Alice's choice for a basis element. Otherwise, it is completely random.}\label{tab:qubit_time_phase_clicks}
 \end{table}
 Comparing the click probabilities of \Cref{tab:qubit_time_phase_clicks} with the probabilities of the qubit-based BB84, suggests equivalence of the time-phase-encoding BB84 with the more general qubit-based description of BB84.
 While we can identify Alice's state in the time basis in terms with the $Y$ qubit basis,
