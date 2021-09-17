@@ -146,7 +146,7 @@ Otherwise, an opposing third party, Eve, might have tempered with the transmissi
 After the transmission sequence, Alice and Bob hold a partially correlated and partially secret bit string from which they can distill a shared secret bit string using classical post-processing.
 
 \FloatBarrier
-\subsection{Polarization-encoding}
+\subsection{Polarization-encoding BB84}
 
 In polarization-encoding qubit-based \gls{qkd} protocols, the polarization of light is used as physical quantum system to encode the logical qubit system.
 Let $\ket{\leftrightarrow}$ and $\ket{\updownarrow}$ denote the horizontal respective vertical polarization states forming the rectilinear basis.
@@ -259,7 +259,28 @@ The \gls{povm} describing Bob's measurement with passive basis selection is
 \end{equation}
 Bob may still have inconclusive measurements.
 For instance, if he receives a horizontal polarization state $\ket{\leftrightarrow}$ and the photon chooses the path towards the diagonal polarization detector, the clicks among the two single-photon detectors are equally distributed.
-
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{cccc}
+		\toprule
+		Prepared & Measurement & \multicolumn{2}{c}{Click probability} \\
+		state & basis & $p_1$ & $p_2$ \\
+		\midrule
+		\multirow{2}{*}{$\ket{\updownarrow}$} & Rectilinear & \SI{100}{\percent} & \SI{0}{\percent} \\
+		& Diagonal & \SI{50}{\percent} & \SI{50}{\percent} \\
+		\cmidrule{1-2}
+		\multirow{2}{*}{$\ket{\leftrightarrow}$} & Rectilinear & \SI{0}{\percent} & \SI{100}{\percent} \\
+		& Diagonal & \SI{50}{\percent} & \SI{50}{\percent} \\
+		\cmidrule{1-2}
+		\multirow{2}{*}{$\ket{\nwsearrow}$} & Rectilinear & \SI{50}{\percent} & \SI{50}{\percent} \\
+		& Diagonal & \SI{100}{\percent} & \SI{0}{\percent} \\
+		\cmidrule{1-2}
+		\multirow{2}{*}{$\ket{\neswarrow}$} & Rectilinear & \SI{50}{\percent} & \SI{50}{\percent} \\
+		& Diagonal & \SI{0}{\percent} & \SI{100}{\percent} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Click probabilities for the polarization-encoding BB84 with active measurement basis selection for possible states prepared by Alice and selected measurement bases.}\label{tab:bb84_polarization_clicks}
+\end{table}
 The polarization of light is a qubit and we can simply relabel the polarization states with the Pauli eigenstates, i.e.,
 \begin{align}
 	\ket{\nwsearrow}
@@ -289,7 +310,7 @@ The polarization of light is a qubit and we can simply relabel the polarization 
 to show equivalence to the general qubit description.
 
 \FloatBarrier
-\subsection{Time-phase-encoding}
+\subsection{Time-phase-encoding BB84}
 
 In the following, we discuss the practical time-phase-encoding BB84 protocol and show its equivalence to the polarization-encoding BB84.
 The idea of using phase-encoding was first proposed as part of the BB92 protocol~\cite{Bennett1992}.
@@ -526,7 +547,7 @@ If we configure the detectors to trigger only on the $m=1$ time slot, we find th
 	\left(1\pm\cos(\theta-\phi)\right)
 	.
 \end{equation}
-\Cref{tab:qubit_time_phase_clicks} summarizes the click probability of the plus and minus detectors triggered on the $m=1$ time slot for a restricted choice of phases.
+\Cref{tab:bb84_time_phase_clicks} summarizes the click probability of the plus and minus detectors triggered on the $m=1$ time slot for a restricted choice of phases.
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{cccc}
@@ -549,9 +570,9 @@ If we configure the detectors to trigger only on the $m=1$ time slot, we find th
 		& $\pi/2$ & \SI{0}{\percent} & \SI{100}{\percent} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Click probabilities for the time-phase-encoding BB84 protocol: Alice choosing $\theta\in\{0,\pi\}$ corresponds to choosing the $Z$ eigenbasis while $\theta\in\{\pi/2,3\pi/2\}$ corresponds to her choosing the $X$ eigenbasis. Bob using no phase shift $\phi=0$ corresponds to a selection of the $X$ basis while Bob adding a phase shift of $\phi=\pi/2$ corresponds to selection of $X$ as measurement basis. Only if Alice and Bob choose the same basis, Bob's click is perfectly correlated with Alice's choice for a basis element. Otherwise, it is completely random.}\label{tab:qubit_time_phase_clicks}
+	\caption{Click probabilities for the time-phase-encoding BB84 protocol: Alice choosing $\theta\in\{0,\pi\}$ corresponds to choosing the $Z$ eigenbasis while $\theta\in\{\pi/2,3\pi/2\}$ corresponds to her choosing the $X$ eigenbasis. Bob using no phase shift $\phi=0$ corresponds to a selection of the $X$ basis while Bob adding a phase shift of $\phi=\pi/2$ corresponds to selection of $X$ as measurement basis. Only if Alice and Bob choose the same basis, Bob's click is perfectly correlated with Alice's choice for a basis element. Otherwise, it is completely random.}\label{tab:bb84_time_phase_clicks}
 \end{table}
-Comparing the click probabilities of \Cref{tab:qubit_time_phase_clicks} with the probabilities of the qubit-based BB84, suggests equivalence of the time-phase-encoding BB84 with the more general qubit-based description of BB84.
+Comparing the click probabilities of \Cref{tab:bb84_time_phase_clicks} with the probabilities of the qubit-based BB84, suggests equivalence of the time-phase-encoding BB84 with the more general qubit-based description of BB84.
 While we can identify Alice's state in the time basis in terms with the $Y$ qubit basis,
 \begin{equation}
 	\ket{t_0,\theta}

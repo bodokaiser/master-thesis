@@ -6,7 +6,7 @@
 \usepackage{physics}
 
 \definecolor{exotic orange}{RGB}{255,128,0}
-\definecolor{exotic green}{RGB}{0,102,102}
+\definecolor{exotic green}{RGB}{0,200,102}
 \definecolor{exotic blue}{RGB}{67,132,161}
 \definecolor{exotic red}{RGB}{250,86,86}
 
@@ -22,6 +22,7 @@
 				group size=2 by 1,
 				vertical sep=1ex,
 			},
+			clip=false,
 %			width=0.95\linewidth,
 			axis lines=center,
 			axis equal image,
@@ -39,47 +40,28 @@
 			y label style={
 				anchor=south,
 			},
-			cycle list name=exotic,
-			legend columns=4,
-			legend style={
-				at={(axis cs:0,-0.5)},
-				anchor=south west,
-				draw=none,
-			},
 		]
 			\nextgroupplot
-			\draw[thick, -Latex, dotted, gray] (axis cs:1.2,1.2) -- (axis cs:0.35,0.35);
-		
-			\addplot+[very thick] coordinates {(1.5,1.5)};
-			\shadedraw[inner color=exotic green, outer color=exotic green!40, draw=none] (axis cs:1.5,1.5) circle (20);
+			\draw[fill=exotic green, draw=none, fill opacity=0.5] (axis cs:1.3,1.3) circle (90);
+			\draw[fill=exotic red, draw=none, fill opacity=0.2] (axis cs:0.4,0.8) circle (90);
+			\draw[fill=exotic orange, draw=none, fill opacity=0.2] (axis cs:1.05,0.6) circle (90);
+			\addplot[very thick, mark=*, exotic green]  coordinates {(1.3,1.3)};
+			\addplot[very thick, mark=*, ->, exotic red] coordinates {(0.8,1.6) (0.4,0.8)};
+			\addplot[very thick, mark=*, ->, exotic orange] coordinates {(2.1,1.2) (1.05,0.6)};
 			
-			\addplot+[very thick] coordinates {(0.2,0.2)};
-			\shadedraw[inner color=exotic orange, outer color=exotic orange!40, draw=none] (axis cs:0.2,0.2) circle (20);
-			
-			\addplot+[very thick] coordinates {(0.18,0.19)};
-			\shadedraw[inner color=exotic blue, outer color=exotic blue!40, draw=none] (axis cs:0.18,0.19) circle (20);
-			
-			\addplot+[very thick] coordinates {(1.35,1.42)};
-			\shadedraw[inner color=exotic red, outer color=exotic red!40, draw=none] (axis cs:1.35,1.42) circle (20);
-			
-			\legend{$\ket{\alpha}$,$\ket{\alpha^\prime}$,$\ket{\beta}$,$\ket{\beta^\prime}$};
+			\addplot[very thick, mark=x, exotic red] coordinates {(-0.4,0.9)};
+			\addplot[very thick, mark=x, exotic orange] coordinates {(1.1,0.2)};
 			
 			\nextgroupplot
-			\draw[thick, -Latex, dotted, gray] (axis cs:1.2,1.2) -- (axis cs:0.35,0.35);
-		
-			\addplot+[very thick] coordinates {(1.5,1.5)};
-			\shadedraw[inner color=exotic green, outer color=exotic green!40, draw=none] (axis cs:1.5,1.5) circle (20);
+			\draw[fill=exotic green, draw=none, fill opacity=0.5] (axis cs:1.3,1.3) circle (90);
+			\draw[fill=exotic red, draw=none, fill opacity=0.2] (axis cs:0.4,0.8) ellipse (30 and 120);
+			\draw[fill=exotic orange, draw=none, fill opacity=0.2] (axis cs:1.05,0.6) ellipse (120 and 30);
+			\addplot[very thick, mark=*, exotic green]  coordinates {(1.3,1.3)};
+			\addplot[very thick, mark=*, ->, exotic red] coordinates {(0.8,1.6) (0.4,0.8)};
+			\addplot[very thick, mark=*, ->, exotic orange] coordinates {(2.1,1.2) (1.05,0.6)};
 			
-			\addplot+[very thick] coordinates {(0.2,0.2)};
-			\shadedraw[inner color=exotic orange, outer color=exotic orange!40, draw=none] (axis cs:0.2,0.2) circle (20);
-			
-			\addplot+[very thick] coordinates {(0.18,0.19)};
-			\shadedraw[inner color=exotic blue, outer color=exotic blue!40, draw=none] (axis cs:0.18,0.19) ellipse (50 and 6);
-			
-			\addplot+[very thick] coordinates {(1.35,1.42)};
-			\shadedraw[inner color=exotic red, outer color=exotic red!40, draw=none] (axis cs:1.35,1.42) ellipse (50 and 6);
-			
-			\legend{$\ket{\alpha}$,$\ket{\alpha^\prime}$,$\ket{\beta,\xi}$,$\ket{\beta^\prime,\xi^\prime}$};
+			\addplot[very thick, mark=x, exotic red] coordinates {(0.3,1.7)};
+			\addplot[very thick, mark=x, exotic orange] coordinates {(0.8,0.5)};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}
