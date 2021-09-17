@@ -1,6 +1,6 @@
 \section{Qubit- or spin-based protocols}
 
-Many \gls{dvqkd} protocols, e.g., the BB84~\cite{Bennett1984} or six-state protocol~\cite{Bechmann1999}, are qubit-based in that the logical quantum system underlying the key generation is a two-state quantum system.
+Many \gls{dvqkd} protocols, e.g., the BB84~\cite{Bennett1984}, BB92, or the six-state protocol~\cite{Bechmann1999}, are qubit-based in that the logical quantum system underlying the key generation is a two-state quantum system, a qubit.
 
 A qubit state $\ket{\psi}$ is an element of a two-dimensional complex Hilbert space with norm one, i.e., $\abs{\braket{\psi}}^2=1$.
 In the qubit basis $\{\ket{0},\ket{1}\}$, a generic qubit state takes the form
@@ -19,16 +19,47 @@ In the qubit basis $\{\ket{0},\ket{1}\}$, a generic qubit state takes the form
 	1
 	.
 \end{align}
-The state space equals the surface of a three-dimensional unit sphere.
+\begin{table}[htb]
+	\centering	
+	\begin{tabular}{lcc}
+		\toprule
+		\multirow{2}{*}{Encoding variable} & \multicolumn{2}{c}{Standard basis} \\
+		\cmidrule{2-3}
+		& $\ket{0}$ & $\ket{1}$ \\
+		\midrule
+		Polarization & Horizontal & Vertical \\
+		Photon number & Vacuum & Single-photon \\
+		Time-bin & Early & Late \\
+		Phase-bin & \SI{0}{\deg} & \SI{180}{\deg} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Possible physical systems to encode a qubit with possible choices for the standard basis elements.}\label{tab:qubit_encodings}
+\end{table}
+\Cref{tab:qubit_encodings} lists different quantum systems which allow encoding of a qubit.
+To encode a qubit the actual quantum systems does not have to be two-dimensional.
+For example, the photon Fock space is countable.
+Still, by restricting the basis elements to the vacuum and single-photon state, we have a qubit.
+Similar, we can partition the continuous time and phase parameters of a quantum system to separate bins.
+
 A useful visualization of qubit states is the Bloch sphere, see \Cref{fig:bloch_sphere}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/tikz/bloch-sphere}
-	\caption{Two-state quantum system in the Bloch sphere representation: A (pure) quantum state  $\ket{\psi}=c_1\ket{0}+c_2\ket{1}$ with $\abs{c_1}^2+\abs{c_2}^2=1$ takes a point on the surface on a unit radius sphere. By convention, the standard basis $\left\{\ket{0},\ket{1}\right\}$ is set to equal the $Z$ Pauli eigenbasis $\left\{\ket{z_+},\ket{z_-}\right\}$. The $Y,Z$ Pauli eigenbasis are both orthogonal to the $Z$ basis.}\label{fig:bloch_sphere}
+	\caption{Two-state quantum system in the Bloch sphere representation: The Bloch sphere is a three-dimensional sphere with unit radius. A pure quantum state  $\ket{\psi}$ resides on its surface of a sphere.}\label{fig:bloch_sphere}
 \end{figure}
-The Bloch sphere is embedded in three-dimensional space, and there are three independent bases.
-Two antiparallel vectors on the Bloch sphere denote two orthonormal basis elements.
-The observable operator central to the qubit is the generalized spin operator
+The Bloch sphere is a unit sphere embedded in three-dimensional space.
+Pure quantum states are elements on the surface of the Bloch.
+Two antiparallel vectors correspond to orthogonal states.
+Typically, the standard axis in $\mathbb{R}^3$ are assigned to the three orthogonal Pauli eigenbases.
+A generic quantum state $\ket{\psi}$ in a certain basis can be found by projection.
+\Cref{fig:state_space_qubit} shows the projection among the $X$ and $Z$ Pauli eigenbases.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/state-space-qubit}
+	\caption{Two-dimensional state space spanned by the $X,Z$ Pauli eigenbases: Projecting the $\ket{x_-}$ state onto the $Z$ eigenbasis yields a constant probability amplitude of $1/\sqrt{2}$.}\label{fig:state_space_qubit}
+\end{figure}
+In quantum mechanics, the projection coefficients, i.e., the inner product of two states, correspond to the probability amplitude of measuring the given state in particular basis.
+We can formalize this concept by introducing the generalized spin operator
 \begin{equation}
 	\hat{S}(\vu{n})
 	=
@@ -91,30 +122,8 @@ then for $\vu{n}=\vu{e}_j$ we obtain the $\hat{\sigma}_j$ Pauli eigenstates, i.e
 	.
 \end{align}
 By convention one identifies the $Z$ Pauli eigenbasis with the qubit basis $\left\{\ket{0},\ket{1}\right\}$.
-\Cref{tab:qubit_encodings} lists different physical quantum systems  which allow encoding of a qubit.
-\begin{table}[htb]
-	\centering	
-	\begin{tabular}{lcc}
-		\toprule
-		& \multicolumn{2}{c}{Standard basis} \\
-		\cmidrule{2-3}
-		Encoding variable & $\ket{0}$ & $\ket{1}$ \\
-		\midrule
-		Polarization & Horizontal & Vertical \\
-		Photon number & Vacuum & Single-photon \\
-		Time-bin & Early & Late \\
-		Phase-bin & \SI{0}{\deg} & \SI{180}{\deg} \\
-		\bottomrule
-	\end{tabular}
-	\caption{Possible physical systems to encode a qubit. Many of the physical systems have a much higher dimension than the qubit space but can be reduced to a qubit space.}\label{tab:qubit_encodings}
-\end{table}
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/pgfplots/state-space-qubit}
-	\caption{Two-dimensional state space spanned by the $X,Z$ Pauli eigenbases: Projecting the $\ket{x_-}$ state onto the $Z$ eigenbasis yields a constant probability amplitude of $1/\sqrt{2}$.}
-\end{figure}
 
-For the BB84 (six state) protocol, Alice and Bob must agree on two (or three) orthogonal bases\footnote{BB92 using non-orthogonal bases can be implemented by using the generalized spin operator with non-orthogonal vectors.} and a mapping between the basis states and some bit sequence, then
+Having introduced the concept of basis projections and the spin operator, we can discuss the BB84 (six state) protocol for which Alice and Bob must agree on two (or three) orthogonal bases\footnote{BB92 using non-orthogonal bases can be implemented by using the generalized spin operator with non-orthogonal vectors.} and a mapping between the basis states and some bit sequence, then
 \begin{enumerate}
 	\item Alice encodes her bits into the state $\ket{\psi}$ and sends it to Bob.
 	\item Bob receives the state $\ket{\psi}$ from Alice and performs a measurement decoding some bits.
@@ -124,6 +133,7 @@ Alice and Bob's probability of choosing the same basis for one transmission is o
 In the asymptotic limit of many transmissions, the \gls{qber} should approach the theoretical limit.
 Otherwise, an opposing third party, Eve, might have tempered with the transmission.
 \Cref{tab:qubit_transmission_sequence} displays a possible transmission sequence between Alice and Bob.
+Alice randomly selects an initial key bit \num{0} or \num{1} and a state basis $X$ or $Z$ where $X$ respective $Z$ denote the eigenbasis of the Pauli $\sigma_x$ respective $\sigma_z$ matrix. Alice's initial key bit and selected basis determine the quantum state she prepares and sends to Bob. Bob randomly chooses a measurement basis. Only if Alice's and Bob's basis agree, the key bit is not discarded.
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{llccccc}
@@ -141,14 +151,14 @@ Otherwise, an opposing third party, Eve, might have tempered with the transmissi
 		& Sifted outcomes & - & - & 1 & 0 & - \\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible transmission sequence for qubit-based \gls{qkd}: Alice randomly selects an initial key bit \num{0} or \num{1} and a state basis $X$ or $Z$ where $X$ respective $Z$ denote the eigenbasis of the Pauli $\sigma_x$ respective $\sigma_z$ matrix. Alice's initial key bit and selected basis determine the quantum state she prepares and sends to Bob. Bob randomly chooses a measurement basis. Only if Alice's and Bob's basis agree, the key bit is not discarded.}\label{tab:qubit_transmission_sequence}
+	\caption{Possible transmission sequence for qubit-based \gls{qkd} illustrating how Alice encodes a key bit into a qubit state and Bob attempt to decode.}\label{tab:qubit_transmission_sequence}
 \end{table}
 After the transmission sequence, Alice and Bob hold a partially correlated and partially secret bit string from which they can distill a shared secret bit string using classical post-processing.
 
 \FloatBarrier
 \subsection{Polarization-encoding BB84}
 
-In polarization-encoding qubit-based \gls{qkd} protocols, the polarization of light is used as physical quantum system to encode the logical qubit system.
+In polarization-encoding BB84, the polarization of light is used as physical quantum system to encode the logical qubit system.
 Let $\ket{\leftrightarrow}$ and $\ket{\updownarrow}$ denote the horizontal respective vertical polarization states forming the rectilinear basis.
 Let $\ket{\nwsearrow}$ and $\ket{\neswarrow}$ denote the left- and right-diagonal polarization states forming the diagonal basis.
 Let $\ket{\circlearrowleft}$ and $\ket{\circlearrowright}$ denote the left- and right-circular polarization states forming the circular basis.
@@ -194,12 +204,13 @@ For clarity, we restrict the following discussion to qubit-based \gls{qkd} proto
 Other protocols exist that use three orthogonal bases (six-state protocol) or even non-orthogonal bases.
 
 A possible optical setup to implement such polarization-encoding is depicted in \Cref{fig:polarization_encoding_active}.
+Alice configures her linear polarizer to select a basis element of the rectilinear or diagonal polarization basis. Bob receives Alice's polarization state through the polarization controlled quantum channel. He rotates a rectilinear polarized beam splitter by either \SI{0}{\degree} or \SI{45}{\degree} to detect either rectilinear or diagonal polarized photons with his two single-photon detectors placed at the beam splitter output.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/bb84-polarization-active}
-	\caption{Optical setup to implement polarization-encoding BB84 with active basis selection at the receiver: Alice configures her linear polarizer to select a basis element of the rectilinear or diagonal polarization basis. Bob receives Alice's polarization state through the polarization controlled quantum channel. He rotates a rectilinear polarized beam splitter by either \SI{0}{\degree} or \SI{45}{\degree} to detect either rectilinear or diagonal polarized photons with his two single-photon detectors placed at the beam splitter output.}\label{fig:polarization_encoding_active}
+	\caption{Optical setup to implement polarization-encoding BB84 with active basis selection at the receiver comprising a transmitter, a polarization controlled quantum channel, and a receiver. The transmitter comprises a single-photon source and a linear polarizer as fiber components. The receiver consists of a rotatable rectilinear polarized beam splitter and two single-photon detectors as free space components which are connected to the fiber quantum channel through a collimator.}\label{fig:polarization_encoding_active}
 \end{figure}
-Alice selects one of four polarization states $\ket{\leftrightarrow},\ket{\updownarrow},\ket{\nwsearrow},\ket{\neswarrow}$ by adjusting her linear polarizer to one of four angles $\theta=0,\pi,\pi/2,3\pi/2$.
+Alice selects one of four polarization states $\ket{\leftrightarrow},\ket{\updownarrow},\ket{\nwsearrow},\ket{\neswarrow}$ by adjusting her linear polarizer to one of four angles $\theta\in\{0,\pi,\pi/2,3\pi/2\}$.
 We can write Alice's state as
 \begin{equation}
 	\ket{\theta}
@@ -239,13 +250,13 @@ Rotated by \SI{45}{\degree}, Bob's rectilinear polarized beam splitter monitored
 \end{equation}
 Instead of Bob actively selecting the measurement basis, he can passively let the quantum randomness decide by splitting the photon with an unpolarized beam splitter towards a rectilinear and diagonal polarization detector.
 \Cref{fig:polarization_encoding_passive} shows an optical setup implementing polarization-encoding BB84 with passive measurement basis selection.
-While Alice's transmitter setup is unchanged, Bob has two polarization detectors.
+While Alice's transmitter setup is unchanged to the previous setup, Bob now has two polarization detectors.
 One polarization detector comprises a rectilinear-polarized beam splitter and two single-photon detectors.
 Another polarization detector comprises a diagonal-polarized beam splitter.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/bb84-polarization-passive}
-	\caption{Optical setup to implement polarization-encoding BB84 with passive basis selection at the receiver: Alice configures her linear polarizer to select a basis element of the rectilinear or diagonal polarization. Bob receives Alice's polarization state through the polarization controlled quantum channel. He first splits the incoming light into two branches. For the first branch a polarization measurement in the rectilinear basis is performed. For the second branch a polarization measurement in the diagonal basis is performed.}\label{fig:polarization_encoding_passive}
+	\caption{Optical setup to implement polarization-encoding BB84 with passive basis selection at the receiver: The transmitter consists of a single-photon source and a linear polarizer. A polarization controlled quantum channel couples the fiber-optical transmitter with the free-space receiver using a fiber colimator. The receiver consists of a rectilinear and diagonal polarization detector which are placed at the output of an unpolarized beam splitter placed behind the fiber colimator.}\label{fig:polarization_encoding_passive}
 \end{figure}
 The \gls{povm} describing Bob's measurement with passive basis selection is
 \begin{equation}
@@ -314,18 +325,19 @@ to show equivalence to the general qubit description.
 
 In the following, we discuss the practical time-phase-encoding BB84 protocol and show its equivalence to the polarization-encoding BB84.
 The idea of using phase-encoding was first proposed as part of the BB92 protocol~\cite{Bennett1992}.
-The basic setup is illustrated in \Cref{fig:qubit_time_phase_active} and comprises a single-photon source and a first \gls{mzi} on Alice's side as well as a second \gls{mzi} and two single-photon detectors on Bob's side.
+The basic setup is illustrated in \Cref{fig:qubit_time_phase_active}:
+Alice creates an entangled photon state using a first \gls{mzi} with phase $\theta\in\{0,\pi/2,\pi,3\pi/2\}$ and sends it to Bob. Bob detects the photon state using a second \gls{mzi} with phase $\phi\in\{0,\pi/2\}$ and two single-photon detectors monitoring the outputs. and comprises a single-photon source and a first \gls{mzi} on Alice's side as well as a second \gls{mzi} and two single-photon detectors on Bob's side.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/bb84-time-phase-active}
-	\caption{Fiber-optical setup of the phase-encoding BB84: Alice creates an entangled photon state using a first \gls{mzi} with phase $\theta\in\{0,\pi/2,\pi,3\pi/2\}$ and sends it to Bob. Bob detects the photon state using a second \gls{mzi} with phase $\phi\in\{0,\pi/2\}$ and two single-photon detectors monitoring the outputs.}\label{fig:qubit_time_phase_active}
+	\caption{Fiber-optical setup of the phase-encoding BB84 using active basis selection: The transmitter comprises a single-photon source and a first asymmetric \gls{mzi} with variable phase-shift $\theta$. The transmitter is connected to the receiver through a fiber channel. The receiver comprises a second asymmetric \gls{mzi} with variable phase-shift $\phi$. The first and second \gls{mzi} are both made of two fiber couplers with a variable phase-shifter in the longer optical path. The outputs of the second asymmetric \gls{mzi} is monitored by two single-photon detectors.}\label{fig:qubit_time_phase_active}
 \end{figure}
 
 To understand the time-phase encoding, we analyze the action of the asymmetric \gls{mzi} with variable phase $\varphi$ on a photon pulse $\ket{t_0}$ arriving at time $t_0$, see \Cref{fig:mzi_asymmetric}.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/pstricks/mzi-asymmetric}
-     \caption{Asymmetric \gls{mzi} adding a constant time delay and variable phase difference between the upper and lower path: A pulsed state enters the first beam splitter BS1 to the left and is split among a longer upper path and a shorter lower path. A first mirror M1 directs the pulse from the upper path to a phase shifter which adds a relative phase of $\varphi$ between the upper and lower path. A second mirror M2 directs the pulse from the phase shifter to a second beam splitter BS2 while the lower path is between BS1 and BS2.}\label{fig:mzi_asymmetric}
+     \caption{Asymmetric \gls{mzi} adding a constant time delay and variable phase difference between the upper and lower path. A pulsed state enters the first beam splitter BS1 to the left and is split among a longer upper path and a shorter lower path. A first mirror M1 directs the pulse from the upper path to a phase shifter which adds a relative phase of $\varphi$ between the upper and lower path. A second mirror M2 directs the pulse from the phase shifter to a second beam splitter BS2 while the lower path is between BS1 and BS2.}\label{fig:mzi_asymmetric}
 \end{figure}
 An ideal (lossless) and symmetric beam splitter transforms the single-photon input states into a superposition according to\footnote{See Ref.~\cite[p.~137]{Haroche2006} and Ref.~\cite[p.~143]{Gerry2005}}
 \begin{align}
@@ -547,7 +559,8 @@ If we configure the detectors to trigger only on the $m=1$ time slot, we find th
 	\left(1\pm\cos(\theta-\phi)\right)
 	.
 \end{equation}
-\Cref{tab:bb84_time_phase_clicks} summarizes the click probability of the plus and minus detectors triggered on the $m=1$ time slot for a restricted choice of phases.
+\Cref{tab:bb84_time_phase_clicks} summarizes the click probability of the plus and minus detectors triggered on the $m=1$ time slot for a restricted choice of phases:
+Alice choosing $\theta\in\{0,\pi\}$ corresponds to choosing the $Z$ eigenbasis while $\theta\in\{\pi/2,3\pi/2\}$ corresponds to her choosing the $X$ eigenbasis. Bob using no phase shift $\phi=0$ corresponds to a selection of the $X$ basis while Bob adding a phase shift of $\phi=\pi/2$ corresponds to selection of $X$ as measurement basis. Only if Alice and Bob choose the same basis, Bob's click is perfectly correlated with Alice's choice for a basis element. Otherwise, it is completely random.
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{cccc}
@@ -570,7 +583,7 @@ If we configure the detectors to trigger only on the $m=1$ time slot, we find th
 		& $\pi/2$ & \SI{0}{\percent} & \SI{100}{\percent} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Click probabilities for the time-phase-encoding BB84 protocol: Alice choosing $\theta\in\{0,\pi\}$ corresponds to choosing the $Z$ eigenbasis while $\theta\in\{\pi/2,3\pi/2\}$ corresponds to her choosing the $X$ eigenbasis. Bob using no phase shift $\phi=0$ corresponds to a selection of the $X$ basis while Bob adding a phase shift of $\phi=\pi/2$ corresponds to selection of $X$ as measurement basis. Only if Alice and Bob choose the same basis, Bob's click is perfectly correlated with Alice's choice for a basis element. Otherwise, it is completely random.}\label{tab:bb84_time_phase_clicks}
+	\caption{Click probabilities for the time-phase-encoding BB84 protocol.}\label{tab:bb84_time_phase_clicks}
 \end{table}
 Comparing the click probabilities of \Cref{tab:bb84_time_phase_clicks} with the probabilities of the qubit-based BB84, suggests equivalence of the time-phase-encoding BB84 with the more general qubit-based description of BB84.
 While we can identify Alice's state in the time basis in terms with the $Y$ qubit basis,
@@ -598,7 +611,7 @@ While we can identify Alice's state in the time basis in terms with the $Y$ qubi
 \end{equation}
 the receiver side cannot simply be relabeled into the qubit-based description:
 Bob's Hilbert space, spanned by the three time slot states, $\ket{\Delta\tau=m}_{m=0,1,2}$, has one additional dimension compared to the qubit Hilbert space.
-Such complication can be addressed using the "squashing"~\cite{Beaudry2008,Gittsovich2014}:
+Such complication can be addressed using "squashing"~\cite{Beaudry2008,Gittsovich2014}:
 We first find a unitary transformation for the input mode of Bob's receiver.
 Second, we show that the \gls{povm} yields the same probability distribution as the qubit-based description for all possible quantum states.
 The number state basis $\left\{\ket{n}\right\}_{n\in\mathbb{N}_0}$ is complete and countable allowing a proof by induction.

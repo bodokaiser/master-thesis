@@ -1,6 +1,7 @@
 \section{Boson- or quadrature-based protocols}
 
 The quantum system of interest in boson-based protocols is a single bosonic mode, i.e., a quantum harmonic oscillator.
+For more information on boson information theory, see Ref.~\cite{Weedbrook2012,Ferraro2005} and Ref.~\cite{Lodewyck2007,Diamanti2015} for a particular application towards \gls{cvqkd}.
 
 The central observable is the generalized quadrature operator~\cite[p.~36]{Barnett2002}
 \begin{equation}
@@ -60,7 +61,7 @@ Let us assume the existence of an eigenstate $\ket{x,\vartheta}$ of the generali
 then the uncertainty relation implies that $\ket{x,\vartheta}$ and $\ket{p,\vartheta+\Delta\vartheta}$ for $\Delta\vartheta>0$ are conjugate variables, i.e., increasing the precision of one variable decreases the precision of the other.
 Unsurprisingly, we can show that these eigenstates are non-orthogonal~\cite[p.~29]{Mukhanov2007}
 \begin{equation}
-	\braket{x,\vartheta}{p,\vartheta+\Delta\vartheta}
+	\braket{x,\vartheta}{p,\vartheta+\pi/2}
 	=
 	\frac{e^{ipx}}{\sqrt{2\pi}}
 	\label{eq:position_momentum_product}
@@ -94,6 +95,7 @@ For instance, we can envision a bosonic BB84 protocol:
 If she chooses the quadrature corresponding to $\Delta\vartheta=0$, a measurement in the orthogonal quadrature eigenbasis yields a completely uncorrelated outcome.
 Only if Bob measures in the same quadrature, can he decode the sign of the eigenvalue.
 \Cref{tab:boson_transmission_sequence} summarizes a possible quantum transmission sequence of bosonic BB84.
+Alice randomly selects the eigenvalue sign $x/\abs{x}$ and a quadrature $\vartheta\in\{0,\pi/2\}$ which she encodes into a quantum state $\ket{\pm x,\vartheta}$ and sends it to Bob. Bob selects a quadrature for measurement. Only if Alice's and Bob's basis match, is Bob's outcome correlated with Alice's value.
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{llccccc}
@@ -110,7 +112,7 @@ Only if Bob measures in the same quadrature, can he decode the sign of the eigen
 		& Sifted outcome & - & $-x$ & $-x$ & $+x$ & $-x$ \\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible quantum transmission sequence for bosonic BB84 with active basis selection: Alice randomly selects the eigenvalue sign $x/\abs{x}$ and a quadrature $\vartheta\in\{0,\pi/2\}$ which she encodes into a quantum state $\ket{\pm x,\vartheta}$ and sends it to Bob. Bob selects a quadrature for measurement. Only if Alice's and Bob's basis match, is Bob's outcome correlated with Alice's value.}\label{tab:boson_transmission_sequence}
+	\caption{Possible quantum transmission sequence for bosonic BB84 with active basis selection.}\label{tab:boson_transmission_sequence}
 \end{table}
 To convert the sifted outcome to bits, we can simply assign the bit value according to the sign.
 More advanced symbol mapping techniques are discussed in the post-processing section.

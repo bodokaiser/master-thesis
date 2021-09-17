@@ -1,20 +1,24 @@
 \section{Taxonomy of protocols}
 
-\Cref{fig:qkd_classification} illustrates common features among the \gls{qkd} protocols.
-For an overview of \gls{qkd} protocols, see Ref.~\cite{Duvsek2006}.
+Before diving into specific \gls{qkd} protocols, we introduce a taxonomy of \gls{qkd} protocols.
+By identifying common protocol features, allows for a reductionist model of \gls{qkd}.
+
+The literature typically distinguishes between \gls{dvqkd}, \gls{cvqkd}, and \gls{dpsqkd}.
+Ignoring \gls{dpsqkd}, it is unclear what exact features unambiguously differentiate between \gls{cvqkd} and \gls{dvqkd}.
+For instance, most practical \gls{dvqkd} protocols use weak coherent states~\cite{Duvsek2006}, which are anything but discrete.
+Fr this reason, the accepted opinion considers a protocol discrete when using a single-photon and continuous when using a coherent detector.
+This view has been recently challenged by proposing a BB84-like protocol using coherent detection~\cite{Qi2021}.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/tikz/qkd-classification}
+	\includestandalone[scale=0.8]{figures/tikz/qkd-classification}
 	\caption{Common features among \gls{qkd} protocols: Detection, physical encoding, logical state space, measurement basis selection and schema.}\label{fig:qkd_classification}
 \end{figure}
-Every \gls{qkd} system requires a detector, e.g., a coherent detector or a single-photon (click) detector.
-The detection does not necessarily imply the dimension of the logical state space.
-For instance, BB84 having a two-dimensional logical state space has been implemented with coherent detection~\cite{Qi2021} having a countable detection space.
-It remains to discuss where to place differential-phase-shift \gls{dps} \gls{qkd} into the proposed categories.
-Concerning measurement basis selection, Bob can either actively choose a random measurement basis for every transmission or passively measure all (orthogonal) bases for measurement basis selection.
-We will cover both active and passive measurement basis selection in the discussion of the polarization-encoding BB84 protocol.
-Finally, the \gls{qkd} schema determines if either Alice prepares a state and sends it to Bob for measurement (prepare-and-measure) or if Alice and Bob share an entangled state (entanglement-based).
-Most practical \gls{qkd} implementations use prepare-and-measure.
-On a theoretical level, both schemas are equivalent, and security proofs are often more convenient in an entanglement-based setting.
+We propose a more subtle classification based on definite protocol features.
+\Cref{fig:qkd_classification} illustrates common features we identified among \gls{qkd} protocols that can be uniquely determined.
+Many of these features are implementation details such as physical encoding, measurement basis selection, and detection.
+In contrast, other features are more fundamental, like the logical Hilbert space or the schema.
+We will discuss and exemplify these features in the next two sections.
 
-% TODO: critic about CV-, DV-QKD, DPS-QKD
+In the next two sections, we present \gls{qkd} protocols that differ by their logical Hilbert space.
+The logical Hilbert space defines the quantum system assumed on an abstract protocol level, e.g., a qubit or boson, and is a more precise concept than discrete and continuous.
+The logical quantum system does not need to be equal to the quantum system physically encoding the quantum states, for example, a weak coherent state mimicking a single-photon.
