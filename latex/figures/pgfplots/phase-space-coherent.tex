@@ -36,7 +36,7 @@
 				anchor=south,
 			},
 			legend style={
-				at={(axis cs: -0.9,2.8)},
+				at={(axis cs:-0.9,2.8)},
 				anchor=east,
 				draw=none,
 				inner sep=5,
@@ -51,11 +51,22 @@
 			\draw[fill=exotic red, draw=none, fill opacity=0.2] (axis cs:-0.2,0.07) circle (120);
 		
 			\addplot[very thick, mark=*, exotic green] coordinates {(1.5,1.5)};
-			\addplot[very thick, mark=*, exotic orange] coordinates {(0.2,0.2)};
-			\addplot[very thick, mark=*, exotic blue] coordinates {(-1.5,0.5)};
-			\addplot[very thick, mark=*, exotic red] coordinates {(-0.2,0.07)};
+			\addlegendentry{$\ket{\alpha}$};
 			
-			\legend{$\ket{\alpha_1}$,$\ket{\alpha_1^\prime}$,$\ket{\alpha_2}$,$\ket{\alpha_2^\prime}$};
+			\addplot[very thick, mark=*, exotic blue] coordinates {(-1.5,0.5)};
+			\addlegendentry{$\ket{\beta}$};
+
+			\addplot[very thick, mark=*, exotic orange] coordinates {(0.2,0.2)};
+			\addlegendentry{$\ket{\alpha^\prime}$};
+
+			\addplot[very thick, mark=*, exotic red] coordinates {(-0.2,0.07)};
+			\addlegendentry{$\ket{\beta^\prime}$};
+
+			\addplot[very thick, mark=x, mark size=4, exotic red] coordinates {(-0.9,-0.3)};
+			\addlegendentry{$\alpha^{\prime\prime}$};
+			
+			\addplot[very thick, mark=x, mark size=4, exotic orange] coordinates {(0.2,0.9)};
+			\addlegendentry{$\beta^{\prime\prime}$};
 			
 			\draw[-Latex, gray] (axis cs:1.5,1.5) -- (axis cs:0.2,0.2);
 			\draw[-Latex, gray] (axis cs:-1.5,0.5) -- (axis cs:-0.2,0.07);
