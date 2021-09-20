@@ -7,20 +7,31 @@
 Pulse-shaping turns a sequence of (complex) symbols into a time-continuous signal.
 For practical implementations, the pulse-shaping is performed in the digital domain.
 Moving the pulse-shaping to the optical domain allows for a quantum mechanical description.
+
 \begin{figure}[htb]
 	\centering
     \includestandalone{figures/pstricks/quantum-pulse-shaping}
-    \caption{Optical setup to perform pulse-shaping in the (quantum) optical domain: First, a single coherent state is modulated and a time delay corresponding to the symbol index is added. Second, the pulses are superimposed and optically filtered.}
+    \caption{Fiber-optical setup to perform pulse-shaping in the (quantum) optical domain. Three independent branches comprising a pulsed laser, \gls{iq}-modulator and a variable delay line are coupled to an optical \gls{lp} filter. The output of the optical \gls{lp} is passed on to a fiber.}\label{fig:quantum_pulse_shaping}
 \end{figure}
+\Cref{fig:quantum_pulse_shaping} presents a fiber-optical setup implementing pulse-shaping in the optical domain.
+The generalization to $n$ independent symbols is straightforward by adding more \gls{iq}-modulated pulsed-lasers with a time delay to the coupler.
+First, we need to produce independent pulses directly encoding the symbols, symbol pulses, by \gls{iq}-modulating pulsed lasers.
+Second, we add a time delay $nT$ to each symbol pulse equal to the symbol period $T$ multiplied by the symbol index $n$.
+Third, we superimpose the time-delayed symbol pulses through an optical coupler yielding a symbol pulse train.
+Assuming the symbol pulses to be strongly peaked in the time domain, we can approximate the symbol pulse train as a sequence of Dirac pulses.
+Pulse-shaping occurs when the symbol pulse train passes an optical filter.
+We can model the optical filter as a frequency-dependent beam splitter with one vacuum input mode and one output mode dumped.
 
-The \gls{iq}-modulated coherent state in the Schrödinger picture is
+Let us present the quantum states and transformations relevant to \Cref{fig:quantum_pulse_shaping}.
+The symbol pulse is a continuous-mode coherent state of the form
 \begin{equation}
-	\ket{\alpha(p)}
+	\ket{\alpha(x,t)}
 	=
 	e^{-\overline{n}/2}
 	\exp\left\{
 		\int_0^\infty\dd{p}
 		\alpha(p)
+		e^{-ip(x-t)}
 		\hat{a}^\dagger(p)
 	\right\}
 	\ket{0}
@@ -34,38 +45,67 @@ wherein $\overline{n}$ is the mean photon number and
 	\right\}
 \end{equation}
 is a (complex) Gaussian spectrum centered at $p_0$ with spread $\sigma$.
-In the limit of an extremely peaked Gaussian spectrum $\sigma\to0$, the Gaussian spectrum becomes a delta distribution
+In the limit of an extremely peaked Gaussian spectrum $\sigma\to0$, the Gaussian spectrum becomes a delta distribution and we obtain the single-mode limit
 \begin{equation}
-	\alpha(p)
+	\ket{\alpha(x,t)}
 	\xrightarrow{\sigma\to0}
-	\alpha(p_0)
-	\delta^{(1)}(p-p_0)
-\end{equation}
-and we obtain the single-mode coherent state
-\begin{equation}
-	\ket{\alpha(p_0)}
-	=
 	e^{-\overline{n}/2}
 	\exp\left\{
 		\alpha(p_0)
+		e^{-ip_0(x-t)}
 		\hat{a}^\dagger(p_0)
 	\right\}
 	\ket{0}
+	.
 \end{equation}
-usually used in quantum information theory.
+The single-mode state abbreviates symbolically a strongly peaked Gaussian.
+We should keep this in mind and transition to the correct continuous-mode description when necessary.
 
-% step 1: convert frequency- to time-pulse
-% use a frequency-dependent beam splitter as optical filter?
+Adding a time delay $nT$ is equivalent to time-evolution from the initial time $t$ to $t+nT$, i.e.,
+\begin{equation}
+	\hat{U}(t,t+nT)
+	\ket{\alpha(x,t)}
+	=
+	\ket{\alpha(x,t+nT)}
+	=
+	\ket{\alpha(x,t)e^{-ip_0nT}}
+\end{equation}
+wherein the time-shifted spectrum is equal to the initial spectrum times a time-delay as expected from Fourier theory.
 
-% step 2: add time delay to time-pulse
+The total quantum state is the tensor product of the individual symbol pulse states
+\begin{equation}
+	\bigotimes_{n=1}^N
+	\ket{\alpha_n(x,t+nT)}
+\end{equation}
+where each symbol pulse is time delayed by the symbol period $T$ multiplied by the symbol index $n$.
+According to Ref.~\cite{Zukowski1997}, a symmetric multiport beam splitter has matrix elements
+\begin{equation}
+	U_{mn}
+	=
+	\frac{1}{\sqrt{N}}
+	\left(e^{i2\pi/N}\right)^{(n-1)(m-1)}
+\end{equation}
+and the first output mode of the multiport beam splitter provided the tensor product of symbol pulses is the symbol pulse train
+\begin{equation}
+	\ket{\alpha_1^\prime(x,t)}
+	=
+	\ket{\sum_{n=1}^NU_{1n}\alpha_n(x,t+nT)}
+	=
+	\ket{\frac{1}{\sqrt{N}}\sum_{n=1}^N\alpha_n(x,t+nT)}
+	.
+\end{equation}
 
-% step 3: superimpose (delayed) time-pulses
+For pulse-shaping, we use a time-dependent beam splitter with the symbol pulse train and a vacuum state as input.
+The first output mode takes the form
+\begin{equation}
+	\ket{\alpha^{\prime\prime}(t)}
+	=
+	\ket{\cos[\theta(t)]\alpha_1^\prime(x,t)}
+\end{equation}
 
-% step 4: perform pulse-shaping
-
-% step 5: perform up-conversion using sum-to-frequency generation
+% perform pulse-shaping using time-dependent (?) beam splitter
 
 \FloatBarrier
 \subsection{Up-conversion}
 
-% step 6: perform attenuation using beam splitter
+% perform up-conversion using sum-to-frequency generation
