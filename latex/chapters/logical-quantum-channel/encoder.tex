@@ -1,0 +1,214 @@
+\section{Encoder}
+
+Alice prepares a tensor product of $N$ coherent states
+\begin{equation}
+	\bigotimes_{n=1}^N
+	\ket{\alpha_n}_n
+	.
+\end{equation}
+where $\alpha_1,\dots,\alpha_N\in\mathbb{C}$ are sampled from a complex normal distribution.
+
+What unitary transformations does Alice need to apply to obtain the time-continuous coherent state?
+
+First, she applies a local time-evolution operator $\hat{U}_n\left(t_0,t_0+nT\right)$ to each coherent state from some initial time $t_0$ to $t_0+t-nT$ where $n$ refers to the state index, i.e.,
+\begin{equation}
+	\begin{split}
+		\bigotimes_{n=1}^N
+		\ket{\alpha_n(t-nT)}_n
+		&=
+		\hat{U}_T(t_0;t_0+t-T,\dots,t_0+t-NT)
+		\left(
+			\bigotimes_{n=1}^N
+			\ket{\alpha_n(t)}_n
+		\right)
+		\\
+		&=
+		\bigotimes_{n=1}^N
+		\hat{U}_{T,n}(t_0,t_0+t-nT)
+		\ket{\alpha_n(t_0)}_n
+		.
+	\end{split}
+\end{equation}
+We interleave the states using a symmetric beam splitter transform, see Ref.~\cite{Zukowski1997} and project the first output
+\begin{equation}
+	\begin{split}
+		\ket{\frac{1}{\sqrt{N}}\sum_{n=1}^N\alpha_n(t-nT)}
+		&=
+		\hat{P}_1
+		\hat{U}_{BS}
+		\left(
+			\bigotimes_{n=1}^N
+			\ket{\alpha_n(t-nT)}_n
+		\right)
+		.
+	\end{split}
+\end{equation}
+We apply a second beam splitter transform to perform optical filtering
+\begin{equation}
+	\begin{split}
+		\hat{U}
+		\ket{\frac{1}{\sqrt{N}}\sum_{n=1}^N\alpha_n(t-nT)}_a
+		\otimes
+		\ket{0}_B
+	\end{split}
+\end{equation}
+
+\subsection{Pulse-shaping}
+
+Pulse-shaping turns a sequence of (complex) symbols into a time-continuous signal.
+For practical implementations, the pulse-shaping is performed in the digital domain.
+Moving the pulse-shaping to the optical domain allows for a quantum mechanical description.
+
+\begin{figure}[htb]
+	\centering
+    \includestandalone{figures/pstricks/quantum-pulse-shaping}
+    \caption{Fiber-optical setup to perform pulse-shaping in the (quantum) optical domain for three symbols. Each of the three symbols is independently \gls{iq}-modulated on a pulsed laser with increasing time delay. The pulses are coupled together and optically filtered before being passed to a fiber.}\label{fig:quantum_pulse_shaping}
+\end{figure}
+\Cref{fig:quantum_pulse_shaping} presents a fiber-optical setup implementing pulse-shaping in the optical domain for three symbols.
+The generalization to $n$ symbols is straightforward by adding more \gls{iq}-modulated pulsed-lasers with a time delay to the coupler and is discussed in the next paragraphs.
+First, we need to produce independent pulses directly encoding the symbols, symbol pulses, by \gls{iq}-modulating pulsed lasers.
+Second, we add a time delay $nT$ to each symbol pulse equal to the symbol period $T$ multiplied by the symbol index $n$.
+Third, we superimpose the time-delayed symbol pulses through an optical coupler yielding a symbol pulse train.
+Assuming the symbol pulses to be strongly peaked in the time domain, we can approximate the symbol pulse train as a sequence of Dirac pulses.
+Pulse-shaping occurs when the symbol pulse train passes an optical filter.
+We can model the optical filter as a frequency-dependent beam splitter with one vacuum input mode and one output mode dumped.
+
+Let us present the quantum states and transformations relevant to \Cref{fig:quantum_pulse_shaping}.
+The symbol pulse is a continuous-mode coherent state of the form
+\begin{equation}
+	\ket{\alpha(t)}
+	=
+	e^{-\overline{n}/2}
+	\exp\left\{
+		\int_0^\infty\dd{p}
+		\alpha(p)
+		e^{+ipt}
+		\hat{a}^\dagger(p)
+	\right\}
+	\ket{0}
+\end{equation}
+wherein $\overline{n}$ is the mean photon number and $\alpha(p)$ is some pulse-shape.
+For instance, a Gaussian pulse-shape centered at frequency $p_0$ with spread $\sigma_p$ would take the form
+\begin{equation}
+	\alpha(p)
+	\propto
+	\exp\left\{
+		-\frac{1}{4}\left(\frac{p-p_0}{\sigma_p}\right)^2
+	\right\}
+\end{equation}
+while for a Lorentzian pulse-shape takes the form
+\begin{equation}
+	\alpha(p)
+	\propto
+	\frac{1}{\gamma}
+	\frac{1}{1+\left(\frac{p-p_0}{\gamma}\right)^2}
+\end{equation}
+wherein $\gamma$ is a scale parameter.
+Many other pulse-shapes are possible and we do not want to limit ourselves to a particular pulse-shape.
+However, we require the pulse-shape $\alpha(p)$ to approach a delta distribution in the limit of an infinitely narrow pulse-shape.
+
+Adding a time delay $nT$ is equivalent to time-reversal or inverted time-evolution, i.e.,
+\begin{equation}
+	\hat{U}(t-nT,t)
+	\ket{\alpha(t)}
+	=
+	\ket{\alpha(t-nT)}.
+\end{equation}
+The total quantum state is the tensor product of the individual symbol pulse states
+\begin{equation}
+	\ket{\alpha_1(t-T)}
+	\otimes
+	\ket{\alpha_2(t-2T)}
+	\otimes
+	\dots
+	\otimes
+	\ket{\alpha_N(t-NT)}
+\end{equation}
+where each symbol pulse is time delayed by the symbol period $T$ multiplied by the symbol index $n$.
+According to Ref.~\cite{Zukowski1997}, a symmetric multiport beam splitter has matrix elements
+\begin{equation}
+	U_{mn}
+	=
+	\frac{1}{\sqrt{N}}
+	\left(e^{i2\pi/N}\right)^{(n-1)(m-1)}
+\end{equation}
+and the first output mode of the multiport beam splitter provided the tensor product of symbol pulses is the symbol pulse train
+\begin{equation}
+	\ket{\alpha_1^\prime(t)}
+	=
+	\ket{\sum_{n=1}^NU_{1n}\alpha_n(t-nT)}
+	=
+	\ket{\frac{1}{\sqrt{N}}\sum_{n=1}^N\alpha_n(t-nT)}
+	.
+\end{equation}
+We decompose the spectrum of the symbol pulse train into
+\begin{equation}
+	\alpha_1^\prime(p)
+	=
+	f(p)g(p)
+	.
+\end{equation}
+The first factor $f(p)$ denotes the pulse-shape and the second factor $g(p)$ encodes the symbols
+\begin{equation}
+	g(p)
+	=
+	\frac{1}{\sqrt{N}}
+	\sum_{n=1}^N
+	\alpha_n
+	e^{-ipnT}
+	.
+\end{equation}
+
+Finally, optical filtering is equivalent to applying a unitary beam splitter transform with the second input mode in vacuum, i.e.,
+\begin{equation}
+	\hat{U}\ket{\alpha_1^\prime(t),0}
+	=
+	e^{-\overline{n}_1^\prime/2}
+	\exp\left\{
+		\int_0^\infty\dd{p}
+		\alpha_1^\prime(p)
+		e^{+ipt}
+		\hat{U}
+		\hat{a}^\dagger(p)
+		\hat{U}^\dagger
+	\right\}
+	\ket{0,0}
+\end{equation}
+Taking only the first output mode, we find
+\begin{equation}
+	\ket{\alpha_1^{\prime\prime}}
+	=
+	e^{-\overline{n}_1^{\prime\prime}/2}
+	\exp\left\{
+		\int_0^\infty\dd{p}
+		\alpha_1^{\prime\prime}(p)
+		e^{+ipt}
+		\hat{a}^\dagger(p)
+	\right\}
+	\ket{0}
+\end{equation}
+wherein
+\begin{equation}
+	\alpha_1^{\prime\prime}(p)
+	=
+	\cos\left(\theta(p)/2\right)
+	\alpha_1^\prime(p)
+	=
+	\cos\left(\theta(p)/2\right)
+	f(p)g(p)
+	.
+\end{equation}
+We define
+\begin{equation}
+	h(p)
+	=
+	f(p)
+	\cos\left(\theta(p)/2\right)
+\end{equation}
+and use the convolution theorem to write
+\begin{equation}
+	\ket{\alpha_1^{\prime\prime}}
+	=
+	\ket{\left(h*g\right)(t)}
+	.
+\end{equation}

@@ -17,10 +17,12 @@
         \pnode([offset=-2]BS2){OUT2}
         \begin{optexp}
             \beamsplitter[compname=BS1, labelangle=45, labeloffset=1](IN1)(BS1)(M2){BS1}
-            \optbox[compname=PS1, innerlabel, optboxsize=1.0 0.8](BS1)(M1){$\varphi$}
+            \optbox[compname=PS1, innerlabel, optboxsize=1.0 0.8](BS1)(M1){$\varphi_1$}
             \mirror[compname=M1, labeloffset=0.6](BS1)(M1)(BS2){M1}
             \beamsplitter[compname=BS2, labelangle=-45, labeloffset=1](M1)(BS2)(M2){BS2}
-            \mirror[compname=M2, labeloffset=0.6](BS1)(M2)(BS2){M2}			\drawbeam(IN1){BS1}{M2}{BS2}(OUT1)
+            \mirror[compname=M2, labeloffset=0.6](BS1)(M2)(BS2){M2}
+            \optbox[compname=PS2, innerlabel, optboxsize=1.0 0.8](M2)(BS2){$\varphi_2$}			\drawbeam(IN1){BS1}{M2}{PS2}
+			\drawbeam{PS2}{BS2}(OUT1)
 			\drawbeam(IN1){BS1}{PS1}
 			\drawbeam{PS1}{M1}{BS2}(OUT2)        \end{optexp}
     \end{pspicture}

@@ -101,51 +101,79 @@ Authentication can be implemented classically using \gls{mac} as discussed for t
 	\caption{Encoding variables to use for \gls{qkd}: Variables with uncountable state space are considered for \gls{cvqkd} while variables with (possibly restricted) countable state space are considered for \gls{dvqkd}.}
 \end{table}
 
-At the heart of 
+Bob receives the state
+\begin{equation*}
+	\begin{split}
+		\hat\rho_B
+		&=
+		\frac{1}{4}
+		\biggl(
+			\ketbra{x_+}
+			+
+			\ketbra{x_-}
+			+
+			\ketbra{z_+}
+			+
+			\ketbra{z_-}
+		\biggr)
+		\\
+		&=
+		\frac{1}{2}
+		\biggl(
+			\ketbra{z_+}
+			+
+			\ketbra{z_-}
+		\biggr)
+		\\
+		&=
+		\frac{1}{2}
+		\biggl(
+			\ketbra{x_+}
+			+
+			\ketbra{x_-}
+		\biggr)
+	\end{split}
+\end{equation*}
+and selects either the $X$ or $Z$ \gls{povm}, i.e.,
 \begin{align}
-	\hat\rho_A
-	&=
-	\int\dd{x}p_A(x)
-	\tensor[_A]{\ketbra{x}}{_A}
-	&
-	\hat\rho_B
-	&=
-	\int\dd{x}p_B(x)
-	\tensor[_B]{\ketbra{x}}{_B}
+	\biggl\{
+		\ketbra{x_+},
+		\ketbra{x_-}
+	\biggr\}
+	&&
+	\biggl\{
+		\ketbra{z_+},
+		\ketbra{z_-}
+	\biggr\}
 \end{align}
-\begin{equation}
-	\hat{F}(y)
-	=
-	\int\dd{z}
-	\hat{F}_A(y\vert z)
-	\otimes
-	\tensor[_B]{\ketbra{z}}{_B}
-\end{equation}
+and we predict any outcome with a \SI{50}{\percent} probability.
+So Bob's probability of decoding a $0$ or $1$ bit too \SI{50}{\percent}.
+What is Bob's probability of decoding successfully a $0$ or $1$ bit?
+From a classical point of view, Bob successfully decodes a bit whenever he chooses the same basis as Alice which happens in \SI{50}{\percent} of the events.
+Alternatively,
 \begin{equation}
 	\begin{split}
-		p(y)
+		\mathbb{P}\left[\text{"Bob successfully decodes a bit"}\right]
 		&=
-		\tr\left[
-			\hat{F}(y)
-			\left(\hat\rho_A\otimes\hat\rho_B\right)
-		\right]
+		\mathbb{P}\left[\text{"Alice selects $X$ basis"}\right]
+		\mathbb{P}\left[\text{"Bob selects $X$ basis"}\right]
+		\\
+		&+
+		\mathbb{P}\left[\text{"Alice selects $Z$ basis"}\right]
+		\mathbb{P}\left[\text{"Bob selects $Z$ basis"}\right]
 		\\
 		&=
-		\int\dd{z}
-		\tr_A\biggl[
-			\hat{F}_A(x\vert z)
-			\hat\rho_A
-		\biggr]
-		\tr_B\biggl[
-			\tensor[_B]{\ketbra{z}}{_B}
-			\hat\rho_B
-		\biggr]
-		\\
-		&=
-		\int\dd{x}
-		\int\dd{z}
-		p_A(x)
-		p(y\vert x,z)
-		p_B(z)		
+		\frac{1}{2}
 	\end{split}
 \end{equation}
+
+Alice prepares one of the four states
+\begin{align}
+	\ket{x_+},
+	&
+	\ket{x_-},
+	&
+	\ket{z_+},
+	&
+	\ket{z_-}.
+\end{align}
