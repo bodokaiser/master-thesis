@@ -1,214 +1,235 @@
 \section{Encoder}
 
-Alice prepares a tensor product of $N$ coherent states
 \begin{equation}
 	\bigotimes_{n=1}^N
 	\ket{\alpha_n}_n
-	.
+	\to
+	\ket{\alpha(t)}
 \end{equation}
-where $\alpha_1,\dots,\alpha_N\in\mathbb{C}$ are sampled from a complex normal distribution.
 
-What unitary transformations does Alice need to apply to obtain the time-continuous coherent state?
+\subsection{Single- to continuous-mode}
 
-First, she applies a local time-evolution operator $\hat{U}_n\left(t_0,t_0+nT\right)$ to each coherent state from some initial time $t_0$ to $t_0+t-nT$ where $n$ refers to the state index, i.e.,
+Let us assume there exists a family of functions $\left\{g_{p_0,\sigma}\right\}_{p_0,\sigma\in\mathbb{R}_+}$, the pulse-shape, which is normalized to one
+\begin{equation}
+	\int_\mathbb{R}
+	\dd{t}
+	g_{p_0,\sigma}(t)
+	=
+	1	
+\end{equation}
+and approaches the Delta distribution in the limit of a vanishing $\sigma$
+\begin{equation}
+	g_{p_0,\sigma}(t)
+	\xrightarrow{\sigma\to0}
+	\delta(t)
+\end{equation}
+in the time domain and
+\begin{equation}
+	g_{p_0,\sigma}(p)
+	\xrightarrow{\sigma^{-1}\to0}
+	(2\pi)
+	\delta(p-p_0)
+\end{equation}
+in the frequency domain.
+
+We can write any coherent state with $c\in\mathbb{C}$ as a convolution
 \begin{equation}
 	\begin{split}
-		\bigotimes_{n=1}^N
-		\ket{\alpha_n(t-nT)}_n
+		\ket{cg_{p_0,\sigma}(t)}
 		&=
-		\hat{U}_T(t_0;t_0+t-T,\dots,t_0+t-NT)
-		\left(
-			\bigotimes_{n=1}^N
-			\ket{\alpha_n(t)}_n
-		\right)
+		\ket{(g_{p_0,\sigma}*c\delta)(t)}
 		\\
 		&=
-		\bigotimes_{n=1}^N
-		\hat{U}_{T,n}(t_0,t_0+t-nT)
-		\ket{\alpha_n(t_0)}_n
-		.
-	\end{split}
-\end{equation}
-We interleave the states using a symmetric beam splitter transform, see Ref.~\cite{Zukowski1997} and project the first output
-\begin{equation}
-	\begin{split}
-		\ket{\frac{1}{\sqrt{N}}\sum_{n=1}^N\alpha_n(t-nT)}
+		\hat{D}\left[(g_{p_0,\sigma}*c\delta)(t)\right]
+		\ket{0}
+		\\
+		&\propto
+		\exp\left\{
+			\int_\mathbb{R}
+			\frac{\dd{p}}{2\pi}
+			\mathcal{F}\left[(g_{p_0,\sigma}*c\delta)\right](p)
+			e^{+ipt}
+			\hat{a}^\dagger(p)
+		\right\}
+		\ket{0}
+		\\
 		&=
-		\hat{P}_1
-		\hat{U}_{BS}
-		\left(
-			\bigotimes_{n=1}^N
-			\ket{\alpha_n(t-nT)}_n
-		\right)
-		.
+		\exp\left\{
+			\int_\mathbb{R}
+			\frac{\dd{p}}{2\pi}
+			c
+			\mathcal{F}\left[g_{p_0,\sigma}\right](p)
+			\mathcal{F}\left[\delta\right](p)
+			e^{+ipt}
+			\hat{a}^\dagger(p)
+		\right\}
+		\ket{0}
+		\\
+		&=
+		\exp\left\{
+			\int_\mathbb{R}
+			\frac{\dd{p}}{2\pi}
+			cg_{p_0,\sigma}(p)
+			e^{+ipt}
+			\hat{a}^\dagger(p)
+		\right\}
+		\ket{0}
 	\end{split}
 \end{equation}
-We apply a second beam splitter transform to perform optical filtering
+where we used the convolution theorem, the linearity of the Fourier transform and $\mathcal{F}[\delta]=1$.
+By using the limiting property of the pulse-shape, we obtain the single-mode form
 \begin{equation}
-	\begin{split}
-		\hat{U}
-		\ket{\frac{1}{\sqrt{N}}\sum_{n=1}^N\alpha_n(t-nT)}_a
-		\otimes
-		\ket{0}_B
-	\end{split}
-\end{equation}
-
-\subsection{Pulse-shaping}
-
-Pulse-shaping turns a sequence of (complex) symbols into a time-continuous signal.
-For practical implementations, the pulse-shaping is performed in the digital domain.
-Moving the pulse-shaping to the optical domain allows for a quantum mechanical description.
-
-\begin{figure}[htb]
-	\centering
-    \includestandalone{figures/pstricks/quantum-pulse-shaping}
-    \caption{Fiber-optical setup to perform pulse-shaping in the (quantum) optical domain for three symbols. Each of the three symbols is independently \gls{iq}-modulated on a pulsed laser with increasing time delay. The pulses are coupled together and optically filtered before being passed to a fiber.}\label{fig:quantum_pulse_shaping}
-\end{figure}
-\Cref{fig:quantum_pulse_shaping} presents a fiber-optical setup implementing pulse-shaping in the optical domain for three symbols.
-The generalization to $n$ symbols is straightforward by adding more \gls{iq}-modulated pulsed-lasers with a time delay to the coupler and is discussed in the next paragraphs.
-First, we need to produce independent pulses directly encoding the symbols, symbol pulses, by \gls{iq}-modulating pulsed lasers.
-Second, we add a time delay $nT$ to each symbol pulse equal to the symbol period $T$ multiplied by the symbol index $n$.
-Third, we superimpose the time-delayed symbol pulses through an optical coupler yielding a symbol pulse train.
-Assuming the symbol pulses to be strongly peaked in the time domain, we can approximate the symbol pulse train as a sequence of Dirac pulses.
-Pulse-shaping occurs when the symbol pulse train passes an optical filter.
-We can model the optical filter as a frequency-dependent beam splitter with one vacuum input mode and one output mode dumped.
-
-Let us present the quantum states and transformations relevant to \Cref{fig:quantum_pulse_shaping}.
-The symbol pulse is a continuous-mode coherent state of the form
-\begin{equation}
-	\ket{\alpha(t)}
-	=
-	e^{-\overline{n}/2}
+	\ket{cg_{p_0,\sigma}(t)}
+	\propto
 	\exp\left\{
-		\int_0^\infty\dd{p}
-		\alpha(p)
+		\int_\mathbb{R}
+		\frac{\dd{p}}{2\pi}
+		cg_{p_0,\sigma}(p)
 		e^{+ipt}
 		\hat{a}^\dagger(p)
 	\right\}
 	\ket{0}
+	\xrightarrow{\sigma^{-1}\to0}
+	\exp\left\{
+		c
+		e^{+ip_0t}
+		\hat{a}^\dagger(p_0)
+	\right\}
+	\ket{0}
 \end{equation}
-wherein $\overline{n}$ is the mean photon number and $\alpha(p)$ is some pulse-shape.
-For instance, a Gaussian pulse-shape centered at frequency $p_0$ with spread $\sigma_p$ would take the form
+resembling a plane-wave at frequency $p_0$.
+
+For a pulse train, we can write
 \begin{equation}
-	\alpha(p)
+	\ket{\sum_{n=1}c_ng_{p_0,\sigma}(t-nT)}
+	=
+	\ket{(g*f)(t)}
 	\propto
 	\exp\left\{
-		-\frac{1}{4}\left(\frac{p-p_0}{\sigma_p}\right)^2
-	\right\}
-\end{equation}
-while for a Lorentzian pulse-shape takes the form
-\begin{equation}
-	\alpha(p)
-	\propto
-	\frac{1}{\gamma}
-	\frac{1}{1+\left(\frac{p-p_0}{\gamma}\right)^2}
-\end{equation}
-wherein $\gamma$ is a scale parameter.
-Many other pulse-shapes are possible and we do not want to limit ourselves to a particular pulse-shape.
-However, we require the pulse-shape $\alpha(p)$ to approach a delta distribution in the limit of an infinitely narrow pulse-shape.
-
-Adding a time delay $nT$ is equivalent to time-reversal or inverted time-evolution, i.e.,
-\begin{equation}
-	\hat{U}(t-nT,t)
-	\ket{\alpha(t)}
-	=
-	\ket{\alpha(t-nT)}.
-\end{equation}
-The total quantum state is the tensor product of the individual symbol pulse states
-\begin{equation}
-	\ket{\alpha_1(t-T)}
-	\otimes
-	\ket{\alpha_2(t-2T)}
-	\otimes
-	\dots
-	\otimes
-	\ket{\alpha_N(t-NT)}
-\end{equation}
-where each symbol pulse is time delayed by the symbol period $T$ multiplied by the symbol index $n$.
-According to Ref.~\cite{Zukowski1997}, a symmetric multiport beam splitter has matrix elements
-\begin{equation}
-	U_{mn}
-	=
-	\frac{1}{\sqrt{N}}
-	\left(e^{i2\pi/N}\right)^{(n-1)(m-1)}
-\end{equation}
-and the first output mode of the multiport beam splitter provided the tensor product of symbol pulses is the symbol pulse train
-\begin{equation}
-	\ket{\alpha_1^\prime(t)}
-	=
-	\ket{\sum_{n=1}^NU_{1n}\alpha_n(t-nT)}
-	=
-	\ket{\frac{1}{\sqrt{N}}\sum_{n=1}^N\alpha_n(t-nT)}
-	.
-\end{equation}
-We decompose the spectrum of the symbol pulse train into
-\begin{equation}
-	\alpha_1^\prime(p)
-	=
-	f(p)g(p)
-	.
-\end{equation}
-The first factor $f(p)$ denotes the pulse-shape and the second factor $g(p)$ encodes the symbols
-\begin{equation}
-	g(p)
-	=
-	\frac{1}{\sqrt{N}}
-	\sum_{n=1}^N
-	\alpha_n
-	e^{-ipnT}
-	.
-\end{equation}
-
-Finally, optical filtering is equivalent to applying a unitary beam splitter transform with the second input mode in vacuum, i.e.,
-\begin{equation}
-	\hat{U}\ket{\alpha_1^\prime(t),0}
-	=
-	e^{-\overline{n}_1^\prime/2}
-	\exp\left\{
-		\int_0^\infty\dd{p}
-		\alpha_1^\prime(p)
-		e^{+ipt}
-		\hat{U}
-		\hat{a}^\dagger(p)
-		\hat{U}^\dagger
-	\right\}
-	\ket{0,0}
-\end{equation}
-Taking only the first output mode, we find
-\begin{equation}
-	\ket{\alpha_1^{\prime\prime}}
-	=
-	e^{-\overline{n}_1^{\prime\prime}/2}
-	\exp\left\{
-		\int_0^\infty\dd{p}
-		\alpha_1^{\prime\prime}(p)
-		e^{+ipt}
+		\int_\mathbb{R}
+		\frac{\dd{p}}{2\pi}
+		g_{p_0,\sigma}(p)
+		f(p)e^{+ipt}
 		\hat{a}^\dagger(p)
 	\right\}
 	\ket{0}
 \end{equation}
 wherein
 \begin{equation}
-	\alpha_1^{\prime\prime}(p)
+	f(t)
 	=
-	\cos\left(\theta(p)/2\right)
-	\alpha_1^\prime(p)
+	\sum_{n=1}c_n\delta(t-nT)
+\end{equation}
+encodes the information.
+Again, we take the limit
+\begin{equation}
+	\exp\left\{
+		\int_\mathbb{R}
+		\frac{\dd{p}}{2\pi}
+		g_{p_0,\sigma}(p)
+		f(p)e^{+ipt}
+		\hat{a}^\dagger(p)
+	\right\}
+	\ket{0}
+	\xrightarrow{\sigma^{-1}\to0}
+	\exp\left\{
+		f(p_0)
+		e^{+ip_0t}
+		\hat{a}^\dagger(p_0)
+	\right\}
+	\ket{0}	
+\end{equation}
+to obtain the single-mode result.
+
+When we apply a linear filter, e.g., a beam splitter where we project the first output, we find
+\begin{equation}
+	\hat{P}_1\hat{U}\ket{(g_{p_0,\sigma}*f)(t),0}
 	=
-	\cos\left(\theta(p)/2\right)
-	f(p)g(p)
+	\ket{(g_{p_0,\sigma}*f*h)(t),0}
+\end{equation}
+wherein
+\begin{equation}
+	h(t)
+	=
+	\int_\mathbb{R}
+	\frac{\dd{p}}{\sqrt{2\pi}}
+	\cos(\theta(p)/2)
+	e^{+ipt}
 	.
 \end{equation}
-We define
+By commutativity of the convolution, we can define summarize the pulse-shape and the filter response.
+In that sense, we can ignore the particular pulse-shape.
+
+\subsection{Tensor product to time encoding}
+
+We start of with a tensor product of coherent states
 \begin{equation}
-	h(p)
-	=
-	f(p)
-	\cos\left(\theta(p)/2\right)
+	\bigotimes_{n=1}^N
+	\ket{\alpha_n(t_0)}_n
 \end{equation}
-and use the convolution theorem to write
+and apply to each state the unitary time-evolution, i.e.,
 \begin{equation}
-	\ket{\alpha_1^{\prime\prime}}
+	\hat{U}(t_0,t_0+t-nT)
+	\ket{\alpha_n(t_0)}_n
 	=
-	\ket{\left(h*g\right)(t)}
+	\ket{\alpha_n(t-nT)}_n
 	.
 \end{equation}
+The coherent states are still a tensor product but the states have an increasing time delay
+\begin{equation}
+	\bigotimes_{n=1}^N
+	\ket{\alpha_n(t-nT)}_n
+	.
+\end{equation}
+
+Next, we want to add up all the coherent states.
+The unitary transformation of a symmetric multiport beamsplitter accomplishes this
+\begin{equation}
+	\hat{U}
+	\left(
+		\bigotimes_{n=1}^N
+		\ket{\alpha_n(t-nT)}_n
+	\right)
+	=
+	\bigotimes_{n=1}^N
+	\ket{\sum_{m=1}^NU_{mn}\alpha_n(t-nT)}_n
+\end{equation}
+where the matrix coefficients are given by~\cite{Zukowski1997}
+\begin{equation}
+	U_{mn}
+	=
+	\frac{1}{\sqrt{N}}
+	e^{2i\pi/N(m-1)(n-1)}
+	.
+\end{equation}
+Projecting the first output, we find
+\begin{equation}
+	\hat{P}_1
+	\hat{U}
+	\left(
+		\bigotimes_{n=1}^N
+		\ket{\alpha_n(t-nT)}_n
+	\right)
+	=
+	\ket{\frac{1}{\sqrt{N}}\sum_{n=1}^N\alpha_n(t-nT)}
+	.
+\end{equation}
+However, the amplitudes are attenuated by $1/\sqrt{N}$ which means energy is lost.
+Fortunately, an efficient unitary transform redistributing the modes exists.
+We first consider the case of two in- and outputs, $N=2$, see \Cref{fig:quantum_switch}.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/quantum-switch}
+	\caption{Optical switch with two in- and two outputs: The first input has a coherent state $\ket{\alpha(t-1T)}$. The second input has a coherent state $\ket{\alpha(t-2T)}$. When the first input arrives at $t-1T$, the switch forwards the first input to the first output and the second input to the second output (orange solid line). When the second input arrives at $t-2T$, the switch forwards the first input to the second output and the second input to the first output (dashed orange line). As a result, the first output state is the sum of the two input states and the second output state is the vacuum state.}\label{fig:quantum_switch}
+\end{figure}
+Two time-delayed coherent states at two different input modes are redistributed into the first output mode through an optical switch with infinite bandwidth, i.e., instantaneous switching.
+For $N=2$, we can describe the switch as a beam splitter transform
+\begin{equation}
+	\hat{U}
+	=
+	\begin{pmatrix}
+		\cos(\theta/2) & i\sin(\theta/2) \\
+		-i\sin(\theta/2) & \cos(\theta/2)
+	\end{pmatrix}
+\end{equation}
+where we have $\theta=0$ at $t-1T$ and $\theta=\pi$ at $t-2T$.
