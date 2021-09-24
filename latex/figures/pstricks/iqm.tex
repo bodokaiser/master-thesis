@@ -4,12 +4,11 @@
 \usepackage{pst-optexp}
 
 \begin{document}
-	\begin{pspicture}(-2,-2.75)(10,2.75)
+	\begin{pspicture}(-1,-2.75)(9,2.75)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
 			
-			\optfiber[compname=Fiber1, labelangle=180, labeloffset=1.2](-2,0)(0,0){\textsf{Fiber in}}
 			\optcoupler[compname=Coupler1](0,1)(0,-1)(1,1)(1,-1)
 			\optmzm[compname=MZM1, labelangle=180](2.5,1.5)(3,1.5){\textsf{MZM 1}}
 			\optmzm[compname=MZM2](2.5,-1.5)(3,-1.5){\textsf{MZM 2}}
@@ -17,15 +16,35 @@
 			\optbox[compname=PS1, innerlabel, optboxsize=1 0.8](5,1.5)(6,1.5){$+\phi$}
 			\optbox[compname=PS2, innerlabel, optboxsize=1 0.8](5,-1.5)(6,-1.5){$-\phi$}
 			\optcoupler[compname=Coupler2](7,1.5)(7,-1.5)(8,1.5)(8,-1.5)
-			\optfiber[compname=Fiber2, labelangle=180, labeloffset=1.2](8.5,0)(9.5,0){\textsf{Fiber out}}
 			
-			\drawfiber(-2,0){Fiber1}{Coupler1}{MZM1}{PS1}{Coupler2}
-			\drawfiber{Coupler1}{MZM2}{PS2}{Coupler2}{Fiber2}(10,0)
+			\drawfiber(-1,0){Coupler1}{MZM1}{PS1}{Coupler2}
+			\drawfiber{Coupler1}{MZM2}{PS2}{Coupler2}(10,0)
 			
-			\drawfiber[linecolor=red, linestyle=dashed](-0.5,-1){Coupler1}
-			\drawfiber[linecolor=red, linestyle=dashed](1.5,2.5){MZM1}(4,2.5)
-			\drawfiber[linecolor=red, linestyle=dashed](1.5,-2.5){MZM2}(4,-2.5)
-			\drawfiber[linecolor=red, linestyle=dashed]{Coupler2}(8.5,-1)
+			\drawfiber[linestyle=dashed](-0.5,-1){Coupler1}
+			\drawfiber[linestyle=dashed](1.5,2.5){MZM1}(4,2.5)
+			\drawfiber[linestyle=dashed](1.5,-2.5){MZM2}(4,-2.5)
+			\drawfiber[linestyle=dashed]{Coupler2}(8.5,-1)
+			
+			\rput(-0.5,0.25){$\hat{a}_1$}
+			\rput(-0.5,-0.7){$\hat{a}_2$}
+			
+			\rput(1.2,1){$\hat{a}_1^\prime$}
+			\rput(1.2,-1){$\hat{a}_2^\prime$}
+			
+			\rput(0.8,2.4){$\hat{a}_3=\hat{a}_3^\prime$}
+			\rput(0.8,-2.4){$\hat{a}_4=\hat{a}_4^\prime$}
+
+			\rput(4.3,2.4){$\hat{a}_3^{\prime\prime}$}
+			\rput(4.3,-2.4){$\hat{a}_4^{\prime\prime}$}
+			
+			\rput(4.3,1.2){$\hat{a}_1^{\prime\prime}$}
+			\rput(4.3,-1.2){$\hat{a}_2^{\prime\prime}$}
+			
+			\rput(7,1){$\hat{a}_1^{\prime\prime\prime}$}
+			\rput(7,-1){$\hat{a}_2^{\prime\prime\prime}$}
+			
+			\rput(8.6,0.25){$\hat{a}_1^{\prime\prime\prime\prime}$}
+			\rput(8.6,-0.7){$\hat{a}_2^{\prime\prime\prime\prime}$}
 		\end{optexp}
 	\end{pspicture}
 \end{document}

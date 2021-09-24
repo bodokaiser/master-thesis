@@ -7,68 +7,44 @@
 	\includestandalone{figures/pstricks/mzi-symmetric}
 	\caption{Free-space setup of a symmetric \gls{mzi}: The input light field enters a first beam splitter BS1 from the left. The light field exits BS1 to the right and the bottom. Right of BS1, a first phase shifter adds a relative phase of $\varphi_1$. Right of the first phase shifter, a first mirror M1 reflects the light to the bottom, hitting a second beam splitter BS2 from the top. Below BS1, a second mirror M2 directs the light to the right, where a second phase shifter adds a relative phase of $\varphi_2$, and the light hits BS2 from the left.}
 \end{figure}
-
-\begin{align}
-	U_\text{PS}(\varphi,\phi)
-	&=
-	\begin{pmatrix}
-		e^{i\varphi} & 0 \\
-		0 & e^{i\phi}
-	\end{pmatrix}
-	&
-	U_\text{BS}(\theta)
-	&=
-	\begin{pmatrix}
-		\cos(\theta/2) & i\sin(\theta/2) \\
-		i\sin(\theta/2) & \cos(\theta/2)
-	\end{pmatrix}
-\end{align}
-
 \begin{equation}
 	\begin{split}
-		U_\text{MZM}(\varphi_1,\varphi_2)
+		\begin{pmatrix}
+			\hat{a}_1^\prime \\
+			\hat{a}_2^\prime
+		\end{pmatrix}
 		&=
+		\frac{1}{\sqrt{2}}
+		\begin{pmatrix}
+			i & 1 \\
+			1 & i
+		\end{pmatrix}
+		\begin{pmatrix}
+			ie^{i\varphi_1} & 0 \\
+			0 & ie^{i\varphi_2}
+		\end{pmatrix}
 		\frac{1}{\sqrt{2}}
 		\begin{pmatrix}
 			1 & i \\
 			i & 1
 		\end{pmatrix}
 		\begin{pmatrix}
-			e^{i\pi} & 0 \\
-			0 & e^{i\varphi_2}
-		\end{pmatrix}
-		\begin{pmatrix}
-			e^{i\varphi_1} & 0 \\
-			0 & e^{i\pi}
-		\end{pmatrix}
-		\frac{1}{\sqrt{2}}
-		\begin{pmatrix}
-			1 & i \\
-			i & 1
+			\hat{a}_1 \\
+			\hat{a}_2
 		\end{pmatrix}
 		\\
 		&=
-		\frac{1}{2}
+		e^{i\frac{\varphi_1+\varphi_2}{2}+i\pi}
 		\begin{pmatrix}
-			e^{i\varphi_1}-e^{i\varphi_2} & ie^{i\varphi_1}+ie^{i\varphi_2} \\
-			ie^{i\varphi_1}+ie^{i\varphi_2} & -e^{i\varphi_1}+e^{i\varphi_2}
+			\cos(\frac{\varphi_2-\varphi_1}{2}) & \sin(\frac{\varphi_2-\varphi_1}{2}) \\
+			-\sin(\frac{\varphi_2-\varphi_1}{2}) & \cos(\frac{\varphi_2-\varphi_1}{2})
 		\end{pmatrix}
-		\\
-		&=
-		i
 		\begin{pmatrix}
-			\sin(\frac{\varphi_1-\varphi_2}{2}) & \cos(\frac{\varphi_1-\varphi_2}{2}) \\
-			\cos(\frac{\varphi_1-\varphi_2}{2}) & -\sin(\frac{\varphi_1-\varphi_2}{2})
+			\hat{a}_1 \\
+			\hat{a}_2
 		\end{pmatrix}
-		e^{i(\varphi_1+\varphi_2)/2}
 	\end{split}
 \end{equation}
-
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/pstricks/mzm-symmetric}
-	\caption{Fiber-optical setup of a symmetric \gls{mzm}: A first coupler is connected with an input fiber and a vacuum input (red dashed line). The first coupler splits into an upper and lower branch. The upper branch passes phase modulator with phase shift $\varphi_1$. The lower branch passes a phase modulator with phase shift $\varphi_2$. A second coupler combines the output of the phase modulators. One output of the second coupler is connected to an output fiber while the other output is dumped (red dashed line).}
-\end{figure}
 
 \begin{table}[htb]
 	\centering
@@ -84,24 +60,57 @@
 \end{table}
 
 \begin{equation}
-	U_\text{mzm}(\varphi_1=\varphi,\varphi_2=-\varphi)
-	=
-	i
 	\begin{pmatrix}
-		\sin(\varphi) & \cos(\varphi) \\
-		\cos(\varphi) & -\sin(\varphi)
+		\hat{a}_1^\prime \\
+		\hat{a}_2^\prime
 	\end{pmatrix}
+		\begin{pmatrix}
+			\cos(\theta) & \sin(\theta) \\
+			-\sin(\theta) & \cos(\theta)
+		\end{pmatrix}
+		\begin{pmatrix}
+			\hat{a}_1 \\
+			\hat{a}_2
+		\end{pmatrix}
 \end{equation}
+
 \begin{equation}
-	U_\text{mzm}(\varphi_1=\varphi,\varphi_2=\varphi)
+	\hat{U}(\theta)
 	=
-	i
-	e^{i\varphi}
-	\begin{pmatrix}
-		0 & 1 \\
-		1 & 0
-	\end{pmatrix}
+	e^{i\theta\left(
+		\hat{a}_1
+		\hat{a}_2^\dagger
+		-
+		\hat{a}_1^\dagger
+		\hat{a}_2
+	\right)}
 \end{equation}
+
+\begin{align}
+	\hat{a}_1^\prime
+	&=
+	\hat{U}^\dagger(\theta)
+	\hat{a}_1
+	\hat{U}(\theta)
+	=
+	\cos(\theta)
+	\hat{a}_1
+	+
+	\sin(\theta)
+	\hat{a}_2
+	\\
+	\hat{a}_2^\prime
+	&=
+	\hat{U}^\dagger(\theta)
+	\hat{a}_2
+	\hat{U}(\theta)
+	=
+	\cos(\theta)
+	\hat{a}_2
+	-
+	\sin(\theta)
+	\hat{a}_1
+\end{align}
 
 \subsection{I/Q modulator}
 
@@ -110,3 +119,120 @@
 	\includestandalone{figures/pstricks/iqm}
 	\caption{\gls{iq}-modulator comprising three \gls{mzm} and connected by an input and output fiber. MZM 1 and MZM 2, are used in push-pull configuration for \gls{am}. MZM 3 is used in push-push configuration for setting the relative phase between the upper and lower branch. Vacuum in- and outputs are indicated by the red dashed fiber.}
 \end{figure}
+
+\begin{equation}
+	\begin{pmatrix}
+		\hat{a}_1^\prime \\
+		\hat{a}_2^\prime
+	\end{pmatrix}
+	=
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		 1 & ie^{+i\varphi_1} \\
+		 ie^{-i\varphi_1} & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		\hat{a}_1 \\
+		\hat{a}_2
+	\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+	\begin{pmatrix}
+		\hat{a}_3^{\prime\prime} \\
+		\hat{a}_1^{\prime\prime}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		 \cos\theta_1 & \sin\theta_1 \\
+		 -\sin\theta_1 & \cos\theta_1
+	\end{pmatrix}
+	\begin{pmatrix}
+		\hat{a}_3^\prime \\
+		\hat{a}_1^\prime
+	\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+	\begin{pmatrix}
+		\hat{a}_1^{\prime\prime} \\
+		\hat{a}_2^{\prime\prime} \\
+		\hat{a}_3^{\prime\prime} \\
+		\hat{a}_4^{\prime\prime}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		 \cos\theta_1 & 0 & -\sin\theta_1 & 0 \\
+		 0 & \cos\theta_2 & 0 & \sin\theta_2 \\
+		 \sin\theta_1 & 0 & \cos\theta_1 & 0 \\
+		 0 & -\sin\theta_2 & 0 & \cos\theta_2 \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		\hat{a}_1^{\prime} \\
+		\hat{a}_2^{\prime} \\
+		\hat{a}_3^{\prime} \\
+		\hat{a}_4^{\prime}
+	\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+	\begin{pmatrix}
+		\hat{a}_2^{\prime\prime} \\
+		\hat{a}_4^{\prime\prime}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		 \cos\theta_2 & \sin\theta_2 \\
+		 -\sin\theta_2 & \cos\theta_2
+	\end{pmatrix}
+	\begin{pmatrix}
+		\hat{a}_2^\prime \\
+		\hat{a}_4^\prime
+	\end{pmatrix}
+\end{equation}
+
+
+\begin{equation}
+	\begin{split}
+		\begin{pmatrix}
+			\hat{a}_1^{\prime\prime\prime\prime} \\
+			\hat{a}_2^{\prime\prime\prime\prime}
+		\end{pmatrix}
+		&=
+		\frac{1}{\sqrt{2}}
+		\begin{pmatrix}
+			1 & ie^{+i\varphi_2} \\
+			ie^{-i\varphi_2} & 1
+		\end{pmatrix}
+		\begin{pmatrix}
+			\hat{a}_1^{\prime\prime\prime} \\
+			\hat{a}_2^{\prime\prime\prime}
+		\end{pmatrix}
+		\\
+		&=
+		\frac{1}{\sqrt{2}}
+		\begin{pmatrix}
+			1 & ie^{+i\varphi_2} \\
+			ie^{-i\varphi_2} & 1
+		\end{pmatrix}
+		\begin{pmatrix}
+			e^{+i\phi} & 0 \\
+			0 & e^{-i\phi}
+		\end{pmatrix}
+		\begin{pmatrix}
+			\hat{a}_1^{\prime\prime} \\
+			\hat{a}_2^{\prime\prime}
+		\end{pmatrix}
+		\\
+		&=
+		\frac{1}{\sqrt{2}}
+		\begin{pmatrix}
+			e^{+i\phi} & ie^{+i(\varphi_2-\phi)} \\
+			ie^{-i(\varphi_2-\phi)} & e^{-i\phi}
+		\end{pmatrix}
+		\begin{pmatrix}
+			\hat{a}_1^{\prime\prime} \\
+			\hat{a}_2^{\prime\prime}
+		\end{pmatrix}
+	\end{split}
+\end{equation}
