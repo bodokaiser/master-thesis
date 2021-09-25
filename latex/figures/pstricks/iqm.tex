@@ -13,8 +13,8 @@
 			\optmzm[compname=MZM1, labelangle=180](2.5,1.5)(3,1.5){\textsf{MZM 1}}
 			\optmzm[compname=MZM2](2.5,-1.5)(3,-1.5){\textsf{MZM 2}}
 %			\optmzm[compname=MZM3](5,0)(6,0){\textsf{MZM 3}}
-			\optbox[compname=PS1, innerlabel, optboxsize=1 0.8](5,1.5)(6,1.5){$+\phi$}
-			\optbox[compname=PS2, innerlabel, optboxsize=1 0.8](5,-1.5)(6,-1.5){$-\phi$}
+			\optbox[compname=PS1, innerlabel, optboxsize=1 0.8](5,1.5)(6,1.5){$+\phi/2$}
+			\optbox[compname=PS2, innerlabel, optboxsize=1 0.8](5,-1.5)(6,-1.5){$-\phi/2$}
 			\optcoupler[compname=Coupler2](7,1.5)(7,-1.5)(8,1.5)(8,-1.5)
 			
 			\drawfiber(-1,0){Coupler1}{MZM1}{PS1}{Coupler2}
@@ -25,26 +25,23 @@
 			\drawfiber[linestyle=dashed](1.5,-2.5){MZM2}(4,-2.5)
 			\drawfiber[linestyle=dashed]{Coupler2}(8.5,-1)
 			
-			\rput(-0.5,0.25){$\hat{a}_1$}
-			\rput(-0.5,-0.7){$\hat{a}_2$}
+			\rput(-0.5,0.25){$\hat{a}_2$}
+			\rput(-0.5,-0.7){$\hat{a}_3$}
 			
-			\rput(1.2,1){$\hat{a}_1^\prime$}
-			\rput(1.2,-1){$\hat{a}_2^\prime$}
+			\rput(1.2,1){$\hat{a}_2^\prime$}
+			\rput(1.2,-1){$\hat{a}_3^\prime$}
 			
-			\rput(0.8,2.4){$\hat{a}_3=\hat{a}_3^\prime$}
+			\rput(0.8,2.4){$\hat{a}_1=\hat{a}_1^\prime$}
 			\rput(0.8,-2.4){$\hat{a}_4=\hat{a}_4^\prime$}
 
-			\rput(4.3,2.4){$\hat{a}_3^{\prime\prime}$}
-			\rput(4.3,-2.4){$\hat{a}_4^{\prime\prime}$}
+			\rput[l](4.1,2.4){$\hat{a}_1^{\prime\prime}=\hat{a}_1^{\prime\prime\prime}$}
+			\rput[l](4.1,-2.4){$\hat{a}_4^{\prime\prime}=\hat{a}_4^{\prime\prime\prime}$}
 			
-			\rput(4.3,1.2){$\hat{a}_1^{\prime\prime}$}
-			\rput(4.3,-1.2){$\hat{a}_2^{\prime\prime}$}
+			\rput[l](4.1,1.2){$\hat{a}_2^{\prime\prime}$}
+			\rput[l](4.1,-1.2){$\hat{a}_3^{\prime\prime}$}
 			
-			\rput(7,1){$\hat{a}_1^{\prime\prime\prime}$}
-			\rput(7,-1){$\hat{a}_2^{\prime\prime\prime}$}
-			
-			\rput(8.6,0.25){$\hat{a}_1^{\prime\prime\prime\prime}$}
-			\rput(8.6,-0.7){$\hat{a}_2^{\prime\prime\prime\prime}$}
+			\rput(8.6,0.25){$\hat{a}_2^{\prime\prime\prime}$}
+			\rput(8.6,-0.7){$\hat{a}_3^{\prime\prime\prime}$}
 		\end{optexp}
 	\end{pspicture}
 \end{document}

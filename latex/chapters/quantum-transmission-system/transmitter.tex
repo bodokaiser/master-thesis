@@ -121,118 +121,97 @@
 \end{figure}
 
 \begin{equation}
-	\begin{pmatrix}
-		\hat{a}_1^\prime \\
-		\hat{a}_2^\prime
-	\end{pmatrix}
-	=
-	\frac{1}{\sqrt{2}}
-	\begin{pmatrix}
-		 1 & ie^{+i\varphi_1} \\
-		 ie^{-i\varphi_1} & 1
-	\end{pmatrix}
-	\begin{pmatrix}
-		\hat{a}_1 \\
-		\hat{a}_2
-	\end{pmatrix}
-\end{equation}
-
-\begin{equation}
-	\begin{pmatrix}
-		\hat{a}_3^{\prime\prime} \\
-		\hat{a}_1^{\prime\prime}
-	\end{pmatrix}
-	=
-	\begin{pmatrix}
-		 \cos\theta_1 & \sin\theta_1 \\
-		 -\sin\theta_1 & \cos\theta_1
-	\end{pmatrix}
-	\begin{pmatrix}
-		\hat{a}_3^\prime \\
-		\hat{a}_1^\prime
-	\end{pmatrix}
-\end{equation}
-
-\begin{equation}
-	\begin{pmatrix}
-		\hat{a}_1^{\prime\prime} \\
-		\hat{a}_2^{\prime\prime} \\
-		\hat{a}_3^{\prime\prime} \\
-		\hat{a}_4^{\prime\prime}
-	\end{pmatrix}
-	=
-	\begin{pmatrix}
-		 \cos\theta_1 & 0 & -\sin\theta_1 & 0 \\
-		 0 & \cos\theta_2 & 0 & \sin\theta_2 \\
-		 \sin\theta_1 & 0 & \cos\theta_1 & 0 \\
-		 0 & -\sin\theta_2 & 0 & \cos\theta_2 \\
-	\end{pmatrix}
-	\begin{pmatrix}
-		\hat{a}_1^{\prime} \\
-		\hat{a}_2^{\prime} \\
-		\hat{a}_3^{\prime} \\
-		\hat{a}_4^{\prime}
-	\end{pmatrix}
-\end{equation}
-
-\begin{equation}
-	\begin{pmatrix}
-		\hat{a}_2^{\prime\prime} \\
-		\hat{a}_4^{\prime\prime}
-	\end{pmatrix}
-	=
-	\begin{pmatrix}
-		 \cos\theta_2 & \sin\theta_2 \\
-		 -\sin\theta_2 & \cos\theta_2
-	\end{pmatrix}
-	\begin{pmatrix}
-		\hat{a}_2^\prime \\
-		\hat{a}_4^\prime
-	\end{pmatrix}
-\end{equation}
-
-
-\begin{equation}
 	\begin{split}
 		\begin{pmatrix}
-			\hat{a}_1^{\prime\prime\prime\prime} \\
-			\hat{a}_2^{\prime\prime\prime\prime}
-		\end{pmatrix}
-		&=
-		\frac{1}{\sqrt{2}}
-		\begin{pmatrix}
-			1 & ie^{+i\varphi_2} \\
-			ie^{-i\varphi_2} & 1
-		\end{pmatrix}
-		\begin{pmatrix}
 			\hat{a}_1^{\prime\prime\prime} \\
-			\hat{a}_2^{\prime\prime\prime}
+			\hat{a}_2^{\prime\prime\prime} \\
+			\hat{a}_3^{\prime\prime\prime} \\
+			\hat{a}_4^{\prime\prime\prime}
 		\end{pmatrix}
-		\\
 		&=
-		\frac{1}{\sqrt{2}}
 		\begin{pmatrix}
-			1 & ie^{+i\varphi_2} \\
-			ie^{-i\varphi_2} & 1
-		\end{pmatrix}
-		\begin{pmatrix}
-			e^{+i\phi} & 0 \\
-			0 & e^{-i\phi}
+			 1 & 0 & 0 & 0 \\
+			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}U_\text{PS}$}} & 0 \\
+			 0 & & & 0 \\
+			 0 & 0 & 0 & 1
 		\end{pmatrix}
 		\begin{pmatrix}
 			\hat{a}_1^{\prime\prime} \\
-			\hat{a}_2^{\prime\prime}
+			\hat{a}_2^{\prime\prime} \\
+			\hat{a}_3^{\prime\prime} \\
+			\hat{a}_4^{\prime\prime}
 		\end{pmatrix}
 		\\
 		&=
-		\frac{1}{\sqrt{2}}
 		\begin{pmatrix}
-			e^{+i\phi} & ie^{+i(\varphi_2-\phi)} \\
-			ie^{-i(\varphi_2-\phi)} & e^{-i\phi}
+			 1 & 0 & 0 & 0 \\
+			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}U_\text{PS}$}} & 0 \\
+			 0 & & & 0 \\
+			 0 & 0 & 0 & 1
 		\end{pmatrix}
 		\begin{pmatrix}
-			\hat{a}_1^{\prime\prime} \\
-			\hat{a}_2^{\prime\prime}
+			 \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM1}$}} & 0 & 0 \\
+			 & & 0 & 0 \\
+			 0 & 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM2}$}} \\
+			 0 & 0 & & \\
+		\end{pmatrix}
+		\begin{pmatrix}
+			\hat{a}_1^\prime \\
+			\hat{a}_2^\prime \\
+			\hat{a}_3^\prime \\
+			\hat{a}_4^\prime
+		\end{pmatrix}
+		\\
+		&=
+		\begin{pmatrix}
+			 1 & 0 & 0 & 0 \\
+			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}U_\text{PS}$}} & 0 \\
+			 0 & & & 0 \\
+			 0 & 0 & 0 & 1
+		\end{pmatrix}
+		\begin{pmatrix}
+			 \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM1}$}} & 0 & 0 \\
+			 & & 0 & 0 \\
+			 0 & 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM2}$}} \\
+			 0 & 0 & & \\
+		\end{pmatrix}
+		\begin{pmatrix}
+			 1 & 0 & 0 & 0 \\
+			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS1}$}} & 0 \\
+			 0 & & & 0 \\
+			 0 & 0 & 0 & 1
+		\end{pmatrix}
+		\begin{pmatrix}
+			\hat{a}_1 \\
+			\hat{a}_2 \\
+			\hat{a}_3 \\
+			\hat{a}_4
 		\end{pmatrix}
 	\end{split}
+\end{equation}
+
+\begin{equation}
+	\vb{\hat{a}}^{\prime\prime\prime}
+	=
+	\left[
+		\mathbb{I}_1
+		\otimes
+		U_\text{BS2}
+		U_\text{PS}
+		\otimes
+		\mathbb{I}_1
+	\right]
+	\left[
+		U_\text{MZM1}
+		\otimes
+		U_\text{MZM2}
+	\right]
+	\left[
+		\mathbb{I}_1
+		\otimes
+		U_\text{BS1}
+		\otimes
+		\mathbb{I}_1
+	\right]
+	\vb{\hat{a}}
 \end{equation}
