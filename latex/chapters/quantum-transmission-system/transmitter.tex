@@ -5,45 +5,81 @@
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/mzi-symmetric}
-	\caption{Free-space setup of a symmetric \gls{mzi}: The input light field enters a first beam splitter BS1 from the left. The light field exits BS1 to the right and the bottom. Right of BS1, a first phase shifter adds a relative phase of $\varphi_1$. Right of the first phase shifter, a first mirror M1 reflects the light to the bottom, hitting a second beam splitter BS2 from the top. Below BS1, a second mirror M2 directs the light to the right, where a second phase shifter adds a relative phase of $\varphi_2$, and the light hits BS2 from the left.}
+	\caption{Free-space setup of a symmetric \gls{mzm}: The input light mode $\hat{a}_1$ enters a first beam splitter BS1 from the left. A vacuum light mode $\hat{a}_2$ enters BS2 from the top. The transformed mode $\hat{a}_1^\prime$ and $\hat{a}_2^\prime$ exit BS1 to the right and the bottom. A first phase shifter and first mirror M1, right to BS1, add a relative phase of $\varphi_1+\pi$ from mode $\hat{a}_1$ to $\hat{a}_1^{\prime\prime}$. Below BS1, a second mirror M2 directs the light to a right second phase shifter, both adding a relative phase of $\varphi_2+\pi$ from mode $\hat{a}_2^\prime$ to $\hat{a}_2^{\prime\prime}$. A second beam splitter BS2 transforms the input modes $\hat{a}_1^{\prime\prime}$ and $\hat{a}_2^{\prime\prime}$ to the output modes $\hat{a}_1^{\prime\prime\prime}$ and $\hat{a}_2^{\prime\prime\prime}$.}
 \end{figure}
+
 \begin{equation}
 	\begin{split}
 		\begin{pmatrix}
-			\hat{a}_1^\prime \\
-			\hat{a}_2^\prime
+			\hat{a}_1^{\prime\prime\prime} \\
+			\hat{a}_2^{\prime\prime\prime}
 		\end{pmatrix}
-		&=
-		\frac{1}{\sqrt{2}}
+		=
+		U_\text{BS2}
 		\begin{pmatrix}
-			i & 1 \\
-			1 & i
+			\hat{a}_1^{\prime\prime} \\
+			\hat{a}_2^{\prime\prime}
 		\end{pmatrix}
+		=
+		U_\text{BS2}
+		U_\text{PS}
 		\begin{pmatrix}
-			ie^{i\varphi_1} & 0 \\
-			0 & ie^{i\varphi_2}
+			\hat{a}_1^{\prime} \\
+			\hat{a}_2^{\prime}
 		\end{pmatrix}
-		\frac{1}{\sqrt{2}}
-		\begin{pmatrix}
-			1 & i \\
-			i & 1
-		\end{pmatrix}
-		\begin{pmatrix}
-			\hat{a}_1 \\
-			\hat{a}_2
-		\end{pmatrix}
-		\\
-		&=
-		e^{i\frac{\varphi_1+\varphi_2}{2}+i\pi}
-		\begin{pmatrix}
-			\cos(\frac{\varphi_2-\varphi_1}{2}) & \sin(\frac{\varphi_2-\varphi_1}{2}) \\
-			-\sin(\frac{\varphi_2-\varphi_1}{2}) & \cos(\frac{\varphi_2-\varphi_1}{2})
-		\end{pmatrix}
+		=
+		U_\text{BS2}
+		U_\text{PS}
+		U_\text{BS1}
 		\begin{pmatrix}
 			\hat{a}_1 \\
 			\hat{a}_2
 		\end{pmatrix}
 	\end{split}
+\end{equation}
+wherein
+\begin{align}
+	U_\text{BS1}
+	&=
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 & i \\
+		i & 1
+	\end{pmatrix}
+	&
+	U_\text{PS}
+	&=
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		ie^{i\varphi_1} & 0 \\
+		0 & ie^{i\varphi_2}
+	\end{pmatrix}
+	&
+	U_\text{BS2}
+	&=
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		i & 1 \\
+		1 & i
+	\end{pmatrix}
+\end{align}
+
+
+\begin{equation}
+	\begin{pmatrix}
+		\hat{a}_1^{\prime\prime\prime} \\
+		\hat{a}_2^{\prime\prime\prime}
+	\end{pmatrix}
+	=
+	ie^{i\frac{\varphi_1+\varphi_2}{2}}
+	\begin{pmatrix}
+		\cos(\frac{\varphi_2-\varphi_1}{2}) & \sin(\frac{\varphi_2-\varphi_1}{2}) \\
+		-\sin(\frac{\varphi_2-\varphi_1}{2}) & \cos(\frac{\varphi_2-\varphi_1}{2})
+	\end{pmatrix}
+	\begin{pmatrix}
+		\hat{a}_1 \\
+		\hat{a}_2
+	\end{pmatrix}
 \end{equation}
 
 \begin{table}[htb]
@@ -60,57 +96,55 @@
 \end{table}
 
 \begin{equation}
-	\begin{pmatrix}
-		\hat{a}_1^\prime \\
-		\hat{a}_2^\prime
-	\end{pmatrix}
+	\begin{split}
 		\begin{pmatrix}
-			\cos(\theta) & \sin(\theta) \\
-			-\sin(\theta) & \cos(\theta)
+			\hat{a}_1^\prime \\
+			\hat{a}_2^\prime
+		\end{pmatrix}
+		&=
+		\exp(-i\theta\hat{L}_y)
+		\begin{pmatrix}
+			\hat{a}_1 \\
+			\hat{a}_2
+		\end{pmatrix}
+		\exp(+i\theta\hat{L}_y)
+		\\
+		&=
+		\begin{pmatrix}
+			\cos(\theta/2) & \sin(\theta/2) \\
+			-\sin(\theta/2) & \cos(\theta/2)
 		\end{pmatrix}
 		\begin{pmatrix}
 			\hat{a}_1 \\
 			\hat{a}_2
 		\end{pmatrix}
+	\end{split}
 \end{equation}
-
+wherein~\cite[p.~97]{Leonhardt2010}
 \begin{equation}
-	\hat{U}(\theta)
+	\hat{L}_y
 	=
-	e^{i\theta\left(
+	\frac{1}{2}
+	\begin{pmatrix}
+		\hat{a}_1^\dagger,
+		\hat{a}_2^\dagger
+	\end{pmatrix}
+	\sigma_y
+	\begin{pmatrix}
+		\hat{a}_1 \\
+		\hat{a}_2
+	\end{pmatrix}
+	=
+	\frac{i}{2}
+	\left(
 		\hat{a}_1
 		\hat{a}_2^\dagger
 		-
 		\hat{a}_1^\dagger
 		\hat{a}_2
-	\right)}
+	\right)
+	.
 \end{equation}
-
-\begin{align}
-	\hat{a}_1^\prime
-	&=
-	\hat{U}^\dagger(\theta)
-	\hat{a}_1
-	\hat{U}(\theta)
-	=
-	\cos(\theta)
-	\hat{a}_1
-	+
-	\sin(\theta)
-	\hat{a}_2
-	\\
-	\hat{a}_2^\prime
-	&=
-	\hat{U}^\dagger(\theta)
-	\hat{a}_2
-	\hat{U}(\theta)
-	=
-	\cos(\theta)
-	\hat{a}_2
-	-
-	\sin(\theta)
-	\hat{a}_1
-\end{align}
 
 \subsection{I/Q modulator}
 

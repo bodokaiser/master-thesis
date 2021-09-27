@@ -21,9 +21,22 @@
             \mirror[compname=M1, labeloffset=0.6](BS1)(M1)(BS2){M1}
             \beamsplitter[compname=BS2, labelangle=-45, labeloffset=1](M1)(BS2)(M2){BS2}
             \mirror[compname=M2, labeloffset=0.6](BS1)(M2)(BS2){M2}
-            \optbox[compname=PS2, innerlabel, optboxsize=1.0 0.8](M2)(BS2){$\varphi_2$}			\drawbeam(IN1){BS1}{M2}{PS2}
+            \optbox[compname=PS2, innerlabel, optboxsize=1.0 0.8](M2)(BS2){$\varphi_2$}
+			\drawbeam(IN1){BS1}{M2}{PS2}
 			\drawbeam{PS2}{BS2}(OUT1)
 			\drawbeam(IN1){BS1}{PS1}
-			\drawbeam{PS1}{M1}{BS2}(OUT2)        \end{optexp}
+			\drawbeam{PS1}{M1}{BS2}(OUT2)
+
+			\rput(1.25,4.75){$\hat{a}_1$}
+			\rput(3.5,5.25){$\hat{a}_1^\prime$}
+			
+			\rput(2,5.75){$\hat{a}_2$}
+			\rput(1.75,3.5){$\hat{a}_2^\prime$}
+			
+			\rput(9.25,3.5){$\hat{a}_1^{\prime\prime}$}
+			\rput(7.25,1.75){$\hat{a}_2^{\prime\prime}$}
+			
+			\rput(8.75,1.25){$\hat{a}_1^{\prime\prime\prime}$}
+			\rput(9.75,2.25){$\hat{a}_2^{\prime\prime\prime}$}        \end{optexp}
     \end{pspicture}
 \end{document}
