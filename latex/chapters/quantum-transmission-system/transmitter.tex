@@ -337,6 +337,8 @@ where we used
 \begin{equation}
 	\vb{\hat{a}}^{\prime\prime\prime}
 	=
+	U_\text{IQ}
+	=
 	\left[
 		\mathbb{I}_1
 		\otimes
@@ -358,4 +360,173 @@ where we used
 		\mathbb{I}_1
 	\right]
 	\vb{\hat{a}}
+\end{equation}
+
+\begin{align}
+	U_\text{BS1}
+	=
+	U_\text{BS2}
+	&=
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 & 1 \\
+		-1 & 1
+	\end{pmatrix}
+	&
+	U_\text{PS}
+	&=
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		e^{+i\phi/2} & 0 \\
+		0 & e^{-i\phi/2}
+	\end{pmatrix}
+\end{align}
+
+\begin{equation}
+	\hat{U}_\text{IQ}(\theta_1,\theta_2,\phi)
+	=
+	e^{i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
+	e^{i\theta_1\hat{L}_y^{(1,2)}}
+	e^{i\theta_2\hat{L}_y^{(3,4)}}
+	e^{i\phi\hat{L}_z^{(2,3)}}
+	e^{i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
+\end{equation}
+wherein
+\begin{align}
+	\hat{L}_y^{(1,2)}
+	&=
+	\frac{i}{2}
+	\left(
+		\hat{a}_2^\dagger
+		\hat{a}_1
+		-
+		\hat{a}_2
+		\hat{a}_1^\dagger
+	\right)
+	\\
+	\hat{L}_y^{(2,3)}
+	&=
+	\frac{i}{2}
+	\left(
+		\hat{a}_3^\dagger
+		\hat{a}_2
+		-
+		\hat{a}_3
+		\hat{a}_2^\dagger
+	\right)
+	\\
+	\hat{L}_y^{(3,4)}
+	&=
+	\frac{i}{2}
+	\left(
+		\hat{a}_4^\dagger
+		\hat{a}_3
+		-
+		\hat{a}_4
+		\hat{a}_3^\dagger
+	\right)
+	\\
+	\hat{L}_z^{(2,3)}
+	&=
+	\frac{1}{2}
+	\left(
+		\hat{a}_1^\dagger
+		\hat{a}_1
+		-
+		\hat{a}_2
+		\hat{a}_2^\dagger
+	\right)
+\end{align}
+
+\begin{equation}
+	\begin{split}
+		\hat{U}_\text{IQ}^\dagger(\theta_1,\theta_2,\phi)
+		&=
+		e^{-i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
+		e^{-i\phi\hat{L}_z^{(2,3)}}
+		e^{-i\theta_2\hat{L}_y^{(3,4)}}
+		e^{-i\theta_1\hat{L}_y^{(1,2)}}
+		e^{-i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
+	\end{split}
+\end{equation}
+
+\begin{equation}
+	\begin{split}
+		\comm{\hat{L}_z^{(2,3)}}{\hat{L}_y^{(1,2)}}
+		&=
+		\frac{i}{4}
+		\comm{\hat{a}_2^\dagger\hat{a}_2-\hat{a}_3^\dagger\hat{a}_3}{\hat{a}_2^\dagger\hat{a}_1-\hat{a}_1^\dagger\hat{a}_2}
+		\\
+		&=
+		\frac{i}{4}
+		\comm{\hat{a}_2^\dagger\hat{a}_2}{\hat{a}_2^\dagger\hat{a}_1}
+		-
+		\frac{i}{4}
+		\comm{\hat{a}_2^\dagger\hat{a}_2}{\hat{a}_1^\dagger\hat{a}_2}
+		\\
+		&=
+		\frac{i}{4}
+		\hat{a}_2^\dagger
+		\comm{\hat{a}_2}{\hat{a}_2^\dagger}
+		\hat{a}_1
+		-
+		\frac{i}{4}
+		\hat{a}_1^\dagger
+		\comm{\hat{a}_2^\dagger}{\hat{a}_2}
+		\hat{a}_2
+		\\
+		&=
+		\frac{1}{2}
+		\frac{i}{2}
+		\left(
+			\hat{a}_2^\dagger
+			\hat{a}_1
+			+
+			\hat{a}_1^\dagger
+			\hat{a}_2
+		\right)
+		\\
+		&=
+		\frac{i}{2}\hat{L}_x
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		\comm{\hat{L}_z^{(2,3)}}{\hat{L}_y^{(3,4)}}
+		&=
+		\frac{i}{4}
+		\comm{\hat{a}_2^\dagger\hat{a}_2-\hat{a}_3^\dagger\hat{a}_3}{\hat{a}_4^\dagger\hat{a}_3-\hat{a}_3^\dagger\hat{a}_4}
+		\\
+		&=
+		-
+		\frac{i}{4}
+		\comm{\hat{a}_3^\dagger\hat{a}_3}{\hat{a}_4^\dagger\hat{a}_3}
+		+
+		\frac{i}{4}
+		\comm{\hat{a}_3^\dagger\hat{a}_3}{\hat{a}_3^\dagger\hat{a}_4}
+		\\
+		&=
+	\end{split}
+\end{equation}
+
+\begin{equation}
+	\begin{split}
+		\hat{U}_\text{IQ}(\theta_1,\theta_2,\phi)
+		\hat{a}_1^\dagger
+		\hat{U}_\text{IQ}^\dagger(\theta_1,\theta_2,\phi)
+		&=
+		e^{+i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
+		e^{+i\theta_1\hat{L}_y^{(1,2)}}
+		e^{+i\theta_2\hat{L}_y^{(3,4)}}
+		e^{+i\phi\hat{L}_z^{(2,3)}}
+		e^{+i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
+		\\
+		&\times
+		\hat{a}_1^\dagger
+		e^{-i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
+		e^{-i\phi\hat{L}_z^{(2,3)}}
+		e^{-i\theta_2\hat{L}_y^{(3,4)}}
+		e^{-i\theta_1\hat{L}_y^{(1,2)}}
+		e^{-i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
+	\end{split}
 \end{equation}
