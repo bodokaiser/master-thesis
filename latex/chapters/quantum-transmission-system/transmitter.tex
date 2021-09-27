@@ -10,31 +10,19 @@
 
 \begin{equation}
 	\begin{split}
-		\begin{pmatrix}
-			\hat{a}_1^{\prime\prime\prime} \\
-			\hat{a}_2^{\prime\prime\prime}
-		\end{pmatrix}
+		\vb{\hat{a}}^{\prime\prime\prime}
 		=
 		U_\text{BS2}
-		\begin{pmatrix}
-			\hat{a}_1^{\prime\prime} \\
-			\hat{a}_2^{\prime\prime}
-		\end{pmatrix}
+		\vb{\hat{a}}^{\prime\prime}
 		=
 		U_\text{BS2}
 		U_\text{PS}
-		\begin{pmatrix}
-			\hat{a}_1^{\prime} \\
-			\hat{a}_2^{\prime}
-		\end{pmatrix}
+		\vb{\hat{a}}^{\prime}
 		=
 		U_\text{BS2}
 		U_\text{PS}
 		U_\text{BS1}
-		\begin{pmatrix}
-			\hat{a}_1 \\
-			\hat{a}_2
-		\end{pmatrix}
+		\vb{\hat{a}}
 	\end{split}
 \end{equation}
 wherein
@@ -96,54 +84,176 @@ wherein
 \end{table}
 
 \begin{equation}
-	\begin{split}
-		\begin{pmatrix}
-			\hat{a}_1^\prime \\
-			\hat{a}_2^\prime
-		\end{pmatrix}
-		&=
-		\exp(-i\theta\hat{L}_y)
-		\begin{pmatrix}
-			\hat{a}_1 \\
-			\hat{a}_2
-		\end{pmatrix}
-		\exp(+i\theta\hat{L}_y)
-		\\
-		&=
-		\begin{pmatrix}
-			\cos(\theta/2) & \sin(\theta/2) \\
-			-\sin(\theta/2) & \cos(\theta/2)
-		\end{pmatrix}
-		\begin{pmatrix}
-			\hat{a}_1 \\
-			\hat{a}_2
-		\end{pmatrix}
-	\end{split}
+	U_\text{MZM}(\theta)
+	=
+	\begin{pmatrix}
+		\cos(\theta/2) & \sin(\theta/2) \\
+		-\sin(\theta/2) & \cos(\theta/2)
+	\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+	\vb{\hat{a}}^\prime
+	=
+	\hat{U}_\text{MZM}^\dagger(\theta)
+	\vb{\hat{a}}
+	\hat{U}_\text{MZM}(\theta)
+	=
+	\exp(-i\theta\hat{L}_y)
+	\vb{\hat{a}}
+	\exp(+i\theta\hat{L}_y)	
 \end{equation}
 wherein~\cite[p.~97]{Leonhardt2010}
 \begin{equation}
 	\hat{L}_y
 	=
 	\frac{1}{2}
-	\begin{pmatrix}
-		\hat{a}_1^\dagger,
-		\hat{a}_2^\dagger
-	\end{pmatrix}
+	\vb{\hat{a}}^\dagger
 	\sigma_y
-	\begin{pmatrix}
-		\hat{a}_1 \\
-		\hat{a}_2
-	\end{pmatrix}
+	\vb{\hat{a}}
 	=
 	\frac{i}{2}
 	\left(
-		\hat{a}_1
 		\hat{a}_2^\dagger
+		\hat{a}_1
 		-
 		\hat{a}_1^\dagger
 		\hat{a}_2
 	\right)
 	.
+\end{equation}
+
+\begin{equation}
+	\begin{split}
+		\hat{U}_\text{MZM}(\theta)
+		\ket{n,0}
+		&=
+		\frac{1}{\sqrt{n!}}
+		\hat{U}_\text{MZM}(\theta)
+		(\hat{a}_1^\dagger)^n
+		\hat{U}_\text{MZM}^\dagger(\theta)
+		\hat{U}_\text{MZM}(\theta)
+		\ket{0,0}
+		\\
+		&=
+		\frac{1}{\sqrt{n!}}
+		\left[
+			\hat{U}_\text{MZM}(\theta)
+			\hat{a}^\dagger
+			\hat{U}_\text{MZM}^\dagger(\theta)
+		\right]^n
+		\ket{0,0}
+		\\
+		&=
+		\frac{1}{\sqrt{n!}}
+		\left[
+			\cos(\theta/2)
+			\hat{a}_1^\dagger
+			-
+			\sin(\theta/2)
+			\hat{a}_2^\dagger
+		\right]^n
+		\ket{0,0}
+		\\
+		&=
+		\frac{1}{\sqrt{n!}}
+		\sum_{m=0}^n
+		\binom{n}{m}
+		\left(
+			\cos(\theta/2)
+			\hat{a}_1^\dagger
+		\right)^{n-m}
+		\left(
+			-
+			\sin(\theta/2)
+			\hat{a}_2^\dagger
+		\right)^m
+		\ket{0,0}
+		\\
+		&=
+		\sum_{m=1}^n
+		(-1)^m
+		\binom{n}{m}^\frac{1}{2}
+		\cos(\theta/2)^{n-m}
+		\sin(\theta/2)^m
+		\ket{n-m,m}
+	\end{split}
+\end{equation}
+where we used
+\begin{equation}
+	\begin{split}
+		\hat{U}_\text{MZM}(\theta)
+		\hat{a}_1^\dagger
+		\hat{U}_\text{MZM}^\dagger(\theta)
+		&=
+		\left[
+			\hat{U}_\text{MZM}(\theta)
+			\hat{a}_1
+			\hat{U}_\text{MZM}^\dagger(\theta)
+		\right]^\dagger
+		\\
+		&=
+		\left[
+			\hat{U}_\text{MZM}^\dagger(-\theta)
+			\hat{a}_1
+			\hat{U}_\text{MZM}(-\theta)
+		\right]^\dagger
+		\\
+		&=
+		\left[
+			\cos(\theta/2)
+			\hat{a}_1
+			-
+			\sin(\theta/2)
+			\hat{a}_2
+		\right]^\dagger
+		\\
+		&=
+		\cos(\theta/2)
+		\hat{a}_1^\dagger
+		-
+		\sin(\theta/2)
+		\hat{a}_2^\dagger
+	\end{split}
+\end{equation}
+
+\begin{equation}
+	\begin{split}
+		\hat{U}_\text{MZM}(\theta)
+		\ket{\alpha,0}
+		&=
+		\hat{U}_\text{MZM}(\theta)
+		\hat{D}[\alpha]
+		\hat{U}_\text{MZM}^\dagger(\theta)
+		\hat{U}_\text{MZM}(\theta)
+		\ket{0,0}
+		\\
+		&=
+		\exp\left\{
+			\alpha
+			\hat{U}_\text{MZM}(\theta)
+			\hat{a}_1^\dagger
+			\hat{U}_\text{MZM}^\dagger(\theta)
+			-
+			\text{h.c.}
+		\right\}
+		\ket{0,0}
+		\\
+		&=
+		\exp\left\{
+			\alpha
+			\cos(\theta/2)\hat{a}_1^\dagger
+			-
+			\alpha
+			\sin(\theta/2)\hat{a}_2^\dagger
+			-
+			\text{h.c.}
+		\right\}
+		\ket{0,0}
+		\\
+		&=
+		\ket{\alpha\cos(\theta/2),-\alpha\sin(\theta/2)}
+	\end{split}
 \end{equation}
 
 \subsection{I/Q modulator}
