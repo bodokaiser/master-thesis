@@ -317,50 +317,99 @@ The number basis is complete and we can use our previous result to find the tran
 \end{equation}
 
 Tracing out one output of the MZM for a coherent state gives the projection.
-That is not true in general, and tracing out an entangled state yields a mixed state!
 \begin{equation}
-	\ket{\psi}
-	=
-	\sum_{n,m}
-	c_{n,m}
-	\ket{n,m}
-\end{equation}
-\begin{equation}
-	\rho
-	=
-	\ketbra{\psi}
-	=
-	\sum_{n,m,k,l}
-	c_{n,m}
-	c_{k,l}^*
-	\ketbra{n,m}{k,l}
+	\begin{split}
+		\tr_2\left\{
+			\hat{R}(\Theta)
+			\ketbra{\alpha,0}
+			\hat{R}^\dagger(\Theta)
+		\right\}
+		&=
+		\ketbra{\alpha\cos(\Theta/2)}
+		\\
+		&\times
+		\tr_2\left\{
+			\hat{D}_2\left(
+				-
+				\alpha
+				\sin(\Theta/2)
+			\right)
+			\ketbra{0}
+			\hat{D}_2^\dagger\left(
+				-
+				\alpha
+				\sin(\Theta/2)
+			\right)
+		\right\}
+	\end{split}
 \end{equation}
 \begin{equation}
 	\begin{split}
-		\rho_1
-		=
-		\tr_2\rho
+		\tr_2\left\{
+			\hat{D}_2^\dagger\left(
+				-
+				\alpha
+				\sin(\Theta/2)
+			\right)
+			\hat{D}_2\left(
+				-
+				\alpha
+				\sin(\Theta/2)
+			\right)
+			\ketbra{0}
+		\right\}
 		&=
-		\sum_{n,m,k,l}
-		c_{n,m}
-		c_{k,l}^*
-		\tr_2\ketbra{n,m}{k,l}
+		\sum_{n=0}^\infty
+		\braket{n}{0}
+		\braket{0}{n}
 		\\
 		&=
-		\sum_{n,m,k,l}
-		c_{n,m}
-		c_{k,l}^*
-		\ketbra{n,m}
-		\delta_{k,l}
-		\\
-		&=
-		\sum_{n,m}
-		c_{n,m}
-		\ketbra{n,m}
-		\sum_k
-		c_{k,k}^*
+		\mathbb{I}
 	\end{split}
 \end{equation}
+That is not true in general, and tracing out an entangled state yields a mixed state!
+
+In principle, we could also have used that a coherent state is an eigenstate of the annihilation operator and therefore every operator with existing series expansion in $\vb{\hat{a}}=\hat{a}_1,\dots,\hat{a}_n$ satisfies
+\begin{equation}
+	f(\hat{\vb{a}})
+	\ket{\boldsymbol{\alpha}}
+	=
+	f(\boldsymbol{\alpha})
+	\ket{\boldsymbol{\alpha}}
+\end{equation}
+thus also
+\begin{equation}
+	\begin{split}
+		\boldsymbol{\alpha}^\prime
+		\ket{\boldsymbol{\alpha}^\prime}
+		=
+		\hat{\vb{a}}^\prime
+		\ket{\boldsymbol{\alpha}^\prime}
+		=
+		\hat{U}
+		\hat{\vb{a}}
+		\hat{U}^\dagger
+		\hat{U}
+		\ket{\boldsymbol{\alpha}}
+		=
+		\hat{U}
+		\boldsymbol{\alpha}
+		\ket{\boldsymbol{\alpha}}
+		=
+		\boldsymbol{\alpha}
+		\ket{\boldsymbol{\alpha}^\prime}
+	\end{split}
+\end{equation}
+and comparing both sides
+\begin{equation}
+	\boldsymbol{\alpha}^\prime
+	=
+	U
+	\boldsymbol{\alpha}	
+\end{equation}
+We will use this simplification for the \gls{iq} modulator which is a composition of two \gls{mzm}.
+As we already saw the transform of the number state for a single \gls{mzm} already becomes very complex.
+Things get even more ugly for the \gls{iq} modulator.
 
 \subsection{In-phase and quadrature modulator}
 
