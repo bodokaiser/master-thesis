@@ -16,92 +16,123 @@
 		\vb{\hat{a}}^{\prime\prime}
 		=
 		U_\text{BS2}
-		U_\text{PS}
+		U_\text{PS}(\phi_1,\phi_2)
 		\vb{\hat{a}}^{\prime}
 		=
 		U_\text{BS2}
-		U_\text{PS}
+		U_\text{PS}(\phi_1,\phi_2)
 		U_\text{BS1}
+		\vb{\hat{a}}
+		=
+		U_\text{MZM}(\phi_1,\phi_2)
 		\vb{\hat{a}}
 	\end{split}
 \end{equation}
-wherein
-\begin{align}
+
+\begin{equation}
+	U_\text{BS}(\theta,\varphi)
+	=
+	\begin{pmatrix}
+		\cos(\theta/2) & ie^{+i\varphi}\sin(\theta/2) \\
+		ie^{-i\varphi}\sin(\theta/2) & \cos(\theta/2) \\
+	\end{pmatrix}
+\end{equation}
+
+\begin{equation}
 	U_\text{BS1}
-	&=
+	=
 	\frac{1}{\sqrt{2}}
 	\begin{pmatrix}
 		1 & i \\
 		i & 1
 	\end{pmatrix}
-	&
+	=
+	U_\text{BS}(\pi/2,0)	
+\end{equation}
+\begin{equation}
 	U_\text{PS}
-	&=
-	\frac{1}{\sqrt{2}}
+	=
 	\begin{pmatrix}
-		ie^{i\varphi_1} & 0 \\
-		0 & ie^{i\varphi_2}
-	\end{pmatrix}
-	&
+		e^{i\phi_1} & 0 \\
+		0 & e^{i\phi_2}
+	\end{pmatrix}	
+\end{equation}
+\begin{equation}
 	U_\text{BS2}
-	&=
+	=
 	\frac{1}{\sqrt{2}}
 	\begin{pmatrix}
 		i & 1 \\
 		1 & i
 	\end{pmatrix}
-\end{align}
-
-
-\begin{equation}
-	\begin{pmatrix}
-		\hat{a}_1^{\prime\prime\prime} \\
-		\hat{a}_2^{\prime\prime\prime}
-	\end{pmatrix}
 	=
-	ie^{i\frac{\varphi_1+\varphi_2}{2}}
-	\begin{pmatrix}
-		\cos(\frac{\varphi_2-\varphi_1}{2}) & \sin(\frac{\varphi_2-\varphi_1}{2}) \\
-		-\sin(\frac{\varphi_2-\varphi_1}{2}) & \cos(\frac{\varphi_2-\varphi_1}{2})
-	\end{pmatrix}
-	\begin{pmatrix}
-		\hat{a}_1 \\
-		\hat{a}_2
-	\end{pmatrix}
+	e^{-i\pi/2}
+	U_\text{BS}(\pi,0)
+	U_\text{BS}(\pi/2,0)
 \end{equation}
 
+\begin{equation}
+	U_\text{MZM}(\phi_1,\phi_2)
+	=
+	ie^{i\frac{\phi_1+\phi_2}{2}}
+	\begin{pmatrix}
+		\cos(\frac{\phi_2-\phi_1}{2}) & \sin(\frac{\phi_2-\phi_1}{2}) \\
+		-\sin(\frac{\phi_2-\phi_1}{2}) & \cos(\frac{\phi_2-\phi_1}{2})
+	\end{pmatrix}
+\end{equation}
 \begin{table}[htb]
 	\centering
 	\begin{tabular}{lcc}
 		\toprule
 		Configuration & Phase relation & Modulation \\
 		\midrule
-		Push-pull & $\varphi_1=-\varphi_2$ & Amplitude \\
-		Push-push & $\varphi_1=+\varphi_2$ & Phase \\
+		Push-pull & $\phi_1=-\phi_2$ & Amplitude \\
+		Push-push & $\phi_1=+\phi_2$ & Phase \\
 		\bottomrule
 	\end{tabular}
 	\caption{Configurations of a symmetric \gls{mzm}.}
 \end{table}
-
+\begin{align}
+	\phi_+
+	&=
+	\phi_2+\phi_1
+	&
+	\phi_-
+	&=
+	\phi_2-\phi_1
+\end{align}
 \begin{equation}
-	U_\text{MZM}(\theta)
+	U_\text{MZM}(\phi_+,\phi_-)
 	=
+	ie^{i\phi_+/2}
 	\begin{pmatrix}
-		\cos(\theta/2) & \sin(\theta/2) \\
-		-\sin(\theta/2) & \cos(\theta/2)
+		\cos(\phi_-/2)- & \sin(\phi_-/2) \\
+		-\sin(\phi_-/2) & \cos(\phi_-/2)
 	\end{pmatrix}
 \end{equation}
+\begin{equation}
+	U_\text{BS}(\Theta,3\pi/2)
+	=
+	\begin{pmatrix}
+		\cos(\Theta/2) & \sin(\Theta/2) \\
+		-\sin(\Theta/2) & \cos(\Theta/2)
+	\end{pmatrix}
+	=
+	R(\Theta)
+\end{equation}
+The \gls{mzm} transform is a beam splitter with flexible splitting ratio.
 
 \begin{equation}
-	\vb{\hat{a}}^\prime
-	=
-	\hat{U}_\text{MZM}^\dagger(\theta)
+	R(\Theta)
 	\vb{\hat{a}}
-	\hat{U}_\text{MZM}(\theta)
 	=
-	\exp(-i\theta\hat{L}_y)
+	\hat{R}^\dagger(\Theta)
 	\vb{\hat{a}}
-	\exp(+i\theta\hat{L}_y)	
+	\hat{R}(\Theta)
+	=
+	e^{-i\Theta\hat{L}_y}
+	\vb{\hat{a}}
+	e^{+i\Theta\hat{L}_y}
 \end{equation}
 wherein~\cite[p.~97]{Leonhardt2010}
 \begin{equation}
@@ -125,138 +156,213 @@ wherein~\cite[p.~97]{Leonhardt2010}
 
 \begin{equation}
 	\begin{split}
-		\hat{U}_\text{MZM}(\theta)
+		\hat{R}(\Theta)
 		\ket{n,0}
 		&=
 		\frac{1}{\sqrt{n!}}
-		\hat{U}_\text{MZM}(\theta)
-		(\hat{a}_1^\dagger)^n
-		\hat{U}_\text{MZM}^\dagger(\theta)
-		\hat{U}_\text{MZM}(\theta)
+		\hat{R}(\Theta)
+		\left(\hat{a}_1^\dagger\right)^n
+		\hat{R}^\dagger(\Theta)
+		\hat{R}(\Theta)
 		\ket{0,0}
 		\\
 		&=
 		\frac{1}{\sqrt{n!}}
 		\left[
-			\hat{U}_\text{MZM}(\theta)
-			\hat{a}^\dagger
-			\hat{U}_\text{MZM}^\dagger(\theta)
+			\hat{R}(\Theta)
+			\hat{a}_1^\dagger
+			\hat{R}^\dagger(\Theta)
 		\right]^n
 		\ket{0,0}
 		\\
 		&=
 		\frac{1}{\sqrt{n!}}
-		\left[
-			\cos(\theta/2)
+		\left(
+			\left[
+				\hat{R}(\Theta)
+				\hat{a}_1
+				\hat{R}^\dagger(\Theta)
+			\right]^\dagger
+		\right)^n
+		\ket{0,0}
+		\\
+		&=
+		\frac{1}{\sqrt{n!}}
+		\left(
+			\left[
+				\hat{R}^\dagger(-\Theta)
+				\hat{a}_1
+				\hat{R}(\Theta)
+			\right]^\dagger
+		\right)^n
+		\ket{0,0}
+		\\
+		&=
+		\frac{1}{\sqrt{n!}}
+		\left(
+			\left[
+				\cos(\Theta/2)
+				\hat{a}_1
+				-
+				\sin(\Theta/2)
+				\hat{a}_2
+			\right]^\dagger
+		\right)^n
+		\ket{0,0}
+		\\
+		&=
+		\frac{1}{\sqrt{n!}}
+		\left(
+			\cos(\Theta/2)
 			\hat{a}_1^\dagger
 			-
-			\sin(\theta/2)
+			\sin(\Theta/2)
 			\hat{a}_2^\dagger
-		\right]^n
+		\right)^n
 		\ket{0,0}
 		\\
 		&=
 		\frac{1}{\sqrt{n!}}
 		\sum_{m=0}^n
 		\binom{n}{m}
+		\cos(\Theta/2)^m
 		\left(
-			\cos(\theta/2)
-			\hat{a}_1^\dagger
+			-\sin(\Theta/2)
 		\right)^{n-m}
-		\left(
-			-
-			\sin(\theta/2)
-			\hat{a}_2^\dagger
-		\right)^m
+		\left(\hat{a}_1^\dagger\right)^m
+		\left(\hat{a}_2^\dagger\right)^{n-m}
 		\ket{0,0}
 		\\
 		&=
-		\sum_{m=1}^n
-		(-1)^m
+		\sum_{m=0}^n
 		\binom{n}{m}^\frac{1}{2}
-		\cos(\theta/2)^{n-m}
-		\sin(\theta/2)^m
-		\ket{n-m,m}
-	\end{split}
-\end{equation}
-where we used
-\begin{equation}
-	\begin{split}
-		\hat{U}_\text{MZM}(\theta)
-		\hat{a}_1^\dagger
-		\hat{U}_\text{MZM}^\dagger(\theta)
-		&=
-		\left[
-			\hat{U}_\text{MZM}(\theta)
-			\hat{a}_1
-			\hat{U}_\text{MZM}^\dagger(\theta)
-		\right]^\dagger
-		\\
-		&=
-		\left[
-			\hat{U}_\text{MZM}^\dagger(-\theta)
-			\hat{a}_1
-			\hat{U}_\text{MZM}(-\theta)
-		\right]^\dagger
-		\\
-		&=
-		\left[
-			\cos(\theta/2)
-			\hat{a}_1
-			-
-			\sin(\theta/2)
-			\hat{a}_2
-		\right]^\dagger
-		\\
-		&=
-		\cos(\theta/2)
-		\hat{a}_1^\dagger
-		-
-		\sin(\theta/2)
-		\hat{a}_2^\dagger
+		(-1)^{n-m}
+		\cos(\Theta/2)^m
+		\sin(\Theta/2)^{n-m}
+		\ket{n,n-m}
 	\end{split}
 \end{equation}
 
+The number basis is complete and we can use our previous result to find the transformation property of a coherent state
 \begin{equation}
 	\begin{split}
-		\hat{U}_\text{MZM}(\theta)
+		\hat{R}(\Theta)
 		\ket{\alpha,0}
 		&=
-		\hat{U}_\text{MZM}(\theta)
-		\hat{D}[\alpha]
-		\hat{U}_\text{MZM}^\dagger(\theta)
-		\hat{U}_\text{MZM}(\theta)
-		\ket{0,0}
+		e^{-\overline{n}/2}
+		\sum_{n=0}^\infty
+		\frac{\alpha^n}{\sqrt{n!}}
+		\hat{R}(\Theta)
+		\ket{n,0}
 		\\
 		&=
-		\exp\left\{
+		e^{-\overline{n}/2}
+		\sum_{n=0}^\infty
+		\frac{1}{n!}
+		\left(
 			\alpha
-			\hat{U}_\text{MZM}(\theta)
+			\cos(\Theta/2)
 			\hat{a}_1^\dagger
-			\hat{U}_\text{MZM}^\dagger(\theta)
 			-
-			\text{h.c.}
-		\right\}
+			\alpha
+			\sin(\Theta/2)
+			\hat{a}_2^\dagger
+		\right)^n
 		\ket{0,0}
 		\\
 		&=
+		e^{-\overline{n}/2}
 		\exp\left\{
 			\alpha
-			\cos(\theta/2)\hat{a}_1^\dagger
+			\cos(\Theta/2)
+			\hat{a}_1^\dagger
 			-
 			\alpha
-			\sin(\theta/2)\hat{a}_2^\dagger
-			-
-			\text{h.c.}
+			\sin(\Theta/2)
+			\hat{a}_2^\dagger
 		\right\}
 		\ket{0,0}
 		\\
 		&=
-		\ket{\alpha\cos(\theta/2),-\alpha\sin(\theta/2)}
+		e^{-\overline{n}\cos(\Theta/2)^2/2}
+		\exp\left\{
+			\alpha
+			\cos(\Theta/2)
+			\hat{a}_1^\dagger
+		\right\}
+		e^{-\overline{n}\sin(\Theta/2)^2/2}
+		\exp\left\{
+			-
+			\alpha
+			\sin(\Theta/2)
+			\hat{a}_2^\dagger
+		\right\}
+		\ket{0,0}
+		\\
+		&=
+		\hat{D}_1\left(
+			\alpha
+			\cos(\Theta/2)
+		\right)
+		\hat{D}_2\left(
+			-
+			\alpha
+			\sin(\Theta/2)
+		\right)
+		\ket{0,0}
+		\\
+		&=
+		\ket{\alpha\cos(\Theta/2),-\alpha\sin(\Theta/2)}
 	\end{split}
 \end{equation}
 
-\subsection{In-phase and quarature modulator}
+Tracing out one output of the MZM for a coherent state gives the projection.
+That is not true in general, and tracing out an entangled state yields a mixed state!
+\begin{equation}
+	\ket{\psi}
+	=
+	\sum_{n,m}
+	c_{n,m}
+	\ket{n,m}
+\end{equation}
+\begin{equation}
+	\rho
+	=
+	\ketbra{\psi}
+	=
+	\sum_{n,m,k,l}
+	c_{n,m}
+	c_{k,l}^*
+	\ketbra{n,m}{k,l}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		\rho_1
+		=
+		\tr_2\rho
+		&=
+		\sum_{n,m,k,l}
+		c_{n,m}
+		c_{k,l}^*
+		\tr_2\ketbra{n,m}{k,l}
+		\\
+		&=
+		\sum_{n,m,k,l}
+		c_{n,m}
+		c_{k,l}^*
+		\ketbra{n,m}
+		\delta_{k,l}
+		\\
+		&=
+		\sum_{n,m}
+		c_{n,m}
+		\ketbra{n,m}
+		\sum_k
+		c_{k,k}^*
+	\end{split}
+\end{equation}
+
+\subsection{In-phase and quadrature modulator}
 
 \begin{figure}[htb]
 	\centering
@@ -337,20 +443,20 @@ where we used
 \begin{equation}
 	\vb{\hat{a}}^{\prime\prime\prime}
 	=
-	U_\text{IQ}
+	U_\text{IQM}
 	=
 	\left[
 		\mathbb{I}_1
 		\otimes
 		U_\text{BS2}
-		U_\text{PS}
+		U_\text{PS}(\phi)
 		\otimes
 		\mathbb{I}_1
 	\right]
 	\left[
-		U_\text{MZM1}
+		U_\text{MZM1}(\theta_1)
 		\otimes
-		U_\text{MZM2}
+		U_\text{MZM2}(\theta_2)
 	\right]
 	\left[
 		\mathbb{I}_1
@@ -360,6 +466,29 @@ where we used
 		\mathbb{I}_1
 	\right]
 	\vb{\hat{a}}
+\end{equation}
+
+\begin{equation}
+	\begin{split}
+		U_\text{IQM}(\theta_1,\theta_2,\phi)
+		=
+		\\		
+		\begin{pmatrix}
+			\cos\theta_1 & \frac{1}{\sqrt{2}}\sin\theta_1 & \frac{1}{\sqrt{2}}\sin\theta_1 & 0 \\
+			\frac{1}{\sqrt{2}}\sin\theta_1e^{-i\phi/2} & \frac{1}{2}\cos\theta_1e^{+i\phi/2}-\frac{1}{2}\cos\theta_2 & \frac{1}{2}\cos\theta_1e^{+i\phi/2}+\frac{1}{2}\cos\theta_2 & \frac{1}{\sqrt{2}}\sin\theta_2 \\
+			\frac{1}{\sqrt{2}}\sin\theta_1 & -\frac{1}{2}\cos\theta_1-\frac{1}{2}\cos\theta_2e^{-i\phi/2} & -\frac{1}{2}\cos\theta_1+\frac{1}{2}\cos\theta_2e^{-i\phi/2} & \frac{1}{\sqrt{2}}\sin\theta_2e^{-i\phi2} \\
+			0 & \frac{1}{\sqrt{2}}\sin\theta_2 & -\frac{1}{\sqrt{2}}\sin\theta_2 & \cos\theta_2
+		\end{pmatrix}
+	\end{split}
+\end{equation}
+
+\begin{equation}
+	\begin{split}
+		\hat{U}_\text{IQM}(\theta_1,\theta_2,\phi)
+		\ket{0,\alpha,0,0}
+		&=
+		\ket{\frac{1}{\sqrt{2}}\alpha,\frac{1}{2}\left[\cos\theta_1e^{+i\phi/2}-\cos\theta_2\right],-\frac{1}{2}\left[\cos\theta_1-\cos\theta_2e^{-i\phi/2}\right],\frac{1}{\sqrt{2}}\sin\theta_2}
+	\end{split}
 \end{equation}
 
 \begin{align}
@@ -587,7 +716,7 @@ wherein~\cite{Leonhardt2010}
 	\end{split}
 \end{equation}
 
-\subsection{Time scales and Pockels effect}
+\subsection{Pockels effect}
 
 % figure (?): what time scales are there, what area of physics do they belong to, are these relevant (?)
 % non-vanishing commutators inside the light-cone (QFT), see Tohen-Canoudji
