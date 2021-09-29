@@ -95,7 +95,11 @@
 \begin{align}
 	\phi_+
 	&=
-	\phi_2+\phi_1
+	\phi_2
+	+
+	\phi_1
+	+
+	\pi
 	&
 	\phi_-
 	&=
@@ -104,7 +108,7 @@
 \begin{equation}
 	U_\text{MZM}(\phi_+,\phi_-)
 	=
-	ie^{i\phi_+/2}
+	e^{i\phi_+/2}
 	\begin{pmatrix}
 		\cos(\phi_-/2)- & \sin(\phi_-/2) \\
 		-\sin(\phi_-/2) & \cos(\phi_-/2)
@@ -430,7 +434,7 @@ Things get even more ugly for the \gls{iq} modulator.
 		&=
 		\begin{pmatrix}
 			 1 & 0 & 0 & 0 \\
-			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}U_\text{PS}$}} & 0 \\
+			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}$}} & 0 \\
 			 0 & & & 0 \\
 			 0 & 0 & 0 & 1
 		\end{pmatrix}
@@ -444,7 +448,7 @@ Things get even more ugly for the \gls{iq} modulator.
 		&=
 		\begin{pmatrix}
 			 1 & 0 & 0 & 0 \\
-			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}U_\text{PS}$}} & 0 \\
+			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}$}} & 0 \\
 			 0 & & & 0 \\
 			 0 & 0 & 0 & 1
 		\end{pmatrix}
@@ -464,14 +468,14 @@ Things get even more ugly for the \gls{iq} modulator.
 		&=
 		\begin{pmatrix}
 			 1 & 0 & 0 & 0 \\
-			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}U_\text{PS}$}} & 0 \\
+			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}$}} & 0 \\
 			 0 & & & 0 \\
 			 0 & 0 & 0 & 1
 		\end{pmatrix}
 		\begin{pmatrix}
-			 \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM1}(\theta_1)$}} & 0 & 0 \\
+			 \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM1}$}} & 0 & 0 \\
 			 & & 0 & 0 \\
-			 0 & 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM2}(\theta_2)$}} \\
+			 0 & 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM2}$}} \\
 			 0 & 0 & & \\
 		\end{pmatrix}
 		\begin{pmatrix}
@@ -498,14 +502,13 @@ Things get even more ugly for the \gls{iq} modulator.
 		\mathbb{I}_1
 		\otimes
 		U_\text{BS2}
-		U_\text{PS}(\phi)
 		\otimes
 		\mathbb{I}_1
 	\right]
 	\left[
-		U_\text{MZM1}(\theta_1)
+		U_\text{MZM1}
 		\otimes
-		U_\text{MZM2}(\theta_2)
+		U_\text{MZM2}
 	\right]
 	\left[
 		\mathbb{I}_1
@@ -518,254 +521,169 @@ Things get even more ugly for the \gls{iq} modulator.
 \end{equation}
 
 \begin{equation}
+	U_\text{BS1}(\varphi)
+	=
+	U_\text{BS2}(\varphi)
+	=
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 & ie^{+i\varphi} \\
+		ie^{-i\varphi} & 1
+	\end{pmatrix}
+	=
+	U_\text{BS}(\pi,\varphi)
+\end{equation}
+\begin{equation}
 	\begin{split}
-		U_\text{IQM}(\theta_1,\theta_2,\phi)
-		=
-		\\		
+		U_\text{MZM1}(\phi_{1+},\phi_{1-})
+		&=
+		e^{i\pi}
+		U_\text{BS}(\pi,0)
+		U_\text{MZM}(\phi_{1+},\phi_{1-})
+		U_\text{BS}(\pi,0)
+		\\
+		&=
 		\begin{pmatrix}
-			\cos\theta_1 & \frac{1}{\sqrt{2}}\sin\theta_1 & \frac{1}{\sqrt{2}}\sin\theta_1 & 0 \\
-			\frac{1}{\sqrt{2}}\sin\theta_1e^{-i\phi/2} & \frac{1}{2}\cos\theta_1e^{+i\phi/2}-\frac{1}{2}\cos\theta_2 & \frac{1}{2}\cos\theta_1e^{+i\phi/2}+\frac{1}{2}\cos\theta_2 & \frac{1}{\sqrt{2}}\sin\theta_2 \\
-			\frac{1}{\sqrt{2}}\sin\theta_1 & -\frac{1}{2}\cos\theta_1-\frac{1}{2}\cos\theta_2e^{-i\phi/2} & -\frac{1}{2}\cos\theta_1+\frac{1}{2}\cos\theta_2e^{-i\phi/2} & \frac{1}{\sqrt{2}}\sin\theta_2e^{-i\phi2} \\
-			0 & \frac{1}{\sqrt{2}}\sin\theta_2 & -\frac{1}{\sqrt{2}}\sin\theta_2 & \cos\theta_2
+			0 & i \\
+			i & 0
+		\end{pmatrix}
+		e^{i\phi_{1+}/2}
+		\begin{pmatrix}
+			\cos(\phi_{1-}/2) & \sin(\phi_{1-}/2) \\
+			-\sin(\phi_{1-}/2) & \cos(\phi_{1-}/2)
+		\end{pmatrix}
+		\begin{pmatrix}
+			0 & i \\
+			i & 0
+		\end{pmatrix}
+		\\
+		&=
+		-
+		e^{i\phi_{1+}/2}
+		\begin{pmatrix}
+			\cos(\phi_{1-}/2) & -\sin(\phi_{1-}/2) \\
+			\sin(\phi_{1-}/2) & \cos(\phi_{1-}/2)
 		\end{pmatrix}
 	\end{split}
 \end{equation}
-
+We choose $\phi_{1+}=2\pi$ to compensate for the phase shift and $\Theta_1=\phi_{1-}$.
 \begin{equation}
-	\begin{split}
-		\hat{U}_\text{IQM}(\theta_1,\theta_2,\phi)
-		\ket{0,\alpha,0,0}
-		&=
-		\ket{\frac{1}{\sqrt{2}}\alpha,\frac{1}{2}\left[\cos\theta_1e^{+i\phi/2}-\cos\theta_2\right],-\frac{1}{2}\left[\cos\theta_1-\cos\theta_2e^{-i\phi/2}\right],\frac{1}{\sqrt{2}}\sin\theta_2}
-	\end{split}
-\end{equation}
-
-\begin{align}
-	U_\text{BS1}
+	U_\text{MZM1}(\Theta_1)
 	=
-	U_\text{BS2}
-	&=
-	U_\text{MZM}(\pi)
-	&
-	U_\text{PS}
-	&=
-	\frac{1}{\sqrt{2}}
 	\begin{pmatrix}
-		e^{+i\phi/2} & 0 \\
-		0 & e^{-i\phi/2}
+		\cos(\Theta_1/2) & -\sin(\Theta_1/2) \\
+		\sin(\Theta_1/2) & \cos(\Theta_1/2)
 	\end{pmatrix}
-\end{align}
-
-\begin{equation}
-	\hat{U}_\text{IQ}(\theta_1,\theta_2,\phi)
 	=
-	e^{i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
-	e^{i\theta_1\hat{L}_y^{(1,2)}}
-	e^{i\theta_2\hat{L}_y^{(3,4)}}
-	e^{i\phi\hat{L}_z^{(2,3)}}
-	e^{i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
+	R(-\Theta_1)
 \end{equation}
-wherein~\cite{Leonhardt2010}
+\begin{equation}
+	U_\text{MZM2}(\phi_{2+},\phi_{2-})
+	=
+	e^{i\phi_{2+}/2}
+	\begin{pmatrix}
+		\cos(\phi_{2-}/2) & \sin(\phi_{2-}/2) \\
+		-\sin(\phi_{2-}/2) & \cos(\phi_{2-}/2)
+	\end{pmatrix}
+\end{equation}
+where we choose $\phi_{2+}=-\pi$ and $\Theta_2=\phi_{2-}$ such that
+\begin{equation}
+	U_\text{MZM2}(\Theta_2)
+	=
+	-i
+	\begin{pmatrix}
+		\cos(\Theta_1/2) & \sin(\Theta_1/2) \\
+		-\sin(\Theta_1/2) & \cos(\Theta_1/2)
+	\end{pmatrix}
+	=
+	-i
+	R(\Theta_2)
+\end{equation}
+
+\begin{equation}
+	\begin{split}
+		U_\text{IQM}(\Theta_1,\Theta_2,\varphi)
+		=
+		\begin{pmatrix}
+			c_1 & -\frac{1}{\sqrt{2}}s_1 & -\frac{1}{\sqrt{2}}e^{+i\varphi}s_1 & 0 \\
+			\frac{1}{\sqrt{2}}s_1 & \frac{1}{2}(c_1+ic_2) & \frac{1}{2}e^{i\varphi}(ic_1+c_2) & \frac{1}{\sqrt{2}}e^{i\varphi}s_2 \\
+			\frac{1}{\sqrt{2}}ie^{-i\varphi}s_1 & \frac{1}{2}e^{-i\varphi}(ic_1+c_2) & -\frac{1}{2}(c_1+ic_2) & -\frac{1}{\sqrt{2}}is_2 \\
+			0 & -\frac{1}{\sqrt{2}}e^{-i\varphi}s_2 & \frac{1}{\sqrt{2}}is_2 & -ic_2
+		\end{pmatrix}
+	\end{split}
+\end{equation}
 \begin{align}
-	\hat{L}_y^{(1,2)}
+	c_j
 	&=
-	\frac{i}{2}
-	\left(
-		\hat{a}_2^\dagger
-		\hat{a}_1
-		-
-		\hat{a}_1^\dagger
-		\hat{a}_2
-	\right)
-	\\
-	\hat{L}_y^{(2,3)}
+	\cos(\Theta_j/2)
+	&
+	s_j
 	&=
-	\frac{i}{2}
-	\left(
-		\hat{a}_3^\dagger
-		\hat{a}_2
-		-
-		\hat{a}_2^\dagger
-		\hat{a}_3
-	\right)
-	\\
-	\hat{L}_y^{(3,4)}
-	&=
-	\frac{i}{2}
-	\left(
-		\hat{a}_4^\dagger
-		\hat{a}_3
-		-
-		\hat{a}_3^\dagger
-		\hat{a}_4
-	\right)
-	\\
-	\hat{L}_z^{(2,3)}
-	&=
-	\frac{1}{2}
-	\left(
-		\hat{a}_2^\dagger
-		\hat{a}_2
-		-
-		\hat{a}_3^\dagger
-		\hat{a}_3
-	\right)
+	\sin(\Theta_j/2)
 \end{align}
-
 \begin{equation}
-	\begin{split}
-		\hat{U}_\text{IQ}^\dagger(\theta_1,\theta_2,\phi)
-		&=
-		e^{-i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
-		e^{-i\phi\hat{L}_z^{(2,3)}}
-		e^{-i\theta_2\hat{L}_y^{(3,4)}}
-		e^{-i\theta_1\hat{L}_y^{(1,2)}}
-		e^{-i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
-	\end{split}
+	\begin{pmatrix}
+		\alpha_1^{\prime\prime\prime} \\
+		\alpha_2^{\prime\prime\prime} \\
+		\alpha_3^{\prime\prime\prime} \\
+		\alpha_4^{\prime\prime\prime}
+	\end{pmatrix}
+	=
+	U_\text{IQM}(\Theta_1,\Theta_2,\varphi)
+	\begin{pmatrix}
+		0 \\
+		\alpha \\
+		0 \\ 
+		0
+	\end{pmatrix}
+	=
+	\frac{\alpha}{\sqrt{2}}
+	\begin{pmatrix}
+		-\sin(\Theta_1/2) \\
+		\frac{1}{\sqrt{2}}\left(\cos(\Theta_1/2)+i\cos(\Theta_2/2)\right) \\
+		\frac{1}{\sqrt{2}}\left(i\cos(\Theta_1/2)+\cos(\Theta_2/2)\right)e^{-i\varphi} \\
+		-\sin(\Theta_2/2)e^{-i\varphi}
+	\end{pmatrix}
 \end{equation}
-
+tracing out the other modes is equivalent to projecting the second mode if we only deal with coherent states
 \begin{equation}
-	\begin{split}
-		\comm{\hat{L}_z^{(2,3)}}{\hat{L}_y^{(1,2)}}
-		&=
-		\frac{i}{4}
-		\comm{
-			\hat{a}_2^\dagger
-			\hat{a}_2
-			-
-			\hat{a}_3^\dagger
-			\hat{a}_3
-		}{
-			\hat{a}_2^\dagger
-			\hat{a}_1
-			-
-			\hat{a}_1^\dagger
-			\hat{a}_2
-		}
-		\\
-		&=
-		\frac{i}{4}
-		\comm{
-			\hat{a}_2^\dagger
-			\hat{a}_2
-		}{
-			\hat{a}_2^\dagger
-			\hat{a}_1
-		}
-		-
-		\frac{i}{4}
-		\comm{
-			\hat{a}_2^\dagger
-			\hat{a}_2
-		}{
-			\hat{a}_1^\dagger
-			\hat{a}_2
-		}
-		\\
-		&=
-		\frac{i}{4}
-		\hat{a}_2^\dagger
-		\comm{\hat{a}_2}{\hat{a}_2^\dagger}
-		\hat{a}_1
-		-
-		\frac{i}{4}
-		\hat{a}_1^\dagger
-		\comm{\hat{a}_2^\dagger}{\hat{a}_2}
-		\hat{a}_2
-		\\
-		&=
-		\frac{1}{2}
-		\frac{i}{2}
-		\left(
-			\hat{a}_2^\dagger
-			\hat{a}_1
-			+
-			\hat{a}_1^\dagger
-			\hat{a}_2
-		\right)
-		\\
-		&=
-		\frac{i}{2}\hat{L}_x^{(1,2)}
-	\end{split}
+	\hat{P}_2
+	U_\text{IQM}(\Theta_1,\Theta_2,\varphi)
+	\ket{0,\alpha,0,0}
+	=
+	\ket{\frac{1}{2}\alpha\left(\cos(\Theta_1/2)+i\cos(\Theta_2/2)\right)}
 \end{equation}
-\begin{equation}
-	\begin{split}
-		\comm{\hat{L}_z^{(2,3)}}{\hat{L}_y^{(3,4)}}
-		&=
-		\frac{i}{4}
-		\comm{
-			\hat{a}_2^\dagger
-			\hat{a}_2
-			-
-			\hat{a}_3^\dagger
-			\hat{a}_3
-		}{
-			\hat{a}_4^\dagger
-			\hat{a}_3
-			-
-			\hat{a}_3^\dagger
-			\hat{a}_4		
-		}
-		\\
-		&=
-		\frac{i}{4}
-		\comm{
-			\hat{a}_3^\dagger
-			\hat{a}_3
-		}{
-			\hat{a}_3^\dagger
-			\hat{a}_4		
-		}
-		-
-		\frac{i}{4}
-		\comm{
-			\hat{a}_3^\dagger
-			\hat{a}_3
-		}{
-			\hat{a}_4^\dagger
-			\hat{a}_3
-		}
-		\\
-		&=
-		\frac{i}{2}
-		\frac{1}{2}
-		\left(
-			\hat{a}_3^\dagger
-			\hat{a}_4
-			+
-			\hat{a}_4^\dagger
-			\hat{a}_3
-		\right)
-		\\
-		&=
-		\frac{i}{2}
-		\hat{L}_x^{(3,4)}
-	\end{split}
-\end{equation}
+which is independent of $\varphi$ does we don't care about the specific phase properties of BS1 and BS2 as long as they are symmetric.
 
+For $\alpha=e^{-i\omega_ct}$ and $\Theta_j\to\Theta_j-\pi$, we find
 \begin{equation}
-	\begin{split}
-		\hat{U}_\text{IQ}(\theta_1,\theta_2,\phi)
-		\hat{a}_1^\dagger
-		\hat{U}_\text{IQ}^\dagger(\theta_1,\theta_2,\phi)
-		&=
-		e^{+i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
-		e^{+i\theta_1\hat{L}_y^{(1,2)}}
-		e^{+i\theta_2\hat{L}_y^{(3,4)}}
-		e^{+i\phi\hat{L}_z^{(2,3)}}
-		e^{+i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
-		\\
-		&\times
-		\hat{a}_1^\dagger
-		e^{-i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
-		e^{-i\phi\hat{L}_z^{(2,3)}}
-		e^{-i\theta_2\hat{L}_y^{(3,4)}}
-		e^{-i\theta_1\hat{L}_y^{(1,2)}}
-		e^{-i\frac{\pi}{2}\hat{L}_y^{(2,3)}}
-	\end{split}
+	\hat{P}_2
+	U_\text{IQM}(\Theta_1,\Theta_2)
+	\ket{0,e^{-i\omega_ct},0,0}
+	=
+	\ket{\frac{1}{2}\left(\sin(\Theta_1/2)+i\sin(\Theta_2/2)\right)e^{-i\omega_ct}}
 \end{equation}
+for small modulation $\Theta_1,\Theta_2\ll1$ the small-angle approximation yields
+\begin{equation}
+	\hat{P}_2
+	U_\text{IQM}(\Theta_1,\Theta_2)
+	\ket{0,e^{-i\omega_ct},0,0}
+	\approx
+	\ket{\alpha e^{-i\omega_ct}}
+\end{equation}
+where we identified
+\begin{equation}
+	\alpha
+	=
+	\frac{1}{4}
+	\left(\Theta_1+i\Theta_2\right)
+\end{equation}
+with the complex baseband signal.
 
-\subsection{Pockels effect}
+% mention number states
+% mention generator transform
+
+\subsection{Pockels effect and time dynamics}
 
 % figure (?): what time scales are there, what area of physics do they belong to, are these relevant (?)
 % non-vanishing commutators inside the light-cone (QFT), see Tohen-Canoudji
