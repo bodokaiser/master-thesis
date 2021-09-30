@@ -1,13 +1,35 @@
 \section{Transmitter}
 
+\subsection{Coherent light source}
+
+% Short introduction into Scully-Lamb laser model
+% Alternative argument of why a laser should emit coherent states
+% Continuous-mode coherent state
+
 \subsection{Mach-Zehnder modulator}
+
+The \gls{mzm} is one of the key building blocks of the coherent state transmitter.
+It enables phase and amplitude modulation via common and differential driving of two phase modulators.
+We postpone analysis of a particular implementation of such phase modulators, the Pockels cell, including their time effects, to a later section and assume the phase modulators to be passive, time-independent devices for now.
 
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/mzi-symmetric}
-	\caption{Free-space setup of a symmetric \gls{mzm}: The input light mode $\hat{a}_1$ enters a first beam splitter BS1 from the left. A vacuum light mode $\hat{a}_2$ enters BS2 from the top. The transformed mode $\hat{a}_1^\prime$ and $\hat{a}_2^\prime$ exit BS1 to the right and the bottom. A first phase shifter and first mirror M1, right to BS1, add a relative phase of $\varphi_1+\pi$ from mode $\hat{a}_1$ to $\hat{a}_1^{\prime\prime}$. Below BS1, a second mirror M2 directs the light to a right second phase shifter, both adding a relative phase of $\varphi_2+\pi$ from mode $\hat{a}_2^\prime$ to $\hat{a}_2^{\prime\prime}$. A second beam splitter BS2 transforms the input modes $\hat{a}_1^{\prime\prime}$ and $\hat{a}_2^{\prime\prime}$ to the output modes $\hat{a}_1^{\prime\prime\prime}$ and $\hat{a}_2^{\prime\prime\prime}$.}
+	\caption{Free-space setup of a symmetric \gls{mzm}: The input light mode $\hat{a}_1$ enters a first beam splitter BS1 from the left. A vacuum light mode $\hat{a}_2$ enters BS2 from the top. The transformed mode $\hat{a}_1^\prime$ and $\hat{a}_2^\prime$ exit BS1 to the right and the bottom. A first phase shifter and first mirror M1, right to BS1, add a relative phase of $\varphi_1+\pi$ from mode $\hat{a}_1$ to $\hat{a}_1^{\prime\prime}$. Below BS1, a second mirror M2 directs the light to a right second phase shifter, both adding a relative phase of $\varphi_2+\pi$ from mode $\hat{a}_2^\prime$ to $\hat{a}_2^{\prime\prime}$. A second beam splitter BS2 transforms the input modes $\hat{a}_1^{\prime\prime}$ and $\hat{a}_2^{\prime\prime}$ to the output modes $\hat{a}_1^{\prime\prime\prime}$ and $\hat{a}_2^{\prime\prime\prime}$.}\label{fig:mzi_symmetric}
 \end{figure}
+\Cref{fig:mzi_symmetric} shows a free-space optics setup of a symmetric \gls{mzi} with one signal input; the other input being in the vacuum state).
+The most crucial components of the \gls{mzi} are a splitter, a coupler, and two independent phase modulators.
+The splitter divides the input light into two branches.
+Each branch adds a relative phase shift using an independent phase modulator, i.e., $\phi_1$ and $\phi_2$.
+The coupler recombines both branches into two outputs.
+For our free-space setup, two cubic beam splitters implement the splitter and the coupler.
+For additional beam alignment, our free-space setup utilizes two mirrors.
 
+Finding the transformation of the annihilation operators at each stage of the \gls{mzi} is sufficient to find the quantum input-output relations.
+Idealizing the symmetric \gls{mzi}'s passive components as lossless allows relating the annihilation operators by two-dimensional unitary matrices.
+We label the input annihilation operators $\hat{a}_1,\hat{a}_2$ and the output annihilation operators $\hat{a}_1^{\prime\prime\prime},\hat{a}_2^{\prime\prime\prime}$.
+The annihilation operators after splitting and before (after) phase shifting are denoted by two (three) primes, i.e., $\hat{a}_1^{\prime},\hat{a}_2^{\prime}$ and $\hat{a}_1^{\prime\prime},\hat{a}_2^{\prime\prime}$.
+Going backwards through the transformations from the output to the input annihilation operators
 \begin{equation}
 	\begin{split}
 		\vb{\hat{a}}^{\prime\prime\prime}
@@ -16,82 +38,61 @@
 		\vb{\hat{a}}^{\prime\prime}
 		=
 		U_\text{BS2}
-		U_\text{PS}(\phi_1,\phi_2)
+		U_\text{PS}
 		\vb{\hat{a}}^{\prime}
 		=
 		U_\text{BS2}
-		U_\text{PS}(\phi_1,\phi_2)
+		U_\text{PS}
 		U_\text{BS1}
 		\vb{\hat{a}}
 		=
-		U_\text{MZM}(\phi_1,\phi_2)
+		U_\text{MZM}
 		\vb{\hat{a}}
 	\end{split}
 \end{equation}
+we find the symmetric \gls{mzi}'s unitary matrix transform $U_\text{MZM}$ to be equal to the matrix product of the second beam splitter's, the phase shifts', and the first beam splitter's unitary matrix transform  $U_\text{BS2}U_\text{PS}U_\text{BS1}$.
 
-\begin{equation}
-	U_\text{BS}(\theta,\varphi)
-	=
-	\begin{pmatrix}
-		\cos(\theta/2) & ie^{+i\varphi}\sin(\theta/2) \\
-		ie^{-i\varphi}\sin(\theta/2) & \cos(\theta/2) \\
-	\end{pmatrix}
-\end{equation}
-
-\begin{equation}
+A cubic beam splitter with a single dielectric layer has the unitary matrix transform as given for $U_\text{BS1}$~\cite[p.~139]{Gerry2005}.
+\begin{align}
 	U_\text{BS1}
-	=
+	&=
 	\frac{1}{\sqrt{2}}
 	\begin{pmatrix}
 		1 & i \\
 		i & 1
 	\end{pmatrix}
-	=
-	U_\text{BS}(\pi/2,0)	
-\end{equation}
-\begin{equation}
+	&
 	U_\text{PS}
-	=
+	&=
 	\begin{pmatrix}
-		e^{i\phi_1} & 0 \\
-		0 & e^{i\phi_2}
-	\end{pmatrix}	
-\end{equation}
-\begin{equation}
+		ie^{i\phi_1} & 0 \\
+		0 & ie^{i\phi_2}
+	\end{pmatrix}
+	&
 	U_\text{BS2}
-	=
+	&=
 	\frac{1}{\sqrt{2}}
 	\begin{pmatrix}
 		i & 1 \\
 		1 & i
 	\end{pmatrix}
-	=
-	e^{-i\pi/2}
-	U_\text{BS}(\pi,0)
-	U_\text{BS}(\pi/2,0)
-\end{equation}
+\end{align}
+The off-diagonal elements of $U_\text{BS1}$, $i/\sqrt{2}$, account for the phase-shift due to the reflection at the diagonal of the cubic beam splitter.
+For the second beam splitter the rows of the matrix transform $U_\text{BS2}$ are exchanged because we labeled the output indices for consistency with the input labels.
+The phase shift transform $U_\text{PS}$ includes the phase shifts due to the phase modulator $\phi_1,\phi_2$ and the reflection at the mirror M1 respective M2, $\pi$.
 
+Performing the matrix multiplication, we find the matrix transform of the symmetric \gls{mzi} to be
 \begin{equation}
-	U_\text{MZM}(\phi_1,\phi_2)
+	U_\text{MZM}
 	=
-	ie^{i\frac{\phi_1+\phi_2}{2}}
+	e^{i\frac{\phi_1+\phi_2}{2}+i\pi}
 	\begin{pmatrix}
 		\cos(\frac{\phi_2-\phi_1}{2}) & \sin(\frac{\phi_2-\phi_1}{2}) \\
 		-\sin(\frac{\phi_2-\phi_1}{2}) & \cos(\frac{\phi_2-\phi_1}{2})
 	\end{pmatrix}
+	.
 \end{equation}
-\begin{table}[htb]
-	\centering
-	\begin{tabular}{lcc}
-		\toprule
-		Configuration & Phase relation & Modulation \\
-		\midrule
-		Push-pull & $\phi_1=-\phi_2$ & Amplitude \\
-		Push-push & $\phi_1=+\phi_2$ & Phase \\
-		\bottomrule
-	\end{tabular}
-	\caption{Configurations of a symmetric \gls{mzm}.}
-\end{table}
+We define the common mode $\phi_+$ and differential mode $\phi_-$ phases
 \begin{align}
 	\phi_+
 	&=
@@ -99,33 +100,36 @@
 	+
 	\phi_1
 	+
-	\pi
+	2\pi
 	&
 	\phi_-
 	&=
 	\phi_2-\phi_1
 \end{align}
+for which the matrix transform of the symmetric \gls{mzi} simplifies to
 \begin{equation}
-	U_\text{MZM}(\phi_+,\phi_-)
+	U_\text{MZM}
 	=
 	e^{i\phi_+/2}
 	\begin{pmatrix}
-		\cos(\phi_-/2)- & \sin(\phi_-/2) \\
+		\cos(\phi_-/2) & \sin(\phi_-/2) \\
 		-\sin(\phi_-/2) & \cos(\phi_-/2)
 	\end{pmatrix}
 \end{equation}
+comprising a phase modulation proportional to the common mode phase $\phi_+$ and an amplitude modulation dependent on the differential mode phase $\phi_-$.
+The matrix transform of the symmetric closely \gls{mzi} resembles the matrix transform of a beam splitter with flexible splitting ratio which is not surprising since the most general beam splitter is a two-dimensional unitary matrix and these form the closed special unitary group $\text{SU}(2)$ of which the component transforms are elements of.
+
+Neglecting the phase modulation for now, we note that the amplitude modulation resembles a two-dimensional rotation of angle $\Theta/2=\phi_-/2$,
 \begin{equation}
-	U_\text{BS}(\Theta,3\pi/2)
+	R(\Theta/2)
 	=
 	\begin{pmatrix}
 		\cos(\Theta/2) & \sin(\Theta/2) \\
 		-\sin(\Theta/2) & \cos(\Theta/2)
 	\end{pmatrix}
-	=
-	R(\Theta)
+	.
 \end{equation}
-The \gls{mzm} transform is a beam splitter with flexible splitting ratio.
-
+The unitary operator corresponding to the matrix rotation
 \begin{equation}
 	R(\Theta)
 	\vb{\hat{a}}
@@ -138,7 +142,7 @@ The \gls{mzm} transform is a beam splitter with flexible splitting ratio.
 	\vb{\hat{a}}
 	e^{+i\Theta\hat{L}_y}
 \end{equation}
-wherein~\cite[p.~97]{Leonhardt2010}
+is generated by the Jordan-Schwinger operator~\cite[p.~97]{Leonhardt2010}
 \begin{equation}
 	\hat{L}_y
 	=
@@ -157,25 +161,28 @@ wherein~\cite[p.~97]{Leonhardt2010}
 	\right)
 	.
 \end{equation}
+The Jordan-Schwinger operators satisfy the angular momentum algebra and can be used to represent the different components of a unitary matrix transform as operators.
 
+We finalize the discussion of the symmetric \gls{mzm} by considering the number and coherent state transformations.
+We apply the rotation operator to the number and vacuum input state
 \begin{equation}
 	\begin{split}
-		\hat{R}(\Theta)
+		\hat{R}(\Theta/2)
 		\ket{n,0}
 		&=
 		\frac{1}{\sqrt{n!}}
-		\hat{R}(\Theta)
+		\hat{R}(\Theta/2)
 		\left(\hat{a}_1^\dagger\right)^n
-		\hat{R}^\dagger(\Theta)
-		\hat{R}(\Theta)
+		\hat{R}^\dagger(\Theta/2)
+		\hat{R}(\Theta/2)
 		\ket{0,0}
 		\\
 		&=
 		\frac{1}{\sqrt{n!}}
 		\left[
-			\hat{R}(\Theta)
+			\hat{R}(\Theta/2)
 			\hat{a}_1^\dagger
-			\hat{R}^\dagger(\Theta)
+			\hat{R}^\dagger(\Theta/2)
 		\right]^n
 		\ket{0,0}
 		\\
@@ -183,9 +190,9 @@ wherein~\cite[p.~97]{Leonhardt2010}
 		\frac{1}{\sqrt{n!}}
 		\left(
 			\left[
-				\hat{R}(\Theta)
+				\hat{R}(\Theta/2)
 				\hat{a}_1
-				\hat{R}^\dagger(\Theta)
+				\hat{R}^\dagger(\Theta/2)
 			\right]^\dagger
 		\right)^n
 		\ket{0,0}
@@ -194,9 +201,9 @@ wherein~\cite[p.~97]{Leonhardt2010}
 		\frac{1}{\sqrt{n!}}
 		\left(
 			\left[
-				\hat{R}^\dagger(-\Theta)
+				\hat{R}^\dagger(-\Theta/2)
 				\hat{a}_1
-				\hat{R}(\Theta)
+				\hat{R}(\Theta/2)
 			\right]^\dagger
 		\right)^n
 		\ket{0,0}
@@ -214,6 +221,24 @@ wherein~\cite[p.~97]{Leonhardt2010}
 		\right)^n
 		\ket{0,0}
 		\\
+		&=
+		\frac{1}{\sqrt{n!}}
+		\left(
+			\cos(\Theta/2)
+			\hat{a}_1^\dagger
+			-
+			\sin(\Theta/2)
+			\hat{a}_2^\dagger
+		\right)^n
+		\ket{0,0}
+	\end{split}
+\end{equation}
+and use the invariance of the vacuum state $\ket{0,0}$ under rotations in the second line.
+We then use the binomial theorem
+\begin{equation}
+	\begin{split}
+		\hat{R}(\Theta/2)
+		\ket{n,0}
 		&=
 		\frac{1}{\sqrt{n!}}
 		\left(
@@ -246,8 +271,9 @@ wherein~\cite[p.~97]{Leonhardt2010}
 		\ket{n,n-m}
 	\end{split}
 \end{equation}
+and find that the rotation to produce an entanglement.
 
-The number basis is complete and we can use our previous result to find the transformation property of a coherent state
+As the number basis is complete, we can use the previous result to find the transformation property of a coherent and vacuum input state
 \begin{equation}
 	\begin{split}
 		\hat{R}(\Theta)
@@ -317,71 +343,33 @@ The number basis is complete and we can use our previous result to find the tran
 		\\
 		&=
 		\ket{\alpha\cos(\Theta/2),-\alpha\sin(\Theta/2)}
+		.
 	\end{split}
 \end{equation}
-
-Tracing out one output of the MZM for a coherent state gives the projection.
+A rotation splits the coherent input state among two coherent output states.
+Tracing out one output of the \gls{mzm} for a coherent input state is equivalent to a projection
 \begin{equation}
-	\begin{split}
-		\tr_2\left\{
-			\hat{R}(\Theta)
-			\ketbra{\alpha,0}
-			\hat{R}^\dagger(\Theta)
-		\right\}
-		&=
-		\ketbra{\alpha\cos(\Theta/2)}
-		\\
-		&\times
-		\tr_2\left\{
-			\hat{D}_2\left(
-				-
-				\alpha
-				\sin(\Theta/2)
-			\right)
-			\ketbra{0}
-			\hat{D}_2^\dagger\left(
-				-
-				\alpha
-				\sin(\Theta/2)
-			\right)
-		\right\}
-	\end{split}
-\end{equation}
-\begin{equation}
-	\begin{split}
-		\tr_2\left\{
-			\hat{D}_2^\dagger\left(
-				-
-				\alpha
-				\sin(\Theta/2)
-			\right)
-			\hat{D}_2\left(
-				-
-				\alpha
-				\sin(\Theta/2)
-			\right)
-			\ketbra{0}
-		\right\}
-		&=
-		\sum_{n=0}^\infty
-		\braket{n}{0}
-		\braket{0}{n}
-		\\
-		&=
-		\mathbb{I}
-	\end{split}
-\end{equation}
-That is not true in general, and tracing out an entangled state yields a mixed state!
-
-In principle, we could also have used that a coherent state is an eigenstate of the annihilation operator and therefore every operator with existing series expansion in $\vb{\hat{a}}=\hat{a}_1,\dots,\hat{a}_n$ satisfies
-\begin{equation}
-	f(\hat{\vb{a}})
-	\ket{\boldsymbol{\alpha}}
+	\tr_2\left\{
+		\hat{R}(\Theta)
+		\ketbra{\alpha,0}
+		\hat{R}^\dagger(\Theta)
+	\right\}
 	=
-	f(\boldsymbol{\alpha})
-	\ket{\boldsymbol{\alpha}}
+	\ketbra{\alpha\cos(\Theta/2)}
 \end{equation}
-thus also
+but for an entangled state tracing out one output yields a mixed state!
+We conclude that only coherent input states yield simple output states while number input states yield complex entangled output states.
+
+Instead of using the number basis, we could have used that the coherent state is an eigenstate of the annihilation operator
+\begin{equation}
+	\hat{a}
+	\ket{\alpha}
+	=
+	\alpha
+	\ket{\alpha}
+	.
+\end{equation}
+The same holds for a tensor product of coherent states which undergo unitary transformation
 \begin{equation}
 	\begin{split}
 		\boldsymbol{\alpha}^\prime
@@ -397,23 +385,26 @@ thus also
 		\ket{\boldsymbol{\alpha}}
 		=
 		\hat{U}
+		\hat{\vb{a}}
+		\ket{\boldsymbol{\alpha}}
+		=
 		\boldsymbol{\alpha}
+		\hat{U}
 		\ket{\boldsymbol{\alpha}}
 		=
 		\boldsymbol{\alpha}
 		\ket{\boldsymbol{\alpha}^\prime}
 	\end{split}
 \end{equation}
-and comparing both sides
+and comparing both sides, we find the complex quadratures of the coherent state to be related by the same unitary matrix transformation as the annihilation operators, i.e.,
 \begin{equation}
 	\boldsymbol{\alpha}^\prime
 	=
 	U
-	\boldsymbol{\alpha}	
+	\boldsymbol{\alpha}
+	.
 \end{equation}
-We will use this simplification for the \gls{iq} modulator which is a composition of two \gls{mzm}.
-As we already saw the transform of the number state for a single \gls{mzm} already becomes very complex.
-Things get even more ugly for the \gls{iq} modulator.
+We will take advantage of the quadrature transformation when discussion the \gls{iq}-modulator in the next section.
 
 \subsection{In-phase and quadrature modulator}
 
@@ -683,7 +674,7 @@ with the complex baseband signal.
 % mention number states
 % mention generator transform
 
-\subsection{Pockels effect and time dynamics}
+\subsection{Pockels modulator}
 
 % figure (?): what time scales are there, what area of physics do they belong to, are these relevant (?)
 % non-vanishing commutators inside the light-cone (QFT), see Tohen-Canoudji
