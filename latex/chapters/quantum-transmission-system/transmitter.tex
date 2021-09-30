@@ -350,9 +350,9 @@ A rotation splits the coherent input state among two coherent output states.
 Tracing out one output of the \gls{mzm} for a coherent input state is equivalent to a projection
 \begin{equation}
 	\tr_2\left\{
-		\hat{R}(\Theta)
+		\hat{R}(\Theta/2)
 		\ketbra{\alpha,0}
-		\hat{R}^\dagger(\Theta)
+		\hat{R}^\dagger(\Theta/2)
 	\right\}
 	=
 	\ketbra{\alpha\cos(\Theta/2)}
@@ -408,12 +408,19 @@ We will take advantage of the quadrature transformation when discussion the \gls
 
 \subsection{In-phase and quadrature modulator}
 
+The \gls{iq}-modulator uses two \gls{mzm} to modulate each of the two quadratures of a coherent state.
+
+\Cref{fig:iqm} shows a fiber-optical embodiment of the \gls{iq}-modulator.
+First, a splitter divides the input light into two branches with an independent \gls{mzm} each.
+Second, a coupler recombines both branches and outputs the \gls{iq}-modulated signal.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/iqm}
-	\caption{\gls{iq}-modulator comprising three \gls{mzm} and connected by an input and output fiber. MZM 1 and MZM 2, are used in push-pull configuration for \gls{am}. MZM 3 is used in push-push configuration for setting the relative phase between the upper and lower branch. Vacuum in- and outputs are indicated by the red dashed fiber.}
+	\caption{\gls{iq}-modulator comprising three \gls{mzm} and connected by an input and output fiber. MZM 1 and MZM 2, are used in push-pull configuration for \gls{am}. MZM 3 is used in push-push configuration for setting the relative phase between the upper and lower branch. Vacuum in- and outputs are indicated by the red dashed fiber.}\label{fig:iqm}
 \end{figure}
+The vacuum input states and dumped output states are denoted by the dashed orange lines.
 
+We relate the different annihilation operators using tensor products of two-dimensional unitary matrices describing the splitter and coupler $U_\text{BS1},U_\text{BS2}$ and the independent \gls{mzm}s $U_\text{MZM1},U_\text{MZM2}$, i.e.,
 \begin{equation}
 	\begin{split}
 		\begin{pmatrix}
@@ -481,13 +488,15 @@ We will take advantage of the quadrature transformation when discussion the \gls
 			\hat{a}_3 \\
 			\hat{a}_4
 		\end{pmatrix}
+		.
 	\end{split}
 \end{equation}
-
+In tensor product notation, we can compactly write
 \begin{equation}
 	\vb{\hat{a}}^{\prime\prime\prime}
 	=
 	U_\text{IQM}
+	\vb{\hat{a}}
 	=
 	\left[
 		\mathbb{I}_1
@@ -509,12 +518,14 @@ We will take advantage of the quadrature transformation when discussion the \gls
 		\mathbb{I}_1
 	\right]
 	\vb{\hat{a}}
+	.
 \end{equation}
 
+We do not assume a specific kind of balanced splitter or coupler and use
 \begin{equation}
-	U_\text{BS1}(\varphi)
+	U_\text{BS1}
 	=
-	U_\text{BS2}(\varphi)
+	U_\text{BS2}
 	=
 	\frac{1}{\sqrt{2}}
 	\begin{pmatrix}
@@ -522,11 +533,13 @@ We will take advantage of the quadrature transformation when discussion the \gls
 		ie^{-i\varphi} & 1
 	\end{pmatrix}
 	=
-	U_\text{BS}(\pi,\varphi)
+	U_\text{BS}(\varphi)
 \end{equation}
+as the matrix transform of the splitter and coupler.
+While the second \gls{mzm} has the transform derived in the previous section, the first \gls{mzm} has exchanged in- and outputs which we can write
 \begin{equation}
 	\begin{split}
-		U_\text{MZM1}(\phi_{1+},\phi_{1-})
+		U_\text{MZM1}
 		&=
 		e^{i\pi}
 		U_\text{BS}(\pi,0)
@@ -557,9 +570,9 @@ We will take advantage of the quadrature transformation when discussion the \gls
 		\end{pmatrix}
 	\end{split}
 \end{equation}
-We choose $\phi_{1+}=2\pi$ to compensate for the phase shift and $\Theta_1=\phi_{1-}$.
+We choose $\phi_{1+}=2\pi$ to compensate for the phase shift and $\Theta_1=\phi_{1-}$, i.e.,
 \begin{equation}
-	U_\text{MZM1}(\Theta_1)
+	U_\text{MZM1}
 	=
 	\begin{pmatrix}
 		\cos(\Theta_1/2) & -\sin(\Theta_1/2) \\
@@ -568,8 +581,9 @@ We choose $\phi_{1+}=2\pi$ to compensate for the phase shift and $\Theta_1=\phi_
 	=
 	R(-\Theta_1)
 \end{equation}
+The matrix transform of the second \gls{mzm} is
 \begin{equation}
-	U_\text{MZM2}(\phi_{2+},\phi_{2-})
+	U_\text{MZM2}
 	=
 	e^{i\phi_{2+}/2}
 	\begin{pmatrix}
@@ -577,7 +591,7 @@ We choose $\phi_{1+}=2\pi$ to compensate for the phase shift and $\Theta_1=\phi_
 		-\sin(\phi_{2-}/2) & \cos(\phi_{2-}/2)
 	\end{pmatrix}
 \end{equation}
-where we choose $\phi_{2+}=-\pi$ and $\Theta_2=\phi_{2-}$ such that
+but we choose $\phi_{2+}=-\pi$ and $\Theta_2=\phi_{2-}$ such that
 \begin{equation}
 	U_\text{MZM2}(\Theta_2)
 	=
@@ -589,11 +603,14 @@ where we choose $\phi_{2+}=-\pi$ and $\Theta_2=\phi_{2-}$ such that
 	=
 	-i
 	R(\Theta_2)
+	.
 \end{equation}
+Using $\phi_{2+}=-\pi$ turns out to yield orthogonal modulation of both \gls{mzm} as desired for \gls{iq}-modulation.
 
+Performing the matrix multiplication we find
 \begin{equation}
 	\begin{split}
-		U_\text{IQM}(\Theta_1,\Theta_2,\varphi)
+		U_\text{IQM}
 		=
 		\begin{pmatrix}
 			c_1 & -\frac{1}{\sqrt{2}}s_1 & -\frac{1}{\sqrt{2}}e^{+i\varphi}s_1 & 0 \\
@@ -603,6 +620,7 @@ where we choose $\phi_{2+}=-\pi$ and $\Theta_2=\phi_{2-}$ such that
 		\end{pmatrix}
 	\end{split}
 \end{equation}
+where we introduced the shorthand notation
 \begin{align}
 	c_j
 	&=
@@ -611,7 +629,10 @@ where we choose $\phi_{2+}=-\pi$ and $\Theta_2=\phi_{2-}$ such that
 	s_j
 	&=
 	\sin(\Theta_j/2)
+	.
 \end{align}
+
+For a coherent input state the matrix transform 
 \begin{equation}
 	\begin{pmatrix}
 		\alpha_1^{\prime\prime\prime} \\
