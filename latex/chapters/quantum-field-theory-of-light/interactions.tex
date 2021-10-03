@@ -166,3 +166,644 @@ The exact time-evolution operator of the Maxwell field interacting with a classi
 	\right\}
 \end{equation}
 which equals the displacement operator for a time-dependent spectrum $\hat{D}[\alpha(t,t_0)]$.
+
+\subsection{Interaction with a charged particle in a potential}
+
+Based on Refs.~\cite[p.~687]{Mandel1995},~\cite[p.~128]{Cohen1992}
+
+The Hamiltonian of the particle with charge $q$ and mass $m$
+\begin{equation}
+	\hat{H}_q
+	=
+	\frac{1}{2m}
+	\hat{\vb{p}}^2
+	+
+	qV(\hat{\vb{x}})
+\end{equation}
+wherein $V$ is a classical external potential and the position and momentum operator satisfy the canonical commutation relations
+\begin{align}
+	\comm{\hat{x}_i}{\hat{p}_j}
+	&=
+	i\delta_{ij}
+	&
+	\comm{\hat{x}_i}{\hat{x}_j}
+	&=
+	0
+	=
+	\comm{\hat{p}_i}{\hat{p}_j}
+	.
+\end{align}
+Interaction of the charged particle with an electromagnetic potential $\hat{\vb{A}}$ due to minimal coupling os obtained by the replacement~\cite{Itzykson2012}
+\begin{equation}
+	\hat{\vb{p}}
+	\to
+	\hat{\vb{p}}
+	-
+	q\vb{\hat{A}}
+\end{equation}
+and expanding the kinetic term of the particle's Hamiltonian
+\begin{equation}
+	\begin{split}
+		\frac{1}{2m}
+		\left(\hat{\vb{p}}-q\hat{\vb{A}}\right)^2
+		&=
+		\frac{1}{2m}
+		\hat{\vb{p}}^2
+		-
+		\frac{q}{2m}
+		\left(
+			\hat{\vb{p}}
+			\vdot
+			\hat{\vb{A}}
+			+
+			\hat{\vb{A}}
+			\vdot
+			\hat{\vb{p}}
+		\right)
+		+
+		\frac{q^2}{2m}
+		\hat{\vb{A}}^2
+		\\
+		&=
+		\frac{1}{2m}
+		\hat{\vb{p}}^2
+		-
+		\frac{q}{m}
+		\hat{\vb{p}}
+		\vdot
+		\hat{\vb{A}}
+		+
+		\frac{q^2}{2m}
+		\hat{\vb{A}}^2
+	\end{split}
+\end{equation}
+where we used that the particle's momentum and the Maxwell field operator commute in the Coulomb gauge, see Ref.~\cite[p.~687]{Mandel1995}.
+The interaction term quadratic in the Maxwell field becomes relevant for very high intensities, see Ref.~\cite[p.~198]{Cohen1989} and Ref.~\cite[p.~689]{Mandel1995} for a detailed discussion, which we are not relevant for out use case.
+We conclude the interaction Hamiltonian to be
+\begin{equation}
+	\hat{H}_\text{int}(t,\vb{x})
+	=
+	-\frac{q}{m}
+	\hat{\vb{p}}(t)
+	\vdot
+	\hat{\vb{A}}(t,\vb{x})
+	.
+\end{equation}
+In the dipole approximation, we consider the Maxwell field constant over the support of the particle wave function~\cite[p.~688]{Mandel1995} and thus
+\begin{equation}
+	\hat{\vb{A}}(t,\vb{x})
+	\ket{\Psi}
+	\approx
+	\hat{\vb{A}}(t,\vb{x}_0)
+	\ket{\Psi}
+\end{equation}
+with $\vb{x}_0$ being the particle's \gls{com}.
+
+For an alternative approach on how the minimal coupling leads to the dipole interaction, see Ref.~\cite[p.~635]{Cohen1992}.
+
+\subsection{Photodetection}
+
+\subsubsection{Gerry and Knight}
+
+Based on Ref.~\cite[p.~120]{Gerry2005}.
+
+We have the dipole interaction
+\begin{equation}
+	\hat{H}_\text{int}(t,\vb{x})
+	=
+	-
+	\hat{\vb{d}}
+	\vdot
+	\hat{\vb{E}}(\vb{x},t)
+	=
+	-
+	\hat{\vb{d}}
+	\vdot
+	\left(
+		\hat{\vb{E}}^{(+)}(\vb{x},t)
+		+
+		\hat{\vb{E}}^{(-)}(\vb{x},t)
+	\right)
+\end{equation}
+wherein
+\begin{equation}
+	\hat{\vb{E}}^{(+)}(\vb{x},t)
+	=
+	i\sum_\lambda
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega}}
+	\vu{e}_\lambda(\vb{p})
+	\hat{a}_\lambda(\vb{p})
+	e^{+i\vb{p}\vdot\vb{x}}
+	\approx
+	i\sum_\lambda
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega}}
+	\vu{e}_\lambda(\vb{p})
+	\hat{a}_\lambda(\vb{p})
+\end{equation}
+where the dipole approximation $\norm{\vb{p}\vdot\vb{x}}\ll1$ has been implemented using $e^{i\vb{p}\vdot\vb{x}}\approx1$.
+
+The matrix element for the photoemission is
+\begin{equation}
+	\bra{e,f}\hat{H}_\text{int}\ket{g,i}
+	=
+	-
+	\bra{e}\hat{\vb{d}}\ket{g}
+	\bra{f}\hat{\vb{E}}^{(+)}(\vb{x},t)\ket{i}
+	.
+\end{equation}
+We do not care about the final states of the field, hence we marginalize the probability of an absorption
+\begin{equation}
+	\sum_f\abs{\bra{f}\hat{\vb{E}}^{(+)}(\vb{x},t)\ket{i}}^2
+	=
+	\sum_f
+	\bra{i}
+	\hat{\vb{E}}^{(-)}
+	\ketbra{f}
+	\hat{\vb{E}}^{(+)}
+	\ket{i}
+	=
+	\expval{\hat{\vb{E}}^{(-)}\vdot\hat{\vb{E}}^{(+)}}{i}
+	.
+\end{equation}
+For a more general initial radiation state $\hat\rho_i=\sum_jp_j\ketbra{j}$, we can rewrite the previous equation as
+\begin{equation}
+	\tr\left\{
+		\hat\rho_f
+		\hat{\vb{E}}^{(-)}
+		\vdot
+		\hat{\vb{E}}^{(+)}
+	\right\}
+	.
+\end{equation}
+
+\subsubsection{Cohen-Tannoudji}
+
+Based on Ref.~\cite[p.~128]{Cohen1992}.
+
+\begin{equation}
+	\hat{H}
+	=
+	\hat{H}_a
+	+
+	\hat{H}_f
+	+
+	\hat{H}_i
+\end{equation}
+wherein \textcolor{red}{need to show this!}
+\begin{equation}
+	\hat{H}_i
+	=
+	-
+	\hat{\vb{d}}
+	\vdot
+	\hat{\vb{E}}
+\end{equation}
+Assuming the dipole moment and the electric field to be parallel, we find in the interaction picture
+\begin{align}
+	\hat{\vb{d}}(t)
+	&=
+	e^{+i\hat{H}_at}
+	\hat{\vb{d}}(0)
+	e^{-i\hat{H}_at}
+	\\
+	\hat{\vb{E}}(t)
+	&=
+	e^{+i\hat{H}_ft}
+	\hat{\vb{E}}(0)
+	e^{-i\hat{H}_ft}
+	.
+\end{align}
+We have a photoelectron emission in time interval $\Delta t$ whenever an electron is excited from the ground state $\ket{g}$, i.e.,
+\begin{equation}
+	p_{\Delta t}
+	=
+	\sum_{f,e}
+	\abs{\bra{f,e}\hat{U}(\Delta t)\ket{i,g}}^2
+\end{equation}
+where we marginalized the final states as we do not care about them, and the interaction time-evolution operator is
+\begin{equation}
+	\hat{U}(\Delta t)
+	=
+	\mathcal{T}_+
+	\exp\left\{
+		-i\int_0^{\Delta t}\dd{t^\prime}
+		\hat{H}_\text{int}(t^\prime)
+	\right\}
+	.
+\end{equation}
+Expanding the time-evolution operator, we find
+\begin{equation}
+	p_{\Delta t}
+	=
+	\sum_{f\neq i,e\neq g}
+	\int_0^{\Delta t}\dd{t^\prime}
+	\int_0^{\Delta t}\dd{t^{\prime\prime}}
+	\abs{\bra{f,e}\hat{H}_\text{int}(t^\prime)\hat{H}_\text{int}(t^{\prime\prime})\ket{i,g}}^2
+\end{equation}
+where the first term (zeroth order in $\hat{H}_\text{int}$ vanishes because of the orthogonality of the final and initial states, and the second term vanishes because the dipole moment operator is asymmetric~\cite[p.~131]{Cohen1992}.
+Writing out the dipole and electric field operators, we find
+\begin{equation}
+	\begin{split}
+		p_{\Delta t}
+		&=
+		\sum_{f\neq i,e\neq g}
+		\int_0^{\Delta t}\dd{t^\prime}
+		\int_0^{\Delta t}\dd{t^{\prime\prime}}
+		\bra{i}
+		\hat{\vb{E}}(t^\prime)
+		\ketbra{f}
+		\hat{\vb{E}}(t^{\prime\prime})
+		\ket{i}
+		\bra{g}
+		\hat{\vb{d}}(t^\prime)
+		\ketbra{e}
+		\hat{\vb{d}}(t^{\prime\prime})
+		\ket{g}
+		\\
+		&=
+		\int_0^{\Delta t}\dd{t^\prime}
+		\int_0^{\Delta t}\dd{t^{\prime\prime}}
+		\bra{i}
+		\hat{\vb{E}}(t^\prime)
+		\left(
+			\sum_f
+			\ketbra{f}
+		\right)
+		\hat{\vb{E}}(t^{\prime\prime})
+		\ket{i}
+		\bra{g}
+		\hat{\vb{d}}(t^\prime)
+		\left(
+			\sum_e
+			\ketbra{e}
+		\right)
+		\hat{\vb{d}}(t^{\prime\prime})
+		\ket{g}
+		\\
+		&=
+		\int_0^{\Delta t}\dd{t^\prime}
+		\int_0^{\Delta t}\dd{t^{\prime\prime}}
+		\bra{i}
+		\hat{\vb{E}}(t^\prime)
+		\hat{\vb{E}}(t^{\prime\prime})
+		\ket{i}
+		\bra{g}
+		\hat{\vb{d}}(t^\prime)
+		\hat{\vb{d}}(t^{\prime\prime})
+		\ket{g}
+		\\
+		&=
+		\int_0^{\Delta t}\dd{t^\prime}
+		\int_0^{\Delta t}\dd{t^{\prime\prime}}
+		G_i(t^\prime,t^{\prime\prime})^*
+		G_g(t^\prime,t^{\prime\prime})
+	\end{split}
+\end{equation}
+where $G_i$ and $G_g$ are the two-time correlation functions of the atomic detector system and radiation field.
+
+\subsubsection{Mandel and Wolf}
+
+In the model presented in Ref.~\cite[p.~685]{Mandel1995}, the interaction Hamiltonian is~\cite[p.~689]{Mandel1995}
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	-
+	\hat{\vb{p}}(t)
+	\vdot
+	\hat{\vb{A}}(\vb{x}_0,t)
+\end{equation}
+wherein $\vb{x}_0$ is the detector atom's \gls{com}.
+The interaction term can be transformed into the dipole moment operator $\hat{\vb{d}}$ and the dielectric displacement field operator $\hat{\vb{D}}$~\cite[p.~689]{Mandel1995} giving a similar interaction term as discussed by Cohen-Tannoudji.
+
+We then consider a bound electron in a potential well. When bound, the electron state $\ket{\Psi_0}$ satisfies
+\begin{equation}
+	\hat{H}_a
+	\ket{g}
+	=
+	E_g
+	\ket{g}
+	=
+	-\omega_g
+	\ket{g}
+	.
+\end{equation}
+Let $\hat\rho_f$ be the radiation field state in the Schrödinger picture
+\begin{equation}
+	\hat\rho^{(S)}(t_0)
+	=
+	\ketbra{g}
+	\otimes
+	\hat\rho_f(t_0)
+\end{equation}
+then in the interaction picture, the state is~\cite[p.~685]{Mandel1995}
+\begin{equation}
+	\hat\rho^{(I)}(t)
+	=
+	e^{+i\hat{H}_0(t-t_0)}
+	\hat\rho^{(S)}(t)
+	e^{-i\hat{H}_0(t-t_0)}
+\end{equation}
+and the electron's momentum operator takes the form
+\begin{equation}
+	\hat{\vb{p}}(t)
+	=
+	e^{+i\hat{H}_a(t-t_0)}
+	\hat{\vb{p}}
+	e^{-i\hat{H}_a(t-t_0)}
+\end{equation}
+and the Maxwell field is
+\begin{equation}
+	\begin{split}
+		\hat{\vb{A}}(\vb{x}_0,t)
+		&=
+		\hat{\vb{A}}^{(+)}(\vb{x}_0,t)
+		+
+		\hat{\vb{A}}^{(-)}(\vb{x}_0,t)
+		\\
+		&=
+		\sum_{\lambda=1,2}
+		\int_{\mathbb{R}^3}
+		\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\hat{a}_\lambda(\vb{p})
+		\boldsymbol{\varepsilon}_\lambda(\vb{p})
+		e^{+i\vb{p}\vdot\vb{x}_0-i\omega(\vb{p})(t-t_0)}
+		+
+		\text{h.c.}
+		.
+	\end{split}
+\end{equation}
+In the interaction picture, the quantum state evolves according to
+\begin{equation}
+	\dv{\hat\rho^{(I)}}{t}
+	=
+	i\comm{\hat\rho^{(I)}}{\hat{H}^{(I)}_\text{int}}
+\end{equation}
+which can be solved by Magnus expansion.
+For instance,
+\begin{equation}
+	\hat\rho^{(I)}(t)
+	=
+	\hat\rho(t_0)
+	+
+	i\int_{t_0}^t\dd{t^\prime}
+	\comm{\hat\rho(t_0)}{\hat{H}_\text{int}(t^\prime)}
+	+
+	i^2
+	\int_{t_0}^t\dd{t^\prime}
+	\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
+	\dots
+\end{equation}
+
+The probability amplitude for the transition
+\begin{equation}
+	\ket{g,i}
+	\to
+	\ket{e,f}
+\end{equation}
+is equal to~\cite[p.~686]{Mandel1995}
+\begin{equation}
+	\begin{split}
+		p(t_0,\Delta t)
+		=
+		\tr\left\{
+			\hat\rho_{e,f}
+			\hat\rho_{g,i}(t_0+\Delta t)
+		\right\}
+		&=
+		\tr\left\{
+			\hat\rho_{e,f}
+			\hat\rho_{g,i}(t_0)
+		\right\}
+		\\
+		&+
+		\frac{1}{i}
+		\tr\left\{
+			\hat\rho_{e,f}
+			\int_{t_0}^{t_0+\Delta t}
+			\dd{t^\prime}
+			\comm{\hat{H}_\text{int}(t^\prime)}{\hat\rho_{g,i}(t_0)}
+		\right\}
+		\\
+		&+
+		\frac{1}{i^2}
+		\tr\left\{
+			\hat\rho_{e,f}
+			\int_{t_0}^{t_0+\Delta t}\dd{t^\prime}
+			\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
+			\comm{\hat{H}_\text{int}(t^\prime)}{\comm{\hat{H}_\text{int}(t^{\prime\prime})}{\hat\rho_{g,i}(t_0)}}
+		\right\}
+	\end{split}
+\end{equation}
+the first two terms vanish and we have
+\begin{equation}
+	p(t_0,\Delta t)
+	=
+	\int_{t_0}^{t_0+\Delta t}\dd{t^\prime}
+	\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
+	\expval{\hat{H}_\text{int}(t^\prime)\hat\rho(t_0)\hat{H}_\text{int}(t^{\prime\prime})}{e,f}
+	+
+	\text{c.c.}
+\end{equation}
+We now take the interaction Hamiltonian
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	e^{+i\hat{H}_a(t-t_0)}
+	\hat{\vb{p}}
+	e^{-i\hat{H}_a(t-t_0)}
+	\hat{\vb{A}}(\vb{x}_0,t)
+\end{equation}
+which we evaluate with \textcolor{red}{check this!}
+\begin{equation}
+	\begin{split}
+		\expval{\hat{H}_\text{int}(t^\prime)\hat\rho(t_0)\hat{H}_\text{int}(t^{\prime\prime})}{e,f}
+		&=
+		\bra{e}\hat{p}_i\ket{g}
+		\bra{g}\hat{p}_j\ket{e}
+		e^{i(E-E_0)(t^\prime-t^{\prime\prime})}
+		\\
+		&\times
+		\bra{f}
+		\hat{A}_i(\vb{x}_0,t^\prime)
+		\braket{i}
+		\hat{A}_j(\vb{x}_0,t^{\prime\prime})
+		\ket{f}
+		+
+		\text{c.c.}
+	\end{split}
+\end{equation}
+Expanding the initial state in the coherent state basis
+\begin{equation}
+	\ket{i}
+	=
+	\int\dd[2]{\alpha}
+	p_i(\alpha,t_0)
+	\ketbra{\alpha}
+\end{equation}
+we can use the eigenvalue equation of the coherent state and sum over all final states to remove the final state dependency, i.e.,
+\begin{equation}
+	\sum_i
+	p(t_0,\Delta t)
+	=
+	\int_{t_0}^{t_0+\Delta t}\dd{t^\prime}
+	\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
+	\bra{e}\hat{p}_i\ket{g}
+	\bra{g}\hat{p}_j\ket{e}
+	e^{i(E-E_0)(t^\prime-t^{\prime\prime})}
+	\expval{\hat{A}_i(\vb{x}_0,t^\prime)\hat{A}_j(\vb{x}_0,t^{\prime\prime})}
+	+
+	\text{c.c.}
+\end{equation}
+We then sum of all final electron states weighted by the density of states times the the probability of being collected by the detector and find
+\begin{equation}
+	P(t_0,\Delta t)
+	=
+	\int_{t_0}^{t_0+\Delta t}\dd{t^\prime}
+	\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
+	k_{ij}(t^\prime-t^{\prime\prime})
+	\expval{\hat{A}_i(\vb{x}_0,t^\prime)\hat{A}_j(\vb{x}_0,t^{\prime\prime})}
+	+
+	\text{c.c.}
+\end{equation}
+see Ref.~\cite[p.~694]{Mandel1995} for an explicit representation of the response function $k_{ij}$.
+Employing normal-ordering of the Maxwell field operators, we find that the second term, the vacuum contribution, becomes zero Ref.~\cite[p.~694]{Mandel1995} and we can write
+\begin{equation}
+	P(t_0,\Delta t)
+	=
+	\int_{t_0}^{t_0+\Delta t}\dd{t^\prime}
+	\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
+	k_{ij}(t^\prime-t^{\prime\prime})
+	\expval{\colon\hat{A}_i(\vb{x}_0,t^\prime)\hat{A}_j(\vb{x}_0,t^{\prime\prime})\colon}
+	+
+	\text{c.c.}
+\end{equation}
+\textcolor{red}{Can we rewrite this in terms of electric field operators?}
+
+\subsubsection{Vogel}
+
+Based on Ref.~\cite[p.~48]{Vogel2006}
+
+The minimal-coupling Hamiltonian
+\begin{equation}
+	\hat{H}
+	=
+	\int\dd[3]{x}
+	\int_0^\omega\dd{\omega}
+	\hat{\vb{f}}^\dagger(\vb{x},\omega)
+	\hat{\vb{f}}(\vb{x},\omega)
+	+
+	\sum_j\frac{\left(\hat{\vb{p}}_j-q_j\hat{\vb{A}}(\hat{\vb{x}}_j,t)\right)^2}{2m_j}
+	+
+	\hat{W}_\text{Coul}
+\end{equation}
+wherein $\hat{W}_\text{Coul}$ is the Coulomb interaction between the different charges.
+For bound atomic states, we can expand the Maxwell field around the atom's \gls{com} and the interaction Hamiltonian takes the form
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	-
+	\sum_j\frac{q_j}{m_j}
+	\hat{\vb{p}}_j
+	\vdot
+	\hat{\vb{A}}(\vb{x}_j)
+	+
+	\sum_j\frac{q_j^2}{2m_j}
+	\hat{\vb{A}}(\vb{x}_j)^2
+\end{equation}
+In the electric-dipole approximation we have
+\begin{equation}
+	\hat{H}_\text{int}
+	\approx
+	-
+	\sum_j\frac{q_j}{m_j}
+	\hat{\vb{p}}_j
+	\vdot
+	\hat{\vb{A}}(\vb{x}_j)	
+\end{equation}
+\textcolor{red}{fancy reasoning why the former interaction Hamiltonian is equivalent to} (maybe \cite[p.~691]{Mandel1995} or Cohen-Tanodji?)
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	\approx
+	-
+	\sum_j
+	\hat{\vb{d}}_j
+	\vdot
+	\hat{\vb{E}}(\vb{x}_j,t)
+	.
+\end{equation}
+
+Based on Ref.~\cite[p.~173]{Vogel2006}
+
+The photoemission probability is equal to
+\begin{equation}
+	\begin{split}
+		\abs{\bra{e,f}\hat{U}(t_0,t_0+\Delta t)\ket{g,i}}^2
+		&=
+		\bra{e,f}
+		\hat{U}(t_0,t_0+\Delta t)
+		\ket{g,i}
+		\\
+		&\times
+		\bra{g,i}
+		\hat{U}^\dagger(t_0,t_0+\Delta t)
+		\ket{e,f}
+		\\
+		&=
+		\tr\biggl\{
+			\bra{e,f}
+			\hat{U}(t_0,t_0+\Delta t)
+			\ket{g,i}
+			\\
+			&\times
+			\bra{g,i}
+			\hat{U}^\dagger(t_0,t_0+\Delta t)
+			\ket{e,f}
+		\biggr\}
+		\\
+		&=
+		\tr\biggl\{
+			\ketbra{e,f}
+			\hat{U}(t_0,t_0+\Delta t)
+			\ketbra{g,i}
+			\hat{U}^\dagger(t_0,t_0+\Delta t)
+		\biggr\}
+		\\
+		&=
+		\tr\left\{
+			\hat\rho_{e,f}
+			\hat\rho_{g,i}(t_0+\Delta t)
+		\right\}
+	\end{split}
+\end{equation}
+wherein the time-evolution operator is
+\begin{equation}
+	\hat{U}(t_0,t_0+\Delta t)
+	=
+	\mathcal{T}_+
+	\exp\left\{
+		-i
+		\int_{t_0}^{t_0+\Delta t}\dd{t^\prime}
+		\hat{H}_\text{int}(t^\prime)
+	\right\}
+\end{equation}
+then, evaluating the transition amplitude
+\begin{equation}
+	\bra{g,f}
+	\hat{U}(t_0,t_0+\Delta t)
+	\ket{e,i}
+	=
+	\mathcal{T}_+
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\bra{g,f}
+	\left[
+		i
+		\int_{t_0}^{t_0+\Delta t}\dd{t^\prime}
+		\vb{d}_{fg}
+		\vdot
+		\hat{\vb{E}}^{(+)}(\vb{x}_0,t^\prime)
+		e^{i\omega_{fg}(t^\prime-t)}
+	\right]^n
+	\ket{e,i}
+\end{equation}
+\textcolor{red}{why do we only have $E^+$ here? How to derive this exactly?}
