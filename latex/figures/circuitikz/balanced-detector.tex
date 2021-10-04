@@ -11,7 +11,7 @@
             (opamp.-) node[circ](aux){} to[short, i<_=${i_1-i_2}$] ++(-3, 0) node[circ](bd){}
             (bd) to[full photodiode, l=$\text{PD}_1\;$] ++(0, 3) node[ocirc, label=$+V_b$](bias plus){}
             (bd) ++(0, -3) node[ocirc, label=$-V_b$, rotate=180](bias minus){} to[full photodiode, l=$\text{PD}_2\;$] ++(0, 3)
-            (aux) to ++(0, 2) node(aux2){} to[resistor, l=$Z_f$] (aux2 -| opamp.out) |- (opamp.out) node[circ]{}
+            (aux) to ++(0, 2) node(aux2){} to[european resistor, l=$Z_f$] (aux2 -| opamp.out) |- (opamp.out) node[circ]{}
             (opamp.+) to (opamp.+ |- bias minus) node[ground](gnd){}
             ;
 %        \draw (0, 0)
