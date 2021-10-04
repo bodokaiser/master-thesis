@@ -137,7 +137,7 @@ within the frequencies of the detector bandwidth $B$, the photon number differen
 		\hat{n}_1^\prime(\omega)
 		-
 		\hat{n}_2^\prime(\omega)
-		&=
+		&\approx
 		2\left[
 			t(\omega)^*
 			r(\omega)
@@ -314,7 +314,7 @@ wherein $\eta$ is the \gls{qe} or frequency response of the photodiodes.
 The mean photocurrent difference is amplified and converted to a voltage signal $V_0$ by the \gls{tia} frontend.
 In particular,
 \begin{equation}
-	V_0(\omega)
+	V_o(\omega)
 	=
 	-
 	Z_f(\omega)
@@ -323,7 +323,7 @@ In particular,
 where $Z_F$ is the complex feedback impedance.
 The mean voltage signal is equal to
 \begin{equation}
-	V_0(t)
+	V_o(t)
 	=
 	-
 	\left(Z_f*\overline{\Delta i}\right)(t)
@@ -331,4 +331,72 @@ The mean voltage signal is equal to
 	-
 	\left(Z_f*h*\overline{X}\right)(t)
 	.
+\end{equation}
+
+The variance of a photodetector with efficiency $\eta$ is given by~\cite[p.~194]{Vogel2006}
+\begin{equation}
+	\begin{split}
+		\overline{(\Delta n^\prime)^2}(\omega)
+		&=
+		\eta(\omega)
+		\expval{\hat{n}^\prime(\omega)}
+		+
+		\eta(\omega)^2
+		\expval{\colon\left(\Delta\hat{n}^\prime(\omega)\right)^2\colon}
+		\\
+		&=
+		\eta(\omega)\left(1-\eta(\omega)\right)
+		\expval{\hat{n}^\prime(\omega)}
+		+
+		\eta(\omega)^2
+		\expval{\left(\Delta\hat{n}^\prime(\omega)\right)^2}
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		\expval{\colon\hat{n}_\Delta^\prime(\omega)^2\colon}
+		&=
+		4\abs{t(\omega)r(\omega)}^2
+		\expval{
+			\colon
+			\left[
+				\hat{a}_s^\dagger(\omega)
+				\hat{a}_l(\omega)
+				e^{+i(\phi_r-\phi_l)}
+				+
+				\hat{a}_s(\omega)
+				\hat{a}_l^\dagger(\omega)
+				e^{-i(\phi_r-\phi_l)}
+			\right]^2
+			\colon
+		}
+		\\
+		&=
+		4\abs{t(\omega)r(\omega)}^2
+		\expval{
+			\hat{a}_s^\dagger(\omega)^2
+			\hat{a}_l(\omega)^2
+			e^{+2i(\phi_r-\phi_l)}
+			+
+			\hat{a}_l^\dagger(\omega)^2
+			\hat{a}_s(\omega)^2
+			e^{-2i(\phi_r-\phi_l)}
+			+
+			2
+			\hat{a}_s^\dagger(\omega)
+			\hat{a}_l^\dagger(\omega)
+			\hat{a}_l(\omega)
+			\hat{a}_s(\omega)
+		}
+		\\
+		&=
+		4\abs{t(\omega)r(\omega)}^2
+		\left[
+			2
+			\overline{n}_s(t)
+			\overline{n}_l(t)
+			+
+			\dots
+		\right]
+	\end{split}
 \end{equation}
