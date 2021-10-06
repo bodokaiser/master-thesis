@@ -8,7 +8,10 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{amsthm,amsmath,amssymb}
+\usepackage{amsthm}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{authblk}
 \usepackage[english]{babel}
 \usepackage{biblatex}
@@ -24,9 +27,12 @@
 \usepackage[mode=buildnew]{standalone}
 %\usepackage{thmtools,thm-restate}
 \usepackage{tensor}
-\usepackage{lmodern}
+%\usepackage{lmodern}
 \usepackage{multirow}
 \usepackage{xcolor}
+%\usepackage{dsfont}
+%\usepackage[bb=dsserif]{mathalpha}
+\usepackage{unicode-math}
 
 \addbibresource{literature.bib}
 
@@ -101,6 +107,21 @@
 % https://tex.stackexchange.com/questions/224245/is-there-any-way-to-set-up-ceil-and-floor-macros-without-installing-the-mathto
 %\newcommand\floor[1]{\lfloor#1\rfloor}
 %\newcommand\ceil[1]{\lceil#1\rceil}
+
+% mathbb for unicode-math
+% https://tex.stackexchange.com/questions/26637/how-do-you-get-mathbb1-to-work-characteristic-function-of-a-set?noredirect=1&lq=1
+%\setmathfont{NewCMMath-Book}
+%\setmathfont{NewCMMath-Book}[
+ % version=bold,
+ % FakeBold=1.2
+ %]
+
+% mathbb for unicode-math
+% https://tex.stackexchange.com/questions/360607/unicode-math-but-ordinary-blackboard-bold
+%\AtBeginDocument{%
+%  \let\mathbb\relax
+%  \DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}%
+%}
 
 % theorems
 \newtheorem{theorem}{Theorem}[section]
@@ -276,7 +297,7 @@
 	\chapter{Logical quantum channel}
 	\begin{refsection}
 		\input{chapters/logical-quantum-channel/introduction}
-		\input{chapters/logical-quantum-channel/encoder}
+%		\input{chapters/logical-quantum-channel/encoder}
 		
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]

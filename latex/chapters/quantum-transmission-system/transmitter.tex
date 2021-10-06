@@ -271,7 +271,7 @@ The \gls{mzm} arranges two phase modulators to perform amplitude and phase modul
 Using two electrical-driven phase modulators, the \gls{mzm} performs amplitude and phase modulation on an optical input field.
 To begin with, we derive the quantum operator matrix transform from a specific implementation of the \gls{mzm}, the symmetric free-space \gls{mzi}.
 Then, we link the quantum operator matrix transform to more general unitary operators.
-Finally, we derive the quantum state transform for a number state as input to the \gls{mzm} and use it to derive the quantum state transform for a coherent state.
+Finally, we derive the quantum state transform for a coherent input state to the \gls{mzm}.
 
 \begin{figure}[htb]
 	\centering
@@ -292,24 +292,22 @@ We label the input annihilation operators of the \gls{mzi} $\hat{a}_1,\hat{a}_2$
 The annihilation operators after splitting and before (after) phase shifting are denoted by two (three) primes, i.e., $\hat{a}_1^{\prime},\hat{a}_2^{\prime}$ and $\hat{a}_1^{\prime\prime},\hat{a}_2^{\prime\prime}$.
 Going backwards through the transformations from the output to the input annihilation operators
 \begin{equation}
-	\begin{split}
-		\vb{\hat{a}}^{\prime\prime\prime}
-		=
-		U_\text{BS2}
-		\vb{\hat{a}}^{\prime\prime}
-		=
-		U_\text{BS2}
-		U_\text{PS}
-		\vb{\hat{a}}^{\prime}
-		=
-		U_\text{BS2}
-		U_\text{PS}
-		U_\text{BS1}
-		\vb{\hat{a}}
-		=
-		U_\text{MZI}
-		\vb{\hat{a}}
-	\end{split}
+	\vb{\hat{a}}^{\prime\prime\prime}
+	=
+	U_\text{BS2}
+	\hat{\vb{a}}^{\prime\prime}
+	=
+	U_\text{BS2}
+	U_\text{PS}
+	\hat{\vb{a}}^{\prime}
+	=
+	U_\text{BS2}
+	U_\text{PS}
+	U_\text{BS1}
+	\hat{\vb{a}}
+	=
+	U_\text{MZI}
+	\vb{\hat{a}}
 \end{equation}
 we find the symmetric \gls{mzi}'s unitary matrix transform $U_\text{MZM}$ to be equal to the matrix product of the second beam splitter's, the phase shifts', and the first beam splitter's unitary matrix transform  $U_\text{BS2}U_\text{PS}U_\text{BS1}$.
 
@@ -453,31 +451,106 @@ with $\sigma_j$ being the two-dimensional Pauli matrices and $\sigma_0$ being th
 	.
 \end{equation}
 
-Given the unitary operator for the \gls{mzm}, \cref{eq:mzm_operator}, we find the number state transform
+We apply the unitary operator for the \gls{mzm}, \cref{eq:mzm_operator}, and apply it to a coherent and vacuum input state
 \begin{equation}
 	\begin{split}
 		\hat{U}_\text{MZM}
-		\ket{n,0}
+		\ket{\alpha,0}
 		&=
-		\frac{1}{\sqrt{n!}}
 		\hat{U}_\text{MZM}
-		\left(\hat{a}_1^\dagger\right)^n
+		\hat{D}_1(\alpha)
 		\hat{U}_\text{MZM}^\dagger
 		\hat{U}_\text{MZM}
 		\ket{0,0}
 		\\
 		&=
-		\frac{1}{\sqrt{n!}}
-		\left(
-			\hat{U}_\text{MZM}
-			\hat{a}_1^\dagger
-			\hat{U}_\text{MZM}^\dagger
-		\right)^n
+		\hat{U}_\text{MZM}
+		\hat{D}_1(\alpha)
+		\hat{U}_\text{MZM}^\dagger
 		\ket{0,0}
 	\end{split}
-	\label{eq:mzm_number}
 \end{equation}
 where we used the invariance of the vacuum state $\ket{0,0}$ in the second line.
+Under a unitary transformation, the displacement operator becomes
+\begin{equation}
+	\begin{split}
+		\hat{U}
+		\hat{D}(\alpha)
+		\hat{U}^\dagger
+		&=
+		\hat{U}
+		\exp\left\{
+			\alpha
+			\hat{a}^\dagger
+			-
+			\alpha^*
+			\hat{a}
+		\right\}
+		\hat{U}^\dagger
+		\\
+		&=
+		\exp\left\{
+			\alpha
+			\hat{U}
+			\hat{a}^\dagger
+			\hat{U}^\dagger
+			-
+			\alpha^*
+			\hat{U}
+			\hat{a}
+			\hat{U}^\dagger
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\alpha
+			\left(
+				\hat{U}
+				\hat{a}
+				\hat{U}^\dagger
+			\right)^\dagger
+			-
+			\alpha^*
+			\hat{U}
+			\hat{a}
+			\hat{U}^\dagger
+		\right\}
+	\end{split}
+\end{equation}
+where we used the operator identity
+\begin{equation}
+	\hat{U}
+	e^{\hat{A}}
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\hat{U}
+	\hat{A}^n
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\hat{U}
+	\hat{A}
+	\hat{U}^\dagger
+	\cdots
+	\hat{U}
+	\hat{A}
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\left(
+		\hat{U}
+		\hat{A}
+		\hat{U}^\dagger
+	\right)^n
+	=
+	e^{\hat{U}\hat{A}\hat{U}^\dagger}
+\end{equation}
+which follows from inserting $\hat{U}\hat{U}^\dagger=\mathbb{1}$ between the $\hat{A}$s.
+
 We note that
 \begin{equation}
 	\begin{split}
