@@ -451,69 +451,82 @@ with $\sigma_j$ being the two-dimensional Pauli matrices and $\sigma_0$ being th
 	.
 \end{equation}
 
-We apply the unitary operator for the \gls{mzm}, \cref{eq:mzm_operator}, and apply it to a coherent and vacuum input state
+We apply the unitary operator for the \gls{mzm}, \cref{eq:mzm_operator}, and 
+Let us consider the input state
+\begin{align}
+	\ket{\vb{\alpha}}
+	&=
+	\ket{\alpha_1,\alpha_2}
+	&
+	\vb{\alpha}
+	=
+	\begin{pmatrix}
+		\alpha_1,
+		\alpha_2
+	\end{pmatrix}
+	\in
+	\mathbb{C}^{2\times1}
+\end{align}
+to a \gls{mzm}\footnote{We can always set $alpha=0$ to set the second input to vacuum.}, i.e.,
 \begin{equation}
-	\begin{split}
-		\hat{U}_\text{MZM}
-		\ket{\alpha,0}
-		&=
-		\hat{U}_\text{MZM}
-		\hat{D}_1(\alpha)
-		\hat{U}_\text{MZM}^\dagger
-		\hat{U}_\text{MZM}
-		\ket{0,0}
-		\\
-		&=
-		\hat{U}_\text{MZM}
-		\hat{D}_1(\alpha)
-		\hat{U}_\text{MZM}^\dagger
-		\ket{0,0}
-	\end{split}
+	\hat{U}_\text{MZM}
+	\ket{\vb{\alpha}}
+	=
+	\hat{U}_\text{MZM}
+	\hat{D}(\vb{\alpha})
+	\hat{U}_\text{MZM}^\dagger
+	\hat{U}_\text{MZM}
+	\ket{0,0}
+	=
+	\hat{U}_\text{MZM}
+	\hat{D}(\vb{\alpha})
+	\hat{U}_\text{MZM}^\dagger
+	\ket{0,0}
 \end{equation}
-where we used the invariance of the vacuum state $\ket{0,0}$ in the second line.
-Under a unitary transformation, the displacement operator becomes
+where we used the invariance of the vacuum state $\ket{0,0}$ for the second equal.
+The displacement operator transforms as
 \begin{equation}
 	\begin{split}
 		\hat{U}
-		\hat{D}(\alpha)
+		\hat{D}(\vb{\alpha})
 		\hat{U}^\dagger
 		&=
 		\hat{U}
 		\exp\left\{
-			\alpha
-			\hat{a}^\dagger
+			\vb{\alpha}^\trans
+			\hat{\vb{a}}^\dagger
 			-
-			\alpha^*
-			\hat{a}
+			\hat{\vb{a}}
+			\vb{\alpha}^*
 		\right\}
 		\hat{U}^\dagger
 		\\
 		&=
 		\exp\left\{
-			\alpha
+			\vb{\alpha}^\trans
 			\hat{U}
-			\hat{a}^\dagger
+			\hat{\vb{a}}^\dagger
 			\hat{U}^\dagger
 			-
-			\alpha^*
 			\hat{U}
-			\hat{a}
+			\hat{\vb{a}}
 			\hat{U}^\dagger
+			\vb{\alpha}^*
 		\right\}
 		\\
 		&=
 		\exp\left\{
-			\alpha
+			\vb{\alpha}^\trans
 			\left(
 				\hat{U}
-				\hat{a}
+				\hat{\vb{a}}
 				\hat{U}^\dagger
 			\right)^\dagger
 			-
-			\alpha^*
 			\hat{U}
 			\hat{a}
 			\hat{U}^\dagger
+			\vb{\alpha}^*
 		\right\}
 	\end{split}
 \end{equation}
@@ -550,8 +563,7 @@ where we used the operator identity
 	e^{\hat{U}\hat{A}\hat{U}^\dagger}
 \end{equation}
 which follows from inserting $\hat{U}\hat{U}^\dagger=\mathbb{1}$ between the $\hat{A}$s.
-
-We note that
+For the unitary operator of the \gls{mzm}, we note that
 \begin{equation}
 	\begin{split}
 		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
@@ -571,152 +583,75 @@ We note that
 		\hat{U}_\text{MZM}(-\Lambda,\Psi,\Phi,-\Theta)
 	\end{split}
 \end{equation}
-because $\hat{L}_t$ commutes with the other Jordan-Schwinger operators, and rewrite the unitary transform of the creation operator
+where we used in the second line that $\hat{L}_t$ commutes with the other Jordan-Schwinger operators $\hat{L}_y,\hat{L}_z$.
+The transformed annihilation operators turn out to be
 \begin{equation}
 	\begin{split}
+		\hat{\vb{a}}^\prime
+		&=
 		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)
-		\hat{a}_1^\dagger
+		\hat{\vb{a}}
 		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
-		&=
-		\left[
-			\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)
-			\hat{a}_1
-			\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
-		\right]^\dagger
 		\\
 		&=
-		\left[
-			\hat{U}_\text{MZM}(-\Lambda,\Psi,\Phi,-\Theta)^\dagger
-			\hat{a}_1
-			\hat{U}_\text{MZM}(-\Lambda,\Psi,\Phi,-\Theta)
-		\right]^\dagger
-	\end{split}
-\end{equation}
-Using the correspondence between the unitary and matrix \gls{mzm} transform, we identify the transformed creation operator
-\begin{equation}
-	\left(\hat{a}_1^\prime\right)^\dagger
-	=
-	\left[
-		\hat{a}_1^\dagger
-		\cos(\Theta/2)
-		e^{-i(\Phi+\Psi)/2}
-		+
-		\hat{a}_2^\dagger
-		\sin(\Theta/2)
-		e^{-i(\Phi-\Psi)/2}
-	\right]
-	e^{-i\Lambda/2}
-	.
-\end{equation}
-We insert the transformed creation operator into \cref{eq:mzm_number} and find
-\begin{equation}
-	\begin{split}
-		\hat{U}_\text{MZM}
-		\ket{n,0}
-		&=
-		\frac{1}{\sqrt{n!}}
-		\left[
-			\hat{a}_1^\dagger
-			\cos(\Theta/2)
-			e^{-i(\Phi+\Psi)/2}
-			+
-			\hat{a}_2^\dagger
-			\sin(\Theta/2)
-			e^{-i(\Phi-\Psi)/2}
-		\right]^n
-		e^{-in\Lambda/2}
-		\ket{0,0}
+		\hat{U}_\text{MZM}(-\Lambda,\Psi,\Phi,-\Theta)^\dagger
+		\hat{\vb{a}}
+		\hat{U}_\text{MZM}(-\Lambda,\Psi,\Phi,-\Theta)
 		\\
 		&=
-	\end{split}
-\end{equation}
-
-As the number basis is complete, we can use the previous result to find the transformation property of a coherent and vacuum input state
-\begin{equation}
-	\begin{split}
-		\hat{R}(\Theta)
-		\ket{\alpha,0}
-		&=
-		e^{-\overline{n}/2}
-		\sum_{n=0}^\infty
-		\frac{\alpha^n}{\sqrt{n!}}
-		\hat{R}(\Theta)
-		\ket{n,0}
+		U_\text{MZM}(-\Lambda,\Psi,\Phi,-\Theta)
+		\hat{\vb{a}}
 		\\
 		&=
-		e^{-\overline{n}/2}
-		\sum_{n=0}^\infty
-		\frac{1}{n!}
-		\left(
-			\alpha
-			\cos(\Theta/2)
-			\hat{a}_1^\dagger
-			-
-			\alpha
-			\sin(\Theta/2)
-			\hat{a}_2^\dagger
-		\right)^n
-		\ket{0,0}
-		\\
-		&=
-		e^{-\overline{n}/2}
-		\exp\left\{
-			\alpha
-			\cos(\Theta/2)
-			\hat{a}_1^\dagger
-			-
-			\alpha
-			\sin(\Theta/2)
-			\hat{a}_2^\dagger
-		\right\}
-		\ket{0,0}
-		\\
-		&=
-		e^{-\overline{n}\cos(\Theta/2)^2/2}
-		\exp\left\{
-			\alpha
-			\cos(\Theta/2)
-			\hat{a}_1^\dagger
-		\right\}
-		e^{-\overline{n}\sin(\Theta/2)^2/2}
-		\exp\left\{
-			-
-			\alpha
-			\sin(\Theta/2)
-			\hat{a}_2^\dagger
-		\right\}
-		\ket{0,0}
-		\\
-		&=
-		\hat{D}_1\left(
-			\alpha
-			\cos(\Theta/2)
-		\right)
-		\hat{D}_2\left(
-			-
-			\alpha
-			\sin(\Theta/2)
-		\right)
-		\ket{0,0}
-		\\
-		&=
-		\ket{\alpha\cos(\Theta/2),-\alpha\sin(\Theta/2)}
+		U_\text{MZM}(\Lambda,\Psi,\Phi,\Theta)^\dagger
+		\hat{\vb{a}}
 		.
 	\end{split}
 \end{equation}
-A rotation splits the coherent input state among two coherent output states.
-Tracing out one output of the \gls{mzm} for a coherent input state is equivalent to a projection
+Using the transformed operators, we find the transformed displacement operator to be~\cite[p.~210]{Vogel2006}
 \begin{equation}
-	\tr_2\left\{
-		\hat{R}(\Theta/2)
-		\ketbra{\alpha,0}
-		\hat{R}^\dagger(\Theta/2)
+	\hat{D}^\prime(\vb{\alpha})
+	=
+	\exp\left\{
+		\vb{\alpha}^\trans
+		\left(\hat{\vb{a}}^\prime\right)^\dagger
+		-
+		\hat{\vb{a}}^\prime
+		\vb{\alpha}^*
 	\right\}
 	=
-	\ketbra{\alpha\cos(\Theta/2)}
+	\exp\left\{
+		\left(\vb{\alpha}^\prime\right)^\trans
+		\hat{\vb{a}}^\dagger
+		-
+		\hat{\vb{a}}
+		\left(\vb{\alpha}^\prime\right)^*
+	\right\}
+	.
 \end{equation}
-but for an entangled state tracing out one output yields a mixed state!
-We conclude that only coherent input states yield simple output states while number input states yield complex entangled output states.
+We therefore find the \gls{mzm} to transform the coherent input states according to
+\begin{align}
+	\hat{U}_\text{MZM}
+	\ket{\vb{\alpha}}
+	&=
+	\ket{\vb{\alpha}^\prime}
+	&
+	\vb{\alpha}^\prime
+	&=
+	U_\text{MZM}
+	\vb{\alpha}
+	.
+\end{align}
+Using the explicit matrix elements in \cref{eq:mzm_matrix} and setting the second input to zero $\alpha_2=0$ and identifying the first as $\alpha_1=\alpha$, we find
+\begin{equation}
+	\hat{U}_\text{MZM}
+	\ket{\alpha,0}
+	=
+	\ket{\alpha\cos(\Theta/2)e^{+i(\Psi+\Phi)/2},-\alpha\sin(\Theta/2)e^{-i(\Psi-\Phi)/2}}
+	.
+\end{equation}
+
+The \gls{mzm} produces highly entangled output states for (displaced) number states, see, for instance, Ref.~\cite{Windhager2011}.
 
 \subsection{In-phase and quadrature modulator}
 

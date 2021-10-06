@@ -123,6 +123,10 @@
 %  \DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}%
 %}
 
+% vectorbold for greek symbols
+% https://tex.stackexchange.com/questions/609923/unicode-math-and-physicss-vb-command
+\DeclareDocumentCommand\vectorbold{ s m }{\IfBooleanTF{#1}{\symbfit{#2}}{\symbf{#2}}}
+
 % theorems
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
