@@ -14,256 +14,309 @@ It is also the most mysterious as we are unaware of any published quantum mechan
 The modulation occurs at three stages: the Pockels (phase) modulator, the \gls{mzm} (amplitude) modulator, and the \gls{iqm} modulator.
 The transition from the classical signal to the quantum state occurs at the phase modulation, while the MZM and \gls{iqm} modulator operate on the quantum state.
 
+\FloatBarrier
 \subsection{Pockels modulator}
 
-% discussion of Pockels effect
-From a purely phenomenological point of view, the Pockels effect - also known as the linear electro-optical effect - describes a linear change of the refractive index of a dielectric material in the presence of an external electric field $E$, i.e.,
-\begin{equation}
-	n(E)
-	=
-	n^{(0)}
-	+
-	n^{(1)}E
-\end{equation}
-wherein $n^{(0)}=n(0)$ is the refractive index without an external field and $n^{(1)}$ is a proportionality constant.
-One way to create the external electric field $E$ is to place the Pockels dielectric inside a plate capacitor and apply a voltage $V$ to the plates.
-Neglecting boundary effects, we find a homogeneous static electric field between the plates of $E=V/d$ where $d$ is the plate distance.
-Such a configuration is known as Pockels cell and depicted in \Cref{fig:pockels_cell} where the field inside the Pockels cell is labeled $E_x(t)$.
+The Pockels modulator is a phase modulator where an electric field drives the phase of an optical field.
+In the optical domain, we can use interference to perform amplitude modulation.
+In that sense, the Pockels modulator is the interface between the electrical and optical domains.
+For a complete quantum description of the transmitter, understanding the underlying dynamics of the Pockels modulator, particularly the implications of time-dependent modulation, is crucial.
+
 \begin{figure}[htb]
     \centering
-    \includegraphics{figures/tikz/pockels-cell}
-    \caption{Pockels cell of length $l$ and thickness $d$ embedded in a waveguide with constant dielectric permittivity $\varepsilon_1$: The dielectric permittivity of the Pockels cell $\varepsilon_2(t)$ depends on the electric field $E_x(t)$ across the Pockels cell plates. The optical field $E_z(t)$ enters the Pockels cell from the left and leaves it to the right as $E^\prime_z(t)$.}\label{fig:pockels_cell}
+    \includegraphics{figures/tikz/pm}
+    \caption{Pockels modulator comprising a Pockels cell embedded into a waveguide: The Pockels cell consists of two capacitor plates of length $L$ distanced at $d$. An optical field $\hat{E}_z(t)$ approaches the Pockels cell from the left and exits it to the right as $\hat{E}_z^\prime(t)$. An electric field $\hat{E}_x(t)$ perpendicular to the optical field spans the Pockels cell.}\label{fig:pm}
 \end{figure}
-Let us first consider a monochromatic electromagnetic wave of frequency $\omega_0$ propagating through a dielectric of length $l$ with refractive index $n_1^{(0)}=\sqrt{\varepsilon_1}$.
-Inside the dielectric, the wave propagates with phase velocity $c/n_1^{(0)}$ and takes $T_1=ln_1^{(0)}/c$ to pass through the dielectric.
-Directly after the transit, the wave accumulated a total phase shift of
-\begin{equation*}
-	\phi_1
-	=
-	\omega_0T_1
-	=
-	2\pi\frac{n_1^{(0)}l}{\lambda_0}
-\end{equation*}
-where $\lambda_0=c/f$ is the vacuum wave length.
-If we now consider the same monochromatic electromagnetic wave propagating through a Pockels cell of the same length $l$ but without applied voltage, the wave would accumulate a phase shift of
-\begin{equation}
-	\phi_2
-	=
-	\omega_0T_2
-	=
-	2\pi\frac{n_2^{(0)}l}{\lambda_0}
-	.
-\end{equation}
-So even when there is no electric field inside the Pockels cell, we find a phase difference of
-\begin{equation}
-	\Delta\phi
-	=
-	\phi_2
-	-
-	\phi_1
-	=
-	2\pi\frac{n_2^{(0)}-n_1^{(0)}}{\lambda_0}l
-\end{equation}
-because of the different dielectric constants of the materials.
-If we apply a voltage to the Pockels cell, the refractive index of the Pockels dielectric contributes a second phase shift of
-\begin{equation}
-	\varphi_2
-	=
-	2\pi\frac{n_2^{(1)}E}{\lambda_0}l
-\end{equation}
-and the total phase difference is $\varphi_2+\Delta\phi$.
-Extending our discussion to wave packets in dispersive media, we need to replace the phase velocity $v_p$ with the group velocity $v_g$.
-The group velocity can be expressed in terms of the refractive index via~\cite[p.~211]{Jackson2007}
-\begin{equation}
-	v_g(\omega_0)
-	=
-	\left[
-		n
-		+
-		\omega
-		\pdv{n}{\omega}
-	\right]^{-1}_{\omega=\omega_0}
-\end{equation}
-where $\omega_0$ is the center frequency of the wave packet.
-The concept of group velocity can be extended to quantum states, see, for instance, Ref.~\cite[p.~3]{Naumov2013}.
-We refrain from a further discussion which would require specific knowledge of the wave packet's pulse shape and frequency-dependency of the refractive index and is best simulated using finite element methods.
-
-Thus far, we have treated a static electric field in the Pockels cell.
-We are now going to extend our model to allow for time-dependent electric field inside the Pockels cell and justify why we can treat the time-dependency of the modulation field to be effectively static.
-An external electric field induces a dipole moment in the constituents of a dielectric.
-The average dipole moment per volume is referred to the macroscopic polarization $\vb{P}$.
-Assuming the dielectric to be a time-invariant system, i.e., to be memoryless, we can expand each component of the macroscopic polarization $P^i$ up to second-order in terms of electric susceptibility tensors $\chi$~\cite[p.~17]{Murti2014}
-\begin{equation}
-	P_i(t)
-	=
-	\int_{\mathbb{R}}\dd{t^\prime}
-	\chi^{(1)}_{ij}(t-t^\prime)
-	E^j(t^\prime)
-	+
-	\iint_{\mathbb{R}^2}\dd{t^\prime}\dd{t^{\prime\prime}}
-	\chi^{(2)}_{ijk}(t-t^\prime,t-t^{\prime\prime})
-	E^j(t^\prime)E^k(t^{\prime\prime})
-\end{equation}
-where causality demands $\chi^{(n)}(t-t^\prime)=0$ for $t^\prime>t$.
-Inserting the Fourier representation, we find
-\begin{align}
-	P_i^{(1)}(t)
-	&=
-	\int_{\mathbb{R}}
-	\frac{\dd{\omega_1}}{2\pi}
-	\chi^{(1)}_{ij}(\omega_1)
-	E^j(\omega_1)
-	e^{+i\omega_1t}
-	\\
-	P_i^{(2)}(t)
-	&=
-	\iint_{\mathbb{R}^2}
-	\frac{\dd{\omega_1}}{2\pi}
-	\frac{\dd{\omega_2}}{2\pi}
-	\chi^{(2)}_{ijk}(\omega_1,\omega_2)
-	E^j(\omega_1)E^k(\omega_2)
-	e^{+i(\omega_1+\omega_2)t}	
-\end{align}
-for the first two terms of the expansion.
-The inverse Fourier transform yields the macroscopic polarization in the frequency domain~\cite[p.~1070]{Mandel1995} yields for the first term
-\begin{equation}
-	P_i^{(1)}(\omega)
-	=
-	\int\dd{\omega^\prime}
-	\chi^{(1)}_{ij}(\omega^\prime)
-	E^j(\omega^\prime)
-	\delta^{(1)}(\omega-\omega^\prime)
-	=
-	\chi^{(1)}_{ij}(\omega)
-	E^j(\omega)
-\end{equation}
-which we will later identify as part of the constant refractive index with $E^j$ being the optical field passing through the Pockels cell
-For the second term we find
-\begin{equation}
-	\begin{split}
-		P_i^{(2)}(\omega)
-		&=
-		\iint\frac{\dd{\omega^\prime}\dd{\omega^{\prime\prime}}}{2\pi}
-		\chi^{(2)}_{ijk}(\omega^\prime,\omega^{\prime\prime})
-		E^j(\omega^\prime)
-		E^k(\omega^{\prime\prime})
-		(2\pi)	
-		\delta^{(1)}(\omega-\omega^\prime-\omega^{\prime\prime})
-		\\
-		&=
-		\int\frac{\dd{\omega^\prime}}{2\pi}
-		\chi^{(2)}_{ijk}(\omega-\omega^\prime,\omega^\prime)
-		E^j(\omega-\omega^\prime)
-		E^k(\omega^\prime)
-	\end{split}
-\end{equation}
-where we will later identify $E^k$ to be the radio frequency field driving the Pockels cell.
-The specific form indicates the presence of frequency sidebands by modulation.
-Let's assume radio frequency field $E^k$ to have non-zero support, i.e., bandwidth, $\Delta\Omega$, then according to the mean value theorem
-\begin{equation}
-	\begin{split}
-		P_i^{(2)}(\omega)
-		&=
-		\int_{\Delta\Omega}\frac{\dd{\omega^\prime}}{2\pi}
-		\chi^{(2)}_{ijk}(\omega-\omega^\prime,\omega^\prime)
-		E^j(\omega-\omega^\prime)
-		E^k(\omega^\prime)
-		\\
-		&=
-		\frac{\Delta\Omega}{2\pi}
-		\chi^{(2)}_{ijk}(\omega-\Omega_0,\Omega_0)
-		E^j(\omega-\Omega_0)
-		E^k(\Omega_0)
-	\end{split}
-\end{equation}
-where $\Omega_0$ is the mean frequency of $E^k$.
-Restricting $P_i(\omega)$ to the optical domain, we have $\omega\gg\Omega_0$ which let's us Taylor expand $E^j(\omega-\Omega_0)$ around $\omega$, i.e.,
-\begin{equation}
-	P_i^{(2)}(\omega)
-	\approx
-	\frac{\Delta\Omega}{2\pi}
-	\chi^{(2)}_{ijk}(\omega,\Omega_0)
-	\left(
-		E^j(\omega)
-		+
-		\pdv{E^j}{\omega}(\omega)\Omega_0
-	\right)
-	E^k(\Omega_0)
-\end{equation}
-where we assumed a flat response $\pdv{\chi_{ijk}^{(2)}}{\Omega_0}\approx0$.
-Finally, we redefine the electric susceptibility tensor such that
-\begin{equation}
-	P_i(\omega)
-	\approx
-	\left(
-		\tilde{\chi}^{(1)}_{ij}(\omega)
-		+
-		\tilde{\chi}^{(2)}_{ijk}(\omega)
-		E^k(\Omega_0)
-	\right)
-	E^j(\omega)
-\end{equation}
-which is valid if $\omega$ is an optical frequency.
-The dielectric permittivity tensor $\varepsilon_{ij}$ is defined implicitly through the displacement field
-\begin{equation}
-	D_i(\omega)
-	=
-	E_i(\omega)
-	+
-	P_i(\omega)
-	=
-	\varepsilon_{ij}(\omega)
-	E^j(\omega)
-\end{equation}
-and we identify by comparison the dielectric permittivity tensor to relate to the electric susceptibility by
+\Cref{fig:pm} depicts a Pockels modulator comprising a Pockels cell embedded into a dielectric waveguide.
+The Pockels cell is a dielectric plate capacitor with a specific dielectric that mediates the electric and optical field coupling.
+The electric field inside the Pockels cell $E_x$ is proportional to the voltage $V$ applied to the Pockels cell.
+Assuming the Pockels dielectric to be non-absorbing with \gls{lti} response, the dielectric permittivity tensor can be approximated, see Ref.~\cite{Murti2014} and Ref.~\cite[p.~1070]{Mandel1995},
 \begin{equation}
 	\varepsilon_{ij}(\omega)
-	=
+	\approx
 	1
 	+
-	\tilde{\chi}^{(1)}_{ij}(\omega)
+	\chi_{ij}^{(1)}(\omega)
 	+
-	\tilde{\chi}^{(2)}_{ijk}(\omega)
+	\chi_{ijk}^{(2)}(\omega)
 	E^k(\Omega_0)
-	.
 \end{equation}
-The refractive index tensor for a dielectric, non-magnetic and non-chiral medium is given after a series expansion by~\cite{Rerat2020}
+wherein $\chi^{(n)}$ the denotes the $n$th order of the Pockels dielectric's electric susceptibility tensor and $\Omega_0\ll\omega$ is the center frequency of the electric signal.
+The refractive index tensor of the Pockels dielectric takes the form
 \begin{equation}
 	n_{ij}(\omega)
 	=
-	\sqrt{\varepsilon_{ij}(\omega)}
+	\sqrt{\varepsilon_{ij}}
 	\approx
-	n^{(0)}_{ij}(\omega)
+	n_{ij}^{(0)}
 	+
-	n^{(1)}_{ijk}(\omega)
+	n_{ijk}^{(1)}(\omega)
 	E^k(\Omega_0)
 \end{equation}
-where we defined the refractive index tensors
+wherein the refractive index coefficients relate to the dielectric susceptibility tensor via~\cite{Rerat2020}
 \begin{align}
 	n^{(0)}_{ij}(\omega)
-	=
-	\sqrt{1+\tilde{\chi}^{(1)}_{ij}(\omega)}
-	&&
+	&=
+	\sqrt{1+\chi^{(1)}_{ij}(\omega)}
+	&
 	n^{(1)}_{ijk}(\omega)
-	=
-	\frac{\tilde{\chi}^{(2)}_{ijk}(\omega)
-	E^k(\Omega_0)}{2\sqrt{1+\tilde{\chi}^{(1)}_{ij}(\omega)}}
+	&=
+	\frac{\chi^{(2)}_{ijk}(\omega)
+	E^k(\Omega_0)}{2\sqrt{1+\chi^{(1)}_{ij}(\omega)}}
+	.
 \end{align}
-which recovers the linear electro-optical effect we first discussed in the phenomenological approach.
-For the Pockels cell depicted in \Cref{fig:pockels_cell}, the refractive index relevant for the optical field takes the explicit form
+Many elements of the refractive index tensor vanish because of crystal symmetries~\cite[p.~237]{Yariv1984} and we can express the refractive index relevant for the optical field
 \begin{equation}
-	n_{zz}(\omega)
+	n_{zz}(\omega,\Omega_0)
 	\approx
 	n^{(0)}_{zz}(\omega)
 	+
 	n^{(1)}_{zzx}(\omega)
 	E^x(\Omega_0)
+\end{equation}
+which is linear in the electric \gls{rf} field inside the Pockels cell.
+If we now imagine an optical field with frequency $\omega_0$ traveling through a Pockels cell it will accumulate a phase of
+\begin{equation}
+	\phi(E_x)
+	=
+	2\pi\frac{n_{zz}(\omega_0,E^x)}{\lambda_0}L
+\end{equation} 
+and the phase difference compared to a Pockels cell without electric field is
+\begin{equation}
+	\Delta\phi(E_x)
+	=
+	2\pi\frac{n_{zz}(\omega_0,E^x)-n_{zz}(\omega_0,0)}{\lambda_0}L
+	=
+	2\pi\frac{n_{zzx}^{(1)}(\omega_0)E^x}{\lambda_0}L
 	.
 \end{equation}
-For practical Pockels media, e.g., Lithium-Niobate, the tensorial \gls{dof} can be substantially reduced by considering crystal symmetries, see, for instance, Ref.~\cite[p.~237]{Yariv1984}.
 
-We derived the relation between the macroscopic polarization, response and refractive index and justified why we can treat the modulation field to be effectively static compared to the fast oscillating optical field.
-For the last step where we summarize the unitary transformation associated with a Pockels phase modulator, we assume the dielectric to be constant on the time scale of the electrical field.
+Let us consider the interaction Hamiltonian
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	g(t)
+	\hat{a}^\dagger
+	\hat{a}
+	.
+\end{equation}
+All but the first term of the Magnus expansion vanish as the interaction Hamiltonian at different times commute
+\begin{equation}
+	\comm{\hat{H}_\text{int}(t_1)}{\hat{H}_\text{int}(t_2)}
+	=
+	g(t_1)g(t_2)
+	\comm{\hat{a}^\dagger\hat{a}}{\hat{a}^\dagger\hat{a}}
+	=
+	0
+\end{equation}
+and the exact time-evolution operator turns out to be
+\begin{align}
+	\hat{U}(t_0,t)
+	&=
+	\exp\left\{
+		-i\varphi(t_0,t)
+		\hat{a}^\dagger
+		\hat{a}
+	\right\}
+	&
+	\varphi(t_0,t)
+	=
+	\int_{t_0}^{t}\dd{t^\prime}
+	g(t^\prime)
+\end{align}
+
+We define the action of the phase modulator
+\begin{equation}
+	\hat{U}_\text{PM}\left[\varphi(t,T)\right]
+	=
+	\exp\left\{
+		-i\varphi(t,T)
+		\hat{a}^\dagger
+		\hat{a}
+	\right\}
+\end{equation}
+wherein $T$ is the transmit time of the light through the phase modulator.
+Assuming a phase modulator of length $L$ and refractive index $n$, the transmit time is approximately
+\begin{align}
+	T
+	&=
+	\frac{Ln}{v_\text{gr}}
+	&
+	v_\text{gr}
+	\approx
+	\left[
+		n
+		+
+		\omega
+		\pdv{n}{\omega}
+	\right]_{\omega=\omega_0}^{-1}
+\end{align}
+where $v_\text{gr}$ is the group velocity in the quasi-monochromatic approximation~\cite[p.~211]{Jackson2007}.
+We employ the mean-value theorem for definite integrals
+\begin{align}
+	\varphi(t,T)
+	&=
+	\int_{t}^{t+T}\dd{t^\prime}
+	g(t^\prime)
+	=
+	g(\tau)
+	T
+	&
+	\tau\in[t,t+T]
+\end{align}
+and note that typically the transmit time $T$ is many magnitudes smaller than the modulation time scale $t$, i.e., $T\ll t$, and we can use
+\begin{equation}
+	\varphi(t,T)
+	\approx
+	g(t)
+	T
+	=
+	\varphi(t)
+	.
+\end{equation}
+
+The phase modulator transforms the annihilation operator according to~\cite[p.~38]{Leonhardt2010}
+\begin{equation}
+	\hat{U}_\text{PM}^\dagger
+	\hat{a}(p,t)
+	\hat{U}_\text{PM}
+	=
+	\hat{a}(p,t)
+	e^{-i\varphi(t)}
+	\label{eq:pm_annihilation}
+	.
+\end{equation}
+The continuous-mode displacement operator transforms according to
+\begin{equation}
+	\begin{split}
+		\hat{U}_\text{PM}\left[\varphi(t)\right]
+		\hat{D}\left[\alpha(t)\right]
+		\hat{U}_\text{PM}\left[\varphi(t)\right]^\dagger
+		&=
+		\exp\left\{
+			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\alpha(p)
+			\hat{U}_\text{PM}\left[\varphi(t)\right]
+			\hat{a}^\dagger(p,t)
+			\hat{U}_\text{PM}\left[\varphi(t)\right]^\dagger
+			-
+			\text{h.c.}
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\alpha(p)
+			\left(
+				\hat{U}_\text{PM}\left[\varphi(t)\right]
+				\hat{a}(p,t)
+				\hat{U}_\text{PM}\left[\varphi(t)\right]^\dagger
+			\right)^\dagger
+			-
+			\text{h.c.}
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\alpha(p)
+			\left(
+				\hat{U}_\text{PM}\left[-\varphi(t)\right]^\dagger
+				\hat{a}(p,t)
+				\hat{U}_\text{PM}\left[-\varphi(t)\right]
+			\right)^\dagger
+			-
+			\text{h.c.}
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\alpha(p)
+			e^{-i\varphi(t)}
+			\hat{a}^\dagger(p,t)
+			-
+			\text{h.c.}
+		\right\}
+		\\
+		&=
+		\hat{D}\left[
+			\alpha(t)
+			e^{-i\varphi(t)}
+		\right]
+	\end{split}
+\end{equation}
+where we used \cref{eq:pm_annihilation} in the fourth line.
+The phase-modulated amplitude
+\begin{equation}
+	\alpha(t)e^{-i\varphi(t)}
+\end{equation}
+is a multiplication in the time domain.
+We expect therefore a convolution in the frequency domain, i.e.,
+\begin{equation}
+	\int_0^\infty\frac{\dd{p}}{2\pi}
+	\alpha(p)
+	e^{+ipt}
+	e^{-i\varphi(t)}
+	\hat{a}^\dagger(p,t)
+	=
+	\int_0^\infty\frac{\dd{p}}{2\pi}
+	\left(u*\alpha\right)(p)
+	\hat{a}^\dagger(p,t)
+\end{equation}
+wherein we used the convolution
+\begin{equation}
+	\left(u*\alpha\right)(p)
+	=
+	\int\frac{\dd{p^\prime}}{2\pi}
+	u(p^\prime)
+	\alpha(p-p^\prime)
+	.
+\end{equation}
+It is difficult to give an explicit form of $u(p)$ for signals $\varphi(t)$ with a continuous frequency spectrum $u(p)$.
+However, if we take a simple single-frequency modulation, e.g.,
+\begin{equation}
+	\varphi(t)
+	=
+	-
+	\varphi_0
+	\sin(\omega_0t)
+\end{equation}
+we can use the Jacobi-Anger expansion to write
+\begin{equation}
+	e^{i\varphi_0\sin(\omega_0t)}
+	=
+	\sum_{n\in\mathbb{Z}}
+	J_n(\varphi_0)
+	e^{in\omega_0 t}
+\end{equation}
+wherein $J_n$ denotes the $n$th Bessel function of the first kind.
+Assuming second order harmonics to be outside the bandwidth of our setup, it is sufficient to only keep the first terms of the Jacobi-Anger expansion
+\begin{equation}
+	e^{i\varphi_0\sin(\omega_0t)}
+	=
+	J_{-1}(\varphi_0)
+	e^{-i\omega_0t}
+	+
+	J_0(\varphi_0)
+	+
+	J_{+1}(\varphi_0)
+	e^{+i\omega_0t}
+\end{equation}
+which corresponds to the convolution kernel
+\begin{equation}
+	u(p)
+	=
+	J_{-1}(\varphi_0)
+	\delta^{(1)}(p-\omega_0)
+	+
+	J_0(\varphi_0)
+	\delta^{(1)}(p)
+	+
+	J_{+1}(\varphi_0)
+	\delta^{(1)}(p+\omega_0)
+	.
+\end{equation}
 
 \subsection{Mach-Zehnder modulator}
 
