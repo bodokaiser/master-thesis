@@ -34,7 +34,7 @@ Assuming the Pockels dielectric to be non-absorbing with \gls{lti} response, the
 \begin{equation}
 	\varepsilon_{ij}(\omega)
 	\approx
-	1
+	\delta_{ij}
 	+
 	\chi_{ij}^{(1)}(\omega)
 	+
@@ -81,7 +81,7 @@ If we now imagine an optical field with frequency $\omega_0$ traveling through a
 	=
 	2\pi\frac{n_{zz}(\omega_0,E^x)}{\lambda_0}L
 \end{equation} 
-and the phase difference compared to a Pockels cell without electric field is
+and the phase difference compared to a Pockels cell without electric field is proportional to the electric field, i.e.,
 \begin{equation}
 	\Delta\phi(E_x)
 	=
@@ -91,32 +91,143 @@ and the phase difference compared to a Pockels cell without electric field is
 	.
 \end{equation}
 
-Let us consider the interaction Hamiltonian
+Up to now, the analysis was entirely classical.
+A complete quantum description of the Pockels modulator is given in Ref.~\cite{Horoshko2018}, which we briefly summarize.
+The Hamiltonian density of an electromagnetic field in a Pockels dielectric is, see Ref.~\cite[p.~21]{Vogel2006} together with Ref.~\cite[p.~124]{Jackson2007},
+\begin{equation}
+	H
+	=
+	\frac{1}{2}
+	\int\dd[3]{x}
+	\left\{
+		\vb{E}(\vb{x})
+		\vdot
+		\vb{D}(\vb{x})
+		+
+		\vb{B}(\vb{x})^2
+	\right\}
+	\label{eq:dielectric_em_hamiltonian}
+\end{equation}
+wherein $\vb{E}$ is the electric field, $\vb{B}$ is the magnetic field and $\vb{D}$ is the displacement field with components
+\begin{equation}
+	D_i(\vb{p})
+	=
+	\varepsilon_{ij}(\vb{p})
+	E^j(\vb{p})
+	\approx
+	E_i(\vb{p})
+	+
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\chi_{ijk}^{(2)}(\vb{q},\vb{p})
+	E^j(\vb{p})
+	E^k(\vb{q})
+\end{equation}
+is the electric displacement field where we inserted the nonlinear expansion of the dielectric permittivity tensor and neglected the first-order susceptibility $\chi^{(1)}$.\footnote{The first-order susceptibility can be treated as an additional interaction.}
+Inserting the displacement field into the Hamiltonian density, \cref{eq:dielectric_em_hamiltonian}, we recover the free Hamiltonian plus an interaction term
+\begin{equation}
+	H
+	=
+	H_0
+	+
+	H_\text{int}
+\end{equation}
+where the interaction term is given by
+\begin{equation}
+	H_\text{int}
+	=	
+	\frac{1}{2}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\chi_{ijk}^{(2)}(\vb{q},\vb{p})
+	E^i(\vb{p})
+	E^j(\vb{p})
+	E^k(\vb{q})	
+\end{equation}
+describing any three-point interactions including the linear electro-optical (Pockels) effect but also second harmonic generation, parametric mixing and amplification as well as optical rectification~\cite[p.~14]{Murti2014}.
+Adapting the geometry of \Cref{fig:pm} the interaction Hamiltonian becomes
+\begin{equation}
+	H_\text{int}
+	=	
+	\frac{1}{2}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\chi_{zzx}^{(2)}(\vb{q},\vb{p})
+	E^z(\vb{p}-\vb{q})
+	E^z(\vb{p}+\vb{q})
+	E^x(\vb{q})	
+\end{equation}
+describing energy transfer from the electric field to the outgoing optical field.
+Comparison of the classic interaction with the quantum nonlinear interactions in Ref.~\cite[p.~33]{QuesadaMejia2015} suggests the quantum interaction Hamiltonian
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\frac{1}{2}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\Upsilon(\vb{p},\vb{q})
+	\hat{a}_x(\vb{q})
+	\hat{a}_z^\dagger(\vb{p}-\vb{q})
+	\hat{a}_z(\vb{p}+\vb{q})
+	+
+	\text{h.c.}
+\end{equation}
+wherein the spatial and response properties of the Pockels cell as well as the phase and momentum matching are encoded into $\Upsilon$.
+Assuming only two perpendicular momenta $p_x,p_z$ and taking the electric \gls{rf} as classic, the interaction Hamiltonian further simplifies to
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\frac{1}{2}
+	\int\frac{\dd{p}}{2\pi}
+	\int\frac{\dd{q}}{2\pi}
+	\Upsilon(p,q)
+	\hat{a}_x(q)
+	\hat{a}_z^\dagger(p-q)
+	\hat{a}_z(p+q)
+	+
+	\text{h.c.}
+	.
+\end{equation}
+Let $\ket{\beta(t)}$ be the coherent state describing the electric \gls{rf} field, then the interaction Hamiltonian becomes
 \begin{equation}
 	\hat{H}_\text{int}(t)
 	=
-	g(t)
-	\hat{a}^\dagger
-	\hat{a}
-	.
+	\frac{1}{2}
+	\int\frac{\dd{p}}{2\pi}
+	\int\frac{\dd{q}}{2\pi}
+	\Upsilon(p,q)
+	\beta_x(q)^*
+	e^{-ipt}
+	\hat{a}_z^\dagger(p-q)
+	\hat{a}_z(p+q)
+	+
+	\text{h.c.}
 \end{equation}
-All but the first term of the Magnus expansion vanish as the interaction Hamiltonian at different times commute
+and when taking the momentum of the electric \gls{rf} field to be small compared to the momentum of the optical field, $p\ll q$, such that
 \begin{equation}
-	\comm{\hat{H}_\text{int}(t_1)}{\hat{H}_\text{int}(t_2)}
-	=
-	g(t_1)g(t_2)
-	\comm{\hat{a}^\dagger\hat{a}}{\hat{a}^\dagger\hat{a}}
-	=
-	0
+	\hat{a}_z^\dagger(p-q)
+	\hat{a}_z(p+q)
+	\approx
+	\hat{a}_z^\dagger(p)
+	\hat{a}_z(p)
 \end{equation}
-and the exact time-evolution operator turns out to be
+we obtain the approximate interaction Hamiltonian
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	\approx
+	g(t)
+	\int\frac{\dd{q}}{2\pi}
+	\hat{a}^\dagger(q)
+	\hat{a}(q)
+\end{equation}
+for which all but the first term of the Magnus expansion vanish\footnote{The operator part is time-independent and therefore the interaction Hamiltonian at different times commutes.} and the exact time-evolution operator turns out to be
 \begin{align}
 	\hat{U}(t_0,t)
 	&=
 	\exp\left\{
 		-i\varphi(t_0,t)
-		\hat{a}^\dagger
-		\hat{a}
+		\int\frac{\dd{p}}{2\pi}
+		\hat{a}^\dagger(p)
+		\hat{a}(p)
 	\right\}
 	&
 	\varphi(t_0,t)
@@ -124,6 +235,7 @@ and the exact time-evolution operator turns out to be
 	\int_{t_0}^{t}\dd{t^\prime}
 	g(t^\prime)
 \end{align}
+which reduces to the phase-rotation operator proposed in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006} in the single-mode limit and time-independent $\varphi$.
 
 We define the action of the phase modulator
 \begin{equation}
@@ -131,8 +243,9 @@ We define the action of the phase modulator
 	=
 	\exp\left\{
 		-i\varphi(t,T)
-		\hat{a}^\dagger
-		\hat{a}
+		\int\frac{\dd{p}}{2\pi}
+		\hat{a}^\dagger(p)
+		\hat{a}(p)
 	\right\}
 \end{equation}
 wherein $T$ is the transmit time of the light through the phase modulator.
