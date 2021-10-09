@@ -617,6 +617,9 @@ with $\sigma_j$ being the two-dimensional Pauli matrices and $\sigma_0$ being th
 	.
 \end{equation}
 
+The \gls{mzm} produces highly entangled output states for (displaced) number states, see, for instance, Ref.~\cite{Windhager2011}.
+In the transmitter setting, we are exclusively interested in coherent input states, contrary to the receiver, where an attacker could have sent non-coherent states.
+
 We apply the unitary operator for the \gls{mzm}, \cref{eq:mzm_operator}, and 
 Let us consider the input state
 \begin{align}
@@ -816,12 +819,90 @@ Using the explicit matrix elements in \cref{eq:mzm_matrix} and setting the secon
 	\ket{\alpha\cos(\Theta/2)e^{+i(\Psi+\Phi)/2},-\alpha\sin(\Theta/2)e^{-i(\Psi-\Phi)/2}}
 	.
 \end{equation}
+We are only interested in the first output mode.
+We can remove the second output via partial trace, i.e.,
+\begin{equation}
+	\begin{split}
+		\tr_2\left\{
+			\braket{\alpha,\beta}
+		\right\}
+		&=
+		\tr_2\left\{
+			\braket{\alpha}
+			\otimes
+			\braket{\beta}
+		\right\}
+		\\
+		&=
+		\braket{\alpha}
+		\otimes
+		\tr_2\left\{
+			\braket{\beta}
+		\right\}
+	\end{split}
+\end{equation}
+where
+\begin{equation}
+	\tr_2\left\{
+		\braket{\beta}
+	\right\}
+	=
+	\sum_{n=0}^\infty
+	\braket{n}{\beta}
+	\ketbra{\beta}{n}
+	=
+	\sum_{n=0}^\infty
+	\abs{\braket{n}{\beta}}^2
+	=
+	1
+\end{equation}
+and thus
+\begin{equation}
+	\tr_2\left\{
+		\braket{\alpha,\beta}
+	\right\}
+	=
+	\braket{\alpha}
+	=
+	\hat{P}_1
+	\braket{\alpha,\beta}
+	\hat{P}_1
+\end{equation}
+i.e., the partial trace over a tensor product of coherent states is equivalent to the projection of the non-traced out states.
+This is a special property of the coherent states.
+In general, the partial trace over a tensor product of (entangled) quantum states returns a mixed state.
 
-The \gls{mzm} produces highly entangled output states for (displaced) number states, see, for instance, Ref.~\cite{Windhager2011}.
+We conclude that the the action of a generic \gls{mzm} is
+\begin{equation}
+	\ket{\alpha}
+	\to
+	\ket{\alpha\cos(\Theta/2)e^{i\Lambda/2}}
+\end{equation}
+which follows from the transformation
+\begin{equation}
+	\hat{P}_1
+	\hat{U}_\text{MZM}
+	\ket{\alpha,0}
+	=
+	\ket{\alpha\cos(\Theta/2)e^{i\Lambda/2}}
+\end{equation}
+which is also valid for time-dependent phases $\Theta$ and $\Lambda$ when we use the Pockels modulator to induce the phase shifts.
 
 \subsection{In-phase and quadrature modulator}
 
-The \gls{iqm} independently modulates the quadrature components of coherent light by first splitting the signal into two branches, where each branch has an \gls{mzm}, and then recombining the two branches.
+The \gls{mzm} modulates the amplitude, i.e., multiplies the amplitude with a real number in time-domain.
+We now want to multiply the amplitude with a complex number equivalent to modulation of both quadratures.
+The \gls{iqm} modulates the quadrature components of coherent light.
+
+ which in the time-domain is equivalent to a multiplication with a complex number, i.e.,
+\begin{equation}
+	\ket{\alpha(t)}
+	\to
+	\ket{\alpha(t)z(t)}
+\end{equation}
+wherein $z(t)$ depends on the differential phases of the \gls{mz}.
+
+ by first splitting the signal into two branches, where each branch has an \gls{mzm}, and then recombining the two branches.
 The \gls{mzm} \gls{pm} must hold a total phase difference of $\pi/2$ between the branches.
 Otherwise, the quadrature components become correlated.
 
@@ -833,276 +914,70 @@ Two voltage signals, not indicated in the figure, drive each of the \gls{mzm}.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/iqm}
-	\caption{Fiber-optical setup of a symmetric \gls{iqm}: A first coupler splits the input modes denoted by the quantum operator $\hat{a}_2,\hat{a}_3$ among the output modes $\hat{a}_2^\prime,\hat{a}_3^\prime$. A first \gls{mzm}, MZM1, transforms the input modes $\hat{a}_1=\hat{a}_1^\prime$ and $\hat{a}_2^\prime$ into the outputs modes $\hat{a}_1^{\prime\prime}=\hat{a}_1^{\prime\prime\prime}$ and $\hat{a}_2^{\prime\prime}$. A second \gls{mzm}, MZM2, transforms input modes $\hat{a}_3^\prime$ and $\hat{a}_4=\hat{a}_4^{\prime}$ into the outputs modes $\hat{a}_3^{\prime\prime}$ and $\hat{a}_4^{\prime\prime}=\hat{a}_4^{\prime\prime\prime}$. 	The input mode $\hat{a}_2$ is the signal input. The other input modes, $\hat{a}_1,\hat{a}_3,\hat{a}_4$, are vacuum. A second coupler, combines modes $\hat{a}_2^{\prime\prime}$ and $\hat{a}_3^{\prime\prime}$ into output modes $\hat{a}_2^{\prime\prime\prime}$ and $\hat{a}_3^{\prime\prime\prime}$. Output mode $\hat{a}_2^{\prime\prime\prime}$ is the signal output.}\label{fig:iqm}
+	\caption{Possible fiber-optical setup of a \gls{iqm} comprising a splitter, a coupler, and two \gls{mzm}: An input coherent state $\ket{\alpha}$ enters the splitter, which distributes the input coherent state's amplitude among an upper and lower branch, then hosts coherent states $\ket{\alpha_1}$ and $\ket{\alpha_2}$. The first \gls{mzm}, MZM1, at the upper branch, transforms the coherent state $\ket{\alpha_1}$ to the coherent state $\ket{\alpha_1^\prime}$. The second \gls{mzm}, MZM2, at the lower branch, transforms the coherent state $\ket{\alpha_2}$ to the coherent state $\ket{\alpha_2^\prime}$. The coupler recombines the coherent states $\ket{\alpha_1^\prime}$ and $\ket{\alpha_2^\prime}$ into the output coherent state $\ket{\alpha^\prime}$, exiting the \gls{iqm}.}\label{fig:iqm}
 \end{figure}
 
-In the previous section, we motivated the result that the amplitudes of a coherent input state transform with the matrix as the annihilation operators.
-We assume that this result generalizes to composite systems as we have in \gls{iqm}, and we are left to construct a possible matrix from the known matrix transforms of the coupler and the \gls{mzm}, i.e.,
+Let us consider the coherent input state $\ket{\alpha}$.
+The splitter takes the coherent input state together with a vacuum state and performs a beam splitter transform.
+For a balanced beam splitter, we find
 \begin{equation}
-	\begin{split}
-		\begin{pmatrix}
-			\alpha_1^{\prime\prime\prime} \\
-			\alpha_2^{\prime\prime\prime} \\
-			\alpha_3^{\prime\prime\prime} \\
-			\alpha_4^{\prime\prime\prime}
-		\end{pmatrix}
-		&=
-		\begin{pmatrix}
-			 1 & 0 & 0 & 0 \\
-			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}$}} & 0 \\
-			 0 & & & 0 \\
-			 0 & 0 & 0 & 1
-		\end{pmatrix}
-		\begin{pmatrix}
-			\alpha_1^{\prime\prime} \\
-			\alpha_2^{\prime\prime} \\
-			\alpha_3^{\prime\prime} \\
-			\alpha_4^{\prime\prime}
-		\end{pmatrix}
-		\\
-		&=
-		\begin{pmatrix}
-			 1 & 0 & 0 & 0 \\
-			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}$}} & 0 \\
-			 0 & & & 0 \\
-			 0 & 0 & 0 & 1
-		\end{pmatrix}
-		\begin{pmatrix}
-			 \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM1}$}} & 0 & 0 \\
-			 & & 0 & 0 \\
-			 0 & 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM2}$}} \\
-			 0 & 0 & & \\
-		\end{pmatrix}
-		\begin{pmatrix}
-			\alpha_1^\prime \\
-			\alpha_2^\prime \\
-			\alpha_3^\prime \\
-			\alpha_4^\prime
-		\end{pmatrix}
-		\\
-		&=
-		\begin{pmatrix}
-			 1 & 0 & 0 & 0 \\
-			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS2}$}} & 0 \\
-			 0 & & & 0 \\
-			 0 & 0 & 0 & 1
-		\end{pmatrix}
-		\begin{pmatrix}
-			 \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM1}$}} & 0 & 0 \\
-			 & & 0 & 0 \\
-			 0 & 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{MZM2}$}} \\
-			 0 & 0 & & \\
-		\end{pmatrix}
-		\begin{pmatrix}
-			 1 & 0 & 0 & 0 \\
-			 0 & \multicolumn{2}{c}{\multirow{2}{*}{$U_\text{BS1}$}} & 0 \\
-			 0 & & & 0 \\
-			 0 & 0 & 0 & 1
-		\end{pmatrix}
-		\begin{pmatrix}
-			\alpha_1 \\
-			\alpha_2 \\
-			\alpha_3 \\
-			\alpha_4
-		\end{pmatrix}
-		,
-	\end{split}
-	\label{eq:iqm_amplitude}
-\end{equation}
-wherein $U_\text{BS1},U_\text{BS2},U_\text{MZM1},U_\text{MZM2}$ are the unitary matrices corresponding to the operator transformation of the respective components.
-
-We assume the two couplers to be identical and balanced with an unknown relative phase shift of $\varphi$.
-The matrix transform of such couplers is
-\begin{equation}
-	U_\text{BS1}(\varphi)
+	\ket{\alpha_1,\alpha_2}
 	=
-	\frac{1}{\sqrt{2}}
-	\begin{pmatrix}
-		1 & ie^{+i\varphi} \\
-		ie^{-i\varphi} & 1
-	\end{pmatrix}
+	\hat{U}_\text{BS1}(\varphi_1)
+	\ket{\alpha,0}
 	=
-	U_\text{BS2}(\varphi)
-	.
+	\ket{\frac{\alpha}{\sqrt{2}},\frac{\alpha}{\sqrt{2}}ie^{-i\varphi_1}}
 \end{equation}
-For the \gls{mzm}s, we use the matrix transformation derived in the previous section, \cref{eq:mzm_matrix}, where we set the relative phases to zero $\Psi=\Phi=0$
-\begin{equation}
-	U_\text{MZM}(\Lambda,0,0,\Theta)
-	=
-	\begin{pmatrix}
-		\cos(\Theta/2) & \sin(\Theta/2) \\
-		-\sin(\Theta/2) & \cos(\Theta/2)
-	\end{pmatrix}
-	e^{i\Lambda/2}
-	.
-\end{equation}
-Setting the relative phases to zero is sufficient for outlining the rough operating principle.
-For any practical implementations, we need to assume that these relative phases are non-zero, unknown, and possibly time-dependent due to thermal effects.
-Comparing MZM1 and MZM2 we recognize exchanged in- and outputs.
-Nevertheless, we assume MZM1 and MZM2 to be designed such that we do not need to permute the matrix transform, i.e.,
+where the splitter added a relative phase shift of $\varphi$ between the two branches.
+The \gls{mzm} transform the upper and lower branch coherent states according to
 \begin{align}
-	U_\text{MZM1}(\Theta_1)
-	&=
-	U_\text{MZM}(0,0,0,\Theta_1)
+	\ket{\alpha_1}
+	&\to
+	\ket{\alpha_1^\prime}
+	=
+	\ket{\frac{\alpha}{\sqrt{2}}\cos(\Theta_1/2)e^{i\Lambda_1/2}}
 	\\
-	U_\text{MZM2}(\Lambda,\Theta_2)
-	&=
-	U_\text{MZM}(\Lambda,0,0,\Theta_2)
+	\ket{\alpha_2}
+	&\to
+	\ket{\alpha_2^\prime}
+	=
+	\ket{\frac{\alpha}{\sqrt{2}}ie^{-i\varphi_1}\cos(\Theta_2/2)e^{i\Lambda_2/2}}
+	.
 \end{align}
-where we have set one phase factor of the \gls{mzm}s to zero.
+For the second balanced beam splitter, we find for the output mode
+\begin{equation}
+	\ket{\alpha^\prime}
+	=
+	\hat{P}_1
+	\hat{U}_\text{BS2}(\varphi_2)
+	\ket{\alpha_1^\prime,\alpha_2^\prime}
+	=
+	\ket{\alpha z(\Theta_1,\Theta_2)}
+\end{equation}
+where we choose the first \gls{mzm} phase to be zero $\Lambda_1=0$ and the second phase $\Lambda_2$ such that
+\begin{equation}
+	z(\Theta_1,\Theta_2)
+	=
+	\frac{1}{2}
+	\left(
+		\cos(\Theta_1/2)
+		+
+		i\cos(\Theta_2/2)
+	\right)
+	.
+\end{equation}
+For the differential mode phase of the \gls{mzm} around $\pi$, $\Theta_1,\Theta_2\approx\pi$, we find
+\begin{equation}
+	z(\Theta_1,\Theta_2)
+	\approx
+	\frac{1}{4}
+	\left(
+		\Theta_1
+		+
+		i\Theta_2
+	\right)
+\end{equation}
+and we effectively multiplied the initial coherent state amplitude $\alpha$ with a variable complex number $z(\Theta_1,\Theta_2)$ depending on the differential-mode phases of the \gls{mzm}s.
 
-Inserting the previous matrices into \cref{eq:iqm_amplitude} and performing the matrix multiplication we find
-\begin{equation}
-	\begin{split}
-		U_\text{IQM}
-		=
-		\begin{pmatrix}
-			c_1
-			&
-			s_1/\sqrt{2}
-			&
-			ie^{+i\varphi}s_1/\sqrt{2}
-			&
-			0
-			\\
-			-s_1/\sqrt{2}
-			&
-			\left(c_1-e^{i\Lambda/2}c_2\right)/2
-			&
-			ie^{+i\varphi}\left(c_1+e^{i\Lambda/2}c_2\right)/2
-			&
-			ie^{+i\varphi}e^{i\Lambda/2}s_2/\sqrt{2}
-			\\
-			-ie^{-i\varphi}s_1/\sqrt{2}
-			&
-			ie^{-i\varphi}\left(c_1+e^{i\Lambda/2}c_2\right)/2
-			&
-			-\left(c_1-e^{i\Lambda/2}c_2\right)/2
-			&
-			e^{i\Lambda/2}s_2/\sqrt{2}
-			\\
-			0
-			&
-			-ie^{-i\varphi}e^{i\Lambda/2}s_2/\sqrt{2}
-			&
-			-e^{i\Lambda/2}s_2/\sqrt{2}
-			&
-			e^{i\Lambda/2}c_2
-		\end{pmatrix}
-	\end{split}
-\end{equation}
-where we introduced the shorthand notation
-\begin{align}
-	c_j
-	&=
-	\cos(\Theta_j/2)
-	&
-	s_j
-	&=
-	\sin(\Theta_j/2)
-	.
-\end{align}
-We set $\Lambda=-\pi$ and write
-\begin{equation}
-	z
-	=
-	c_1
-	-
-	e^{-\pi/2}
-	c_2
-	=
-	c_1
-	+
-	ic_2
-\end{equation}
-with which the matrix transform of the \gls{iqm} further simplifies to
-\begin{equation}
-	\begin{split}
-		U_\text{IQM}
-		=
-		\begin{pmatrix}
-			c_1
-			&
-			s_1/\sqrt{2}
-			&
-			ie^{+i\varphi}s_1/\sqrt{2}
-			&
-			0
-			\\
-			-s_1/\sqrt{2}
-			&
-			z/2
-			&
-			ie^{+i\varphi}z^*/2
-			&
-			e^{+i\varphi}s_2/\sqrt{2}
-			\\
-			-ie^{-i\varphi}s_1/\sqrt{2}
-			&
-			ie^{-i\varphi}z^*/2
-			&
-			-z/2
-			&
-			-is_2/\sqrt{2}
-			\\
-			0
-			&
-			-e^{-i\varphi}s_2/\sqrt{2}
-			&
-			is_2/\sqrt{2}
-			&
-			-ic_2
-		\end{pmatrix}
-		.
-	\end{split}
-\end{equation}
-Assuming the input state
-\begin{equation}
-	\ket{0,\alpha,0,0}
-\end{equation}
-corresponding to a coherent signal state at the second input mode and the vacuum state in the other modes,
-we find the transformed amplitudes to be
-\begin{equation}
-	\begin{pmatrix}
-		\alpha_1^{\prime\prime\prime} \\
-		\alpha_2^{\prime\prime\prime} \\
-		\alpha_3^{\prime\prime\prime} \\
-		\alpha_4^{\prime\prime\prime}
-	\end{pmatrix}
-	=
-	U_\text{IQM}
-	\begin{pmatrix}
-		0 \\
-		\alpha \\
-		0 \\
-		0
-	\end{pmatrix}
-	=
-	\alpha
-	\begin{pmatrix}
-		s_1/\sqrt{2} \\
-		z/2 \\
-		ie^{-\varphi}z^*/2 \\
-		-e^{-\varphi}s_2/\sqrt{2}
-	\end{pmatrix}
-	.
-\end{equation}
-Our main interest is in the second signal output mode which we obtain by projection of the second output mode, i.e.,
-\begin{equation}
-	\hat{P}_2
-	\hat{U}_\text{IQM}
-	\ket{0,\alpha,0,0}
-	=
-	\ket{\alpha z/2}
-	\label{eq:iqm_state}
-\end{equation}
-wherein $\hat{P}_2$ is the projector of the second mode.
-\Cref{eq:iqm_state} summarizes the final result of this section: The relation between the coherent signal in- and outputs of a \gls{iqm} is a multiplication with a complex number
-\begin{equation}
-	z
-	=
-	\cos(\Theta_1/2)
-	+
-	i\cos(\Theta_2/2)
-\end{equation}
-which real and imaginary part are determined by the cosine of the two \gls{mzm}s \gls{am} angles $\Theta_1,\Theta_2$.
+Our results can be easily generalized to time-dependent modulation angles by remembering that the time-dependent phase modulation is a convolution in momentum space which is a linear operation.
+The actions we used derive the \gls{iqm} are also linear operations in momentum space, thus, the results should be compatible.
