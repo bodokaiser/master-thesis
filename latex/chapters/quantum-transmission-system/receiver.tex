@@ -1,57 +1,5 @@
 \section{Receiver}
 
-\subsection{Photodiode}
-
-In most physics literature, the photocurrent of a photodiode illuminated by monochromatic light with angular frequency $\omega_0$ is given by~\cite[p.~650]{Saleh2007}
-\begin{equation}
-	i
-	=
-	\eta
-	e
-	\Phi_\gamma
-\end{equation}
-wherein $\eta$ is the \gls{qe}, $e$ is the electron charge, and $\Phi_\gamma$ is the photon flux impinging on the detector.
-We again adapt natural units in which $e=1$.
-The generalization to broadband light is straight forward,
-\begin{equation}
-	i(\omega)
-	=
-	\eta(\omega)
-	\Phi_\gamma(\omega)
-	,
-\end{equation}
-and in the time domain, we find the photocurrent to be
-\begin{equation}
-	i(t)
-	=
-	\int_{\mathbb{R}}\dd{\omega}
-	\eta(\omega)
-	\Phi_\gamma(\omega)
-	=
-	\left(\eta*\Phi_\gamma\right)(t)
-	,
-\end{equation}
-i.e., a convolution of the photon flux with the \gls{qe}.
-Using the divergence theorem, we relate the photon flux onto the detector with the photons absorbed by the detector
-
-% why is the usual description insufficient? -> no annihilation of the field, WHAT ELSE?
-% what is the actual proposed POVM for photodetection?
-The \gls{povm} for detecting $m$ photons in the time interval $[t,t+\Delta t]$ is~\cite[p.~192]{Vogel2006}
-\begin{equation}
-	\hat{P}_m
-	=
-	\colon
-	\frac{1}{m!}
-	\left(\eta\hat{n}\right)^m
-	e^{-\eta\hat{n}}
-	\colon
-\end{equation}
-
-% description of photodetection from a solid-state physics perspective!
-
-% most complete and up-to-date review in Vogel (compare with Gardiner and others - literature review)
-% schematically outline derivation of photodetection given in Vogel.
-
 \subsection{Balanced detection}
 
 % literature review

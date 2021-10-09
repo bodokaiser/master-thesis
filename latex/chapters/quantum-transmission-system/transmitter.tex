@@ -872,37 +872,40 @@ i.e., the partial trace over a tensor product of coherent states is equivalent t
 This is a special property of the coherent states.
 In general, the partial trace over a tensor product of (entangled) quantum states returns a mixed state.
 
-We conclude that the the action of a generic \gls{mzm} is
+We conclude that the the action of a static \gls{mzm} on a coherent input state $\ket{\alpha}$ is a amplitude and phase modulation, i.e.,
 \begin{equation}
 	\ket{\alpha}
 	\to
-	\ket{\alpha\cos(\Theta/2)e^{i\Lambda/2}}
-\end{equation}
-which follows from the transformation
-\begin{equation}
+	\ket{\alpha^\prime}
+	=
 	\hat{P}_1
 	\hat{U}_\text{MZM}
 	\ket{\alpha,0}
 	=
 	\ket{\alpha\cos(\Theta/2)e^{i\Lambda/2}}
+	\label{eq:mzm_transform}
 \end{equation}
-which is also valid for time-dependent phases $\Theta$ and $\Lambda$ when we use the Pockels modulator to induce the phase shifts.
+where $\Theta$ is the differential- and $\Lambda$ is the common-mode phase applied to the Pockels modulator of the \gls{mzm}.
+For small differential-mode phase modulation around $\pi$, the small-angle approximation yields
+\begin{equation}
+	\ket{\alpha}
+	\to
+	\ket{\alpha^\prime}
+	\approx
+	\ket{\frac{1}{2}\alpha\Theta e^{i\Lambda/2}}
+\end{equation}
+and we have effectively multiplied the amplitude of the initial coherent state with a real value $\Theta$.
+
+Our result holds true for time-dependent modulation.
+From the discussion of the Pockels modulator we know that phase modulation can be written as a convolution in momentum space which is a linear operation and therefore compatible with our derivation of the \gls{mzm}.
 
 \subsection{In-phase and quadrature modulator}
 
-The \gls{mzm} modulates the amplitude, i.e., multiplies the amplitude with a real number in time-domain.
-We now want to multiply the amplitude with a complex number equivalent to modulation of both quadratures.
-The \gls{iqm} modulates the quadrature components of coherent light.
-
- which in the time-domain is equivalent to a multiplication with a complex number, i.e.,
-\begin{equation}
-	\ket{\alpha(t)}
-	\to
-	\ket{\alpha(t)z(t)}
-\end{equation}
-wherein $z(t)$ depends on the differential phases of the \gls{mz}.
-
- by first splitting the signal into two branches, where each branch has an \gls{mzm}, and then recombining the two branches.
+In the previous section we derived that the \gls{mzm} performs amplitude and phase modulation on a coherent state.
+The amplitude modulation is equivalent to multiplying the initial amplitude of the coherent state by a real number.
+However, the amplitude of a coherent state is a complex number
+The \gls{iqm} arranges two \gls{mzm} such that both quadratures of the coherent light can be modulator, i.e., we multiply the amplitude of the coherent state by a complex number.
+This can be done by first splitting the signal into two branches, where each branch has an \gls{mzm}, and then recombining the two branches.
 The \gls{mzm} \gls{pm} must hold a total phase difference of $\pi/2$ between the branches.
 Otherwise, the quadrature components become correlated.
 
@@ -966,18 +969,3 @@ where we choose the first \gls{mzm} phase to be zero $\Lambda_1=0$ and the secon
 	\right)
 	.
 \end{equation}
-For the differential mode phase of the \gls{mzm} around $\pi$, $\Theta_1,\Theta_2\approx\pi$, we find
-\begin{equation}
-	z(\Theta_1,\Theta_2)
-	\approx
-	\frac{1}{4}
-	\left(
-		\Theta_1
-		+
-		i\Theta_2
-	\right)
-\end{equation}
-and we effectively multiplied the initial coherent state amplitude $\alpha$ with a variable complex number $z(\Theta_1,\Theta_2)$ depending on the differential-mode phases of the \gls{mzm}s.
-
-Our results can be easily generalized to time-dependent modulation angles by remembering that the time-dependent phase modulation is a convolution in momentum space which is a linear operation.
-The actions we used derive the \gls{iqm} are also linear operations in momentum space, thus, the results should be compatible.
