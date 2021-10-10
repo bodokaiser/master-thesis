@@ -1,4 +1,12 @@
-\section{Encoder}
+\section{Logical quantum channel}
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/logical-quantum-channel}
+	\caption{Logical quantum channel comprising a quantum encoder, a physical quantum channel, and a quantum decoder. The quantum encoder encodes a tensor product of coherent states $\ket{\alpha_1,\dots,\alpha_n}$ onto a time-continuous coherent state $\ket{\alpha(t)}$. The physical quantum channel maps the coherent state $\ket{\alpha(t)}$ to $\ket{\beta(t)}$. The quantum decoder decodes a tensor product of coherent states $\ket{\beta_1,\dots,\beta_n}$ from the time-continuous coherent state $\ket{\beta(t)}$.}
+\end{figure}
+
+\subsection{Encoder}
 
 \begin{equation}
 	\bigotimes_{n=1}^N
@@ -6,8 +14,6 @@
 	\to
 	\ket{\alpha(t)}
 \end{equation}
-
-\subsection{Single- to continuous-mode}
 
 Let us assume there exists a family of functions $\left\{g_{p_0,\sigma}\right\}_{p_0,\sigma\in\mathbb{R}_+}$, the pulse-shape, which is normalized to one
 \begin{equation}
@@ -45,7 +51,7 @@ We can write any coherent state with $c\in\mathbb{C}$ as a convolution
 		\\
 		&\propto
 		\exp\left\{
-			\int_\mathbb{R}
+			\int_{\mathbb{R}}
 			\frac{\dd{p}}{2\pi}
 			\mathcal{F}\left[(g_{p_0,\sigma}*c\delta)\right](p)
 			e^{+ipt}
@@ -55,7 +61,7 @@ We can write any coherent state with $c\in\mathbb{C}$ as a convolution
 		\\
 		&=
 		\exp\left\{
-			\int_\mathbb{R}
+			\int_{\mathbb{R}}
 			\frac{\dd{p}}{2\pi}
 			c
 			\mathcal{F}\left[g_{p_0,\sigma}\right](p)
@@ -67,7 +73,7 @@ We can write any coherent state with $c\in\mathbb{C}$ as a convolution
 		\\
 		&=
 		\exp\left\{
-			\int_\mathbb{R}
+			\int_{\mathbb{R}}
 			\frac{\dd{p}}{2\pi}
 			cg_{p_0,\sigma}(p)
 			e^{+ipt}
@@ -82,7 +88,7 @@ By using the limiting property of the pulse-shape, we obtain the single-mode for
 	\ket{cg_{p_0,\sigma}(t)}
 	\propto
 	\exp\left\{
-		\int_\mathbb{R}
+		\int_{\mathbb{R}}
 		\frac{\dd{p}}{2\pi}
 		cg_{p_0,\sigma}(p)
 		e^{+ipt}
@@ -106,7 +112,7 @@ For a pulse train, we can write
 	\ket{(g*f)(t)}
 	\propto
 	\exp\left\{
-		\int_\mathbb{R}
+		\int_{\mathbb{R}}
 		\frac{\dd{p}}{2\pi}
 		g_{p_0,\sigma}(p)
 		f(p)e^{+ipt}
@@ -124,7 +130,7 @@ encodes the information.
 Again, we take the limit
 \begin{equation}
 	\exp\left\{
-		\int_\mathbb{R}
+		\int_{\mathbb{R}}
 		\frac{\dd{p}}{2\pi}
 		g_{p_0,\sigma}(p)
 		f(p)e^{+ipt}
@@ -151,7 +157,7 @@ wherein
 \begin{equation}
 	h(t)
 	=
-	\int_\mathbb{R}
+	\int_{\mathbb{R}}
 	\frac{\dd{p}}{\sqrt{2\pi}}
 	\cos(\theta(p)/2)
 	e^{+ipt}
@@ -160,7 +166,7 @@ wherein
 By commutativity of the convolution, we can define summarize the pulse-shape and the filter response.
 In that sense, we can ignore the particular pulse-shape.
 
-\subsection{Tensor product to time encoding}
+\subsubsection{Tensor product to time encoding}
 
 We start of with a tensor product of coherent states
 \begin{equation}

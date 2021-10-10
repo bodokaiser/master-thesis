@@ -1,0 +1,814 @@
+\section{Relativistic wave packets}
+
+\begin{definition}[Coordinate wave function]
+	The Klein-Gordon states $\ket{\psi}$ coordinate wave function is
+	\begin{equation}
+		\psi(x^\mu)
+		=
+		\bra{0}
+		\hat\phi(x^\mu)
+		\ket{\psi}
+		.
+	\end{equation}
+\end{definition}
+\begin{definition}[Relativistic probability current]
+	The relativistic probability current is
+	\begin{equation}
+		j_\mu(x^\mu)
+		=
+		2
+		\Im\left\{
+			\psi(x^\mu)^*
+			\partial_\mu
+			\psi(x^\mu)
+		\right\}
+		\label{eq:qkg_probability_current}
+	\end{equation}
+	where $\psi(t,\vb{x})$ is a coordinate wave function.
+	The time component $j^0(t,\vb{x})$ is equal to the probability density $\rho(t,\vb{x})$ and the spatial components $j^i(t,\vb{x})$ are equal to the probability current.
+\end{definition}
+\begin{definition}[Localization]
+	The center-of-mass position of the probability density
+	\begin{equation}
+		\expval{\vb{x}(t)}
+		=
+		\int\dd[3]{x}
+		\vb{x}
+		\rho(t,\vb{x})
+	\end{equation}
+	lets us localize a Klein-Gordon state.\footnote{There exists no position operator free of contradictions in quantum field theory!}
+\end{definition}
+\begin{definition}[Group velocity]
+	The total probability current
+	\begin{equation}
+		\expval{\vb{v}(t)}
+		=
+		\int\dd[3]{x}
+		\vb{j}(t,\vb{x})
+		\label{eq:group_velocity}
+	\end{equation}
+	equals the group velocity of a field excitation.
+\end{definition}
+\begin{definition}[Spatial dispersion]
+	The spatial dispersion is equal to the variance of the position weighted by the probability density
+	\begin{equation}
+		\sigma_x(t)^2
+		=
+		\expval{\vb{x}(t)^2}
+		-
+		\expval{\vb{x}(t)}^2
+	\end{equation}
+	and quantifies the spatial spread of a wave packet.
+\end{definition}
+
+\begin{definition}[Covariant Gaussian spectrum]
+	The spectrum of a Gaussian number state is
+	\begin{equation}
+		f(\vb{p})
+		\propto
+		\exp\left\{
+			\frac{(p_\mu-k_\mu)(p^\mu-k^\mu)}{4\sigma^2}
+		\right\}_{\substack{p_0=\omega(\vb{p})\\k_0=\omega(\vb{k})}}
+		\label{eq:covariant_gaussian_spectrum}
+	\end{equation}
+	where the spectrum has mean $k^\mu=(k_0,\vb{k})$ and variance $\sigma^2$.\footnote{See Ref.~\cite{Naumov2013,Naumov2009} for a in-depth discussion.}
+\end{definition}
+\begin{lemma}\label{thm:non_relativistic_gaussian_momentum}
+%{nonrelativisticgaussianmom}
+	For massless particles and $\omega(\vb{p})\ll\sigma$, the covariant Gaussian spectrum can be approximated
+	\begin{equation}
+		f(\vb{p})
+		\propto
+		\exp\left\{
+			-
+			\frac{
+				\vb{p}_\perp^2
+			}{4\sigma^2}
+		\right\}
+	\end{equation}
+	wherein $\vb{p}_\perp$ is the momentum transverse to $\vb{k}$, for instance, if $\vb{k}=k_0\vu{e}_z$ then $\vb{p}_\perp^2=p_x^2+p_y^2$.
+\end{lemma}
+\begin{proof}
+	For massless particles, we have $p_\mu p^\mu=0=k_\mu k^\mu$ and \cref{eq:covariant_gaussian_spectrum} reduces to
+	\begin{equation*}
+		f(\vb{p})
+		\propto
+		\exp\left\{
+			-
+			\frac{\omega(\vb{p})\omega(\vb{k})-\vb{p}\vdot\vb{k}}{2\sigma^2}
+		\right\}
+		.
+	\end{equation*}
+	For $\omega(\vb{p})\ll\sigma$, we perform a Taylor expansion around $\vb{k}$
+	\begin{equation*}
+		\omega(\vb{p})
+		=
+		\omega(\vb{k})
+		+
+		\omega^\prime(\vb{k})
+		\vdot
+		(\vb{p}-\vb{k})
+		+
+		\frac{1}{2}
+		(\vb{p}-\vb{k})^\trans
+		\omega^{\prime\prime}(\vb{k})
+		(\vb{p}-\vb{k})
+		+
+		\order{\vb{p}^3}
+	\end{equation*}
+	where $\omega^\prime(\vb{k})=\vb{k}/\omega(\vb{k})$ denotes the gradient and $\omega^{\prime\prime}(\vb{k})$ the Hessian of $\omega(\vb{p})$ evaluated at $\vb{k}$ and further reducing the spectrum to
+	\begin{equation*}
+		f(\vb{p})
+		\propto
+		\exp\left\{
+			-
+			\frac{
+				(\vb{p}-\vb{k})^\trans
+				\omega(\vb{k})
+				\omega^{\prime\prime}(\vb{k})
+				(\vb{p}-\vb{k})
+			}{4\sigma^2}
+		\right\}
+		.
+	\end{equation*}
+	The expressions
+	\begin{equation*}
+		\omega(\vb{k})
+		\omega^{\prime\prime}(\vb{k})_{ij}
+		=
+		\omega(\vb{k})
+		\pdv{\omega(\vb{k})}{k_i}{k_j}
+		=
+		\delta_{ij}
+		-
+		\frac{k_ik_j}{\omega(\vb{k})^2}
+		=
+		\delta_{ij}
+		-
+		\frac{k_ik_j}{\vb{k}^2}
+		=
+		P_\perp
+	\end{equation*}
+	turns out to be equal to the transverse projector, see \Cref{def:projector_long_trans}.
+	Inserting the transverse project, we find the non-relativistic Gaussian spectrum to be approximately equal to
+	\begin{equation*}
+		f(\vb{p})
+		\propto
+		\exp\left\{
+			-
+			\frac{
+				(\vb{p}-\vb{k})^\trans
+				P_\perp(\vb{k})
+				(\vb{p}-\vb{k})
+			}{4\sigma^2}
+		\right\}
+		=
+		\exp\left\{
+			-
+			\frac{
+				\vb{p}_\perp^2
+			}{4\sigma^2}
+		\right\}
+		.
+	\end{equation*}
+	The final result is confirmed by Ref.~\cite[eq.~(25)]{Naumov2013} when removing the longitudinal momentum component.
+\end{proof}
+
+\begin{example}
+	The smearing function
+	\begin{equation*}
+		f(p_0,\vb{p})
+		=
+		\sqrt{2\omega(\vb{p}_0)}
+		\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{4}}
+		\exp\left\{
+			-
+			\frac{(\vb{p}-\vb{p}_0)^2}{4\sigma^2}
+		\right\}
+	\end{equation*}
+	is normalized
+	\begin{equation*}
+		\begin{split}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\abs{f\left(\omega(\vb{p}),\vb{p}\right)}^2
+			&=
+			2\omega(\vb{p}_0)
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{2}}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\exp\left\{
+				-
+				\frac{(\vb{p}-\vb{p}_0)^2}{2\sigma^2}
+			\right\}
+			\\
+			&=
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{2}}
+			\left(
+				\int\frac{\dd[3]{p}}{2\pi}
+				\exp\left\{
+					-
+					\frac{(p-p_0)^2}{2\sigma^2}
+				\right\}
+			\right)^3
+			\\
+			&=
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{2}}
+			\left(
+				\frac{1}{2\pi}
+				\sqrt{2\pi\sigma^2}
+			\right)^3
+			=
+			1
+		\end{split}
+	\end{equation*}
+	where we used the mean value theorem in the second line.
+	The coordinate representation of the smearing function is
+	\begin{equation*}
+		\begin{split}
+			f_1(t,\vb{x})
+			&=
+			\int\frac{\dd[4]{p}}{(2\pi)^4}
+			f(p_0,\vb{p})
+			e^{+ip_\mu x^\mu}
+			\\
+			&=
+			\sqrt{2\omega(\vb{p}_0)}
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{4}}
+			\int\frac{\dd[4]{p}}{(2\pi)^4}
+			\exp\left\{
+				-
+				\frac{(\vb{p}-\vb{p}_0)^2}{4\sigma^2}
+			\right\}
+			e^{+i(p_0t-\vb{p}\vdot\vb{x})}
+			\\
+			&=
+			\sqrt{2\omega(\vb{p}_0)}
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{4}}
+			\int\frac{\dd{p_0}}{2\pi}
+			e^{-ip_0t}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\exp\left\{
+				-
+				\frac{(\vb{p}-\vb{p}_0)^2}{4\sigma^2}
+				-
+				i\vb{p}\vdot\vb{x}
+			\right\}
+			\\
+			&=
+			\sqrt{2\omega(\vb{p}_0)}
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{4}}
+			\delta(t)
+			e^{-i\vb{p}_0\vdot\vb{x}}
+			\left(
+				\int\frac{\dd{q}}{2\pi}
+				\exp\left\{
+					-
+					\frac{q^2+2q(2i\sigma^2x)+(2i\sigma^2x)^2-(2i\sigma^2x)^2}{4\sigma^2}
+				\right\}
+			\right)^3
+			\\
+			&=
+			\sqrt{2\omega(\vb{p}_0)}
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{4}}
+			\delta(t)
+			e^{-i\vb{p}_0\vdot\vb{x}}
+			e^{-(\sigma\vb{x})^2}
+			\left(
+				\int\frac{\dd{q}}{2\pi}
+				\exp\left\{
+					-
+					\frac{(q+i\sigma^2x)^2}{4\sigma^2}
+				\right\}
+			\right)^3
+			\\
+			&=
+			\sqrt{2\omega(\vb{p}_0)}
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{4}}
+			\delta(t)
+			e^{-i\vb{p}_0\vdot\vb{x}}
+			e^{-(\sigma\vb{x})^2}
+			\left(
+				\frac{1}{2\pi}
+				\sqrt{4\pi\sigma^2}
+			\right)^3
+			\\
+			&=
+			\sqrt{2\omega(\vb{p}_0)}
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{4}}
+			\delta(t)
+			e^{-i\vb{p}_0\vdot\vb{x}}
+			e^{-(\sigma\vb{x})^2}
+			\left(
+				\frac{\sigma^2}{\pi}
+			\right)^\frac{3}{2}
+			\\
+			&=
+			\sqrt{2\omega(\vb{p}_0)}
+			\left(\frac{2\sigma^2}{\pi}\right)^{\frac{3}{4}}
+			\delta(t)
+			e^{-i\vb{p}_0\vdot\vb{x}}
+			e^{-(\sigma\vb{x})^2}
+			,
+		\end{split}
+	\end{equation*}
+	hence, at time $t=0$, the wave packet is localized at $\vb{x}=0$ with spatial spread $\sigma$.
+
+	We conclude that the smearing function represents the state at some initial time.
+	The complete time-dependent coordinate representation is encoded in the wave function
+	\begin{equation*}
+		\begin{split}
+			\psi_1(t,\vb{x})
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32p_0}
+			\eval{
+				f(p_0,\vb{p})^*
+				e^{+ip_\mu x^\mu}
+			}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			2\omega(\vb{p}_0)
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{2}}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\exp\left\{
+				-
+				\frac{(\vb{p}-\vb{p}_0)^2}{4\sigma^2}
+			\right\}
+			e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+			\\
+			&=
+			\left(\frac{2\pi}{\sigma^2}\right)^{\frac{3}{2}}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\exp\left\{
+				-
+				\left(
+					\frac{\vb{p}-\vb{p}_0}{2\sigma}
+				\right)^2
+				-
+				i\vb{p}\vdot\vb{x}
+				+
+				i\omega(\vb{p})t
+			\right\}
+			\\
+			&=
+			\left(\frac{2}{\pi}\right)^{\frac{3}{2}}
+			\int\dd[3]{q}
+			\exp\left\{
+				-
+				\vb{q}^2
+				-
+				i\left(\vb{p}_0+2\sigma\vb{q}\right)\vdot\vb{x}
+				+
+				i\omega(\vb{p}_0+2\sigma\vb{q})t
+			\right\}
+			\\
+			&=
+			\left(\frac{2}{\pi}\right)^{\frac{3}{2}}
+			e^{-i\vb{p}_0\vdot\vb{x}}
+			\int\dd[3]{q}
+			\exp\left\{
+				-
+				\vb{q}^2
+				-
+				2i\sigma
+				\vb{q}\vdot\vb{x}
+				+
+				i\omega(\vb{p}_0+2\sigma\vb{q})t
+			\right\}
+		\end{split}
+	\end{equation*}
+	where we again used the mean-value theorem in the second line.
+	To make any further progress, we need to expand the dispersion relation
+	\begin{equation*}
+		\begin{split}
+			\omega(\vb{p}_0+2\sigma\vb{q})
+			&=
+			\omega(\vb{p}_0)
+			+
+			2\sigma\omega^\prime(\vb{p}_0)\vdot\vb{q}
+			+
+			4\sigma^2
+			\vb{q}^\trans
+			\omega^{\prime\prime}(\vb{p}_0)
+			\vb{q}
+			+
+			\order{\vb{q}^3}
+			\\
+			&=
+			\omega(\vb{p}_0)
+			+
+			2\sigma\vu{p}_0\vdot\vb{q}
+			+
+			\frac{4\sigma^2}{\omega(\vb{p}_0)}
+			q^i
+			\left(\delta_{ij}-\frac{p_{0i}p_{0j}}{\vb{p}_0^2}\right)
+			q^j
+			+
+			\order{\vb{q}^3}
+			\\
+			&=
+			\omega(\vb{p}_0)
+			+
+			2\sigma\vu{p}_0\vdot\vb{q}
+			+
+			\frac{4\sigma^2}{\omega(\vb{p}_0)}
+			\left(
+				\vb{q}^2
+				-
+				(\vu{p}_0\vdot\vb{q})^2
+			\right)
+			+
+			\order{\vb{q}^3}
+			\\
+			&=
+			\omega(\vb{p}_0)
+			+
+			\omega(2\sigma\vb{q}_\parallel)
+			+
+			\frac{\omega(2\sigma\vb{q}_\perp)^2}{\omega(\vb{p}_0)}
+			+
+			\order{\vb{q}^3}
+		\end{split}
+	\end{equation*}
+	where we have used the longitudinal momentum $\vb{q}_\parallel=(\vb{q}\vdot\vu{p}_0)\vu{p}_0$ and the transverse momentum $\vb{q}_\perp^2=\vb{q}^2-\vb{q}_\parallel^2$
+	\begin{equation*}
+		\psi(x^\mu)
+		\approx
+		\left(\frac{2}{\pi}\right)^\frac{3}{2}
+		e^{i\omega(\vb{p}_0)t-i\vb{p}_0\vdot\vb{x}}
+		\int\dd[3]{q}
+		\exp\left\{
+			-
+			\vb{q}^2
+			-
+			2i\sigma
+			\vb{q}
+			\vdot
+			\vb{x}
+			+
+			i\omega(2\sigma\vb{q}_\parallel)t
+			+
+			i\frac{\omega(2\sigma\vb{q}_\perp)^2}{\omega(\vb{p}_0)}t
+		\right\}
+	\end{equation*}
+	Switching to cylindrical coordinates and further evaluating the integral
+	\begin{equation*}
+		\begin{split}
+			&\
+			\int\dd{q_\perp}\dd{q_\parallel}\dd{\theta} q_\perp
+			\exp\left\{
+				-
+				q_\perp^2
+				-
+				q_\parallel^2
+				-
+				2i\sigma
+				\left(
+					q_\perp
+					\cos\theta
+					x^1
+					+
+					q_\perp
+					\sin\theta
+					x^2
+					+
+					q_\parallel
+					x^3
+				\right)
+				+
+				i2\sigma q_\parallel t
+				+
+				i\frac{4\sigma^2 q_\perp^2}{\omega(\vb{p}_0)}t
+			\right\}
+			\\
+			=&\
+			\int\dd{q_\perp}\dd{\theta} q_\perp
+			\exp\left\{
+				-
+				q_\perp^2
+				-
+				2i\sigma
+				q_\perp
+				\left(
+					\cos\theta
+					x^1
+					+
+					\sin\theta
+					x^2
+				\right)
+				+
+				i\frac{4\sigma^2 q_\perp^2}{\omega(\vb{p}_0)}t
+			\right\}
+			\int\dd{q_\parallel}
+			\exp\left\{
+				-
+				q_\parallel^2
+				-
+				2i\sigma
+				q_\parallel x^3
+				+
+				2i\sigma q_\parallel t
+			\right\}
+		\end{split}		
+	\end{equation*}
+	The second integral is
+	\begin{equation*}
+		\begin{split}
+			&\
+			\int\dd{q_\parallel}
+			\exp\left\{
+				-
+				q_\parallel^2
+				-
+				2q_\parallel i\sigma (x^3-t)
+				-
+				\left(i\sigma (x^3-t)\right)^2
+				+
+				\left(i\sigma (x^3-t)\right)^2
+			\right\}
+			\\
+			=&\
+			e^{-\sigma(x^3-t)^2}
+			\int\dd{q_\parallel}
+			\exp\left\{
+				-
+				\left(
+					q_\parallel^2
+					+
+					i\sigma (x^3-t)
+				\right)^2
+			\right\}
+			\\
+			=&\
+			\sqrt{\pi}
+			e^{-\sigma^2(x^3-t)^2}
+		\end{split}
+	\end{equation*}
+	and the first integral becomes
+	\begin{equation*}
+		\begin{split}
+			&\
+			\int\dd{q_\perp}\dd{\theta} q_\perp
+			\exp\left\{
+				-
+				q_\perp^2
+				-
+				2i\sigma
+				q_\perp
+				\left(
+					\cos\theta
+					x^1
+					+
+					\sin\theta
+					x^2
+				\right)
+				+
+				i\frac{4\sigma^2 q_\perp^2}{\omega(\vb{p}_0)}t
+			\right\}
+			\\
+			=&\
+			\int\dd{q_\perp}q_\perp
+			\exp\left\{
+				-
+				\left(
+					1
+					-
+					4i\frac{\sigma^2t}{\omega(\vb{p}_0)}
+				\right)
+				q_\perp^2
+			\right\}
+			\int\dd{\theta}
+			\exp\left\{
+				-
+				2i\sigma
+				q_\perp
+				\left(
+					\cos\theta
+					x^1
+					+
+					\sin\theta
+					x^2
+				\right)
+			\right\}
+			\\
+			=&\
+			\int\dd{q_\perp}q_\perp
+			\exp\left\{
+				-
+				\left(
+					1
+					-
+					4i\frac{\sigma^2t}{\omega(\vb{p}_0)}
+				\right)
+				q_\perp^2
+			\right\}
+			2\pi
+			I_0\left(2i\sigma q_\perp\rho\right)
+			\\
+			\approx &\
+			\frac{2\pi}{2\left(1-4i\sigma^2 t/\omega(\vb{p}_0)\right)}
+		\end{split}
+	\end{equation*}
+	Putting these things together, we have for $\rho\ll1$
+	\begin{equation*}
+		\begin{split}
+			\psi(t,\rho,z)
+			&\approx
+			\left(\frac{2}{\pi}\right)^\frac{3}{2}
+			e^{i\omega(\vb{p}_0)t-i\vb{p}_0\vdot\vb{x}}
+			\frac{\pi}{\left(1-4i\sigma^2 t/\omega(\vb{p}_0)\right)}
+			\sqrt{\pi}
+			e^{-\sigma^2(z-t)^2}
+			\\
+			&=
+			\frac{2^\frac{3}{2}e^{-\sigma^2(z-t)}}{1-4i\sigma^2 t/\omega(\vb{p}_0)}
+			e^{i\omega(\vb{p}_0)t-i\vb{p}_0\vdot\vb{x}}
+		\end{split}
+	\end{equation*}
+	comparing this to the smearing function, we find
+	\begin{align*}
+		f(t,\vb{x})
+		&\approx
+		\sqrt{2\omega(\vb{p}_0)}
+		\left(\frac{2\sigma^2}{\pi}\right)^{\frac{3}{4}}
+		\delta(t)
+		e^{-i\vb{p}_0\vdot\vb{x}}
+		e^{-(\sigma\vb{x})^2}
+		\\
+		\psi(t,\rho,z)
+		&\approx
+		\frac{2^\frac{3}{2}e^{-\sigma^2(z-t)}}{1-4i\sigma^2 t/\omega(\vb{p}_0)}
+		e^{i\omega(\vb{p}_0)t-i\vb{p}_0\vdot\vb{x}}
+	\end{align*}
+	which for $t=0$ are equal up to a proportionality constant.
+\end{example}
+\begin{example}
+	The smearing function
+	\begin{equation*}
+		f(\omega,\vb{p})
+		=
+		\sqrt{2\omega_0}
+		\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+		\exp\left\{
+			-
+			\frac{(\omega-\omega_0)^2}{4\Delta\omega^2}
+		\right\}
+		e^{+i\omega t}
+		(2\pi)\delta^{(1)}(p^1)
+		(2\pi)\delta^{(1)}(p^2)
+	\end{equation*}
+	is normalized and the coordinate representation turns out to be
+	\begin{equation*}
+		\begin{split}
+			f(t,\vb{x})
+			&=
+			\int\frac{\dd[4]{p}}{(2\pi)^4}
+			f(p_0,\vb{p})
+			e^{+ip_\mu x^\mu}
+			\\
+			&=
+			\sqrt{2\omega_0}
+			\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+			\int\dd{\omega}
+			\exp\left\{
+				-
+				\left(\frac{\omega-\omega_0}{2\Delta\omega}\right)^2
+				+
+				i\omega t
+			\right\}
+			\int\frac{\dd{p^3}}{2\pi}
+			e^{-ip^3z}
+			\\
+			&=
+			\sqrt{2\omega_0}
+			\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+			e^{+i\omega_0t}
+			\delta^{(1)}(z)
+			2\Delta\omega
+			\int\dd{u}
+			\exp\left\{
+				-
+				u^2
+				+
+				2u i\Delta\omega t
+			\right\}
+			\\
+			&=
+			\sqrt{2\omega_0}
+			\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+			e^{+i\omega_0t}
+			e^{-\Delta\omega^2 t}
+			\delta^{(1)}(z)
+			2\Delta\omega
+			\sqrt{\pi}
+			\\
+			&=
+			\sqrt{2\omega_0}
+			\left(8\pi\Delta\omega^2\right)^\frac{1}{4}
+			e^{+i\omega_0t}
+			e^{-\Delta\omega^2 t}
+			\delta^{(1)}(z)
+			.
+		\end{split}
+	\end{equation*}
+	The coordinate wave function is
+	\begin{equation*}
+		\begin{split}
+			\psi(t,\vb{x})
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\eval{
+				f(p_0,\vb{p})^*
+				e^{+ip_\mu x^\mu}
+			}_{p_0=\omega(\vb{p})}
+			\\
+			&=
+			\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+			\int\dd{\omega}
+			\exp\left\{
+				-
+				\left(\frac{\omega-\omega_0}{2\Delta\omega}\right)^2
+				+
+				i\omega(t-z)
+			\right\}
+			\\
+			&=
+			\left(\frac{1}{2\pi\Delta\omega^2}\right)^\frac{1}{4}
+			2\Delta\omega
+			\int\dd{u}
+			\exp\left\{
+				-
+				u^2
+				+
+				i(\omega_0+2\Delta\omega u)(t-z)
+			\right\}
+			\\
+			&=
+			\left(\frac{8\Delta\omega^2}{\pi}\right)^\frac{1}{4}
+			e^{-i\omega_0(t-z)}
+			\int\dd{u}
+			\exp\left\{
+				-
+				u^2
+				+
+				2u i\Delta\omega(t-z)
+			\right\}
+			\\
+			&=
+			\left(\frac{8\Delta\omega^2}{\pi}\right)^\frac{1}{4}
+			e^{-i\omega_0(t-z)}
+			\sqrt{\pi}
+			e^{-\Delta\omega^2(t-z)}
+			\\
+			&=
+			\left(8\pi\Delta\omega^2\right)^\frac{1}{4}
+			e^{-i\omega_0(t-z)}
+			e^{-\Delta\omega^2(t-z)}
+		\end{split}
+	\end{equation*}
+\end{example}
+\begin{lemma}
+	More generally, we find
+	\begin{equation}
+		\psi(x^\mu)
+		=
+		\int\dd[4]{y}
+		D(x^\mu-y^\mu)
+		f(y^\mu)
+		,
+	\end{equation}
+	i.e., the smearing function is an initial wave function evolved to another point in time.
+\end{lemma}
+\begin{proof}
+	\begin{equation*}
+		\begin{split}
+			\int\dd[4]{y}
+			D(x^\mu-y^\mu)
+			f(y^\mu)
+			&=
+			\int\dd[4]{y}
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\eval{e^{-ip_\mu(x^\mu-y^\mu)}}_{p_0=\omega(\vb{p})}
+			\int\frac{\dd[4]{q}}{(2\pi)^4}
+			f(q^\mu)
+			e^{+iq_\mu y^\mu}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			\int\frac{\dd[4]{q}}{(2\pi)^4}
+			f(q^\mu)
+			\\
+			&\times
+			\int\dd{y^0}
+			e^{+i(\omega(\vb{p})+q^0)y^0}
+			\int\dd[3]{y}
+			e^{-i(\vb{q}+\vb{p})\vdot\vb{y}}
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			f\left(\omega(\vb{p}),\vb{p}\right)^*
+			\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
+			=
+			\psi(x^\mu)
+		\end{split}
+	\end{equation*}
+\end{proof}
