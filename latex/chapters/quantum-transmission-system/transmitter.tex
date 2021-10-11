@@ -579,7 +579,7 @@ wherein the global phase $\Theta$ and the rotation angle $\Lambda$ are time-depe
 We obtain the matrix transform of the symmetric free-space $U_\text{MZI}$ after identification of $\Theta$ with the differential-mode phase, $\Lambda+\pi$ with the common-mode phase, and choosing $\Psi=0=\Phi$.
 One advantage of the proposed decomposition in \cref{eq:mzm_matrix} is the one-to-one correspondence between the unitary operator~\cite[p.~99]{Leonhardt2010}
 \begin{equation}
-	\hat{U}_\text{MZM}
+	\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)
 	=
 	e^{i\Lambda\hat{L}_t}
 	e^{i\Phi\hat{L}_z}
@@ -620,7 +620,6 @@ with $\sigma_j$ being the two-dimensional Pauli matrices and $\sigma_0$ being th
 The \gls{mzm} produces highly entangled output states for (displaced) number states, see, for instance, Ref.~\cite{Windhager2011}.
 In the transmitter setting, we are exclusively interested in coherent input states, contrary to the receiver, where an attacker could have sent non-coherent states.
 
-We apply the unitary operator for the \gls{mzm}, \cref{eq:mzm_operator}, and 
 Let us consider the input state
 \begin{align}
 	\ket{\vb{\alpha}}
@@ -652,7 +651,7 @@ to a \gls{mzm}\footnote{We can always set $alpha=0$ to set the second input to v
 	\hat{U}_\text{MZM}^\dagger
 	\ket{0,0}
 \end{equation}
-where we used the invariance of the vacuum state $\ket{0,0}$ for the second equal.
+where we used the invariance of the vacuum state $\ket{0,0}$ for the second equality.
 The displacement operator transforms as
 \begin{equation}
 	\begin{split}
@@ -693,7 +692,7 @@ The displacement operator transforms as
 			\right)^\dagger
 			-
 			\hat{U}
-			\hat{a}
+			\hat{\vb{a}}
 			\hat{U}^\dagger
 			\vb{\alpha}^*
 		\right\}
@@ -749,7 +748,7 @@ For the unitary operator of the \gls{mzm}, we note that
 		e^{-i\Phi\hat{L}_z}
 		\\
 		&=
-		\hat{U}_\text{MZM}(-\Lambda,\Psi,\Phi,-\Theta)
+		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
 	\end{split}
 \end{equation}
 where we used in the second line that $\hat{L}_t$ commutes with the other Jordan-Schwinger operators $\hat{L}_y,\hat{L}_z$.
@@ -763,16 +762,16 @@ The transformed annihilation operators turn out to be
 		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
 		\\
 		&=
-		\hat{U}_\text{MZM}(-\Lambda,\Psi,\Phi,-\Theta)^\dagger
+		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)^\dagger
 		\hat{\vb{a}}
-		\hat{U}_\text{MZM}(-\Lambda,\Psi,\Phi,-\Theta)
+		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
 		\\
 		&=
-		U_\text{MZM}(-\Lambda,\Psi,\Phi,-\Theta)
+		U_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
 		\hat{\vb{a}}
 		\\
 		&=
-		U_\text{MZM}(\Lambda,\Psi,\Phi,\Theta)^\dagger
+		U_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
 		\hat{\vb{a}}
 		.
 	\end{split}
@@ -886,15 +885,7 @@ We conclude that the the action of a static \gls{mzm} on a coherent input state 
 	\label{eq:mzm_transform}
 \end{equation}
 where $\Theta$ is the differential- and $\Lambda$ is the common-mode phase applied to the Pockels modulator of the \gls{mzm}.
-For small differential-mode phase modulation around $\pi$, the small-angle approximation yields
-\begin{equation}
-	\ket{\alpha}
-	\to
-	\ket{\alpha^\prime}
-	\approx
-	\ket{\frac{1}{2}\alpha\Theta e^{i\Lambda/2}}
-\end{equation}
-and we have effectively multiplied the amplitude of the initial coherent state with a real value $\Theta$.
+We have effectively multiplied the amplitude of the initial coherent state with a real value $\cos(\Theta/2)$.
 
 Our result holds true for time-dependent modulation.
 From the discussion of the Pockels modulator we know that phase modulation can be written as a convolution in momentum space which is a linear operation and therefore compatible with our derivation of the \gls{mzm}.
