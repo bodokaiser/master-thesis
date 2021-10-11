@@ -54,14 +54,6 @@
 }
 \def\approxprop{\mathpalette\app\relax}
 
-% overwrite real and imaginary part operators
-\let\Re\undefined
-\let\Im\undefined
-\DeclareMathOperator{\Re}{\operatorname{Re}}
-\DeclareMathOperator{\Im}{\operatorname{Im}}
-% other functions
-\DeclareMathOperator{\sinc}{\operatorname{sinc}}
-
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
 
@@ -69,13 +61,25 @@
 % https://tex.stackexchange.com/questions/403104/small-caps-mathsf-font-for-writing-transpose-of-a-matrix
 \newcommand{\trans}{{\scriptscriptstyle\mathsf{T}}}
 
-% diagonal double arrows
-% https://tex.stackexchange.com/questions/145006/nearrow-and-swarrow-together
-\DeclareRobustCommand{\neswarrow}{
-  \mathrel{\text{\ooalign{$\swarrow$\cr$\nearrow$}}}%
-}
-\DeclareRobustCommand{\nwsearrow}{
-  \mathrel{\text{\ooalign{$\searrow$\cr$\nwarrow$}}}%
+% unicode-math breaks declare command
+% https://tex.stackexchange.com/questions/117990/unicode-math-breaks-declaremathoperator
+\AtBeginDocument{
+	% diagonal double arrows
+	% https://tex.stackexchange.com/questions/145006/nearrow-and-swarrow-together
+	\DeclareRobustCommand{\neswarrow}{
+	  \mathrel{\text{\ooalign{$\swarrow$\cr$\nearrow$}}}%
+	}
+	\DeclareRobustCommand{\nwsearrow}{
+	  \mathrel{\text{\ooalign{$\searrow$\cr$\nwarrow$}}}%
+	}
+	
+	% overwrite real and imaginary part operators
+	\let\Re\undefined
+	\let\Im\undefined
+	\DeclareMathOperator{\Re}{\operatorname{Re}}
+	\DeclareMathOperator{\Im}{\operatorname{Im}}
+	% other functions
+	\DeclareMathOperator{\sinc}{\operatorname{sinc}}
 }
 
 % chapter appearence
@@ -322,17 +326,17 @@
 
 	\appendix
 	
-	\chapter{Theorems}
-	\begin{refsection}
-		\input{chapters/theorems/relativistic-field-theory}
-		\input{chapters/theorems/relativistic-wavepackets}
-		\input{chapters/theorems/canonical-quantization}
-		\input{chapters/theorems/klein-gordon-field}
-		\input{chapters/theorems/quantum-states}
-		\input{chapters/theorems/interactions}
+%	\chapter{Theorems}
+%	\begin{refsection}
+%		\input{chapters/theorems/relativistic-field-theory}
+%		\input{chapters/theorems/relativistic-wavepackets}
+%		\input{chapters/theorems/canonical-quantization}
+%		\input{chapters/theorems/klein-gordon-field}
+%		\input{chapters/theorems/quantum-states}
+%		\input{chapters/theorems/interactions}
 		
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
+%		\addcontentsline{toc}{section}{References}
+%		\printbibliography[title=References]
+%	\end{refsection}
 
 \end{document}

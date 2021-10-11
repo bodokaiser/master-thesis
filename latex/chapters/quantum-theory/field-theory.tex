@@ -81,7 +81,157 @@ The Euler-Lagrange equations yield the \gls{eom}s of the field determining the d
 	=
 \end{equation}
 
-\subsection{Electromagnetic fields and Maxwell equations}
+\subsection{Lorentz force, electromagnetic field components and Maxwell equations}
+
+% How do we get from the vector field to the field-strength tensor?
+We consider the action of a particle with mass $m$ and charge $q$ coupled to the vector field~\cite[p.~244]{Zee2013}
+\begin{equation}
+	S
+	=
+	-
+	m\int\dd{\tau}
+	\sqrt{-g_{\mu\nu}\dv{x^\mu}{\tau}\dv{x^\nu}{\tau}}
+	+
+	q\int\dd{\tau}
+	A_\mu\left(x(\tau)\right)
+	\dv{x^\mu}{\tau}
+\end{equation}
+for which the action principle yields the equation of motion
+\begin{equation}
+	m
+	\dv[2]{x^\mu}{\tau}
+	=
+	qF^\mu_\nu(x)\dv{x^\nu}{\tau}
+	\label{eq:cov_lorentz_force}
+\end{equation}
+corresponding to a covariant formulation of Lorentz force law, wherein the field-strength tensor
+\begin{equation}
+	F_{\mu\nu}
+	=
+	\partial_\mu
+	A_\nu
+	-
+	\partial_\nu
+	A_\mu
+\end{equation}
+is the covariant generalization of the electromagnetic field.
+
+Comparison of the covariant Lorentz force law, \cref{eq:cov_lorentz_force}, with the vector Lorentz force law
+\begin{equation}
+	m
+	\dv[2]{\vb{x}}{t}
+	=
+	q\left(
+		\vb{E}
+		+
+		\dv{\vb{x}}{t}
+		\cp
+		\vb{B}
+	\right)
+\end{equation}
+we can identify the components of the field-strength tensor with the electromagnetic field~\cite[p.~245]{Zee2013}
+\begin{align}
+	E^1
+	&=
+	F^{01}
+	=
+	-
+	F_{01}
+	&
+	E^2
+	&=
+	F^{02}
+	=
+	-
+	F_{02}
+	&
+	E^3
+	&=
+	F^{03}
+	=
+	-
+	F_{03}
+	\\
+	B^1
+	&=
+	F^{23}
+	=
+	-
+	F_{23}
+	&
+	B^2
+	&=
+	F^{31}
+	=
+	-
+	F_{31}
+	&
+	B^3
+	&=
+	F^{12}
+	=
+	-
+	F_{12}
+\end{align}
+or in index notation
+\begin{align}
+	F^{0i}
+	&=
+	E^i
+	&
+	F^{ij}
+	&=
+	\varepsilon^{ijk}
+	B_k
+	.
+\end{align}
+
+\begin{equation}
+	\mathcal{L}
+	=
+	-
+	\frac{1}{4}
+	F_{\mu\nu}
+	F^{\mu\nu}
+	-
+	j_\mu A^\mu
+\end{equation}
+\begin{equation}
+	\mathcal{L}
+	=
+	\frac{1}{2}
+	\left(
+		\vb{E}^2
+		-
+		\vb{B}^2
+	\right)
+	-
+	j_0A^0
+	+
+	\vb{j}
+	\vdot
+	\vb{A}
+\end{equation}
+
+\begin{align}
+	\div\vb{E}
+	&=
+	j_0
+	&
+	\div\vb{B}
+	&=
+	0
+	\\
+	\cp\vb{E}
+	&=
+	-\partial_t\vb{B}
+	&
+	\cp\vb{B}
+	&=
+	\vb{j}
+	+
+	\partial_t\vb{E}
+\end{align}
 
 \subsection{Coulomb gauge and plane-wave expansion}
 
