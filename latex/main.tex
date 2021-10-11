@@ -6,8 +6,8 @@
 	headings=big,
 ]{scrreprt}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
 \usepackage{amsthm}
 %\usepackage{amsmath}
 %\usepackage{amsfonts}
@@ -30,6 +30,8 @@
 %\usepackage{lmodern}
 \usepackage{multirow}
 \usepackage{xcolor}
+\usepackage{braket}
+%\usepackage{diffcoeff}
 %\usepackage{dsfont}
 %\usepackage[bb=dsserif]{mathalpha}
 \usepackage{unicode-math}
@@ -80,6 +82,10 @@
 	\DeclareMathOperator{\Im}{\operatorname{Im}}
 	% other functions
 	\DeclareMathOperator{\sinc}{\operatorname{sinc}}
+	
+	% ketbra
+	% https://tex.stackexchange.com/questions/412019/newcommand-for-ket-bra
+	%\newcommand{\ketbra}[2]{\mathinner{|{#1}\rangle\,\langle{#2}|}}
 }
 
 % chapter appearence
@@ -129,7 +135,7 @@
 
 % vectorbold for greek symbols
 % https://tex.stackexchange.com/questions/609923/unicode-math-and-physicss-vb-command
-\DeclareDocumentCommand\vectorbold{ s m }{\IfBooleanTF{#1}{\symbfit{#2}}{\symbf{#2}}}
+%\DeclareDocumentCommand\vectorbold{ s m }{\IfBooleanTF{#1}{\symbfit{#2}}{\symbf{#2}}}
 
 % theorems
 \newtheorem{theorem}{Theorem}[section]
