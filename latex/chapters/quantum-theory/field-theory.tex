@@ -1,0 +1,100 @@
+\section{Canonical quantization of Maxwell field}
+
+\subsection{Maxwell field from first principles}
+
+Lagrangian field theory provides a general framework for deriving a physical theory from first principles.
+
+One of such first principles is special relativity which we demand all physics to obey.
+We can incorporate special relativity by formulating our theory in terms of Lorentz-invariant tensors.
+The Lorentz transformation can be seen as a generalization of the Galilean transformation, which describes translations and rotations by Lorentz boosts.
+In sum, we assume the Lagrangian to be a Lorentz-invariant scalar constructed of Lorentz-invariant tensors.
+
+Our arguments have been true for any physical theory so far.
+For Maxwell theory, the field theory related to photons and electromagnetism, we need the observations that photons are
+\begin{enumerate}
+	\item are massless, and 
+	\item have spin 1,
+	\item electric charge is conserved.
+	\item not self-interacting.
+\end{enumerate}
+That photons are massless shows oneself that photons (and electromagnetic waves) travel at the speed of light.
+The spin-1 property follows from polarization experiments.\footnote{It is possible to distinguish between spin-1/2 and spin-1 particles from polarization experiments.}
+In field theoretic terms, the spin-1 requires us to consider a vector field theory $A^\mu(t,\vb{x})$.\footnote{The vector field has four dimensions to be a Lorentz-invariant vector.}
+The conservation of electric charge is equivalent (by Noether's theorem) to local gauge invariance of the QED Lagrangian of which the Maxwell Lagrangian is part of.
+
+We summarize that Maxwell theory is a
+\begin{enumerate}
+	\item massless
+	\item local gauge-invariant
+	\item relativistic	
+\end{enumerate}
+vector field theory $A^\mu(t,\vb{x})$.
+These requirements suggest that the Maxwell Lagrangian only contains kinetic terms, i.e., second-order contractions of the Maxwell field with derivatives\footnote{Terms without derivatives would imply mass or self-interaction.}
+such that we find
+\begin{equation}
+	L
+	=
+	\int\dd[3]{x}
+	\mathcal{L}
+	=
+	\int\dd[3]{x}
+	\left\{
+		c_1
+		\left(
+			\partial_\mu
+			A^\nu
+		\right)
+		\left(
+			\partial^\mu
+			A_\nu
+		\right)
+		+
+		c_2
+		\left(
+			\partial_\mu
+			A^\mu
+		\right)
+		\left(
+			\partial_\nu
+			A^\nu
+		\right)
+		+
+		c_3
+		\left(
+			\partial_\mu
+			A^\nu
+		\right)
+		\left(
+			\partial_\nu
+			A^\mu
+		\right)
+	\right\}
+\end{equation}
+wherein $c_1,c_2,c_3\in\mathbb{R}$ are yet to determine constants.
+For the field to be integrable it has to decay sufficiently fast at infinity, thus the boundary terms when performing partial integration vanish and the first and last term are equivalent~\cite{deRham2014} such that we can set $c_3=0$ without loss of generality.
+
+The Euler-Lagrange equations yield the \gls{eom}s of the field determining the dynamics
+\begin{equation}
+	0
+	=
+	\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+	=
+\end{equation}
+
+\subsection{Electromagnetic fields and Maxwell equations}
+
+\subsection{Coulomb gauge and plane-wave expansion}
+
+% implications of Coulomb gauge
+% relation to Klein-Gordon field
+% one-dimensional approximation
+% Lorentz-invariant measure
+
+\subsection{Energy-momentum tensor and Hamiltonian}
+
+\subsection{Canonical quantization}
+
+% Canonical commutation relation
+% Quantization of gauge fields, Coulomb gauge requires transverse delta distribution
+% Hamiltonian operator
+% electromagnetic field operator
