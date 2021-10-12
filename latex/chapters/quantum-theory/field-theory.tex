@@ -1,85 +1,193 @@
 \section{Canonical quantization of Maxwell field}
 
-\subsection{Maxwell field from first principles}
+What do we do here?
+- Section structure
+- Expected results
 
-Lagrangian field theory provides a general framework for deriving a physical theory from first principles.
+Hamiltonian vs Lagrangian mechanics?
+Why we start with Lagrangian mechanics?
 
-One of such first principles is special relativity which we demand all physics to obey.
-We can incorporate special relativity by formulating our theory in terms of Lorentz-invariant tensors.
-The Lorentz transformation can be seen as a generalization of the Galilean transformation, which describes translations and rotations by Lorentz boosts.
-In sum, we assume the Lagrangian to be a Lorentz-invariant scalar constructed of Lorentz-invariant tensors.
+From the Lagrangian we can infer everything else.
 
-Our arguments have been true for any physical theory so far.
-For Maxwell theory, the field theory related to photons and electromagnetism, we need the observations that photons are
-\begin{enumerate}
-	\item are massless, and 
-	\item have spin 1,
-	\item electric charge is conserved.
-	\item not self-interacting.
-\end{enumerate}
-That photons are massless shows oneself that photons (and electromagnetic waves) travel at the speed of light.
-The spin-1 property follows from polarization experiments.\footnote{It is possible to distinguish between spin-1/2 and spin-1 particles from polarization experiments.}
-In field theoretic terms, the spin-1 requires us to consider a vector field theory $A^\mu(t,\vb{x})$.\footnote{The vector field has four dimensions to be a Lorentz-invariant vector.}
-The conservation of electric charge is equivalent (by Noether's theorem) to local gauge invariance of the QED Lagrangian of which the Maxwell Lagrangian is part of.
+\subsection{Maxwell Lagrangian from first principles}
 
-We summarize that Maxwell theory is a
-\begin{enumerate}
-	\item massless
-	\item local gauge-invariant
-	\item relativistic	
-\end{enumerate}
-vector field theory $A^\mu(t,\vb{x})$.
-These requirements suggest that the Maxwell Lagrangian only contains kinetic terms, i.e., second-order contractions of the Maxwell field with derivatives\footnote{Terms without derivatives would imply mass or self-interaction.}
-such that we find
+Maxwell theory is the relativistic field theory of spin-1 particles (photons) with gauge symmetry.
+
+Photons are the excitations of a Lorentz invariant vector field $A^\mu$.
+A vector field $A^\mu(x)$ is Lorentz invariant, if it changes under a Lorentz transformation $\Lambda$ according to~\cite[p.~37]{Peskin1995}
 \begin{equation}
-	L
+	A^\mu(x)
+	\to
+	A^{\prime\mu}(x^\prime)
 	=
-	\int\odif[order={3}]{x}
+	\Lambda^\mu_\nu
+	A^\nu(\Lambda^{-1}x)
+	.
+\end{equation}
+Lorentz transformations extends Galilean transformations with Lorentz boosts, i.e., transformations in moving reference systems, but also include rotations.
+
+For the action to be a Lorentz scalar, we need to construct the Lagrangian density from contracted Lorentz tensors.
+The most general Lagrangian density without (self-)interactions is~\cite{deRham2014}
+\textcolor{red}{this is not the most general density!}
+\begin{equation}
 	\mathcal{L}
 	=
-	\int\odif[order={3}]{x}
-	\left\{
-		c_1
-		\left(
-			\partial_\mu
-			A^\nu
-		\right)
-		\left(
-			\partial^\mu
-			A_\nu
-		\right)
-		+
-		c_2
-		\left(
-			\partial_\mu
-			A^\mu
-		\right)
-		\left(
-			\partial_\nu
-			A^\nu
-		\right)
-		+
-		c_3
-		\left(
-			\partial_\mu
-			A^\nu
-		\right)
-		\left(
-			\partial_\nu
-			A^\mu
-		\right)
-	\right\}
+	c_1
+	\left(
+		\partial_\mu
+		A^\nu
+	\right)
+	\left(
+		\partial^\mu
+		A_\nu
+	\right)
+	+
+	c_2
+	\left(
+		\partial_\mu
+		A^\mu
+	\right)
+	\left(
+		\partial_\nu
+		A^\nu
+	\right)
+	+
+	c_3
+	\left(
+		\partial_\mu
+		A^\nu
+	\right)
+	\left(
+		\partial_\nu
+		A^\mu
+	\right)
+	+
+	c_4
+	A_\mu A^\mu
+	\label{eq:vector_field_lagrangian1}
+	.
 \end{equation}
-wherein $c_1,c_2,c_3\in\mathbb{R}$ are yet to determine constants.
-For the field to be integrable it has to decay sufficiently fast at infinity, thus the boundary terms when performing partial integration vanish and the first and last term are equivalent~\cite{deRham2014} such that we can set $c_3=0$ without loss of generality.
-
-The Euler-Lagrange equations yield the \gls{eom}s of the field determining the dynamics
+The Maxwell field $A^\mu$ has to be square-integrable for the action
 \begin{equation}
-	0
+	S
 	=
-	\partial_\mu\pdv{\mathcal{L}}{(\partial_\mu A_\nu)}
+	\int\odif{t}
+	L
 	=
+	\int\odif[order={4}]{x}
+	\mathcal{L}
 \end{equation}
+to exist, implying that $A^\mu$ vanishes at the integration boundaries.
+Using partial integration with vanishing boundary term of the third term in \cref{eq:vector_field_lagrangian1} twice, we find
+\begin{equation}
+	\mathcal{L}
+	=
+	c_1
+	\left(
+		\partial_\mu
+		A^\nu
+	\right)
+	\left(
+		\partial^\mu
+		A_\nu
+	\right)
+	+
+	(c_2+c_3)
+	\left(
+		\partial_\mu
+		A^\mu
+	\right)
+	\left(
+		\partial_\nu
+		A^\nu
+	\right)
+	+
+	c_4
+	A_\mu A^\mu
+	\label{eq:vector_field_lagrangian2}
+	.
+\end{equation}
+Demanding the Lagrangian density in \Cref{eq:vector_field_lagrangian2} to be invariant under the gauge transformation
+\begin{equation}
+	A^\mu
+	\to
+	A^{\prime\mu}
+	=
+	A^\mu
+	-
+	\partial^\mu
+	\chi
+\end{equation}
+with gauge field $\chi$, constraints the coefficients to
+\begin{align*}
+	c_1
+	&=
+	-
+	(c_2+c_3)
+	&
+	c_4
+	&=
+	0
+\end{align*}
+and further simplifying the Lagrangian density to
+\begin{equation}
+	\mathcal{L}
+	=
+	c_1
+	\left(
+		\partial_\mu
+		A^\nu
+	\right)
+	\left(
+		\partial^\mu
+		A_\nu
+	\right)
+	-
+	c_1
+	\left(
+		\partial_\mu
+		A^\mu
+	\right)
+	\left(
+		\partial_\nu
+		A^\nu
+	\right)
+	\label{eq:vector_field_lagrangian3}
+	.
+\end{equation}
+The remaining overall constant $c_1$ does not affect the field dynamics and can be arbitrarily chosen.
+Adapting the standard convention $c_1=-1/2$, we successfully derived the Maxwell Lagrangian
+\begin{equation}
+	\mathcal{L}
+	=
+	-
+	\frac{1}{2}
+	\left(
+		\partial_\mu
+		A^\nu
+	\right)
+	\left(
+		\partial^\mu
+		A_\nu
+	\right)
+	+
+	\frac{1}{2}
+	\left(
+		\partial_\mu
+		A^\mu
+	\right)
+	\left(
+		\partial_\nu
+		A^\nu
+	\right)
+	.
+\end{equation}
+
+We showed that imposing gauge symmetry on the Lagrangian of a relativistic vector field theory leads to the Maxwell Lagrangian.
+While the spin of a field can be determined by polarization experiments, it appears somewhat ad-hoc to impose gauge theory.
+If we start from the Dirac Lagrangian describing charged spin-1/2 particles, local gauge invariance of the Dirac field is required for charge conservation by Noether's theorem.
+However, the Dirac Lagrangian itself cannot be made gauge invariant but requires an additional coupling term with a gauge invariant vector field.
+In that sense we can say that charge conservation of spin-1/2 particles implies gauge invariance of the vector field.
 
 \subsection{Lorentz force, electromagnetic field components and Maxwell equations}
 
@@ -173,7 +281,7 @@ we can identify the components of the field-strength tensor with the electromagn
 	-
 	F_{12}
 \end{align}
-or in index notation
+or in index notation~\cite[p.~336]{Srednicki2007}
 \begin{align}
 	F^{0i}
 	&=
@@ -185,6 +293,7 @@ or in index notation
 	B_k
 	.
 \end{align}
+\textcolor{red}{identify charged moving particle with current}
 
 \begin{equation}
 	\mathcal{L}
@@ -195,22 +304,6 @@ or in index notation
 	F^{\mu\nu}
 	-
 	j_\mu A^\mu
-\end{equation}
-\begin{equation}
-	\mathcal{L}
-	=
-	\frac{1}{2}
-	\left(
-		\vb{E}^2
-		-
-		\vb{B}^2
-	\right)
-	-
-	j_0A^0
-	+
-	\vb{j}
-	\vdot
-	\vb{A}
 \end{equation}
 
 \begin{align}
