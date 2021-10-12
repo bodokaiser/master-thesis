@@ -6,12 +6,8 @@
 	headings=big,
 ]{scrreprt}
 
-%\usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc}
 \usepackage{amsthm}
-%\usepackage{amsmath}
-%\usepackage{amsfonts}
-\usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{authblk}
 \usepackage[english]{babel}
 \usepackage{biblatex}
@@ -21,20 +17,55 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{cleveref}
-\usepackage{physics}
 \usepackage[section]{placeins}
 \usepackage[separate-uncertainty=true]{siunitx}
 \usepackage[mode=buildnew]{standalone}
 %\usepackage{thmtools,thm-restate}
 \usepackage{tensor}
-%\usepackage{lmodern}
 \usepackage{multirow}
 \usepackage{xcolor}
-\usepackage{braket}
-%\usepackage{diffcoeff}
-%\usepackage{dsfont}
-%\usepackage[bb=dsserif]{mathalpha}
 \usepackage{unicode-math}
+\usepackage{mathtools}
+\usepackage{derivative}
+
+% most complete math font
+\setmainfont{Stix Two Text}
+\setmathfont{Stix Two Math}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
+\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
+\DeclarePairedDelimiter{\expval}{\langle}{\rangle}
+	
+\newcommand{\trans}{{\scriptscriptstyle\mathsf{T}}}
+
+\DeclareMathOperator{\trace}{\operatorname{Tr}}
+\DeclareMathOperator{\sinc}{\operatorname{sinc}}
+
+\AtBeginDocument{%
+	\let\Re\undefined
+	\let\Im\undefined
+	\DeclareMathOperator{\Re}{\operatorname{Re}}
+	\DeclareMathOperator{\Im}{\operatorname{Im}}
+}
+
+\let\div\undefined
+\let\curl\undefined
+\DeclareMathOperator{\div}{\nabla\vdot}
+\DeclareMathOperator{\curl}{\nabla\vectimes}
+
+\DeclarePairedDelimiterX{\comm}[2]{[}{]}{#1,#2}
+
+\DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}{#1\delimsize\vert#2}
+\DeclarePairedDelimiterX{\ketbra}[1]{\lvert}{\rvert}{#1\rangle\delimsize\langle#1}
+
+\newcommand{\vdot}{\cdot}
+\newcommand{\vcross}{\vectimes}
+\newcommand{\vb}[1]{\symbfup{#1}}
+\newcommand{\vu}[1]{\hat{\vb{#1}}}
 
 \addbibresource{literature.bib}
 
@@ -42,53 +73,7 @@
 % https://tex.stackexchange.com/questions/568580/make-the-bibliography-as-a-section-in-each-includ-chapter
 \defbibheading{bibliography}[\bibname]{\section*{#1}}
 
-% approximately proportional to symbol
-% https://tex.stackexchange.com/questions/33538/how-to-get-an-approximately-proportional-to-symbol
-\def\app#1#2{%
-    \mathrel{%
-        \setbox0=\hbox{$#1\sim$}%
-        \setbox2=\hbox{%
-            \rlap{\hbox{$#1\propto$}}%
-            \lower1.1\ht0\box0%
-        }%
-        \raise0.25\ht2\box2%
-    }%
-}
-\def\approxprop{\mathpalette\app\relax}
-
-\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
-
-% transpose
-% https://tex.stackexchange.com/questions/403104/small-caps-mathsf-font-for-writing-transpose-of-a-matrix
-\newcommand{\trans}{{\scriptscriptstyle\mathsf{T}}}
-
-% unicode-math breaks declare command
-% https://tex.stackexchange.com/questions/117990/unicode-math-breaks-declaremathoperator
-\AtBeginDocument{
-	% diagonal double arrows
-	% https://tex.stackexchange.com/questions/145006/nearrow-and-swarrow-together
-	\DeclareRobustCommand{\neswarrow}{
-	  \mathrel{\text{\ooalign{$\swarrow$\cr$\nearrow$}}}%
-	}
-	\DeclareRobustCommand{\nwsearrow}{
-	  \mathrel{\text{\ooalign{$\searrow$\cr$\nwarrow$}}}%
-	}
-	
-	% overwrite real and imaginary part operators
-	\let\Re\undefined
-	\let\Im\undefined
-	\DeclareMathOperator{\Re}{\operatorname{Re}}
-	\DeclareMathOperator{\Im}{\operatorname{Im}}
-	% other functions
-	\DeclareMathOperator{\sinc}{\operatorname{sinc}}
-	
-	% ketbra
-	% https://tex.stackexchange.com/questions/412019/newcommand-for-ket-bra
-	%\newcommand{\ketbra}[2]{\mathinner{|{#1}\rangle\,\langle{#2}|}}
-}
-
-% chapter appearence
+% chapter appearance
 % https://tex.stackexchange.com/questions/159502/koma-script-scrreprt-how-to-change-chapter-appearance-and-produce-a-chapter-bas
 \addtokomafont{chapterprefix}{\raggedleft}
 \renewcommand*{\chapterformat}{%
@@ -96,46 +81,7 @@
 \scalebox{3}{\color{gray}\thechapter\autodot}\enskip}}
 
 % caption label linebreak
-% https://tex.stackexchange.com/questions/196889/how-can-i-insert-a-line-break-after-the-captionlabel-koma-script-options
-%\setcaphanging
-%\setcapmargin{2ex}
-%\setcapindent{0pt}
-%\setcapwidth[c]{0.8\textwidth}
-%\addtokomafont{caption}{\centering}
 \setkomafont{captionlabel}{\sffamily}
-
-% vertical lines in matrices
-% https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix
-\makeatletter
-\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
-  \hskip -\arraycolsep
-  \let\@ifnextchar\new@ifnextchar
-  \array{#1}}
-\makeatother
-
-% ceil and floor
-% https://tex.stackexchange.com/questions/224245/is-there-any-way-to-set-up-ceil-and-floor-macros-without-installing-the-mathto
-%\newcommand\floor[1]{\lfloor#1\rfloor}
-%\newcommand\ceil[1]{\lceil#1\rceil}
-
-% mathbb for unicode-math
-% https://tex.stackexchange.com/questions/26637/how-do-you-get-mathbb1-to-work-characteristic-function-of-a-set?noredirect=1&lq=1
-%\setmathfont{NewCMMath-Book}
-%\setmathfont{NewCMMath-Book}[
- % version=bold,
- % FakeBold=1.2
- %]
-
-% mathbb for unicode-math
-% https://tex.stackexchange.com/questions/360607/unicode-math-but-ordinary-blackboard-bold
-%\AtBeginDocument{%
-%  \let\mathbb\relax
-%  \DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}%
-%}
-
-% vectorbold for greek symbols
-% https://tex.stackexchange.com/questions/609923/unicode-math-and-physicss-vb-command
-%\DeclareDocumentCommand\vectorbold{ s m }{\IfBooleanTF{#1}{\symbfit{#2}}{\symbf{#2}}}
 
 % theorems
 \newtheorem{theorem}{Theorem}[section]
@@ -284,19 +230,6 @@
 		\input{chapters/quantum-theory/field-theory}
 		\input{chapters/quantum-theory/fock-space}
 		\input{chapters/quantum-theory/coherent-states}
-
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
-
-	\chapter{Quantum field theory of light}
-	\begin{refsection}
-		\input{chapters/quantum-optics-theory/introduction}
-		\input{chapters/quantum-optics-theory/maxwell}
-		\input{chapters/quantum-optics-theory/states}
-		\input{chapters/quantum-optics-theory/interactions}
-		\input{chapters/quantum-optics-theory/coupler}
-		\input{chapters/quantum-optics-theory/summary}
 
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]

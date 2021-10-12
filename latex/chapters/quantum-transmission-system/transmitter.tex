@@ -98,7 +98,7 @@ The Hamiltonian density of an electromagnetic field in a Pockels dielectric is, 
 	H
 	=
 	\frac{1}{2}
-	\int\dd[3]{x}
+	\int\odif[order={3}]{x}
 	\left\{
 		\vb{E}(\vb{x})
 		\vdot
@@ -117,7 +117,7 @@ wherein $\vb{E}$ is the electric field, $\vb{B}$ is the magnetic field and $\vb{
 	\approx
 	E_i(\vb{p})
 	+
-	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\int\frac{\odif[order={3}]{q}}{(2\pi)^3}
 	\chi_{ijk}^{(2)}(\vb{q},\vb{p})
 	E^j(\vb{p})
 	E^k(\vb{q})
@@ -136,8 +136,8 @@ where the interaction term is given by
 	H_\text{int}
 	=	
 	\frac{1}{2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\int\frac{\odif[order={3}]{p}}{(2\pi)^3}
+	\int\frac{\odif[order={3}]{q}}{(2\pi)^3}
 	\chi_{ijk}^{(2)}(\vb{q},\vb{p})
 	E^i(\vb{p})
 	E^j(\vb{p})
@@ -149,8 +149,8 @@ Adapting the geometry of \Cref{fig:pm} the interaction Hamiltonian becomes
 	H_\text{int}
 	=	
 	\frac{1}{2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\int\frac{\odif[order={3}]{p}}{(2\pi)^3}
+	\int\frac{\odif[order={3}]{q}}{(2\pi)^3}
 	\chi_{zzx}^{(2)}(\vb{q},\vb{p})
 	E^z(\vb{p}-\vb{q})
 	E^z(\vb{p}+\vb{q})
@@ -162,8 +162,8 @@ Comparison of the classic interaction with the quantum nonlinear interactions in
 	\hat{H}_\text{int}
 	=
 	\frac{1}{2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\int\frac{\odif[order={3}]{p}}{(2\pi)^3}
+	\int\frac{\odif[order={3}]{q}}{(2\pi)^3}
 	\Upsilon(\vb{p},\vb{q})
 	\hat{a}_x(\vb{q})
 	\hat{a}_z^\dagger(\vb{p}-\vb{q})
@@ -177,8 +177,8 @@ Assuming only two perpendicular momenta $p_x,p_z$ and taking the electric \gls{r
 	\hat{H}_\text{int}
 	=
 	\frac{1}{2}
-	\int\frac{\dd{p}}{2\pi}
-	\int\frac{\dd{q}}{2\pi}
+	\int\frac{\odif{p}}{2\pi}
+	\int\frac{\odif{q}}{2\pi}
 	\Upsilon(p,q)
 	\hat{a}_x(q)
 	\hat{a}_z^\dagger(p-q)
@@ -192,8 +192,8 @@ Let $\ket{\beta(t)}$ be the coherent state describing the electric \gls{rf} fiel
 	\hat{H}_\text{int}(t)
 	=
 	\frac{1}{2}
-	\int\frac{\dd{p}}{2\pi}
-	\int\frac{\dd{q}}{2\pi}
+	\int\frac{\odif{p}}{2\pi}
+	\int\frac{\odif{q}}{2\pi}
 	\Upsilon(p,q)
 	\beta_x(q)^*
 	e^{-ipt}
@@ -215,7 +215,7 @@ we obtain the approximate interaction Hamiltonian
 	\hat{H}_\text{int}(t)
 	\approx
 	g(t)
-	\int\frac{\dd{q}}{2\pi}
+	\int\frac{\odif{q}}{2\pi}
 	\hat{a}^\dagger(q)
 	\hat{a}(q)
 \end{equation}
@@ -225,14 +225,14 @@ for which all but the first term of the Magnus expansion vanish\footnote{The ope
 	&=
 	\exp\left\{
 		-i\varphi(t_0,t)
-		\int\frac{\dd{p}}{2\pi}
+		\int\frac{\odif{p}}{2\pi}
 		\hat{a}^\dagger(p)
 		\hat{a}(p)
 	\right\}
 	&
 	\varphi(t_0,t)
 	=
-	\int_{t_0}^{t}\dd{t^\prime}
+	\int_{t_0}^{t}\odif{t^\prime}
 	g(t^\prime)
 \end{align}
 which reduces to the phase-rotation operator proposed in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006} in the single-mode limit and time-independent $\varphi$.
@@ -243,7 +243,7 @@ We define the action of the phase modulator
 	=
 	\exp\left\{
 		-i\varphi(t,T)
-		\int\frac{\dd{p}}{2\pi}
+		\int\frac{\odif{p}}{2\pi}
 		\hat{a}^\dagger(p)
 		\hat{a}(p)
 	\right\}
@@ -269,7 +269,7 @@ We employ the mean-value theorem for definite integrals
 \begin{align}
 	\varphi(t,T)
 	&=
-	\int_{t}^{t+T}\dd{t^\prime}
+	\int_{t}^{t+T}\odif{t^\prime}
 	g(t^\prime)
 	=
 	g(\tau)
@@ -307,7 +307,7 @@ The continuous-mode displacement operator transforms according to
 		\hat{U}_\text{PM}\left[\varphi(t)\right]^\dagger
 		&=
 		\exp\left\{
-			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\int_0^\infty\frac{\odif{p}}{2\pi}
 			\alpha(p)
 			\hat{U}_\text{PM}\left[\varphi(t)\right]
 			\hat{a}^\dagger(p,t)
@@ -318,7 +318,7 @@ The continuous-mode displacement operator transforms according to
 		\\
 		&=
 		\exp\left\{
-			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\int_0^\infty\frac{\odif{p}}{2\pi}
 			\alpha(p)
 			\left(
 				\hat{U}_\text{PM}\left[\varphi(t)\right]
@@ -331,7 +331,7 @@ The continuous-mode displacement operator transforms according to
 		\\
 		&=
 		\exp\left\{
-			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\int_0^\infty\frac{\odif{p}}{2\pi}
 			\alpha(p)
 			\left(
 				\hat{U}_\text{PM}\left[-\varphi(t)\right]^\dagger
@@ -344,7 +344,7 @@ The continuous-mode displacement operator transforms according to
 		\\
 		&=
 		\exp\left\{
-			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\int_0^\infty\frac{\odif{p}}{2\pi}
 			\alpha(p)
 			e^{-i\varphi(t)}
 			\hat{a}^\dagger(p,t)
@@ -367,13 +367,13 @@ The phase-modulated amplitude
 is a multiplication in the time domain.
 We expect therefore a convolution in the frequency domain, i.e.,
 \begin{equation}
-	\int_0^\infty\frac{\dd{p}}{2\pi}
+	\int_0^\infty\frac{\odif{p}}{2\pi}
 	\alpha(p)
 	e^{+ipt}
 	e^{-i\varphi(t)}
 	\hat{a}^\dagger(p,t)
 	=
-	\int_0^\infty\frac{\dd{p}}{2\pi}
+	\int_0^\infty\frac{\odif{p}}{2\pi}
 	\left(u*\alpha\right)(p)
 	\hat{a}^\dagger(p,t)
 \end{equation}
@@ -381,7 +381,7 @@ wherein we used the convolution
 \begin{equation}
 	\left(u*\alpha\right)(p)
 	=
-	\int\frac{\dd{p^\prime}}{2\pi}
+	\int\frac{\odif{p^\prime}}{2\pi}
 	u(p^\prime)
 	\alpha(p-p^\prime)
 	.
@@ -516,8 +516,8 @@ Performing the matrix multiplication and writing the exponentials as trigonometr
 	=
 	-
 	\begin{pmatrix}
-		\cos(\frac{\phi_2-\phi_1}{2}) & \sin(\frac{\phi_2-\phi_1}{2}) \\
-		-\sin(\frac{\phi_2-\phi_1}{2}) & \cos(\frac{\phi_2-\phi_1}{2})
+		\cos\left(\frac{\phi_2-\phi_1}{2}\right) & \sin\left(\frac{\phi_2-\phi_1}{2}\right) \\
+		-\sin\left(\frac{\phi_2-\phi_1}{2}\right) & \cos\left(\frac{\phi_2-\phi_1}{2}\right)
 	\end{pmatrix}
 	e^{i\frac{\phi_1+\phi_2}{2}}
 	.
@@ -821,34 +821,31 @@ Using the explicit matrix elements in \cref{eq:mzm_matrix} and setting the secon
 We are only interested in the first output mode.
 We can remove the second output via partial trace, i.e.,
 \begin{equation}
-	\begin{split}
-		\tr_2\left\{
-			\braket{\alpha,\beta}
-		\right\}
-		&=
-		\tr_2\left\{
-			\braket{\alpha}
-			\otimes
-			\braket{\beta}
-		\right\}
-		\\
-		&=
-		\braket{\alpha}
+	\trace_2\left\{
+		\ketbra{\alpha,\beta}
+	\right\}
+	=
+	\trace_2\left\{
+		\ketbra{\alpha}
 		\otimes
-		\tr_2\left\{
-			\braket{\beta}
-		\right\}
-	\end{split}
+		\ketbra{\beta}
+	\right\}
+	=
+	\ketbra{\alpha}
+	\otimes
+	\trace_2\left\{
+		\ketbra{\beta}
+	\right\}
 \end{equation}
 where
 \begin{equation}
-	\tr_2\left\{
-		\braket{\beta}
+	\trace_2\left\{
+		\ketbra{\beta}
 	\right\}
 	=
 	\sum_{n=0}^\infty
 	\braket{n}{\beta}
-	\ketbra{\beta}{n}
+	\braket{\beta}{n}
 	=
 	\sum_{n=0}^\infty
 	\abs{\braket{n}{\beta}}^2
@@ -857,14 +854,14 @@ where
 \end{equation}
 and thus
 \begin{equation}
-	\tr_2\left\{
-		\braket{\alpha,\beta}
+	\trace_2\left\{
+		\ketbra{\alpha,\beta}
 	\right\}
 	=
-	\braket{\alpha}
+	\ketbra{\alpha}
 	=
 	\hat{P}_1
-	\braket{\alpha,\beta}
+	\ketbra{\alpha,\beta}
 	\hat{P}_1
 \end{equation}
 i.e., the partial trace over a tensor product of coherent states is equivalent to the projection of the non-traced out states.
@@ -920,7 +917,7 @@ For a balanced beam splitter, we find
 	\hat{U}_\text{BS1}(\varphi_1)
 	\ket{\alpha,0}
 	=
-	\ket{\frac{\alpha}{\sqrt{2}},\frac{\alpha}{\sqrt{2}}ie^{-i\varphi_1}}
+	\ket*{\frac{\alpha}{\sqrt{2}},\frac{\alpha}{\sqrt{2}}ie^{-i\varphi_1}}
 \end{equation}
 where the splitter added a relative phase shift of $\varphi$ between the two branches.
 The \gls{mzm} transform the upper and lower branch coherent states according to
@@ -929,13 +926,13 @@ The \gls{mzm} transform the upper and lower branch coherent states according to
 	&\to
 	\ket{\alpha_1^\prime}
 	=
-	\ket{\frac{\alpha}{\sqrt{2}}\cos(\Theta_1/2)e^{i\Lambda_1/2}}
+	\ket*{\frac{\alpha}{\sqrt{2}}\cos(\Theta_1/2)e^{i\Lambda_1/2}}
 	\\
 	\ket{\alpha_2}
 	&\to
 	\ket{\alpha_2^\prime}
 	=
-	\ket{\frac{\alpha}{\sqrt{2}}ie^{-i\varphi_1}\cos(\Theta_2/2)e^{i\Lambda_2/2}}
+	\ket*{\frac{\alpha}{\sqrt{2}}ie^{-i\varphi_1}\cos(\Theta_2/2)e^{i\Lambda_2/2}}
 	.
 \end{align}
 For the second balanced beam splitter, we find for the output mode
@@ -953,10 +950,10 @@ where we choose the first \gls{mzm} phase to be zero $\Lambda_1=0$ and the secon
 	z(\Theta_1,\Theta_2)
 	=
 	\frac{1}{2}
-	\left(
+	\left[
 		\cos(\Theta_1/2)
 		+
 		i\cos(\Theta_2/2)
-	\right)
+	\right]
 	.
 \end{equation}

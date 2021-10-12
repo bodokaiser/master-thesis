@@ -34,10 +34,10 @@ such that we find
 \begin{equation}
 	L
 	=
-	\int\dd[3]{x}
+	\int\odif[order={3}]{x}
 	\mathcal{L}
 	=
-	\int\dd[3]{x}
+	\int\odif[order={3}]{x}
 	\left\{
 		c_1
 		\left(
@@ -89,19 +89,19 @@ We consider the action of a particle with mass $m$ and charge $q$ coupled to the
 	S
 	=
 	-
-	m\int\dd{\tau}
-	\sqrt{-g_{\mu\nu}\dv{x^\mu}{\tau}\dv{x^\nu}{\tau}}
+	m\int\odif{\tau}
+	\sqrt{-g_{\mu\nu}\odv{x^\mu}{\tau}\odv{x^\nu}{\tau}}
 	+
-	q\int\dd{\tau}
+	q\int\odif{\tau}
 	A_\mu\left(x(\tau)\right)
-	\dv{x^\mu}{\tau}
+	\odv{x^\mu}{\tau}
 \end{equation}
 for which the action principle yields the equation of motion
 \begin{equation}
 	m
-	\dv[2]{x^\mu}{\tau}
+	\odv[order={2}]{x^\mu}{\tau}
 	=
-	qF^\mu_\nu(x)\dv{x^\nu}{\tau}
+	qF^\mu_\nu(x)\odv{x^\nu}{\tau}
 	\label{eq:cov_lorentz_force}
 \end{equation}
 corresponding to a covariant formulation of Lorentz force law, wherein the field-strength tensor
@@ -119,13 +119,13 @@ is the covariant generalization of the electromagnetic field.
 Comparison of the covariant Lorentz force law, \cref{eq:cov_lorentz_force}, with the vector Lorentz force law
 \begin{equation}
 	m
-	\dv[2]{\vb{x}}{t}
+	\odv[order={2}]{\vb{x}}{t}
 	=
 	q\left(
 		\vb{E}
 		+
-		\dv{\vb{x}}{t}
-		\cp
+		\odv{\vb{x}}{t}
+		\vcross
 		\vb{B}
 	\right)
 \end{equation}
@@ -222,11 +222,11 @@ or in index notation
 	&=
 	0
 	\\
-	\cp\vb{E}
+	\curl\vb{E}
 	&=
 	-\partial_t\vb{B}
 	&
-	\cp\vb{B}
+	\curl\vb{B}
 	&=
 	\vb{j}
 	+

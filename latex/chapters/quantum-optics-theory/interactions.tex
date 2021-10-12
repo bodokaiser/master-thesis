@@ -24,7 +24,7 @@ which formal solution is the time-ordered exponential, see Ref.~\cite[p.~380]{Ba
 	=
 	T\exp\left\{
 		-i
-		\int_{t_0}^t\dd{t^\prime}
+		\int_{t_0}^t\odif{t^\prime}
 		\hat{H}(t^\prime)
 	\right\}
 \end{equation}
@@ -44,14 +44,14 @@ where the first two expansion terms are given by
 	\hat{\Omega}^{(1)}(t,t_0)
 	&=
 	\frac{(-i)}{1!}
-	\int_{t_0}^t\dd{t^\prime}
+	\int_{t_0}^t\odif{t^\prime}
 	\hat{H}(t^\prime)
 	\\
 	\hat{\Omega}^{(2)}(t,t_0)
 	&=
 	\frac{(-i)^2}{2!}
-	\int_{t_0}^t\dd{t^\prime}
-	\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
+	\int_{t_0}^t\odif{t^\prime}
+	\int_{t_0}^{t^\prime}\odif{t^{\prime\prime}}
 	\comm{\hat{H}(t^\prime)}{\hat{H}(t^{\prime\prime})}
 \end{align}
 and represent time-ordering corrections, see Ref.~\cite{QuesadaMejia2015}.
@@ -63,7 +63,7 @@ The Schrödinger-picture Hamiltonian describing the interaction of the Maxwell f
 	\hat{H}_\text{int}(t)
 	=
 	-
-	\int_{\mathbb{R}^3}\dd[3]{x}
+	\int_{\mathbb{R}^3}\odif[3]{x}
 	\vb{j}(t,\vb{x})
 	\vdot
 	\hat{\vb{A}}(t,\vb{x})
@@ -73,7 +73,7 @@ Taking the spatial Fourier transform of the current
 \begin{equation}
 	\vb{j}(t,\vb{x})
 	=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{q}}{(2\pi)^3}
+	\int_{\mathbb{R}^3}\frac{\odif[3]{q}}{(2\pi)^3}
 	\vb{j}(t,\vb{q})
 	e^{+i\vb{q}\vdot\vb{x}}
 \end{equation}
@@ -83,7 +83,7 @@ and inserting the mode expansion, we find the interaction Hamiltonian to be
 	=
 	-
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int_{\mathbb{R}^3}\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left\{
 		j_\lambda(t,\vb{p})
 		\hat{a}_\lambda(\vb{p})
@@ -107,7 +107,7 @@ The first term in the Magnus expansion turns out to be
 	=
 	i
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int_{\mathbb{R}^3}\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left\{
 		J_\lambda(t,t_0;\vb{p})
 		\hat{a}_\lambda(\vb{p})
@@ -119,7 +119,7 @@ where we defined
 \begin{equation}
 	J_\lambda(t,t_0;\vb{p})
 	=
-	\int_{t_0}^t\dd{t^\prime}
+	\int_{t_0}^t\odif{t^\prime}
 	j_\lambda(t^\prime,\vb{p})
 	e^{-i\omega(\vb{p})t^\prime}
 	.
@@ -129,7 +129,7 @@ For the second term in the Magnus expansion, we first evaluate the commutator
 	\comm{\hat{H}(t^\prime)}{\hat{H}(t^{\prime\prime})}
 	=
 	i\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\omega(\vb{p})}
+	\int_{\mathbb{R}^3}\frac{\odif[3]{p}}{(2\pi)^3\omega(\vb{p})}
 	\Im\left\{
 		j_\lambda(t^\prime,\vb{p})
 		j_\lambda(t^{\prime\prime},\vb{p})^*
@@ -142,7 +142,7 @@ In summary, the second term of the Magnus expansion turns out to be
 	\hat{\Omega}^{(2)}(t,t_0)
 	=
 	i\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\omega(\vb{p})}
+	\int_{\mathbb{R}^3}\frac{\odif[3]{p}}{(2\pi)^3\omega(\vb{p})}
 	\Im\left\{
 		J_\lambda(t_0,t^\prime;\vb{p})
 		J_\lambda(t_0,t^{\prime\prime};\vb{p})^*
@@ -156,7 +156,7 @@ The exact time-evolution operator of the Maxwell field interacting with a classi
 	=
 	\exp\left\{
 		i\sum_{\lambda=1,2}
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int_{\mathbb{R}^3}\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\left\{
 			J_\lambda(t,t_0;\vb{p})
 			\hat{a}_\lambda(\vb{p})

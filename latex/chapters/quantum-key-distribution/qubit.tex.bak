@@ -2,7 +2,7 @@
 
 Many \gls{dvqkd} protocols, e.g., the BB84~\cite{Bennett1984}, BB92, or the six-state protocol~\cite{Bechmann1999}, are qubit-based in that the logical quantum system underlying the key generation is a two-state quantum system, a qubit.
 
-A qubit state $\ket{\psi}$ is an element of a two-dimensional complex Hilbert space with norm one, i.e., $\abs{\braket{\psi}{\psi}}^2=1$.
+A qubit state $\ket{\psi}$ is an element of a two-dimensional complex Hilbert space with norm one, i.e., $\abs{\braket{\psi}}^2=1$.
 In the qubit basis $\{\ket{0},\ket{1}\}$, a generic qubit state takes the form
 \begin{align}
 	\ket{\psi}
@@ -63,7 +63,7 @@ We can formalize this concept by introducing the generalized spin operator
 \begin{equation}
 	\hat{S}(\vu{n})
 	=
-	\vb{\hat{S}}\vdot\vu{n}
+	\bm{\hat{S}}\vdot\vu{n}
 	=
 	\frac{1}{2}
 	\hat{\sigma}_jn^j
@@ -87,7 +87,7 @@ then for $\vu{n}=\vu{e}_j$ we obtain the $\hat{\sigma}_j$ Pauli eigenstates, i.e
 	\hat{S}_x
 	\ket{x_\pm}
 	=	
-	\vb{\hat{S}}(\vu{e}_x)
+	\bm{\hat{S}}(\vu{e}_x)
 	\ket{\pm,\vu{e}_x}
 	&=
 	\pm\frac{1}{2}
@@ -99,7 +99,7 @@ then for $\vu{n}=\vu{e}_j$ we obtain the $\hat{\sigma}_j$ Pauli eigenstates, i.e
 	\hat{S}_y
 	\ket{y_\pm}
 	=	
-	\vb{\hat{S}}(\vu{e}_y)
+	\bm{\hat{S}}(\vu{e}_y)
 	\ket{\pm,\vu{e}_y}
 	&=
 	\pm\frac{1}{2}
@@ -111,7 +111,7 @@ then for $\vu{n}=\vu{e}_j$ we obtain the $\hat{\sigma}_j$ Pauli eigenstates, i.e
 	\hat{S}_z
 	\ket{z_\pm}
 	=	
-	\vb{\hat{S}}(\vu{e}_z)
+	\bm{\hat{S}}(\vu{e}_z)
 	\ket{\pm,\vu{e}_z}
 	&=
 	\pm\frac{1}{2}
@@ -161,7 +161,7 @@ After the transmission sequence, Alice and Bob hold a partially correlated and p
 In polarization-encoding BB84, the polarization of light is used as physical quantum system to encode the logical qubit system.
 Let $\ket{\leftrightarrow}$ and $\ket{\updownarrow}$ denote the horizontal respective vertical polarization states forming the rectilinear basis.
 Let $\ket{\nwsearrow}$ and $\ket{\neswarrow}$ denote the left- and right-diagonal polarization states forming the diagonal basis.
-Let $\ket{\acwopencirclearrow}$ and $\ket{\cwopencirclearrow}$ denote the left- and right-circular polarization states forming the circular basis.
+Let $\ket{\circlearrowleft}$ and $\ket{\circlearrowright}$ denote the left- and right-circular polarization states forming the circular basis.
 We can express the diagonal and circular basis elements in terms of the rectilinear basis elements:
 \begin{align}
 	\ket{\nwsearrow}
@@ -182,7 +182,7 @@ We can express the diagonal and circular basis elements in terms of the rectilin
 		\ket{\updownarrow}
 	\right)
 	\\
-	\ket{\acwopencirclearrow}
+	\ket{\circlearrowleft}
 	&=
 	\frac{1}{\sqrt{2}}
 	\left(
@@ -191,7 +191,7 @@ We can express the diagonal and circular basis elements in terms of the rectilin
 		i\ket{\updownarrow}
 	\right)
 	&
-	\ket{\cwopencirclearrow}
+	\ket{\circlearrowright}
 	&=
 	\frac{1}{\sqrt{2}}
 	\left(
@@ -217,37 +217,35 @@ We can write Alice's state as
 	=
 	\frac{1}{\sqrt{2}}
 	\left(
-		\ket{\acwopencirclearrow}
+		\ket{\circlearrowleft}
 		+
 		e^{i\theta}
-		\ket{\cwopencirclearrow}
+		\ket{\circlearrowright}
 	\right)
 	.
 \end{equation}
 Unrotated, Bob's rectilinear polarized beam splitter monitored by two single-photon detectors is equivalent to the \gls{povm} for detecting rectilinear-polarized light
 \begin{equation}
-	\left\{
+	\biggl\{
 		\hat{P}_{\leftrightarrow}
 		=
 		\ketbra{\leftrightarrow},
-		\;
 		\hat{P}_{\updownarrow}
 		=
 		\ketbra{\updownarrow}
-	\right\}
+	\biggr\}
 	.
 \end{equation}
 Rotated by \SI{45}{\degree}, Bob's rectilinear polarized beam splitter monitored by two single-photon detectors is equivalent to the \gls{povm} for detecting diagonal-polarized light
 \begin{equation}
-	\left\{
+	\biggl\{
 		\hat{P}_{\nwsearrow}
 		=
 		\ketbra{\nwsearrow},
-		\;
 		\hat{P}_{\neswarrow}
 		=
 		\ketbra{\neswarrow}
-	\right\}
+	\biggr\}
 	.
 \end{equation}
 Instead of Bob actively selecting the measurement basis, he can passively let the quantum randomness decide by splitting the photon with an unpolarized beam splitter towards a rectilinear and diagonal polarization detector.
@@ -262,15 +260,12 @@ Another polarization detector comprises a diagonal-polarized beam splitter.
 \end{figure}
 The \gls{povm} describing Bob's measurement with passive basis selection is
 \begin{equation}
-	\left\{
+	\biggl\{
 		\frac{1}{2}\hat{P}_{\leftrightarrow},
-		\;
 		\frac{1}{2}\hat{P}_{\updownarrow},
-		\;
 		\frac{1}{2}\hat{P}_{\nwsearrow},
-		\;
 		\frac{1}{2}\hat{P}_{\neswarrow}
-	\right\}
+	\biggr\}
 	.
 \end{equation}
 Bob may still have inconclusive measurements.
@@ -300,27 +295,27 @@ For instance, if he receives a horizontal polarization state $\ket{\leftrightarr
 The polarization of light is a qubit and we can simply relabel the polarization states with the Pauli eigenstates, i.e.,
 \begin{align}
 	\ket{\nwsearrow}
-	&=
-	\ket{x_+}
+	=
+	\ket{x_+},
 	&
-	\ket{\acwopencirclearrow}
-	&=
+	\ket{\neswarrow}
+	=
+	\ket{x_-},
+	&
+	\ket{\circlearrowleft}
+	=
 	\ket{y_+},
 	&
-	\ket{\leftrightarrow}
-	&=
-	\ket{z_+},
-	\\
-	\ket{\neswarrow}
-	&=
-	\ket{x_-}
+	\ket{\circlearrowright}
+	=
+	\ket{y_-},
 	&
-	\ket{\cwopencirclearrow}
-	&=
-	\ket{y_-}
+	\ket{\leftrightarrow}
+	=
+	\ket{z_+},
 	&
 	\ket{\updownarrow}
-	&=
+	=
 	\ket{z_-}
 \end{align}
 to show equivalence to the general qubit description.

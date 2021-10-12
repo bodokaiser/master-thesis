@@ -140,7 +140,7 @@ Finally, the plane-wave expansion of the transverse Maxwell field is brought int
 		\vb{A}(t,\vb{x})
 		&=
 		\sum_{\lambda=1,2}
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int_{\mathbb{R}^3}\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\biggl\{
 			a_\lambda(\vb{p})
 			\vu{e}_\lambda(\vb{p})
@@ -153,7 +153,7 @@ Finally, the plane-wave expansion of the transverse Maxwell field is brought int
 		\\
 		&=
 		\sum_{\lambda=1,2}
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int_{\mathbb{R}^3}\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\biggl\{
 			a_\lambda(\vb{p})
 			\vu{e}_\lambda(\vb{p})
@@ -208,7 +208,7 @@ Solving for the electromagnetic field components and inserting the plane-wave ex
 	&=
 	\sum_{\lambda=1,2}
 	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left(-i\omega(\vb{p})\right)
 	\biggl\{
 		a_\lambda(\vb{p})
@@ -222,7 +222,7 @@ Solving for the electromagnetic field components and inserting the plane-wave ex
 	&=
 	\sum_{\lambda=1,2}
 	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left(+i\vb{p}\times\right)
 	\biggl\{
 		a_\lambda(\vb{p})
@@ -279,7 +279,7 @@ Finally, the total energy and Hamiltonian is
 	H
 	=
 	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\odif[3]{p}}{(2\pi)^3}
 	\omega(\vb{p})
 	\abs{a_\lambda(\vb{p})}^2
 	.
@@ -295,7 +295,7 @@ To preserve the transversality of the fields, we cannot impose the usual canonic
 	\delta^{(3)}(\vb{x}-\vb{y})
 	=
 	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{\odif[3]{p}}{(2\pi)^3}
 	\left(
 		\delta_{ij}
 		-
@@ -319,7 +319,7 @@ Promoting the dynamical field variables in the plane-wave expansion to operators
 	&=
 	\sum_{\lambda=1,2}
 	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{\odif[3]{p}}{(2\pi)^3}
 	\frac{1}{\sqrt{2\omega(\vb{p})}}
 	\biggl\{
 		\hat{a}_{\lambda}(\vb{p})
@@ -333,7 +333,7 @@ Promoting the dynamical field variables in the plane-wave expansion to operators
 	&=
 	\sum_{\lambda=1,2}
 	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{\odif[3]{p}}{(2\pi)^3}
 	\left(
 		-i
 		\sqrt{\frac{\omega(\vb{p})}{2}}
@@ -366,7 +366,7 @@ We define the Hamiltonian and number operator in normal-order, i.e.,
 	\hat{H}
 	=
 	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\odif[3]{p}}{(2\pi)^3}
 	\omega(\vb{p})
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
@@ -374,7 +374,7 @@ We define the Hamiltonian and number operator in normal-order, i.e.,
 	\hat{N}
 	=
 	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\odif[3]{p}}{(2\pi)^3}
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
 	.

@@ -61,7 +61,7 @@ Let us assume the existence of an eigenstate $\ket{x,\vartheta}$ of the generali
 then the uncertainty relation implies that $\ket{x,\vartheta}$ and $\ket{p,\vartheta+\Delta\vartheta}$ for $\Delta\vartheta>0$ are conjugate variables, i.e., increasing the precision of one variable decreases the precision of the other.
 Unsurprisingly, we can show that these eigenstates are non-orthogonal~\cite[p.~29]{Mukhanov2007}
 \begin{equation}
-	\braket{x,\vartheta}{p,\vartheta+\pi/2}
+	\bra{x,\vartheta}\ket{p,\vartheta+\pi/2}
 	=
 	\frac{e^{ipx}}{\sqrt{2\pi}}
 	\label{eq:position_momentum_product}
@@ -71,7 +71,7 @@ Furthermore, by using the completeness of eigenstates, we can show that the eige
 \begin{equation}
 	\ket{x,\vartheta}
 	=
-	\int\frac{\dd{p}}{\sqrt{2\pi}}
+	\int\frac{\odif{p}}{\sqrt{2\pi}}
 	e^{-ipx}
 	\ket{p,\vartheta+\pi/2}
 	=
@@ -126,7 +126,7 @@ That said, we can use squeezed coherent states as an approximation for quadratur
 
 A squeezed coherent state, denoted $\ket{\alpha,\xi}$, has the special property that the quadrature standard deviation is parametrized~\cite[p.~95]{Vogel2006}
 \begin{equation}
-	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi}
+	\bra{\alpha,\xi}{\Delta\hat{X}(\vartheta)}\ket{\alpha,\xi}
 	=
 	\abs{\mu e^{+i\vartheta}-\nu^* e^{-i\vartheta}}
 	\label{eq:squeezed_quadrature_std}
@@ -151,7 +151,9 @@ wherein parameters $\nu,\mu$ relate to the complex squeezing parameter $\xi=\abs
 \end{align}
 If the squeezing angle $\varphi$ satisfies a particular phase relation with the quadrature angle $\vartheta$, the quadrature standard deviation takes the form~\cite[p.~96]{Vogel2006}
 \begin{equation}
-	\expval{\Delta\hat{X}(\vartheta)}{\alpha,\xi_{\text{max}/\text{min}}}
+	\bra{\alpha,\xi_{\text{max}/\text{min}}}
+	\Delta\hat{X}(\vartheta)
+	\ket{\alpha,\xi_{\text{max}/\text{min}}}
 	=
 	\exp(\pm\abs{\xi_{\text{max}/\text{min}}})
 	.
@@ -220,7 +222,9 @@ Moreover, coherent states do not deteriorate to a different quantum state when i
 In sum, coherent states seem to be the most practical quantum states.
 One apparent disadvantage of coherent states is that the quadrature standard deviation is independent of the quadrature angle and the state parameters~\cite[p.~59]{Barnett2002}
 \begin{equation}
-	\expval{\Delta\hat{X}(\vartheta)}{\alpha}
+	\bra{\alpha}
+	\Delta\hat{X}(\vartheta)
+	\ket{\alpha}
 	=
 	\frac{1}{\sqrt{2}}
 	.

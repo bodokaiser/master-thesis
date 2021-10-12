@@ -88,20 +88,33 @@ Let $\vb{m}\in\{0,1\}^{1\times k}$ be a messageword, then the generator matrix
 \begin{equation}
 	G
 	=
-	\begin{pmatrix}[c|c]
-		I_k & P
-	\end{pmatrix}
+	\left(
+		\mathbb{1}_k
+		\vert
+		P
+	\right)
 	=
-	\begin{pmatrix}[cccc|cccc]
-		1 & 0 & \cdots & 0 & p_{1,1} & p_{1,2} & \cdots & p_{1,m} \\
-		0 & 1 & \cdots & 0 & p_{2,1} & p_{2,2} & \cdots & p_{2,m}\\
-		\vdots & \vdots  & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
-		0 & 0 & \cdots & 1 & p_{n-m,1} & p_{n-m,2} & \cdots & p_{n-m,m} \\
-	\end{pmatrix}
+	\left(
+		\begin{matrix}
+			1 & 0 & \cdots & 0 \\
+			0 & 1 & \cdots & 0 \\
+			\vdots & \vdots  & \ddots & \vdots \\
+			0 & 0 & \cdots & 1
+		\end{matrix}
+		\left|
+		\,
+		\begin{matrix}
+			p_{1,1} & p_{1,2} & \cdots & p_{1,m} \\
+			p_{2,1} & p_{2,2} & \cdots & p_{2,m} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			p_{n-m,1} & p_{n-m,2} & \cdots & p_{n-m,m}
+		\end{matrix}
+		\right.
+	\right)
 	\in\{0,1\}^{k\times n}
 	,
 \end{equation}
-wherein $I_k\in\{0,1\}^{k\times k}$ denotes an identity matrix and $P\in\{0,1\}^{k\times(n-k)}$ denotes the (parity) check matrix,
+wherein $\mathbb{1}_k\in\{0,1\}^{k\times k}$ denotes an identity matrix and $P\in\{0,1\}^{k\times(n-k)}$ denotes the (parity) check matrix,
 encodes the messageword $\vb{m}$ into the codeword
 \begin{equation}
 	\vb{x}
@@ -191,16 +204,28 @@ To detect errors of a received codeword $\vb{y}$, one uses the parity-check matr
 \begin{equation}
 	H
 	=
-	\begin{pmatrix}[c|c]
-		-P^\trans & I_{n-k}
-	\end{pmatrix}
+	\left(
+		-P^\trans
+		\vert
+		\mathbb{1}_{n-k}
+	\right)
 	=
-	\begin{pmatrix}
-		p_{1,1} & p_{2,1} & \cdots & p_{n-m,1} & 1 & 0 & \cdots & 0 \\
-		p_{1,2} & p_{2,2} & \cdots & p_{n-m,2} & 0 & 1 & \cdots & 0 \\
-		\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
-		p_{1,m} & p_{2,m} & \cdots & p_{n-m,m} & 0 & 0 & \cdots & 1 \\
-	\end{pmatrix}
+	\left(
+		\begin{matrix}
+			p_{1,1} & p_{2,1} & \cdots & p_{n-m,1} \\
+			p_{1,2} & p_{2,2} & \cdots & p_{n-m,2} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			p_{1,m} & p_{2,m} & \cdots & p_{n-m,m}
+		\end{matrix}
+		\left|
+		\begin{matrix}
+			1 & 0 & \cdots & 0 \\
+			0 & 1 & \cdots & 0 \\
+			\vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & \cdots & 1
+		\end{matrix}
+		\right.
+	\right)
 	\in\{0,1\}^{(n-k)\times n}
 \end{equation}
 where we used $-p_{i,j}=p_{i,j}$ for elements of the binary field $p_{i,j}\in\mathbb{F}_2$.

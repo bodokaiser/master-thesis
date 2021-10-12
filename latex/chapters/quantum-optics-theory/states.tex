@@ -12,7 +12,7 @@ The positive and negative frequency operators of the Maxwell field
 	&=
 	\sum_{\lambda=1,2}
 	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\hat{a}_\lambda(\vb{p})
 	\vu{e}_\lambda(\vb{p})
 	\eval{e^{-ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
@@ -21,7 +21,7 @@ The positive and negative frequency operators of the Maxwell field
 	&=
 	\sum_{\lambda=1,2}
 	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\hat{a}_\lambda(\vb{p})^\dagger
 	\vu{e}_\lambda(\vb{p})^*
 	\eval{e^{+ip_\mu x^\mu}}_{p_0=\omega(\vb{p})}
@@ -36,7 +36,7 @@ are operator-valued distributions.
 	\hat{D}[\alpha]
 	=
 	\exp\left\{
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\left\{
 			\alpha(\vb{p})
 			\hat{a}^\dagger(\vb{p})
@@ -56,13 +56,13 @@ are operator-valued distributions.
 		\exp\left\{
 			-
 			\frac{1}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\int\frac{\odif[3]{p}}{(2\pi)^32\omega(\vb{p})}
 			\abs{\alpha(\vb{p})}^2
 		\right\}
 		\\
 		&\times
 		\exp\left\{
-			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			\alpha(\vb{p})
 			\hat{a}(\vb{p})^\dagger
 		\right\}
@@ -77,7 +77,7 @@ We define the generalized quadrature operator by
 	\hat{X}(\theta)
 	=
 	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{\odif[3]{p}}{(2\pi)^3}
 	\frac{1}{\sqrt{2}}
 	\left\{
 		\hat{a}(\vb{p})
@@ -99,7 +99,7 @@ and $V_p$ is the momentum space volume
 \begin{equation}
 	V_p
 	=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\int_{\mathbb{R}^3}\frac{\odif[3]{p}}{(2\pi)^3}
 	=
 	\frac{4\pi}{(2\pi)^3}
 	\int_0^\Lambda\dd{p}p^2
@@ -125,7 +125,7 @@ The coherent state is a minimal uncertainty state in the sense that
 	=
 	\sqrt{2}
 	\int_{\mathbb{R}^3}
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\frac{\odif[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\Re\left\{
 		\alpha(\vb{p})
 		e^{-i\theta}
