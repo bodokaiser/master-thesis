@@ -11,10 +11,9 @@ From the Lagrangian we can infer everything else.
 
 \subsection{Maxwell Lagrangian from first principles}
 
-Maxwell theory is the relativistic field theory of spin-1 particles (photons) with gauge symmetry.
+From a theoretical physics viewpoint, Maxwell theory is a relativistic vector field theory with local gauge symmetry.
 
-Photons are the excitations of a Lorentz invariant vector field $A^\mu$.
-A vector field $A^\mu(x)$ is Lorentz invariant, if it changes under a Lorentz transformation $\Lambda$ according to~\cite[p.~37]{Peskin1995}
+As a relativistic vector field, we expect the Maxwell field $A^\mu$ to have four components, one time and three spatial components, and to transform as a Lorentz vector~\cite[p.~37]{Peskin1995}
 \begin{equation}
 	A^\mu(x)
 	\to
@@ -24,11 +23,10 @@ A vector field $A^\mu(x)$ is Lorentz invariant, if it changes under a Lorentz tr
 	A^\nu(\Lambda^{-1}x)
 	.
 \end{equation}
-Lorentz transformations extends Galilean transformations with Lorentz boosts, i.e., transformations in moving reference systems, but also include rotations.
+Contracting Lorentz vectors, or in general Lorentz tensors, to a scalar yields a Lorentz-invariant quantity.
+Exclusively using Lorentz invariant quantities when constructing our theory ensures the compatibility of our theory with special relativity.
 
-For the action to be a Lorentz scalar, we need to construct the Lagrangian density from contracted Lorentz tensors.
-The most general Lagrangian density without (self-)interactions is~\cite{deRham2014}
-\textcolor{red}{this is not the most general density!}
+As a starting point for our theory's the Lagrangian (density), we propose
 \begin{equation}
 	\mathcal{L}
 	=
@@ -63,100 +61,27 @@ The most general Lagrangian density without (self-)interactions is~\cite{deRham2
 	\right)
 	+
 	c_4
+	m^2
 	A_\mu A^\mu
-	\label{eq:vector_field_lagrangian1}
-	.
+	\label{eq:proposed_maxwell_lagrangian_proposal},
 \end{equation}
-The Maxwell field $A^\mu$ has to be square-integrable for the action
+wherein we restricted ourselves to terms which allow for dimensionless coefficients $c1,c2,c3,c4\in\mathbb{R}$, a mass term, and no (self-)interactions.\footnote{The restriction to dimensionless coefficients can be further motivated by renormalization arguments.}
+For the action integral
 \begin{equation}
 	S
 	=
-	\int\odif{t}
+	\int\dd{t}
 	L
 	=
-	\int\odif[order={4}]{x}
+	\int\dd[4]{x}
 	\mathcal{L}
 \end{equation}
-to exist, implying that $A^\mu$ vanishes at the integration boundaries.
-Using partial integration with vanishing boundary term of the third term in \cref{eq:vector_field_lagrangian1} twice, we find
-\begin{equation}
-	\mathcal{L}
-	=
-	c_1
-	\left(
-		\partial_\mu
-		A^\nu
-	\right)
-	\left(
-		\partial^\mu
-		A_\nu
-	\right)
-	+
-	(c_2+c_3)
-	\left(
-		\partial_\mu
-		A^\mu
-	\right)
-	\left(
-		\partial_\nu
-		A^\nu
-	\right)
-	+
-	c_4
-	A_\mu A^\mu
-	\label{eq:vector_field_lagrangian2}
-	.
-\end{equation}
-Demanding the Lagrangian density in \Cref{eq:vector_field_lagrangian2} to be invariant under the gauge transformation
-\begin{equation}
-	A^\mu
-	\to
-	A^{\prime\mu}
-	=
-	A^\mu
-	-
-	\partial^\mu
-	\chi
-\end{equation}
-with gauge field $\chi$, constraints the coefficients to
-\begin{align*}
-	c_1
-	&=
-	-
-	(c_2+c_3)
-	&
-	c_4
-	&=
-	0
-\end{align*}
-and further simplifying the Lagrangian density to
-\begin{equation}
-	\mathcal{L}
-	=
-	c_1
-	\left(
-		\partial_\mu
-		A^\nu
-	\right)
-	\left(
-		\partial^\mu
-		A_\nu
-	\right)
-	-
-	c_1
-	\left(
-		\partial_\mu
-		A^\mu
-	\right)
-	\left(
-		\partial_\nu
-		A^\nu
-	\right)
-	\label{eq:vector_field_lagrangian3}
-	.
-\end{equation}
-The remaining overall constant $c_1$ does not affect the field dynamics and can be arbitrarily chosen.
-Adapting the standard convention $c_1=-1/2$, we successfully derived the Maxwell Lagrangian
+to exist, we need $A^\mu$ to be square-integrable, i.e., vanish at the integration boundaries.
+Using partial integration, we can show the redundancy of two of the first three terms in \cref{eq:proposed_maxwell_lagrangian}, see Ref.~\cite{deRham2014}.
+We remove the redundancy by setting the third coefficient to zero, $c_3=0$.
+Demanding invariance under local gauge transformations requires removing the mass term and determining the Lagrangian up to an overall constant.
+The overall constant does not affect the dynamics, and its absolute value is equal to $1/2$ by convention.
+We finally arrive at the well-known Lagrangian density of the Maxwell field,
 \begin{equation}
 	\mathcal{L}
 	=
@@ -182,14 +107,12 @@ Adapting the standard convention $c_1=-1/2$, we successfully derived the Maxwell
 	\right)
 	.
 \end{equation}
+While we can experimentally verify the vector nature of the Maxwell field by polarization experiments, the requirement of the Maxwell field having local gauge symmetry appears artificial.
+If we accept the Dirac Lagrangian, describing charged fermions, then Noether's theorem links local gauge symmetry to charge conservation.
+However, the Dirac Lagrangian itself cannot be made gauge-invariant without coupling to a gauge-invariant vector field, which turns out to be the Maxwell field.
+The complete gauge-invariant Lagrangian describing charged fermions coupled to the Maxwell field lays down the foundation of \gls{qed}.
 
-We showed that imposing gauge symmetry on the Lagrangian of a relativistic vector field theory leads to the Maxwell Lagrangian.
-While the spin of a field can be determined by polarization experiments, it appears somewhat ad-hoc to impose gauge theory.
-If we start from the Dirac Lagrangian describing charged spin-1/2 particles, local gauge invariance of the Dirac field is required for charge conservation by Noether's theorem.
-However, the Dirac Lagrangian itself cannot be made gauge invariant but requires an additional coupling term with a gauge invariant vector field.
-In that sense we can say that charge conservation of spin-1/2 particles implies gauge invariance of the vector field.
-
-\subsection{Lorentz force, electromagnetic field components and Maxwell equations}
+\subsection{Lorentz force, field-strength tensor, electromagnetic components and Maxwell equations}
 
 % How do we get from the vector field to the field-strength tensor?
 We consider the action of a particle with mass $m$ and charge $q$ coupled to the vector field~\cite[p.~244]{Zee2013}
@@ -197,10 +120,10 @@ We consider the action of a particle with mass $m$ and charge $q$ coupled to the
 	S
 	=
 	-
-	m\int\odif{\tau}
+	m\int\dd{\tau}
 	\sqrt{-g_{\mu\nu}\odv{x^\mu}{\tau}\odv{x^\nu}{\tau}}
 	+
-	q\int\odif{\tau}
+	q\int\dd{\tau}
 	A_\mu\left(x(\tau)\right)
 	\odv{x^\mu}{\tau}
 \end{equation}
@@ -328,16 +251,262 @@ or in index notation~\cite[p.~336]{Srednicki2007}
 
 \subsection{Coulomb gauge and plane-wave expansion}
 
-% implications of Coulomb gauge
-% relation to Klein-Gordon field
-% one-dimensional approximation
+The physical observable of the Maxwell field is the field-strength tensor $F_{\mu\nu}$.
+The field-strength tensor $F_{\mu\nu}$ is invariant under local gauge transformations.
+We perform a local gauge transformation 
+We choose a gauge field $\chi$ satisfying
+\begin{align}
+	\laplace\chi
+	&=
+	\partial_i A^i
+	=
+	-
+	\div\vb{A}
+	&
+	\partial_t
+	\chi
+	&=
+	-
+	A_0
+\end{align}
+and perform a gauge transformation.
+After the gauge transformation, the Maxwell field satisfies
+\begin{align}
+	\div\vb{A}
+	&=
+	0
+	&
+	A_0
+	&=0
+\end{align}
+corresponding to the Coulomb and temporal gauge condition~\cite[p.~144]{Greiner2013},
+The temporal gauge condition $A_0=0$ implicitly assumes that there are no free charges.
+
+% Relation between Coulomb and temporal gauge and transverse and longitudinal components
+% Coulomb interaction energy and A_0 component
+
 % Lorentz-invariant measure
 
-\subsection{Energy-momentum tensor and Hamiltonian}
+% plane-wave expansion
+% energy-momentum relation
 
-\subsection{Canonical quantization}
+\subsection{Canonical quantization and quantum operators}
 
-% Canonical commutation relation
-% Quantization of gauge fields, Coulomb gauge requires transverse delta distribution
-% Hamiltonian operator
-% electromagnetic field operator
+The canonical energy-momentum tensor~\cite[p.~174]{Greiner2013}
+\begin{equation}
+	\begin{split}
+		T^{\mu\nu}
+		&=
+		\pdv{\mathcal{L}}{(\partial_\mu A_\sigma)}
+		\partial^\nu A_\sigma
+		-
+		g^{\mu\nu}\mathcal{L}
+		\\
+		&=
+		-
+		\left(
+			\partial^\mu
+			A^\sigma
+		\right)
+		\left(
+			\partial^\nu
+			A_\sigma
+		\right)
+		+
+		\frac{1}{2}
+		g^{\mu\nu}
+		\left(
+			\partial^\rho
+			A^\sigma
+		\right)
+		\left(
+			\partial_\rho
+			A_\sigma
+		\right)
+	\end{split}
+\end{equation}
+
+The energy density is the time-time component of the energy-momentum tensor
+\begin{equation}
+	\begin{split}
+		T^{00}
+		&=
+		-
+		\left(
+			\partial^0
+			A^\sigma
+		\right)
+		\left(
+			\partial^0
+			A_\sigma
+		\right)
+		+
+		\frac{1}{2}
+		g^{00}
+		\left(
+			\partial^\rho
+			A^\sigma
+		\right)
+		\left(
+			\partial_\rho
+			A_\sigma
+		\right)
+		\\
+		&=
+		-
+		\left(
+			\partial^0
+			A^j
+		\right)
+		\left(
+			\partial^0
+			A_j
+		\right)
+		+
+		\frac{1}{2}
+		\left(
+			\partial^0
+			A^j
+		\right)
+		\left(
+			\partial_0
+			A_j
+		\right)
+		+
+		\frac{1}{2}
+		\left(
+			\partial^i
+			A^j
+		\right)
+		\left(
+			\partial_i
+			A_j
+		\right)
+		\\
+		&=
+		-
+		\frac{1}{2}
+		\left(
+			\partial_t
+			A^j
+		\right)
+		\left(
+			\partial_t
+			A_j
+		\right)
+		+
+	\end{split}
+\end{equation}
+
+% normal order to remove (infinite) vacuum energy
+\begin{equation}
+	H
+	=
+\end{equation}
+
+\begin{equation}
+	P_j
+	=
+\end{equation}
+
+We define the transverse delta distribution as the transverse projection of the three-dimensional delta distribution
+\begin{equation}
+	\delta_{\perp,ij}^{(3)}
+	\left(\vb{x}\right)
+	=
+	P_{\perp,ij}
+	\delta^{(3)}
+	\left(\vb{x}\right)
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\left(
+		\delta_{ij}
+		-
+		\frac{p_ip_j}{\vb{p}^2}
+	\right)
+	e^{i\vb{p}\vdot\vb{x}}
+\end{equation}
+
+\begin{align}
+	\comm{\hat{A}_i(t,\vb{x})}{\hat{E}_j(t,\vb{y})}
+	&=
+	-i
+	\delta_{\perp,ij}^{(3)}
+	\left(\vb{x}-\vb{y}\right)
+	\\
+	\comm{\hat{A}_i(t,\vb{x})}{\hat{A}_j(t,\vb{y})}
+	&=
+	0
+	=
+	\comm{\hat{E}_i(t,\vb{x})}{\hat{E}_j(t,\vb{y})}
+\end{align}
+where the negative sign for the non-vanishing commutator arises from the relation between the canonical momentum density and the electric field, $\hat\pi_i=-\hat{E}_i$ (?).
+
+In the Coulomb gauge, the Maxwell field operator is
+\begin{equation}
+	\vu{A}(t,\vb{x})
+	=
+	\vu{A}^{(+)}(t,\vb{x})
+	+
+	\vu{A}^{(-)}(t,\vb{x})
+\end{equation}
+\begin{align}
+	\vu{A}^{(-)}(t,\vb{x})
+	&=
+	\sum_{\lambda=1,2}
+	\int\dd{\mu(\vb{p})}
+	\hat{a}_\lambda(\vb{p})
+	\vu{e}_\lambda(\vb{p})
+	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+	\\
+	\vu{A}^{(+)}(t,\vb{x})
+	&=
+	\sum_{\lambda=1,2}
+	\int\dd{\mu(\vb{p})}
+	\hat{a}_\lambda^\dagger(\vb{p})
+	\vu{e}_\lambda(\vb{p})^*
+	e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+\end{align}
+Disagreement between ~\cite[p.~341]{Srednicki2007}, ~\cite[p.~198]{Greiner2013}, and \cite[p.~123]{Peskin1995}
+
+\subsection{Quantum observable operators}
+
+\begin{equation}
+	\hat{H}
+	=
+\end{equation}
+\begin{equation}
+	\hat{P}
+	=
+\end{equation}
+
+The electric field operator is given by
+\begin{equation}
+	\vu{E}(t,\vb{x})
+	=
+	\vu{E}^{(+)}(t,\vb{x})
+	+
+	\vu{E}^{(-)}(t,\vb{x})
+	.
+\end{equation}
+\begin{align}
+	\vu{E}^{(-)}(t,\vb{x})
+	&=
+	-i
+	\sum_{\lambda=1,2}
+	\int\dd{\mu(\vb{p})}
+	\omega(\vb{p})
+	\hat{a}_\lambda(\vb{p})
+	\vu{e}_\lambda(\vb{p})
+	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+	\\
+	\vu{E}^{(+)}(t,\vb{x})
+	&=
+	+i
+	\sum_{\lambda=1,2}
+	\int\dd{\mu(\vb{p})}
+	\omega(\vb{p})
+	\hat{a}_\lambda^\dagger(\vb{p})
+	\vu{e}_\lambda(\vb{p})^*
+	e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+\end{align}

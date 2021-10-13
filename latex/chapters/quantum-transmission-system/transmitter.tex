@@ -98,7 +98,7 @@ The Hamiltonian density of an electromagnetic field in a Pockels dielectric is, 
 	H
 	=
 	\frac{1}{2}
-	\int\odif[order={3}]{x}
+	\int\dd[3]{x}
 	\left\{
 		\vb{E}(\vb{x})
 		\vdot
@@ -117,7 +117,7 @@ wherein $\vb{E}$ is the electric field, $\vb{B}$ is the magnetic field and $\vb{
 	\approx
 	E_i(\vb{p})
 	+
-	\int\frac{\odif[order={3}]{q}}{(2\pi)^3}
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
 	\chi_{ijk}^{(2)}(\vb{q},\vb{p})
 	E^j(\vb{p})
 	E^k(\vb{q})
@@ -136,8 +136,8 @@ where the interaction term is given by
 	H_\text{int}
 	=	
 	\frac{1}{2}
-	\int\frac{\odif[order={3}]{p}}{(2\pi)^3}
-	\int\frac{\odif[order={3}]{q}}{(2\pi)^3}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
 	\chi_{ijk}^{(2)}(\vb{q},\vb{p})
 	E^i(\vb{p})
 	E^j(\vb{p})
@@ -149,8 +149,8 @@ Adapting the geometry of \Cref{fig:pm} the interaction Hamiltonian becomes
 	H_\text{int}
 	=	
 	\frac{1}{2}
-	\int\frac{\odif[order={3}]{p}}{(2\pi)^3}
-	\int\frac{\odif[order={3}]{q}}{(2\pi)^3}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
 	\chi_{zzx}^{(2)}(\vb{q},\vb{p})
 	E^z(\vb{p}-\vb{q})
 	E^z(\vb{p}+\vb{q})
@@ -162,8 +162,8 @@ Comparison of the classic interaction with the quantum nonlinear interactions in
 	\hat{H}_\text{int}
 	=
 	\frac{1}{2}
-	\int\frac{\odif[order={3}]{p}}{(2\pi)^3}
-	\int\frac{\odif[order={3}]{q}}{(2\pi)^3}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
 	\Upsilon(\vb{p},\vb{q})
 	\hat{a}_x(\vb{q})
 	\hat{a}_z^\dagger(\vb{p}-\vb{q})
@@ -177,8 +177,8 @@ Assuming only two perpendicular momenta $p_x,p_z$ and taking the electric \gls{r
 	\hat{H}_\text{int}
 	=
 	\frac{1}{2}
-	\int\frac{\odif{p}}{2\pi}
-	\int\frac{\odif{q}}{2\pi}
+	\int\frac{\dd{p}}{2\pi}
+	\int\frac{\dd{q}}{2\pi}
 	\Upsilon(p,q)
 	\hat{a}_x(q)
 	\hat{a}_z^\dagger(p-q)
@@ -192,8 +192,8 @@ Let $\ket{\beta(t)}$ be the coherent state describing the electric \gls{rf} fiel
 	\hat{H}_\text{int}(t)
 	=
 	\frac{1}{2}
-	\int\frac{\odif{p}}{2\pi}
-	\int\frac{\odif{q}}{2\pi}
+	\int\frac{\dd{p}}{2\pi}
+	\int\frac{\dd{q}}{2\pi}
 	\Upsilon(p,q)
 	\beta_x(q)^*
 	e^{-ipt}
@@ -215,7 +215,7 @@ we obtain the approximate interaction Hamiltonian
 	\hat{H}_\text{int}(t)
 	\approx
 	g(t)
-	\int\frac{\odif{q}}{2\pi}
+	\int\frac{\dd{q}}{2\pi}
 	\hat{a}^\dagger(q)
 	\hat{a}(q)
 \end{equation}
@@ -225,14 +225,14 @@ for which all but the first term of the Magnus expansion vanish\footnote{The ope
 	&=
 	\exp\left\{
 		-i\varphi(t_0,t)
-		\int\frac{\odif{p}}{2\pi}
+		\int\frac{\dd{p}}{2\pi}
 		\hat{a}^\dagger(p)
 		\hat{a}(p)
 	\right\}
 	&
 	\varphi(t_0,t)
 	=
-	\int_{t_0}^{t}\odif{t^\prime}
+	\int_{t_0}^{t}\dd{t^\prime}
 	g(t^\prime)
 \end{align}
 which reduces to the phase-rotation operator proposed in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006} in the single-mode limit and time-independent $\varphi$.
@@ -243,7 +243,7 @@ We define the action of the phase modulator
 	=
 	\exp\left\{
 		-i\varphi(t,T)
-		\int\frac{\odif{p}}{2\pi}
+		\int\frac{\dd{p}}{2\pi}
 		\hat{a}^\dagger(p)
 		\hat{a}(p)
 	\right\}
@@ -269,7 +269,7 @@ We employ the mean-value theorem for definite integrals
 \begin{align}
 	\varphi(t,T)
 	&=
-	\int_{t}^{t+T}\odif{t^\prime}
+	\int_{t}^{t+T}\dd{t^\prime}
 	g(t^\prime)
 	=
 	g(\tau)
@@ -307,7 +307,7 @@ The continuous-mode displacement operator transforms according to
 		\hat{U}_\text{PM}\left[\varphi(t)\right]^\dagger
 		&=
 		\exp\left\{
-			\int_0^\infty\frac{\odif{p}}{2\pi}
+			\int_0^\infty\frac{\dd{p}}{2\pi}
 			\alpha(p)
 			\hat{U}_\text{PM}\left[\varphi(t)\right]
 			\hat{a}^\dagger(p,t)
@@ -318,7 +318,7 @@ The continuous-mode displacement operator transforms according to
 		\\
 		&=
 		\exp\left\{
-			\int_0^\infty\frac{\odif{p}}{2\pi}
+			\int_0^\infty\frac{\dd{p}}{2\pi}
 			\alpha(p)
 			\left(
 				\hat{U}_\text{PM}\left[\varphi(t)\right]
@@ -331,7 +331,7 @@ The continuous-mode displacement operator transforms according to
 		\\
 		&=
 		\exp\left\{
-			\int_0^\infty\frac{\odif{p}}{2\pi}
+			\int_0^\infty\frac{\dd{p}}{2\pi}
 			\alpha(p)
 			\left(
 				\hat{U}_\text{PM}\left[-\varphi(t)\right]^\dagger
@@ -344,7 +344,7 @@ The continuous-mode displacement operator transforms according to
 		\\
 		&=
 		\exp\left\{
-			\int_0^\infty\frac{\odif{p}}{2\pi}
+			\int_0^\infty\frac{\dd{p}}{2\pi}
 			\alpha(p)
 			e^{-i\varphi(t)}
 			\hat{a}^\dagger(p,t)
@@ -367,13 +367,13 @@ The phase-modulated amplitude
 is a multiplication in the time domain.
 We expect therefore a convolution in the frequency domain, i.e.,
 \begin{equation}
-	\int_0^\infty\frac{\odif{p}}{2\pi}
+	\int_0^\infty\frac{\dd{p}}{2\pi}
 	\alpha(p)
 	e^{+ipt}
 	e^{-i\varphi(t)}
 	\hat{a}^\dagger(p,t)
 	=
-	\int_0^\infty\frac{\odif{p}}{2\pi}
+	\int_0^\infty\frac{\dd{p}}{2\pi}
 	\left(u*\alpha\right)(p)
 	\hat{a}^\dagger(p,t)
 \end{equation}
@@ -381,7 +381,7 @@ wherein we used the convolution
 \begin{equation}
 	\left(u*\alpha\right)(p)
 	=
-	\int\frac{\odif{p^\prime}}{2\pi}
+	\int\frac{\dd{p^\prime}}{2\pi}
 	u(p^\prime)
 	\alpha(p-p^\prime)
 	.

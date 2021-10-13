@@ -61,7 +61,7 @@ Let us assume the existence of an eigenstate $\ket{x,\vartheta}$ of the generali
 then the uncertainty relation implies that $\ket{x,\vartheta}$ and $\ket{p,\vartheta+\Delta\vartheta}$ for $\Delta\vartheta>0$ are conjugate variables, i.e., increasing the precision of one variable decreases the precision of the other.
 Unsurprisingly, we can show that these eigenstates are non-orthogonal~\cite[p.~29]{Mukhanov2007}
 \begin{equation}
-	\bra{x,\vartheta}\ket{p,\vartheta+\pi/2}
+	\braket{x,\vartheta}{p,\vartheta+\pi/2}
 	=
 	\frac{e^{ipx}}{\sqrt{2\pi}}
 	\label{eq:position_momentum_product}
@@ -71,7 +71,7 @@ Furthermore, by using the completeness of eigenstates, we can show that the eige
 \begin{equation}
 	\ket{x,\vartheta}
 	=
-	\int\frac{\odif{p}}{\sqrt{2\pi}}
+	\int\frac{\dd{p}}{\sqrt{2\pi}}
 	e^{-ipx}
 	\ket{p,\vartheta+\pi/2}
 	=

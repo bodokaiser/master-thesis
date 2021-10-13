@@ -6,7 +6,6 @@
 	headings=big,
 ]{scrreprt}
 
-\usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{authblk}
 \usepackage[english]{babel}
@@ -20,7 +19,6 @@
 \usepackage[section]{placeins}
 \usepackage[separate-uncertainty=true]{siunitx}
 \usepackage[mode=buildnew]{standalone}
-%\usepackage{thmtools,thm-restate}
 \usepackage{tensor}
 \usepackage{multirow}
 \usepackage{xcolor}
@@ -39,33 +37,35 @@
 \DeclarePairedDelimiter{\bra}{\langle}{\rvert}
 \DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
 \DeclarePairedDelimiter{\expval}{\langle}{\rangle}
+\DeclarePairedDelimiter{\norder}{\mathcolon}{\mathcolon}
+\DeclarePairedDelimiter{\anorder}{\typecolon}{\typecolon}
 	
+\newcommand{\laplace}{\increment}
 \newcommand{\trans}{{\scriptscriptstyle\mathsf{T}}}
 
-\DeclareMathOperator{\trace}{\operatorname{Tr}}
-\DeclareMathOperator{\sinc}{\operatorname{sinc}}
+\newcommand{\vdot}{\cdot}
+\newcommand{\vcross}{\vectimes}
+\newcommand{\vb}[1]{\symbfup{#1}}
+\newcommand{\vu}[1]{\hat{\vb{#1}}}
+\newcommand*\dd[2][\relax]{\mathop{\ifx\relax#1\odif{#2}\else \odif[order={#1}]{#2}\fi\,}}
 
-\AtBeginDocument{%
-	\let\Re\undefined
-	\let\Im\undefined
-	\DeclareMathOperator{\Re}{\operatorname{Re}}
-	\DeclareMathOperator{\Im}{\operatorname{Im}}
-	
-	\let\div\undefined
-	\let\curl\undefined
-	\DeclareMathOperator{\div}{\nabla\vdot}
-	\DeclareMathOperator{\curl}{\nabla\vectimes}
+\DeclareMathOperator{\trace}{Tr}
+\DeclareMathOperator{\sinc}{sinc}
+
+\AtBeginDocument{
+	\let\Re\relax
+	\let\Im\relax
+	\DeclareMathOperator{\Re}{Re}
+	\DeclareMathOperator{\Im}{Im}
+
+	\renewcommand{\div}{\mathop{\mbfnabla\vdot}}
+	\newcommand{\curl}{\mathop{\mbfnabla\vectimes}}
 }
 
 \DeclarePairedDelimiterX{\comm}[2]{[}{]}{#1,#2}
 
 \DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}{#1\delimsize\vert#2}
 \DeclarePairedDelimiterX{\ketbra}[1]{\lvert}{\rvert}{#1\rangle\delimsize\langle#1}
-
-\newcommand{\vdot}{\cdot}
-\newcommand{\vcross}{\vectimes}
-\newcommand{\vb}[1]{\symbfup{#1}}
-\newcommand{\vu}[1]{\hat{\vb{#1}}}
 
 \addbibresource{literature.bib}
 
@@ -82,17 +82,6 @@
 
 % caption label linebreak
 \setkomafont{captionlabel}{\sffamily}
-
-% theorems
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{conjecture}{Conjecture}[section]
-\newtheorem{example}{Example}[section]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
 
 % prefix equation numbers with section number
 \numberwithin{equation}{section}
@@ -117,6 +106,7 @@
 \newacronym{povm}{POVM}{positive operator-valued measure}
 \newacronym{bch}{BCH}{Baker-Campbell-Hausdorff}
 \newacronym{ccr}{CCR}{canonical commutation relation}
+\newacronym{qed}{QED}{quantum electrodynamics}
 
 % electrical engineering
 \newacronym{asp}{ASP}{analog signal processing}
@@ -231,6 +221,8 @@
 		\input{chapters/quantum-theory/fock-space}
 		\input{chapters/quantum-theory/coherent-states}
 
+		\addcontentsline{toc}{section}{Summary}
+		\input{chapters/quantum-theory/summary}
 		\addcontentsline{toc}{section}{References}
 		\printbibliography[title=References]
 	\end{refsection}

@@ -18,7 +18,7 @@
 Let us assume there exists a family of functions $\left\{g_{p_0,\sigma}\right\}_{p_0,\sigma\in\mathbb{R}_+}$, the pulse-shape, which is normalized to one
 \begin{equation}
 	\int_{\mathbb{R}}
-	\odif{t}
+	\dd{t}
 	g_{p_0,\sigma}(t)
 	=
 	1	
@@ -52,7 +52,7 @@ We can write any coherent state with $c\in\mathbb{C}$ as a convolution
 		&\propto
 		\exp\left\{
 			\int_{\mathbb{R}}
-			\frac{\odif{p}}{2\pi}
+			\frac{\dd{p}}{2\pi}
 			\mathcal{F}\left[(g_{p_0,\sigma}*c\delta)\right](p)
 			e^{+ipt}
 			\hat{a}^\dagger(p)
@@ -62,7 +62,7 @@ We can write any coherent state with $c\in\mathbb{C}$ as a convolution
 		&=
 		\exp\left\{
 			\int_{\mathbb{R}}
-			\frac{\odif{p}}{2\pi}
+			\frac{\dd{p}}{2\pi}
 			c
 			\mathcal{F}\left[g_{p_0,\sigma}\right](p)
 			\mathcal{F}\left[\delta\right](p)
@@ -74,7 +74,7 @@ We can write any coherent state with $c\in\mathbb{C}$ as a convolution
 		&=
 		\exp\left\{
 			\int_{\mathbb{R}}
-			\frac{\odif{p}}{2\pi}
+			\frac{\dd{p}}{2\pi}
 			cg_{p_0,\sigma}(p)
 			e^{+ipt}
 			\hat{a}^\dagger(p)
@@ -89,7 +89,7 @@ By using the limiting property of the pulse-shape, we obtain the single-mode for
 	\propto
 	\exp\left\{
 		\int_{\mathbb{R}}
-		\frac{\odif{p}}{2\pi}
+		\frac{\dd{p}}{2\pi}
 		cg_{p_0,\sigma}(p)
 		e^{+ipt}
 		\hat{a}^\dagger(p)
@@ -113,7 +113,7 @@ For a pulse train, we can write
 	\propto
 	\exp\left\{
 		\int_{\mathbb{R}}
-		\frac{\odif{p}}{2\pi}
+		\frac{\dd{p}}{2\pi}
 		g_{p_0,\sigma}(p)
 		f(p)e^{+ipt}
 		\hat{a}^\dagger(p)
@@ -131,7 +131,7 @@ Again, we take the limit
 \begin{equation}
 	\exp\left\{
 		\int_{\mathbb{R}}
-		\frac{\odif{p}}{2\pi}
+		\frac{\dd{p}}{2\pi}
 		g_{p_0,\sigma}(p)
 		f(p)e^{+ipt}
 		\hat{a}^\dagger(p)
@@ -158,7 +158,7 @@ wherein
 	h(t)
 	=
 	\int_{\mathbb{R}}
-	\frac{\odif{p}}{\sqrt{2\pi}}
+	\frac{\dd{p}}{\sqrt{2\pi}}
 	\cos(\theta(p)/2)
 	e^{+ipt}
 	.

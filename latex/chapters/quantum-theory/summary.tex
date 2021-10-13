@@ -1,0 +1,54 @@
+\section*{Summary}
+
+Typically, we 
+Often, the Lorentz-invariant measure is approximated\footnote{We need to keep in mind that the approximation still requires the energy-momentum relation to hold!}
+\begin{equation}
+	\dd{\mu}(\vb{p})
+	=
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\approx
+	\frac{\dd[3]{p}}{(2\pi)^3}
+	.
+\end{equation}
+By imposing the Coulomb gauge, we already selected a particular reference frame.
+Additionally, the typical detector bandwidth $B$ is much smaller than the center frequency $\omega_0$ and we can do by the mean value theorem
+\begin{equation}
+	\int
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\approx
+	\frac{1}{\sqrt{2\omega_0}}
+	\int
+	\frac{\dd[3]{p}}{(2\pi)^3}
+\end{equation}
+However, we know that the field dynamics are not affected by multiplication with an overall constant.
+
+Neglecting polarization, we effectively reduce the transverse Maxwell field $A$ to a massless Klein-Gordon (scalar) field which has the Lagrangian density
+\begin{equation}
+	\mathcal{L}
+	=
+	\frac{1}{2}
+	\left(
+		\partial_\mu A
+	\right)
+	\left(
+		\partial^\mu A
+	\right)
+\end{equation}
+which leads to the equations of motion
+\begin{equation}
+	\partial_t^2 A
+	=
+	\laplace A
+\end{equation}
+resembling a relativistic wave equation.
+
+Another often made approximation is neglecting the transverse profile and only considering momentum in the direction of propagation.
+Let us take the propagation direction to be $z$.
+The advantage is that the energy equal one momentum component $\omega(\vb{p})=p_z$.
+
+% electric vs vector potential (vector potenial more fundamental, Abramov-Bohm effect, photon number, most cases equivalent, see pA vs dE)
+
+% one-dimensional approximation
+% forward momentum
+
+% we switch between single- and continuous-mode
