@@ -7,11 +7,15 @@ What do we do here?
 Hamiltonian vs Lagrangian mechanics?
 Why we start with Lagrangian mechanics?
 
-From the Lagrangian we can infer everything else.
+% TODO: Photon field does not get attention and has non-trivial quantization procedure
 
 \subsection{Maxwell Lagrangian from first principles}
 
+% TODO: Check Greiner p. 149 for additional motivation on how to find the Maxwell Lagrangian
+
 From a theoretical physics viewpoint, Maxwell theory is a relativistic vector field theory with local gauge symmetry.
+That alone is sufficient to "guess" the Maxwell Lagrangian from first principles.
+Having established the Maxwell Lagrangian, we can fully infer the physics of electromagnetism inside the field theoretical framework.
 
 As a relativistic vector field, we expect the Maxwell field $A^\mu$ to have four components, one time and three spatial components, and to transform as a Lorentz vector~\cite[p.~37]{Peskin1995}
 \begin{equation}
@@ -105,6 +109,7 @@ We finally arrive at the well-known Lagrangian density of the Maxwell field,
 		\partial_\nu
 		A^\nu
 	\right)
+	\label{eq:maxwell_lagrangian_field}
 	.
 \end{equation}
 While we can experimentally verify the vector nature of the Maxwell field by polarization experiments, the requirement of the Maxwell field having local gauge symmetry appears artificial.
@@ -112,10 +117,14 @@ If we accept the Dirac Lagrangian, describing charged fermions, then Noether's t
 However, the Dirac Lagrangian itself cannot be made gauge-invariant without coupling to a gauge-invariant vector field, which turns out to be the Maxwell field.
 The complete gauge-invariant Lagrangian describing charged fermions coupled to the Maxwell field lays down the foundation of \gls{qed}.
 
-\subsection{Lorentz force, field-strength tensor, electromagnetic components and Maxwell equations}
+\subsection{Lorentz force law, field-strength tensor and electromagnetic fields}
 
-% How do we get from the vector field to the field-strength tensor?
-We consider the action of a particle with mass $m$ and charge $q$ coupled to the vector field~\cite[p.~244]{Zee2013}
+We have introduced the Maxwell field as the fundamental mediator of the electromagnetic force.
+However, so far, it is unclear how the electromagnetic field components relate to the Maxwell field.
+The (manifest) covariant formulation makes it particularly difficult to identify the non-covariant electromagnetic vector fields.
+To shed some light, we first derive the covariant Lorentz force law and then compare it to the non-covariant vector formulation to identify the electromagnetic field components.
+
+To derive the covariant Lorentz force law, let us consider the action of a point particle with mass $m$ and charge $q$ coupled to the Maxwell field $A^\mu$~\cite[p.~244]{Zee2013}
 \begin{equation}
 	S
 	=
@@ -126,16 +135,20 @@ We consider the action of a particle with mass $m$ and charge $q$ coupled to the
 	q\int\dd{\tau}
 	A_\mu\left(x(\tau)\right)
 	\odv{x^\mu}{\tau}
+	\label{eq:lorentz_force_action}
 \end{equation}
-for which the action principle yields the equation of motion
+wherein $g_{\mu\nu}$ is the Minkowski metric.
+The first term is the generalization of a line integral, parametrized by tau, to Minkowski spacetime.
+The second term describes the coordinate-dependent coupling of the Maxwell field with the charge of the particle.
+Invoking the variational calculus on the action, we recover the covariant formulation of Lorentz force law
 \begin{equation}
 	m
 	\odv[order={2}]{x^\mu}{\tau}
 	=
 	qF^\mu_\nu(x)\odv{x^\nu}{\tau}
-	\label{eq:cov_lorentz_force}
+	\label{eq:covariant_lorentz_force}
 \end{equation}
-corresponding to a covariant formulation of Lorentz force law, wherein the field-strength tensor
+where we introduced the asymmetric field-strength tensor
 \begin{equation}
 	F_{\mu\nu}
 	=
@@ -144,10 +157,36 @@ corresponding to a covariant formulation of Lorentz force law, wherein the field
 	-
 	\partial_\nu
 	A_\mu
+	\label{eq:field_strength_tensor}
+	.
 \end{equation}
-is the covariant generalization of the electromagnetic field.
+The field-strength tensor covariantly encodes the electromagnetic field components.
 
-Comparison of the covariant Lorentz force law, \cref{eq:cov_lorentz_force}, with the vector Lorentz force law
+Using the field-strength tensor $F_{\mu\nu}$ and including the interaction of the Maxwell field with an external classical current $j^\mu$, we can rewrite the Maxwell Lagrangian of \cref{eq:maxwell_lagrangian_field} as
+\begin{equation}
+	\mathcal{L}
+	=
+	-
+	\frac{1}{4}
+	F_{\mu\nu}
+	F^{\mu\nu}
+	+
+	A_\mu j^\mu
+	\label{eq:maxwell_lagrangian_field_strength}
+	.
+\end{equation}
+We note that the action of the interaction term in \cref{eq:maxwell_lagrangian_field_strength} reduces to the second action term in \cref{eq:lorentz_force_action} when using the current of a point particle with charge $q$~\cite[p.~177]{Peskin1995}
+\begin{equation}
+	j^\mu(x)
+	=
+	q
+	\int\dd{\tau}
+	\odv{y^\mu(\tau)}{\tau}
+	\delta^{(4)}\left(x-y(\tau)\right)
+	.
+\end{equation}
+
+Comparison of the covariant Lorentz force law, \cref{eq:covariant_lorentz_force}, with the non-covariant version
 \begin{equation}
 	m
 	\odv[order={2}]{\vb{x}}{t}
@@ -159,8 +198,10 @@ Comparison of the covariant Lorentz force law, \cref{eq:cov_lorentz_force}, with
 		\vcross
 		\vb{B}
 	\right)
+	\label{eq:lorentz_force}
+	,
 \end{equation}
-we can identify the components of the field-strength tensor with the electromagnetic field~\cite[p.~245]{Zee2013}
+we can relate the components of the field-strength tensor and the electromagnetic field~\cite[p.~245]{Zee2013}
 \begin{align}
 	E^1
 	&=
@@ -203,8 +244,9 @@ we can identify the components of the field-strength tensor with the electromagn
 	=
 	-
 	F_{12}
+	,
 \end{align}
-or in index notation~\cite[p.~336]{Srednicki2007}
+which we can compactly summarize.~\cite[p.~336]{Srednicki2007}
 \begin{align}
 	F^{0i}
 	&=
@@ -214,21 +256,74 @@ or in index notation~\cite[p.~336]{Srednicki2007}
 	&=
 	\varepsilon^{ijk}
 	B_k
+	\label{eq:field_strength_components}
 	.
 \end{align}
-\textcolor{red}{identify charged moving particle with current}
+We have successfully related the rather abstract Maxwell field with the observable electromagnetic field components using the covariant field-strength tensor.
 
+In a final step, we would like to express the Maxwell Lagrangian in terms of the electromagnetic fields to complete the bridge to classical electrodynamics.
+Using \cref{eq:field_strength_components}, we can derive the identity~\cite[p.~142]{Greiner2013}
+\begin{equation}
+	F_{\mu\nu}
+	F^{\mu\nu}
+	=
+	-2
+	\left(
+		\vb{E}^2
+		-
+		\vb{B}^2
+	\right)
+	\label{eq:field_strength_scalar}
+	.
+\end{equation}
+Inserting \cref{eq:field_strength_scalar} into \cref{eq:maxwell_lagrangian_field_strength} we find the Maxwell Lagrangian as reported in many books on classical electrodynamics
 \begin{equation}
 	\mathcal{L}
 	=
+	\frac{1}{2}
+	\left(
+		\vb{E}^2
+		-
+		\vb{B}^2
+	\right)
+	+
+	A_0j^0
 	-
-	\frac{1}{4}
-	F_{\mu\nu}
-	F^{\mu\nu}
-	-
-	j_\mu A^\mu
+	\vb{A}
+	\vdot
+	\vb{j}
 \end{equation}
+where we expanded the Minkowski inner product $A_\mu j^\mu$ in terms of the time and spatial components.
+We identify $j^0$ and $\vb{j}$ as the charge and $\vb{j}$ as the current density as well as $A_0$ as the scalar and $\vb{A}$ as the vector potential of electromagnetism.
 
+\subsection{Covariant and non-covariant Maxwell equations}
+
+The manifest Lorentz-covariant Maxwell equations are~\cite[p.~336]{Srednicki2007}
+\begin{align}
+	\partial_\mu
+	\tilde{F}^{\mu\nu}
+	&=
+	0
+	&
+	\partial_\mu
+	F^{\mu\nu}
+	&=
+	j^\mu
+	\label{eq:covariant_maxwell_equations}
+\end{align}
+where we defined the dual field-strength tensor~\cite[p.~142]{Greiner2013}
+\begin{equation}
+	\tilde{F}^{\mu\nu}
+	=
+	\frac{1}{2}
+	\varepsilon^{\mu\nu\rho\sigma}
+	F_{\rho\sigma}
+	\label{eq:dual_field_strength}
+\end{equation}
+with $\varepsilon^{\mu\nu\rho\sigma}$ being the completely antisymmetric unit tensor.
+The first equation in \cref{eq:covariant_maxwell_equations} summarizes the homogeneous Maxwell equations and can be derived from the Bianchi identity.
+The second equation in \cref{eq:covariant_maxwell_equations} summarizes the inhomogeneous Maxwell equations and follows from the variational calculus of the Maxwell Lagrangian, i.e., represents the Maxwell field's \gls{eom}s.
+Evaluating the non-zero components of the Lorentz tensor equations and inserting the relation of the field-strength to the electromagnetic field, \cref{eq:field_strength_components}, we arrive at the microscopic Maxwell equations
 \begin{align}
 	\div\vb{E}
 	&=
@@ -247,7 +342,9 @@ or in index notation~\cite[p.~336]{Srednicki2007}
 	\vb{j}
 	+
 	\partial_t\vb{E}
+	.
 \end{align}
+We derived Maxwell equations by guessing the Maxwell Lagrangian from fundamental principles and symmetries, whereas historically, Maxwell equations summarized decades of experiments studying the electromagnetic field.
 
 \subsection{Coulomb gauge and plane-wave expansion}
 
