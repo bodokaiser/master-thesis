@@ -347,10 +347,10 @@ Evaluating the non-zero components of the Lorentz tensor equations and inserting
 \end{align}
 We derived Maxwell equations by guessing the Maxwell Lagrangian from fundamental principles and symmetries, whereas historically, Maxwell equations summarized decades of experiments studying the electromagnetic field.
 
-\subsection{Coulomb gauge and plane-wave expansion}
+\subsection{Lorenz, Coulomb and temporal gauge conditions}
 
 As a four-dimensional vector field, we would expect the Maxwell field $A^\mu$ to have four \gls{dof}s, one temporal $A^0$, one longitudinal $A_\parallel$, and two transverse $\vb{A}_\perp$.
-At the same time, freely propagating electromagnetic waves have only two \gls{dof}s, the polarization.\footnote{Alternatively, we can take the particle picture and say that the photon has two helicity $\pm1$.}
+At the same time, freely propagating electromagnetic waves have only two \gls{dof}s, the polarization.\footnote{Alternatively, we can take the particle picture and say that the photon has two helicities, $\pm1$.}
 The zero mass of the photon requires the photon to travel at light speed, restricting the photon's temporal and longitudinal \gls{dof}.
 Local gauge symmetry reflects the non-physicality, more precisely, the mathematical redundancy of two of the four \gls{dof}s.
 To remove the unphysical \gls{dof}s, we impose a gauge condition, i.e., we choose a specific gauge field $\chi$ and perform a local gauge transformation
@@ -375,11 +375,13 @@ For instance, the Lorenz gauge
 has the advantage of being manifestly Lorentz covariant at the cost of having the different \gls{dof}s intertwined to be independent of a particular reference frame.
 The Coulomb gauge
 \begin{equation}
-	\partial_i A^i
+	\partial_i
+	A^i
 	=
 	\div\vb{A}
 	=
 	0
+	\label{eq:coulomb_gauge}
 \end{equation}
 corresponds to selecting a stationary reference frame in which the electromagnetic radiation is purely transverse.
 Imposing the Coulomb gauge only removes one \gls{dof} from the Maxwell field.
@@ -388,18 +390,206 @@ We use the remaining residual gauge freedom to impose the temporal gauge
 	A_0
 	=
 	0
+	\label{eq:temporal_gauge}
 	.
 \end{equation}
-The temporal gauge is valid when there are no static charge distributions.
+The temporal gauge is valid when there is no charge distribution, $j_0=0$.
 Static charge distributions add a Coulomb interaction that does not involve the exchange of physical photons and is not subject to quantization.
 However, static charges add constant energy to the system and a longitudinal component to the electric field.
 In most cases, it is sufficient to discuss the effects of the Coulomb interaction separately from the radiation, justifying the temporal gauge.
 See Ref.~\cite[p.~145,187,200]{Greiner2013} for more detail on the Coulomb interaction and the Maxwell field's longitudinal \gls{dof}.
 
-% Lorentz-invariant measure
+\subsection{Plane-wave expansion in the Coulomb gauge}
 
-% plane-wave expansion
-% energy-momentum relation
+Without external currents and charges, $j^\mu=0$, the dynamics of the Maxwell field are determined by the \gls{eom}, \cref{eq:covariant_inhomogeneous_maxwell_equations},
+\begin{equation}
+	0
+	=
+	\partial_\mu
+	F^{\mu\nu}
+	=
+	\partial_\mu
+	\partial^\mu
+	A^\nu
+	-
+	\partial_\mu
+	\partial_\nu
+	A^\mu
+	.
+\end{equation}
+Imposing the Coulomb and temporal gauge, we find the transverse Maxwell field $\vb{A}_\perp$ to satisfy the relativistic wave equation
+\begin{equation}
+	\partial_t^2
+	\vb{A}_\perp
+	=
+	\laplace
+	\vb{A}_\perp
+	.
+\end{equation}
+From now on, we drop the subscript and assume the Maxwell field to be transverse, i.e., to satisfy the Coulomb gauge condition, \cref{eq:coulomb_gauge}.
+Inserting the plane-wave expansion of the Maxwell field
+\begin{equation}
+	\vb{A}(t,\vb{x})
+	=
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\vb{A}(t,\vb{p})
+	e^{+i\vb{p}\vdot\vb{x}}
+	=
+	\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
+	\vb{A}(p_0,\vb{p})
+	e^{-ip_\mu x^\mu}
+	\label{eq:maxwell_plane_wave_expansion}
+\end{equation}
+into the relativistic wave equation constraints the momenta to satisfy
+\begin{equation}
+	0
+	=
+	p_0^2
+	-
+	\vb{p}^2
+	=
+	\left(
+		p_0
+		-
+		\norm{\vb{p}}
+	\right)
+	\left(
+		p_0
+		+
+		\norm{\vb{p}}
+	\right)
+	\label{eq:mode_eom}
+	.
+\end{equation}
+We define the energy $p_0=\omega(\vb{p})$ to be positive and reproduce the relativistic energy-momentum relation
+\begin{equation}
+	\omega(\vb{p})
+	=
+	\norm{\vb{p}}
+	\label{eq:energy_momentum_relation}
+	.
+\end{equation}
+By constraining the integration domain in the plane-wave expansion, \cref{eq:maxwell_plane_wave_expansion}, to
+\begin{equation*}
+	\Sigma
+	=
+	\left\{
+		\left(p_0,\vb{p}\right)
+		\in
+		\mathbb{R}^4
+		\colon
+		p_0^2
+		=
+		\omega(\vb{p})^2
+	\right\}
+\end{equation*}
+we ensure that the plane-wave expansion to satisfy the \gls{eom}.
+We rewrite the constrained integration domain of the plane-wave expansion using the delta distribution
+\begin{equation}
+	\begin{split}
+		\vb{A}(t,\vb{x})
+		&=
+		\int_\Sigma\frac{\dd[4]{p}}{(2\pi)^4}
+		\vb{A}(p_0,\vb{p})
+		e^{-ip_\mu x^\mu}
+		\\
+		&=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3}
+		\delta^{(1)}
+		\left(
+			p_0^2
+			-
+			\omega(\vb{p})^2
+		\right)
+		\vb{A}(p_0,\vb{p})
+		e^{-ip_\mu x^\mu}
+		,
+	\end{split}
+\end{equation}
+and use the composition property of the delta distribution to decompose the delta distribution into a positive and negative frequency part, i.e.,
+\begin{equation}
+	\delta^{(1)}
+	\left(
+		p_0^2
+		-
+		\omega(\vb{p})^2
+	\right)
+	=
+	\frac{
+		\delta^{(1)}
+		\left(p_0-\omega(\vb{p})\right)
+		+
+		\delta^{(1)}
+		\left(p_0+\omega(\vb{p})\right)
+	}{\sqrt{2\omega(\vb{p})}}
+	.
+\end{equation}
+Inserting the positive and negative frequency delta distribution into the plane-wave decomposition, we then find
+\begin{equation}
+	\begin{split}
+		\vb{A}(t,\vb{x})
+		&=
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\delta^{(1)}
+		\left(
+			p_0
+			-
+			\omega(\vb{p})
+		\right)
+		\vb{A}(p_0,\vb{p})
+		e^{-ip_0t+i\vb{p}\vdot\vb{x}}
+		\\
+		&+
+		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\delta^{(1)}
+		\left(
+			p_0
+			+
+			\omega(\vb{p})
+		\right)
+		\vb{A}(p_0,\vb{p})
+		e^{-ip_0t+i\vb{p}\vdot\vb{x}}
+		\\
+		&=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\vb{A}\left(\omega(\vb{p}),\vb{p}\right)
+		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+		\\
+		&+
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\vb{A}\left(-\omega(\vb{p}),\vb{p}\right)
+		e^{+i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+		\\
+		&=
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\vb{A}\left(\omega(\vb{p}),\vb{p}\right)
+		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+		\\
+		&+
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\vb{A}\left(\omega(\vb{p}),\vb{p}\right)^*
+		e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+	\end{split}
+\end{equation}
+where we evaluated the delta distribution and we used the conjugate symmetry of the Maxwell field in momentum space, $A(-p_0,-\vb{p})=A(p_0,\vb{p})^*$.
+We define the Lorentz-invariant measure
+\begin{equation}
+	\dd{\mu(\vb{p})}
+	=
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+\end{equation}
+and summarize our findings as
+\begin{equation}
+	\vb{A}(t,\vb{x})
+	=
+	\int\dd{\mu(\vb{p})}
+	\vb{A}\left(\omega(\vb{p}),\vb{p}\right)
+	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+	+
+	\text{c.c.}.
+\end{equation}
+
+% polarization basis and properties
 
 \subsection{Canonical quantization in the Coulomb gauge}
 
