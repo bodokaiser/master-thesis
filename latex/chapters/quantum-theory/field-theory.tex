@@ -631,7 +631,7 @@ However, for completeness, we review the standard canonical quantization of the 
 
 \subsection{Canonical quantization in the Coulomb gauge}
 
-In canonical quantization, we work in the Hamiltonian picture, replacing the conjugate variables with operators that satisfy the equal-time commutation relations.
+In canonical quantization, we work in the Hamiltonian picture, promoting the conjugate variables with operators that satisfy the equal-time commutation relations.
 In the canonical quantization of gauge theories, like the Maxwell field, we have the additional technical complication of handling the unphysical \gls{dof}s.
 In the Coulomb gauge, we can take care of the transverse gauge condition by amending the equal-time commutation relations to be transverse, more to that later.
 In the Lorenz gauge, the Gupta-Bleuler method includes the unphysical \gls{dof} in the quantization process but removes them later by constraining the state space, see Ref.~\cite[p.~180]{Greiner2013}.
@@ -797,5 +797,24 @@ Inserting the Maxwell and electric field operators into the equal-time commutati
 	\label{eq:canonical_commutation_relation_zero}
 	.
 \end{align}
-We have successfully derived the quantum mode decompositions of the Maxwell and electric field operators.
-The next section picks up the annihilation and creation operator from a different perspective by constructing the quantum state space.
+The Hamiltonian and momentum operator~\cite[p.~199]{Greiner2013}
+\begin{align}
+	\hat{H}
+	&=
+	\sum_{\lambda=1,2}
+	\int\dd[3]{p}
+	\omega(\vb{p})
+	\hat{a}_\lambda^\dagger(\vb{p})
+	\hat{a}_\lambda(\vb{p})
+	\label{eq:maxwell_hamiltonian_operator}
+	\\
+	\vu{P}
+	&=
+	\sum_{\lambda=1,2}
+	\int\dd[3]{p}
+	\vb{p}
+	\hat{a}_\lambda^\dagger(\vb{p})
+	\hat{a}_\lambda(\vb{p})
+	\label{eq:maxwell_momentum_operator}
+\end{align}
+can be found by inserting the Maxwell operator into their classical definitions from the energy-momentum tensor and applying normal ordering.\footnote{Normal ordering removes infinite terms, e.g., the "vacuum energy", for us.}
