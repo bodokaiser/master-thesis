@@ -304,12 +304,13 @@ The manifest Lorentz-covariant Maxwell equations are~\cite[p.~336]{Srednicki2007
 	\tilde{F}^{\mu\nu}
 	&=
 	0
-	&
+	\label{eq:covariant_homogeneous_maxwell_equations}
+	\\
 	\partial_\mu
 	F^{\mu\nu}
 	&=
 	j^\mu
-	\label{eq:covariant_maxwell_equations}
+	\label{eq:covariant_inhomogeneous_maxwell_equations}
 \end{align}
 where we defined the dual field-strength tensor~\cite[p.~142]{Greiner2013}
 \begin{equation}
@@ -321,8 +322,8 @@ where we defined the dual field-strength tensor~\cite[p.~142]{Greiner2013}
 	\label{eq:dual_field_strength}
 \end{equation}
 with $\varepsilon^{\mu\nu\rho\sigma}$ being the completely antisymmetric unit tensor.
-The first equation in \cref{eq:covariant_maxwell_equations} summarizes the homogeneous Maxwell equations and can be derived from the Bianchi identity.
-The second equation in \cref{eq:covariant_maxwell_equations} summarizes the inhomogeneous Maxwell equations and follows from the variational calculus of the Maxwell Lagrangian, i.e., represents the Maxwell field's \gls{eom}s.
+\Cref{eq:covariant_homogeneous_maxwell_equations} summarizes the homogeneous Maxwell equations and can be derived from the Bianchi identity.
+\Cref{eq:covariant_inhomogeneous_maxwell_equations} summarizes the inhomogeneous Maxwell equations and follows from the variational calculus of the Maxwell Lagrangian, i.e., represents the Maxwell field's \gls{eom}s.
 Evaluating the non-zero components of the Lorentz tensor equations and inserting the relation of the field-strength to the electromagnetic field, \cref{eq:field_strength_components}, we arrive at the microscopic Maxwell equations
 \begin{align}
 	\div\vb{E}
@@ -348,46 +349,59 @@ We derived Maxwell equations by guessing the Maxwell Lagrangian from fundamental
 
 \subsection{Coulomb gauge and plane-wave expansion}
 
-The physical observable of the Maxwell field is the field-strength tensor $F_{\mu\nu}$.
-The field-strength tensor $F_{\mu\nu}$ is invariant under local gauge transformations.
-We perform a local gauge transformation 
-We choose a gauge field $\chi$ satisfying
-\begin{align}
-	\laplace\chi
-	&=
+As a four-dimensional vector field, we would expect the Maxwell field $A^\mu$ to have four \gls{dof}s, one temporal $A^0$, one longitudinal $A_\parallel$, and two transverse $\vb{A}_\perp$.
+At the same time, freely propagating electromagnetic waves have only two \gls{dof}s, the polarization.\footnote{Alternatively, we can take the particle picture and say that the photon has two helicity $\pm1$.}
+The zero mass of the photon requires the photon to travel at light speed, restricting the photon's temporal and longitudinal \gls{dof}.
+Local gauge symmetry reflects the non-physicality, more precisely, the mathematical redundancy of two of the four \gls{dof}s.
+To remove the unphysical \gls{dof}s, we impose a gauge condition, i.e., we choose a specific gauge field $\chi$ and perform a local gauge transformation
+\begin{equation}
+	A_\mu
+	\to
+	A_\mu^\prime
+	=
+	A_\mu
+	+
+	\partial_\mu\chi
+\end{equation}
+to remove some components of the Maxwell field.
+Different gauge conditions exist, see Ref.~\cite[p.~144]{Greiner2013} and Ref.~\cite[p.~339]{Srednicki2007}, and some gauges may be more convenient than others depending on the problem under consideration.
+For instance, the Lorenz gauge
+\begin{equation}
+	\partial_\mu
+	A^\mu
+	=
+	0	
+\end{equation}
+has the advantage of being manifestly Lorentz covariant at the cost of having the different \gls{dof}s intertwined to be independent of a particular reference frame.
+The Coulomb gauge
+\begin{equation}
 	\partial_i A^i
 	=
-	-
 	\div\vb{A}
-	&
-	\partial_t
-	\chi
-	&=
-	-
-	A_0
-\end{align}
-and perform a gauge transformation.
-After the gauge transformation, the Maxwell field satisfies
-\begin{align}
-	\div\vb{A}
-	&=
+	=
 	0
-	&
+\end{equation}
+corresponds to selecting a stationary reference frame in which the electromagnetic radiation is purely transverse.
+Imposing the Coulomb gauge only removes one \gls{dof} from the Maxwell field.
+We use the remaining residual gauge freedom to impose the temporal gauge
+\begin{equation}
 	A_0
-	&=0
-\end{align}
-corresponding to the Coulomb and temporal gauge condition~\cite[p.~144]{Greiner2013},
-The temporal gauge condition $A_0=0$ implicitly assumes that there are no free charges.
-
-% Relation between Coulomb and temporal gauge and transverse and longitudinal components
-% Coulomb interaction energy and A_0 component
+	=
+	0
+	.
+\end{equation}
+The temporal gauge is valid when there are no static charge distributions.
+Static charge distributions add a Coulomb interaction that does not involve the exchange of physical photons and is not subject to quantization.
+However, static charges add constant energy to the system and a longitudinal component to the electric field.
+In most cases, it is sufficient to discuss the effects of the Coulomb interaction separately from the radiation, justifying the temporal gauge.
+See Ref.~\cite[p.~145,187,200]{Greiner2013} for more detail on the Coulomb interaction and the Maxwell field's longitudinal \gls{dof}.
 
 % Lorentz-invariant measure
 
 % plane-wave expansion
 % energy-momentum relation
 
-\subsection{Canonical quantization and quantum operators}
+\subsection{Canonical quantization in the Coulomb gauge}
 
 The canonical energy-momentum tensor~\cite[p.~174]{Greiner2013}
 \begin{equation}
