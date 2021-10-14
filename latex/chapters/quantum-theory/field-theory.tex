@@ -401,33 +401,19 @@ See Ref.~\cite[p.~145,187,200]{Greiner2013} for more detail on the Coulomb inter
 
 \subsection{Plane-wave expansion in the Coulomb gauge}
 
-Without external currents and charges, $j^\mu=0$, the dynamics of the Maxwell field are determined by the \gls{eom}, \cref{eq:covariant_inhomogeneous_maxwell_equations},
-\begin{equation}
-	0
-	=
-	\partial_\mu
-	F^{\mu\nu}
-	=
-	\partial_\mu
-	\partial^\mu
-	A^\nu
-	-
-	\partial_\mu
-	\partial_\nu
-	A^\mu
-	.
-\end{equation}
-Imposing the Coulomb and temporal gauge, we find the transverse Maxwell field $\vb{A}_\perp$ to satisfy the relativistic wave equation
+The next step is to find a general solution to the free \gls{eom}, \cref{eq:covariant_inhomogeneous_maxwell_equations},
+which in the Coulomb and temporal gauge reduces to the relativistic wave equation
 \begin{equation}
 	\partial_t^2
 	\vb{A}_\perp
 	=
 	\laplace
 	\vb{A}_\perp
-	.
+	\label{eq:maxwell_eom}
 \end{equation}
+wherein $\vb{A}_\perp$ denotes the transverse Maxwell field.
 From now on, we drop the subscript and assume the Maxwell field to be transverse, i.e., to satisfy the Coulomb gauge condition, \cref{eq:coulomb_gauge}.
-Inserting the plane-wave expansion of the Maxwell field
+The existence of the Maxwell action requires the Maxwell field to be square-integrable which implies the existence of the Fourier expansion
 \begin{equation}
 	\vb{A}(t,\vb{x})
 	=
@@ -437,10 +423,11 @@ Inserting the plane-wave expansion of the Maxwell field
 	=
 	\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
 	\vb{A}(p_0,\vb{p})
-	e^{-ip_\mu x^\mu}
-	\label{eq:maxwell_plane_wave_expansion}
+	e^{-ip_0t+i\vb{p}\vdot\vb{x}}
+	\label{eq:maxwell_fourier_expansion}
 \end{equation}
-into the relativistic wave equation constraints the momenta to satisfy
+with $\vb{A}(p_0,\vb{p})$ being the complex-valued Fourier vector amplitudes.
+Inserting the Maxwell field's Fourier expansion, \cref{eq:maxwell_fourier_expansion}, into the relativistic wave equation, \cref{eq:maxwell_eom}, reduces the \gls{eom} in momentum space to
 \begin{equation}
 	0
 	=
@@ -458,18 +445,21 @@ into the relativistic wave equation constraints the momenta to satisfy
 		+
 		\norm{\vb{p}}
 	\right)
-	\label{eq:mode_eom}
+	\label{eq:maxwell_eom_momentum}
 	.
 \end{equation}
-We define the energy $p_0=\omega(\vb{p})$ to be positive and reproduce the relativistic energy-momentum relation
+Requiring the energy to be positive, $p_0>0$, we arrive at the relativistic energy-momentum relation
 \begin{equation}
+	p_0
+	=
 	\omega(\vb{p})
 	=
 	\norm{\vb{p}}
 	\label{eq:energy_momentum_relation}
-	.
 \end{equation}
-By constraining the integration domain in the plane-wave expansion, \cref{eq:maxwell_plane_wave_expansion}, to
+for massless particles.
+Fourier amplitudes satisfying the relativistic-energy momentum relation are plane-wave solutions to the Maxwell field's free \gls{eom}.
+We define the plane-wave expansion as the Fourier expansion, \cref{eq:maxwell_fourier_expansion}, where we constrain the integration domain to
 \begin{equation*}
 	\Sigma
 	=
@@ -482,9 +472,10 @@ By constraining the integration domain in the plane-wave expansion, \cref{eq:max
 		=
 		\omega(\vb{p})^2
 	\right\}
+	.
 \end{equation*}
-we ensure that the plane-wave expansion to satisfy the \gls{eom}.
-We rewrite the constrained integration domain of the plane-wave expansion using the delta distribution
+Each plane-wave is a solution to the free \gls{eom} and the plane-wave expansion denotes a general solution.
+We can extend the integration domain of the plane-wave expansion back to the $\mathbb{R}^4$ by having the delta distribution ensure the relativistic energy-momentum relation
 \begin{equation}
 	\begin{split}
 		\vb{A}(t,\vb{x})
@@ -503,10 +494,10 @@ We rewrite the constrained integration domain of the plane-wave expansion using 
 		\right)
 		\vb{A}(p_0,\vb{p})
 		e^{-ip_\mu x^\mu}
-		,
+		.
 	\end{split}
 \end{equation}
-and use the composition property of the delta distribution to decompose the delta distribution into a positive and negative frequency part, i.e.,
+Exploiting the composition property of the delta distribution,
 \begin{equation}
 	\delta^{(1)}
 	\left(
@@ -522,9 +513,9 @@ and use the composition property of the delta distribution to decompose the delt
 		\delta^{(1)}
 		\left(p_0+\omega(\vb{p})\right)
 	}{\sqrt{2\omega(\vb{p})}}
-	.
+	,
 \end{equation}
-Inserting the positive and negative frequency delta distribution into the plane-wave decomposition, we then find
+we further decompose the plane-wave expansion into a positive and negative frequency part
 \begin{equation}
 	\begin{split}
 		\vb{A}(t,\vb{x})
@@ -569,29 +560,83 @@ Inserting the positive and negative frequency delta distribution into the plane-
 		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\vb{A}\left(\omega(\vb{p}),\vb{p}\right)^*
 		e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+		.
 	\end{split}
+	\label{eq:maxwell_plane_wave_expansion}
 \end{equation}
-where we evaluated the delta distribution and we used the conjugate symmetry of the Maxwell field in momentum space, $A(-p_0,-\vb{p})=A(p_0,\vb{p})^*$.
-We define the Lorentz-invariant measure
+To arrive at \cref{eq:maxwell_plane_wave_expansion}, we evaluated the delta distributions, performed the variable substitution $\vb{p}\to-\vb{p}$ in the second term and used the conjugate symmetry of the Maxwell field in momentum space, $A(-p_0,-\vb{p})=A(p_0,\vb{p})^*$.
+The Maxwell field being transverse implies the momentum vector $\vb{p}$ being orthogonal to the Fourier amplitude,
+\begin{equation}
+	\vb{p}
+	\vdot
+	\vb{A}\left(\omega(\vb{p}),\vb{p}\right)
+	=
+	0
+	.
+\end{equation}
+We construct a orthonormal basis $\left\{\vu{e}_\lambda\right\}_{\lambda=1,2}$ for each momentum vector $\vb{p}$, the polarization basis to momentum $\vb{p}$, which is orthogonal to the momentum $\vb{p}$ and complete~\cite[p.~341]{Srednicki2007}, i.e.,
+\begin{align}
+	\vb{p}
+	\vdot
+	\vu{e}_\lambda(\vb{p})
+	&=
+	0
+	\\
+	\vu{e}_\lambda(\vb{p})
+	\vdot
+	\vu{e}_{\lambda^\prime}(\vb{p})
+	&=
+	\delta_{\lambda,\lambda^\prime}
+	\\
+	\sum_{\lambda=1,2}
+	\vu{e}_\lambda(\vb{p})^i
+	\vu{e}_\lambda(\vb{p})^j
+	&=
+	\delta^{ij}
+	-
+	\frac{p^ip^j}{\vb{p}^2}
+	.
+\end{align}
+Writing the Fourier vector amplitude in terms of the polarization basis
+\begin{equation}
+	\vb{A}\left(\omega(\vb{p}),\vb{p}\right)
+	=
+	\sum_{\lambda=1,2}
+	a_\lambda(\vb{p})
+	\vu{e}_\lambda(\vb{p})
+\end{equation}
+and inserting it back into the plane-wave expansion, \cref{eq:maxwell_plane_wave_expansion}, we arrive at our final result
+\begin{equation}
+	\vb{A}(t,\vb{x})
+	=
+	\sum_{\lambda=1,2}
+	\int\dd{\mu(\vb{p})}
+	a_\lambda(\vb{p})
+	\vu{e}_\lambda(\vb{p})
+	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+	+
+	\text{c.c.}
+	\label{eq:maxwell_expansion}
+\end{equation}
+where we defined the Lorentz-invariant measure
 \begin{equation}
 	\dd{\mu(\vb{p})}
 	=
 	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	.
 \end{equation}
-and summarize our findings as
-\begin{equation}
-	\vb{A}(t,\vb{x})
-	=
-	\int\dd{\mu(\vb{p})}
-	\vb{A}\left(\omega(\vb{p}),\vb{p}\right)
-	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
-	+
-	\text{c.c.}.
-\end{equation}
+\Cref{eq:maxwell_expansion} 
 
-% polarization basis and properties
+% discussion of result (classical, outlook to quantization, Fourier amplitudes correspond to modes - cite paper, ...)
+
+% we can already "guess" the quantization when thinking about the "classical limit" of a coherent state
+
 
 \subsection{Canonical quantization in the Coulomb gauge}
+
+% this makes more sense to discuss in the quantum setting when we introduced the annihilation operator
+In the literature, we find different conventions concerning the integration measure, the sign of the complex exponentials, and the complex conjugation of the of polarization basis vectors in the plane-wave expansion, \cref{eq:maxwell_plane_wave_expansion}.
+For example, Refs.~\cite{Peskin1995,Greiner2013} use $a_\lambda(\vb{p})e^{-i\omega(\vb{p})t}$ while Refs.~\cite{Srednicki2007,Weinberg1995} use $a_\lambda(\vb{p})e^{+i\omega(\vb{p})t}$.
 
 The canonical energy-momentum tensor~\cite[p.~174]{Greiner2013}
 \begin{equation}
