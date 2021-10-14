@@ -14,7 +14,7 @@ Why we start with Lagrangian mechanics?
 % TODO: Check Greiner p. 149 for additional motivation on how to find the Maxwell Lagrangian
 
 From a theoretical physics viewpoint, Maxwell theory is a relativistic vector field theory with local gauge symmetry.
-That alone is sufficient to "guess" the Maxwell Lagrangian from first principles.
+That alone is sufficient to "guess" the Maxwell Lagrangian from first principles~\cite[p.~149]{Greiner2013}.
 Having established the Maxwell Lagrangian, we can fully infer the physics of electromagnetism inside the field theoretical framework.
 
 As a relativistic vector field, we expect the Maxwell field $A^\mu$ to have four components, one time and three spatial components, and to transform as a Lorentz vector~\cite[p.~37]{Peskin1995}
@@ -625,144 +625,83 @@ where we defined the Lorentz-invariant measure
 	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	.
 \end{equation}
-\Cref{eq:maxwell_expansion} 
-
-% discussion of result (classical, outlook to quantization, Fourier amplitudes correspond to modes - cite paper, ...)
-
-% we can already "guess" the quantization when thinking about the "classical limit" of a coherent state
-
+The plane-wave expansion, \cref{eq:maxwell_expansion}, looks extremely similar to the quantum mode expansion of the Maxwell field but relies only on classical arguments.\footnote{The similarity is not surprising if we consider $A(t,\vb{x})$ as the expectation value of the Maxwell field operator given a coherent state, $\bra{\alpha}\vu{A}(t,\vb{x})\ket{\alpha}$.}
+In principle, we could stop here, replace the Fourier modes with the annihilation operator satisfying the canonical commutation relation, and we have quantized our field.\footnote{The equivalence of Fourier and quantum modes has been experimentally established, see Ref.~\cite{Hulet1985}.}
+However, for completeness, we review the standard canonical quantization of the Maxwell field in the next section.
 
 \subsection{Canonical quantization in the Coulomb gauge}
 
-% this makes more sense to discuss in the quantum setting when we introduced the annihilation operator
-In the literature, we find different conventions concerning the integration measure, the sign of the complex exponentials, and the complex conjugation of the of polarization basis vectors in the plane-wave expansion, \cref{eq:maxwell_plane_wave_expansion}.
-For example, Refs.~\cite{Peskin1995,Greiner2013} use $a_\lambda(\vb{p})e^{-i\omega(\vb{p})t}$ while Refs.~\cite{Srednicki2007,Weinberg1995} use $a_\lambda(\vb{p})e^{+i\omega(\vb{p})t}$.
+In canonical quantization, we work in the Hamiltonian picture, replacing the conjugate variables with operators that satisfy the equal-time commutation relations.
+In the canonical quantization of gauge theories, like the Maxwell field, we have the additional technical complication of handling the unphysical \gls{dof}s.
+In the Coulomb gauge, we can take care of the transverse gauge condition by amending the equal-time commutation relations to be transverse, more to that later.
+In the Lorenz gauge, the Gupta-Bleuler method includes the unphysical \gls{dof} in the quantization process but removes them later by constraining the state space, see Ref.~\cite[p.~180]{Greiner2013}.
 
-The canonical energy-momentum tensor~\cite[p.~174]{Greiner2013}
+Before performing the canonical quantization, we need to find the conjugate field variables and Hamiltonian (density).
+The conjugate momentum to the Maxwell field $A_i$ is~\cite[p.~342]{Srednicki2007}
 \begin{equation}
-	\begin{split}
-		T^{\mu\nu}
-		&=
-		\pdv{\mathcal{L}}{(\partial_\mu A_\sigma)}
-		\partial^\nu A_\sigma
-		-
-		g^{\mu\nu}\mathcal{L}
-		\\
-		&=
-		-
-		\left(
-			\partial^\mu
-			A^\sigma
-		\right)
-		\left(
-			\partial^\nu
-			A_\sigma
-		\right)
-		+
-		\frac{1}{2}
-		g^{\mu\nu}
-		\left(
-			\partial^\rho
-			A^\sigma
-		\right)
-		\left(
-			\partial_\rho
-			A_\sigma
-		\right)
-	\end{split}
-\end{equation}
-
-The energy density is the time-time component of the energy-momentum tensor
-\begin{equation}
-	\begin{split}
-		T^{00}
-		&=
-		-
-		\left(
-			\partial^0
-			A^\sigma
-		\right)
-		\left(
-			\partial^0
-			A_\sigma
-		\right)
-		+
-		\frac{1}{2}
-		g^{00}
-		\left(
-			\partial^\rho
-			A^\sigma
-		\right)
-		\left(
-			\partial_\rho
-			A_\sigma
-		\right)
-		\\
-		&=
-		-
-		\left(
-			\partial^0
-			A^j
-		\right)
-		\left(
-			\partial^0
-			A_j
-		\right)
-		+
-		\frac{1}{2}
-		\left(
-			\partial^0
-			A^j
-		\right)
-		\left(
-			\partial_0
-			A_j
-		\right)
-		+
-		\frac{1}{2}
-		\left(
-			\partial^i
-			A^j
-		\right)
-		\left(
-			\partial_i
-			A_j
-		\right)
-		\\
-		&=
-		-
-		\frac{1}{2}
-		\left(
-			\partial_t
-			A^j
-		\right)
-		\left(
-			\partial_t
-			A_j
-		\right)
-		+
-	\end{split}
-\end{equation}
-
-% normal order to remove (infinite) vacuum energy
-\begin{equation}
-	H
+	\Pi_i
 	=
-\end{equation}
-
-\begin{equation}
-	P_j
+	\pdv{\mathcal{L}}{(\partial_t A_i)}
 	=
-\end{equation}
-
-We define the transverse delta distribution as the transverse projection of the three-dimensional delta distribution
-\begin{equation}
-	\delta_{\perp,ij}^{(3)}
-	\left(\vb{x}\right)
+	-
+	\partial_t A^i
 	=
-	P_{\perp,ij}
-	\delta^{(3)}
-	\left(\vb{x}\right)
+	\partial_t A_i
+	\label{eq:maxwell_conjugate_momentum}
+\end{equation}
+where the sign change occurs due to the spatial components of the Minkowski metric when lowering a spatial index, $A^i=g^{ij}A_j=-\delta^{ij}A_j=-A_j$.
+In the Coulomb gauge, the electric field components are equal to the negative conjugate momentum components, i.e.,
+\begin{equation}
+	E^i
+	=
+	F^{0i}
+	=
+	\partial_t A^i
+	=
+	-
+	\Pi^i
+\end{equation}
+where we used \cref{eq:field_strength_components} and the temporal gauge.
+In the following, we replace the conjugate momentum with the electric field components, $\Pi^i=-E^i$.
+The Hamiltonian density of the Maxwell field is equal to
+\begin{equation}
+	\mathcal{H}
+	=
+	\frac{1}{2}
+	E_i E^i
+	+
+	\frac{1}{2}
+	\partial_i A_j
+	\partial^j A^i
+	\label{eq:maxwell_hamiltonian}
+\end{equation}
+and can be found by Legendre transform of the Lagrangian density~\cite[p.~342]{Srednicki2007} or using the energy density component from the energy-momentum tensor~\cite[p.~148]{Greiner2013}.
+
+We now perform the canonical quantization by replacing the dynamical field variables $A_i,-E_i$ with the field operators $\hat{A}_i,-\hat{E}_i$ satisfying the equal-time commutation relations~\cite[p.~197]{Greiner2013}
+\begin{align}
+	\comm{\hat{A}_i(t,\vb{x})}{\hat{E}_j(t,\vb{y})}
+	&=
+	-i
+	\delta^{(3)}_{\perp ij}(\vb{x}-\vb{y})
+	\label{eq:equal_time_commutation_relation_nonzero}
+	\\
+	\comm{\hat{A}_i(t,\vb{x})}{\hat{A}_j(t,\vb{y})}
+	&=
+	\comm{\hat{E}_i(t,\vb{x})}{\hat{E}_j(t,\vb{y})}
+	=
+	0
+	\label{eq:equal_time_commutation_relation_zero}
+\end{align}
+where we adapted the transverse delta distribution~\cite[p.~198]{Greiner2013}
+\begin{equation}
+	\delta^{(3)}_{\perp ij}(\vb{x})
+	=
+	\left(
+		\delta_{ij}
+		-
+		\frac{\partial_i\partial_j}{\partial^2}
+	\right)
+	\delta^{(3)}(\vb{x})
 	=
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\left(
@@ -771,31 +710,19 @@ We define the transverse delta distribution as the transverse projection of the 
 		\frac{p_ip_j}{\vb{p}^2}
 	\right)
 	e^{i\vb{p}\vdot\vb{x}}
+	\label{eq:transverse_delta_distribution}
 \end{equation}
+which implements the Coulomb gauge on the operator level.
 
-\begin{align}
-	\comm{\hat{A}_i(t,\vb{x})}{\hat{E}_j(t,\vb{y})}
-	&=
-	-i
-	\delta_{\perp,ij}^{(3)}
-	\left(\vb{x}-\vb{y}\right)
-	\\
-	\comm{\hat{A}_i(t,\vb{x})}{\hat{A}_j(t,\vb{y})}
-	&=
-	0
-	=
-	\comm{\hat{E}_i(t,\vb{x})}{\hat{E}_j(t,\vb{y})}
-\end{align}
-where the negative sign for the non-vanishing commutator arises from the relation between the canonical momentum density and the electric field, $\hat\pi_i=-\hat{E}_i$ (?).
-
-In the Coulomb gauge, the Maxwell field operator is
+Replacing the Fourier amplitudes, $a_\lambda(\vb{p})$ and $a_\lambda(\vb{p})^*$ in the plane-wave expansion of the Maxwell field with the annihilation operators $\hat{a}_\lambda(\vb{p})$ and the creation operator $\hat{a}_\lambda^\dagger(\vb{p})$, we find the Maxwell field operator to be
 \begin{equation}
 	\vu{A}(t,\vb{x})
 	=
-	\vu{A}^{(+)}(t,\vb{x})
-	+
 	\vu{A}^{(-)}(t,\vb{x})
+	+
+	\vu{A}^{(+)}(t,\vb{x})
 \end{equation}
+where we defined the positive and negative frequency parts to be
 \begin{align}
 	\vu{A}^{(-)}(t,\vb{x})
 	&=
@@ -804,6 +731,7 @@ In the Coulomb gauge, the Maxwell field operator is
 	\hat{a}_\lambda(\vb{p})
 	\vu{e}_\lambda(\vb{p})
 	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+	\label{eq:maxwell_negative_operator}
 	\\
 	\vu{A}^{(+)}(t,\vb{x})
 	&=
@@ -812,47 +740,62 @@ In the Coulomb gauge, the Maxwell field operator is
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\vu{e}_\lambda(\vb{p})^*
 	e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+	=
+	\vu{A}^{(-)}(t,\vb{x})^\dagger
+	\label{eq:maxwell_positive_operator}
+	.
 \end{align}
-Disagreement between ~\cite[p.~341]{Srednicki2007}, ~\cite[p.~198]{Greiner2013}, and \cite[p.~123]{Peskin1995}
-
-\subsection{Quantum observable operators}
-
-\begin{equation}
-	\hat{H}
-	=
-\end{equation}
-\begin{equation}
-	\hat{P}
-	=
-\end{equation}
-
-The electric field operator is given by
+In the literature, we find different conventions concerning the integration measure, the sign of the complex exponentials, and the complex conjugation of the of polarization basis vectors in \cref{eq:maxwell_positive_operator,eq:maxwell_negative_operator} originating from different conventions for the Fourier transform.
+For example, Refs.~\cite{Peskin1995,Greiner2013} use $\hat{a}_\lambda(\vb{p})e^{-i\omega(\vb{p})t}$ while Refs.~\cite{Srednicki2007,Weinberg1995} use $\hat{a}_\lambda(\vb{p})e^{+i\omega(\vb{p})t}$.
+Analog to the Maxwell field operator, we decompose the electric field operator into a positive and negative frequency part
 \begin{equation}
 	\vu{E}(t,\vb{x})
 	=
-	\vu{E}^{(+)}(t,\vb{x})
-	+
 	\vu{E}^{(-)}(t,\vb{x})
-	.
+	+
+	\vu{E}^{(+)}(t,\vb{x})
 \end{equation}
+where we find the electric field operator components via $\hat{E}^i=\partial_t\hat{A}^i$ leading to
 \begin{align}
 	\vu{E}^{(-)}(t,\vb{x})
 	&=
 	-i
 	\sum_{\lambda=1,2}
 	\int\dd{\mu(\vb{p})}
-	\omega(\vb{p})
 	\hat{a}_\lambda(\vb{p})
 	\vu{e}_\lambda(\vb{p})
 	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+	\label{eq:electric_negative_operator}
 	\\
 	\vu{E}^{(+)}(t,\vb{x})
 	&=
 	+i
 	\sum_{\lambda=1,2}
 	\int\dd{\mu(\vb{p})}
-	\omega(\vb{p})
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\vu{e}_\lambda(\vb{p})^*
 	e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+	=
+	\vu{E}^{(-)}(t,\vb{x})^\dagger
+	\label{eq:electric_positive_operator}
+	.
 \end{align}
+Inserting the Maxwell and electric field operators into the equal-time commutation relation, we derive the canonical commutation relations
+\begin{align}
+	\comm{\hat{a}_\lambda(\vb{p})}{\hat{a}_{\lambda^\prime}^\dagger(\vb{q})}
+	&=
+	(2\pi)^3
+	\delta_{\lambda\lambda^\prime}
+	\delta^{(3)}\left(\vb{p}-\vb{q}\right)
+	\label{eq:canonical_commutation_relation_nonzero}
+	\\
+	\comm{\hat{a}_\lambda(\vb{p})}{\hat{a}_{\lambda^\prime}(\vb{q})}
+	&=
+	\comm{\hat{a}_\lambda^\dagger(\vb{p})}{\hat{a}_{\lambda^\prime}^\dagger(\vb{q})}
+	=
+	0
+	\label{eq:canonical_commutation_relation_zero}
+	.
+\end{align}
+We have successfully derived the quantum mode decompositions of the Maxwell and electric field operators.
+The next section picks up the annihilation and creation operator from a different perspective by constructing the quantum state space.
