@@ -1,21 +1,145 @@
 \section{State space construction}
 
-\subsection{Vacuum and momentum eigenstates}
+% explain that we neglect polarization in the following (Klein-Gordon approximation)
+% 
+We attempt a similar construction as in Ref.~\cite[p.~506]{Cohen2019} was done for the quantum harmonic oscillator.
 
-We define the vacuum state $\ket{0}$ as the unique eigenstate of the Hamiltonian and momentum operator with eigenvalue zero, i.e.,
+\subsection{Vacuum state}
+
+We assume the existence of a unique (up to a constant phase factor) vacuum state $\ket{0}$ which is invariant under a unitary Poincaré transformation~\cite[p.~97]{Streater2016}
+\begin{equation}
+	\hat{U}(a,\Lambda)
+	\ket{0}
+	=
+	\ket{0}
+	\label{eq:vacuum_invariance}
+\end{equation}
+where $\Lambda$ denotes a Lorentz transformation and $a$ a spacetime translation.
+The vacuum state is an element of the one-dimensional complex Hilbert space $\mathcal{H}^{(0)}=\mathcal{H}(\mathbb{C})$, the zero-particle state space.
+The generator of the unitary spacetime translation is the four-momentum~\cite[p.~28]{Haag2012}
+\begin{equation}
+	\hat{U}(a)
+	=
+	\hat{U}(a,\mathbb{1})
+	=
+	e^{iP_\mu a^\mu}
+	\label{eq:spacetime_translation}
+	.
+\end{equation}
+The invariance of the vacuum, \cref{eq:vacuum_invariance}, implies for spacetime translations, \cref{eq:spacetime_translation}, that the vacuum is an eigenstate of the Hamilton and momentum operator to eigenvalue zero, i.e.,
 \begin{align}
 	\hat{H}
 	\ket{0}
 	&=
 	0
-	&
+	\label{eq:vacuum_energy}
+	\\
 	\vu{P}
 	\ket{0}
 	&=
+	\vb{0}
+	\label{eq:vacuum_momentum}
+	.	
+\end{align}
+Inserting the Hamilton operator, \cref{eq:maxwell_hamilton_operator}, into \cref{eq:vacuum_energy}, implies the vacuum state being a zero eigenstate of the annihilation operator
+\begin{equation}
+	\hat{a}(\vb{p})
+	\ket{0}
+	=
 	0
+	\label{eq:vacuum_annihilation}
+	.
+\end{equation}
+The annihilation operator "destroying" the vacuum state is an important for the vacuum state to be the lowest energy state and have no negative energies or particle numbers.
+
+\subsection{Particle states}
+
+The commutators of the annihilation and creation operator with the Hamilton operator, \cref{eq:maxwell_hamilton_operator}, are
+\begin{align}
+	\comm{\hat{H}}{\hat{a}^\dagger(\vb{p})}
+	&=
+	+
+	\omega(\vb{p})
+	\hat{a}^\dagger(\vb{p})
+	\\
+	\comm{\hat{H}}{\hat{a}(\vb{p})}
+	&=
+	-
+	\omega(\vb{p})
+	\hat{a}(\vb{p})
 	.
 \end{align}
+Applying the commutators to the left of the vacuum state and using the energy eigenvalue, \cref{eq:vacuum_energy}, we find the eigenvalue equation
+\begin{equation}
+	\hat{H}
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+	=
+	\omega(\vb{p})
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+	\label{eq:creation_energy_eigenstate}
+	,
+\end{equation}
+i.e., $\hat{a}^\dagger(\vb{p})\ket{0}$ is an eigenstate to the Hamilton operator $\hat{H}$ with eigenvalue $\omega(\vb{p})$ which suggests
+\begin{equation}
+	\ket{\vb{p}}
+	\propto
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+	\label{eq:momentum_state}
+\end{equation}
+to be a momentum state with momentum $\vb{p}$ and energy $\omega(\vb{p})$.
+A particular problem of the momentum state is that it is not normalizable which is not surprising considering the fact the momentum state corresponds to an ideal plane-wave mode.
+From a mathematical perspective, the annihilation and creation operators are not functions but distributions acting on some square-integrable smearing function $f$, i.e.,
+\begin{equation}
+	\ket{1_f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	f(\vb{p})
+	\ket{\vb{p}}
+	\label{eq:single_particle_state}
+\end{equation}
+is a mathematical well-defined physical single-particle state if the spectrum is normalized
+\begin{equation}
+	\braket{1_f}{1_f}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\abs*{f(\vb{p})}^2
+	=
+	1
+	.
+\end{equation}
+The mathematical smearing function encodes the physical spectral properties of the wave packet.
+See, for instance, Ref.~\cite{Naumov2013} and Ref.~\cite{Naumov2009}, for a discussion of the wave packet properties like center-of-mass position, group velocity and dispersion.
 
-\subsection{Annihilation and creation operators}
+\subsection{Symmetric Fock space}
 
-\subsection{Number states}
+The single-particle state defined in \cref{eq:single_particle_state} is an element of the one-particle Hilbert space of square-integrable functions defined on three-dimensional space $\mathcal{H}^{(1)}=\mathcal{H}\left(L^2(\mathbb{R}^3)\right)$.
+The generalization of the one-particle Hilbert space $\mathcal{H}^{(1)}$ to an $n$-particle Hilbert space $\mathcal{H}^{(n)}$ is the tensor product of one-particle Hilbert spaces
+\begin{equation}
+	\mathcal{H}^{(n)}
+	=
+	\bigotimes^n_{i=1}
+	\mathcal{H}^{(1)}
+	.
+\end{equation}
+Now, it is possible to have a superposition of, e.g., the vacuum state and a particle state
+\begin{equation}
+	\ket{\psi}
+	=
+	c_1
+	\ket{0}
+	+
+	c_2
+	\ket{1_f}
+\end{equation}
+with $c_1,c_2\in\mathbb{C}$ which means that we need to combine orthonormal $n$-particle states.
+We first construct a tensor algebra over the Hilbert space $\mathcal{H}^{(1)}$ as the direct sum~\cite[p.~290]{Bogolubov1989}
+\begin{equation}
+	\bigoplus^\infty_{n=0}
+	S_+
+	\mathcal{H}^{(n)}
+\end{equation}
+wherein $S_+$ symmetrizes the Hilbert space for bosons.
+Equipping the tensor algebra with an inner product and using the completeness of the $n$-particle Hilbert spaces, we obtain again a Hilbert space, named the symmetric Fock space $\mathcal{F}_+$~\cite[p.~35]{Haag2012}.

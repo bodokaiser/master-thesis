@@ -1,4 +1,4 @@
-\section{Canonical quantization of Maxwell field}
+\section{Maxwell field theory}
 
 What do we do here?
 - Section structure
@@ -117,7 +117,7 @@ If we accept the Dirac Lagrangian, describing charged fermions, then Noether's t
 However, the Dirac Lagrangian itself cannot be made gauge-invariant without coupling to a gauge-invariant vector field, which turns out to be the Maxwell field.
 The complete gauge-invariant Lagrangian describing charged fermions coupled to the Maxwell field lays down the foundation of \gls{qed}.
 
-\subsection{Lorentz force law, field-strength tensor and electromagnetic fields}
+\subsection{Lorentz force law, field-strength tensor and electromagnetic field components}
 
 We have introduced the Maxwell field as the fundamental mediator of the electromagnetic force.
 However, so far, it is unclear how the electromagnetic field components relate to the Maxwell field.
@@ -383,7 +383,7 @@ The Coulomb gauge
 	0
 	\label{eq:coulomb_gauge}
 \end{equation}
-corresponds to selecting a stationary reference frame in which the electromagnetic radiation is purely transverse.
+corresponds to selecting a stationary reference frame in which the electromagnetic radiation is purely transverse~\cite[p.~40]{Bogoliubov1982}.
 Imposing the Coulomb gauge only removes one \gls{dof} from the Maxwell field.
 We use the remaining residual gauge freedom to impose the temporal gauge
 \begin{equation}
@@ -797,24 +797,53 @@ Inserting the Maxwell and electric field operators into the equal-time commutati
 	\label{eq:canonical_commutation_relation_zero}
 	.
 \end{align}
-The Hamiltonian and momentum operator~\cite[p.~199]{Greiner2013}
+The Maxwell field's Hamilton and momentum operator are~\cite[p.~199]{Greiner2013}
 \begin{align}
 	\hat{H}
 	&=
 	\sum_{\lambda=1,2}
-	\int\dd[3]{p}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\omega(\vb{p})
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
-	\label{eq:maxwell_hamiltonian_operator}
+	\label{eq:maxwell_hamilton_operator}
 	\\
 	\vu{P}
 	&=
 	\sum_{\lambda=1,2}
-	\int\dd[3]{p}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\vb{p}
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
 	\label{eq:maxwell_momentum_operator}
 \end{align}
-can be found by inserting the Maxwell operator into their classical definitions from the energy-momentum tensor and applying normal ordering.\footnote{Normal ordering removes infinite terms, e.g., the "vacuum energy", for us.}
+and can be found by inserting the Maxwell field operator into the classical definitions of energy and momentum and performing normal ordering.\footnote{Normal ordering removes infinite terms like the "vacuum energy".}
+Reading the combination of annihilation and creation operator as particle number density
+\begin{equation}
+	\hat{a}_\lambda^\dagger(\vb{p})
+	\hat{a}_\lambda(\vb{p})
+	\label{eq:maxwell_number_density}
+	,
+\end{equation}
+the energy and momentum operators then read as the total energy $\omega(\vb{p})$ and momentum $\vb{p}$ weighted by the number density.
+\Cref{eq:maxwell_number_density} suggests the total particle number operator to be
+\begin{equation}
+	\hat{N}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\hat{a}_\lambda^\dagger(\vb{p})
+	\hat{a}_\lambda(\vb{p})
+	.
+\end{equation}
+Unsurprisingly, are total particle number and total momentum conserved quantities
+\begin{align}
+	\comm{\hat{H}}{\vu{P}}
+	&=
+	\vb{0}
+	&
+	\comm{\hat{H}}{\vu{N}}
+	&=
+	0
+	.
+\end{align}
+In the next section, we provide a more rigorous discussion of the particle aspects.
