@@ -1,50 +1,79 @@
 \section{Coherent states}
 
+\subsection{Radiation from classical current}
 
-
-The Schrödinger-picture Hamiltonian describing the interaction of the Maxwell field $\vu{A}$ with a classical current $\vb{j}$ is
+The interaction of a classical current $\vb{j}(t,\vb{x})$ with the Maxwell field operator in the Coulomb gauge $\vu{A}(t,\vb{x})$ is given by the interaction Hamiltonian
 \begin{equation}
 	\hat{H}_\text{int}(t)
 	=
 	-
-	\int_{\mathbb{R}^3}\dd[3]{x}
+	\int\dd[3]{x}
 	\vb{j}(t,\vb{x})
 	\vdot
 	\hat{\vb{A}}(t,\vb{x})
 	.
 \end{equation}
-Taking the spatial Fourier transform of the current
-\begin{equation}
-	\vb{j}(t,\vb{x})
-	=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{q}}{(2\pi)^3}
-	\vb{j}(t,\vb{q})
-	e^{+i\vb{q}\vdot\vb{x}}
-\end{equation}
-and inserting the mode expansion, we find the interaction Hamiltonian to be
+Inserting the spatial Fourier transform of the current $\vb{j}(t,\vb{p})$ and the quantum mode mode expansion, \cref{eq:maxwell_positive_operator,eq:maxwell_negative_operator}, the interaction Hamiltonian becomes
 \begin{equation}
 	\hat{H}_\text{int}(t)
 	=
 	-
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left\{
-		j_\lambda(t,\vb{p})
+		\left(
+			\vb{j}(t,-\vb{p})
+			\vdot
+			\vu{e}_\lambda(\vb{p})
+		\right)
 		\hat{a}_\lambda(\vb{p})
 		e^{-i\omega(\vb{p})t}
 		+
 		\text{h.c.}
 	\right\}
-\end{equation}
-where we have the transverse current
-\begin{equation}
-	j_\lambda(q_0,\vb{p})
-	=
-	\vb{j}(q_0,\vb{p})
-	\vdot
-	\vu{e}_\lambda(\vb{p})
 	.
 \end{equation}
+
+The effect of an interaction acting on a quantum state from time $t_0$ to $t$ is encoded in the time-evolution operator\footnote{See Ref.~\cite[p.~215]{Greiner2013} for an introduction into the time-evolution operator and interactions.}
+\begin{equation}
+	\hat{U}(t,t_0)
+	=
+	\mathcal{T}_+
+	\exp\left\{
+		-i
+		\int_{t_0}^t\dd{t^\prime}
+		\hat{H}_\text{int}(t^\prime)
+	\right\}
+	\label{eq:time_evolution_operator}
+\end{equation}
+wherein $\mathcal{T}_+$ denotes the time-ordering symbol.
+The Magnus expansion presents a systematic approach in finding an explicit form of the time-evolution operator\footnote{See Ref.~\cite[p.~42]{QuesadaMejia2015}, for an introduction to the Magnus expansion with application to nonlinear processes.}, it is given by
+\begin{equation}
+	\hat{U}(t,t_0)
+	=
+	\exp\left\{
+		\sum_{n=1}\Omega^{(n)(t_0,t)}
+	\right\}
+\end{equation}
+wherein the first two terms are given by
+\begin{align}
+	\hat{\Omega}^{(1)}(t,t_0)
+	&=
+	-i
+	\int_{t_0}^t\dd{t^\prime}
+	\hat{H}_\text{int}(t^\prime)
+	\\
+	\hat{\Omega}^{(2)}(t,t_0)
+	&=
+	\frac{(-i)^2}{2!}
+	\int_{t_0}^t\dd{t^\prime}
+	\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
+	\comm{\hat{H}_\text{int}(t^\prime)}{\hat{H}_\text{int}(t^{\prime\prime})}
+	.
+\end{align}
+For some interactions there exists no exact solution and we can truncate the expansion up to some finite term.
+Compared to other expansions, e.g. the Neumann expansion, the truncated Magnus expansion is still unitary.
+
 The first term in the Magnus expansion turns out to be
 \begin{equation}
 	\hat{\Omega}^{(1)}(t,t_0)
@@ -110,3 +139,5 @@ The exact time-evolution operator of the Maxwell field interacting with a classi
 	\right\}
 \end{equation}
 which equals the displacement operator for a time-dependent spectrum $\hat{D}[\alpha(t,t_0)]$.
+
+\subsection{Displacement operator}
