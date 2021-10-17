@@ -197,7 +197,7 @@ Applying the smeared positive frequency field operator to the vacuum state,
 	\end{split}
 	\label{eq:single_particle_state}
 \end{equation}
-and comparing the result to the momentum state, \cref{eq:momentum_state}, we find the function $f$ to smear the function in momentum and spacetime space.\footnote{Interestingly though, only momentum components satisfying the energy-momentum relation, \cref{eq:energy_momentum_relation}, contribute to momentum space.}
+and comparing the result to the momentum state, \cref{eq:momentum_state}, we find the function $f$ to smear the function in momentum and spacetime space~\cite[p.~35]{Srednicki2007}.\footnote{Interestingly though, only momentum components satisfying the energy-momentum relation, \cref{eq:energy_momentum_relation}, contribute to momentum space.}
 The inner product of two such smeared states yields a complex number $\mathbb{C}$
 \begin{equation}
 	\braket{1_f}{1_g}
@@ -214,6 +214,7 @@ implying the smeared state $\ket{1_f}$ being normalizable if we require the smea
 	\abs*{f(\vb{p})}^2
 	=
 	1
+	\label{eq:spectrum_normalization}
 	.
 \end{equation}
 With the normalization condition imposed, the smeared state $\ket{1_f}$ is an eigenstate of the number operator to eigenvalue one
@@ -225,39 +226,70 @@ With the normalization condition imposed, the smeared state $\ket{1_f}$ is an ei
 	\ket{1_f}
 \end{equation}
 suggesting the smeared state $\ket{1_f}$ to the physical single-particle state, we were looking for.
+The smeared state $\ket{1_f}$ is not an eigenstate of the energy and momentum operator anymore but has expectation values
+\begin{align}
+	\bra{1_f}
+	\hat{H}
+	\ket{1_f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\omega(\vb{p})
+	\abs*{f\left(\omega(\vb{p}),\vb{p}\right)}^2
+	\\
+	\bra{1_f}
+	\vu{P}
+	\ket{1_f}
+	&=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\vb{p}
+	\abs*{f\left(\omega(\vb{p}),\vb{p}\right)}^2
+\end{align}
+suggesting that the smearing function has the physical interpretation of a frequency spectrum.
 
-Further comparison of the smeared single-particle state $\ket{1_f}$ with the momentum state $\ket{\vb{p}}$ reveals that the momentum state can be considered as the limit of an infinitely peaked spectrum in momentum space.
-Let $\sigma$ be the spread of the smearing function $f_\sigma$ in momentum space, then
+Let $\ket{1_f}$ be a smeared particle state, then the wave function $\Psi(t,\vb{x})$ is the probability amplitude of finding the particle at a spacetime coordinate $(t,\vb{x})$~\cite[p.~24]{Peskin1995}, i.e.,
 \begin{equation}
-	\ket{1_{f_\sigma}}
+	\Psi(t,\vb{x})
 	=
-	\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
-	f_\sigma\left(\omega(\vb{q}),\vb{q}\right)
-	\hat{a}^\dagger(\vb{p})
-	\ket{0}
-	\xrightarrow{\sigma\to0}
-	\hat{a}^\dagger
-	\ket{0}
+	\bra{0}
+	\hat{A}(t,\vb{x})
+	\ket{1_f}
 	=
-	\ket{\vb{p}}
+	\int\dd{t^\prime}\dd[3]{x^\prime}
+	D(t-t^\prime,\vb{x}-\vb{x}^\prime)
+	f(t^\prime,\vb{x}^\prime)
 \end{equation}
-or in a distributional sense
+wherein $f(t,\vb{x})$ is the spacetime representation of the (initial) smearing function and $D(t,\vb{x})$ is the propagator as defined in Ref.~\cite[p.~27]{Peskin1995}.
+Given the wave function, the relativistic probability current
 \begin{equation}
-	f_\sigma\left(\omega(\vb{q}),\vb{q}\right)
+	j_\mu(t,\vb{x})
 	=
-	\sqrt{2\omega(\vb{p})}
-	(2\pi)^3
-	\delta^{(3)}\left(\vb{q}-\vb{p}\right)
+	2\Im\left\{
+		\Psi(t,\vb{x})^*
+		\partial_\mu
+		\Psi(t,\vb{x})
+	\right\}
 \end{equation}
-which is not a smoothing function anymore.
+allows us to estimate the center-of-mass position and velocity of the particle, i.e.,
+\begin{align}
+	\expval{\vb{x}(t)}
+	&=
+	\int\dd[3]{x}
+	\vb{x}
+	\rho(t,\vb{x})
+	&
+	\expval{\vb{v}(t)}
+	&=
+	\int\dd[3]{x}
+	\vb{j}(t,\vb{x})
+\end{align}
+wherein $\rho(t,\vb{x})=j_0(t,\vb{x})$ is the relativistic probability density.
+For more details on the properties of relativistic wave packets, e.g., dispersion, see Ref.~\cite{Naumov2013} and Ref.~\cite{Naumov2009}.
 
-
-% plane-wave f(p) -> delta(p-p_0), wave function
-% physical interpretation of f(p)
-% final words: from mathematical arguments, we found the missing ingredient, the spectrum, to describe a proper single-particle state.
-
-The mathematical smearing function encodes the physical spectral properties of the wave packet.
-See, for instance, Ref.~\cite{Naumov2013} and Ref.~\cite{Naumov2009}, for a discussion of the wave packet properties like center-of-mass position, group velocity and dispersion.
+To summarize our findings, we first motivated momentum eigenstates from the commutation algebra.
+However, the momentum eigenstates are prone to mathematical inconsistencies, following that the momentum states are strictly speaking distributions, not functions.
+Physically, the momentum states correspond to unphysical plane-waves.
+A mathematical consistent single-particle state requires a momentum spectrum.
+The momentum spectrum encodes many important physical properties like the localization and velocity of the particle.
 
 \subsection{Fock space}
 
@@ -292,38 +324,41 @@ Equipping the tensor algebra with an inner product and using the completeness of
 
 \subsection{Number states}
 
+Applying the creation operator $\hat{A}^{(+)}[f]$ wherein $f$ is a smearing function or momentum spectrum satisfying the normalization condition, \cref{eq:spectrum_normalization}, suggests defining
 \begin{equation}
-	\begin{split}
-		\hat{A}^{(+)}[f]
-		=
-		\int\dd[4]{x}
-		f(t,\vb{x})
-		\hat{A}^{(+)}(t,\vb{x})
-		=
-		\int\dd{\mu(\vb{p})}
-		f\left(\omega(\vb{p}),\vb{p}\right)
-		\hat{a}^\dagger(\vb{p})
-	\end{split}
-\end{equation}
-
-\begin{equation}
-	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\abs*{f\left(\omega(\vb{p}),\vb{p}\right)}^2
+	\ket{n_f}
 	=
-	1
-\end{equation}
-
-\begin{equation}
-	\ket{1_f}
-	=
-	\hat{A}^{(+)}[f]
+	\frac{1}{\sqrt{n!}}
+	\hat{A}^{(+)}[f]^n
 	\ket{0}
+	\label{eq:number_state}
 \end{equation}
-
+as number state with spectrum $f$.\footnote{The factorial is required for normalization because bosons are indistinguishable.}
+The positive and negative frequency field operators $\hat{A}^{(\pm)}(t,\vb{x})$ generalize the quantum harmonic annihilation and creation operators by adding or removing a particle with spectrum $f$ from the field
+\begin{align}
+	\hat{A}^{(+)}[f]
+	\ket{n_f}
+	&=
+	\sqrt{n+1}
+	\ket{{n+1}_f}
+	&
+	\hat{A}^{(-)}[f]
+	\ket{n_f}
+	&=
+	\sqrt{n}
+	\ket{{n-1}_f}
+	.
+\end{align}
+While the generalized number state $\ket{n_f}$ is still an eigenstate of the number operator to eigenvalue $n_f$,
 \begin{equation}
-	\braket{1_f}{1_g}
+	\hat{N}
+	\ket{n_f}
 	=
+	n_f
+	\ket{n_f}
+	,
 \end{equation}
+it is not anymore an eigenstate of the energy and momentum operator.
 
 \subsection{Coherent states}
 
