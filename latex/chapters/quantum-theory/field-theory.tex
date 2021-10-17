@@ -610,22 +610,17 @@ and inserting it back into the plane-wave expansion, \cref{eq:maxwell_plane_wave
 	\vb{A}(t,\vb{x})
 	=
 	\sum_{\lambda=1,2}
-	\int\dd{\mu(\vb{p})}
-	a_\lambda(\vb{p})
-	\vu{e}_\lambda(\vb{p})
-	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
-	+
-	\text{c.c.}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left\{
+		a_\lambda(\vb{p})
+		\vu{e}_\lambda(\vb{p})
+		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+		+
+		\text{c.c.}
+	\right\}
 	\label{eq:maxwell_expansion}
 \end{equation}
-where we defined the Lorentz-invariant measure
-\begin{equation}
-	\dd{\mu(\vb{p})}
-	=
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	.
-\end{equation}
-The plane-wave expansion, \cref{eq:maxwell_expansion}, looks extremely similar to the quantum mode expansion of the Maxwell field but relies only on classical arguments.\footnote{The similarity is not surprising if we consider $A(t,\vb{x})$ as the expectation value of the Maxwell field operator given a coherent state, $\bra{\alpha}\vu{A}(t,\vb{x})\ket{\alpha}$.}
+The plane-wave expansion looks already similar to the quantum mode expansion of the Maxwell field but relies only on classical arguments.\footnote{The similarity is not surprising if we consider $A(t,\vb{x})$ as the expectation value of the Maxwell field operator given a coherent state, $\bra{\alpha}\vu{A}(t,\vb{x})\ket{\alpha}$.}
 In principle, we could stop here, replace the Fourier modes with the annihilation operator satisfying the canonical commutation relation, and we have quantized our field.\footnote{The equivalence of Fourier and quantum modes has been experimentally established, see Ref.~\cite{Hulet1985}.}
 However, for completeness, we review the standard canonical quantization of the Maxwell field in the next section.
 
@@ -703,7 +698,7 @@ where we adapted the transverse delta distribution~\cite[p.~198]{Greiner2013}
 	\right)
 	\delta^{(3)}(\vb{x})
 	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
 	\left(
 		\delta_{ij}
 		-
@@ -727,7 +722,7 @@ where we defined the positive and negative frequency parts to be
 	\vu{A}^{(-)}(t,\vb{x})
 	&=
 	\sum_{\lambda=1,2}
-	\int\dd{\mu(\vb{p})}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\hat{a}_\lambda(\vb{p})
 	\vu{e}_\lambda(\vb{p})
 	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
@@ -736,12 +731,10 @@ where we defined the positive and negative frequency parts to be
 	\vu{A}^{(+)}(t,\vb{x})
 	&=
 	\sum_{\lambda=1,2}
-	\int\dd{\mu(\vb{p})}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\vu{e}_\lambda(\vb{p})^*
 	e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
-	=
-	\vu{A}^{(-)}(t,\vb{x})^\dagger
 	\label{eq:maxwell_positive_operator}
 	.
 \end{align}
@@ -761,7 +754,7 @@ where we find the electric field operator components via $\hat{E}^i=\partial_t\h
 	&=
 	-i
 	\sum_{\lambda=1,2}
-	\int\dd{\mu(\vb{p})}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\hat{a}_\lambda(\vb{p})
 	\vu{e}_\lambda(\vb{p})
 	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
@@ -771,12 +764,10 @@ where we find the electric field operator components via $\hat{E}^i=\partial_t\h
 	&=
 	+i
 	\sum_{\lambda=1,2}
-	\int\dd{\mu(\vb{p})}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\vu{e}_\lambda(\vb{p})^*
 	e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
-	=
-	\vu{E}^{(-)}(t,\vb{x})^\dagger
 	\label{eq:electric_positive_operator}
 	.
 \end{align}
@@ -802,7 +793,7 @@ The Maxwell field's Hamilton and momentum operator are~\cite[p.~199]{Greiner2013
 	\hat{H}
 	&=
 	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
 	\omega(\vb{p})
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
@@ -811,7 +802,7 @@ The Maxwell field's Hamilton and momentum operator are~\cite[p.~199]{Greiner2013
 	\vu{P}
 	&=
 	\sum_{\lambda=1,2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
 	\vb{p}
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
@@ -820,19 +811,22 @@ The Maxwell field's Hamilton and momentum operator are~\cite[p.~199]{Greiner2013
 and can be found by inserting the Maxwell field operator into the classical definitions of energy and momentum and performing normal ordering.\footnote{Normal ordering removes infinite terms like the "vacuum energy".}
 Reading the combination of annihilation and creation operator as particle number density
 \begin{equation}
+	\hat{n}_\lambda(\vb{p})
+	=
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
-	\label{eq:maxwell_number_density}
+	\label{eq:maxwell_number_density_operator}
 	,
 \end{equation}
 the energy and momentum operators then read as the total energy $\omega(\vb{p})$ and momentum $\vb{p}$ weighted by the number density.
-\Cref{eq:maxwell_number_density} suggests the total particle number operator to be
+\Cref{eq:maxwell_number_density_operator} suggests the total particle number operator to be
 \begin{equation}
 	\hat{N}
 	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
+	\label{eq:maxwell_number_operator}
 	.
 \end{equation}
 Unsurprisingly, are total particle number and total momentum conserved quantities
@@ -846,4 +840,4 @@ Unsurprisingly, are total particle number and total momentum conserved quantitie
 	0
 	.
 \end{align}
-In the next section, we provide a more rigorous discussion of the particle aspects.
+In the next section, we provide a more rigorous discussion of the particle aspects by constructing the quantum states.

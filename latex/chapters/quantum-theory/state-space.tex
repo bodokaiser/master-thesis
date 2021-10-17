@@ -1,12 +1,42 @@
-\section{State space construction}
+\section{Quantum state construction}
 
-% explain that we neglect polarization in the following (Klein-Gordon approximation)
-% 
-We attempt a similar construction as in Ref.~\cite[p.~506]{Cohen2019} was done for the quantum harmonic oscillator.
+In the previous section, we derived the relevant field operators for the Maxwell field encoding electromagnetism.
+In the present section, we construct quantum states from these operators in a rather axiomatic approach as done in Ref.~\cite[p.~506]{Cohen2019} for the quantum harmonic oscillator, or in axiomatic field theory~\cite{Streater2016,Haag2012,Bogolubov1989}.
+
+To keep the arguments and notation concise, we restrict the quantum state construction to one polarization mode of the Maxwell field.
+The Maxwell field then effectively becomes a Klein-Gordon field with field operator
+\begin{equation}
+	\hat{A}(t,\vb{x})
+	=
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left\{
+		\hat{a}(\vb{p})
+		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+		+
+		\hat{a}^\dagger(\vb{p})
+		e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+	\right\}
+	\label{eq:klein_gordon_operator}
+\end{equation}
+wherein the annihilation and creation operator, $\hat{a}(\vb{p}),\hat{a}^\dagger(\vb{p})$, satisfy the canonical commutation relations
+\begin{align}
+	\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+	&=
+	(2\pi)^3\delta^{(3)}
+	\left(\vb{p}-\vb{q}\right)
+	\\
+	\comm{\hat{a}(\vb{p})}{\hat{a}(\vb{q})}
+	&=
+	\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+	=
+	0
+	\label{eq:klein_gordon_canonical_commutation_relation}.
+\end{align}
+To extend the results back to two polarization modes, we can construct a two-dimensional tensor product space from the single polarization mode.
 
 \subsection{Vacuum state}
 
-We assume the existence of a unique (up to a constant phase factor) vacuum state $\ket{0}$ which is invariant under a unitary Poincaré transformation~\cite[p.~97]{Streater2016}
+The fundamental assumption our state construction relies upon is the existence of a unique, up to a constant phase factor, vacuum state $\ket{0}$ invariant under the unitary Poincaré transformation~\cite[p.~97]{Streater2016}
 \begin{equation}
 	\hat{U}(a,\Lambda)
 	\ket{0}
@@ -15,33 +45,32 @@ We assume the existence of a unique (up to a constant phase factor) vacuum state
 	\label{eq:vacuum_invariance}
 \end{equation}
 where $\Lambda$ denotes a Lorentz transformation and $a$ a spacetime translation.
-The vacuum state is an element of the one-dimensional complex Hilbert space $\mathcal{H}^{(0)}=\mathcal{H}(\mathbb{C})$, the zero-particle state space.
-The generator of the unitary spacetime translation is the four-momentum~\cite[p.~28]{Haag2012}
+The vacuum state is an element of a one-dimensional complex Hilbert space, $\mathcal{H}^{(0)}=\mathcal{H}(\mathbb{C})$, the zero-particle state space.
+The generator of the unitary spacetime translation is the four-momentum operator $\hat{P}^\mu=\left(\hat{H},\vu{P}\right)$~\cite[p.~28]{Haag2012}
 \begin{equation}
 	\hat{U}(a)
 	=
 	\hat{U}(a,\mathbb{1})
 	=
-	e^{iP_\mu a^\mu}
+	e^{i\hat{P}_\mu a^\mu}
 	\label{eq:spacetime_translation}
 	.
 \end{equation}
-The invariance of the vacuum, \cref{eq:vacuum_invariance}, implies for spacetime translations, \cref{eq:spacetime_translation}, that the vacuum is an eigenstate of the Hamilton and momentum operator to eigenvalue zero, i.e.,
+The invariance of the vacuum under spacetime translations, \cref{eq:spacetime_translation}, implies that the vacuum is a zero eigenstate to the Hamilton and momentum operator
 \begin{align}
 	\hat{H}
 	\ket{0}
 	&=
 	0
-	\label{eq:vacuum_energy}
-	\\
+	&
 	\vu{P}
 	\ket{0}
 	&=
 	\vb{0}
-	\label{eq:vacuum_momentum}
+	\label{eq:vacuum_energy_momentum}
 	.	
 \end{align}
-Inserting the Hamilton operator, \cref{eq:maxwell_hamilton_operator}, into \cref{eq:vacuum_energy}, implies the vacuum state being a zero eigenstate of the annihilation operator
+From the mode expansion of the Hamilton operator, \cref{eq:maxwell_hamilton_operator}, and the vacuum state being a zero eigenstate to the Hamilton operator, we conclude that the vacuum state is also a zero eigenstate to the annihilation operator
 \begin{equation}
 	\hat{a}(\vb{p})
 	\ket{0}
@@ -50,70 +79,187 @@ Inserting the Hamilton operator, \cref{eq:maxwell_hamilton_operator}, into \cref
 	\label{eq:vacuum_annihilation}
 	.
 \end{equation}
-The annihilation operator "destroying" the vacuum state is an important for the vacuum state to be the lowest energy state and have no negative energies or particle numbers.
+In the next paragraph, we motivate why we understand the annihilation and creation operators as adding or removing a particle excitation to and from the field.
+Under these circumstances, we can read \cref{eq:vacuum_annihilation} as destroying the vacuum state, ensuring no negative energy or negative particle number states.
 
 \subsection{Particle states}
 
-The commutators of the annihilation and creation operator with the Hamilton operator, \cref{eq:maxwell_hamilton_operator}, are
+The motivation of why the annihilation and creation operators add or remove a particle with energy and momentum to and from the field follows from applying the commutators of the number and momentum operator with the creation operator
 \begin{align}
-	\comm{\hat{H}}{\hat{a}^\dagger(\vb{p})}
+	\comm{\hat{N}}{\hat{a}^\dagger(\vb{p})}
 	&=
-	+
-	\omega(\vb{p})
 	\hat{a}^\dagger(\vb{p})
-	\\
-	\comm{\hat{H}}{\hat{a}(\vb{p})}
+	&
+	\comm{\vu{P}}{\hat{a}^\dagger(\vb{p})}
 	&=
-	-
-	\omega(\vb{p})
-	\hat{a}(\vb{p})
+	\vb{p}
+	\hat{a}^\dagger(\vb{p})
 	.
 \end{align}
-Applying the commutators to the left of the vacuum state and using the energy eigenvalue, \cref{eq:vacuum_energy}, we find the eigenvalue equation
-\begin{equation}
-	\hat{H}
+Applying the vacuum state $\ket{0}$ to the right of the commutator equations, yields eigenvalue equations for the number and momentum operator
+\begin{align}
+	\hat{N}
 	\hat{a}^\dagger(\vb{p})
 	\ket{0}
-	=
-	\omega(\vb{p})
+	&=
+	1
 	\hat{a}^\dagger(\vb{p})
 	\ket{0}
-	\label{eq:creation_energy_eigenstate}
-	,
-\end{equation}
-i.e., $\hat{a}^\dagger(\vb{p})\ket{0}$ is an eigenstate to the Hamilton operator $\hat{H}$ with eigenvalue $\omega(\vb{p})$ which suggests
+	&
+	\vu{P}
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+	&=
+	\vb{p}
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+	.
+\end{align}
+The eigenvalue equations suggest
 \begin{equation}
 	\ket{\vb{p}}
-	\propto
+	=
 	\hat{a}^\dagger(\vb{p})
 	\ket{0}
 	\label{eq:momentum_state}
 \end{equation}
-to be a momentum state with momentum $\vb{p}$ and energy $\omega(\vb{p})$.
-A particular problem of the momentum state is that it is not normalizable which is not surprising considering the fact the momentum state corresponds to an ideal plane-wave mode.
-From a mathematical perspective, the annihilation and creation operators are not functions but distributions acting on some square-integrable smearing function $f$, i.e.,
+to be a single-particle state with momentum $\vb{p}$ and energy $\omega(\vb{p})$, a momentum state.~\cite[p.~23]{Peskin1995}.
+Unfortunately, the inner product between two momentum states does not yield a complex number $\mathbb{C}$ but, a distribution,
 \begin{equation}
-	\ket{1_f}
+	\braket{\vb{p}}{\vb{q}}
 	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	f(\vb{p})
-	\ket{\vb{p}}
+	\bra{0}
+	\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+	\ket{0}
+	=
+	(2\pi)^3
+	\delta^{(3)}(\vb{p}-\vb{q})
+\end{equation}
+suggesting that something essential is missing in our description.
+
+It makes sense to take a step back and recap some mathematical context regarding distributions.\footnote{See Ref.~\cite[p.~590]{Zeidler2016} and Ref.~\cite[p.~193]{Mukhanov2007} for a mathematical discussion of distributions in a physical context.}
+One approach considers distributions as functionals, i.e., maps from a function space, e.g., the space of real-valued square-integrable functions $L^2(\mathbb{R})$, to real numbers $\mathbb{R}$.
+Implicitly, we already used functionals when we considered the action integral
+\begin{equation}
+	\hat{S}\left[x(t)\right]
+	=
+	\int_{t_0}^{t_1}\dd{t}
+	L\left(x(t),\dot{x}(t)\right)
+	,
+\end{equation}
+wherein $L$ is some classical Lagrangian, evaluated for some finite time interval $[t_0,t_1]$ maps the trajectory $x(t)$ of a point particle to a real number $\mathbb{R}$.
+Often a functional $A$ acting on a function $f$ is written
+\begin{equation}
+	A[f]
+	=
+	\int\dd{x}
+	f(x)A(x)
+	\label{eq:functional}
+\end{equation}
+wherein $A(x)$ is denoted the integration kernel representing the functional, which may be an ordinary function or a distribution.
+For example, the delta distribution $\delta(x-y)$ is the integration kernel of the functional $\delta_y$
+\begin{equation}
+	\delta_{y}[f]
+	=
+	\int\dd{x}
+	f(x)
+	\delta(x-y)
+	=
+	f(y)
+	.
+\end{equation}
+Fourier transforms are another class of functionals we already used frequently.
+Linear functionals share many convenient properties with ordinary functions and physicists often skip the distinction.
+In axiomatic quantum field theory, the quantum field operators are precisely defined as operator-valued tempered distributions mapping from the space smearing or test functions $\mathcal{S}(\mathbb{R}^4)$ to the the set a set of operators defined on the corresponding Hilbert space $\mathcal{O}(\mathcal{H})$~\cite[p.~56]{Haag2012}.
+A typical functional space for smearing functions is the Schwartz space, a subset of the space of square-integrable functions $L^2$, which rapidly fall off at infinitely, a property which we exploit for partial integration with vanishing boundary terms of the action integral.\footnote{Typical Schwartz functions are Gaussian functions multiplied with a monomial, e.g., $x^ne^{-a\norm{x}^2}$ where $n\in\mathbb{N}_0$ and $a\in\mathbb{R}_+$.}
+
+Let us reinterpret the (positive frequency) field operator with this mathematical background by considering its action on a smearing function, i.e.,
+\begin{equation}
+	\hat{A}^{(+)}[f]
+	=
+	\int\dd[4]{x}
+	f(t,\vb{x})
+	\hat{A}^{(+)}(t,\vb{x})
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	f\left(\omega(\vb{p}),\vb{p}\right)
+	\hat{a}^\dagger(\vb{p})
+\end{equation}
+where we inserted the plane-wave expansion for the field and the spacetime Fourier transform for the smearing function and used the orthogonality of the Fourier modes in the second equation.
+Applying the smeared positive frequency field operator to the vacuum state,
+\begin{equation}
+	\begin{split}
+		\ket{1_f}
+		=
+		\hat{A}^{(+)}[f]
+		\ket{0}
+		,
+	\end{split}
 	\label{eq:single_particle_state}
 \end{equation}
-is a mathematical well-defined physical single-particle state if the spectrum is normalized
+and comparing the result to the momentum state, \cref{eq:momentum_state}, we find the function $f$ to smear the function in momentum and spacetime space.\footnote{Interestingly though, only momentum components satisfying the energy-momentum relation, \cref{eq:energy_momentum_relation}, contribute to momentum space.}
+The inner product of two such smeared states yields a complex number $\mathbb{C}$
+\begin{equation}
+	\braket{1_f}{1_g}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{q})}
+	f(\vb{p})^*
+	g(\vb{p})
+\end{equation}
+implying the smeared state $\ket{1_f}$ being normalizable if we require the smearing function to satisfy
 \begin{equation}
 	\braket{1_f}{1_f}
 	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{q})}
 	\abs*{f(\vb{p})}^2
 	=
 	1
 	.
 \end{equation}
+With the normalization condition imposed, the smeared state $\ket{1_f}$ is an eigenstate of the number operator to eigenvalue one
+\begin{equation}
+	\hat{N}
+	\ket{1_f}
+	=
+	1
+	\ket{1_f}
+\end{equation}
+suggesting the smeared state $\ket{1_f}$ to the physical single-particle state, we were looking for.
+
+Further comparison of the smeared single-particle state $\ket{1_f}$ with the momentum state $\ket{\vb{p}}$ reveals that the momentum state can be considered as the limit of an infinitely peaked spectrum in momentum space.
+Let $\sigma$ be the spread of the smearing function $f_\sigma$ in momentum space, then
+\begin{equation}
+	\ket{1_{f_\sigma}}
+	=
+	\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+	f_\sigma\left(\omega(\vb{q}),\vb{q}\right)
+	\hat{a}^\dagger(\vb{p})
+	\ket{0}
+	\xrightarrow{\sigma\to0}
+	\hat{a}^\dagger
+	\ket{0}
+	=
+	\ket{\vb{p}}
+\end{equation}
+or in a distributional sense
+\begin{equation}
+	f_\sigma\left(\omega(\vb{q}),\vb{q}\right)
+	=
+	\sqrt{2\omega(\vb{p})}
+	(2\pi)^3
+	\delta^{(3)}\left(\vb{q}-\vb{p}\right)
+\end{equation}
+which is not a smoothing function anymore.
+
+
+% plane-wave f(p) -> delta(p-p_0), wave function
+% physical interpretation of f(p)
+% final words: from mathematical arguments, we found the missing ingredient, the spectrum, to describe a proper single-particle state.
+
 The mathematical smearing function encodes the physical spectral properties of the wave packet.
 See, for instance, Ref.~\cite{Naumov2013} and Ref.~\cite{Naumov2009}, for a discussion of the wave packet properties like center-of-mass position, group velocity and dispersion.
 
-\subsection{Symmetric Fock space}
+\subsection{Fock space}
 
 The single-particle state defined in \cref{eq:single_particle_state} is an element of the one-particle Hilbert space of square-integrable functions defined on three-dimensional space $\mathcal{H}^{(1)}=\mathcal{H}\left(L^2(\mathbb{R}^3)\right)$.
 The generalization of the one-particle Hilbert space $\mathcal{H}^{(1)}$ to an $n$-particle Hilbert space $\mathcal{H}^{(n)}$ is the tensor product of one-particle Hilbert spaces
@@ -143,3 +289,178 @@ We first construct a tensor algebra over the Hilbert space $\mathcal{H}^{(1)}$ a
 \end{equation}
 wherein $S_+$ symmetrizes the Hilbert space for bosons.
 Equipping the tensor algebra with an inner product and using the completeness of the $n$-particle Hilbert spaces, we obtain again a Hilbert space, named the symmetric Fock space $\mathcal{F}_+$~\cite[p.~35]{Haag2012}.
+
+\subsection{Number states}
+
+\begin{equation}
+	\begin{split}
+		\hat{A}^{(+)}[f]
+		=
+		\int\dd[4]{x}
+		f(t,\vb{x})
+		\hat{A}^{(+)}(t,\vb{x})
+		=
+		\int\dd{\mu(\vb{p})}
+		f\left(\omega(\vb{p}),\vb{p}\right)
+		\hat{a}^\dagger(\vb{p})
+	\end{split}
+\end{equation}
+
+\begin{equation}
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs*{f\left(\omega(\vb{p}),\vb{p}\right)}^2
+	=
+	1
+\end{equation}
+
+\begin{equation}
+	\ket{1_f}
+	=
+	\hat{A}^{(+)}[f]
+	\ket{0}
+\end{equation}
+
+\begin{equation}
+	\braket{1_f}{1_g}
+	=
+\end{equation}
+
+\subsection{Coherent states}
+
+The interaction of a classical current $\vb{j}(t,\vb{x})$ with the Maxwell field operator in the Coulomb gauge $\vu{A}(t,\vb{x})$ is given by the interaction Hamiltonian
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	-
+	\int\dd[3]{x}
+	\vb{j}(t,\vb{x})
+	\vdot
+	\hat{\vb{A}}(t,\vb{x})
+	.
+\end{equation}
+Inserting the spatial Fourier transform of the current $\vb{j}(t,\vb{p})$ and the quantum mode mode expansion, \cref{eq:maxwell_positive_operator,eq:maxwell_negative_operator}, the interaction Hamiltonian becomes
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	-
+	\sum_{\lambda=1,2}
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left\{
+		\left(
+			\vb{j}(t,-\vb{p})
+			\vdot
+			\vu{e}_\lambda(\vb{p})
+		\right)
+		\hat{a}_\lambda(\vb{p})
+		e^{-i\omega(\vb{p})t}
+		+
+		\text{h.c.}
+	\right\}
+	.
+\end{equation}
+
+The effect of an interaction acting on a quantum state from time $t_0$ to $t$ is encoded in the time-evolution operator\footnote{See Ref.~\cite[p.~215]{Greiner2013} for an introduction into the time-evolution operator and interactions.}
+\begin{equation}
+	\hat{U}(t,t_0)
+	=
+	\mathcal{T}_+
+	\exp\left\{
+		-i
+		\int_{t_0}^t\dd{t^\prime}
+		\hat{H}_\text{int}(t^\prime)
+	\right\}
+	\label{eq:time_evolution_operator}
+\end{equation}
+wherein $\mathcal{T}_+$ denotes the time-ordering symbol.
+The Magnus expansion presents a systematic approach in finding an explicit form of the time-evolution operator\footnote{See Ref.~\cite[p.~42]{QuesadaMejia2015}, for an introduction to the Magnus expansion with application to nonlinear processes.}, it is given by
+\begin{equation}
+	\hat{U}(t,t_0)
+	=
+	\exp\left\{
+		\sum_{n=1}\Omega^{(n)(t_0,t)}
+	\right\}
+\end{equation}
+wherein the first two terms are given by
+\begin{align}
+	\hat{\Omega}^{(1)}(t,t_0)
+	&=
+	-i
+	\int_{t_0}^t\dd{t^\prime}
+	\hat{H}_\text{int}(t^\prime)
+	\\
+	\hat{\Omega}^{(2)}(t,t_0)
+	&=
+	\frac{(-i)^2}{2!}
+	\int_{t_0}^t\dd{t^\prime}
+	\int_{t_0}^{t^\prime}\dd{t^{\prime\prime}}
+	\comm{\hat{H}_\text{int}(t^\prime)}{\hat{H}_\text{int}(t^{\prime\prime})}
+	.
+\end{align}
+For some interactions there exists no exact solution and we can truncate the expansion up to some finite term.
+Compared to other expansions, e.g. the Neumann expansion, the truncated Magnus expansion is still unitary.
+
+The first term in the Magnus expansion turns out to be
+\begin{equation}
+	\hat{\Omega}^{(1)}(t,t_0)
+	=
+	i
+	\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\left\{
+		J_\lambda(t,t_0;\vb{p})
+		\hat{a}_\lambda(\vb{p})
+		+
+		\text{h.c.}
+	\right\}
+\end{equation}
+where we defined
+\begin{equation}
+	J_\lambda(t,t_0;\vb{p})
+	=
+	\int_{t_0}^t\dd{t^\prime}
+	j_\lambda(t^\prime,\vb{p})
+	e^{-i\omega(\vb{p})t^\prime}
+	.
+\end{equation}
+For the second term in the Magnus expansion, we first evaluate the commutator
+\begin{equation}
+	\comm{\hat{H}(t^\prime)}{\hat{H}(t^{\prime\prime})}
+	=
+	i\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\omega(\vb{p})}
+	\Im\left\{
+		j_\lambda(t^\prime,\vb{p})
+		j_\lambda(t^{\prime\prime},\vb{p})^*
+		e^{-i\omega(\vb{p})(t^\prime-t^{\prime\prime})}
+	\right\}
+\end{equation}
+and notice that it is complex valued, hence, all higher commutators vanish and the Magnus expansion with the first two terms is exact.
+In summary, the second term of the Magnus expansion turns out to be
+\begin{equation}
+	\hat{\Omega}^{(2)}(t,t_0)
+	=
+	i\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\omega(\vb{p})}
+	\Im\left\{
+		J_\lambda(t_0,t^\prime;\vb{p})
+		J_\lambda(t_0,t^{\prime\prime};\vb{p})^*
+	\right\}
+\end{equation}
+The second term contributes a phase to the time-evolution operator.
+As long as we consider a single current source, no interference of phases can occur and we can ignore the phase factor.
+The exact time-evolution operator of the Maxwell field interacting with a classical source current therefore is
+\begin{equation}
+	\hat{U}(t,t_0)
+	=
+	\exp\left\{
+		i\sum_{\lambda=1,2}
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\left\{
+			J_\lambda(t,t_0;\vb{p})
+			\hat{a}_\lambda(\vb{p})
+			+
+			\text{h.c.}
+		\right\}
+	\right\}
+\end{equation}
+which equals the displacement operator for a time-dependent spectrum $\hat{D}[\alpha(t,t_0)]$.
