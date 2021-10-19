@@ -341,7 +341,7 @@ The positive and negative frequency field operators $\hat{A}^{(\pm)}(t,\vb{x})$ 
 	&=
 	\sqrt{n+1}
 	\ket{{n+1}_f}
-	&
+	\\
 	\hat{A}^{(-)}[f]
 	\ket{n_f}
 	&=
@@ -358,43 +358,52 @@ While the generalized number state $\ket{n_f}$ is still an eigenstate of the num
 	\ket{n_f}
 	,
 \end{equation}
-it is not anymore an eigenstate of the energy and momentum operator but has momentum expectation value
-\begin{equation}
-	\begin{split}
-		\bra{n_f}
-		\vu{P}
-		\ket{n_f}
-		&=
-		\frac{1}{n!}
-		\bra{0}
-		\hat{A}^{(-)}[f]^n
-		\vu{P}
-		\hat{A}^{(+)}[f]^n
-		\ket{0}
-		\\
-		&=
-		\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
-		f\left(\omega(\vb{p}_1),\vb{p}_1\right)^*
-		\cdots
-		\int\frac{\dd[3]{q_n}}{(2\pi)^3\sqrt{2\omega(\vb{q}_n)}}
-		f\left(\omega(\vb{q}_n),\vb{q}_n\right)
-		\\
-		&\times
-		\frac{1}{n!}
-		\int\frac{\dd[3]{k}}{(2\pi)^3\sqrt{2\omega(\vb{k})}}
-		\vb{k}
-		\bra{0}
-		\hat{a}(\vb{p}_1)
-		\cdots
-		\hat{a}(\vb{p}_n)
-		\hat{a}^\dagger(\vb{k})
-		\hat{a}(\vb{k})
-		\hat{a}^\dagger(\vb{q}_1)
-		\cdots
-		\hat{a}^\dagger(\vb{q}_n)
-		\ket{0}	
-	\end{split}
-\end{equation}
+it is not anymore an eigenstate of the energy and momentum operator but has energy and momentum expectation values
+\begin{align}
+	\bra{n_f}
+	\hat{H}
+	\ket{n_f}
+	&=
+	n
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\omega(\vb{p})
+	\abs*{\frac{f\left(\omega(\vb{q}),\vb{q}\right)}{\sqrt{2\omega(\vb{p})}}}^2
+	\\
+	\bra{n_f}
+	\vu{P}
+	\ket{n_f}
+	&=
+	n
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\vb{p}
+	\abs*{\frac{f\left(\omega(\vb{q}),\vb{q}\right)}{\sqrt{2\omega(\vb{p})}}}^2
+	.
+\end{align}
+The expectation value and variance of the electric field operator are
+\begin{align}
+	\bra{n_f}
+	\hat{E}(t,\vb{x})
+	\ket{n_f}
+	&=
+	0
+	\\
+	\bra{n_f}
+	\left(
+		\Delta
+		\hat{E}(t,\vb{x})
+	\right)^2
+	\ket{n_f}
+	&=
+	\frac{1}{2}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\omega(\vb{p})
+	+
+	\frac{1}{2}
+	\abs*{\Psi(t,\vb{x})}^2
+	.
+\end{align}
+The electric field vanishes for our number states as known in quantum optics, see, for instance, Ref.~\cite{Gerry2005}, but the variance contains an additional term to the "vacuum fluctuations" from the momentum spectrum.
+The vacuum fluctuations are in principle infinite, however, our detector is only able to detect a limited bandwidth which makes the vacuum fluctuations in practical applications finite again.
 
 \subsection{Coherent states}
 
@@ -667,6 +676,7 @@ The radiation emitted by a classical current is coherent, suggesting to identify
 		\hat{A}^{(+)}[\alpha]
 	\right\}
 	\ket{0}
+	\label{eq:coherent_state}
 \end{equation}
 where we used that the exponential of the generalized annihilation operator acting on the vacuum state produces the vacuum state.
 Coherent states are non-orthogonal, i.e.,
@@ -698,6 +708,7 @@ Coherent states are non-orthogonal, i.e.,
 				2\alpha(\vb{p})^*\beta(\vb{p})
 			\right\}
 		\right\}
+		\label{eq:coherent_state_inner}
 		.
 	\end{split}
 \end{equation}
@@ -708,6 +719,7 @@ The coherent state is an eigenstate to the annihilation operator
 	=
 	\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
 	\ket{\alpha}
+	\label{eq:coherent_state_annihilation}
 \end{equation}
 which makes it simple to drive the expectation value of the Hamiltonian operator
 \begin{equation}
@@ -718,6 +730,7 @@ which makes it simple to drive the expectation value of the Hamiltonian operator
 	\int\frac{\dd{p}}{(2\pi)^3}
 	\omega(\vb{p})
 	\abs*{\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}}^2
+	\label{eq:coherent_state_hamilton_expval}
 \end{equation}
 and its variance
 \begin{equation}
@@ -731,28 +744,62 @@ and its variance
 	\int\frac{\dd{p}}{(2\pi)^3}
 	\omega(\vb{p})^2
 	\abs*{\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}}^2
+	\label{eq:coherent_state_hamilton_variance}
 	.
 \end{equation}
 For the number operator we find the mean to equal the variance
-\begin{equation}
+\begin{align}
 	\bra{\alpha}
 	\hat{N}
 	\ket{\alpha}
-	=
-	\overline{n}
-	=
+	&=
 	\int\frac{\dd{p}}{(2\pi)^3}
 	\abs*{\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}}^2
 	=
+	\overline{n}
+	\label{eq:coherent_state_number_expval}
+	\\
 	\bra{\alpha}
 	\left(
 		\Delta
 		\hat{N}
 	\right)^2
 	\ket{\alpha}
+	&=
+	\overline{n}^2
+	\label{eq:coherent_state_number_variance}
 	,
-\end{equation}
+\end{align}
 i.e., the photon number to be Poisson distributed, which follows simply by setting $\omega(\vb{p})=1$ in the results obtained for the Hamilton operator.
+The expectation value of the electric field operator reads
+\begin{equation}
+	\begin{split}
+		\bra{\alpha}
+		\hat{E}(t,\vb{x})
+		\ket{\alpha}
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\sqrt{2\omega(\vb{p})}
+		\Im\left\{
+			\alpha(\vb{p})
+			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+		\right\}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\sqrt{2\omega(\vb{p})}
+		\abs*{\alpha(\vb{p})}
+		\sin\left(
+			\vb{p}\vdot\vb{x}
+			-
+			\omega(\vb{p})t
+			+
+			\varphi
+		\right)
+	\end{split}
+	\label{eq:coherent_state_electric_expval}
+\end{equation}
+where we used the polar representation $\alpha(\vb{p})=\abs*{\alpha(\vb{p})}e^{i\varphi}$.
 The inner product of a coherent state with a number state yields
 \begin{equation}
 	\braket{n_f}{\alpha}
@@ -764,6 +811,7 @@ The inner product of a coherent state with a number state yields
 		f\left(\omega(\vb{p}),\vb{p}\right)^*
 		\alpha(\vb{p})
 	\right)^n
+	\label{eq:coherent_state_inner_number}
 	.
 \end{equation}
 We have derived the generalized coherent state from the interaction of the Maxwell field with a classical current where found the time-evolution operator to yield the displacement operator.

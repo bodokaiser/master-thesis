@@ -9,10 +9,30 @@ The Coulomb gauge restricts our results to a stationary reference frame appropri
 % - number state are not anymore eigenenergy and momentum states!
 % - coherent states from the interaction with a classical source, behave exactly like their single-mode coutnerparts except having a spectrum
 
+
 % approximations
 % Lorentz-invariant measure approximately constant
 % reduction from three to one dimension + forward propagation
 % give field operators and stats in the one-dimensional approximation and compare with Barnett
+
+% TODO: quadrature operator! -> can we motivate the quadrature from the electric field (phase-rotated unitless electric field operator?)?
+
+We furthermore define the generalized quadrature operator~\cite[p.~79]{Barnett2002} to be
+\begin{equation}
+	\hat{X}(\vartheta)
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{1}{\sqrt{2}}
+	\left\{
+		\hat{a}(\vb{p})
+		e^{-i\vartheta}
+		+
+		\hat{a}^\dagger(\vb{p})
+		e^{+i\vartheta}
+	\right\}
+	\label{eq:quadrature_operator}
+	.
+\end{equation}
 
 In \cite[p.~53]{Cohen2019} there is an extra section about the relationship between one- and three-dimensional wave packets.
 

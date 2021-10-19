@@ -757,6 +757,7 @@ where we find the electric field operator components via $\hat{E}^i=\partial_t\h
 	-i
 	\sum_{\lambda=1,2}
 	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\omega(\vb{p})
 	\hat{a}_\lambda(\vb{p})
 	\vu{e}_\lambda(\vb{p})
 	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
@@ -767,13 +768,14 @@ where we find the electric field operator components via $\hat{E}^i=\partial_t\h
 	+i
 	\sum_{\lambda=1,2}
 	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\omega(\vb{p})
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\vu{e}_\lambda(\vb{p})^*
 	e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
 	\label{eq:electric_positive_operator}
 	.
 \end{align}
-Inserting the Maxwell and electric field operators into the equal-time commutation relation, we derive the canonical commutation relations
+Inserting the Maxwell and electric field operators into the equal-time commutation relation, we derive the \gls{ccr}
 \begin{align}
 	\comm{\hat{a}_\lambda(\vb{p})}{\hat{a}_{\lambda^\prime}^\dagger(\vb{q})}
 	&=
