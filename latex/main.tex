@@ -7,6 +7,7 @@
 ]{scrreprt}
 
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{authblk}
 \usepackage[english]{babel}
 \usepackage{biblatex}
@@ -86,6 +87,12 @@
 % prefix equation numbers with section number
 \numberwithin{equation}{section}
 
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
 % optics
 \newacronym{ar}{AR}{anti-reflective}
 \newacronym{mzm}{MZM}{Mach-Zehnder modulator}
@@ -106,6 +113,7 @@
 \newacronym{povm}{POVM}{positive operator-valued measure}
 \newacronym{bch}{BCH}{Baker-Campbell-Hausdorff}
 \newacronym{ccr}{CCR}{canonical commutation relation}
+\newacronym{etcr}{ETCR}{equal-time commutation relation}
 \newacronym{qed}{QED}{quantum electrodynamics}
 
 % electrical engineering
@@ -217,9 +225,8 @@
 	\chapter{Quantum theory of light}
 	\begin{refsection}
 		\input{chapters/quantum-theory/introduction}
-		\input{chapters/quantum-theory/field-theory}
-		\input{chapters/quantum-theory/state-space}
-		\input{chapters/quantum-theory/photodetection}
+		\input{chapters/quantum-theory/fields}
+		\input{chapters/quantum-theory/states}
 
 		\addcontentsline{toc}{section}{Summary}
 		\input{chapters/quantum-theory/summary}
@@ -257,8 +264,9 @@
 
 	\appendix
 	
-%	\chapter{Theorems}
-%	\begin{refsection}
+	\chapter{Supplements to quantum theory of light chapter}
+	\begin{refsection}
+		\input{chapters/appendix/states}
 %		\input{chapters/theorems/relativistic-field-theory}
 %		\input{chapters/theorems/relativistic-wavepackets}
 %		\input{chapters/theorems/canonical-quantization}
@@ -266,8 +274,8 @@
 %		\input{chapters/theorems/quantum-states}
 %		\input{chapters/theorems/interactions}
 		
-%		\addcontentsline{toc}{section}{References}
-%		\printbibliography[title=References]
-%	\end{refsection}
+		\addcontentsline{toc}{section}{References}
+		\printbibliography[title=References]
+	\end{refsection}
 
 \end{document}

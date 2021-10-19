@@ -1,4 +1,4 @@
-\section{Quantum state construction}
+\section{Quantum states}
 
 In the previous section, we derived the relevant field operators for the Maxwell field encoding electromagnetism.
 In the present section, we construct quantum states from these operators in a rather axiomatic approach as done in Ref.~\cite[p.~506]{Cohen2019} for the quantum harmonic oscillator, or in axiomatic field theory~\cite{Streater2016,Haag2012,Bogolubov1989}.
@@ -358,7 +358,43 @@ While the generalized number state $\ket{n_f}$ is still an eigenstate of the num
 	\ket{n_f}
 	,
 \end{equation}
-it is not anymore an eigenstate of the energy and momentum operator.
+it is not anymore an eigenstate of the energy and momentum operator but has momentum expectation value
+\begin{equation}
+	\begin{split}
+		\bra{n_f}
+		\vu{P}
+		\ket{n_f}
+		&=
+		\frac{1}{n!}
+		\bra{0}
+		\hat{A}^{(-)}[f]^n
+		\vu{P}
+		\hat{A}^{(+)}[f]^n
+		\ket{0}
+		\\
+		&=
+		\int\frac{\dd[3]{p_1}}{(2\pi)^3\sqrt{2\omega(\vb{p}_1)}}
+		f\left(\omega(\vb{p}_1),\vb{p}_1\right)^*
+		\cdots
+		\int\frac{\dd[3]{q_n}}{(2\pi)^3\sqrt{2\omega(\vb{q}_n)}}
+		f\left(\omega(\vb{q}_n),\vb{q}_n\right)
+		\\
+		&\times
+		\frac{1}{n!}
+		\int\frac{\dd[3]{k}}{(2\pi)^3\sqrt{2\omega(\vb{k})}}
+		\vb{k}
+		\bra{0}
+		\hat{a}(\vb{p}_1)
+		\cdots
+		\hat{a}(\vb{p}_n)
+		\hat{a}^\dagger(\vb{k})
+		\hat{a}(\vb{k})
+		\hat{a}^\dagger(\vb{q}_1)
+		\cdots
+		\hat{a}^\dagger(\vb{q}_n)
+		\ket{0}	
+	\end{split}
+\end{equation}
 
 \subsection{Coherent states}
 
@@ -382,7 +418,7 @@ Inserting the spatial Fourier transform of the current $\vb{j}(t,\vb{p})$ and th
 	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left\{
 		\left(
-			\vb{j}(t,-\vb{p})
+			\vb{j}(t,\vb{p})^*
 			\vdot
 			\vu{e}_\lambda(\vb{p})
 		\right)
@@ -391,12 +427,14 @@ Inserting the spatial Fourier transform of the current $\vb{j}(t,\vb{p})$ and th
 		+
 		\text{h.c.}
 	\right\}
+	\label{eq:classical_current_interaction}
 	.
 \end{equation}
+where we used the conjugate symmetry $\vb{j}(t,\vb{p})^*=\vb{j}(t,-\vb{p})$.
 
 The effect of an interaction acting on a quantum state from time $t_0$ to $t$ is encoded in the time-evolution operator\footnote{See Ref.~\cite[p.~215]{Greiner2013} for an introduction into the time-evolution operator and interactions.}
 \begin{equation}
-	\hat{U}(t,t_0)
+	\hat{U}(t_0,t)
 	=
 	\mathcal{T}_+
 	\exp\left\{
@@ -409,21 +447,22 @@ The effect of an interaction acting on a quantum state from time $t_0$ to $t$ is
 wherein $\mathcal{T}_+$ denotes the time-ordering symbol.
 The Magnus expansion presents a systematic approach in finding an explicit form of the time-evolution operator\footnote{See Ref.~\cite[p.~42]{QuesadaMejia2015}, for an introduction to the Magnus expansion with application to nonlinear processes.}, it is given by
 \begin{equation}
-	\hat{U}(t,t_0)
+	\hat{U}(t_0,t)
 	=
 	\exp\left\{
-		\sum_{n=1}\Omega^{(n)(t_0,t)}
+		\sum_{n=1}
+		\Omega^{(n)}(t_0,t)
 	\right\}
 \end{equation}
 wherein the first two terms are given by
 \begin{align}
-	\hat{\Omega}^{(1)}(t,t_0)
+	\hat{\Omega}^{(1)}(t_0,t)
 	&=
 	-i
 	\int_{t_0}^t\dd{t^\prime}
 	\hat{H}_\text{int}(t^\prime)
 	\\
-	\hat{\Omega}^{(2)}(t,t_0)
+	\hat{\Omega}^{(2)}(t_0,t)
 	&=
 	\frac{(-i)^2}{2!}
 	\int_{t_0}^t\dd{t^\prime}
@@ -434,9 +473,10 @@ wherein the first two terms are given by
 For some interactions there exists no exact solution and we can truncate the expansion up to some finite term.
 Compared to other expansions, e.g. the Neumann expansion, the truncated Magnus expansion is still unitary.
 
-The first term in the Magnus expansion turns out to be
+Let us apply the Magnus expansion to find the time-evolution operator corresponding to the interaction Hamiltonian of \cref{eq:classical_current_interaction}.
+The first term of the Magnus expansion turns out to be
 \begin{equation}
-	\hat{\Omega}^{(1)}(t,t_0)
+	\hat{\Omega}^{(1)}(t_0,t)
 	=
 	i
 	\sum_{\lambda=1,2}
@@ -448,31 +488,22 @@ The first term in the Magnus expansion turns out to be
 		\text{h.c.}
 	\right\}
 \end{equation}
-where we defined
+where we defined the time-integrated current for polarization $\lambda$
 \begin{equation}
-	J_\lambda(t,t_0;\vb{p})
+	J_\lambda(t_0,t;\vb{p})
 	=
 	\int_{t_0}^t\dd{t^\prime}
-	j_\lambda(t^\prime,\vb{p})
+	\left(
+		\vb{j}(t,\vb{p})^*
+		\vdot
+		\vu{e}_\lambda(\vb{p})
+	\right)
 	e^{-i\omega(\vb{p})t^\prime}
 	.
 \end{equation}
-For the second term in the Magnus expansion, we first evaluate the commutator
+The second term in the Magnus expansion turns out to be complex
 \begin{equation}
-	\comm{\hat{H}(t^\prime)}{\hat{H}(t^{\prime\prime})}
-	=
-	i\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\omega(\vb{p})}
-	\Im\left\{
-		j_\lambda(t^\prime,\vb{p})
-		j_\lambda(t^{\prime\prime},\vb{p})^*
-		e^{-i\omega(\vb{p})(t^\prime-t^{\prime\prime})}
-	\right\}
-\end{equation}
-and notice that it is complex valued, hence, all higher commutators vanish and the Magnus expansion with the first two terms is exact.
-In summary, the second term of the Magnus expansion turns out to be
-\begin{equation}
-	\hat{\Omega}^{(2)}(t,t_0)
+	\hat{\Omega}^{(2)}(t_0,t)
 	=
 	i\sum_{\lambda=1,2}
 	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\omega(\vb{p})}
@@ -481,15 +512,16 @@ In summary, the second term of the Magnus expansion turns out to be
 		J_\lambda(t_0,t^{\prime\prime};\vb{p})^*
 	\right\}
 \end{equation}
-The second term contributes a phase to the time-evolution operator.
-As long as we consider a single current source, no interference of phases can occur and we can ignore the phase factor.
-The exact time-evolution operator of the Maxwell field interacting with a classical source current therefore is
+which only contributes a phase to the time-evolution operator.
+As the second commutator is complex-valued, higher order commutators vanish and the Magnus expansion is exact with the first two terms.
+As long as we consider a single current source, no interference of phases can occur and we can ignore the complex phase originating from the second Magnus coefficient.
+The time-evolution operator of the Maxwell field interacting with a classical source current therefore is~\cite[p.~168]{Itzykson2012}
 \begin{equation}
-	\hat{U}(t,t_0)
+	\hat{U}(t_0,t)
 	=
 	\exp\left\{
 		i\sum_{\lambda=1,2}
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi) ^3\sqrt{2\omega(\vb{p})}}
 		\left\{
 			J_\lambda(t,t_0;\vb{p})
 			\hat{a}_\lambda(\vb{p})
@@ -497,5 +529,242 @@ The exact time-evolution operator of the Maxwell field interacting with a classi
 			\text{h.c.}
 		\right\}
 	\right\}
+	.
 \end{equation}
-which equals the displacement operator for a time-dependent spectrum $\hat{D}[\alpha(t,t_0)]$.
+Neglecting the polarization 
+\begin{equation}
+	\hat{U}(t_0,t)
+	=
+	\exp\left\{
+		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi) ^3\sqrt{2\omega(\vb{p})}}
+		\left\{
+			i
+			J(t,t_0;\vb{p})
+			\hat{a}(\vb{p})
+			-
+			\text{h.c.}
+		\right\}
+	\right\}
+\end{equation}
+we identify the time-evolution operator with the generalization of the displacement operator from quantum optics~\cite[p.~xx]{Barnett2002}
+\begin{equation}
+	\lim_{t\to\infty}\hat{U}(-t,+t)
+	=
+	\hat{D}\left[-iJ(\vb{p})\right]
+\end{equation}
+where we take the generalized displacement operator to be
+\begin{equation}
+	\begin{split}
+		\hat{D}[\alpha]
+		&=
+		\exp\left\{
+			\hat{A}^{(+)}[\alpha]
+			-
+			\hat{A}^{(-)}[\alpha^*]
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi) ^3\sqrt{2\omega(\vb{p})}}
+			\left\{
+				\alpha(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+				-
+				\alpha(\vb{p})^*
+				\hat{a}(\vb{p})
+			\right\}
+		\right\}
+	\end{split}
+	\label{eq:displacement_operator}
+\end{equation}
+where we identified the generalized field creation and annihilation operators, $\hat{A}^{(+)}[\alpha]$ and $\hat{A}^{(-)}[\alpha^*]$.
+Noting that
+\begin{equation}
+	\comm{\hat{A}^{(+)}[\alpha]}{\hat{A}^{(-)}[\alpha^*]}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\abs*{\alpha(\vb{p})}
+\end{equation}
+we can employ the \gls{bch} formula as in Ref.~\cite[p.~xx]{Barnett2002} to write the displacement operator in normal-order
+\begin{equation}
+	\hat{D}[\alpha]
+	=
+	\exp\left\{
+		-
+		\frac{1}{2}
+		\comm{\hat{A}^{(+)}[\alpha]}{\hat{A}^{(-)}[\alpha^*]}
+	\right\}
+	\exp\left\{
+		+
+		\hat{A}^{(+)}[\alpha]
+	\right\}
+	\exp\left\{
+		-
+		\hat{A}^{(-)}[\alpha]
+	\right\}
+	.
+\end{equation}
+
+Now, let us discuss some properties of the displacement operator.
+The product of two different displacements is equal to the sum of the displacement times a suppression factor depending on the overlap for the displacement, i.e.,
+\begin{equation}
+	\begin{split}
+		\hat{D}[\alpha]
+		\hat{D}[\beta]
+		&=
+		\hat{D}[\alpha+\beta]
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\comm{\hat{A}^{(+)}[\alpha]}{\hat{A}^{(-)}[\beta^*]}
+			+
+			\frac{1}{2}
+			\comm{\hat{A}^{(+)}[\beta]}{\hat{A}^{(-)}[\alpha^*]}
+		\right\}
+		\\
+		&=
+		\hat{D}[\alpha+\beta]
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\int\frac{\dd{p}}{(2\pi)^32\omega(\vb{p})}
+			\left\{
+				\alpha(\vb{p})
+				\beta(\vb{p})^*
+				-
+				\alpha(\vb{p})^*
+				\beta(\vb{p})
+			\right\}
+		\right\}
+		.
+	\end{split}
+\end{equation}
+Using the product formula, we can quickly show that the displacement operator is unitary
+\begin{equation}
+	\hat{D}[\alpha]
+	\hat{D}[\alpha]^\dagger
+	=
+	\hat{D}[\alpha]
+	\hat{D}[-\alpha]
+	=
+	\mathbb{1}
+\end{equation}
+which is not too surprising given the time-evolution is unitary.
+
+The radiation emitted by a classical current is coherent, suggesting to identify the quantum state produced by a classical current as the coherent state
+\begin{equation}
+	\ket{\alpha}
+	=
+	\hat{D}[\alpha]
+	\ket{0}
+	=
+	\exp\left\{
+		-
+		\frac{1}{2}
+		\comm{\hat{A}^{(+)}[\alpha]}{\hat{A}^{(-)}[\alpha^*]}
+	\right\}
+	\exp\left\{
+		\hat{A}^{(+)}[\alpha]
+	\right\}
+	\ket{0}
+\end{equation}
+where we used that the exponential of the generalized annihilation operator acting on the vacuum state produces the vacuum state.
+Coherent states are non-orthogonal, i.e.,
+\begin{equation}
+	\begin{split}
+		\braket{\alpha}{\beta}
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\comm{\hat{A}^{(+)}[\alpha]}{\hat{A}^{(-)}[\alpha^*]}
+			-
+			\frac{1}{2}
+			\comm{\hat{A}^{(+)}[\beta]}{\hat{A}^{(-)}[\beta^*]}
+			+
+			\comm{\hat{A}^{(+)}[\beta]}{\hat{A}^{(-)}[\alpha^*]}
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			-
+			\frac{1}{2}
+			\int\frac{\dd{p}}{(2\pi)^32\omega(\vb{p})}
+			\left\{
+				\abs*{\alpha(\vb{p})}^2
+				+
+				\abs*{\beta(\vb{p})}^2
+				-
+				2\alpha(\vb{p})^*\beta(\vb{p})
+			\right\}
+		\right\}
+		.
+	\end{split}
+\end{equation}
+The coherent state is an eigenstate to the annihilation operator
+\begin{equation}
+	\hat{a}(\vb{p})
+	\ket{\alpha}
+	=
+	\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+	\ket{\alpha}
+\end{equation}
+which makes it simple to drive the expectation value of the Hamiltonian operator
+\begin{equation}
+	\bra{\alpha}
+	\hat{H}
+	\ket{\alpha}
+	=
+	\int\frac{\dd{p}}{(2\pi)^3}
+	\omega(\vb{p})
+	\abs*{\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}}^2
+\end{equation}
+and its variance
+\begin{equation}
+	\bra{\alpha}
+	\left(
+		\Delta
+		\hat{H}
+	\right)^2
+	\ket{\alpha}
+	=
+	\int\frac{\dd{p}}{(2\pi)^3}
+	\omega(\vb{p})^2
+	\abs*{\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}}^2
+	.
+\end{equation}
+For the number operator we find the mean to equal the variance
+\begin{equation}
+	\bra{\alpha}
+	\hat{N}
+	\ket{\alpha}
+	=
+	\overline{n}
+	=
+	\int\frac{\dd{p}}{(2\pi)^3}
+	\abs*{\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}}^2
+	=
+	\bra{\alpha}
+	\left(
+		\Delta
+		\hat{N}
+	\right)^2
+	\ket{\alpha}
+	,
+\end{equation}
+i.e., the photon number to be Poisson distributed, which follows simply by setting $\omega(\vb{p})=1$ in the results obtained for the Hamilton operator.
+The inner product of a coherent state with a number state yields
+\begin{equation}
+	\braket{n_f}{\alpha}
+	=
+	\frac{1}{\sqrt{n!}}
+	e^{-\overline{n}/2}
+	\left(
+		\int\frac{\dd{p}}{(2\pi)^32\omega(\vb{p})}
+		f\left(\omega(\vb{p}),\vb{p}\right)^*
+		\alpha(\vb{p})
+	\right)^n
+	.
+\end{equation}
+We have derived the generalized coherent state from the interaction of the Maxwell field with a classical current where found the time-evolution operator to yield the displacement operator.
+The generalized coherent state and displacement operators share the same properties as their single-mode quantum optics counterparts which is not too surprising given that the modes are independent of another.

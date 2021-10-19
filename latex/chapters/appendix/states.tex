@@ -1,0 +1,165 @@
+\section{Number states}
+
+\begin{lemma}
+	Let $\hat{a}(\vb{k})$ and $\hat{a}^\dagger(\vb{k})$ be the annihilation and creation operator satisfying the \gls{ccr} and $\hat{A}^{(\pm)}$ be the positive and negative frequency field operator, then the commutator of the annihilation and creation operator with the positive and negative smeared field operators yields
+	\begin{align}
+		\comm{\hat{a}(\vb{p})}{\hat{A}^{(+)}[f]}
+		&=
+		+\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+		\\
+		\comm{\hat{a}^\dagger(\vb{p})}{\hat{A}^{(-)}[f]}
+		&=
+		-\frac{f\left(\omega(\vb{p}),\vb{p}\right)^*}{\sqrt{2\omega(\vb{p})}}
+		.
+	\end{align}
+\end{lemma}
+\begin{proof}
+	Inserting the smeared field operator in momentum space and using the \gls{ccr} to evaluate the integral yields the first identity
+	\begin{equation}
+		\comm{\hat{a}(\vb{p})}{\hat{A}^{(+)}[f]}
+		=
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f\left(\omega(\vb{q}),\vb{q}\right)
+		\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
+		=
+		+\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+		.
+	\end{equation}
+	The second identity follows analog
+	\begin{equation}
+		\comm{\hat{a}^\dagger(\vb{p})}{\hat{A}^{(-)}[f]}
+		=
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		f\left(\omega(\vb{q}),\vb{q}\right)^*
+		\comm{\hat{a}^\dagger(\vb{p})}{\hat{a}(\vb{q})}
+		=
+		-\frac{f\left(\omega(\vb{p}),\vb{p}\right)^*}{\sqrt{2\omega(\vb{p})}}
+		.
+	\end{equation}
+\end{proof}
+
+\begin{lemma}
+	Let $\hat{a}(\vb{k})$ be the annihilation operator and $\hat{A}^{(-)}$ be the negative frequency field operator, then their commutator yields
+	\begin{equation*}
+		\hat{a}(\vb{p})
+		\ket{n_f}
+		=
+		\sqrt{n}
+		\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+		\ket{{n-1}_f}
+		.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	First, we note that
+	\begin{equation}
+		\begin{split}
+			\hat{a}(\vb{p})
+			\ket{n_f}
+			&=
+			\frac{1}{\sqrt{n!}}
+			\hat{a}(\vb{p})
+			\hat{A}^{(+)}[f]^n
+			\ket{0}
+			\\
+			&=
+			\frac{1}{\sqrt{n!}}
+			\left[
+				\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+				\hat{A}^{(+)}[f]^{n-1}
+				+
+				\hat{A}^{(+)}[f]
+				\hat{a}(\vb{p})
+				\hat{A}^{(+)}[f]^{n-1}
+			\right]
+			\ket{0}
+			\\
+			&=
+			\frac{1}{\sqrt{n}}
+			\left[
+				\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+				+
+				\hat{A}^{(+)}[f]
+				\hat{a}(\vb{p})
+			\right]
+			\ket{{n-1}_f}
+			,
+		\end{split}
+	\end{equation}
+	which for $n=1$ reduces to the induction start, $n=1$,
+	\begin{equation}
+		\hat{a}(\vb{p})
+		\ket{1_f}
+		=
+		\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+		\ket{0}
+	\end{equation}
+	The induction step, $n\to n+1$, goes
+	\begin{equation}
+		\begin{split}
+			\hat{a}(\vb{p})
+			\ket{{n+1}_f}
+			&=
+			\frac{1}{\sqrt{n+1}}
+			\hat{a}(\vb{p})
+			\hat{A}^{(+)}[f]
+			\ket{n_f}
+			\\
+			&=
+			\frac{1}{\sqrt{n+1}}
+			\left[
+				\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+				+
+				\hat{A}^{(+)}[f]
+				\hat{a}(\vb{p})
+			\right]
+			\ket{n_f}
+			\\
+			&=
+			\frac{1}{\sqrt{n+1}}
+			\left[
+				\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+				\ket{n_f}
+				+
+				\hat{A}^{(+)}[f]
+				\sqrt{n}
+				\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+				\ket{{n-1}_f}
+			\right]
+			\\
+			&=
+			\frac{1}{\sqrt{n+1}}
+			\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+			\left[
+				\ket{n_f}
+				+
+				n
+				\ket{n_f}
+			\right]
+			\\
+			&=
+			\sqrt{n+1}
+			\frac{f\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+			\ket{n_f}
+			.
+		\end{split}
+	\end{equation}
+\end{proof}
+
+\begin{lemma}
+	Let $\ket{n_f}$ be a number state and $\vu{P}$ be the momentum operator, then
+	\begin{equation}
+		\bra{n_f}
+		\vu{P}
+		\ket{n_f}
+		=
+		n
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\vb{p}
+		\abs*{\frac{f\left(\omega(\vb{q}),\vb{q}\right)}{\sqrt{2\omega(\vb{p})}}}^2
+		.
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	
+\end{proof}
