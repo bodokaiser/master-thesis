@@ -1,17 +1,14 @@
-\section{Maxwell field theory}
+\section{Maxwell theory}
 
-What do we do here?
-- Section structure
-- Expected results
+The Maxwell field is the (quantum) field theory whose excitations correspond to photons, the mediator of the electromagnetic force.
 
-Hamiltonian vs Lagrangian mechanics?
-Why we start with Lagrangian mechanics?
+Our presentation of the Maxwell field heavily exploits the modern field-theoretic arguments that have shown great success in developing the standard model.
+We first motivate the Lagrangian describing the Maxwell field, the Maxwell Lagrangian.
+Second, we relate the Maxwell field to the electromagnetic field components and discuss Maxwell theory in the context of classical electromagnetism.
+Third, we discuss and interpret the physical implications of the local gauge symmetry of the Maxwell field.
+In the last two sections, we perform a plane-wave (mode) expansion of the Maxwell field and observables, followed by canonical quantization.
 
-% TODO: Photon field does not get attention and has non-trivial quantization procedure
-
-\subsection{Maxwell Lagrangian from first principles}
-
-% TODO: Check Greiner p. 149 for additional motivation on how to find the Maxwell Lagrangian
+\subsection{Lagrangian from first principles}
 
 From a theoretical physics viewpoint, Maxwell theory is a relativistic vector field theory with local gauge symmetry.
 That alone is sufficient to "guess" the Maxwell Lagrangian from first principles~\cite[p.~149]{Greiner2013}.
@@ -117,7 +114,7 @@ If we accept the Dirac Lagrangian, describing charged fermions, then Noether's t
 However, the Dirac Lagrangian itself cannot be made gauge-invariant without coupling to a gauge-invariant vector field, which turns out to be the Maxwell field.
 The complete gauge-invariant Lagrangian describing charged fermions coupled to the Maxwell field lays down the foundation of \gls{qed}.
 
-\subsection{Lorentz force law, field-strength tensor and electromagnetic field components}
+\subsection{Classical electromagnetism}
 
 We have introduced the Maxwell field as the fundamental mediator of the electromagnetic force.
 However, so far, it is unclear how the electromagnetic field components relate to the Maxwell field.
@@ -295,8 +292,6 @@ Inserting \cref{eq:field_strength_scalar} into \cref{eq:maxwell_lagrangian_field
 \end{equation}
 where we expanded the Minkowski inner product $A_\mu j^\mu$ in terms of the time and spatial components.
 We identify $j^0$ and $\vb{j}$ as the charge and $\vb{j}$ as the current density as well as $A_0$ as the scalar and $\vb{A}$ as the vector potential of electromagnetism.
-
-\subsection{Covariant and non-covariant Maxwell equations}
 
 The manifest Lorentz-covariant Maxwell equations are~\cite[p.~336]{Srednicki2007}
 \begin{align}
@@ -741,6 +736,42 @@ where we defined the positive and negative frequency parts to be
 \end{align}
 In the literature, we find different conventions concerning the integration measure, the sign of the complex exponentials, and the complex conjugation of the of polarization basis vectors in \cref{eq:maxwell_positive_operator,eq:maxwell_negative_operator} originating from different conventions for the Fourier transform.
 For example, Refs.~\cite{Peskin1995,Greiner2013} use $\hat{a}_\lambda(\vb{p})e^{-i\omega(\vb{p})t}$ while Refs.~\cite{Srednicki2007,Weinberg1995} use $\hat{a}_\lambda(\vb{p})e^{+i\omega(\vb{p})t}$.
+The dimensionless limit of the Maxwell field operator, $\omega(\vb{p})\to1$, yields the quadrature operator
+\begin{equation}
+	\hat{X}(t,\vb{x})
+	=
+	\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{1}{\sqrt{2}}
+	\left\{
+		\hat{a}_\lambda(\vb{p})
+		\vu{e}_\lambda(\vb{p})
+		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+		+
+		\hat{a}_\lambda^\dagger(\vb{p})
+		\vu{e}_\lambda(\vb{p})^*
+		e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+	\right\}
+	.
+\end{equation}
+Application of the phase-rotation operator~\cite{Leonhardt2010,Vogel2006} yields the generalized quadrature operator
+\begin{equation}
+	\hat{X}(t,\vb{x};\vartheta)
+	=
+	\sum_{\lambda=1,2}
+	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{1}{\sqrt{2}}
+	\left\{
+		\hat{a}_\lambda(\vb{p})
+		\vu{e}_\lambda(\vb{p})
+		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}-\vartheta}
+		+
+		\hat{a}_\lambda^\dagger(\vb{p})
+		\vu{e}_\lambda(\vb{p})^*
+		e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}+\vartheta}
+	\right\}
+	.
+\end{equation}
 Analog to the Maxwell field operator, we decompose the electric field operator into a positive and negative frequency part
 \begin{equation}
 	\vu{E}(t,\vb{x})
@@ -775,6 +806,8 @@ where we find the electric field operator components via $\hat{E}^i=\partial_t\h
 	\label{eq:electric_positive_operator}
 	.
 \end{align}
+The 
+
 Inserting the Maxwell and electric field operators into the equal-time commutation relation, we derive the \gls{ccr}
 \begin{align}
 	\comm{\hat{a}_\lambda(\vb{p})}{\hat{a}_{\lambda^\prime}^\dagger(\vb{q})}

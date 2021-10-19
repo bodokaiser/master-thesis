@@ -1,49 +1,48 @@
 \section*{Summary}
 
-We motivated the Maxwell and electric quantum field operators, \cref{eq:maxwell_operator} and \cref{eq:electric_operator}, in the Coulomb gauge from first principles.
-The Coulomb gauge restricts our results to a stationary reference frame appropriate for quantum communication where transmitter and receiver are stationary or moving slowly.
+Our approach to a theoretical framework for quantum optical communication has been unconventional but insightful:
+We developed the quantum Maxwell and electric field operators in the Coulomb gauge, \cref{eq:maxwell_operator} and \cref{eq:electric_operator}, from field-theoretic arguments.
+We constructed generalized number and coherent quantum states from the quantum field operators using mathematical considerations.
+Contrary to the quantum states of the harmonic oscillator, the generalized number states are not eigenstates of the energy and momentum operator.
+Furthermore, we find that the variance of, for instance, the electric field operator, contains additional terms depending on the spectrum which are not present in the harmonic oscillator picture.
+Otherwise, we find the generalized number and coherent states to share many properties of their quantum optics counterparts.
 
-% what have we done
-% - derived the Maxwell and electric field operators + Coulomb gauge
-% - we constructed the number and coherent states -> generalized creation and annihilation operators
-% - number state are not anymore eigenenergy and momentum states!
-% - coherent states from the interaction with a classical source, behave exactly like their single-mode coutnerparts except having a spectrum
-
-
-% approximations
-% Lorentz-invariant measure approximately constant
-% reduction from three to one dimension + forward propagation
-% give field operators and stats in the one-dimensional approximation and compare with Barnett
-
-% TODO: quadrature operator! -> can we motivate the quadrature from the electric field (phase-rotated unitless electric field operator?)?
-
-We furthermore define the generalized quadrature operator~\cite[p.~79]{Barnett2002} to be
+The Coulomb gauge limits the generality of our results.
+Choosing the Coulomb gauge restricts our results to a stationary reference frame.
+The assumption of a stationary reference frame appears reasonable for terrestrial quantum optical communication but must be questioned for deep-space applications.
+Invoking further approximations allows the comparison of our results with the literature.
+We already used the scalar or one-polarization approximation in the construction of the quantum states.
+Strictly speaking, this is not even an approximation as we can always recover both polarizations by constructing the tensor product.
+For optical communication the transverse momentum profile transversal to the propagation axis carries no information but is determined by the communication channel.
+It is reasonable to ignore the transversal \gls{dof}s and reduce the field to one-dimension~ \cite[p.~53]{Cohen2019}
 \begin{equation}
-	\hat{X}(\vartheta)
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\frac{1}{\sqrt{2}}
-	\left\{
-		\hat{a}(\vb{p})
-		e^{-i\vartheta}
-		+
-		\hat{a}^\dagger(\vb{p})
-		e^{+i\vartheta}
-	\right\}
-	\label{eq:quadrature_operator}
+	\int_{\mathbb{R}^3}
+	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\to
+	\int_{-\infty}^{\infty}
+	\frac{\dd{p}}{(2\pi)\sqrt{2p}}
 	.
 \end{equation}
-
-In \cite[p.~53]{Cohen2019} there is an extra section about the relationship between one- and three-dimensional wave packets.
-
-By imposing the Coulomb gauge, we already selected a particular reference frame.
-Additionally, the typical detector bandwidth $B$ is much smaller than the center frequency $\omega_0$ and we can do by the mean value theorem
+The approximation can be made even stronger when neglecting back-scattering and reflection effects and restricting the momentum distribution to forward momentum, i.e.,
 \begin{equation}
-	\int
-	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int_{-\infty}^{\infty}
+	\frac{\dd{p}}{(2\pi)\sqrt{2p}}
+	\approx	
+	\int_{0}^{\infty}
+	\frac{\dd{p}}{(2\pi)\sqrt{2p}}	
+\end{equation}
+where the identification of the forward momentum with the frequency, $p=\omega$ is often made.
+Finally, we can remove the Lorentz factor in the integration measure by assuming a bandwidth-limited detection.
+Invoking the mean-value theorem for definite integrals
+\begin{equation}
+	\int_{0}^{\infty}
+	\frac{\dd{\omega}}{(2\pi)\sqrt{2\omega}}
 	\approx
 	\frac{1}{\sqrt{2\omega_0}}
-	\int
-	\frac{\dd[3]{p}}{(2\pi)^3}
+	\int_{0}^{\infty}
+	\frac{\dd{\omega}}{2\pi}
+	,
 \end{equation}
-However, we know that the field dynamics are not affected by multiplication with an overall constant.
+we can absorb the prefactor into the field.
+Combining these approximations and applying them to our results, we find our results in agreement with Ref.~\cite{Barnett2002}.
+We conclude that (continuous-mode) quantum optics is the scalar, one-dimensional forward, quasi-monochromatic approximation of quantum Maxwell field theory in the Coulomb gauge.
