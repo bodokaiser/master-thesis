@@ -31,130 +31,15 @@
 \setmainfont{Stix Two Text}
 \setmathfont{Stix Two Math}
 
-\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
-\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
-\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
-\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
-\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
-\DeclarePairedDelimiter{\expval}{\langle}{\rangle}
-\DeclarePairedDelimiter{\norder}{\mathcolon}{\mathcolon}
-\DeclarePairedDelimiter{\anorder}{\typecolon}{\typecolon}
-	
-\newcommand{\laplace}{\mbfnabla^2}
-\newcommand{\trans}{{\scriptscriptstyle\mathsf{T}}}
-
-\newcommand{\vdot}{\cdot}
-\newcommand{\vcross}{\vectimes}
-\newcommand{\vb}[1]{\symbfup{#1}}
-\newcommand{\vu}[1]{\hat{\vb{#1}}}
-\newcommand*\dd[2][\relax]{\mathop{\ifx\relax#1\odif{#2}\else \odif[order={#1}]{#2}\fi\,}}
-
-\DeclareMathOperator{\trace}{Tr}
-\DeclareMathOperator{\sinc}{sinc}
-
-\AtBeginDocument{
-	\let\Re\relax
-	\let\Im\relax
-	\DeclareMathOperator{\Re}{Re}
-	\DeclareMathOperator{\Im}{Im}
-
-	\renewcommand{\div}{\mathop{\mbfnabla\vdot}}
-	\newcommand{\curl}{\mathop{\mbfnabla\vectimes}}
-}
-
-\DeclarePairedDelimiterX{\comm}[2]{[}{]}{#1,#2}
-
-\DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}{#1\delimsize\vert#2}
-\DeclarePairedDelimiterX{\ketbra}[1]{\lvert}{\rvert}{#1\rangle\delimsize\langle#1}
+\input{preambles/math}
+\input{preambles/chapter}
+\input{preambles/theorem}
+\input{preambles/glossary}
 
 \addbibresource{literature.bib}
 
-% add bibliography as section (not chapter)
-% https://tex.stackexchange.com/questions/568580/make-the-bibliography-as-a-section-in-each-includ-chapter
-\defbibheading{bibliography}[\bibname]{\section*{#1}}
-
-% chapter appearance
-% https://tex.stackexchange.com/questions/159502/koma-script-scrreprt-how-to-change-chapter-appearance-and-produce-a-chapter-bas
-\addtokomafont{chapterprefix}{\raggedleft}
-\renewcommand*{\chapterformat}{%
-\mbox{\chapappifchapterprefix{\nobreakspace}%
-\scalebox{3}{\color{gray}\thechapter\autodot}\enskip}}
-
 % caption label linebreak
 \setkomafont{captionlabel}{\sffamily}
-
-% prefix equation numbers with section number
-\numberwithin{equation}{section}
-
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-
-% optics
-\newacronym{ar}{AR}{anti-reflective}
-\newacronym{mzm}{MZM}{Mach-Zehnder modulator}
-\newacronym{iqm}{IQM}{In-phase and quadrature modulator}
-\newacronym{mzi}{MZI}{Mach-Zehnder interferometer}
-\newacronym{bs}{BS}{beam splitter}
-\newacronym{fc}{FC}{fiber coupler}
-\newacronym{qe}{QE}{quantum efficiency}
-\newacronym{voa}{VOA}{variable optical attenuator}
-
-% physics
-\newacronym{dv}{DV}{discrete-variable}
-\newacronym{cv}{CV}{continuous-variable}
-\newacronym{dof}{DOF}{degrees of freedom}
-\newacronym{com}{COM}{center of mass}
-\newacronym{eom}{EOM}{equation(s) of motion}
-\newacronym{pbc}{PBC}{periodic boundary conditions}
-\newacronym{povm}{POVM}{positive operator-valued measure}
-\newacronym{bch}{BCH}{Baker-Campbell-Hausdorff}
-\newacronym{ccr}{CCR}{canonical commutation relation}
-\newacronym{etcr}{ETCR}{equal-time commutation relation}
-\newacronym{qed}{QED}{quantum electrodynamics}
-
-% electrical engineering
-\newacronym{asp}{ASP}{analog signal processing}
-\newacronym{dsp}{DSP}{digital signal processing}
-\newacronym{osp}{OSP}{optical signal processing}
-\newacronym{lo}{LO}{local oscillator}
-\newacronym{lti}{LTI}{linear time-invariant}
-\newacronym{rf}{RF}{radio frequency}
-\newacronym{if}{IF}{intermediate frequency}
-\newacronym{lp}{LP}{low-pass}
-\newacronym{tia}{TIA}{transimpedance amplifier}
-\newacronym{iq}{I/Q}{in-phase/quadrature}
-\newacronym{psd}{PSD}{power spectral density}
-\newacronym{snr}{SNR}{signal-to-noise ratio}
-\newacronym{rc}{RC}{raised-cosine}
-\newacronym{rrc}{RRC}{root-raised-cosine}
-\newacronym{adc}{ADC}{analog-to-digital converter}
-\newacronym{dac}{DAC}{digital-to-analog converter}
-\newacronym{am}{AM}{amplitude modulation}
-\newacronym{fm}{FM}{frequency modulation}
-\newacronym{pm}{PM}{phase modulation}
-\newacronym{qam}{QAM}{quadrature amplitude modulation}
-\newacronym{qpsk}{QPSK}{quadrature phase-shift keying}
-
-% cryptography
-\newacronym{iid}{i.i.d.}{independent and identically distributed}
-\newacronym{aes}{AES}{advanced encryption standard}
-\newacronym{cvqkd}{CV-QKD}{continuous-variable quantum-key distribution}
-\newacronym{dvqkd}{DV-QKD}{discrete-variable quantum-key distribution}
-\newacronym{dpsqkd}{DPS-QKD}{differential phase-shift quantum-key distribution}
-\newacronym{gnfs}{GNFS}{generalized number field sieve}
-\newacronym{mac}{MAC}{message authentication code}
-\newacronym{ldpc}{LDPC}{low-density parity-check}
-\newacronym{otp}{OTP}{one-time pad}
-\newacronym{pkd}{PKD}{public-key distribution}
-\newacronym{qkd}{QKD}{quantum-key distribution}
-\newacronym{rsa}{RSA}{Rivest–Shamir–Adleman}
-\newacronym{ecdh}{ECDH}{elliptic-curve Diffie-Hellman}
-\newacronym{qber}{QBER}{quantum-bit error-rate}
-\newacronym{dps}{DPS}{differential-phase-shift}
 
 \begin{document}
 	\begin{titlepage}
@@ -192,90 +77,35 @@
 			\end{tabular}
 		\end{center}
 	\end{titlepage}
+	
 	\tableofcontents
 
-	\chapter{Introduction}
-	\begin{refsection}
-		\textit{The following chapter presents the fundamental idea of quantum-key distribution and its many facets, usually overlooked in the introductory material.}
-        \input{chapters/introduction/quantum-technologies}
-        \input{chapters/introduction/secure-communication}
-        \input{chapters/introduction/problem-statement}
-        \input{chapters/introduction/thesis-structure}
-        \input{chapters/introduction/conventions-notation}
+	\input{chapters/introduction}
 	
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
+	\input{chapters/quantum-key-distribution/introduction}
+	\input{chapters/quantum-key-distribution/taxonomy}
+	\input{chapters/quantum-key-distribution/qubit}
+	\input{chapters/quantum-key-distribution/boson}
+	\input{chapters/quantum-key-distribution/post-processing}
+	\input{chapters/quantum-key-distribution/security}
+
+	\input{chapters/quantum-theory-of-light/introduction}
+	\input{chapters/quantum-theory-of-light/fields}
+	\input{chapters/quantum-theory-of-light/states}
 	
-	\chapter{Quantum-key distribution}
-	\begin{refsection}
-		\input{chapters/quantum-key-distribution/introduction}
-		\input{chapters/quantum-key-distribution/taxonomy}
-		\input{chapters/quantum-key-distribution/qubit}
-		\input{chapters/quantum-key-distribution/boson}
-		\input{chapters/quantum-key-distribution/post-processing}
-		\input{chapters/quantum-key-distribution/security}
+	\input{chapters/coherent-state-transmission-system/introduction}
+	\input{chapters/coherent-state-transmission-system/transmitter}
+	\input{chapters/coherent-state-transmission-system/receiver}
 
-		\addcontentsline{toc}{section}{Summary}
-		\input{chapters/quantum-key-distribution/summary}
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
-
-	\chapter{Quantum theory of light}
-	\begin{refsection}
-		\input{chapters/quantum-theory/introduction}
-		\input{chapters/quantum-theory/fields}
-		\input{chapters/quantum-theory/states}
-
-		\addcontentsline{toc}{section}{Summary}
-		\input{chapters/quantum-theory/summary}
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
-	
-	\chapter{Classical transmission system}
-	\begin{refsection}
-		\input{chapters/classical-transmission-system/introduction}
-		\input{chapters/classical-transmission-system/transmitter}
-		\input{chapters/classical-transmission-system/receiver}
-
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
-	
-	\chapter{Quantum transmission system}
-	\begin{refsection}
-		\input{chapters/quantum-transmission-system/transmitter}
-		\input{chapters/quantum-transmission-system/receiver}
-		
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
-
-	\chapter{Conclusion and outlook}
-	\begin{refsection}
-		\input{chapters/conclusion-outlook/introduction}
-		\input{chapters/conclusion-outlook/logical-quantum-channel}
-
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
+	\input{chapters/conclusion-outlook}
 
 	\appendix
 	
-	\chapter{Supplements to quantum theory of light chapter}
-	\begin{refsection}
-		\input{chapters/appendix/states}
-%		\input{chapters/theorems/relativistic-field-theory}
-%		\input{chapters/theorems/relativistic-wavepackets}
-%		\input{chapters/theorems/canonical-quantization}
-%		\input{chapters/theorems/klein-gordon-field}
-%		\input{chapters/theorems/quantum-states}
-%		\input{chapters/theorems/interactions}
-		
-		\addcontentsline{toc}{section}{References}
-		\printbibliography[title=References]
-	\end{refsection}
+	\input{chapters/appendix/theorems}
+	
+	\printbibliography[heading=bibintoc]
+	
+	\input{adjuncts/acknowledgements}
+	\input{adjuncts/originality-statement}
 
 \end{document}

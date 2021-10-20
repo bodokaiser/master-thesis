@@ -1,4 +1,5 @@
-\section{Secure communication}
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
 
 Two spatially distanced parties, Alice and Bob, share a communication channel that allows them to send and receive information.
 We assume the communication channel to be a one-to-one map between Alice and Bob, i.e., information is received as transmitted, for instance, by employing some error correction, e.g., LDPC codes~\cite{Gallager1962}.
@@ -22,7 +23,7 @@ Given a truly random and secret key $k$ shared between Alice and Bob such a syst
 However, one needs to employ a practical mechanism to generate and distribute the key securely.
 
 \FloatBarrier
-\subsection{Public-key distribution}
+\subsubsection{Public-key distribution}
 
 The standard attempt to solve the secret key distribution problem is to use an asymmetric cipher.
 Asymmetric ciphers like RSA, comprise a public key for encryption and a private key for decryption.
@@ -60,7 +61,7 @@ However, what is not computationally feasible today might be tomorrow, and it is
 Therefore, public-key distribution is not considered to be forward secure.
 
 \FloatBarrier
-\subsection{Quantum-key distribution}
+\subsubsection{Quantum-key distribution}
 
 The chance of public-key distribution becoming a critical vulnerability in secure communication infrastructure inflamed a demand for a practical and information-theoretical provable alternative key distribution.
 \gls{qkd} claims to be such a practical and information-theoretical secure key distribution.

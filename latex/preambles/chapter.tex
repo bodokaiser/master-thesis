@@ -1,0 +1,5 @@
+% https://tex.stackexchange.com/questions/159502/koma-script-scrreprt-how-to-change-chapter-appearance-and-produce-a-chapter-bas
+\addtokomafont{chapterprefix}{\raggedleft}
+\renewcommand*{\chapterformat}{%
+\mbox{\chapappifchapterprefix{\nobreakspace}%
+\scalebox{3}{\color{gray}\thechapter\autodot}\enskip}}

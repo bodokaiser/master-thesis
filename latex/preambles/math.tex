@@ -1,0 +1,39 @@
+% prefix equation numbers with section number
+\numberwithin{equation}{section}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
+\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
+\DeclarePairedDelimiter{\expval}{\langle}{\rangle}
+\DeclarePairedDelimiter{\norder}{\mathcolon}{\mathcolon}
+\DeclarePairedDelimiter{\anorder}{\typecolon}{\typecolon}
+	
+\newcommand{\laplace}{\mbfnabla^2}
+\newcommand{\trans}{{\scriptscriptstyle\mathsf{T}}}
+
+\newcommand{\vdot}{\cdot}
+\newcommand{\vcross}{\vectimes}
+\newcommand{\vb}[1]{\symbfup{#1}}
+\newcommand{\vu}[1]{\hat{\vb{#1}}}
+\newcommand*\dd[2][\relax]{\mathop{\ifx\relax#1\odif{#2}\else \odif[order={#1}]{#2}\fi\,}}
+
+\DeclareMathOperator{\trace}{Tr}
+\DeclareMathOperator{\sinc}{sinc}
+
+\AtBeginDocument{
+	\let\Re\relax
+	\let\Im\relax
+	\DeclareMathOperator{\Re}{Re}
+	\DeclareMathOperator{\Im}{Im}
+
+	\renewcommand{\div}{\mathop{\mbfnabla\vdot}}
+	\newcommand{\curl}{\mathop{\mbfnabla\vectimes}}
+}
+
+\DeclarePairedDelimiterX{\comm}[2]{[}{]}{#1,#2}
+
+\DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}{#1\delimsize\vert#2}
+\DeclarePairedDelimiterX{\ketbra}[1]{\lvert}{\rvert}{#1\rangle\delimsize\langle#1}
