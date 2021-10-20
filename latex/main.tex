@@ -9,7 +9,7 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{authblk}
-\usepackage[english]{babel}
+\usepackage[ngerman,english]{babel}
 \usepackage{biblatex}
 \usepackage{booktabs}
 \usepackage{csquotes}
@@ -27,7 +27,6 @@
 \usepackage{mathtools}
 \usepackage{derivative}
 
-% most complete math font
 \setmainfont{Stix Two Text}
 \setmathfont{Stix Two Math}
 
@@ -42,41 +41,12 @@
 \setkomafont{captionlabel}{\sffamily}
 
 \begin{document}
-	\begin{titlepage}
-		\begin{center}
-			\large
-   		    \textbf{\textsf{Experimental quantum optics}}\\
-		    \vspace{0.8em}
-			\huge
-		    \textbf{\textsf{A theoretical framework for quantum optical communication - towards CV-QKD}}\\
-			
-			\vspace{1.2em}
-			\begin{figure}[htb]
-				\centering
-			    \includestandalone[scale=1.2]{figures/pgfplots/phase-space-coherent}
-			\end{figure}
-			
-			\vspace{.6em}
-		    \large
-		    \textbf{Master thesis by}\\
-			\vspace{.8em}
-		    \large
-			Bodo Kaiser\\
-		    \vspace{.2em}
-			\textit{bodo.kaiser@physik.uni-muenchen.de}
-
-		    %\usekomafont{date}
-		    \large
-		    \today
-
-		    \vspace{1.9em}
-			\normalsize
-			\begin{tabular}{ll}
-			Internal supervisor: & Prof. Dr. Monika Aidelsburger \\
-			External supervisor: & Dr. Hans H. Brunner \\
-			\end{tabular}
-		\end{center}
-	\end{titlepage}
+	\input{adjuncts/title-en}
+	\input{adjuncts/title-de}
+	
+	\input{contents/abstract}
+	\newpage
+	\input{contents/notation}
 	
 	\tableofcontents
 
@@ -107,5 +77,4 @@
 	
 	\input{adjuncts/acknowledgements}
 	\input{adjuncts/originality-statement}
-
 \end{document}
