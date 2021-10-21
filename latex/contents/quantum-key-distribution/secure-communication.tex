@@ -1,0 +1,127 @@
+\section{Secure-key distribution}
+
+Two spatially distanced parties, Alice and Bob, share a communication channel that allows them to send and receive information.
+We assume the communication channel to be a one-to-one map between Alice and Bob, i.e., information is received as transmitted, for instance, by employing some error correction, e.g., LDPC codes~\cite{Gallager1962}.
+How do we enable secure communication between Alice and Bob?
+To promote the communication channel to be secure against an adversarial third party, Eve, we need to extend the communication protocol to assure
+\begin{enumerate}
+	\item \textbf{confidentiality}, and
+	\item \textbf{integrity}.
+\end{enumerate}
+Confidentiality ensures that Eve cannot read messages and is implemented using symmetric encryption like the \gls{otp}~\cite{Shannon1949} or the more practical \gls{aes}~\cite{Daemen1999}.
+Integrity ensures that Eve cannot alter messages in transit and is implemented using a \gls{mac}, e.g., universal hash functions~\cite{Carter1979}.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/secure-communication}
+	\caption{Secure communication between Alice and Bob using a classical channel to which an adversarial third party, Eve, has read and write access: A plaintext $p$ is encrypted with a secret key $k$ through a symmetric encryption function $e(k,p)$ yielding a ciphertext $c$. The ciphertext is amended by a hashing function $h(k,c)$ yielding the message $m$. The message is sent through an error-free channel to Bob. Bob checks the integrity of the message using his copy of the secret key $k$ and the hash inside the message $m$. If he finds the message $m$ to be genuine, he removes the hash to obtain the ciphertext $c$ which he decrypts using his key $k$ and the decryption function $d(k,c)$. After decryption, Bob has access to the plaintext $p$ initially prepared by Alice.}\label{fig:secure_communication}
+\end{figure}
+\Cref{fig:secure_communication} depicts a communication between Alice and Bob secure against a third adversarial party, Eve.
+The plaintext is first encrypted and then appended a \gls{mac} as advised by Ref.~\cite{Kohno2003,Krawczyk2001,Bellare2000}.
+
+Given a truly random and secret key $k$ shared between Alice and Bob such a system has been proven to be eternal secure when using the \gls{otp} encryption scheme~\cite{Shannon1949}.
+However, one needs to employ a practical mechanism to generate and distribute the key securely.
+
+\FloatBarrier
+\subsection{Public-key distribution}
+
+The standard attempt to solve the secret key distribution problem is to use an asymmetric cipher.
+Asymmetric ciphers like RSA, comprise a public key for encryption and a private key for decryption.
+Using such an asymmetric cipher, secret key distribution between Alice and Bob involves the following steps:
+\begin{enumerate}
+	\item Bob generates a public and a private key.
+	\item Alice generates a secret key.
+	\item Bob discloses the public key to Alice.
+	\item Alice encrypts the secret key with the public key and sends it to Bob.
+	\item Bob decrypts Alice secret key with the private key.
+\end{enumerate}
+Assuming the asymmetric cipher to be secure, Alice and Bob now share a secret key.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/pkd-system}
+	\caption{\Gls{pkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob.}\label{fig:pkd_system}
+\end{figure}
+Public-key distribution algorithms, for instance, Diffie-Hellman~\cite{Diffie1976} and variants thereof, e.g., \gls{ecdh}, are heavily employed in todays internet for key agreement.
+One of the advantages of public-key distribution is that it is software-defined, allowing for easy installation and upgrades.
+The core principle behind asymmetric ciphers is the concept of one-way functions:
+Functions that are easy to compute but difficult to invert.
+A typical class of one-way functions appears in prime number factorization: Given two prime numbers $p$ and $q$, it is easy to compute the product $pq$ but difficult to factorize $pq$ into its prime numbers $p$ and $q$.
+Here, easy and difficult refer to the computational complexity, which gives an upper bound of the best (known) algorithm to solve the problem.
+So far, there has been no mathematical proof that one-way functions are indeed computational complex, and it may be that we are just not yet aware of efficient algorithms placing asymmetric cryptography at all in a questionable position.
+With the advent of quantum computers, new algorithms with significant speed up to their classical counterpart were found.
+Shor, for example, presented an algorithm for prime number factorization in polynomial time~\cite{Shor1994} - the same task used by the Diffie-Hellman key exchange.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pgfplots/runtime}
+	\caption{Computational runtimes for prime number factorization algorithms: The most efficient known classical algorithm is the \gls{gnfs}~\cite{Lenstra1993} and Shor's algorithm~\cite{Shor1994}.}
+\end{figure}
+Consequently, post-quantum algorithms have been proposed~\cite{Bernstein2017,Chen2016} to use a different class of one-way functions where no efficient (quantum) algorithm is (yet) known.
+As long as there is no proof for the computational complexity for a specific family of one-way functions, public-key distribution is only safe for key lengths that are not computationally feasible.
+However, what is not computationally feasible today might be tomorrow, and it is conceivable that encrypted communication recorded today will be broken in the feature with specialized hardware.
+Therefore, public-key distribution is not considered to be forward secure.
+
+\FloatBarrier
+\subsection{Quantum-key distribution}
+
+The chance of public-key distribution becoming a critical vulnerability in secure communication infrastructure inflamed a demand for a practical and information-theoretical provable alternative key distribution.
+\gls{qkd} claims to be such a practical and information-theoretical secure key distribution.
+In summary, \gls{qkd} exploits the inherent uncertainty in measuring non-orthogonal quantum states for shared random number generation:
+\begin{enumerate}
+	\item Alice samples some random variables $\alpha_1,\dots,\alpha_n$ and encodes them onto a quantum state $\ket{\psi(t)}$.
+	\item Bob performs measurements of the quantum state $\ket{\psi(t)}$ yielding $\beta_1,\dots,\beta_n$.
+	\item Alice's $\alpha_1,\dots,\alpha_n$ and Bob's $\beta_1,\dots,\beta_n$ are correlated random variables from which a shared secret key can be distilled using classical algorithms (post-processing).
+\end{enumerate}
+On a more practical level, a typical \gls{qkd} system comprises a transmitter, a receiver, a quantum and classical communication channel as illustrated in \Cref{fig:qkd_system}.
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/tikz/qkd-system}
+	\caption{\Gls{qkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob, secret to a third party, Eve. Eve has full access to the quantum channel but can only read information from the classical authenticated channel.}\label{fig:qkd_system}
+\end{figure}
+A potential adverse eavesdropper, Eve, has full access to the quantum channel, i.e., can intercept and temper with quantum states sent by Alice, but has only read access to the classical channel.
+More precisely, the classical channel is an authenticated channel to prevent man-in-the-middle attacks.
+Authentication can be implemented classically using \gls{mac} as discussed for the secure communication system.
+% assumptions to Eve and what kind of attacks she can do (coherent, ?)
+% explain superoperator (effect of quantum channel)
+
+% entanglement- vs. prepare-and-measure -> EB used for proofs but otherwise PM used practical
+% comparison cv/dv on a quantum level (possible quantum states) and on a practical level (fiber, free-space) -> CV and DV depends on state space of the receiver
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{lll}
+		\toprule
+		Encoding variable & State space & Information support \\
+		\midrule
+		Polarization & Finite & Polarization state \\
+		Photon number & Countable & Number state \\
+		Quadratures & Uncountable & Coherent state \\
+		Squeezing & Uncountable & Squeezed state \\
+		Time-bin & Finite & Time of arrival \\
+		Phase-bin & Finite & Phase \\
+		\bottomrule
+	\end{tabular}
+	\caption{Encoding variables to use for \gls{qkd}: Variables with uncountable state space are considered for \gls{cvqkd} while variables with (possibly restricted) countable state space are considered for \gls{dvqkd}.}
+\end{table}
+
+\subsection{Taxonomy of QKD protocols}
+
+Before diving into specific \gls{qkd} protocols, we introduce a taxonomy of \gls{qkd} protocols.
+By identifying common protocol features, allows for a reductionist model of \gls{qkd}.
+
+The literature typically distinguishes between \gls{dvqkd}, \gls{cvqkd}, and \gls{dpsqkd}.
+Ignoring \gls{dpsqkd}, it is unclear what exact features unambiguously differentiate between \gls{cvqkd} and \gls{dvqkd}.
+For instance, most practical \gls{dvqkd} protocols use weak coherent states~\cite{Duvsek2006}, which are anything but discrete.
+Fr this reason, the accepted opinion considers a protocol discrete when using a single-photon and continuous when using a coherent detector.
+This view has been recently challenged by proposing a BB84-like protocol using coherent detection~\cite{Qi2021}.
+\begin{figure}[htb]
+	\centering
+	\includestandalone[scale=0.8]{figures/tikz/qkd-classification}
+	\caption{Common features among \gls{qkd} protocols: Detection, physical encoding, logical state space, measurement basis selection and schema.}\label{fig:qkd_classification}
+\end{figure}
+We propose a more subtle classification based on definite protocol features.
+\Cref{fig:qkd_classification} illustrates common features we identified among \gls{qkd} protocols that can be uniquely determined.
+Many of these features are implementation details such as physical encoding, measurement basis selection, and detection.
+In contrast, other features are more fundamental, like the logical Hilbert space or the schema.
+We will discuss and exemplify these features in the next two sections.
+
+In the next two sections, we present \gls{qkd} protocols that differ by their logical Hilbert space.
+The logical Hilbert space defines the quantum system assumed on an abstract protocol level, e.g., a qubit or boson, and is a more precise concept than discrete and continuous~\cite[p.~2]{Weedbrook2012}.
+The logical quantum system does not need to be equal to the quantum system physically encoding the quantum states, for example, a weak coherent state mimicking a single-photon.
