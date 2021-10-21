@@ -44,12 +44,19 @@
 	\input{adjuncts/title-en}
 	\input{adjuncts/title-de}
 	
+	\pagenumbering{Roman}
+	\let\raggedsection\centering
+	
 	\input{contents/abstract}
 	\newpage
 	\input{contents/notation}
 	
 	\tableofcontents
 
+	\cleardoubleoddpage
+	\pagenumbering{arabic}
+	\let\raggedsection\raggedright
+	
 	\input{contents/introduction}
 	
 	\input{contents/quantum-key-distribution/introduction}
