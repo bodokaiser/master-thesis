@@ -1,42 +1,154 @@
 \section*{Notation}
 
-We now give a brief summary of how the notation emphasizes the different mathematical objects used in this thesis.
-We choose to adopt a notation commonly used in the quantum field theory literature~\cite{Weinberg1995,Peskin1995}.
-On the one hand, we work with the same diverse set of mathematical objects, e.g., functionals, operators, tensors, as quantum field theory.
-On the other hand, we can easily compare key results with results from quantum field theory.
+We mostly adopt the mathematical notation from popular quantum field theory books~\cite{Weinberg1995,Peskin1995}.
 
+Throughout the thesis, we exclusively use the natural unit system where the natural constants (speed of light $c$, reduced Planck constant $\hbar$, electric charge $e$, electron mass $m_e$, dielectric constant $\varepsilon_0$) equal one, significantly reducing notational clutter.
+If required, one can restore the SI unit system by dimensional analysis.
+
+If not explicitly stated, the integration domain covers the $n$-dimensional, real numbers, $\mathbb{R}^n$.
+
+For the temporal Fourier transform, we choose the convention
 \begin{align*}
 	f(t)
 	&=
-	\int_{\mathbb{R}}\frac{\dd{\omega}}{2\pi}
+	\int\frac{\dd{\omega}}{2\pi}
 	f(\omega)
 	e^{+i\omega t}
 	&
 	f(\omega)
 	&=
-	\int_{\mathbb{R}}\dd{t}
+	\int\dd{t}
 	f(t)
 	e^{-i\omega t}
+	.
 \end{align*}
-\begin{align}
+For the spatial Fourier transform, we choose the convention
+\begin{align*}
 	f(\vb{x})
 	&=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	f(\vb{p})
 	e^{-i\vb{p}\vdot\vb{x}}
 	&
 	f(\vb{p})
 	&=
-	\int_{\mathbb{R}^3}\dd[3]{x}
+	\int\dd[3]{x}
 	f(\vb{x})
 	e^{+i\vb{p}\vdot\vb{x}}
-\end{align}
+	.
+\end{align*}
+The four-dimensional (spacetime), Fourier transform follows from the combined temporal and spatial Fourier transform
+\begin{align*}
+	f(t,\vb{x})
+	&=
+	\int\frac{\dd[4]{p}}{(2\pi)^4}
+	f(p_0,\vb{p})
+	e^{+ip_0 t-i\vb{p}\vdot\vb{x}}
+	&
+	f(p_0,\vb{p})
+	&=
+	\int\dd[4]{x}
+	f(t,\vb{x})
+	e^{-ip_0 t+i\vb{p}\vdot\vb{x}}
+\end{align*}
+where we identify $p_0$ with the energy $\omega$.
 
-% vectors (three vs four-dimensional)
-% tensors
-% unit vectors, oprators, vector-valued operators
-% 
+We strongly recommend Ref.~\cite{Carroll1997} to get comfortable with four-dimensional vectors, tensors, and the Minkowski metric.
+Three-dimensional vectors are denoted by boldface, i.e.,
+\begin{equation*}
+	\vb{a}
+	=
+	\begin{pmatrix}
+		a^1 \\
+		a^2 \\
+		a^3
+	\end{pmatrix}
+	.
+\end{equation*}
+Sometimes, we express vectors as linear combinations of unit vectors, e.g.,
+\begin{equation*}
+	\vb{a}
+	=
+	a^i
+	\vu{e}_i
+	=
+	\sum_{i=1}^3
+	a^i
+	\vu{e}_i
+\end{equation*}
+wherein we used the Einstein summation convention, summing over a pair of lower and upper indices, named "contraction".
+Three-dimensional vector components carry a latin index, e.g., $i,j,k,l$.
+Four-dimensional vector components carry a greek index, e.g., $\mu,\nu,\rho$.
+Four-dimensional vectors are denoted without boldface, i.e.,
+\begin{equation*}
+	a
+	=
+	a^\mu
+	\vu{e}_\mu
+	=
+	\begin{pmatrix}
+		a^0 \\
+		\vb{a}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		a^0 \\
+		a^1 \\
+		a^2 \\
+		a^3
+	\end{pmatrix}
+\end{equation*}
+and we refer to the zeroth component $a^0$ as the time component and the other components $a^i$ as the spatial components.
+It is common practice to refer to a vector by its component, i.e., $a^\mu$ refers to the four-dimensional vector $a$.
 
-% Minkowski space, four vectors
-% why we use p instead of omega for modes -> to distinguish between frequency and momentum
+For the Minkowski metric $g^{\mu\nu}$ we adopt the mostly minus convention, i.e.,
+\begin{equation*}
+	g^{\mu\nu}
+	=
+	\begin{pmatrix}
+		g^{00} & g^{01} & g^{02} & g^{03} \\
+		g^{10} & g^{11} & g^{12} & g^{13} \\
+		g^{20} & g^{21} & g^{22} & g^{23} \\
+		g^{30} & g^{31} & g^{32} & g^{33}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		+1 & 0 & 0 & 0 \\
+		0 & -1 & 0 & 0 \\
+		0 & 0 & -1 & 0 \\
+		0 & 0 & 0 & -1
+	\end{pmatrix}
+	.
+\end{equation*}
+The Minkowski product given two four-dimensional vectors, $a^\mu,b^\mu$, is given by the contraction
+\begin{equation*}
+	a^\mu g_{\mu\nu} b^\nu
+	=
+	a^0 b^0
+	-
+	\vb{a}\vdot\vb{b}
+	=
+	=
+	a^0 b^0
+	-
+	a_i b^i
+\end{equation*}
+wherein $\vb{a}\vdot\vb{b}$ is the scalar product on Euclidean space.
+The Minkowski metric can be used to raise and lower indices,
+\begin{align*}
+	a_\mu
+	=
+	g_{\mu\nu}
+	a^\nu
+	=
+	\begin{pmatrix}
+		a^0 \\
+		-a^1 \\
+		-a^2 \\
+		-a^3 \\
+	\end{pmatrix}
+	,
+\end{align*}
+and a spatial component with a lower index is not in general equal to a spatial component with a raised index, $a_i\neq a^i$!
 
+With regard to quantum mechanics, we use the standard bra-ket notation where we denote scalar-valued operators by a hat, e.g., $\hat{X}$, and vector-valued operators by boldface hat, e.g., $\vu{X}$.
