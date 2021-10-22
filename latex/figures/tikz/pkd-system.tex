@@ -1,23 +1,23 @@
 \documentclass[tikz]{standalone}
 
-\usetikzlibrary{arrows.meta,fit,positioning}
+\input{preamble}
 
 \begin{document}
 	\begin{tikzpicture}[
-		block/.style={draw, very thick, fill=white, minimum height=8ex, minimum width=5em},
-		party/.style={draw, rounded corners, inner xsep=1em, inner ysep=1em},
-		channel/.style={block, minimum height=6ex, minimum width=5em},
+		node distance=14pt,
+		block/.style={draw, very thick, fill=white, minimum height=28pt, minimum width=58pt},
+		superblock/.style={draw, very thick, inner sep=8pt},
 	]
-		\node (ska) [block] {\textsf{Secret key}};
-		\node (ma) [block, right=of ska] {\textsf{Message}};
-		\node (pbk) [block, below=of ma] {\textsf{Public key}};
-		\node (ch) [channel, right=of ma] {\textsf{Channel}};
-		\node (mb) [block, right=of ch] {\textsf{Message}};
-		\node (skb) [block, right=of mb] {\textsf{Secret key}};
-		\node (prk) [block, below=of mb] {\textsf{Private key}};
+		\node (ska) [block] {Secret key};
+		\node (ma) [block, right=of ska] {Message};
+		\node (pbk) [block, below=of ma] {Public key};
+		\node (ch) [block, right=20pt of ma] {Channel};
+		\node (mb) [block, right=20pt of ch] {Message};
+		\node (skb) [block, right=of mb] {Secret key};
+		\node (prk) [block, below=of mb] {Private key};
 		
-		\node [party, label={\textsf{Alice}}, fit=(ska) (pbk)] {};
-		\node [party, label={\textsf{Bob}}, fit=(skb) (prk)] {};
+		\node [superblock, label={Alice}, fit=(ska) (pbk)] {};
+		\node [superblock, label={Bob}, fit=(skb) (prk)] {};
 		
 		\draw[-Latex] (ska) -- (ma);
 		\draw[-Latex] (pbk) -- (ma);

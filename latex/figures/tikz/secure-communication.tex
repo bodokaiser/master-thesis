@@ -1,43 +1,32 @@
 \documentclass[tikz]{standalone}
 
-\usetikzlibrary{arrows.meta,fit,positioning}
+\input{preamble}
 
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=6em,
+		node distance=32pt,
 		action/.style={midway, fill=white, align=center},
-		arrow/.style={-Latex},
-		block/.style={draw, very thick, fill=white, minimum height=7ex, minimum width=3.5, inner xsep=1em},
-		superblock/.style={draw, rounded corners, inner sep=1em},
+		block/.style={draw, very thick, fill=white, minimum height=28pt, minimum width=58pt},
+		superblock/.style={draw, very thick, inner sep=8pt},
 	]
 		\coordinate (in) at (0,0);
-		\node [block, above=of in] (plain a) {\textsf{Plaintext} $p$};
-		\node [block, above=of plain a] (cipher a) {\textsf{Ciphertext} $c$};
-		\node [block, left=2em of cipher a] (key a) {\textsf{Key} $k$};
-		\node [block, above=of cipher a] (message a) {\textsf{Message} $m$};
-		\node [block, right=3em of message a)] (channel) {\textsf{Channel}};
-		\node [block, right=3em of channel] (message b) {\textsf{Message} $m$};
-		\node [block, below=of message b] (cipher b) {\textsf{Ciphertext} $c$};
-		\node [block, right=2em of cipher b] (key b) {\textsf{Key} $k$};
-		\node [block, below=of cipher b] (plain b) {\textsf{Plaintext} $p$};
+		\node [block, above=of in] (plain a) {Plaintext};
+		\node [block, above=of plain a] (cipher a) {Ciphertext};
+		\node [block, above=of cipher a] (message a) {Message};
+		\node [block, right=20pt of message a)] (channel) {Channel};
+		\node [block, right=20pt of channel] (message b) {Message};
+		\node [block, below=of message b] (cipher b) {Ciphertext};
+		\node [block, below=of cipher b] (plain b) {Plaintext};
 		\coordinate[below=of plain b] (out);
 		
-		\node [superblock, label=\textsf{Alice}, fit=(plain a) (key a) (message a)] {};
-		\node [superblock, label={below:\textsf{Eve}}, below=of channel, minimum width=6em, minimum height=12ex]  (eve) {};
-		\node [superblock, label=\textsf{Bob}, fit=(plain b) (key b) (message b)] {};
+		\node [superblock, label={Alice}, fit=(plain a) (message a)] {};
+		\node [superblock, label={Bob}, fit=(plain b) (message b)] {};
 		
-		\draw[arrow] (plain a) -- (cipher a) node[action] (enc) {\textsf{encrypt}\\$c=e(k,p)$};
-		\draw[arrow] (cipher a) -- (message a) node[action] (hash) {\textsf{hash}\\$m=h(k,c)$};
-		\draw[arrow] (message a) -- (channel);
-		\draw[arrow] (channel) -- (message b);	
-		\draw[arrow] (message b) -- (cipher b) node[action] (unhash) {\textsf{unhash}\\$c=g(k,m)$};		
-		\draw[arrow] (cipher b) -- (plain b) node[action] (dec) {\textsf{decrypt}\\$p=d(k,c)$};
-		
-		\draw[arrow] (key a) -- (key a|-enc) -- (enc);
-		\draw[arrow] (key a) -- (key a|-hash) -- (hash);
-		\draw[arrow] (key b) -- (key b|-dec) -- (dec);
-		\draw[arrow] (key b) -- (key b|-unhash) -- (unhash);
-		
-		\draw [Latex-Latex] (eve) -- (channel) node[action] {\textsf{read and alter}};
+		\draw[-Latex] (plain a) -- (cipher a) node[action] (enc) {encrypt};
+		\draw[-Latex] (cipher a) -- (message a) node[action] (hash) {hash};
+		\draw[-Latex] (message a) -- (channel);
+		\draw[-Latex] (channel) -- (message b);	
+		\draw[-Latex] (message b) -- (cipher b) node[action] (unhash) {unhash};		
+		\draw[-Latex] (cipher b) -- (plain b) node[action] (dec) {decrypt};
 	\end{tikzpicture}
 \end{document}

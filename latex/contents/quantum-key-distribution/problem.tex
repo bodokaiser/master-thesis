@@ -1,31 +1,28 @@
-\section{Secure-key distribution}
+\section{Secret-key distribution problem}
 
-Two spatially distanced parties, Alice and Bob, share a communication channel that allows them to send and receive information.
-We assume the communication channel to be a one-to-one map between Alice and Bob, i.e., information is received as transmitted, for instance, by employing some error correction, e.g., LDPC codes~\cite{Gallager1962}.
-How do we enable secure communication between Alice and Bob?
-To promote the communication channel to be secure against an adversarial third party, Eve, we need to extend the communication protocol to assure
-\begin{enumerate}
-	\item \textbf{confidentiality}, and
-	\item \textbf{integrity}.
-\end{enumerate}
-Confidentiality ensures that Eve cannot read messages and is implemented using symmetric encryption like the \gls{otp}~\cite{Shannon1949} or the more practical \gls{aes}~\cite{Daemen1999}.
-Integrity ensures that Eve cannot alter messages in transit and is implemented using a \gls{mac}, e.g., universal hash functions~\cite{Carter1979}.
+Two spatially distanced parties, Alice and Bob, share a communication channel that allows Alice to send messages to Bob.
+How can Alice and Bob secure their communication against an opposing third party, Eve?
+Alice needs to ensure that the message she transmits is confidential, i.e., only Bob can read it.
+Bob needs to ensure that the message he receives is integer, i.e., only Alice can have sent it.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/tikz/secure-communication}
-	\caption{Secure communication between Alice and Bob using a classical channel to which an adversarial third party, Eve, has read and write access: A plaintext $p$ is encrypted with a secret key $k$ through a symmetric encryption function $e(k,p)$ yielding a ciphertext $c$. The ciphertext is amended by a hashing function $h(k,c)$ yielding the message $m$. The message is sent through an error-free channel to Bob. Bob checks the integrity of the message using his copy of the secret key $k$ and the hash inside the message $m$. If he finds the message $m$ to be genuine, he removes the hash to obtain the ciphertext $c$ which he decrypts using his key $k$ and the decryption function $d(k,c)$. After decryption, Bob has access to the plaintext $p$ initially prepared by Alice.}\label{fig:secure_communication}
+	\includegraphics{figures/tikz/secure-communication}
+	\caption{Secure communication system comprising a transmitter (Alice), a receiver (Bob) and a public communication channel: Alice encrypts a plaintext message yielding a ciphertext. By adding the hash to the ciphertext, Alice constructs a message she transmits through the channel to Bob. Bob removes the hash from his received message to resolve the ciphertext. Decrypting the ciphertext unveils the plaintext for Bob.}\label{fig:secure_communication}
 \end{figure}
-\Cref{fig:secure_communication} depicts a communication between Alice and Bob secure against a third adversarial party, Eve.
-The plaintext is first encrypted and then appended a \gls{mac} as advised by Ref.~\cite{Kohno2003,Krawczyk2001,Bellare2000}.
+\Cref{fig:secure_communication} depicts a secure communication system implementing integrity and confidentiality between Alice and Bob.\footnote{For a discussion on the order of hashing and encryption, see Ref.~\cite{Kohno2003,Krawczyk2001,Bellare2000}.}
+First, Alice encrypts a plaintext message, using symmetric encryption like the \gls{otp}~\cite{Shannon1949} or the more practical \gls{aes}~\cite{Daemen1999}, to ensure confidentiality.
+Second, she adds a \gls{mac} using, e.g., universal hash functions~\cite{Carter1979}, to ensure integrity.
+Bob receives the encrypted message with \gls{mac} from Alice.
+He confirms the integrity of the message by checking the \gls{mac}, then he decrypts the message to access the plaintext.
 
-Given a truly random and secret key $k$ shared between Alice and Bob such a system has been proven to be eternal secure when using the \gls{otp} encryption scheme~\cite{Shannon1949}.
-However, one needs to employ a practical mechanism to generate and distribute the key securely.
+Message authentication and cipher require Alice and Bob to possess a shared secret key.
+If Alice and Bob use the \gls{otp} cipher and their secret key is truly random, the communication system is eternally secure~\cite{Shannon1949} --- provided that Alice and Bob do not re-use their secret key.
+Unless Alice and Bob do not want to meet in person every time they initiate communication, Alice and Bob need a practical method to distribute a secret key.
 
-\FloatBarrier
 \subsection{Public-key distribution}
 
-The standard attempt to solve the secret key distribution problem is to use an asymmetric cipher.
-Asymmetric ciphers like RSA, comprise a public key for encryption and a private key for decryption.
+The standard attempt to solve the key distribution problem is to use an asymmetric cipher.
+Asymmetric ciphers like RSA comprise a public key for encryption and a private key for decryption.
 Using such an asymmetric cipher, secret key distribution between Alice and Bob involves the following steps:
 \begin{enumerate}
 	\item Bob generates a public and a private key.
@@ -37,7 +34,7 @@ Using such an asymmetric cipher, secret key distribution between Alice and Bob i
 Assuming the asymmetric cipher to be secure, Alice and Bob now share a secret key.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/tikz/pkd-system}
+	\includegraphics{figures/tikz/pkd-system}
 	\caption{\Gls{pkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob.}\label{fig:pkd_system}
 \end{figure}
 Public-key distribution algorithms, for instance, Diffie-Hellman~\cite{Diffie1976} and variants thereof, e.g., \gls{ecdh}, are heavily employed in todays internet for key agreement.
@@ -100,8 +97,6 @@ Authentication can be implemented classically using \gls{mac} as discussed for t
 	\end{tabular}
 	\caption{Encoding variables to use for \gls{qkd}: Variables with uncountable state space are considered for \gls{cvqkd} while variables with (possibly restricted) countable state space are considered for \gls{dvqkd}.}
 \end{table}
-
-\subsection{Taxonomy of QKD protocols}
 
 Before diving into specific \gls{qkd} protocols, we introduce a taxonomy of \gls{qkd} protocols.
 By identifying common protocol features, allows for a reductionist model of \gls{qkd}.
