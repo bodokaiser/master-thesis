@@ -1,15 +1,10 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{pgfplots}
-
-\pgfplotsset{compat=1.17}
+\input{preamble}
 
 \begin{document}
-	\begin{tikzpicture}[
-		font=\small,
-	]
+	\begin{tikzpicture}
 		\begin{loglogaxis}[
-			grid=both,
 			width=0.95\linewidth,
 			title={Computational complexity of prime number factorization},
 			xmin=10,

@@ -21,37 +21,36 @@ Unless Alice and Bob do not want to meet in person every time they initiate comm
 
 \subsection{Public-key distribution}
 
-The standard attempt to solve the key distribution problem is to use an asymmetric cipher.
-Asymmetric ciphers like RSA comprise a public key for encryption and a private key for decryption.
-Using such an asymmetric cipher, secret key distribution between Alice and Bob involves the following steps:
-\begin{enumerate}
-	\item Bob generates a public and a private key.
-	\item Alice generates a secret key.
-	\item Bob discloses the public key to Alice.
-	\item Alice encrypts the secret key with the public key and sends it to Bob.
-	\item Bob decrypts Alice secret key with the private key.
-\end{enumerate}
+The standard attempt to solve the key distribution problem is to use an asymmetric cipher comprising a public key for encryption and a private key for decryption.
+One of the parties, for example, Bob, first generates an asymmetric key pair of which he discloses the public key to Alice.
+Alice generates a secret key from a true random generator, encrypts it with the public key, and sends it to Bob, see the left-hand side of \Cref{fig:pkd_system}.
+Bob decrypts the message he received from Alice with his private key to obtain Alice's secret key, see the right-hand side of \Cref{fig:pkd_system}.
 Assuming the asymmetric cipher to be secure, Alice and Bob now share a secret key.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/pkd-system}
 	\caption{\Gls{pkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob.}\label{fig:pkd_system}
 \end{figure}
-Public-key distribution algorithms, for instance, Diffie-Hellman~\cite{Diffie1976} and variants thereof, e.g., \gls{ecdh}, are heavily employed in todays internet for key agreement.
-One of the advantages of public-key distribution is that it is software-defined, allowing for easy installation and upgrades.
-The core principle behind asymmetric ciphers is the concept of one-way functions:
-Functions that are easy to compute but difficult to invert.
-A typical class of one-way functions appears in prime number factorization: Given two prime numbers $p$ and $q$, it is easy to compute the product $pq$ but difficult to factorize $pq$ into its prime numbers $p$ and $q$.
-Here, easy and difficult refer to the computational complexity, which gives an upper bound of the best (known) algorithm to solve the problem.
-So far, there has been no mathematical proof that one-way functions are indeed computational complex, and it may be that we are just not yet aware of efficient algorithms placing asymmetric cryptography at all in a questionable position.
-With the advent of quantum computers, new algorithms with significant speed up to their classical counterpart were found.
-Shor, for example, presented an algorithm for prime number factorization in polynomial time~\cite{Shor1994} - the same task used by the Diffie-Hellman key exchange.
+Public-key distribution algorithms, for instance, Diffie-Hellman~\cite{Diffie1976} and variants thereof, e.g., \gls{ecdh}, are heavily employed on the internet because they are effortless to deploy.
+
+The core principle behind asymmetric ciphers is the concept of one-way functions, functions easy to compute but difficult to invert.
+Here, easy and difficult refer to the computational complexity, denoting the upper bound of the best (known) algorithm to solve the problem.
+The time to break an asymmetric cipher depends on the computational resources and complexity.
+In practice, Alice and Bob can increase the key length, such that any attacks by Eve become impractical.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/runtime}
+	\includegraphics{figures/pgfplots/runtime}
 	\caption{Computational runtimes for prime number factorization algorithms: The most efficient known classical algorithm is the \gls{gnfs}~\cite{Lenstra1993} and Shor's algorithm~\cite{Shor1994}.}
+	\label{fig:prime_number_factorization_runtime}
 \end{figure}
-Consequently, post-quantum algorithms have been proposed~\cite{Bernstein2017,Chen2016} to use a different class of one-way functions where no efficient (quantum) algorithm is (yet) known.
+However, computational resources increase with technological progress (Moore's law).
+At the same time, computational complexity might decrease with the discovery of new algorithms.
+A key length that in the past was considered secure might be rendered useless in the future.
+A particular example of a reduction in computational complexity is Shor's algorithm~\cite{Shor1994}.
+Compared to the fastest classical algorithm, \gls{gnfs}, Shor's algorithm provides an exponential speed-up, see \Cref{fig:prime_number_factorization_runtime}, in prime number factorization, a particular class of one-way functions used in, for instance, Diffie-Hellman key exchange.
+
+
+Even though, post-quantum algorithms have been proposed~\cite{Bernstein2017,Chen2016} using a different class of one-way functions, the   where no efficient (quantum) algorithm is (yet) known.
 As long as there is no proof for the computational complexity for a specific family of one-way functions, public-key distribution is only safe for key lengths that are not computationally feasible.
 However, what is not computationally feasible today might be tomorrow, and it is conceivable that encrypted communication recorded today will be broken in the feature with specialized hardware.
 Therefore, public-key distribution is not considered to be forward secure.
