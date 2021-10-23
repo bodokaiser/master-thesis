@@ -1,20 +1,18 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{pgfplots}
+\input{preamble}
+
 \usepackage[binary-units]{siunitx}
 
 \DeclareSIUnit\symbol{sym}
 \DeclareSIUnit\shotnoiseunits{SNU}
 
-\pgfplotsset{compat=1.17}
 
 \begin{document}
-	\begin{tikzpicture}[
-		font=\small,
-	]
+	\begin{tikzpicture}
 		\begin{axis}[
-			grid=both,
 			width=0.95\linewidth,
+			axis line style=thick,
 			xmin=0,
 			xmax=140,
 			ymode=log,

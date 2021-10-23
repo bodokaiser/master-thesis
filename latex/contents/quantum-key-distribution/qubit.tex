@@ -44,7 +44,7 @@ Similar, we can partition the continuous time and phase parameters of a quantum 
 A useful visualization of qubit states is the Bloch sphere, see \Cref{fig:bloch_sphere}.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/tikz/bloch-sphere}
+	\includegraphics{figures/tikz/bloch-sphere}
 	\caption{Two-state quantum system in the Bloch sphere representation: The Bloch sphere is a three-dimensional sphere with unit radius. A pure quantum state  $\ket{\psi}$ resides on its surface of a sphere.}\label{fig:bloch_sphere}
 \end{figure}
 The Bloch sphere is a unit sphere embedded in three-dimensional space.
@@ -207,7 +207,7 @@ A possible optical setup to implement such polarization-encoding is depicted in 
 Alice configures her linear polarizer to select a basis element of the rectilinear or diagonal polarization basis. Bob receives Alice's polarization state through the polarization controlled quantum channel. He rotates a rectilinear polarized beam splitter by either \SI{0}{\degree} or \SI{45}{\degree} to detect either rectilinear or diagonal polarized photons with his two single-photon detectors placed at the beam splitter output.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/bb84-polarization-active}
+	\includegraphics{figures/pstricks/bb84-polarization-active}
 	\caption{Optical setup to implement polarization-encoding BB84 with active basis selection at the receiver comprising a transmitter, a polarization controlled quantum channel, and a receiver. The transmitter comprises a single-photon source and a linear polarizer as fiber components. The receiver consists of a rotatable rectilinear polarized beam splitter and two single-photon detectors as free space components which are connected to the fiber quantum channel through a collimator.}\label{fig:polarization_encoding_active}
 \end{figure}
 Alice selects one of four polarization states $\ket{\leftrightarrow},\ket{\updownarrow},\ket{\nwsearrow},\ket{\neswarrow}$ by adjusting her linear polarizer to one of four angles $\theta\in\{0,\pi,\pi/2,3\pi/2\}$.
@@ -334,7 +334,7 @@ The basic setup is illustrated in \Cref{fig:qubit_time_phase_active}:
 Alice creates an entangled photon state using a first \gls{mzi} with phase $\theta\in\{0,\pi/2,\pi,3\pi/2\}$ and sends it to Bob. Bob detects the photon state using a second \gls{mzi} with phase $\phi\in\{0,\pi/2\}$ and two single-photon detectors monitoring the outputs. and comprises a single-photon source and a first \gls{mzi} on Alice's side as well as a second \gls{mzi} and two single-photon detectors on Bob's side.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/bb84-time-phase-active}
+	\includegraphics{figures/pstricks/bb84-time-phase-active}
 	\caption{Fiber-optical setup of the phase-encoding BB84 using active basis selection: The transmitter comprises a single-photon source and a first asymmetric \gls{mzi} with variable phase-shift $\theta$. The transmitter is connected to the receiver through a fiber channel. The receiver comprises a second asymmetric \gls{mzi} with variable phase-shift $\phi$. The first and second \gls{mzi} are both made of two fiber couplers with a variable phase-shifter in the longer optical path. The outputs of the second asymmetric \gls{mzi} is monitored by two single-photon detectors.}\label{fig:qubit_time_phase_active}
 \end{figure}
 

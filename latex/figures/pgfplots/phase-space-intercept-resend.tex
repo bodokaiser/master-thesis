@@ -1,16 +1,7 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{lmodern}
-\usepackage{pgfplots}
-\usepackage{physics}
+\input{preamble}
 
-\definecolor{exotic orange}{RGB}{255,128,0}
-\definecolor{exotic green}{RGB}{0,200,102}
-\definecolor{exotic blue}{RGB}{67,132,161}
-\definecolor{exotic red}{RGB}{250,86,86}
-
-\pgfplotsset{compat=1.17}
 \usepgfplotslibrary{groupplots}
 \usetikzlibrary{arrows.meta}
 
@@ -26,6 +17,7 @@
 %			width=0.95\linewidth,
 			axis lines=center,
 			axis equal image,
+			axis line style=thick,
 			xlabel={$\hat{X}(\vartheta)$},
 			ylabel={$\hat{X}(\vartheta+\pi/2)$},
 			ticks=none,
@@ -42,9 +34,9 @@
 			},
 		]
 			\nextgroupplot
-			\draw[fill=exotic green, draw=none, fill opacity=0.5] (axis cs:1.3,1.3) circle (90);
-			\draw[fill=exotic red, draw=none, fill opacity=0.2] (axis cs:0.4,0.8) circle (90);
-			\draw[fill=exotic orange, draw=none, fill opacity=0.2] (axis cs:1.05,0.6) circle (90);
+			\draw[fill=exotic green, draw=none, fill opacity=0.5] (axis cs:1.3,1.3) circle (1);
+			\draw[fill=exotic red, draw=none, fill opacity=0.2] (axis cs:0.4,0.8) circle (1);
+			\draw[fill=exotic orange, draw=none, fill opacity=0.2] (axis cs:1.05,0.6) circle (1);
 			\addplot[very thick, mark=*, exotic green]  coordinates {(1.3,1.3)};
 			\addplot[very thick, mark=square*, exotic red] coordinates {(0.8,1.6)};
 			\addplot[very thick, mark=*, exotic red] coordinates {(0.4,0.8)};
@@ -57,9 +49,9 @@
 			\addplot[very thick, mark=x, mark size=4,exotic orange] coordinates {(1.1,0.2)};
 			
 			\nextgroupplot
-			\draw[fill=exotic green, draw=none, fill opacity=0.5] (axis cs:1.3,1.3) circle (90);
-			\draw[fill=exotic red, draw=none, fill opacity=0.2] (axis cs:0.4,0.8) ellipse (30 and 120);
-			\draw[fill=exotic orange, draw=none, fill opacity=0.2] (axis cs:1.05,0.6) ellipse (120 and 30);
+			\draw[fill=exotic green, draw=none, fill opacity=0.5] (axis cs:1.3,1.3) circle (1);
+			\draw[fill=exotic red, draw=none, fill opacity=0.2] (axis cs:0.4,0.8) ellipse (0.3 and 1.2);
+			\draw[fill=exotic orange, draw=none, fill opacity=0.2] (axis cs:1.05,0.6) ellipse (1.2 and 0.3);
 			\addplot[very thick, mark=*, exotic green]  coordinates {(1.3,1.3)};
 			\addplot[very thick, mark=square*, exotic red] coordinates {(0.8,1.6)};
 			\addplot[very thick, mark=*, exotic red] coordinates {(0.4,0.8)};

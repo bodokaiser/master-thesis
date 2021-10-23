@@ -1,27 +1,26 @@
 \documentclass[pstricks]{standalone}
 
-\usepackage{amsmath}
-\usepackage{pst-optexp}
+\input{preamble}
 
 \begin{document}
-	\begin{pspicture}(0,0)(14.75,5.25)
+	\begin{pspicture}(0,0)(14.5,6)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
 		  	
-			\optsource[compname=Source, labeloffset=1, sourcewidth=1, abspos=0.1](1,2)(2,2){{\begin{tabular}{@{}c@{}}Single-photon\\source\end{tabular}}}
-			\optfiberpolarizer[compname=Pol1, labeloffset=1](2.5,2)(3.5,2){{\begin{tabular}{@{}c@{}}Linear\\polarizer\end{tabular}}}
-			\optfiber[compname=Fiber, labeloffset=1](4.5,2)(5.5,2){{\begin{tabular}{@{}c@{}}Quantum\\channel\end{tabular}}}
-			\polcontrol[compname=PolCtrl, labeloffset=1](6.5,2)(7.5,2){{\begin{tabular}{@{}c@{}}Polarization\\controller\end{tabular}}}
-			\fibercollimator[compname=Colimator, labelangle=180, labeloffset=1](9.5,2)(8.5,2){{\begin{tabular}{@{}c@{}}Fiber\\colimator\end{tabular}}}
-			\beamsplitter[compname=BeamSplitter1, labelangle=-90, labeloffset=1](10,2)(11,2)(11,3){{\begin{tabular}{@{}c@{}}Unpolarized\\beam splitter\end{tabular}}}
-			\beamsplitter[compname=BeamSplitter2a, labelangle=180, labeloffset=1.6](10,3.75)(11,3.75)(11,4.25){{\begin{tabular}{@{}c@{}}Rectilinear-\\polarized \\beam splitter\end{tabular}}}
-			\optdetector[compname=Det1a](11,3.75)(11,4.75)
-			\optdetector[compname=Det1b](11,3.75)(12,3.75)
+			\optsource[compname=Source, sourcewidth=1, abspos=0.1](1,2)(2,2){SPS}
+			\optfiberpolarizer[compname=Pol1](2.5,2)(3.5,2){Polarizer}
+			\optfiber[compname=Fiber](4.5,2)(5.5,2){Fiber}
+			\polcontrol[compname=PolCtrl](6.5,2)(7.5,2){PC}
+			\fibercollimator[compname=Colimator, labelangle=180](9,2)(8,2){FC}
+			\beamsplitter[compname=BeamSplitter1, labelangle=-90](9,2)(10,2)(10,3){BS}
+			\beamsplitter[compname=BeamSplitter2a, labelangle=180, labeloffset=1.4](9,3.75)(10,3.75)(10,4.25){{\begin{tabular}{@{}c@{}}PBS\\(rectilinear)\end{tabular}}}
+			\optdetector[compname=Det1a, labelangle=180, labeloffset=1](10,3.75)(10,4.75){SPD}
+			\optdetector[compname=Det1b, labelangle=180](10,3.75)(11,3.75)
 
-			\beamsplitter[compname=BeamSplitter2b, labelangle=-90, labeloffset=1.2](12,2)(13,2)(13,3){{\begin{tabular}{@{}c@{}}Diagonal-\\polarized\\beam splitter\end{tabular}}}
-			\optdetector[compname=Det2a](13,2)(14,2)
-			\optdetector[compname=Det2b, labeloffset=1.2, labelangle=80](13,2)(13,3){{\begin{tabular}{@{}c@{}}Single-\\photon\\detectors\end{tabular}}}
+			\beamsplitter[compname=BeamSplitter2b, labelangle=-90, labeloffset=1](11,2)(12,2)(12,3){{\begin{tabular}{@{}c@{}}PBS\\(diagonal)\end{tabular}}}
+			\optdetector[compname=Det2a](12,2)(13,2){SPD}
+			\optdetector[compname=Det2b, labelangle=80](12,2)(12,3){SPD}
 			
 			\drawfiber{Source}{Pol1}{Fiber}{PolCtrl}{Colimator}
 			\drawbeam{Colimator}{BeamSplitter1}{BeamSplitter2b}{Det2a}

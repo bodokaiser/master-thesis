@@ -1,12 +1,8 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{lmodern}
-\usepackage{pgfplots}
-\usepackage{physics}
+\input{preamble}
 
 \usepgfplotslibrary{groupplots}
-\pgfplotsset{compat=1.17}
 
 \begin{document}
 	\begin{tikzpicture}
@@ -14,6 +10,7 @@
 			width=0.95\linewidth,
 			axis lines=center,
 			axis equal image,
+			axis line style=thick,
 			xlabel={$\hat{X}(\vartheta)$},
 			ylabel={$\hat{X}(\vartheta+\pi/2)$},
 			ticks=none,
@@ -40,13 +37,13 @@
 			legend cell align={left},
 		]
 			\addplot+[very thick] coordinates {(1,-4) (1,0) (1,4)};
-			\addlegendentry{$\ket{+x,\vartheta}$};
+%			\addlegendentry{$\ket{+x,\vartheta}$};
 			\addplot+[very thick] coordinates {(-1,-4) (-1,0) (-1,4)};
-			\addlegendentry{$\ket{-x,\vartheta}$};
+%			\addlegendentry{$\ket{-x,\vartheta}$};
 			\addplot+[very thick] coordinates {(-4,1) (0,1) (4,1)};
-			\addlegendentry{$\ket{+x,\vartheta+\pi/2}$};
+%			\addlegendentry{$\ket{+x,\vartheta+\pi/2}$};
 			\addplot+[very thick] coordinates {(-4,-1) (0,-1) (4,-1)};
-			\addlegendentry{$\ket{-x,\vartheta+\pi/2}$};
+%			\addlegendentry{$\ket{-x,\vartheta+\pi/2}$};
 		\end{axis}
 	\end{tikzpicture}
 \end{document}

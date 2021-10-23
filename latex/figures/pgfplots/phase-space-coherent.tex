@@ -1,18 +1,8 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{lmodern}
-\usepackage{pgfplots}
-\usepackage{physics}
-
-\pgfplotsset{compat=1.17}
+\input{preamble}
 
 \usetikzlibrary{arrows.meta}
-
-\definecolor{exotic orange}{RGB}{255,128,0}
-\definecolor{exotic green}{RGB}{0,200,102}
-\definecolor{exotic blue}{RGB}{67,132,161}
-\definecolor{exotic red}{RGB}{250,86,86}
 
 \begin{document}
 	\begin{tikzpicture}
@@ -21,6 +11,7 @@
 			clip=false,
 			axis lines=center,
 			axis equal image,
+			axis line style=thick,
 			xlabel={$\hat{X}(\vartheta)$},
 			ylabel={$\hat{X}(\vartheta+\pi/2)$},
 			ticks=none,
@@ -45,28 +36,28 @@
 			legend columns=2,
 			legend cell align={left},
 		]
-			\draw[fill=exotic green, draw=none, fill opacity=0.5] (axis cs:1.5,1.5) circle (120);
-			\draw[fill=exotic orange, draw=none, fill opacity=0.2] (axis cs:0.2,0.2) circle (120);
-			\draw[fill=exotic blue, draw=none, fill opacity=0.5] (axis cs:-1.5,0.5) circle (120);
-			\draw[fill=exotic red, draw=none, fill opacity=0.2] (axis cs:-0.2,0.07) circle (120);
+			\draw[fill=exotic green, draw=none, fill opacity=0.5] (axis cs:1.5,1.5) circle (2);
+			\draw[fill=exotic orange, draw=none, fill opacity=0.2] (axis cs:0.2,0.2) circle (2);
+			\draw[fill=exotic blue, draw=none, fill opacity=0.5] (axis cs:-1.5,0.5) circle (2);
+			\draw[fill=exotic red, draw=none, fill opacity=0.2] (axis cs:-0.2,0.07) circle (2);
 		
 			\addplot[very thick, mark=*, exotic green] coordinates {(1.5,1.5)};
-			\addlegendentry{$\ket{\alpha}$};
+%			\addlegendentry{$\ket{\alpha}$};
 			
 			\addplot[very thick, mark=*, exotic blue] coordinates {(-1.5,0.5)};
-			\addlegendentry{$\ket{\beta}$};
+%			\addlegendentry{$\ket{\beta}$};
 
 			\addplot[very thick, mark=*, exotic orange] coordinates {(0.2,0.2)};
-			\addlegendentry{$\ket{\alpha^\prime}$};
+%			\addlegendentry{$\ket{\alpha^\prime}$};
 
 			\addplot[very thick, mark=*, exotic red] coordinates {(-0.2,0.07)};
-			\addlegendentry{$\ket{\beta^\prime}$};
+%			\addlegendentry{$\ket{\beta^\prime}$};
 
 			\addplot[very thick, mark=x, mark size=4, exotic red] coordinates {(-0.9,-0.3)};
-			\addlegendentry{$\alpha^{\prime\prime}$};
+%			\addlegendentry{$\alpha^{\prime\prime}$};
 			
 			\addplot[very thick, mark=x, mark size=4, exotic orange] coordinates {(0.2,0.9)};
-			\addlegendentry{$\beta^{\prime\prime}$};
+%			\addlegendentry{$\beta^{\prime\prime}$};
 			
 			\draw[-Latex, gray] (axis cs:1.5,1.5) -- (axis cs:0.2,0.2);
 			\draw[-Latex, gray] (axis cs:-1.5,0.5) -- (axis cs:-0.2,0.07);

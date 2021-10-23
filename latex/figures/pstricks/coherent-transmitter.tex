@@ -1,20 +1,20 @@
 \documentclass[pstricks]{standalone}
 
-\usepackage{pst-optexp}
+\input{preamble}
 
 \begin{document}
-	\begin{pspicture}(0,0.8)(14,5.5)
+	\begin{pspicture}(0,0.5)(14,5.5)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
 		  	
-			\optsource[compname=Source, position=start](2,2)(4,2){Transmitter laser}
-			\optmzm[compname=Modulator](3,2)(5,2){I/Q-Modulator}
+			\optsource[compname=Source, position=start](2,2)(4,2){TX laser}
+			\optmzm[compname=Modulator](3,2)(5,2){IQM}
 			\optbox[compname=Attenuator](6,2)(7,2){VOA}
-			\wdmsplitter[compname=Splitter, coupleralign=b, labeloffset=0.8](7,2)(10,4)(10,2){Splitter (99:1)}
-			\optdetector[compname=Detector, dettype=diode](10,2)(11,2){Power meter}
-			\optisolator[compname=Isolator, labelangle=180](10,4)(11,4){Optical isolator}
-			\optfiber[compname=Fiber, labelangle=180, labeloffset=1.2](12.25,4)(13.25,4){Fiber channel}
+			\wdmsplitter[compname=Splitter, coupleralign=b, labeloffset=0.8](7,2)(10,4)(10,2){{\begin{tabular}{@{}c@{}}Splitter\\(99:1)\end{tabular}}}
+			\optdetector[compname=Detector, dettype=diode](10,2)(11,2){PWM}
+			\optisolator[compname=Isolator, labelangle=180](10,4)(11,4){Isolator}
+			\optfiber[compname=Fiber, labelangle=0, labeloffset=0.4](12.25,4)(13.25,4){Fiber}
 			
 			\drawfiber{Source}{Modulator}{Attenuator}{Splitter}{Detector}
 			\drawfiber{Splitter}{Isolator}{Fiber}(14,4)

@@ -1,24 +1,23 @@
 \documentclass[pstricks]{standalone}
 
-\usepackage{amsmath}
-\usepackage{pst-optexp}
+\input{preamble}
 
 \begin{document}
-	\begin{pspicture}(0,0.8)(12,6)
+	\begin{pspicture}(0,0.5)(12,5.5)
 		\begin{optexp}
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
 		  	
-			\optsource[compname=Source, position=end](1,2)(2,2){Receiver laser}
-			\optbox[compname=PhaseShift, optboxsize=1 0.8](5,2)(6,2){Phase shifter}
+			\optsource[compname=Source, position=end](1,2)(2,2){RX laser}
+			\optbox[compname=PhaseShift, optboxsize=1 0.8](5,2)(6,2){PS}
 			\optbox[optboxsize=1 0.8, innerlabel](5,2)(6,2){$\varphi$}
-			\optfiber[compname=Fiber, labelangle=180, labeloffset=1.4](0.5,4)(2,4){{\begin{tabular}{@{}c@{}}Fiber\\channel\end{tabular}}}
-			\polcontrol[compname=PolCtrl, labelangle=180, labeloffset=1](3,4)(4,4){{\begin{tabular}{@{}c@{}}Polarization\\controller\end{tabular}}}
-			\optisolator[compname=Iso, labelangle=180, labeloffset=1](5,4)(6,4){{\begin{tabular}{@{}c@{}}Optical\\isolator\end{tabular}}}
-			\optcoupler[compname=Coupler, labeloffset=0.8](7,4)(7,2)(9,4)(9,2){{\begin{tabular}{@{}c@{}}Coupler\\(50:50)\end{tabular}}}
+			\optfiber[compname=Fiber, labelangle=0, labeloffset=0.4](0.5,4)(2,4){Fiber}
+			\polcontrol[compname=PolCtrl, labelangle=180](3,4)(4,4){PC}
+			\optisolator[compname=Iso, labelangle=180](5,4)(6,4){Isolator}
+			\optcoupler[compname=Coupler](7,4)(7,2)(9,4)(9,2){{\begin{tabular}{@{}c@{}}Coupler\\(50:50)\end{tabular}}}
 			
-			\optdetector[compname=Det1, dettype=diode, extnode=b](9,4)(10,4)
-			\optdetector[compname=Det2, dettype=diode, extnode=t](9,2)(10,2){Balanced detector}
+			\optdetector[compname=Det1, dettype=diode, extnode=b, labelangle=180](9,4)(10,4)
+			\optdetector[compname=Det2, dettype=diode, extnode=t](9,2)(10,2){BD}
 			
 			\drawfiber{Source}{PhaseShift}{Coupler}{Det1}
 			\drawfiber(0,4){Fiber}{PolCtrl}{Iso}{Coupler}{Det2}

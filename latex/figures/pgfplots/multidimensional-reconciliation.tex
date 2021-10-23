@@ -1,26 +1,15 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{lmodern}
-\usepackage{pgfplots}
-\usepackage{physics}
+\input{preamble}
 
 \usetikzlibrary{arrows.meta}
 
-\pgfplotsset{compat=1.17}
-
-\definecolor{exotic orange}{RGB}{255,128,0}
-\definecolor{exotic green}{RGB}{0,102,102}
-\definecolor{exotic blue}{RGB}{0,202,161}
-\definecolor{exotic red}{RGB}{250,86,86}
-
 \begin{document}
-	\begin{tikzpicture}[
-		font=\fontsize{8}{9}\selectfont,
-	]
+	\begin{tikzpicture}
 		\begin{axis}[
 			width=0.95\linewidth,
 			axis lines=center,
+			axis line style=thick,
 			axis equal image,
 			xlabel={$x_1$},
 			ylabel={$x_2$},

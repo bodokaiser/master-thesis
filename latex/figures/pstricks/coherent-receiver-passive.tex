@@ -1,7 +1,6 @@
 \documentclass[pstricks]{standalone}
 
-\usepackage{amsmath}
-\usepackage{pst-optexp}
+\input{preamble}
 
 \begin{document}
 	\begin{pspicture}(0,-0.5)(14,7)
@@ -9,20 +8,21 @@
 			\psset[optexp]{fiber=none, usefiberstyle}
 			\newpsstyle{Fiber}{linecolor=orange}
 		  	
-			\optsource[compname=Source, position=start](3,2)(4,2){Receiver laser}
+			\optsource[compname=Source, position=start](3,2)(4,2){RX laser}
+			\optbox[optboxsize=1 0.8](7,1)(8,1){PS}
 			\optbox[compname=PhaseShift2, optboxsize=1 0.8, innerlabel](7,1)(8,1){$\pi/2$}
 			
-			\optfiber[compname=Fiber, labelangle=180, labeloffset=1.4](0.5,4)(2,4){{\begin{tabular}{@{}c@{}}Fiber\\channel\end{tabular}}}
-			\polcontrol[compname=PolCtrl, labelangle=180, labeloffset=1](3,4)(4,4){{\begin{tabular}{@{}c@{}}Polarization\\controller\end{tabular}}}
-			\optisolator[compname=Iso, labelangle=180, labeloffset=1](5,4)(6,4){{\begin{tabular}{@{}c@{}}Optical\\isolator\end{tabular}}}
+			\optfiber[compname=Fiber, labelangle=180, labeloffset=1.4](0.5,4)(2,4){Fiber}
+			\polcontrol[compname=PolCtrl, labelangle=180](3,4)(4,4){PC}
+			\optisolator[compname=Iso, labelangle=180](5,4)(6,4){Isolator}
 
 			\optcoupler[compname=Coupler1, labeloffset=0.8, labelangle=180](10,5.5)(10,4)(11,5.5)(11,4){{\begin{tabular}{@{}c@{}}Coupler\\(50:50)\end{tabular}}}
-			\optdetector[compname=Det1a, dettype=diode, extnode=b, labelangle=180](11,5.5)(12,5.5){Balanced detector}
+			\optdetector[compname=Det1a, dettype=diode, extnode=b, labelangle=180](11,5.5)(12,5.5){BD1}
 			\optdetector[compname=Det1b, dettype=diode, extnode=t](11,4)(12,4)
 
 			\optcoupler[compname=Coupler2, labeloffset=0.8](10,2.5)(10,1)(11,2.5)(11,1){{\begin{tabular}{@{}c@{}}Coupler\\(50:50)\end{tabular}}}
 			\optdetector[compname=Det2a, dettype=diode, extnode=b](11,2.5)(12,2.5)
-			\optdetector[compname=Det2b, dettype=diode, extnode=t](11,1)(12,1){Balanced detector}
+			\optdetector[compname=Det2b, dettype=diode, extnode=t](11,1)(12,1){BD2}
 			
 			\wdmsplitter[compname=Splitter1, labeloffset=0.8, labelangle=180, coupleralign=t](7,4.75)(8,4.75)(8,2.5){{\begin{tabular}{@{}c@{}}Splitter\\(50:50)\end{tabular}}}
 			\wdmsplitter[compname=Splitter2, labeloffset=0.8](5,2)(6,3)(6,1){{\begin{tabular}{@{}c@{}}Splitter\\(50:50)\end{tabular}}}

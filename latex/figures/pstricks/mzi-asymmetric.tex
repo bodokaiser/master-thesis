@@ -1,9 +1,9 @@
 \documentclass[pstricks]{standalone}
 
-\usepackage{pst-optexp}
+\input{preamble}
 
 \begin{document}
-	\begin{pspicture}(0.5,1)(10.5,4.75)
+	\begin{pspicture}(0.5,0.75)(10.5,5)
         \addtopsstyle{Beam}{beamwidth=0.1, fillstyle=solid, fillcolor=green!40}
         \pnode(0,2){IN1}
         \pnode([Xnodesep=2]IN1){BS1}
@@ -14,7 +14,7 @@
         \pnode([Xnodesep=2]BS2){OUT1}
         \pnode([offset=-2]BS2){OUT2}
         \begin{optexp}
-            \beamsplitter[compname=BS1, labelangle=-45, labeloffset=1](IN1)(BS1)(M1){BS1}
+            \beamsplitter[compname=BS1, labelangle=-90, labeloffset=0.8](IN1)(BS1)(M1){BS1}
             \mirror[compname=M1, labeloffset=0.6](BS1)(M1)(PS1){M1}
             \optbox[compname=PS1, innerlabel, optboxsize=1.0 0.8](M1)(M2){$\varphi$}
             \mirror[compname=M2, labeloffset=0.6](PS1)(M2)(BS2){M2}

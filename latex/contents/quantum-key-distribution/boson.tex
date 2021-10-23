@@ -89,7 +89,7 @@ For instance, we can envision a bosonic BB84 protocol:
 \Cref{fig:phase_space_quadrature} visualizes Alice's four quantum states in the optical phase space.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/phase-space-quadrature}
+	\includegraphics{figures/pgfplots/phase-space-quadrature}
 	\caption{Phase space representation of Alice's quantum states in bosonic BB84: The analog of Alice's basis selection is to choose between the two orthogonal quadratures with $\Delta\vartheta=\pi/2$. The analog of Alice's basis element selection is to choose the sign of the eigenvalue $\pm x$.}\label{fig:phase_space_quadrature}
 \end{figure}
 If she chooses the quadrature corresponding to $\Delta\vartheta=0$, a measurement in the orthogonal quadrature eigenbasis yields a completely uncorrelated outcome.
@@ -166,7 +166,7 @@ Measurements of the unsqueezed quadrature are not completely uncorrelated.
 However, the squeezing magnitude $\abs{\xi}$ can (in theory) be chosen arbitrarily large such that the correlation can be arbitrarily reduced.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/phase-space-squeezed}
+	\includegraphics{figures/pgfplots/phase-space-squeezed}
 	\caption{Phase space representation of Alice's squeezed coherent states in bosonic BB84: The uncertainty is sufficiently squeezed to approximate the quadrature eigenstates.}\label{fig:phase_space_squeezed}
 \end{figure}
 To implement the quadrature measurement, Bob can employ a homodyne detection.
@@ -176,7 +176,7 @@ The \gls{lo} is superimposed with the signal through the coupler and the two cou
 In balanced configuration, the photocurrent of the photodiodes is subtracted removing the constant power of the signal and \gls{lo}.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/coherent-receiver-active}
+	\includegraphics{figures/pstricks/coherent-receiver-active}
 	\caption{Fiber-optical setup of a single homodyne detector, attached to an isolated polarization controlled quantum channel, implementing active measurement basis selection: The receiver laser is synced in phase and frequency to the optical carrier and phase-shifted by $\varphi\in\{0,\pi/2\}$. The phase-shifted receiver laser is superimposed with the received signal in a balanced coupler. The two coupler outputs are monitored by photodiodes in balanced configuration.}\label{fig:coherent_receiver_active}
 \end{figure}
 Assuming a perfect detector and strong \gls{lo} with coherent state $\ket{\alpha_l}$ and $\abs{\alpha_l}\gg1$, the mean balanced photodiode current is proportional to~\cite[p.~217]{Vogel2006}
@@ -201,7 +201,7 @@ As in the case of the polarization-encoding qubit-based \gls{qkd}, Bob can also 
 Such a setup is illustrated in \Cref{fig:coherent_receiver_passive}.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/coherent-receiver-passive}
+	\includegraphics{figures/pstricks/coherent-receiver-passive}
 	\caption{Fiber-optical setup of a dual homodyne detector, attached to an isolated polarization controlled quantum channel, implementing passive measurement basis selection: The receiver laser is synced in frequency to the optical carrier and split into two branches. The first branch is used for a first homodyne detector while the second branch is phase-shifted by $\pi/2$ and used for a second homodyne detector. Because of the phase-shift, two orthogonal quadratures can be resolved at the same time.}\label{fig:coherent_receiver_passive}
 \end{figure}
 Contrary to the quadrature eigenstates, squeezed coherent states are physical and have been prepared and measured with up to \SI{15}{\decibel} squeezing~\cite{Vahlbruch2016}.
@@ -215,7 +215,7 @@ We conclude that although squeezed coherent states present a possible quantum st
 Coherent states are the "most classical" quantum states and can be prepared using standard telecommunication components, see, for instance, \Cref{fig:coherent_transmitter}.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/coherent-transmitter}
+	\includegraphics{figures/pstricks/coherent-transmitter}
 	\caption{Fiber-optical setup of a coherent transmitter: \gls{iq}-modulation is performed on a transmit laser to encode the complex symbol onto the optical carrier. A \gls{voa} reduces the power of the transmit signal such that the signal strength is comparable to the quantum noise. \SI{99}{\percent} of the optical power is monitored by a power meter in a control loop with the \gls{voa}. The remaining \SI{1}{\percent} of the optical power are passed through an isolated quantum channel.}\label{fig:coherent_transmitter}
 \end{figure}
 Moreover, coherent states do not deteriorate to a different quantum state when interacting with the environment, e.g., inside a fiber channel.
@@ -239,7 +239,7 @@ The variance of the coherent state is indicated by the shaded circles around the
 The channel attenuates the coherent state by reducing the mean but the variance remains constant.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/phase-space-coherent}
+	\includegraphics{figures/pgfplots/phase-space-coherent}
 	\caption{Phase space representation of two coherent state transmissions: Alice prepares the coherent states $\ket{\alpha}$ (green), $\ket{\alpha}$ (blue) with mean quadratures $\alpha_1$ (green dot) respectively $\alpha_2$ (blue dot) and sends them to Bob through a channel (gray arrow). Bob receives the attenuated coherent states $\ket{\alpha^\prime}$ (orange) and $\ket{\beta^\prime}$ (red). He performs a dual homodyne measurement with outcomes $\alpha^{\prime\prime}$ respectively $\beta^{\prime\prime}$.}\label{fig:phase_space_coherent}
 \end{figure}
 An intercept-resend attempt by Eve is illustrated in \Cref{fig:phase_space_intercept_resend}.
@@ -249,7 +249,7 @@ Although, the channel attenuation strongly deteriorates the \gls{snr}, Bob's mea
 Alice and Bob notice a higher than usual error when performing error correction.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/phase-space-intercept-resend}
+	\includegraphics{figures/pgfplots/phase-space-intercept-resend}
 	\caption{Phase space representation of coherent state transmission with an intercept-resend attack from Eve using a coherent state (left) and a squeezed coherent state (right). Alice always prepares the same coherent state (green circle). In a first realization, Eve intercepts Alice's state (green circle) and measures (red square) for the quadrature. She then prepares a coherent state with that quadrature and sends it to Bob. Through the attenuated channel (black arrow), Bob receives the coherent state (red circle) and measures (red cross) for the quadrature. In a second realization, Eve measures (orange square) for the quadrature of the intercepted state. She then prepares a new coherent state (orange circle) and sends it to Bob. Bob receives the attenuated state (orange circle) and finds (orange cross) in a quadrature measurement. Instead of preparing a coherent state, Eve can prepare squeezed coherent states (right) for which Bob receives squeezed coherent states of which he measures the quadrature.}\label{fig:phase_space_intercept_resend}
 \end{figure}
 If Bob uses a dual homodyne receiver, he will directly notice the increase of noise in one of the quadratures.

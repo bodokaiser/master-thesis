@@ -3,7 +3,7 @@
 \Cref{fig:post_processing} introduces a generic post-processing procedure.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/tikz/post-processing}
+	\includegraphics{figures/tikz/post-processing}
 	\caption{Generic post-processing procedure for \gls{qkd}: First, the raw data from the quantum transmission is partitioned into data for calibration and data for key generation. The parameter estimation estimates an upper bound of Eve's information and the channel characteristics from the raw calibration data. If Eve's information exceeds a certain threshold, the protocol is aborted, or the current data frame is discarded. Symbol mapping, including basis sifting, transforms the raw key data to correlated key data. Information reconciliation corrects errors in the correlated key data and discards data blocks where error correction failed. Eve's information on the partially secret key is reduced to epsilon using privacy amplification. Finally, Alice and Bob verify that the post-processing was successful by comparing a hash of their secret key. If the hashes mismatch, the protocol is aborted, or the transmission block discarded.}\label{fig:post_processing}
 \end{figure}
 
@@ -51,7 +51,7 @@ However, it happens that Alice and Bob assign different bins, see, for instance,
 In this particular case, if Bob knows the least significant bit from Alice, he is able to correct his bit string assignment to $100$.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/slice-reconciliation}
+	\includegraphics{figures/pgfplots/slice-reconciliation}
 	\caption{Slice reconciliation for $m=3$ with $2^m=8$ bins for samples from a standard normal distribution. Alice prepared the values $x_1,x_2$ and Bob measured the values $x_1^\prime,x_2^\prime$. $x_1$ and $x_1^\prime$ are located in the same bin $3$ but $x_2$ and $x_2^\prime$ are located in bin $4$ respectively bin $5$. Slice reconciliation is able to detect and correct such errors with high probability.}\label{fig:slice_reconciliation}
 \end{figure}
 
@@ -61,7 +61,7 @@ Bob then discloses the parameters of his rotation matrix $R^\prime$ to Alice.
 Alice rotates her variable vector $R\vb{x}$ and finds the symbol vector $\vb{v}_k$ most with least distance to $R\vb{x}$.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/multidimensional-reconciliation}
+	\includegraphics{figures/pgfplots/multidimensional-reconciliation}
 	\caption{Multidimensional reconciliation in $\mathbb{R}^2$: Alice and Bob encoded their prepared and measured values into two-dimensional vectors $\vb{x}$ and $\vb{x}^\prime$. Bob calculates the rotation matrix $R$ that rotates $\vb{x}^\prime$ close to the symbol vector $\vu{v}_4$ and shares the rotational parameters with Alice. Alice applies the rotation to her vector $R\vb{x}$. Both rotated vectors of Alice and Bob $R\vb{x}$ and $R\vb{x}^\prime$ are assigned the $11$ bit string with high confidence.}\label{fig:multidimensional_reconciliation}
 \end{figure}
 Multidimensional reconciliation works best in high-dimensional spaces as the norm of random vector approaches one (unit sphere) for $n\to\infty$.
@@ -77,7 +77,7 @@ Error correction is a subdiscipline of coding theory, or more precisely, channel
 The following discussion is a very brief introduction to binary linear codes based of Ref.~\cite{MacKay2003,Mildenberger2013}.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/tikz/error-correction-codes}
+	\includegraphics{figures/tikz/error-correction-codes}
 	\caption{Taxonomy of codes in coding theory with emphasis on linear block codes for error correction: The linear block codes are distinguished by the constraints on their generator matrix.}\label{fig:error_correction_codes}
 \end{figure}
 A $(n,k)$ binary linear code encodes $k$-bit messagewords into $n$-bit codewords.

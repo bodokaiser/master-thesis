@@ -1,5 +1,7 @@
 \documentclass[tikz]{standalone}
 
+\input{preamble}
+
 \usetikzlibrary{trees}
 
 \begin{document}
@@ -10,7 +12,7 @@
 			shape=rectangle,
 			inner sep=6pt,
 			draw,
-			thick,
+			very thick,
 		},
 	]
 		\node {Coding theory} [
@@ -18,22 +20,22 @@
 			sibling distance=3.5cm,
 		]
 			child {
-				node[text=white] {\textsf{Source coding}}
+				node[text=white] {Source coding}
 			}
 			child {
-				node[text=white] {\textsf{Channel coding}}
-				child { node {\textsf{Linear block codes}}
-					child { node {\textsf{Cyclic codes}} }
-					child { node {\textsf{Repetition codes}} }
-					child { node {\textsf{Parity codes}} }
+				node[text=white] {Channel coding}
+				child { node {Linear block codes}
+					child { node {Cyclic codes} }
+					child { node {Repetition codes} }
+					child { node {Parity codes} }
 				}
-				child { node {\textsf{Convolutional codes}} }
+				child { node {Convolutional codes} }
 			}
 			child {
-				node[text=white] {\textsf{Cryptographic coding}}
+				node[text=white] {Cryptographic coding}
 			}
 			child {
-				node[text=white] {\textsf{Line coding}}
+				node[text=white] {Line coding}
 			}
 		;
 	\end{tikzpicture}
