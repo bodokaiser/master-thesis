@@ -1,29 +1,32 @@
 \documentclass[tikz]{standalone}
 
-\usetikzlibrary{arrows.meta,fit,positioning}
+\input{preamble}
 
 \begin{document}
 	\begin{tikzpicture}[
-		block/.style={draw, very thick, fill=white, minimum height=8ex, minimum width=3.5em},
-		party/.style={draw, rounded corners, inner xsep=1em, inner ysep=1em},
-		channel/.style={block, minimum height=6ex, minimum width=9em},
+		node distance=10pt,
+		action/.style={midway, fill=white, align=center},
+		block/.style={draw, very thick, fill=white, minimum height=28pt, minimum width=58pt},
+		superblock/.style={draw, very thick, inner sep=8pt},
 	]
-		\node (ka) [block] {\textsf{Key}};
-		\node (tx) [block, right=2em of ka] {\textsf{Transmitter}};
-		\node [party, fit=(ka) (tx), label=\textsf{Alice}] (alice) {};
-		\node [block, right=6em of tx] (eve) {\textsf{Eve}};
-		\node (rx) [block, right=6em of eve] {\textsf{Receiver}};
-		\node (kb) [block, right=2em of rx] {\textsf{Key}};
-		\node (bob) [party, fit=(rx) (kb), label={\textsf{Bob}}] {};
+		\node (ka) [block] {Secret key};
+		\node (tx) [block, right=of ka] {Transmitter};
+		\node [superblock, fit=(ka) (tx), label={Alice}] (alice) {};
+		\node [block, right=28pt of tx] (eve) {Eve};
+		\node (rx) [block, right=28pt of eve] {Receiver};
+		\node (kb) [block, right=of rx] {Secret key};
+		\node (bob) [superblock, fit=(rx) (kb), label={Bob}] {};
 		
-		\node (qch) [channel, above=5em of eve] {\textsf{Quantum channel}};
-		\node (cch) [channel, below=5em of eve, minimum height=6ex, minimum width=9em] {\textsf{Classical channel}};
+		\node (qch) [block, above=5em of eve] {Quantum channel};
+		\node (cch) [block, below=5em of eve] {Classical channel};
 		
-		\draw[-Latex] (tx.north) -- (tx.north|-qch) -- (qch) -- (qch-|rx.north) -- (rx.north);
-		\draw[-Latex] (tx.south) -- (tx.south|-cch) -- (cch) -- (cch-|rx.south) -- (rx.south);
+		\draw[-Latex] (tx) -- (tx.north|-qch) -- (qch);
+		\draw[-Latex] (qch) -- (qch-|rx.north) -- (rx);
+		\draw[-Latex] (tx) -- (tx.south|-cch) -- (cch);
+		\draw[-Latex] (cch) -- (cch-|rx.south) -- (rx);
 		
-		\draw[Latex-Latex] (eve) -- (qch) node[midway, fill=white]{\textsf{read and write}};
-		\draw[Latex-] (eve) -- (cch) node[midway, fill=white]{\textsf{read}};
+		\draw[Latex-Latex] (eve) -- (qch) node[midway, fill=white] {read and write};
+		\draw[Latex-] (eve) -- (cch) node[midway, fill=white]{read};
 		
 		\draw[-Latex] (tx) -- (ka);
 		\draw[-Latex] (rx) -- (kb);

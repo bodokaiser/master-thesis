@@ -1,5 +1,7 @@
 \documentclass[tikz]{standalone}
 
+\input{preamble}
+
 \usetikzlibrary{mindmap}
 
 \begin{document}
@@ -19,27 +21,27 @@
 			concept,
 		},
 	]
-		\node[text=white] {\textsf{QKD}}
-			child { node[text=white] {\textsf{Logical Hilbert space}}
-				child { node {\textsf{Finite}} }
-				child { node {\textsf{Countable}} }
+		\node[text=white] {QKD}
+			child { node[text=white] {Logical Hilbert space}
+				child { node {Finite} }
+				child { node {Countable} }
 			}
-			child { node[text=white] {\textsf{Schema}}
-				child { node {\textsf{Entangle-ment-based}} }
-				child { node {\textsf{Prepare-and-measure}} }
+			child { node[text=white] {Schema}
+				child { node {Entangle-ment-based} }
+				child { node {Prepare-and-measure} }
 			}
-			child { node[text=white] {\textsf{Measurement basis selection}}
-				child { node {\textsf{Active}} }
-				child { node {\textsf{Passive}} }
+			child { node[text=white] {Measurement basis selection}
+				child { node {Active} }
+				child { node {Passive} }
 			}
-			child { node[text=white] {\textsf{Physical encoding}}
-				child { node {\textsf{Polarization}} }
-				child { node {\textsf{Quadratures}} }
-				child { node {\textsf{Squeezing}} }
+			child { node[text=white] {Physical encoding}
+				child { node {Polarization} }
+				child { node {Quadratures} }
+				child { node {Squeezing} }
 			}
-			child { node[text=white] {\textsf{Detection}}
-				child { node {\textsf{Coherent}} }
-				child { node {\textsf{Single-photon}} }
+			child { node[text=white] {Detection}
+				child { node {Coherent} }
+				child { node {Single-photon} }
 			}
 		;
 	\end{tikzpicture}

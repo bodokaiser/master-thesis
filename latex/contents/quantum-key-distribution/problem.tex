@@ -55,64 +55,47 @@ As long as there exists no mathematical proof for a theoretical lower bound of t
 \FloatBarrier
 \subsection{Quantum-key distribution}
 
-The chance of public-key distribution becoming a critical vulnerability in secure communication infrastructure inflamed a demand for a practical and information-theoretical provable alternative key distribution.
-\gls{qkd} claims to be such a practical and information-theoretical secure key distribution.
-In summary, \gls{qkd} exploits the inherent uncertainty in measuring non-orthogonal quantum states for shared random number generation:
-\begin{enumerate}
-	\item Alice samples some random variables $\alpha_1,\dots,\alpha_n$ and encodes them onto a quantum state $\ket{\psi(t)}$.
-	\item Bob performs measurements of the quantum state $\ket{\psi(t)}$ yielding $\beta_1,\dots,\beta_n$.
-	\item Alice's $\alpha_1,\dots,\alpha_n$ and Bob's $\beta_1,\dots,\beta_n$ are correlated random variables from which a shared secret key can be distilled using classical algorithms (post-processing).
-\end{enumerate}
-On a more practical level, a typical \gls{qkd} system comprises a transmitter, a receiver, a quantum and classical communication channel as illustrated in \Cref{fig:qkd_system}.
+The potential of \gls{qkd} becoming a vulnerability inflames the demand for a practical and forward secure key distribution scheme.
+Ideally, the key distribution scheme should dynamically react to any third-party interaction by compensating for the information leak or aborting the protocol.
+\gls{qkd} claims to be such a key distribution scheme.
+Based on the laws of quantum physics, \gls{qkd} exploits the inherent uncertainty of measuring non-orthogonal quantum states to generate random correlations between Alice and Bob.
+Alice's and Bob's correlations estimate for their quantum transmissions provides insights about potential information loss to a third party.
+Using classical techniques, Alice and Bob can then compensate for the potential information loss or abort the protocol if necessary.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/tikz/qkd-system}
-	\caption{\Gls{qkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob, secret to a third party, Eve. Eve has full access to the quantum channel but can only read information from the classical authenticated channel.}\label{fig:qkd_system}
+	\includegraphics{figures/tikz/qkd-system}
+	\caption{Alice and Bob use a quantum and classical channel to generate a shared secret key: Alice possesses a transmitter, and Bob owns a receiver. Transmitter and receiver both output a secret key and connect to a quantum and classical channel. A potential adversary, Eve, has read and write access to the quantum but only read access to the classical channel.}\label{fig:qkd_system}
 \end{figure}
-A potential adverse eavesdropper, Eve, has full access to the quantum channel, i.e., can intercept and temper with quantum states sent by Alice, but has only read access to the classical channel.
-More precisely, the classical channel is an authenticated channel to prevent man-in-the-middle attacks.
-Authentication can be implemented classically using \gls{mac} as discussed for the secure communication system.
-% assumptions to Eve and what kind of attacks she can do (coherent, ?)
-% explain superoperator (effect of quantum channel)
+\Cref{fig:qkd_system} presents a communication system proficient for \gls{qkd}.
+The classical and quantum channel connecting Bob's receiver with Alice's transmitter is usually the same physical medium.
+For example, an optical fiber where the quantum and classical channels occupy different wavelengths or polarization.
+If the \gls{qkd} succeeds, Alice's transmitter and Bob's receiver output the same secret key to Alice, respectively Bob.
+The adversary, Eve, has full access (read and write) to the quantum channel but only read access to the classical channel.
+The restriction that Eve has only read access over the classical channel is important to exclude man-in-the-middle attacks.
+However, the restriction is not a practical limitation as we can ensure integrity by promoting the classical channel to an authenticated channel using \gls{mac}s.
 
-% entanglement- vs. prepare-and-measure -> EB used for proofs but otherwise PM used practical
-% comparison cv/dv on a quantum level (possible quantum states) and on a practical level (fiber, free-space) -> CV and DV depends on state space of the receiver
-\begin{table}[htb]
-	\centering
-	\begin{tabular}{lll}
-		\toprule
-		Encoding variable & State space & Information support \\
-		\midrule
-		Polarization & Finite & Polarization state \\
-		Photon number & Countable & Number state \\
-		Quadratures & Uncountable & Coherent state \\
-		Squeezing & Uncountable & Squeezed state \\
-		Time-bin & Finite & Time of arrival \\
-		Phase-bin & Finite & Phase \\
-		\bottomrule
-	\end{tabular}
-	\caption{Encoding variables to use for \gls{qkd}: Variables with uncountable state space are considered for \gls{cvqkd} while variables with (possibly restricted) countable state space are considered for \gls{dvqkd}.}
-\end{table}
-
-Before diving into specific \gls{qkd} protocols, we introduce a taxonomy of \gls{qkd} protocols.
-By identifying common protocol features, allows for a reductionist model of \gls{qkd}.
-
-The literature typically distinguishes between \gls{dvqkd}, \gls{cvqkd}, and \gls{dpsqkd}.
-Ignoring \gls{dpsqkd}, it is unclear what exact features unambiguously differentiate between \gls{cvqkd} and \gls{dvqkd}.
+The details on \gls{qkd} strongly depend on the particular implementation at hand, the \gls{qkd} protocol.
+A huge zoo of \gls{qkd} protocols exists, and it is useful to overview common features for a systematic presentation.
+The \gls{qkd} literature typically distinguishes between \gls{dvqkd}, \gls{cvqkd}, and \gls{dpsqkd}.
+Leaving out \gls{dpsqkd}, it is unclear what features unambiguously differentiate between \gls{cvqkd} and \gls{dvqkd}.
 For instance, most practical \gls{dvqkd} protocols use weak coherent states~\cite{Duvsek2006}, which are anything but discrete.
-Fr this reason, the accepted opinion considers a protocol discrete when using a single-photon and continuous when using a coherent detector.
-This view has been recently challenged by proposing a BB84-like protocol using coherent detection~\cite{Qi2021}.
+The accepted opinion considers a protocol discrete when using a single-photon and continuous when using a coherent detector.
+However, this view is challenged by discrete \gls{qkd} protocols, like BB84~\cite{Bennett1984}, using coherent detection~\cite{Qi2021}.
+What other feature can we use if the detection method does not clearly distinguish between \gls{cvqkd} and \gls{dvqkd}?
 \begin{figure}[htb]
 	\centering
-	\includestandalone[scale=0.8]{figures/tikz/qkd-classification}
-	\caption{Common features among \gls{qkd} protocols: Detection, physical encoding, logical state space, measurement basis selection and schema.}\label{fig:qkd_classification}
+	\includegraphics[scale=0.8]{figures/tikz/qkd-classification}
+	\caption{Common characteristics of \gls{qkd} protocols in a tree diagram: The protocol schema is either \gls{pandm} or \gls{eb}. The Measurement basis selection is either passive or active. The detection is usually coherent or based on single-photon clicks. The logical Hilbert space is either finite or countable. Among many, the physical encoding uses the field quadratures, polarization, or squeezing \gls{dof}s of light.}\label{fig:qkd_classification}
 \end{figure}
-We propose a more subtle classification based on definite protocol features.
-\Cref{fig:qkd_classification} illustrates common features we identified among \gls{qkd} protocols that can be uniquely determined.
-Many of these features are implementation details such as physical encoding, measurement basis selection, and detection.
-In contrast, other features are more fundamental, like the logical Hilbert space or the schema.
-We will discuss and exemplify these features in the next two sections.
-
-In the next two sections, we present \gls{qkd} protocols that differ by their logical Hilbert space.
-The logical Hilbert space defines the quantum system assumed on an abstract protocol level, e.g., a qubit or boson, and is a more precise concept than discrete and continuous~\cite[p.~2]{Weedbrook2012}.
-The logical quantum system does not need to be equal to the quantum system physically encoding the quantum states, for example, a weak coherent state mimicking a single-photon.
+\Cref{fig:qkd_classification} summarizes common features among \gls{qkd} protocols.
+Features like the protocol schema, the measurement basis selection, and the detector are uniquely determined.
+More opaque is the distinction between the physical encoding and the logical Hilbert space.
+The physical encoding refers to the light \gls{dof}s used to encode the data, for example, the polarization of light or the particular quantum state (number, coherent, squeezed).
+More often, the technical facilities determine the physical encoding.
+For example, coherent light sources and detectors are mature technologies.
+Yet, many \gls{qkd} protocols assume quantum states that are different from coherent states.
+We consider the \gls{qkd} protocol-level quantum system the logical Hilbert space.
+The logical Hilbert space is either finite or countable.
+If it's finite, it is often a qubit or generalization thereof.
+If it's countable, it is often bosonic.
+Therefore, we propose not to partition \gls{qkd} protocols among \gls{cvqkd} or \gls{dvqkd} but by their logical Hilbert space being bosonic- or qubit-based\footnote{Such a distinction appears also in general quantum information theory, see, for instance, Ref.~\cite[p.~2]{Weedbrook2012}.}, which we both present in the next two sections.
