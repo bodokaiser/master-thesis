@@ -29,31 +29,28 @@ Assuming the asymmetric cipher to be secure, Alice and Bob now share a secret ke
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/pkd-system}
-	\caption{\Gls{pkd} system used to create a shared key between between two spatially distanced parties, Alice and Bob.}\label{fig:pkd_system}
+	\caption{Alices and Bob use an asymmetric cipher to distribute a secret key: Alice possesses the secret key and a public key, and Bob owns a private key corresponding to Alice's public key. Alice encrypts the secret key with the public key and transmits the message over a (public) channel to Bob. Bob decrypts the message with the private key to obtain the secret key.}\label{fig:pkd_system}
 \end{figure}
 Public-key distribution algorithms, for instance, Diffie-Hellman~\cite{Diffie1976} and variants thereof, e.g., \gls{ecdh}, are heavily employed on the internet because they are effortless to deploy.
 
 The core principle behind asymmetric ciphers is the concept of one-way functions, functions easy to compute but difficult to invert.
 Here, easy and difficult refer to the computational complexity, denoting the upper bound of the best (known) algorithm to solve the problem.
 The time to break an asymmetric cipher depends on the computational resources and complexity.
-In practice, Alice and Bob can increase the key length, such that any attacks by Eve become impractical.
+In practice, one chooses a key length, such that attacks, possible with present computational resources, become impractical.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/runtime}
-	\caption{Computational runtimes for prime number factorization algorithms: The most efficient known classical algorithm is the \gls{gnfs}~\cite{Lenstra1993} and Shor's algorithm~\cite{Shor1994}.}
+	\caption{Computational runtimes for prime number factorization algorithms: The most efficient known classical algorithm is the \gls{gnfs}~\cite{Lenstra1993} (green) and Shor's algorithm~\cite{Shor1994} (orange). The runtime of the classical algorithm increases exponentially with the number of bits, while the quantum algorithm rises almost linearly.}
 	\label{fig:prime_number_factorization_runtime}
 \end{figure}
-However, computational resources increase with technological progress (Moore's law).
-At the same time, computational complexity might decrease with the discovery of new algorithms.
-A key length that in the past was considered secure might be rendered useless in the future.
-A particular example of a reduction in computational complexity is Shor's algorithm~\cite{Shor1994}.
-Compared to the fastest classical algorithm, \gls{gnfs}, Shor's algorithm provides an exponential speed-up, see \Cref{fig:prime_number_factorization_runtime}, in prime number factorization, a particular class of one-way functions used in, for instance, Diffie-Hellman key exchange.
+However, computational resources advance with time.\footnote{According to Moore's observation, the number of transistors in integrated circuits doubles every two years.}
+A key length that was considered secure in the past might be rendered useless in the future.
+It is imaginable to store communication from the present in the hope of breaking it in the future.
+In addition to technological progress in computing, discovering new algorithms may decrease the computational complexity and make certain attacks practicable.
+For example, Shor's quantum algorithm~\cite{Shor1994} provides an exponential speed-up in prime number factorization compared to the fastest (known) classical algorithm, \gls{gnfs}, see \Cref{fig:prime_number_factorization_runtime}.
+As prime number factorization is used by, for instance, Diffie-Hellman key exchange, as a one-way function, a sufficiently powerful quantum computer can break previously, assumed to be, secure communication.
 
-
-Even though, post-quantum algorithms have been proposed~\cite{Bernstein2017,Chen2016} using a different class of one-way functions, the   where no efficient (quantum) algorithm is (yet) known.
-As long as there is no proof for the computational complexity for a specific family of one-way functions, public-key distribution is only safe for key lengths that are not computationally feasible.
-However, what is not computationally feasible today might be tomorrow, and it is conceivable that encrypted communication recorded today will be broken in the feature with specialized hardware.
-Therefore, public-key distribution is not considered to be forward secure.
+As long as there exists no mathematical proof for a theoretical lower bound of the computational complexity of a particular class of one-way functions, PKD is not forward secure, i.e., might be broken in the future.\footnote{Post-quantum cryptography~\cite{Bernstein2017,Chen2016} attempts to mitigate the vulnerability of present asymmetric ciphers against quantum algorithms by choosing a different class of one-way functions suspected to be secure. But again, as long as there is no absolute lower bound for the computational complexity of a particle class of one-way functions, forward security of PKD, including post-quantum ciphers, remains contestable.}
 
 \FloatBarrier
 \subsection{Quantum-key distribution}
