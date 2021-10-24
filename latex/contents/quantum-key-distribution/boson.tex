@@ -177,7 +177,7 @@ In balanced configuration, the photocurrent of the photodiodes is subtracted rem
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/coherent-receiver-active}
-	\caption{Fiber-optical setup of a single homodyne detector, attached to an isolated polarization controlled quantum channel, implementing active measurement basis selection: The receiver laser is synced in phase and frequency to the optical carrier and phase-shifted by $\varphi\in\{0,\pi/2\}$. The phase-shifted receiver laser is superimposed with the received signal in a balanced coupler. The two coupler outputs are monitored by photodiodes in balanced configuration.}\label{fig:coherent_receiver_active}
+	\caption{Fiber-optical setup of a coherent receiver with active basis selection: The receiver comprises a \gls{rx} laser connected to a \gls{ps} with phase $\varphi$ in the lower left branch, and the signal fiber connected with a \gls{pc} and protected by an optical isolator in the upper left branch. The phase-shifted \gls{rx} laser is superimposed with the isolated and polarization-controlled signal in a balanced coupler where the two coupler outputs are monitored by two \gls{pd}s in balanced configuration, a \gls{bd}.}\label{fig:coherent_receiver_active}
 \end{figure}
 Assuming a perfect detector and strong \gls{lo} with coherent state $\ket{\alpha_l}$ and $\abs{\alpha_l}\gg1$, the mean balanced photodiode current is proportional to~\cite[p.~217]{Vogel2006}
 \begin{equation}
@@ -202,7 +202,7 @@ Such a setup is illustrated in \Cref{fig:coherent_receiver_passive}.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/coherent-receiver-passive}
-	\caption{Fiber-optical setup of a dual homodyne detector, attached to an isolated polarization controlled quantum channel, implementing passive measurement basis selection: The receiver laser is synced in frequency to the optical carrier and split into two branches. The first branch is used for a first homodyne detector while the second branch is phase-shifted by $\pi/2$ and used for a second homodyne detector. Because of the phase-shift, two orthogonal quadratures can be resolved at the same time.}\label{fig:coherent_receiver_passive}
+	\caption{Fiber-optical setup of a coherent receiver with passive basis selection: The upper left branch connects to the signal fiber with a \gls{pc} and an optical isolator. The lower left branch splits a \gls{rx} laser with equal power into two branches, where the lower one of them is phase-shifted by $\pi/2$. The isolated and polarization-controlled upper branch is coupled with the phase-shifted and non-phase shifted \gls{rx} laser branches and then monitored by two \gls{bd}s.}\label{fig:coherent_receiver_passive}
 \end{figure}
 Contrary to the quadrature eigenstates, squeezed coherent states are physical and have been prepared and measured with up to \SI{15}{\decibel} squeezing~\cite{Vahlbruch2016}.
 However, the production of squeezed coherent states requires nonlinear interactions, which are challenging to control and require with the current state of art a complex optical setup.
@@ -216,7 +216,7 @@ Coherent states are the "most classical" quantum states and can be prepared usin
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/coherent-transmitter}
-	\caption{Fiber-optical setup of a coherent transmitter: \gls{iq}-modulation is performed on a transmit laser to encode the complex symbol onto the optical carrier. A \gls{voa} reduces the power of the transmit signal such that the signal strength is comparable to the quantum noise. \SI{99}{\percent} of the optical power is monitored by a power meter in a control loop with the \gls{voa}. The remaining \SI{1}{\percent} of the optical power are passed through an isolated quantum channel.}\label{fig:coherent_transmitter}
+	\caption{Fiber-optical setup of a coherent transmitter: A \gls{tx} laser is connected with an \gls{iqm}, followed by a \gls{voa}. The output of the \gls{voa} is split into an upper low-power and a lower high-power branch. The high-power branch is monitored by a \gls{pwm}, while the low-power branch passes an optical isolator connected with a fiber.}\label{fig:coherent_transmitter}
 \end{figure}
 Moreover, coherent states do not deteriorate to a different quantum state when interacting with the environment, e.g., inside a fiber channel.
 In sum, coherent states seem to be the most practical quantum states.

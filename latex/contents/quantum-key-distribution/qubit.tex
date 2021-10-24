@@ -208,7 +208,7 @@ Alice configures her linear polarizer to select a basis element of the rectiline
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/bb84-polarization-active}
-	\caption{Optical setup to implement polarization-encoding BB84 with active basis selection at the receiver comprising a transmitter, a polarization controlled quantum channel, and a receiver. The transmitter comprises a single-photon source and a linear polarizer as fiber components. The receiver consists of a rotatable rectilinear polarized beam splitter and two single-photon detectors as free space components which are connected to the fiber quantum channel through a collimator.}\label{fig:polarization_encoding_active}
+	\caption{Optical setup to implement polarization-encoding BB84 with active basis selection: The transmitter comprises a \gls{sps} and a polarizer connected to a fiber. The receiver comprises a \gls{pc}, a \gls{fc}, a rotatable \gls{pbs} with two \gls{spd} at its outputs.}\label{fig:polarization_encoding_active}
 \end{figure}
 Alice selects one of four polarization states $\ket{\leftrightarrow},\ket{\updownarrow},\ket{\nwsearrow},\ket{\neswarrow}$ by adjusting her linear polarizer to one of four angles $\theta\in\{0,\pi,\pi/2,3\pi/2\}$.
 We can write Alice's state as
@@ -257,8 +257,8 @@ One polarization detector comprises a rectilinear-polarized beam splitter and tw
 Another polarization detector comprises a diagonal-polarized beam splitter.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pstricks/bb84-polarization-passive}
-	\caption{Optical setup to implement polarization-encoding BB84 with passive basis selection at the receiver: The transmitter consists of a single-photon source and a linear polarizer. A polarization controlled quantum channel couples the fiber-optical transmitter with the free-space receiver using a fiber colimator. The receiver consists of a rectilinear and diagonal polarization detector which are placed at the output of an unpolarized beam splitter placed behind the fiber colimator.}\label{fig:polarization_encoding_passive}
+	\includegraphics{figures/pstricks/bb84-polarization-passive}
+	\caption{Optical setup to implement polarization-encoding BB84 with passive basis selection: The transmitter comprises a \gls{sps} and a polarizer connected to a fiber. The receiver comprises a \gls{pc}, a \gls{fc}, an unpolarized \gls{bs}, a rectilinear \gls{pbs} with two \gls{spd}s at the outputs, and a diagonal \gls{pbs} with two \gls{spd}s at the outputs. The receiver connects with the fiber through the \gls{pc}. The \gls{fc} couples the output of the \gls{pc} with the \gls{bs} which splits the beam among the two \gls{pbs}s.}\label{fig:polarization_encoding_passive}
 \end{figure}
 The \gls{povm} describing Bob's measurement with passive basis selection is
 \begin{equation}
@@ -295,7 +295,7 @@ For instance, if he receives a horizontal polarization state $\ket{\leftrightarr
 		& Diagonal & \SI{0}{\percent} & \SI{100}{\percent} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Click probabilities for the polarization-encoding BB84 with active measurement basis selection for possible states prepared by Alice and selected measurement bases.}\label{tab:bb84_polarization_clicks}
+	\caption{Click probabilities for the polarization-encoding BB84 with active measurement basis selection depending on the states Alice prepared and the measurement bases Bob selected.}\label{tab:bb84_polarization_clicks}
 \end{table}
 The polarization of light is a qubit and we can simply relabel the polarization states with the Pauli eigenstates, i.e.,
 \begin{align}
@@ -335,14 +335,14 @@ Alice creates an entangled photon state using a first \gls{mzi} with phase $\the
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/bb84-time-phase-active}
-	\caption{Fiber-optical setup of the phase-encoding BB84 using active basis selection: The transmitter comprises a single-photon source and a first asymmetric \gls{mzi} with variable phase-shift $\theta$. The transmitter is connected to the receiver through a fiber channel. The receiver comprises a second asymmetric \gls{mzi} with variable phase-shift $\phi$. The first and second \gls{mzi} are both made of two fiber couplers with a variable phase-shifter in the longer optical path. The outputs of the second asymmetric \gls{mzi} is monitored by two single-photon detectors.}\label{fig:qubit_time_phase_active}
+	\caption{Fiber-optical setup of the phase-encoding BB84 using active basis selection: The transmitter comprises a \gls{sps} and a first asymmetric \gls{mzi} with variable phase-shift $\theta$. The transmitter is connected to the receiver through a fiber. The receiver comprises a second asymmetric \gls{mzi} with variable phase-shift $\phi$. The first and second \gls{mzi} are both made of two fiber couplers with a variable phase-shifter in the longer optical path. The outputs of the second asymmetric \gls{mzi} is monitored by two \gls{spd}s.}\label{fig:qubit_time_phase_active}
 \end{figure}
 
 To understand the time-phase encoding, we analyze the action of the asymmetric \gls{mzi} with variable phase $\varphi$ on a photon pulse $\ket{t_0}$ arriving at time $t_0$, see \Cref{fig:mzi_asymmetric}.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/pstricks/mzi-asymmetric}
-     \caption{Asymmetric \gls{mzi} adding a constant time delay and variable phase difference between the upper and lower path. A pulsed state enters the first beam splitter BS1 to the left and is split among a longer upper path and a shorter lower path. A first mirror M1 directs the pulse from the upper path to a phase shifter which adds a relative phase of $\varphi$ between the upper and lower path. A second mirror M2 directs the pulse from the phase shifter to a second beam splitter BS2 while the lower path is between BS1 and BS2.}\label{fig:mzi_asymmetric}
+     \caption{Asymmetric \gls{mzi} adding a constant time delay and variable phase difference between the upper and lower path. A pulsed state enters the first \gls{bs}, BS1, to the left and is split among a longer upper path and a shorter lower path. A first mirror M1 directs the pulse from the upper path to a phase shifter which adds a relative phase of $\varphi$ between the upper and lower path. A second mirror M2 directs the pulse from the phase shifter to a second \gls{bs}, BS2, while the lower path is between BS1 and BS2.}\label{fig:mzi_asymmetric}
 \end{figure}
 An ideal (lossless) and symmetric beam splitter transforms the single-photon input states into a superposition according to\footnote{See Ref.~\cite[p.~137]{Haroche2006} and Ref.~\cite[p.~143]{Gerry2005}}
 \begin{align}
@@ -588,7 +588,7 @@ Alice choosing $\theta\in\{0,\pi\}$ corresponds to choosing the $Z$ eigenbasis w
 		& $\pi/2$ & \SI{0}{\percent} & \SI{100}{\percent} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Click probabilities for the time-phase-encoding BB84 protocol.}\label{tab:bb84_time_phase_clicks}
+	\caption{Click probabilities for the time-phase-encoding BB84 protocol depending on the \gls{mzi} phase angles set by Alice and Bob.}\label{tab:bb84_time_phase_clicks}
 \end{table}
 Comparing the click probabilities of \Cref{tab:bb84_time_phase_clicks} with the probabilities of the qubit-based BB84, suggests equivalence of the time-phase-encoding BB84 with the more general qubit-based description of BB84.
 While we can identify Alice's state in the time basis in terms with the $Y$ qubit basis,
