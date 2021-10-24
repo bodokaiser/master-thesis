@@ -1,11 +1,27 @@
 \section{Post-processing}
 
-\Cref{fig:post_processing} introduces a generic post-processing procedure.
+In the previous sections, we focused on the quantum transmission producing raw data for Alice and Bob.
+Post-processing summarizes methods Alice and Bob employ over the classical channel to distill a shared secret key from the raw data.
+It is an important part of the protocol and may be very different depending on the particular implementation.
+In an attempt to identify common steps in post-processing, we found the data flow diagram depicted in \Cref{fig:post_processing}.
+The starting point of the post-processing is the raw data from the quantum transmission.
+For the transmitter, the raw data includes the bits determining the state preparation for transmission.
+On the contrary, the receiver's raw data consists of the measurement data.
+Alice and Bob agree over the classical channel on partitioning their raw data into raw key data ($\approx\SI{80}{\percent}$) and raw calibration data ($\approx\SI{20}{\percent}$).
+They disclose their raw calibration data to perform parameter estimation mainly used for error estimation, correlating to Eve's information on the raw (key) data.
+Optionally, a comparison of the raw calibration data reveals information about the channel characteristics, improving error correction.
+The symbol mapping extracts correlated key data from the raw key data and might include base sifting.
+Information reconciliation transforms the correlated key data, which is different for Alice and Bob, into a partially secret key, which Alice and Bob agree.
+Unlike error correction, which might fail, information reconciliation ensures that Alice and Bob hold the same partially secret key, even at the cost of having a partially secret key of length zero.
+Privacy amplification removes Eve's information from the partially secret key by reducing the partially secret key length by Eve's information.
+Finally, by comparing a checksum, Alice and Bob verify that they indeed share the same secret key.
+If Eve's information is beyond a certain threshold or Alice and Bob do not share the same key, in the end, the post-processing is assumed to have failed, and the protocol is either aborted or the transmission block discarded.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/post-processing}
-	\caption{Generic post-processing procedure for \gls{qkd}: First, the raw data from the quantum transmission is partitioned into data for calibration and data for key generation. The parameter estimation estimates an upper bound of Eve's information and the channel characteristics from the raw calibration data. If Eve's information exceeds a certain threshold, the protocol is aborted, or the current data frame is discarded. Symbol mapping, including basis sifting, transforms the raw key data to correlated key data. Information reconciliation corrects errors in the correlated key data and discards data blocks where error correction failed. Eve's information on the partially secret key is reduced to epsilon using privacy amplification. Finally, Alice and Bob verify that the post-processing was successful by comparing a hash of their secret key. If the hashes mismatch, the protocol is aborted, or the transmission block discarded.}\label{fig:post_processing}
+	\caption{Data flow in \gls{qkd} post-processing: The quantum transmission produces raw data, and partitioning splits the raw data into raw calibration and key data. Parameter estimation on the raw calibration data assesses the channel characteristics and Eve's information's upper bound, which decides whether to abort the protocol or discard the transmission block. Symbol mapping transforms the raw key data to correlated key data. Information reconciliation includes the channel characteristics to correct errors in the correlated key data or discard data blocks where error correction failed, yielding a partially secret key. Privacy amplification produces a secret key by removing the estimate for Eve's information from the partially secret key. Verification confirms if the post-processing produced a correct secret key, otherwise, abort the protocol or discards the transmission block.}\label{fig:post_processing}
 \end{figure}
+In the following, we introduce some of the most important steps in post-processing: symbol mapping, information reconciliation, and privacy amplification.
 
 \FloatBarrier
 \subsection{Symbol mapping}
