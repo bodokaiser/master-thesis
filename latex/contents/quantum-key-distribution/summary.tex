@@ -1,30 +1,50 @@
 \section*{Summary}
+\addcontentsline{toc}{section}{Summary}
 
+Information-theoretical secure communication is achievable by symmetric ciphers given a practical and secure method for key distribution.
+\Gls{pkd} uses an asymmetric cipher for easy to deploy, algorithmic key distribution but has questionable forward security.
+In contrast, \gls{qkd} uses the inherent uncertainty in measuring non-orthogonal quantum states to have two distanced parties distill correlated data for key generation.
+
+We introduced the concept of a physical and logical quantum system analog to the concept of symbols and waveforms in telecommunication.
+The physical quantum system is a subspace of the Maxwell field.
+The logical quantum system is often either a qubit or a quantum harmonic oscillator, a boson.
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/tikz/qkd-protocol}
+	\caption{An abstract \gls{qkd} protocol comprises a binary encoder, a logical quantum system, a binary decoder, and some post-processing. The binary encoder maps bits onto a quantum state of the logical quantum system. The binary decoder extracts the bits from the logical quantum system. The logical quantum system is a subspace of a larger physical quantum system. The state encoder and decoder map between the logical and physical quantum states.}\label{fig:qkd_protocol}
+\end{figure}
+\Cref{fig:qkd_protocol} presents an attempt to employ the thoughts of layers to define an abstract \gls{qkd} protocol.
+In the end, \gls{qkd} should yield correlated binary symbols from which we can distill a secret key.
+On a protocol level, we need non-orthogonal quantum states to encode these binary symbols.
+Furthermore, technical considerations require us to use a different physical system to encode the logical quantum state.
+The introduced abstraction is limited to \gls{cvqkd} and \gls{dvqkd} protocols, it does not attempt to integrate \gls{dpsqkd}.
 \begin{table}[htb]
 	\centering	
 	\begin{tabular}{lcc}
 		\toprule
-			& Qubit (spin) & Boson (quadrature) \\
+			& Qubit-based & Boson-based \\
 		\midrule
 			Visualization & Bloch sphere & Phase space \\
-			Hilbert space (dim) & Finite (two) & Uncountable (infinite) \\
-			Probability distribution & Density matrix & Wigner distribution \\
-			Observable & $\vb{\hat{S}}(\vb{n})=\hat{S}_in^i$ & $\hat{X}(\vartheta)=\frac{1}{\sqrt{2}}\left(\hat{a}e^{-i\vartheta}+\hat{a}^\dagger e^{+i\vartheta}\right)$ \\
-			Standard basis & $\left\{\ket{0},\ket{1}\right\}$ & $\left\{\ket{x,\vartheta}\right\}_{x\in\mathbb{R}}$ \\
-			Other relevant states & $\ket{x_\pm},\ket{y_\pm},\ket{z_\pm}$ & $\ket{n},\ket{\alpha},\ket{\alpha,\xi}$ \\
+			Hilbert space (dim) & Finite (two) & Countable (infinite) \\
+			Measurement operator & $\vb{\hat{S}}(\vb{n})=\hat{S}_in^i$ & $\hat{X}(\vartheta)=\frac{1}{\sqrt{2}}\left(\hat{a}e^{-i\vartheta}+\hat{a}^\dagger e^{+i\vartheta}\right)$ \\
+			Standard basis & $\left\{\ket{0},\ket{1}\right\}$ & $\left\{\ket{x},\ket{p}\colon x,p\in\mathbb{R}\right\}$ \\
 		\bottomrule
 	\end{tabular}
 	\caption{Comparison of qubit- and boson-based \gls{qkd} protocols.}
 \end{table}
+On the logical level, we distinguish between qubit- and boson-based protocols, see \Cref{fig:qkd_protocol} for a comparison.
+Qubit-based protocols use the qubit, a two-dimensional complex space, as logical quantum system, while boson-based protocols use the Hilbert space of the quantum harmonic oscillator, a boson.
+The measurement operator for qubit- and boson-based protocols are the generalized spin respective quadrature operator.
+In principle, qubit and boson systems can be generalized to higher dimensions, e.g., qudits.
+Such generalization is also not covered by our proposal.
 
-\Cref{fig:qkd_protocol} illustrates our proposed notion of a \gls{qkd} protocol, with the feature being a logical quantum system from which the random bits are encoded and decoded.
-The logical quantum system is a subspace of the physical quantum system.
-The physical quantum system depends strongly on the physical implementation and quantum encoding.
-\begin{figure}[htb]
-	\centering
-	\includestandalone{figures/tikz/qkd-protocol}
-	\caption{An abstract \gls{qkd} protocol comprises a binary encoder, a logical quantum system, a binary decoder, and some post-processing. The binary encoder maps bits onto a quantum state of the logical quantum system. The binary decoder extracts the bits from the logical quantum system. The logical quantum system is a subspace of a larger physical quantum system. The state encoder and decoder map between the logical and physical quantum states.}\label{fig:qkd_protocol}
-\end{figure}
-The distinction between logical and quantum systems is vital to separate the implementation and security concerns.
-Many security proofs show equivalence between the physical implementation and the logical system to use an established security proof.
-One should keep in mind that such a separation implicitly assumes no loopholes from the particular implementation.
+Post-processing summarizes classical methods that allow the distillation of a secret key from the raw transmission data.
+Important post-processing steps are symbol mapping, information reconciliation, and privacy amplification.
+Symbol mapping converts the raw transmission data to correlated (binary) data.
+Information reconciliation equalizes the correlated data through base sifting, error correction, and discarding invalid blocks.
+Privacy amplification removes Eve's information from the partially secret key by reducing the key length by XORing the key bits randomly.
+
+\Gls{qkd} fundamentally assumes quantum theory to be complete and correct and authenticated communication to be possible.
+Usually, further assumptions regarding the practical implementation are made.
+The $\varepsilon$ parameter quantifies the derivation from a perfect key.
+The final result of a security proof is to relate the epsilon parameter with a lower bound for the secret key length (or rate).

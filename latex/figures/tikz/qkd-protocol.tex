@@ -1,23 +1,19 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{physics}
-
-\usetikzlibrary{arrows.meta,fit,positioning}
+\input{preamble}
 
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=3em,
-		block/.style={draw, very thick, minimum height=10ex, minimum width=3.5em, text width=4em, align=center},
+		node distance=10pt,
+		block/.style={draw, very thick, fill=white, minimum height=32pt, minimum width=58pt, text width=40pt, align=center},
+		superblock/.style={draw, very thick, inner sep=8pt},
 	]
-		\node[block] (phy) {\textsf{Physical quantum system}};
-		\node[block, left=of phy] (senc) {\textsf{State encoder}};
-		\node[block, right=of phy] (sdec) {\textsf{State decoder}};
-		\node[block, fit=(senc) (sdec), inner xsep=1em, inner ysep=2ex, label={\textsf{Logical quantum system}}] (log){};
-		\node[block, left=of senc] (benc) {\textsf{Binary encoder}};
-		\node[block, right=of sdec] (bdec) {\textsf{Binary decoder}};
-		\node[block, below=0.3 of log, minimum width=36em, text width=12em, minimum height=8ex] (pp) {\textsf{Post-processing}};
-		\node[block, fit=(benc) (bdec) (pp), label={\textsf{QKD Protocol}}, inner xsep=1em, inner ysep=5ex, yshift=2.5ex] (proto) {};
+		\node[block] (phy) {Physical quantum system};
+		\node[block, left=of phy] (senc) {State encoder};
+		\node[block, right=of phy] (sdec) {State decoder};
+		\node[superblock, fit=(senc) (sdec), label={Logical quantum system}, inner xsep=8pt, inner ysep=10pt] (log) {};
+		\node[block, left=20pt of senc] (benc) {Binary encoder};
+		\node[block, right=20pt of sdec] (bdec) {Binary decoder};
 
 		\coordinate[left=of benc] (in);
 		\coordinate[right=of bdec] (out);
@@ -28,9 +24,5 @@
 		\draw[-Latex] (phy) -- (sdec);
 		\draw[-Latex] (sdec) -- (bdec);
 		\draw[-Latex] (bdec) -- (out);
-		\draw[Latex-Latex] (benc) -- (benc|-pp.north);
-		\draw[Latex-Latex] (bdec) -- (bdec|-pp.north);
-		\draw[Latex-Latex] (sdec) -- (sdec|-pp.north);
-		\draw[Latex-Latex] (senc) -- (senc|-pp.north);
 	\end{tikzpicture}
 \end{document}
