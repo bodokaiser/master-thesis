@@ -1,18 +1,44 @@
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
 
+The optical coupler, or beam splitter, transforms the coherent input state
+\begin{equation}
+	\ket{\alpha(\omega),\beta(\omega)}
+	\to
+	\ket{
+		t(\omega)\alpha(\omega)+r(\omega)\beta(\omega),
+		t(\omega)^*\beta(\omega)-r(\omega)^*\alpha(\omega)
+	}
+\end{equation}
+wherein the coefficients satisfy
+\begin{equation}
+	\abs{t(\omega)}^2
+	+
+	\abs{r(\omega)}^2
+	=
+	1
+	.
+\end{equation}
+With $\beta(\omega)=0$ and dumping the second output mode, we find the optical filter
+\begin{equation}
+	\ket{\alpha(\omega)}
+	\to
+	\ket{t(\omega)\alpha(\omega)}
+\end{equation}
+wherein $\abs{t(\omega)}\leq1$.
+
+For the different modulators, we find
 \begin{table}[htb]
 	\centering	
 	\begin{tabular}{lcc}
 		\toprule
-			Component & Input state & Output state \\
+			Modulator & Output state & Constraint \\
 		\midrule
-			Optical coupler & & \\
-			Optical filter & & \\
-			Phase modulator & & \\
-			Mach-Zehnder modulator & & \\
-			Quadrature modulator & & \\
+			Phase & $\ket{\alpha(t)e^{i\varphi(t)}}$ & $0\leq\varphi(t)<2\pi$ \\
+			Amplitude & $\ket{\alpha(t)\beta(t)}$ & $\abs{\beta(t)}\leq1$ \\
 		\bottomrule
 	\end{tabular}
-	\caption{Comparison of input-output relations for components.}
+	\caption{Quantum input-output relations for modulators with input state $\ket{\alpha(t)}$.}
 \end{table}
+
+The measurement operator for 

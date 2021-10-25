@@ -1,0 +1,432 @@
+\section{Optical coupler}
+
+Optical couplers, including optical splitters, redistribute two optical inputs among two outputs and are an essential passive component for almost every setup.\footnote{The optical splitter is a special case of the optical coupler where one of the two optical inputs is zero, or, more precisely, the vacuum state.}
+
+A plethora of approaches towards the (quantum) beam splitter exists~\cite{Leonhardt2010,Gerry2005,Loudon2000} but are vague on assumptions, which, if not discussed, lead to misconception and confusion, for instance, regarding the phase and energy conservation.
+We would therefore approach the optical coupler, or beam splitter, from two directions:
+First, we approach the free-ray beam splitter from an experimentalist's perspective, considering the reflection and transmission properties of a beam splitter.
+Second, we discuss the fiber coupler from a theoretical mode-coupling perspective leading to an interaction Hamiltonian.
+Of course, both paths lead to the same unitary transformations, which we present in matrix and operator form.
+Finally, we discuss the input-output relations for coherent states and the interpretation of a frequency-dependent beam splitter as an optical filter.
+
+\subsection{Free-ray beam splitter}
+
+The most commonly employed (free-ray) designs of the beam splitter are the cubic, plate, and pellicle beam splitters, see \Cref{fig:beam_splitter_types}.
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/beam-splitter-types}
+    \caption{Different types of free-ray beam splitters: (a) Cubic beam splitter made of two triangular prisms glued at their base (grey). (b) Plate beam splitter made of a dielectric plate. (c) Pellicle beam splitter made from a thin membrane.}\label{fig:beam_splitter_types}
+\end{figure}
+The cubic beam splitter is made of two triangular prisms.
+The interface between the two prisms is finished with a dielectric coating.
+The outward-facing surface of the prisms is grafted with an \gls{ar} coating.\footnote{The incident angle of the electric field is perpendicular to the surface of the cubic beam splitter. As the reflection angle is equal to the incidence angle, we have back-reflection of the input fields.}
+he pellicle beam splitter consists of a few micrometer thin membrane, optionally with a one-sided coating.
+The plate beam splitter is like a thick pellicle beam splitter made of glass.
+
+To deduce the relation between the in- and output fields, we sequentially couple a laser pulse into each input while monitoring both outputs with a spectrum analyzer, see \Cref{fig:beam_splitter_inputs_outputs}.
+Assuming the beam splitter to be an \gls{lti} system, knowing the spectral shape of the laser pulse lets us infer the frequency responses of the beam splitter.
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/beam-splitter-cubic-plate}
+    \caption{Cubic (left) and plate beam splitter (right) with the two input fields, $\hat{E}_1(\omega)$ and $\hat{E}_2(\omega)$, and two output fields, $\hat{E}_1^\prime(\omega)$ and $\hat{E}_2^\prime(\omega)$, labelled by the momentum representation of the electric field operators.}\label{fig:beam_splitter_inputs_outputs}
+\end{figure}
+Invoking the superposition principle for electromagnetic waves, we find the frequency responses of the beam splitter to relate the electric fields by
+\begin{equation}
+    \begin{pmatrix}
+        \expval{\hat{E}_1^\prime(\omega)} \\
+        \expval{\hat{E}_2^\prime(\omega)}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        t(\omega) & r^\prime(\omega)
+        \\
+        r(\omega) & t^\prime(\omega)
+    \end{pmatrix}
+    \begin{pmatrix}
+		\expval{\hat{E}_1(\omega)} \\
+        \expval{\hat{E}_2(\omega)}
+    \end{pmatrix}
+    \label{eq:beam_splitter_expval}
+\end{equation}
+wherein $r(\omega),r^\prime(\omega)$ and $t(\omega),t^\prime(\omega)$ are the complex reflection respective transmission coefficients.
+The absolute values of the transmission, $\abs{t(\omega)}$ and $\abs{t^\prime(\omega)}$, and reflection coefficients, $\abs{r(\omega)}$ and $\abs{r^\prime(\omega)}$, determine the splitting ratio of the input power among the outputs.
+The complex phase factor of the reflection and transmission coefficients characterizes the phase shifts the output fields concerning the input fields.
+The beam splitter is a passive device implying the output energy to be bound by the input energy
+\begin{equation}
+    \abs{\expval{\hat{E}_1^\prime(\omega)}}^2
+    +
+    \abs{\expval{\hat{E}_2^\prime(\omega)}}^2
+    \leq
+    \abs{\expval{\hat{E}_1(\omega)}}^2
+    +
+    \abs{\expval{\hat{E}_2(\omega)}}^2
+    \label{eq:beam_splitter_passive}
+    ,
+\end{equation}
+or equivalently, constraining the reflection and transmission coefficients by
+\begin{align}
+    \abs{r(\omega)}^2+\abs{t(\omega)}^2
+    &\leq
+    1,
+    &
+    \abs{r^\prime(\omega)}^2+\abs{t^\prime(\omega)}^2
+    &\leq
+    1
+    \label{eq:beam_splitter_coefficients_constraint}
+    .
+\end{align}
+The equality of these inequalities is only true for lossless devices for which there is no back-scattering.\footnote{Using an optical circulator it is in principle possible to measure all \num{16} scattering parameters.}
+Sometimes, one finds the claim~\cite[p.~129]{Haroche2006} that the matrix transformation in \cref{eq:beam_splitter_expval} is required to be symmetric (or reciprocal) due to Maxwell's equations.
+However, only optical systems with a single dielectric layer are reciprocal~\cite{Potton2004}, but most physical beam splitters comprise multiple dielectric layers.\footnote{For example, cubic beam splitters typically have a coating followed by optical cement between the prisms breaking reciprocal symmetry of the system.}
+It is possible to derive exact expressions of the complex reflection, $r(\omega),r^\prime(\omega)$, and transmission coefficients, $t(\omega),t^\prime(\omega)$ using classical wave optics and perfect knowledge of the dimensions and material properties.
+For example, Hénault~\cite{Henault2015} derived an exact expression for the reflected and transmitted amplitudes of a plate beam splitter with one input and a single dielectric layer.
+Likewise, Hamilton~\cite{Hamilton2000} discusses the cubic beam splitter with two inputs and different coatings.
+In general, the complex reflection and transmission coefficients need to account for multiple reflections at different dielectric layers inside the beam splitter.
+
+Inserting the mode expansion of the electric field operators, \cref{eq:electric_operator,eq:electric_negative_operator,eq:electric_positive_operator}, and using the linearity of the device and the expectation value, we recover the transformation for the annihilation operators, sometimes referred to as quantum modes,
+\begin{equation}
+    \begin{pmatrix}
+        \hat{a}_1^\prime(\omega) \\
+        \hat{a}_2^\prime(\omega)
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        t(\omega) & r^\prime(\omega)
+        \\
+        r(\omega) & t^\prime(\omega)
+    \end{pmatrix}
+    \begin{pmatrix}
+        \hat{a}_1(\omega) \\
+        \hat{a}_2(\omega)
+    \end{pmatrix}
+    \label{eq:beam_splitter_annihilation}
+\end{equation}
+in agreement with Refs.~\cite{Leonhardt2010,Gerry2005}.
+
+\subsection{Fiber and waveguide coupler}
+
+\subsection{Unitary matrix and operator transformation}
+
+For a general lossless \gls{mzm}, we propose the generic unitary matrix transform~\cite[p.~95]{Leonhardt2010}
+\begin{equation}
+	\begin{split}
+		U_\text{MZM}
+		&=
+		e^{i\Lambda/2}
+		\begin{pmatrix}
+			\cos(\Theta/2)e^{i(+\Phi+\Psi)/2} & \sin(\Theta/2)e^{i(+\Phi-\Psi)/2} \\
+			-\sin(\Theta/2)e^{+(-\Phi+\Psi)/2} & \cos(\Theta/2)e^{i(-\Phi-\Psi)/2}
+		\end{pmatrix}
+		\\
+		&=
+		e^{i\Lambda/2}
+		\begin{pmatrix}
+			e^{+i\Phi/2} & 0 \\
+			0 & e^{-i\Phi/2}
+		\end{pmatrix}
+		\begin{pmatrix}
+			\cos(\Theta/2) & \sin(\Theta/2) \\
+			-\sin(\Theta/2) & \cos(\Theta/2)
+		\end{pmatrix}
+		\begin{pmatrix}
+			e^{+i\Psi/2} & 0 \\
+			0 & e^{-i\Psi/2}
+		\end{pmatrix}
+	\end{split}
+	\label{eq:mzm_matrix}
+\end{equation}
+wherein the global phase $\Theta$ and the rotation angle $\Lambda$ are time-dependent but $\Phi,\Psi$ are constants.
+We obtain the matrix transform of the symmetric free-space $U_\text{MZI}$ after identification of $\Theta$ with the differential-mode phase, $\Lambda+\pi$ with the common-mode phase, and choosing $\Psi=0=\Phi$.
+One advantage of the proposed decomposition in \cref{eq:mzm_matrix} is the one-to-one correspondence between the unitary operator~\cite[p.~99]{Leonhardt2010}
+\begin{equation}
+	\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)
+	=
+	e^{i\Lambda\hat{L}_t}
+	e^{i\Phi\hat{L}_z}
+	e^{i\Theta\hat{L}_y}
+	e^{i\Psi\hat{L}_z}
+	\label{eq:mzm_operator}
+\end{equation}
+wherein $\hat{L}_j$ denote the Jordan-Schwinger operators~\cite[p.~97]{Leonhardt2010}
+\begin{equation}
+	\hat{L}_j
+	=
+	\frac{1}{2}
+	\begin{pmatrix}
+		\hat{a}_1^\dagger, \hat{a}_2^\dagger
+	\end{pmatrix}
+	\sigma_j
+	\begin{pmatrix}
+		\hat{a}_1 \\
+		\hat{a}_2
+	\end{pmatrix}
+	=
+	\frac{1}{2}
+	\hat{\vb{a}}^\dagger
+	\sigma_j
+	\hat{\vb{a}}
+\end{equation}
+with $\sigma_j$ being the two-dimensional Pauli matrices and $\sigma_0$ being the identity matrix, and the unitary matrix transform
+\begin{equation}
+	U_\text{MZM}
+	\hat{\vb{a}}
+	=
+	\hat{U}_\text{MZM}^\dagger
+	\hat{\vb{a}}
+	\hat{U}_\text{MZM}
+	.
+\end{equation}
+
+The \gls{mzm} produces highly entangled output states for (displaced) number states, see, for instance, Ref.~\cite{Windhager2011}.
+In the transmitter setting, we are exclusively interested in coherent input states, contrary to the receiver, where an attacker could have sent non-coherent states.
+
+Let us consider the input state
+\begin{align}
+	\ket{\vb{\alpha}}
+	&=
+	\ket{\alpha_1,\alpha_2}
+	&
+	\vb{\alpha}
+	=
+	\begin{pmatrix}
+		\alpha_1,
+		\alpha_2
+	\end{pmatrix}
+	\in
+	\mathbb{C}^{2\times1}
+\end{align}
+to a \gls{mzm}\footnote{We can always set $alpha=0$ to set the second input to vacuum.}, i.e.,
+\begin{equation}
+	\hat{U}_\text{MZM}
+	\ket{\vb{\alpha}}
+	=
+	\hat{U}_\text{MZM}
+	\hat{D}(\vb{\alpha})
+	\hat{U}_\text{MZM}^\dagger
+	\hat{U}_\text{MZM}
+	\ket{0,0}
+	=
+	\hat{U}_\text{MZM}
+	\hat{D}(\vb{\alpha})
+	\hat{U}_\text{MZM}^\dagger
+	\ket{0,0}
+\end{equation}
+where we used the invariance of the vacuum state $\ket{0,0}$ for the second equality.
+The displacement operator transforms as
+\begin{equation}
+	\begin{split}
+		\hat{U}
+		\hat{D}(\vb{\alpha})
+		\hat{U}^\dagger
+		&=
+		\hat{U}
+		\exp\left\{
+			\vb{\alpha}^\trans
+			\hat{\vb{a}}^\dagger
+			-
+			\hat{\vb{a}}
+			\vb{\alpha}^*
+		\right\}
+		\hat{U}^\dagger
+		\\
+		&=
+		\exp\left\{
+			\vb{\alpha}^\trans
+			\hat{U}
+			\hat{\vb{a}}^\dagger
+			\hat{U}^\dagger
+			-
+			\hat{U}
+			\hat{\vb{a}}
+			\hat{U}^\dagger
+			\vb{\alpha}^*
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\vb{\alpha}^\trans
+			\left(
+				\hat{U}
+				\hat{\vb{a}}
+				\hat{U}^\dagger
+			\right)^\dagger
+			-
+			\hat{U}
+			\hat{\vb{a}}
+			\hat{U}^\dagger
+			\vb{\alpha}^*
+		\right\}
+	\end{split}
+\end{equation}
+where we used the operator identity
+\begin{equation}
+	\hat{U}
+	e^{\hat{A}}
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\hat{U}
+	\hat{A}^n
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\hat{U}
+	\hat{A}
+	\hat{U}^\dagger
+	\cdots
+	\hat{U}
+	\hat{A}
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\left(
+		\hat{U}
+		\hat{A}
+		\hat{U}^\dagger
+	\right)^n
+	=
+	e^{\hat{U}\hat{A}\hat{U}^\dagger}
+\end{equation}
+which follows from inserting $\hat{U}\hat{U}^\dagger=\mathbb{1}$ between the $\hat{A}$s.
+For the unitary operator of the \gls{mzm}, we note that
+\begin{equation}
+	\begin{split}
+		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
+		&=
+		e^{-i\Psi\hat{L}_z}
+		e^{-i\Theta\hat{L}_y}
+		e^{-i\Phi\hat{L}_z}
+		e^{-i\Lambda\hat{L}_t}
+		\\
+		&=
+		e^{-i\Lambda\hat{L}_t}
+		e^{-i\Psi\hat{L}_z}
+		e^{-i\Theta\hat{L}_y}
+		e^{-i\Phi\hat{L}_z}
+		\\
+		&=
+		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
+	\end{split}
+\end{equation}
+where we used in the second line that $\hat{L}_t$ commutes with the other Jordan-Schwinger operators $\hat{L}_y,\hat{L}_z$.
+The transformed annihilation operators turn out to be
+\begin{equation}
+	\begin{split}
+		\hat{\vb{a}}^\prime
+		&=
+		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)
+		\hat{\vb{a}}
+		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
+		\\
+		&=
+		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)^\dagger
+		\hat{\vb{a}}
+		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
+		\\
+		&=
+		U_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
+		\hat{\vb{a}}
+		\\
+		&=
+		U_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
+		\hat{\vb{a}}
+		.
+	\end{split}
+\end{equation}
+
+\subsection{Input-output relations for coherent states}
+
+Using the transformed operators, we find the transformed displacement operator to be~\cite[p.~210]{Vogel2006}
+\begin{equation}
+	\hat{D}^\prime(\vb{\alpha})
+	=
+	\exp\left\{
+		\vb{\alpha}^\trans
+		\left(\hat{\vb{a}}^\prime\right)^\dagger
+		-
+		\hat{\vb{a}}^\prime
+		\vb{\alpha}^*
+	\right\}
+	=
+	\exp\left\{
+		\left(\vb{\alpha}^\prime\right)^\trans
+		\hat{\vb{a}}^\dagger
+		-
+		\hat{\vb{a}}
+		\left(\vb{\alpha}^\prime\right)^*
+	\right\}
+	.
+\end{equation}
+We therefore find the \gls{mzm} to transform the coherent input states according to
+\begin{align}
+	\hat{U}_\text{MZM}
+	\ket{\vb{\alpha}}
+	&=
+	\ket{\vb{\alpha}^\prime}
+	&
+	\vb{\alpha}^\prime
+	&=
+	U_\text{MZM}
+	\vb{\alpha}
+	.
+\end{align}
+Using the explicit matrix elements in \cref{eq:mzm_matrix} and setting the second input to zero $\alpha_2=0$ and identifying the first as $\alpha_1=\alpha$, we find
+\begin{equation}
+	\hat{U}_\text{MZM}
+	\ket{\alpha,0}
+	=
+	\ket{\alpha\cos(\Theta/2)e^{+i(\Psi+\Phi)/2},-\alpha\sin(\Theta/2)e^{-i(\Psi-\Phi)/2}}
+	.
+\end{equation}
+We are only interested in the first output mode.
+We can remove the second output via partial trace, i.e.,
+\begin{equation}
+	\trace_2\left\{
+		\ketbra{\alpha,\beta}
+	\right\}
+	=
+	\trace_2\left\{
+		\ketbra{\alpha}
+		\otimes
+		\ketbra{\beta}
+	\right\}
+	=
+	\ketbra{\alpha}
+	\otimes
+	\trace_2\left\{
+		\ketbra{\beta}
+	\right\}
+\end{equation}
+where
+\begin{equation}
+	\trace_2\left\{
+		\ketbra{\beta}
+	\right\}
+	=
+	\sum_{n=0}^\infty
+	\braket{n}{\beta}
+	\braket{\beta}{n}
+	=
+	\sum_{n=0}^\infty
+	\abs{\braket{n}{\beta}}^2
+	=
+	1
+\end{equation}
+and thus
+\begin{equation}
+	\trace_2\left\{
+		\ketbra{\alpha,\beta}
+	\right\}
+	=
+	\ketbra{\alpha}
+	=
+	\hat{P}_1
+	\ketbra{\alpha,\beta}
+	\hat{P}_1
+\end{equation}
+i.e., the partial trace over a tensor product of coherent states is equivalent to the projection of the non-traced out states.
+This is a special property of the coherent states.
+In general, the partial trace over a tensor product of (entangled) quantum states returns a mixed state.
