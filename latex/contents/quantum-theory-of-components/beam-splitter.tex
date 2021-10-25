@@ -1,0 +1,290 @@
+\section{Mode coupler (beam splitter)}
+
+Let $\ket{\boldsymbol{\alpha}_1}$ be a first coherent state $\vb{j}_1$ be a first classical current induced by absorption of the coherent state, i.e.,
+\begin{equation*}
+	\vb{j}_1(p^\mu)
+	=
+	i\boldsymbol{\alpha}_1(p^\mu)
+	.
+\end{equation*}
+The first classical current is coupled to a second classical current by a classical transfer function $g(x^\mu)$
+\begin{equation*}
+	\vb{j}_2(x^\mu)
+	=
+	\int\dd[4]{y}
+	g(x^\mu-y^\mu)
+	\vb{j}_1(y^\mu)
+\end{equation*}
+which emits a second coherent state $\ket{\boldsymbol{\alpha}_2}$ with
+\begin{equation*}
+	\begin{split}
+		\vb{\alpha}_2(p^\mu)
+		=
+		-i\vb{j}_2(p^\mu)
+		&=
+		-i
+		\int\dd[4]{x}
+		\vb{j}_2(x^\mu)
+		e^{ip_\nu x^\nu}
+		\\
+		&=
+		-i
+		\int\dd[4]{x}
+		g(x^\mu-y^\mu)
+		e^{ip_\nu x^\nu}
+		\int\dd[4]{y}
+		\vb{j}_1(y^\mu)
+		\\
+		&=
+		-i
+		\int\dd[4]{x}
+		g(x^\mu)
+		e^{ip_\nu x^\nu}
+		\int\dd[4]{y}
+		i\vb{\alpha}_1(y^\mu)
+		e^{ip_\nu y^\nu}
+		\\
+		&=
+		g(p^\mu)
+		\vb{\alpha}_1(p^\mu)
+		.
+	\end{split}
+\end{equation*}
+Alternatively, a quantum mode coupler with transfer function $g_{\lambda\lambda^\prime}$ is described by the interaction Lagrangian
+\begin{equation}
+	L_\text{int}
+	=
+	\sum_{\lambda,\lambda^\prime=1,2}
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\left\{
+		g_{\lambda\lambda^\prime}\left(\omega(\vb{p}),\vb{p}\right)
+		\hat{a}_{\text{out},\lambda^\prime}^\dagger(\vb{p})
+		\hat{a}_{\text{in},\lambda}(\vb{p})
+		+
+		\text{h.c.}
+	\right\}
+	.
+\end{equation}
+In terms of smeared positive and negative frequency Maxwell operators, the interaction Lagrangian takes the form~\cite[p.~130]{Haroche2006}
+\begin{equation*}
+	\begin{split}
+		L_\text{int}
+		&=
+		\int\dd[4]{x}
+		\mathcal{L}_\text{int}
+		=
+		\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+		\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+		+
+		\text{h.c.}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\sum_{\lambda=1,2}
+		g_{\text{out},\lambda}\left(\omega(\vb{p}),\vb{p}\right)^*
+		\hat{a}_{\text{out},\lambda}^\dagger(\vb{p})
+		\\
+		&\times
+		\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+		\sum_{\lambda^\prime=1,2}
+		g_{\text{in},\lambda^\prime}\left(\omega(\vb{q}),\vb{q}\right)
+		\hat{a}_{\text{in},\lambda^\prime}(\vb{q})
+		+
+		\text{h.c.}
+		\\
+		&=
+		\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+		\sum_{\lambda,\lambda^\prime=1,2}
+		g_{\lambda,\lambda^\prime}\left(\omega(\vb{p}),\vb{p}\right)
+		\hat{a}_{\text{out},\lambda}^\dagger(\vb{p})
+		\hat{a}_{\text{in},\lambda^\prime}(\vb{p})
+	\end{split}
+\end{equation*}
+where we used
+\begin{equation*}
+	g_{\lambda,\lambda^\prime}\left(\omega(\vb{p}),\vb{p}\right)
+	=
+	(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+	g_{\text{out},\lambda}\left(\omega(\vb{p}),\vb{p}\right)^*
+	g_{\text{in},\lambda^\prime}\left(\omega(\vb{q}),\vb{q}\right)	
+\end{equation*}
+which appears somewhat reasonable when we consider first-order momentum transfer.
+The scattering operator is
+\begin{equation*}
+	\begin{split}
+		\hat{S}
+		=
+		T\exp\left\{
+			iL_\text{int}
+		\right\}
+		&=
+		T\exp\left\{
+			i
+			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+			+
+			i
+			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+		\right\}
+		\\
+		&=
+		\sum_{n=0}^\infty
+		\frac{i^n}{n!}
+		T\left[
+			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+			+
+			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+		\right]^n
+		\\
+		&=
+		\sum_{n=0}^\infty
+		\frac{i^n}{n!}
+		\sum_{m=0}^n
+		\binom{n}{m}
+		T\left[
+			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+		\right]^m
+		T\left[
+			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+		\right]^{n-m}
+	\end{split}
+\end{equation*}
+The first power term is
+\begin{equation*}
+	\begin{split}
+		&
+		T\left[
+			\hat{\vb{A}}_\text{out}^+[g_\text{out}]
+			\hat{\vb{A}}_\text{in}^-[g_\text{in}]
+		\right]^m
+		\\
+		=&\
+		T\left[
+			\int\dd[4]{x}
+			g_\text{out}(x^\mu)
+			\hat{\vb{A}}_\text{out}^+(x^\mu)
+			\int\dd[4]{y}
+			g_\text{in}(y^\mu)
+			\hat{\vb{A}}_\text{in}^-(y^\mu)
+		\right]^m
+		\\
+		=&\
+		\int\dd[4]{x_1}
+		\int\dd[4]{y_1}
+		g_\text{out}(x^\mu_1)
+		g_\text{in}(y^\mu_1)
+		\dots
+		\int\dd[4]{x_m}
+		\int\dd[4]{y_m}
+		g_\text{out}(x^\mu_m)
+		g_\text{in}(y^\mu_n)
+		T\left[
+			\hat{\vb{A}}_\text{out}^+(x^\mu)^m
+			\hat{\vb{A}}_\text{in}^-(y^\mu)^m
+		\right]
+	\end{split}
+\end{equation*}
+
+\subsection{Phase modulator}
+
+\begin{equation*}
+	\mathcal{H}_\text{int}
+	=
+	\frac{1}{2}
+	\hat\phi(x^\mu)
+	G(x^\mu-y^\mu)
+	\hat\phi(y^\mu)
+\end{equation*}
+\begin{equation*}
+	\hat{S}
+	=
+	T\left[
+		\exp\left\{
+			-\frac{i}{2}
+			\int\dd[4]{z}
+			\hat\phi(x^\mu)
+			G(x^\mu-y^\mu)
+			\hat\phi(y^\mu)
+		\right\}
+	\right]
+\end{equation*}
+\begin{equation*}
+	\begin{split}
+		\bra{f}
+		\hat{S}^{(1)}
+		\ket{g}
+		&=
+		-
+		\frac{i}{2}
+		\int\dd[4]{u}
+		\int\dd[4]{v}
+		f(u^\mu)
+		g(v^\mu)
+		\expval{
+			\hat\phi^-(u^\mu)
+			T\left[
+				\int\dd[4]{z}
+				\hat\phi(x^\mu)
+				G(x^\mu-y^\mu)
+				\hat\phi(y^\mu)
+			\right]
+			\hat\phi^+(v^\mu)
+		}{0}
+		\\
+		&=
+		-
+		\frac{i}{2}
+		\int\dd[4]{u}
+		\int\dd[4]{v}
+		\int\dd[4]{z}
+		f(u^\mu)
+		g(v^\mu)
+		G(x^\mu-y^\mu)
+		\expval{
+			T\left[
+				\hat\phi^-(u^\mu)
+				\hat\phi(x^\mu)
+				\hat\phi(y^\mu)
+				\hat\phi^+(v^\mu)
+			\right]
+		}{0}
+	\end{split}
+\end{equation*}
+\begin{equation*}
+	\begin{split}
+		&\
+		\expval{
+			T\left[
+				\hat\phi^-(u^\mu)
+				\hat\phi(x^\mu)
+				\hat\phi(y^\mu)
+				\hat\phi^+(v^\mu)
+			\right]
+		}{0}
+		\\
+		=&\
+		\expval{
+			T\left[
+				\hat\phi(u^\mu)
+				\hat\phi(x^\mu)
+				\hat\phi(y^\mu)
+				\hat\phi(v^\mu)
+			\right]
+		}{0}
+		\\
+		=&\
+		D_F(u^\mu-x^\mu)
+		D_F(y^\mu-v^\mu)
+		+
+		D_F(u^\mu-y^\mu)
+		D_F(x^\mu-x^\mu)
+		+
+		D_F(u^\mu-v^\mu)
+		D_F(x^\mu-y^\mu)
+	\end{split}
+\end{equation*}

@@ -1,0 +1,415 @@
+\section{Pockels modulator}
+
+The Pockels modulator is a phase modulator where an electric field drives the phase of an optical field.
+In the optical domain, we can use interference to perform amplitude modulation.
+In that sense, the Pockels modulator is the interface between the electrical and optical domains.
+For a complete quantum description of the transmitter, understanding the underlying dynamics of the Pockels modulator, particularly the implications of time-dependent modulation, is crucial.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/pm}
+    \caption{Pockels modulator comprising a Pockels cell embedded into a waveguide: The Pockels cell consists of two capacitor plates of length $L$ distanced at $d$. An optical field $\hat{E}_z(t)$ approaches the Pockels cell from the left and exits it to the right as $\hat{E}_z^\prime(t)$. An electric field $\hat{E}_x(t)$ perpendicular to the optical field spans the Pockels cell.}\label{fig:pm}
+\end{figure}
+\Cref{fig:pm} depicts a Pockels modulator comprising a Pockels cell embedded into a dielectric waveguide.
+The Pockels cell is a dielectric plate capacitor with a specific dielectric that mediates the electric and optical field coupling.
+The electric field inside the Pockels cell $E_x$ is proportional to the voltage $V$ applied to the Pockels cell.
+Assuming the Pockels dielectric to be non-absorbing with \gls{lti} response, the dielectric permittivity tensor can be approximated, see Ref.~\cite{Murti2014} and Ref.~\cite[p.~1070]{Mandel1995},
+\begin{equation}
+	\varepsilon_{ij}(\omega)
+	\approx
+	\delta_{ij}
+	+
+	\chi_{ij}^{(1)}(\omega)
+	+
+	\chi_{ijk}^{(2)}(\omega)
+	E^k(\Omega_0)
+\end{equation}
+wherein $\chi^{(n)}$ the denotes the $n$th order of the Pockels dielectric's electric susceptibility tensor and $\Omega_0\ll\omega$ is the center frequency of the electric signal.
+The refractive index tensor of the Pockels dielectric takes the form
+\begin{equation}
+	n_{ij}(\omega)
+	=
+	\sqrt{\varepsilon_{ij}}
+	\approx
+	n_{ij}^{(0)}
+	+
+	n_{ijk}^{(1)}(\omega)
+	E^k(\Omega_0)
+\end{equation}
+wherein the refractive index coefficients relate to the dielectric susceptibility tensor via~\cite{Rerat2020}
+\begin{align}
+	n^{(0)}_{ij}(\omega)
+	&=
+	\sqrt{1+\chi^{(1)}_{ij}(\omega)}
+	&
+	n^{(1)}_{ijk}(\omega)
+	&=
+	\frac{\chi^{(2)}_{ijk}(\omega)
+	E^k(\Omega_0)}{2\sqrt{1+\chi^{(1)}_{ij}(\omega)}}
+	.
+\end{align}
+Many elements of the refractive index tensor vanish because of crystal symmetries~\cite[p.~237]{Yariv1984} and we can express the refractive index relevant for the optical field
+\begin{equation}
+	n_{zz}(\omega,\Omega_0)
+	\approx
+	n^{(0)}_{zz}(\omega)
+	+
+	n^{(1)}_{zzx}(\omega)
+	E^x(\Omega_0)
+\end{equation}
+which is linear in the electric \gls{rf} field inside the Pockels cell.
+If we now imagine an optical field with frequency $\omega_0$ traveling through a Pockels cell it will accumulate a phase of
+\begin{equation}
+	\phi(E_x)
+	=
+	2\pi\frac{n_{zz}(\omega_0,E^x)}{\lambda_0}L
+\end{equation} 
+and the phase difference compared to a Pockels cell without electric field is proportional to the electric field, i.e.,
+\begin{equation}
+	\Delta\phi(E_x)
+	=
+	2\pi\frac{n_{zz}(\omega_0,E^x)-n_{zz}(\omega_0,0)}{\lambda_0}L
+	=
+	2\pi\frac{n_{zzx}^{(1)}(\omega_0)E^x}{\lambda_0}L
+	.
+\end{equation}
+
+Up to now, the analysis was entirely classical.
+A complete quantum description of the Pockels modulator is given in Ref.~\cite{Horoshko2018}, which we briefly summarize.
+The Hamiltonian density of an electromagnetic field in a Pockels dielectric is, see Ref.~\cite[p.~21]{Vogel2006} together with Ref.~\cite[p.~124]{Jackson2007},
+\begin{equation}
+	H
+	=
+	\frac{1}{2}
+	\int\dd[3]{x}
+	\left\{
+		\vb{E}(\vb{x})
+		\vdot
+		\vb{D}(\vb{x})
+		+
+		\vb{B}(\vb{x})^2
+	\right\}
+	\label{eq:dielectric_em_hamiltonian}
+\end{equation}
+wherein $\vb{E}$ is the electric field, $\vb{B}$ is the magnetic field and $\vb{D}$ is the displacement field with components
+\begin{equation}
+	D_i(\vb{p})
+	=
+	\varepsilon_{ij}(\vb{p})
+	E^j(\vb{p})
+	\approx
+	E_i(\vb{p})
+	+
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\chi_{ijk}^{(2)}(\vb{q},\vb{p})
+	E^j(\vb{p})
+	E^k(\vb{q})
+\end{equation}
+is the electric displacement field where we inserted the nonlinear expansion of the dielectric permittivity tensor and neglected the first-order susceptibility $\chi^{(1)}$.\footnote{The first-order susceptibility can be treated as an additional interaction.}
+Inserting the displacement field into the Hamiltonian density, \cref{eq:dielectric_em_hamiltonian}, we recover the free Hamiltonian plus an interaction term
+\begin{equation}
+	H
+	=
+	H_0
+	+
+	H_\text{int}
+\end{equation}
+where the interaction term is given by
+\begin{equation}
+	H_\text{int}
+	=	
+	\frac{1}{2}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\chi_{ijk}^{(2)}(\vb{q},\vb{p})
+	E^i(\vb{p})
+	E^j(\vb{p})
+	E^k(\vb{q})	
+\end{equation}
+describing any three-point interactions including the linear electro-optical (Pockels) effect but also second harmonic generation, parametric mixing and amplification as well as optical rectification~\cite[p.~14]{Murti2014}.
+Adapting the geometry of \Cref{fig:pm} the interaction Hamiltonian becomes
+\begin{equation}
+	H_\text{int}
+	=	
+	\frac{1}{2}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\chi_{zzx}^{(2)}(\vb{q},\vb{p})
+	E^z(\vb{p}-\vb{q})
+	E^z(\vb{p}+\vb{q})
+	E^x(\vb{q})	
+\end{equation}
+describing energy transfer from the electric field to the outgoing optical field.
+Comparison of the classic interaction with the quantum nonlinear interactions in Ref.~\cite[p.~33]{QuesadaMejia2015} suggests the quantum interaction Hamiltonian
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\frac{1}{2}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{q}}{(2\pi)^3}
+	\Upsilon(\vb{p},\vb{q})
+	\hat{a}_x(\vb{q})
+	\hat{a}_z^\dagger(\vb{p}-\vb{q})
+	\hat{a}_z(\vb{p}+\vb{q})
+	+
+	\text{h.c.}
+\end{equation}
+wherein the spatial and response properties of the Pockels cell as well as the phase and momentum matching are encoded into $\Upsilon$.
+Assuming only two perpendicular momenta $p_x,p_z$ and taking the electric \gls{rf} as classic, the interaction Hamiltonian further simplifies to
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\frac{1}{2}
+	\int\frac{\dd{p}}{2\pi}
+	\int\frac{\dd{q}}{2\pi}
+	\Upsilon(p,q)
+	\hat{a}_x(q)
+	\hat{a}_z^\dagger(p-q)
+	\hat{a}_z(p+q)
+	+
+	\text{h.c.}
+	.
+\end{equation}
+Let $\ket{\beta(t)}$ be the coherent state describing the electric \gls{rf} field, then the interaction Hamiltonian becomes
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	\frac{1}{2}
+	\int\frac{\dd{p}}{2\pi}
+	\int\frac{\dd{q}}{2\pi}
+	\Upsilon(p,q)
+	\beta_x(q)^*
+	e^{-ipt}
+	\hat{a}_z^\dagger(p-q)
+	\hat{a}_z(p+q)
+	+
+	\text{h.c.}
+\end{equation}
+and when taking the momentum of the electric \gls{rf} field to be small compared to the momentum of the optical field, $p\ll q$, such that
+\begin{equation}
+	\hat{a}_z^\dagger(p-q)
+	\hat{a}_z(p+q)
+	\approx
+	\hat{a}_z^\dagger(p)
+	\hat{a}_z(p)
+\end{equation}
+we obtain the approximate interaction Hamiltonian
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	\approx
+	g(t)
+	\int\frac{\dd{q}}{2\pi}
+	\hat{a}^\dagger(q)
+	\hat{a}(q)
+\end{equation}
+for which all but the first term of the Magnus expansion vanish\footnote{The operator part is time-independent and therefore the interaction Hamiltonian at different times commutes.} and the exact time-evolution operator turns out to be
+\begin{align}
+	\hat{U}(t_0,t)
+	&=
+	\exp\left\{
+		-i\varphi(t_0,t)
+		\int\frac{\dd{p}}{2\pi}
+		\hat{a}^\dagger(p)
+		\hat{a}(p)
+	\right\}
+	&
+	\varphi(t_0,t)
+	=
+	\int_{t_0}^{t}\dd{t^\prime}
+	g(t^\prime)
+\end{align}
+which reduces to the phase-rotation operator proposed in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006} in the single-mode limit and time-independent $\varphi$.
+
+We define the action of the phase modulator
+\begin{equation}
+	\hat{U}_\text{PM}\left[\varphi(t,T)\right]
+	=
+	\exp\left\{
+		-i\varphi(t,T)
+		\int\frac{\dd{p}}{2\pi}
+		\hat{a}^\dagger(p)
+		\hat{a}(p)
+	\right\}
+\end{equation}
+wherein $T$ is the transmit time of the light through the phase modulator.
+Assuming a phase modulator of length $L$ and refractive index $n$, the transmit time is approximately
+\begin{align}
+	T
+	&=
+	\frac{Ln}{v_\text{gr}}
+	&
+	v_\text{gr}
+	\approx
+	\left[
+		n
+		+
+		\omega
+		\pdv{n}{\omega}
+	\right]_{\omega=\omega_0}^{-1}
+\end{align}
+where $v_\text{gr}$ is the group velocity in the quasi-monochromatic approximation~\cite[p.~211]{Jackson2007}.
+We employ the mean-value theorem for definite integrals
+\begin{align}
+	\varphi(t,T)
+	&=
+	\int_{t}^{t+T}\dd{t^\prime}
+	g(t^\prime)
+	=
+	g(\tau)
+	T
+	&
+	\tau\in[t,t+T]
+\end{align}
+and note that typically the transmit time $T$ is many magnitudes smaller than the modulation time scale $t$, i.e., $T\ll t$, and we can use
+\begin{equation}
+	\varphi(t,T)
+	\approx
+	g(t)
+	T
+	=
+	\varphi(t)
+	.
+\end{equation}
+
+The phase modulator transforms the annihilation operator according to~\cite[p.~38]{Leonhardt2010}
+\begin{equation}
+	\hat{U}_\text{PM}^\dagger
+	\hat{a}(p,t)
+	\hat{U}_\text{PM}
+	=
+	\hat{a}(p,t)
+	e^{-i\varphi(t)}
+	\label{eq:pm_annihilation}
+	.
+\end{equation}
+The continuous-mode displacement operator transforms according to
+\begin{equation}
+	\begin{split}
+		\hat{U}_\text{PM}\left[\varphi(t)\right]
+		\hat{D}\left[\alpha(t)\right]
+		\hat{U}_\text{PM}\left[\varphi(t)\right]^\dagger
+		&=
+		\exp\left\{
+			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\alpha(p)
+			\hat{U}_\text{PM}\left[\varphi(t)\right]
+			\hat{a}^\dagger(p,t)
+			\hat{U}_\text{PM}\left[\varphi(t)\right]^\dagger
+			-
+			\text{h.c.}
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\alpha(p)
+			\left(
+				\hat{U}_\text{PM}\left[\varphi(t)\right]
+				\hat{a}(p,t)
+				\hat{U}_\text{PM}\left[\varphi(t)\right]^\dagger
+			\right)^\dagger
+			-
+			\text{h.c.}
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\alpha(p)
+			\left(
+				\hat{U}_\text{PM}\left[-\varphi(t)\right]^\dagger
+				\hat{a}(p,t)
+				\hat{U}_\text{PM}\left[-\varphi(t)\right]
+			\right)^\dagger
+			-
+			\text{h.c.}
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int_0^\infty\frac{\dd{p}}{2\pi}
+			\alpha(p)
+			e^{-i\varphi(t)}
+			\hat{a}^\dagger(p,t)
+			-
+			\text{h.c.}
+		\right\}
+		\\
+		&=
+		\hat{D}\left[
+			\alpha(t)
+			e^{-i\varphi(t)}
+		\right]
+	\end{split}
+\end{equation}
+where we used \cref{eq:pm_annihilation} in the fourth line.
+The phase-modulated amplitude
+\begin{equation}
+	\alpha(t)e^{-i\varphi(t)}
+\end{equation}
+is a multiplication in the time domain.
+We expect therefore a convolution in the frequency domain, i.e.,
+\begin{equation}
+	\int_0^\infty\frac{\dd{p}}{2\pi}
+	\alpha(p)
+	e^{+ipt}
+	e^{-i\varphi(t)}
+	\hat{a}^\dagger(p,t)
+	=
+	\int_0^\infty\frac{\dd{p}}{2\pi}
+	\left(u*\alpha\right)(p)
+	\hat{a}^\dagger(p,t)
+\end{equation}
+wherein we used the convolution
+\begin{equation}
+	\left(u*\alpha\right)(p)
+	=
+	\int\frac{\dd{p^\prime}}{2\pi}
+	u(p^\prime)
+	\alpha(p-p^\prime)
+	.
+\end{equation}
+It is difficult to give an explicit form of $u(p)$ for signals $\varphi(t)$ with a continuous frequency spectrum $u(p)$.
+However, if we take a simple single-frequency modulation, e.g.,
+\begin{equation}
+	\varphi(t)
+	=
+	-
+	\varphi_0
+	\sin(\omega_0t)
+\end{equation}
+we can use the Jacobi-Anger expansion to write
+\begin{equation}
+	e^{i\varphi_0\sin(\omega_0t)}
+	=
+	\sum_{n\in\mathbb{Z}}
+	J_n(\varphi_0)
+	e^{in\omega_0 t}
+\end{equation}
+wherein $J_n$ denotes the $n$th Bessel function of the first kind.
+Assuming second order harmonics to be outside the bandwidth of our setup, it is sufficient to only keep the first terms of the Jacobi-Anger expansion
+\begin{equation}
+	e^{i\varphi_0\sin(\omega_0t)}
+	=
+	J_{-1}(\varphi_0)
+	e^{-i\omega_0t}
+	+
+	J_0(\varphi_0)
+	+
+	J_{+1}(\varphi_0)
+	e^{+i\omega_0t}
+\end{equation}
+which corresponds to the convolution kernel
+\begin{equation}
+	u(p)
+	=
+	J_{-1}(\varphi_0)
+	\delta^{(1)}(p-\omega_0)
+	+
+	J_0(\varphi_0)
+	\delta^{(1)}(p)
+	+
+	J_{+1}(\varphi_0)
+	\delta^{(1)}(p+\omega_0)
+	.
+\end{equation}

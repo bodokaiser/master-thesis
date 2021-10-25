@@ -1,0 +1,292 @@
+\section{Photodetector}
+
+et us consider the composite system of an atom with a single electron and a radiation field.
+\textcolor{red}{Figure where we see an electron in a potential well and how radiation can excite it...}
+
+In the ground state $\ket{g}$, the electron is bound and satisfies
+\begin{equation}
+	\hat{H}_a
+	\ket{g}
+	=
+	E_g
+	\ket{g}
+	.
+\end{equation}
+For energies $E>0$, the electron is in one of many free excited state $\ket{e}$.
+\textcolor{red}{photoelectric effect. why can this be used for photodiodes where there is no ionization happening. See Cohen-Tannoudji for explanation.}
+
+Whenever, we ionize the atom, we can collect the free electron indicating a photo detection.
+The probability that such an event occurs in the time interval $[t_0,t_0+\Delta t]$ is
+\begin{equation}
+	p_{e,f}(t_0,t_0+\Delta t)
+	=
+	\abs{
+		\bra{e,f}
+		\hat{U}(t_0,t_0+\Delta t)
+		\ket{g,i}
+	}^2
+	.
+\end{equation}
+wherein $\hat{U}$ is the time-evolution operator.
+We can recast the probability in the more general density operator formalism
+\begin{equation}
+	\begin{split}
+		p_{e,f}(t_0,t_0+\Delta t)
+		&=
+		\bra{e,f}
+		\hat{U}(t_0,t_0+\Delta t)
+		\ketbra{g,i}
+		\hat{U}^\dagger(t_0,t_0+\Delta t)
+		\ket{e,f}
+		\\
+		&=
+		\trace\left\{
+			\bra{e,f}
+			\hat{U}(t_0,t_0+\Delta t)
+			\ketbra{g,i}
+			\hat{U}^\dagger(t_0,t_0+\Delta t)
+			\ket{e,f}
+		\right\}
+		\\
+		&=
+		\trace\left\{
+			\ketbra{e,f}
+			\hat{U}(t_0,t_0+\Delta t)
+			\ketbra{g,i}
+			\hat{U}^\dagger(t_0,t_0+\Delta t)
+		\right\}
+		\\
+		&=
+		\trace\left\{
+			\hat\varrho
+			\hat{U}(t_0,t_0+\Delta t)
+			\hat\rho(t_0)
+			\hat{U}^\dagger(t_0,t_0+\Delta t)
+		\right\}
+		\\
+		&=
+		\trace\left\{
+			\hat\varrho
+			\hat\rho(t_0+\Delta t)
+		\right\}
+	\end{split}
+\end{equation}
+where we used that the trace of a scalar is the scalar in the second line and the cyclic property of the trace in the third line.
+The time-evolution operator is
+\begin{equation}
+	\hat{U}(t_0,t)
+	=
+	\mathcal{T}_+
+	\exp\left\{
+		-i
+		\int_{t_0}^t\dd{t^\prime}
+		\hat{H}_\text{int}(t^\prime)
+	\right\}
+\end{equation}
+with the interaction Hamiltonian in the electric-dipole and rotating wave approximation being
+\begin{equation}
+	\hat{H}_\text{int}(t)
+	=
+	-
+	\hat{\vb{p}}(t)
+	\vdot
+	\hat{\vb{A}}(\vb{x}_0,t)
+	.
+\end{equation}
+Instead of the time-ordered exponential, we can use the Magnus expansion
+\begin{align}
+	\hat{U}(t_0,t)
+	&=
+	e^{\Omega(t_0,t)}
+	&
+	\Omega(t_0,t)
+	&=
+	\sum_{n=1}\Omega^{(n)}(t_0,t)
+\end{align}
+The time evolved quantum state is then
+\begin{equation}
+	\begin{split}
+		\hat\rho(t_0+\Delta t)
+		&=
+		\hat{U}(t_0,t_0+\Delta t)
+		\hat\rho(t_0)
+		\hat{U}^\dagger(t_0,t_0+\Delta t)
+		\\
+		&=
+		\hat\rho(t_0)
+		+
+		\comm{\Omega(t_0,t)}{\hat\rho(t_0)}
+		+
+		\frac{1}{2!}
+		\comm{\Omega(t_0,t)}{\comm{\Omega(t_0,t)}{\hat\rho(t_0)}}
+		+
+		\dots
+	\end{split}
+\end{equation}
+where we used the \gls{bch} formula.
+We perform Magnus expansion up to the first term and find the perturbative solution
+\begin{equation}
+	\begin{split}
+		\hat\rho(t_0+\Delta t)
+		\approx
+		\hat\rho(t_0)
+		&+
+		(-i)
+		\int_{t_0}^{t_0+\Delta t}\dd{t_1}
+		\comm{\hat{H}_\text{int}(t_1)}{\hat\rho(t_0)}
+		\\
+		&+
+		\frac{(-i)^2}{2!}
+		\int_{t_0}^{t_0+\Delta t}\dd{t_1}
+		\int_{t_0}^{t_1}\dd{t_2}
+		\comm{\hat{H}_\text{int}(t_1)}{\comm{\hat{H}_\text{int}(t_2)}{\hat\rho(t_0)}}
+	\end{split}	
+\end{equation}
+and insert the expansion into the photoemission probability
+\begin{equation}
+	\begin{split}
+		p_{e,f}(t_0,t_0+\Delta t)
+		&=
+		\trace\left\{
+			\hat\varrho
+			\hat\rho(t_0+\Delta t)
+		\right\}
+		\\
+		&=
+		\int_{t_0}^{t_0+\Delta t}\dd{t_1}
+		\int_{t_0}^{t_1}\dd{t_2}
+		\trace\left\{
+			\hat{H}_\text{int}(t_1)
+			\hat\rho(t_0)
+			\hat{H}_\text{int}(t_2)
+		\right\}
+		+
+		\text{c.c.}
+		\\
+		&=
+		\bra{e}\hat{p}_i\ket{g}
+		\bra{g}\hat{p}_j\ket{e}
+		\int_{t_0}^{t_0+\Delta t}\dd{t_1}
+		\int_{t_0}^{t_1}\dd{t_2}
+		e^{i(E_e-E_g)(t_1-t_2)}
+		\\
+		&\times
+		\expval{
+			\hat{A}_j(\vb{x}_0,t_2)
+			\hat\rho(t_0)
+			\hat{A}_i(\vb{x}_0,t_1)
+		}{i}
+		+
+		\text{c.c.}
+	\end{split}
+\end{equation}
+\textcolor{red}{steps to second line missing!}
+We are not interested in the final states and can integrate this degree of freedom.
+Furthermore, we can assume an ensemble of independent detector atoms, so the probability for a photoemission is
+\begin{equation}
+	p(t_0,t_0+\Delta t)
+	=
+	\int_{t_0}^{t_0+\Delta t}\dd{t_1}
+	\int_{t_0}^{t_1}\dd{t_2}
+	k_{ij}(t_1-t_2)
+	\expval{
+		\hat{A}_j(\vb{x}_0,t_2)
+		\hat{A}_i(\vb{x}_0,t_1)
+	}
+	+
+	\text{c.c.}
+\end{equation}
+wherein $k_{ij}$ encodes the microscopic properties of the detector atom ensemble, see Ref.~\cite[p.~694]{Mandel1995}.
+Expansion of the Maxwell field operator into positive and negative frequency parts as well as discarding high-frequency terms, we find~\cite[p.~698]{Mandel1995}.
+\begin{equation}
+	p(t_0,t_0+\Delta t)
+	\approx
+	\int_0^{\Delta t}\dd{t^\prime}
+	\int_0^{t^\prime}\dd{t^{\prime\prime}}
+	k_{ij}(t^{\prime}-t^{\prime\prime})
+	\expval{
+		\hat{A}_j^{(+)}(\vb{x}_0,t_0+t^{\prime\prime})
+		\hat{A}_i^{(-)}(\vb{x}_0,t_0+t^{\prime})
+	}
+	+
+	\text{c.c.}
+	.
+\end{equation}
+Furthermore, performing the quasi-monochromatic approximation
+\begin{align}
+	\hat{A}_j^{(+)}(\vb{x}_0,t_0+t^{\prime\prime})
+	&\approx
+	\hat{A}_j^{(+)}(\vb{x}_0,t_0)
+	e^{+i\omega_0t^{\prime\prime}}
+	\\
+	\hat{A}_j^{(-)}(\vb{x}_0,t_0+t^{\prime})
+	&\approx
+	\hat{A}_j^{(-)}(\vb{x}_0,t_0)
+	e^{-i\omega_0t^{\prime}}
+\end{align}
+we find
+\begin{equation}
+	\begin{split}
+		p(t_0,t_0+\Delta t)
+		&\approx
+		\expval{
+			\hat{A}_j^{(+)}(\vb{x}_0,t_0)
+			\hat{A}_i^{(-)}(\vb{x}_0,t_0)
+		}
+		\int_0^{\Delta t}\dd{t^\prime}
+		\int_0^{t^\prime}\dd{t^{\prime\prime}}
+		k_{ij}(t^{\prime}-t^{\prime\prime})
+		e^{-i\omega_0(t^\prime-t^{\prime\prime})}
+		+
+		\text{c.c.}
+		\\
+		&=
+		\expval{
+			\hat{A}_j^{(+)}(\vb{x}_0,t_0)
+			\hat{A}_i^{(-)}(\vb{x}_0,t_0)
+		}
+		\int_0^{\Delta t}\dd{t^\prime}
+		\int_0^{t^\prime}\dd{\tau}
+		k_{ij}(\tau)
+		e^{-i\omega_0\tau}
+		+
+		\text{c.c.}
+		\\
+		&=
+		\expval{
+			\hat{A}_j^{(+)}(\vb{x}_0,t_0)
+			\hat{A}_i^{(-)}(\vb{x}_0,t_0)
+		}
+		\int_0^{\Delta t}\dd{t^\prime}
+		\int_{-t^\prime}^{t^\prime}\dd{\tau}
+		k_{ij}(\tau)
+		e^{-i\omega_0\tau}
+		\\
+		&\approx
+		\expval{
+			\hat{A}_j^{(+)}(\vb{x}_0,t_0)
+			\hat{A}_i^{(-)}(\vb{x}_0,t_0)
+		}
+		k_{ij}(\omega_0)
+		\Delta t
+	\end{split}
+\end{equation}
+as in Ref.~\cite[p.~699]{Mandel1995} where $k_{ij}(\omega_0)$ is the frequency response of the detector atom ensemble.
+We assume a detector equally sensitive to both polarizations and finally find
+\begin{equation}
+	p(t_0,t_0+\Delta t)
+	\approx
+	\expval{\hat{N}}
+	k(\omega_0)
+	\Delta t
+\end{equation}
+we can even relax the quasi-monochromatic approximation a bit by writing
+\begin{equation}
+	p(t_0,t_0+\Delta t)
+	\approx
+	\int\dd{\omega}
+	k(\omega)
+	\expval{\hat{n}(\omega)}
+	\Delta t
+	.
+\end{equation}

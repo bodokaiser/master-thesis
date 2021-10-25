@@ -1,0 +1,456 @@
+\section{Mach-Zehnder}
+
+
+The \gls{mzm} arranges two phase modulators to perform amplitude and phase modulation on an optical input field.
+Using two electrical-driven phase modulators, the \gls{mzm} performs amplitude and phase modulation on an optical input field.
+To begin with, we derive the quantum operator matrix transform from a specific implementation of the \gls{mzm}, the symmetric free-space \gls{mzi}.
+Then, we link the quantum operator matrix transform to more general unitary operators.
+Finally, we derive the quantum state transform for a coherent input state to the \gls{mzm}.
+
+\begin{figure}[htb]
+	\centering
+	\includestandalone{figures/pstricks/mzi-symmetric}
+	\caption{Free-space setup of a symmetric \gls{mzm}: The input light mode $\hat{a}_1$ enters a first beam splitter BS1 from the left. A vacuum light mode $\hat{a}_2$ enters BS2 from the top. The transformed mode $\hat{a}_1^\prime$ and $\hat{a}_2^\prime$ exit BS1 to the right and the bottom. A first phase shifter and first mirror M1, right to BS1, add a relative phase of $\varphi_1+\pi$ from mode $\hat{a}_1$ to $\hat{a}_1^{\prime\prime}$. Below BS1, a second mirror M2 directs the light to a right second phase shifter, both adding a relative phase of $\varphi_2+\pi$ from mode $\hat{a}_2^\prime$ to $\hat{a}_2^{\prime\prime}$. A second beam splitter BS2 transforms the input modes $\hat{a}_1^{\prime\prime}$ and $\hat{a}_2^{\prime\prime}$ to the output modes $\hat{a}_1^{\prime\prime\prime}$ and $\hat{a}_2^{\prime\prime\prime}$.}\label{fig:mzi_symmetric}
+\end{figure}
+\Cref{fig:mzi_symmetric} shows a free-space optics setup of a symmetric \gls{mzi} with one signal input; the other input being in the vacuum state.
+The most crucial components of the \gls{mzi} are a splitter, a coupler, and two independent phase modulators.
+The splitter divides the input light into two branches.
+Each branch adds a relative phase shift using an independent phase modulator, i.e., $\phi_1$ and $\phi_2$.
+The coupler recombines both branches into two outputs.
+For our free-space setup, two cubic beam splitters implement the splitter (BS1) and the coupler (BS2).
+For additional beam alignment, our free-space setup utilizes two mirrors (M1 and M2).
+
+Finding the transformation of the annihilation operators at each stage of the \gls{mzi} is sufficient to find the quantum input-output relations.
+Idealizing the symmetric \gls{mzi}'s passive components as lossless allows relating the annihilation operators by two-dimensional unitary matrices.
+We label the input annihilation operators of the \gls{mzi} $\hat{a}_1,\hat{a}_2$ and the output annihilation operators $\hat{a}_1^{\prime\prime\prime},\hat{a}_2^{\prime\prime\prime}$.
+The annihilation operators after splitting and before (after) phase shifting are denoted by two (three) primes, i.e., $\hat{a}_1^{\prime},\hat{a}_2^{\prime}$ and $\hat{a}_1^{\prime\prime},\hat{a}_2^{\prime\prime}$.
+Going backwards through the transformations from the output to the input annihilation operators
+\begin{equation}
+	\vb{\hat{a}}^{\prime\prime\prime}
+	=
+	U_\text{BS2}
+	\hat{\vb{a}}^{\prime\prime}
+	=
+	U_\text{BS2}
+	U_\text{PS}
+	\hat{\vb{a}}^{\prime}
+	=
+	U_\text{BS2}
+	U_\text{PS}
+	U_\text{BS1}
+	\hat{\vb{a}}
+	=
+	U_\text{MZI}
+	\vb{\hat{a}}
+\end{equation}
+we find the symmetric \gls{mzi}'s unitary matrix transform $U_\text{MZM}$ to be equal to the matrix product of the second beam splitter's, the phase shifts', and the first beam splitter's unitary matrix transform  $U_\text{BS2}U_\text{PS}U_\text{BS1}$.
+
+An ideal cubic beam splitter with a single dielectric layer has the unitary matrix transform~\cite[p.~139]{Gerry2005}
+\begin{equation}
+	U_\text{BS1}
+	=
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		1 & i \\
+		i & 1
+	\end{pmatrix}
+\end{equation}
+where the off-diagonal elements of $U_\text{BS1}$, $i/\sqrt{2}$, account for the phase-shift due to the reflection at the diagonal of the cubic beam splitter.
+The matrix encoding the phase shifts from the phase modulation $\phi_1,\phi_2$ and the reflection at the mirrors M1 and M2, $\pi$ is
+\begin{equation}
+	U_\text{PS}
+	=
+	\begin{pmatrix}
+		ie^{i\phi_1} & 0 \\
+		0 & ie^{i\phi_2}
+	\end{pmatrix}
+\end{equation}
+For the second beam splitter, BS2, we again assume an ideal cubic beam splitter with a single dielectric layer.
+The corresponding matrix transform is
+\begin{equation}
+	U_\text{BS2}
+	=
+	\frac{1}{\sqrt{2}}
+	\begin{pmatrix}
+		i & 1 \\
+		1 & i
+	\end{pmatrix}	
+\end{equation}
+where we exchanged the rows for consistency with the input labels.
+
+Performing the matrix multiplication and writing the exponentials as trigonometric functions, we find the matrix transform of the symmetric \gls{mzi} to be
+\begin{equation}
+	U_\text{MZI}
+	=
+	-
+	\begin{pmatrix}
+		\cos\left(\frac{\phi_2-\phi_1}{2}\right) & \sin\left(\frac{\phi_2-\phi_1}{2}\right) \\
+		-\sin\left(\frac{\phi_2-\phi_1}{2}\right) & \cos\left(\frac{\phi_2-\phi_1}{2}\right)
+	\end{pmatrix}
+	e^{i\frac{\phi_1+\phi_2}{2}}
+	.
+\end{equation}
+It appears useful to define the common-mode and differential-mode phases
+\begin{align}
+	\phi_+
+	&=
+	\phi_2
+	+
+	\phi_1
+	&
+	\phi_-
+	&=
+	\phi_2-\phi_1
+\end{align}
+for which the matrix transform simplifies to
+\begin{equation}
+	U_\text{MZI}
+	=
+	-
+	\begin{pmatrix}
+		\cos(\phi_-/2) & \sin(\phi_-/2) \\
+		-\sin(\phi_-/2) & \cos(\phi_-/2)
+	\end{pmatrix}
+	e^{i\phi_+/2}
+\end{equation}
+and we note that the common-mode phase $\phi_+$ adds a global phase shift of $\phi_+/2$ while the differential-mode phase $\phi_-$ changes the splitting ratios at the output.
+
+For a general lossless \gls{mzm}, we propose the generic unitary matrix transform~\cite[p.~95]{Leonhardt2010}
+\begin{equation}
+	\begin{split}
+		U_\text{MZM}
+		&=
+		e^{i\Lambda/2}
+		\begin{pmatrix}
+			\cos(\Theta/2)e^{i(+\Phi+\Psi)/2} & \sin(\Theta/2)e^{i(+\Phi-\Psi)/2} \\
+			-\sin(\Theta/2)e^{+(-\Phi+\Psi)/2} & \cos(\Theta/2)e^{i(-\Phi-\Psi)/2}
+		\end{pmatrix}
+		\\
+		&=
+		e^{i\Lambda/2}
+		\begin{pmatrix}
+			e^{+i\Phi/2} & 0 \\
+			0 & e^{-i\Phi/2}
+		\end{pmatrix}
+		\begin{pmatrix}
+			\cos(\Theta/2) & \sin(\Theta/2) \\
+			-\sin(\Theta/2) & \cos(\Theta/2)
+		\end{pmatrix}
+		\begin{pmatrix}
+			e^{+i\Psi/2} & 0 \\
+			0 & e^{-i\Psi/2}
+		\end{pmatrix}
+	\end{split}
+	\label{eq:mzm_matrix}
+\end{equation}
+wherein the global phase $\Theta$ and the rotation angle $\Lambda$ are time-dependent but $\Phi,\Psi$ are constants.
+We obtain the matrix transform of the symmetric free-space $U_\text{MZI}$ after identification of $\Theta$ with the differential-mode phase, $\Lambda+\pi$ with the common-mode phase, and choosing $\Psi=0=\Phi$.
+One advantage of the proposed decomposition in \cref{eq:mzm_matrix} is the one-to-one correspondence between the unitary operator~\cite[p.~99]{Leonhardt2010}
+\begin{equation}
+	\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)
+	=
+	e^{i\Lambda\hat{L}_t}
+	e^{i\Phi\hat{L}_z}
+	e^{i\Theta\hat{L}_y}
+	e^{i\Psi\hat{L}_z}
+	\label{eq:mzm_operator}
+\end{equation}
+wherein $\hat{L}_j$ denote the Jordan-Schwinger operators~\cite[p.~97]{Leonhardt2010}
+\begin{equation}
+	\hat{L}_j
+	=
+	\frac{1}{2}
+	\begin{pmatrix}
+		\hat{a}_1^\dagger, \hat{a}_2^\dagger
+	\end{pmatrix}
+	\sigma_j
+	\begin{pmatrix}
+		\hat{a}_1 \\
+		\hat{a}_2
+	\end{pmatrix}
+	=
+	\frac{1}{2}
+	\hat{\vb{a}}^\dagger
+	\sigma_j
+	\hat{\vb{a}}
+\end{equation}
+with $\sigma_j$ being the two-dimensional Pauli matrices and $\sigma_0$ being the identity matrix, and the unitary matrix transform
+\begin{equation}
+	U_\text{MZM}
+	\hat{\vb{a}}
+	=
+	\hat{U}_\text{MZM}^\dagger
+	\hat{\vb{a}}
+	\hat{U}_\text{MZM}
+	.
+\end{equation}
+
+The \gls{mzm} produces highly entangled output states for (displaced) number states, see, for instance, Ref.~\cite{Windhager2011}.
+In the transmitter setting, we are exclusively interested in coherent input states, contrary to the receiver, where an attacker could have sent non-coherent states.
+
+Let us consider the input state
+\begin{align}
+	\ket{\vb{\alpha}}
+	&=
+	\ket{\alpha_1,\alpha_2}
+	&
+	\vb{\alpha}
+	=
+	\begin{pmatrix}
+		\alpha_1,
+		\alpha_2
+	\end{pmatrix}
+	\in
+	\mathbb{C}^{2\times1}
+\end{align}
+to a \gls{mzm}\footnote{We can always set $alpha=0$ to set the second input to vacuum.}, i.e.,
+\begin{equation}
+	\hat{U}_\text{MZM}
+	\ket{\vb{\alpha}}
+	=
+	\hat{U}_\text{MZM}
+	\hat{D}(\vb{\alpha})
+	\hat{U}_\text{MZM}^\dagger
+	\hat{U}_\text{MZM}
+	\ket{0,0}
+	=
+	\hat{U}_\text{MZM}
+	\hat{D}(\vb{\alpha})
+	\hat{U}_\text{MZM}^\dagger
+	\ket{0,0}
+\end{equation}
+where we used the invariance of the vacuum state $\ket{0,0}$ for the second equality.
+The displacement operator transforms as
+\begin{equation}
+	\begin{split}
+		\hat{U}
+		\hat{D}(\vb{\alpha})
+		\hat{U}^\dagger
+		&=
+		\hat{U}
+		\exp\left\{
+			\vb{\alpha}^\trans
+			\hat{\vb{a}}^\dagger
+			-
+			\hat{\vb{a}}
+			\vb{\alpha}^*
+		\right\}
+		\hat{U}^\dagger
+		\\
+		&=
+		\exp\left\{
+			\vb{\alpha}^\trans
+			\hat{U}
+			\hat{\vb{a}}^\dagger
+			\hat{U}^\dagger
+			-
+			\hat{U}
+			\hat{\vb{a}}
+			\hat{U}^\dagger
+			\vb{\alpha}^*
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\vb{\alpha}^\trans
+			\left(
+				\hat{U}
+				\hat{\vb{a}}
+				\hat{U}^\dagger
+			\right)^\dagger
+			-
+			\hat{U}
+			\hat{\vb{a}}
+			\hat{U}^\dagger
+			\vb{\alpha}^*
+		\right\}
+	\end{split}
+\end{equation}
+where we used the operator identity
+\begin{equation}
+	\hat{U}
+	e^{\hat{A}}
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\hat{U}
+	\hat{A}^n
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\hat{U}
+	\hat{A}
+	\hat{U}^\dagger
+	\cdots
+	\hat{U}
+	\hat{A}
+	\hat{U}^\dagger
+	=
+	\sum_{n=0}^\infty
+	\frac{1}{n!}
+	\left(
+		\hat{U}
+		\hat{A}
+		\hat{U}^\dagger
+	\right)^n
+	=
+	e^{\hat{U}\hat{A}\hat{U}^\dagger}
+\end{equation}
+which follows from inserting $\hat{U}\hat{U}^\dagger=\mathbb{1}$ between the $\hat{A}$s.
+For the unitary operator of the \gls{mzm}, we note that
+\begin{equation}
+	\begin{split}
+		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
+		&=
+		e^{-i\Psi\hat{L}_z}
+		e^{-i\Theta\hat{L}_y}
+		e^{-i\Phi\hat{L}_z}
+		e^{-i\Lambda\hat{L}_t}
+		\\
+		&=
+		e^{-i\Lambda\hat{L}_t}
+		e^{-i\Psi\hat{L}_z}
+		e^{-i\Theta\hat{L}_y}
+		e^{-i\Phi\hat{L}_z}
+		\\
+		&=
+		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
+	\end{split}
+\end{equation}
+where we used in the second line that $\hat{L}_t$ commutes with the other Jordan-Schwinger operators $\hat{L}_y,\hat{L}_z$.
+The transformed annihilation operators turn out to be
+\begin{equation}
+	\begin{split}
+		\hat{\vb{a}}^\prime
+		&=
+		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)
+		\hat{\vb{a}}
+		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
+		\\
+		&=
+		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)^\dagger
+		\hat{\vb{a}}
+		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
+		\\
+		&=
+		U_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
+		\hat{\vb{a}}
+		\\
+		&=
+		U_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
+		\hat{\vb{a}}
+		.
+	\end{split}
+\end{equation}
+Using the transformed operators, we find the transformed displacement operator to be~\cite[p.~210]{Vogel2006}
+\begin{equation}
+	\hat{D}^\prime(\vb{\alpha})
+	=
+	\exp\left\{
+		\vb{\alpha}^\trans
+		\left(\hat{\vb{a}}^\prime\right)^\dagger
+		-
+		\hat{\vb{a}}^\prime
+		\vb{\alpha}^*
+	\right\}
+	=
+	\exp\left\{
+		\left(\vb{\alpha}^\prime\right)^\trans
+		\hat{\vb{a}}^\dagger
+		-
+		\hat{\vb{a}}
+		\left(\vb{\alpha}^\prime\right)^*
+	\right\}
+	.
+\end{equation}
+We therefore find the \gls{mzm} to transform the coherent input states according to
+\begin{align}
+	\hat{U}_\text{MZM}
+	\ket{\vb{\alpha}}
+	&=
+	\ket{\vb{\alpha}^\prime}
+	&
+	\vb{\alpha}^\prime
+	&=
+	U_\text{MZM}
+	\vb{\alpha}
+	.
+\end{align}
+Using the explicit matrix elements in \cref{eq:mzm_matrix} and setting the second input to zero $\alpha_2=0$ and identifying the first as $\alpha_1=\alpha$, we find
+\begin{equation}
+	\hat{U}_\text{MZM}
+	\ket{\alpha,0}
+	=
+	\ket{\alpha\cos(\Theta/2)e^{+i(\Psi+\Phi)/2},-\alpha\sin(\Theta/2)e^{-i(\Psi-\Phi)/2}}
+	.
+\end{equation}
+We are only interested in the first output mode.
+We can remove the second output via partial trace, i.e.,
+\begin{equation}
+	\trace_2\left\{
+		\ketbra{\alpha,\beta}
+	\right\}
+	=
+	\trace_2\left\{
+		\ketbra{\alpha}
+		\otimes
+		\ketbra{\beta}
+	\right\}
+	=
+	\ketbra{\alpha}
+	\otimes
+	\trace_2\left\{
+		\ketbra{\beta}
+	\right\}
+\end{equation}
+where
+\begin{equation}
+	\trace_2\left\{
+		\ketbra{\beta}
+	\right\}
+	=
+	\sum_{n=0}^\infty
+	\braket{n}{\beta}
+	\braket{\beta}{n}
+	=
+	\sum_{n=0}^\infty
+	\abs{\braket{n}{\beta}}^2
+	=
+	1
+\end{equation}
+and thus
+\begin{equation}
+	\trace_2\left\{
+		\ketbra{\alpha,\beta}
+	\right\}
+	=
+	\ketbra{\alpha}
+	=
+	\hat{P}_1
+	\ketbra{\alpha,\beta}
+	\hat{P}_1
+\end{equation}
+i.e., the partial trace over a tensor product of coherent states is equivalent to the projection of the non-traced out states.
+This is a special property of the coherent states.
+In general, the partial trace over a tensor product of (entangled) quantum states returns a mixed state.
+
+We conclude that the the action of a static \gls{mzm} on a coherent input state $\ket{\alpha}$ is a amplitude and phase modulation, i.e.,
+\begin{equation}
+	\ket{\alpha}
+	\to
+	\ket{\alpha^\prime}
+	=
+	\hat{P}_1
+	\hat{U}_\text{MZM}
+	\ket{\alpha,0}
+	=
+	\ket{\alpha\cos(\Theta/2)e^{i\Lambda/2}}
+	\label{eq:mzm_transform}
+\end{equation}
+where $\Theta$ is the differential- and $\Lambda$ is the common-mode phase applied to the Pockels modulator of the \gls{mzm}.
+We have effectively multiplied the amplitude of the initial coherent state with a real value $\cos(\Theta/2)$.
+
+Our result holds true for time-dependent modulation.
+From the discussion of the Pockels modulator we know that phase modulation can be written as a convolution in momentum space which is a linear operation and therefore compatible with our derivation of the \gls{mzm}.

@@ -1,0 +1,348 @@
+\section{Balanced detector}
+
+% literature review
+% \cite{Kikuchi2016}
+% \cite{Shapiro2009}
+% \cite{Loudon2000}
+
+% \cite[p.~206]{Vogel2006}
+\begin{figure}[htb]
+    \centering
+    \includestandalone{figures/tikz/balanced-detector}
+    \caption{Optical part of the balanced detector comprising a beam splitter and two photodetectors: A first signal mode $\hat{a}_s=\hat{a}_1$ enters the beam splitter from the left. A second \gls{lo} mode $\hat{a}_l=\hat{a}_2$ enters the beam splitter from the top. A first output mode $\hat{a}_1^\prime$ exits the beam splitter to the right where a first photodetector with photocurrent $i_1$ is placed. A second output mode $\hat{a}_2^\prime$ exits the beam splitter to the bottom where a second photodetector with photocurrent $i_2$ is placed.}\label{fig:balanced_detector_optics}
+\end{figure}
+
+We write the frequency-dependent beam splitter \cite[p.~207]{Vogel2006}
+\begin{equation}
+	\begin{pmatrix}
+		\hat{a}_1^\prime(\omega) \\
+		\hat{a}_2^\prime(\omega)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		t(\omega) & r(\omega) \\
+		-r^*(\omega) & t^*(\omega)
+	\end{pmatrix}
+	\begin{pmatrix}
+		\hat{a}_s(\omega) \\
+		\hat{a}_l(\omega)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		t(\omega)\hat{a}_s(\omega) + r(\omega)\hat{a}_l(\omega) \\
+		t^*(\omega)\hat{a}_l(\omega) - r^*(\omega)\hat{a}_s(\omega)
+	\end{pmatrix}
+\end{equation}
+and find the transformed number operators of the output modes to be
+\begin{align}
+	\hat{n}_1^\prime(\omega)
+	&=
+	\abs{t(\omega)}^2
+	\hat{n}_s(\omega)
+	+
+	\abs{r(\omega)}^2
+	\hat{n}_l(\omega)
+	+
+	\left[
+		t(\omega)^*
+		r(\omega)
+		\hat{a}_s^\dagger(\omega)
+		\hat{a}_l(\omega)
+		+
+		\text{h.c.}
+	\right]
+	\\
+	\hat{n}_2^\prime(\omega)
+	&=
+	\abs{r(\omega)}^2
+	\hat{n}_s(\omega)
+	+
+	\abs{t(\omega)}^2
+	\hat{n}_l(\omega)
+	-
+	\left[
+		t(\omega)^*
+		r(\omega)
+		\hat{a}_s^\dagger(\omega)
+		\hat{a}_l(\omega)
+		+
+		\text{h.c.}
+	\right]
+\end{align}
+Assuming the frequency-dependent beam splitter to be sufficiently balanced
+\begin{equation}
+	\abs{t(\omega)}
+	\approx
+	\abs{r(\omega)}
+\end{equation}
+within the frequencies of the detector bandwidth $B$, the photon number difference between the detector is
+\begin{equation}
+	\begin{split}
+		\hat{n}^\prime_\Delta(\omega)
+		=
+		\hat{n}_1^\prime(\omega)
+		-
+		\hat{n}_2^\prime(\omega)
+		&\approx
+		2\left[
+			t(\omega)^*
+			r(\omega)
+			\hat{a}_s^\dagger(\omega)
+			\hat{a}_l(\omega)
+			+
+			\text{h.c.}
+		\right]
+		\\
+		&=
+		2\abs{t(\omega)r(\omega)}
+		\left[
+			\hat{a}_s^\dagger(\omega)
+			\hat{a}_l(\omega)
+			e^{i(\phi_r-\phi_t)}
+			+
+			\text{h.c.}
+		\right]
+	\end{split}
+\end{equation}
+Assuming the quantum state~\cite[p.~213]{Vogel2006}
+\begin{equation}
+	\hat\rho(t)
+	=
+	\hat\rho_s(t)
+	\otimes
+	\hat\rho_l(t)
+	=
+	\hat\rho_s(t)
+	\otimes
+	\ketbra{\alpha_l(t)}
+\end{equation}
+wherein the \gls{lo} coherent state is
+\begin{equation}
+	\ket{\alpha_l(t)}
+	=
+	e^{-\overline{n}_l(t)/2}
+	\exp\left\{
+		\int_0^\infty\dd{\omega}
+		\alpha_l(\omega,t)
+		\hat{a}_l^\dagger(\omega)
+	\right\}
+	\ket{0}
+	.
+\end{equation}
+We then find
+\begin{equation}
+	\begin{split}
+		\overline{n}^\prime_\Delta(t)
+		&=
+		\int_0^\infty\frac{\dd{\omega}}{2\pi}
+		\trace\left\{
+			\hat\rho(t)
+			\hat{n}_\Delta^\prime(\omega)
+		\right\}
+		\\
+		&=
+		2
+		\int_0^\infty\frac{\dd{\omega}}{2\pi}
+		\abs{t(\omega)r(\omega)}
+		\trace_s\left\{
+			\hat\rho_s(t)
+			\expval{
+				\hat{a}_s^\dagger(\omega)
+				\hat{a}_l(\omega)
+				e^{+i(\phi_r-\phi_t)}
+				+
+				\text{h.c.}
+			}{\alpha_l(t)}
+		\right\}
+		\\
+		&=
+		2
+		\int_0^\infty\frac{\dd{\omega}}{2\pi}
+		\abs{t(\omega)r(\omega)}
+		\trace_s\left\{
+			\hat\rho_s(t)
+			\expval{
+				\hat{a}_s^\dagger(\omega)
+				\alpha_l(\omega,t)
+				e^{+i(\phi_r-\phi_t)}
+				+
+				\text{h.c.}
+			}{\alpha_l(t)}
+		\right\}
+		\\
+		&=
+		2
+		\int_0^\infty\frac{\dd{\omega}}{2\pi}
+		\abs{t(\omega)r(\omega)\alpha_l(\omega)}
+		\trace_s\left\{
+			\hat\rho_s(t)
+			\left[
+				\hat{a}_s^\dagger(\omega)
+				e^{-i\vartheta(t)}
+				+
+				\text{h.c.}
+			\right]
+		\right\}
+		\\
+		&=
+		2\sqrt{2}
+		\int_0^\infty\frac{\dd{\omega}}{2\pi}
+		\abs{t(\omega)r(\omega)\alpha_l(\omega)}
+		\trace_s\left\{
+			\hat\rho_s(t)
+			\hat{X}\left(\omega,\vartheta(t)\right)
+		\right\}
+		\\
+		&=
+		2\sqrt{2}
+		\int_0^\infty\frac{\dd{\omega}}{2\pi}
+		\abs{t(\omega)r(\omega)\alpha_l(\omega)}
+		\expval{\hat{X}\left(\omega,\vartheta(\omega,t)\right)}_s
+	\end{split}
+\end{equation}
+with
+\begin{equation}
+	\vartheta(\omega,t)
+	=
+	\phi_t-\phi_r-\varphi_l(\omega,t)
+\end{equation}
+and
+\begin{equation}
+	\hat{X}\left(\omega,\vartheta(t)\right)
+	=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\hat{a}_s(\omega)
+		e^{+i\vartheta(t)}
+		+
+		\hat{a}_s^\dagger(\omega)
+		e^{-i\vartheta(t)}
+	\right)
+	.
+\end{equation}
+We can further write
+\begin{equation}
+	\overline{n}^\prime_\Delta(t)
+	=
+	\left(h*\overline{X}\right)(t)
+\end{equation}
+where we defined the filter
+\begin{equation}
+	h(\omega)
+	=
+	2\sqrt{2}
+	\abs{t(\omega)r(\omega)\alpha_l(\omega)}
+	.
+\end{equation}
+
+We are left to relate the photon number difference operator with the analog signals.
+\Cref{fig:balanced_detector_electronics} shows the schematic of the balanced detector and \gls{tia} circuitry.
+The photodiodes are both biased with bias voltage $\pm V_b$ to improve frequency response.
+At the node between the anode of $\text{PD}_1$ and the cathode of $\text{PD}_2$, the two photocurrents $i_1$ and $i_2$ are directly subtracted.
+\begin{figure}[htb]
+    \centering
+    \includestandalone{figures/circuitikz/balanced-detector}
+    \caption{Electronic part of the balanced detector comprising two biassed photodiodes in balanced configuration with a \gls{tia} frontend: The cathode of a first photodiode $\text{PD}_1$ is biased with a positive bias voltage $+V_b$. The anode of a second photodiode $\text{PD}_2$ is biased with a negative bias voltage $-V_b$. The photocurrent difference $i_1-i_2$ runs through the line connecting the anode of $\text{PD}_1$ and the cathode of $\text{PD}_2$. A \gls{tia} with complex feedback impedance $Z_f$ converts and amplifies the photocurrent difference $i_1-i_2$ to an output voltage $V_o$.}\label{fig:balanced_detector_electronics}
+\end{figure}
+The mean of the photocurrent difference is equal to
+\begin{equation}
+	\overline{\Delta i}(t)
+	=
+	\overline{i}_1(t)
+	-
+	\overline{i}_2(t)
+	=
+	\int\dd{t^\prime}
+	\eta(t^\prime)
+	\overline{n}_\Delta^\prime(t-t^\prime)
+\end{equation}
+wherein $\eta$ is the \gls{qe} or frequency response of the photodiodes.
+The mean photocurrent difference is amplified and converted to a voltage signal $V_0$ by the \gls{tia} frontend.
+In particular,
+\begin{equation}
+	V_o(\omega)
+	=
+	-
+	Z_f(\omega)
+	\overline{\Delta i}(\omega)
+\end{equation}
+where $Z_F$ is the complex feedback impedance.
+The mean voltage signal is equal to
+\begin{equation}
+	V_o(t)
+	=
+	-
+	\left(Z_f*\overline{\Delta i}\right)(t)
+	=
+	-
+	\left(Z_f*h*\overline{X}\right)(t)
+	.
+\end{equation}
+
+The variance of a photodetector with efficiency $\eta$ is given by~\cite[p.~194]{Vogel2006}
+\begin{equation}
+	\begin{split}
+		\overline{(\Delta n^\prime)^2}(\omega)
+		&=
+		\eta(\omega)
+		\expval{\hat{n}^\prime(\omega)}
+		+
+		\eta(\omega)^2
+		\expval{\colon\left(\Delta\hat{n}^\prime(\omega)\right)^2\colon}
+		\\
+		&=
+		\eta(\omega)\left(1-\eta(\omega)\right)
+		\expval{\hat{n}^\prime(\omega)}
+		+
+		\eta(\omega)^2
+		\expval{\left(\Delta\hat{n}^\prime(\omega)\right)^2}
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		\expval{\colon\hat{n}_\Delta^\prime(\omega)^2\colon}
+		&=
+		4\abs{t(\omega)r(\omega)}^2
+		\expval{
+			\colon
+			\left[
+				\hat{a}_s^\dagger(\omega)
+				\hat{a}_l(\omega)
+				e^{+i(\phi_r-\phi_l)}
+				+
+				\hat{a}_s(\omega)
+				\hat{a}_l^\dagger(\omega)
+				e^{-i(\phi_r-\phi_l)}
+			\right]^2
+			\colon
+		}
+		\\
+		&=
+		4\abs{t(\omega)r(\omega)}^2
+		\expval{
+			\hat{a}_s^\dagger(\omega)^2
+			\hat{a}_l(\omega)^2
+			e^{+2i(\phi_r-\phi_l)}
+			+
+			\hat{a}_l^\dagger(\omega)^2
+			\hat{a}_s(\omega)^2
+			e^{-2i(\phi_r-\phi_l)}
+			+
+			2
+			\hat{a}_s^\dagger(\omega)
+			\hat{a}_l^\dagger(\omega)
+			\hat{a}_l(\omega)
+			\hat{a}_s(\omega)
+		}
+		\\
+		&=
+		4\abs{t(\omega)r(\omega)}^2
+		\left[
+			2
+			\overline{n}_s(t)
+			\overline{n}_l(t)
+			+
+			\dots
+		\right]
+	\end{split}
+\end{equation}
