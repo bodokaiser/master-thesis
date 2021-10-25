@@ -1,4 +1,4 @@
-\section{Optical coupler}
+\section{Coupler}
 
 Optical couplers, including optical splitters, redistribute two optical inputs among two outputs and are an essential passive component for almost every setup.\footnote{The optical splitter is a special case of the optical coupler where one of the two optical inputs is zero, or, more precisely, the vacuum state.}
 
@@ -104,6 +104,57 @@ Inserting the mode expansion of the electric field operators, \cref{eq:electric_
 in agreement with Refs.~\cite{Leonhardt2010,Gerry2005}.
 
 \subsection{Fiber and waveguide coupler}
+
+Contrary to the free-ray beam splitter where the light modes are directly superimposed, are the modes in a fiber or waveguide coupler indirectly coupled by their evanescent waves.
+For the evanescent waves to couple efficiently, one must bring the waveguides in proximity, see \Cref{fig:waveguide_coupler}.
+The total energy in the coupler oscillates between the two waveguides over the interaction length l.
+The waveguide materials, the wavelength, the distance between the two waveguides, and the interaction length $l$ determine the coupling ratio.
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/waveguide-coupler}
+    \caption{Waveguide coupler with interaction length $l$.}\label{fig:waveguide_coupler}
+\end{figure}
+The coupled modes of a fiber and waveguide coupler are conceptional similar to weakly coupled harmonic oscillators.
+Haroché~\cite[p.~131]{Haroche2006} successfully used the weakly coupled harmonic oscillators model to derive the quantum beam splitter transform from interaction theory, which we generalize to a mode continuum.
+
+Let $\hat{a}_1(\omega)$ and $\hat{a}_2(\omega)$ be the annihilation operators of the first and second (waveguide) modes.
+The transitions of an excitation from the first to the second mode corresponds to an interaction term proportional to $\hat{a}_1(\omega)\hat{a}_2^\dagger(\omega)$ as an excitation in the first mode is annihilated and an excitation in the second mode is created.
+The same transition occurs in the opposite direction and we conclude that
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	-
+	\int\frac{\dd{\omega}}{2\pi}
+	\left\{
+		g(\omega)
+		\hat{a}_1(\omega)
+		\hat{a}_2^\dagger(\omega)
+		+
+		g^*(\omega)
+		\hat{a}_1^\dagger(\omega)
+		\hat{a}_2(\omega)
+	\right\}
+\end{equation}
+where $g(\omega)\in\mathbb{C}$ is a complex-valued coupling parameter encoding the material and geometry of the coupler.
+As the interaction Hamiltonian is time-independent, the time-evolution operator is exact with the first term in the Magnus expansion
+\begin{equation}
+	\hat{U}_\text{int}(T)
+	=
+	\exp\left\{
+		iT
+		\int\frac{\dd{\omega}}{2\pi}
+		\left\{
+			g(\omega)
+			\hat{a}_1(\omega)
+			\hat{a}_2^\dagger(\omega)
+			+
+			g^*(\omega)
+			\hat{a}_1^\dagger(\omega)
+			\hat{a}_2(\omega)
+		\right\}
+	\right\}
+\end{equation}
+where $T\approx l/v_g$ is the interaction time approximately equal to the interaction length $l$ divided by the group velocity $v_g$ of the center frequency.
 
 \subsection{Unitary matrix and operator transformation}
 
