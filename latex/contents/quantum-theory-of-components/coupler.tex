@@ -536,84 +536,125 @@ where we used that $\hat{L}_t$ commutes with the other Jordan-Schwinger operator
 
 \subsection{Coherent input states}
 
-The \gls{mzm} produces highly entangled output states for (displaced) number states, see, for instance, Ref.~\cite{Windhager2011}.
-In the transmitter setting, we are exclusively interested in coherent input states, contrary to the receiver, where an attacker could have sent non-coherent states.
-
-Let us consider the input state
+Let us consider how coherent input states transform under coupling.
+Let 
 \begin{align}
-	\ket{\vb{\alpha}}
+	\ket{\vb{\alpha}(t)}
 	&=
-	\ket{\alpha_1,\alpha_2}
+	\ket{\alpha_1(t),\alpha_2(t)}
 	&
-	\vb{\alpha}
+	\vb{\alpha}(t)
 	=
 	\begin{pmatrix}
-		\alpha_1,
-		\alpha_2
+		\alpha_1(t),
+		\alpha_2(t)
 	\end{pmatrix}
 	\in
 	\mathbb{C}^{2\times1}
 \end{align}
-to a \gls{mzm}\footnote{We can always set $alpha=0$ to set the second input to vacuum.}, i.e.,
+denote the tensor product of two coherent states.
+Let us further adopt the matrix notation for the annihilation operators used in Ref.~\cite[p.~206]{Vogel2006} and write
+\begin{align}
+	\vu{a}(\omega)
+	&=
+	\begin{pmatrix}
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
+	\end{pmatrix}
+	&
+	\vu{a}^\dagger(\omega)
+	&=
+	\begin{pmatrix}
+		\hat{a}_1^\dagger(\omega),
+		\hat{a}_2^\dagger(\omega)
+	\end{pmatrix}
+	.
+\end{align}
+The action of the coupling on a quantum state is equivalent to having the unitary (evolution) operator act on the quantum state.
+For the coherent input state, we have
 \begin{equation}
-	\hat{U}_\text{MZM}
-	\ket{\vb{\alpha}}
+	\hat{U}
+	\ket{\vb{\alpha}(t)}
 	=
-	\hat{U}_\text{MZM}
-	\hat{D}(\vb{\alpha})
-	\hat{U}_\text{MZM}^\dagger
-	\hat{U}_\text{MZM}
-	\ket{0,0}
+	\hat{U}
+	\hat{D}\left[\vb{\alpha}(t)\right]
+	\hat{U}^\dagger
+	\hat{U}
+	\ket{0}
 	=
-	\hat{U}_\text{MZM}
-	\hat{D}(\vb{\alpha})
-	\hat{U}_\text{MZM}^\dagger
-	\ket{0,0}
+	\hat{U}
+	\hat{D}\left[\vb{\alpha}(t)\right]
+	\hat{U}^\dagger
+	\ket{0}
+	=
+	\hat{D}^\prime\left[\vb{\alpha}(t)\right]
+	\ket{0}
 \end{equation}
-where we used the invariance of the vacuum state $\ket{0,0}$ for the second equality.
-The displacement operator transforms as
+where we used the unitarity of the evolution operator to replace the identity, $\mathbb{1}=\hat{U}^\dagger\hat{U}$, and the invariance of the vacuum state.
+The transformed displacement operator reads
 \begin{equation}
 	\begin{split}
+		\hat{D}^\prime\left[\vb{\alpha}(t)\right]
+		=
 		\hat{U}
-		\hat{D}(\vb{\alpha})
+		\hat{D}\left[\vb{\alpha}(t)\right]
 		\hat{U}^\dagger
 		&=
 		\hat{U}
 		\exp\left\{
-			\vb{\alpha}^\trans
-			\hat{\vb{a}}^\dagger
-			-
-			\hat{\vb{a}}
-			\vb{\alpha}^*
+			\int\frac{\dd{\omega}}{2\pi}
+			\left\{
+				\alpha_1(\omega)
+				\hat{a}_1^\dagger(\omega,t)
+				+
+				\alpha_2(\omega)
+				e^{+i\omega t}
+				\hat{a}_2^\dagger(\omega,t)
+				-
+				\text{h.c.}
+			\right\}
+		\right\}
+		\hat{U}^\dagger
+		\\
+		&=
+		\hat{U}
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left\{
+				\vb{\alpha}(\omega)^\trans
+				\vu{a}^\dagger(\omega,t)
+				-
+				\text{h.c.}
+			\right\}
 		\right\}
 		\hat{U}^\dagger
 		\\
 		&=
 		\exp\left\{
-			\vb{\alpha}^\trans
-			\hat{U}
-			\hat{\vb{a}}^\dagger
-			\hat{U}^\dagger
-			-
-			\hat{U}
-			\hat{\vb{a}}
-			\hat{U}^\dagger
-			\vb{\alpha}^*
-		\right\}
-		\\
-		&=
-		\exp\left\{
-			\vb{\alpha}^\trans
-			\left(
+			\int\frac{\dd{\omega}}{2\pi}
+			\left\{
+				\vb{\alpha}(\omega)^\trans
 				\hat{U}
-				\hat{\vb{a}}
+				\hat{\vb{a}}^\dagger(\omega,t)
 				\hat{U}^\dagger
-			\right)^\dagger
-			-
-			\hat{U}
-			\hat{\vb{a}}
-			\hat{U}^\dagger
-			\vb{\alpha}^*
+				-
+				\text{h.c.}
+			\right\}
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left\{
+				\vb{\alpha}(\omega)^\trans
+				\left(
+					\hat{U}
+					\hat{\vb{a}}(\omega)
+					\hat{U}^\dagger
+				\right)^\dagger
+				-
+				\text{h.c.}
+			\right\}
 		\right\}
 	\end{split}
 \end{equation}
@@ -650,73 +691,82 @@ where we used the operator identity
 	e^{\hat{U}\hat{A}\hat{U}^\dagger}
 \end{equation}
 which follows from inserting $\hat{U}\hat{U}^\dagger=\mathbb{1}$ between the $\hat{A}$s.
-For the unitary operator of the \gls{mzm}, we note that
+Using the inverse of the transform operator, \cref{eq:unitary_operator}, we find
 \begin{equation}
 	\begin{split}
-		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
+		\hat{U}(\Lambda,\Phi,\Psi,\Theta)
+		\hat{\vb{a}}(\omega)
+		\hat{U}(\Lambda,\Phi,\Psi,\Theta)^\dagger
 		&=
-		e^{-i\Psi\hat{L}_z}
-		e^{-i\Theta\hat{L}_y}
-		e^{-i\Phi\hat{L}_z}
-		e^{-i\Lambda\hat{L}_t}
+		\hat{U}(-\Lambda,-\Psi,-\Phi,-\Theta)^\dagger
+		\hat{\vb{a}}(\omega)
+		\hat{U}(-\Lambda,-\Psi,-\Phi,-\Theta)
 		\\
 		&=
-		e^{-i\Lambda\hat{L}_t}
-		e^{-i\Psi\hat{L}_z}
-		e^{-i\Theta\hat{L}_y}
-		e^{-i\Phi\hat{L}_z}
+		U(-\Lambda,-\Psi,-\Phi,-\Theta)
+		\hat{\vb{a}}(\omega)
 		\\
 		&=
-		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
+		U(\Lambda,\Phi,\Psi,\Theta)^\dagger
+		\hat{\vb{a}}(\omega)
+		,
 	\end{split}
 \end{equation}
-where we used in the second line that $\hat{L}_t$ commutes with the other Jordan-Schwinger operators $\hat{L}_y,\hat{L}_z$.
-The transformed annihilation operators turn out to be
+or in short notation omitting the angle arguments
 \begin{equation}
-	\begin{split}
-		\hat{\vb{a}}^\prime
-		&=
-		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)
-		\hat{\vb{a}}
-		\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
-		\\
-		&=
-		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)^\dagger
-		\hat{\vb{a}}
-		\hat{U}_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
-		\\
-		&=
-		U_\text{MZM}(-\Lambda,-\Psi,-\Phi,-\Theta)
-		\hat{\vb{a}}
-		\\
-		&=
-		U_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)^\dagger
-		\hat{\vb{a}}
-		.
-	\end{split}
-\end{equation}
-
-Using the transformed operators, we find the transformed displacement operator to be~\cite[p.~210]{Vogel2006}
-\begin{equation}
-	\hat{D}^\prime(\vb{\alpha})
+	\hat{U}
+	\hat{\vb{a}}(\omega)
+	\hat{U}^\dagger
 	=
-	\exp\left\{
-		\vb{\alpha}^\trans
-		\left(\hat{\vb{a}}^\prime\right)^\dagger
-		-
-		\hat{\vb{a}}^\prime
-		\vb{\alpha}^*
-	\right\}
-	=
-	\exp\left\{
-		\left(\vb{\alpha}^\prime\right)^\trans
-		\hat{\vb{a}}^\dagger
-		-
-		\hat{\vb{a}}
-		\left(\vb{\alpha}^\prime\right)^*
-	\right\}
+	\hat{U}^\dagger
+	\vu{a}(\omega)
 	.
 \end{equation}
+Inserting the result back into the transformed displacement operator, we find
+\begin{equation}
+	\begin{split}
+		\hat{D}^\prime\left[\vb{\alpha}(t)\right]
+		&=
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left\{
+				\vb{\alpha}(\omega)^\trans
+				\left(
+					\hat{U}^\dagger
+					\vu{a}(\omega)
+				\right)^\dagger
+				-
+				\text{h.c.}
+			\right\}
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left\{
+				\left(
+					U
+					\vb{\alpha}(\omega)
+				\right)^\trans
+				\vu{a}^\dagger(\omega)
+				-
+				\text{h.c.}
+			\right\}
+		\right\}
+	\end{split}
+\end{equation}
+and we conclude the displacement operator to transform as 
+Using the transformed operators, we find the transformed displacement operator to be~\cite[p.~210]{Vogel2006}
+\begin{align}
+	\hat{D}^\prime\left[\vb{\alpha}(t)\right]
+	&=
+	\hat{D}\left[\vb{\alpha}^\prime(t)\right]
+	&
+	\vb{\alpha}^\prime(t)
+	&=
+	\left(U*\vb{\alpha}\right)(t)
+\end{align}
+where $*$ denotes the convolution.
 We therefore find the \gls{mzm} to transform the coherent input states according to
 \begin{align}
 	\hat{U}_\text{MZM}
@@ -787,5 +837,8 @@ and thus
 i.e., the partial trace over a tensor product of coherent states is equivalent to the projection of the non-traced out states.
 This is a special property of the coherent states.
 In general, the partial trace over a tensor product of (entangled) quantum states returns a mixed state.
+
+The \gls{mzm} produces highly entangled output states for (displaced) number states, see, for instance, Ref.~\cite{Windhager2011}.
+In the transmitter setting, we are exclusively interested in coherent input states, contrary to the receiver, where an attacker could have sent non-coherent states.
 
 \subsection{Application as spectral filter}
