@@ -105,21 +105,23 @@ in agreement with Refs.~\cite{Leonhardt2010,Gerry2005}.
 
 \subsection{Fiber and waveguide coupler}
 
-Contrary to the free-ray beam splitter where the light modes are directly superimposed, are the modes in a fiber or waveguide coupler indirectly coupled by their evanescent waves.
-For the evanescent waves to couple efficiently, one must bring the waveguides in proximity, see \Cref{fig:waveguide_coupler}.
-The total energy in the coupler oscillates between the two waveguides over the interaction length l.
-The waveguide materials, the wavelength, the distance between the two waveguides, and the interaction length $l$ determine the coupling ratio.
+Contrary to the direct coupling in free-ray beam splitters, a fiber or waveguide coupler uses indirect coupling through the evanescent field.
+The evanescent field of an electromagnetic field does not propagate but decays exponentially.
+We often observe evanescent fields at the boundary of waveguiding structures.
+One must bring the waveguides in proximity for the evanescent fields of two waveguided modes to couple efficiently.
+The range where the waveguides are close is the interaction length $l$, see \Cref{fig:waveguide_coupler}.
+Over the interaction length, the two energy of the field modes oscillates back and forth between the two waveguides.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/waveguide-coupler}
-    \caption{Waveguide coupler with interaction length $l$.}\label{fig:waveguide_coupler}
+    \caption{Waveguide coupler with input quantum modes $\hat{a}_1(\omega)$ and $\hat{a}_2(\omega)$ coupled evanescent over an interaction length $l$ yielding the output quantum modes $\hat{a}_1^\prime(\omega)$ and $\hat{a}_2^\prime(\omega)$.}\label{fig:waveguide_coupler}
 \end{figure}
-The coupled modes of a fiber and waveguide coupler are conceptional similar to weakly coupled harmonic oscillators.
-Haroché~\cite[p.~131]{Haroche2006} successfully used the weakly coupled harmonic oscillators model to derive the quantum beam splitter transform from interaction theory, which we generalize to a mode continuum.
+The weak coupling through evanescent fields is conceptionally similar to weakly coupled harmonic oscillators.
+Haroché~\cite[p.~131]{Haroche2006} successfully exploits the analogy to derive the quantum beam splitter transform from interaction theory.
+We generalize his approach for the mode continuum derived in the previous chapter.
 
-Let $\hat{a}_1(\omega)$ and $\hat{a}_2(\omega)$ be the annihilation operators of the first and second (waveguide) modes.
-The transitions of an excitation from the first to the second mode corresponds to an interaction term proportional to $\hat{a}_1(\omega)\hat{a}_2^\dagger(\omega)$ as an excitation in the first mode is annihilated and an excitation in the second mode is created.
-The same transition occurs in the opposite direction and we conclude that
+Let $\hat{a}_1(\omega)$ and $\hat{a}_2(\omega)$ be the annihilation operators of the first and second waveguide modes.
+The interaction Hamiltonian
 \begin{equation}
 	\hat{H}_\text{int}
 	=
@@ -134,14 +136,16 @@ The same transition occurs in the opposite direction and we conclude that
 		\hat{a}_1^\dagger(\omega)
 		\hat{a}_2(\omega)
 	\right\}
+	,
 \end{equation}
-where $g(\omega)\in\mathbb{C}$ is a complex-valued coupling parameter encoding the material and geometry of the coupler.
-As the interaction Hamiltonian is time-independent, the time-evolution operator is exact with the first term in the Magnus expansion
+wherein $g(\omega)$ is a complex-valued coupling parameter encoding the material and geometry of the coupler, describes the transitions of excitations between the first and the second mode.
+As the interaction Hamiltonian is time-independent, all but the first term in the Magnus expansion vanish, and the time evolution operator is
 \begin{equation}
-	\hat{U}_\text{int}(T)
+	\hat{U}_\text{int}
 	=
 	\exp\left\{
-		iT
+		i
+		\int\dd{t^\prime}
 		\int\frac{\dd{\omega}}{2\pi}
 		\left\{
 			g(\omega)
@@ -154,7 +158,184 @@ As the interaction Hamiltonian is time-independent, the time-evolution operator 
 		\right\}
 	\right\}
 \end{equation}
-where $T\approx l/v_g$ is the interaction time approximately equal to the interaction length $l$ divided by the group velocity $v_g$ of the center frequency.
+wherein the time integration is over the duration of the interaction.
+Assuming the interaction to be limited to the interaction length $l$, the interaction duration $T$ is approximately equal to the interaction length $l$ divided by the group velocity $v_g(\omega)$.
+The group velocity depends on the materials of the coupler, suggesting redefining the coupling parameter to include the different interaction durations, i.e.,
+\begin{equation}
+	\hat{U}_\text{int}
+	=
+	\exp\left\{
+		i
+		\int\frac{\dd{\omega}}{2\pi}
+		\theta(\omega)
+		\left\{
+			\hat{a}_1(\omega)
+			\hat{a}_2^\dagger(\omega)
+			e^{-i\varphi(\omega)}
+			+
+			\hat{a}_1^\dagger(\omega)
+			\hat{a}_2(\omega)
+			e^{+i\varphi(\omega)}
+		\right\}
+	\right\}
+\end{equation}
+where the real-valued couplings $\theta(\omega)$ and $\varphi(\omega)$ implicitly depend on the materials and geometry of the waveguide coupler and the interaction length $l$.
+We define the generator
+\begin{equation}
+	\hat{G}
+	=
+	-i
+	\int\frac{\dd{\omega}}{2\pi}
+	\theta(\omega)
+	\left\{
+		\hat{a}_1(\omega)
+		\hat{a}_2^\dagger(\omega)
+		e^{-i\varphi(\omega)}
+		+
+		\hat{a}_1^\dagger(\omega)
+		\hat{a}_2(\omega)
+		e^{+i\varphi(\omega)}
+	\right\}
+\end{equation}
+and calculate the commutator of the generator with the annihilation operators
+\begin{align}
+	\comm{\hat{G}}{\hat{a}_1(\omega)}
+	&=
+	i
+	\theta(\omega)
+	\hat{a}_2(\omega)
+	e^{+i\varphi(\omega)}
+	\\
+	\comm{\hat{G}}{\hat{a}_2(\omega)}
+	&=
+	i
+	\theta(\omega)
+	\hat{a}_1(\omega)
+	e^{-i\varphi(\omega)}
+	.
+\end{align}
+The transformed annihilation operators turn out to be\footnote{Strictly speaking, the annihilation operators in the interaction picture have an additional factor $e^{-i\omega t}$.},
+\begin{equation}
+	\begin{split}
+		\hat{a}_1^\prime(\omega)
+		&=
+		\hat{U}_\text{int}^\dagger
+		\hat{a}_1(\omega)
+		\hat{U}_\text{int}
+		\\
+		&=
+		\hat{a}_1
+		+
+		\comm{\hat{G}}{\hat{a}_1}
+		+
+		\frac{1}{2!}
+		\comm{\hat{G}}{\comm{\hat{G}}{\hat{a}_1}}
+		+
+		\frac{1}{3!}
+		\comm{\hat{G}}{\comm{\hat{G}}{\comm{\hat{G}}{\hat{a}_1}}}
+		+
+		\dots
+		\\
+		&=
+		\hat{a}_1(\omega)
+		+
+		i\theta(\omega)
+		\hat{a}_2(\omega)
+		e^{+i\varphi(\omega)}
+		+
+		\frac{1}{2!}
+		\left(i\theta(\omega)\right)^2
+		\hat{a}_1(\omega)
+		+
+		\frac{1}{3!}
+		\left(i\theta(\omega)\right)^3
+		\hat{a}_2(\omega)
+		e^{+i\varphi(\omega)}
+		+
+		\dots
+		\\
+		&=
+		\cos\theta(\omega)
+		\hat{a}_1(\omega)
+		+
+		i\sin\theta(\omega)
+		\hat{a}_2(\omega)
+		e^{+i\varphi(\omega)}
+	\end{split}
+\end{equation}
+and
+\begin{equation}
+	\begin{split}
+		\hat{a}_2^\prime(\omega)
+		&=
+		\hat{U}_\text{int}^\dagger
+		\hat{a}_2(\omega)
+		\hat{U}_\text{int}
+		\\
+		&=
+		\hat{a}_2
+		+
+		\comm{\hat{G}}{\hat{a}_2}
+		+
+		\frac{1}{2!}
+		\comm{\hat{G}}{\comm{\hat{G}}{\hat{a}_2}}
+		+
+		\frac{1}{3!}
+		\comm{\hat{G}}{\comm{\hat{G}}{\comm{\hat{G}}{\hat{a}_2}}}
+		+
+		\dots
+		\\
+		&=
+		\hat{a}_2(\omega)
+		+
+		i\theta(\omega)
+		\hat{a}_1(\omega)
+		e^{-i\varphi(\omega)}
+		+
+		\frac{1}{2!}
+		\left(i\theta(\omega)\right)^2
+		\hat{a}_2(\omega)
+		+
+		\frac{1}{3!}
+		\left(i\theta(\omega)\right)^3
+		\hat{a}_1(\omega)
+		e^{-i\varphi(\omega)}
+		+
+		\dots
+		\\
+		&=
+		\cos\theta(\omega)
+		\hat{a}_2(\omega)
+		+
+		i\sin\theta(\omega)
+		\hat{a}_1(\omega)
+		e^{-i\varphi(\omega)}
+	\end{split}
+	,
+\end{equation}
+where we used a kind of \gls{bch} formula, in agreement with Ref.~\cite[p.~131]{Haroche2006}.
+In matrix notation, the transformation of the annihilation operators reads
+\begin{equation}
+	\begin{pmatrix}
+        \hat{a}_1^\prime(\omega) \\
+        \hat{a}_2^\prime(\omega)
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \cos\theta(\omega) & i\sin\theta(\omega)e^{+i\varphi} 
+        \\
+        i\sin\theta(\omega)e^{-i\varphi} & \cos\theta(\omega)
+    \end{pmatrix}
+    \begin{pmatrix}
+        \hat{a}_1(\omega) \\
+        \hat{a}_2(\omega)
+    \end{pmatrix}
+    \label{eq:waveguide_coupler_transformation}
+    .
+\end{equation}
+Comparison of the annihilation operator transformation for the waveguide coupler, \cref{eq:waveguide_coupler_transformation}, and the beam splitter, \cref{eq:beam_splitter_annihilation}, our waveguide result implies lossless coupling.
+Lossless coupling is essential for the transformed annihilation operators to satisfy the \gls{ccr}~\cite[p.~38]{Gerry2005}.
+Modeling an absorbing coupler requires four quantum modes, two annihilation operators for the field, and two for a bosonic reservoir, see Ref.~\cite[p.~210]{Vogel2006} for details.
 
 \subsection{Unitary matrix and operator transformation}
 

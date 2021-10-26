@@ -4,10 +4,10 @@
 
 \begin{document}
 	\begin{tikzpicture}[
-		waveguide/.style={line width=1mm, rounded corners=1.5},
+		waveguide/.style={line width=1mm, rounded corners=3},
 	]
-		\draw[waveguide] (0,0) -- ++(1,0) -- ++(-45:1.5) node (a) {} -- ++(5,0) node (b) {} -- ++(45:1.5) -- ++(1,0);
-		\draw[waveguide] (0,-2.4) -- ++(1,0) -- ++(45:1.5) -- ++(5,0) -- ++(-45:1.5) -- ++(1,0);
+		\draw[waveguide] (0,0) node[above right] {$\hat{a}_1(\omega)$} -- ++(1,0) -- ++(-45:1.5) node (a) {} -- ++(5,0) node (b) {} -- ++(45:1.5) -- ++(1,0) node[above left] {$\hat{a}_1^\prime(\omega)$};
+		\draw[waveguide] (0,-2.4) node[above right] {$\hat{a}_2(\omega)$} -- ++(1,0) -- ++(45:1.5) -- ++(5,0) -- ++(-45:1.5) -- ++(1,0) node[above left] {$\hat{a}_1^\prime(\omega)$};
 		
 		\draw[Bar-Bar] (a) ++(0,0.4) node (c) {} -- (c-|b) node[midway, above] {$l$};
 	\end{tikzpicture}
