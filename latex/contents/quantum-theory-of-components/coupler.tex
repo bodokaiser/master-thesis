@@ -310,8 +310,8 @@ and
 		i\sin\theta(\omega)
 		\hat{a}_1(\omega)
 		e^{-i\varphi(\omega)}
+		,
 	\end{split}
-	,
 \end{equation}
 where we used a kind of \gls{bch} formula, in agreement with Ref.~\cite[p.~131]{Haroche2006}.
 In matrix notation, the transformation of the annihilation operators reads
@@ -337,12 +337,15 @@ Comparison of the annihilation operator transformation for the waveguide coupler
 Lossless coupling is essential for the transformed annihilation operators to satisfy the \gls{ccr}~\cite[p.~38]{Gerry2005}.
 Modeling an absorbing coupler requires four quantum modes, two annihilation operators for the field, and two for a bosonic reservoir, see Ref.~\cite[p.~210]{Vogel2006} for details.
 
-\subsection{Unitary matrix and operator transformation}
+\subsection{Unitary matrix and operator transform}
 
-For a general lossless \gls{mzm}, we propose the generic unitary matrix transform~\cite[p.~95]{Leonhardt2010}
+The transform of the annihilation operators of the free-ray beam splitter and the fiber or waveguide coupler, \cref{eq:waveguide_coupler_transformation,eq:beam_splitter_annihilation}, have in common that they are two-dimensional unitary matrices.
+The optical coupler transform being linear and unitary is not surprising since the coupler is a linear passive device, which we further assumed to be lossless.
+Going a step further, we can take the linear unitary transform as the defining property of an ideal coupler.
+Pursuing the idea further, we start with the unitary matrix decomposition~\cite[p.~95]{Leonhardt2010}
 \begin{equation}
 	\begin{split}
-		U_\text{MZM}
+		U
 		&=
 		e^{i\Lambda/2}
 		\begin{pmatrix}
@@ -365,49 +368,173 @@ For a general lossless \gls{mzm}, we propose the generic unitary matrix transfor
 			0 & e^{-i\Psi/2}
 		\end{pmatrix}
 	\end{split}
-	\label{eq:mzm_matrix}
+	\label{eq:unitary_matrix}
 \end{equation}
-wherein the global phase $\Theta$ and the rotation angle $\Lambda$ are time-dependent but $\Phi,\Psi$ are constants.
-We obtain the matrix transform of the symmetric free-space $U_\text{MZI}$ after identification of $\Theta$ with the differential-mode phase, $\Lambda+\pi$ with the common-mode phase, and choosing $\Psi=0=\Phi$.
-One advantage of the proposed decomposition in \cref{eq:mzm_matrix} is the one-to-one correspondence between the unitary operator~\cite[p.~99]{Leonhardt2010}
-\begin{equation}
-	\hat{U}_\text{MZM}(\Lambda,\Phi,\Psi,\Theta)
-	=
-	e^{i\Lambda\hat{L}_t}
-	e^{i\Phi\hat{L}_z}
-	e^{i\Theta\hat{L}_y}
-	e^{i\Psi\hat{L}_z}
-	\label{eq:mzm_operator}
-\end{equation}
-wherein $\hat{L}_j$ denote the Jordan-Schwinger operators~\cite[p.~97]{Leonhardt2010}
-\begin{equation}
-	\hat{L}_j
-	=
+wherein we suppress frequency-dependence of the real parameters, $\Lambda(\omega),\Theta(\omega),\Psi(\omega),\Phi(\omega)$, for clarity.
+The matrix decomposition, \cref{eq:unitary_matrix}, has an equivalent decomposition in terms of operators, the Jordan-Schwinger operators.
+The Jordan-Schwinger operators are defined~\cite[p.~97]{Leonhardt2010}
+\begin{align}
+	\hat{L}_t
+	&=
 	\frac{1}{2}
 	\begin{pmatrix}
-		\hat{a}_1^\dagger, \hat{a}_2^\dagger
+		\hat{a}_1^\dagger \\
+		\hat{a}_2^\dagger
 	\end{pmatrix}
-	\sigma_j
+	\mathbb{1}_2
 	\begin{pmatrix}
 		\hat{a}_1 \\
 		\hat{a}_2
 	\end{pmatrix}
 	=
 	\frac{1}{2}
-	\hat{\vb{a}}^\dagger
-	\sigma_j
-	\hat{\vb{a}}
-\end{equation}
-with $\sigma_j$ being the two-dimensional Pauli matrices and $\sigma_0$ being the identity matrix, and the unitary matrix transform
-\begin{equation}
-	U_\text{MZM}
-	\hat{\vb{a}}
+	\left(
+		\hat{a}_1^\dagger
+		\hat{a}_1
+		+
+		\hat{a}_2^\dagger
+		\hat{a}_2
+	\right)
+	\\
+	\hat{L}_x
+	&=
+	\frac{1}{2}
+	\begin{pmatrix}
+		\hat{a}_1^\dagger \\
+		\hat{a}_2^\dagger
+	\end{pmatrix}
+	\sigma_x
+	\begin{pmatrix}
+		\hat{a}_1 \\
+		\hat{a}_2
+	\end{pmatrix}
 	=
-	\hat{U}_\text{MZM}^\dagger
-	\hat{\vb{a}}
-	\hat{U}_\text{MZM}
+	\frac{1}{2}
+	\left(
+		\hat{a}_1^\dagger
+		\hat{a}_2
+		+
+		\hat{a}_2^\dagger
+		\hat{a}_1
+	\right)
+	\\
+	\hat{L}_y
+	&=
+	\frac{1}{2}
+	\begin{pmatrix}
+		\hat{a}_1^\dagger \\
+		\hat{a}_2^\dagger
+	\end{pmatrix}
+	\sigma_y
+	\begin{pmatrix}
+		\hat{a}_1 \\
+		\hat{a}_2
+	\end{pmatrix}
+	=
+	\frac{i}{2}
+	\left(
+		\hat{a}_2^\dagger
+		\hat{a}_1
+		-
+		\hat{a}_1^\dagger
+		\hat{a}_2
+	\right)
+	\\
+	\hat{L}_z
+	&=
+	\frac{1}{2}
+	\begin{pmatrix}
+		\hat{a}_1^\dagger \\
+		\hat{a}_2^\dagger
+	\end{pmatrix}
+	\sigma_z
+	\begin{pmatrix}
+		\hat{a}_1 \\
+		\hat{a}_2
+	\end{pmatrix}
+	=
+	\frac{1}{2}
+	\left(
+		\hat{a}_1^\dagger
+		\hat{a}_1
+		-
+		\hat{a}_2^\dagger
+		\hat{a}_2
+	\right)
+\end{align}
+where $\sigma_1,\sigma_2,\sigma_3$ denote the two-dimensional Pauli matrices.
+The Jordan-Schwinger operators satisfy the angular-momentum commutation algebra~\cite[p.~97]{Leonhardt2010}
+\begin{align}
+	\comm{\hat{L}_i}{\hat{L}_j}
+	&=
+	i\varepsilon_{ijk}\hat{L}^k
+	&
+	\comm{\hat{L}_t}{\hat{L}_i}
+	&=
+	0
+	.
+\end{align}
+The unitary operator
+\begin{equation}
+	\hat{U}
+	=
+	e^{i\Lambda\hat{L}_t}
+	e^{i\Phi\hat{L}_z}
+	e^{i\Theta\hat{L}_y}
+	e^{i\Psi\hat{L}_z}
+	\label{eq:unitary_operator}
+\end{equation}
+relates the annihilation operators to the matrix transform, \cref{eq:unitary_matrix}, via~\cite[p.~99]{Leonhardt2010}
+\begin{equation}
+	U
+	\begin{pmatrix}
+		\hat{a}_1 \\
+		\hat{a}_2
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\hat{a}_1^\prime \\
+		\hat{a}_2^\prime
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\hat{U}^\dagger\hat{a}_1\hat{U} \\
+		\hat{U}^\dagger\hat{a}_2\hat{U}
+	\end{pmatrix}
+	=
+	\hat{U}^\dagger
+	\begin{pmatrix}
+		\hat{a}_1 \\
+		\hat{a}_2
+	\end{pmatrix}
+	\hat{U}
 	.
 \end{equation}
+The inverse of the unitary operator, \cref{eq:unitary_matrix}, which is convenient when transforming the creation operators, can be rewritten
+\begin{equation}
+	\begin{split}
+		\hat{U}(\Lambda,\Phi,\Theta,\Psi)^\dagger
+		&=
+		e^{-i\Psi\hat{L}_z}
+		e^{-i\Theta\hat{L}_y}
+		e^{-i\Phi\hat{L}_z}
+		e^{-i\Lambda\hat{L}_t}
+		\\
+		&=
+		e^{-i\Lambda\hat{L}_t}
+		e^{-i\Psi\hat{L}_z}
+		e^{-i\Theta\hat{L}_y}
+		e^{-i\Phi\hat{L}_z}
+		\\
+		&=
+		\hat{U}(-\Lambda,-\Psi,-\Theta,-\Phi)
+		,
+	\end{split}
+	\label{eq:unitary_operator_inverse}
+\end{equation}
+where we used that $\hat{L}_t$ commutes with the other Jordan-Schwinger operators.
+
+\subsection{Coherent input states}
 
 The \gls{mzm} produces highly entangled output states for (displaced) number states, see, for instance, Ref.~\cite{Windhager2011}.
 In the transmitter setting, we are exclusively interested in coherent input states, contrary to the receiver, where an attacker could have sent non-coherent states.
@@ -569,8 +696,6 @@ The transformed annihilation operators turn out to be
 	\end{split}
 \end{equation}
 
-\subsection{Input-output relations for coherent states}
-
 Using the transformed operators, we find the transformed displacement operator to be~\cite[p.~210]{Vogel2006}
 \begin{equation}
 	\hat{D}^\prime(\vb{\alpha})
@@ -662,3 +787,5 @@ and thus
 i.e., the partial trace over a tensor product of coherent states is equivalent to the projection of the non-traced out states.
 This is a special property of the coherent states.
 In general, the partial trace over a tensor product of (entangled) quantum states returns a mixed state.
+
+\subsection{Application as spectral filter}
