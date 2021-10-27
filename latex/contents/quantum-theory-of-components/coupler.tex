@@ -321,6 +321,12 @@ In matrix notation, the transformation of the annihilation operators reads
         \hat{a}_2^\prime(\omega)
     \end{pmatrix}
     =
+    U(\omega)
+    \begin{pmatrix}
+        \hat{a}_1(\omega) \\
+        \hat{a}_2(\omega)
+    \end{pmatrix}
+    =
     \begin{pmatrix}
         \cos\theta(\omega) & i\sin\theta(\omega)e^{+i\varphi} 
         \\
@@ -339,127 +345,156 @@ Modeling an absorbing coupler requires four quantum modes, two annihilation oper
 
 \subsection{Unitary matrix and operator transform}
 
-The transform of the annihilation operators of the free-ray beam splitter and the fiber or waveguide coupler, \cref{eq:waveguide_coupler_transformation,eq:beam_splitter_annihilation}, have in common that they are two-dimensional unitary matrices.
+The derived transforms of the free-ray beam splitter and the fiber or waveguide coupler, \cref{eq:waveguide_coupler_transformation,eq:beam_splitter_annihilation}, have in common that they are two-dimensional unitary matrices, which is not surprising since a unitary matrix transform conserves energy.
 The optical coupler transform being linear and unitary is not surprising since the coupler is a linear passive device, which we further assumed to be lossless.
-Going a step further, we can take the linear unitary transform as the defining property of an ideal coupler.
-Pursuing the idea further, we start with the unitary matrix decomposition~\cite[p.~95]{Leonhardt2010}
+It presents itself to take the unitary matrix transform as the defining property of an ideal optical coupler.
+
+A general decomposition of a two-dimensional unitary matrix is the product~\cite[p.~95]{Leonhardt2010}
 \begin{equation}
-	\begin{split}
-		U
-		&=
-		e^{i\Lambda/2}
-		\begin{pmatrix}
-			\cos(\Theta/2)e^{i(+\Phi+\Psi)/2} & \sin(\Theta/2)e^{i(+\Phi-\Psi)/2} \\
-			-\sin(\Theta/2)e^{+(-\Phi+\Psi)/2} & \cos(\Theta/2)e^{i(-\Phi-\Psi)/2}
-		\end{pmatrix}
-		\\
-		&=
-		e^{i\Lambda/2}
-		\begin{pmatrix}
-			e^{+i\Phi/2} & 0 \\
-			0 & e^{-i\Phi/2}
-		\end{pmatrix}
-		\begin{pmatrix}
-			\cos(\Theta/2) & \sin(\Theta/2) \\
-			-\sin(\Theta/2) & \cos(\Theta/2)
-		\end{pmatrix}
-		\begin{pmatrix}
-			e^{+i\Psi/2} & 0 \\
-			0 & e^{-i\Psi/2}
-		\end{pmatrix}
-	\end{split}
+	U(\omega)
+	=
+	e^{i\Lambda/2}
+	\begin{pmatrix}
+		e^{+i\Phi/2} & 0 \\
+		0 & e^{-i\Phi/2}
+	\end{pmatrix}
+	\begin{pmatrix}
+		\cos(\Theta/2) & \sin(\Theta/2) \\
+		-\sin(\Theta/2) & \cos(\Theta/2)
+	\end{pmatrix}
+	\begin{pmatrix}
+		e^{+i\Psi/2} & 0 \\
+		0 & e^{-i\Psi/2}
+	\end{pmatrix}
 	\label{eq:unitary_matrix}
 \end{equation}
-wherein we suppress frequency-dependence of the real parameters, $\Lambda(\omega),\Theta(\omega),\Psi(\omega),\Phi(\omega)$, for clarity.
-The matrix decomposition, \cref{eq:unitary_matrix}, has an equivalent decomposition in terms of operators, the Jordan-Schwinger operators.
-The Jordan-Schwinger operators are defined~\cite[p.~97]{Leonhardt2010}
+wherein we suppress the frequency-dependence of the real parameters, $\Lambda(\omega),\Theta(\omega),\Psi(\omega),\Phi(\omega)$, for clarity.
+We can read the matrix decomposition, \cref{eq:unitary_matrix}, as first adding a global and relative phase shift, $\Lambda/2,\pm\Psi/2$, to the incident fields, rotating (mixing) the field amplitudes by the angle $\Theta/2$, and adding another relative phase shift of $\pm\Psi/2$ to the outgoing fields.
+
+While the unitary matrix transforms the annihilation operators and the field amplitudes, it cannot transform a generic quantum state.
+In the previous subsection, we found a time evolution operator $\hat{U}$ from linear mode coupling theory, which related to the unitary matrix transform $U$ via
+\begin{equation}
+	U(\omega)
+	\begin{pmatrix}
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\hat{a}_1^\prime(\omega) \\
+		\hat{a}_2^\prime(\omega)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\hat{U}^\dagger\hat{a}_1(\omega)\hat{U} \\
+		\hat{U}^\dagger\hat{a}_2(\omega)\hat{U}
+	\end{pmatrix}
+	=
+	\hat{U}^\dagger
+	\begin{pmatrix}
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
+	\end{pmatrix}
+	\hat{U}
+	\label{eq:unitary_matrix_operator}
+	.
+\end{equation}
+The unitary operators corresponding to the unitary matrix decomposition in \cref{eq:unitary_matrix} are the Jordan-Schwinger operators\footnote{Generalized to a frequency continuum from Ref.~\cite[p.~97]{Leonhardt2010}.}
 \begin{align}
 	\hat{L}_t
 	&=
 	\frac{1}{2}
+	\int\frac{\dd{\omega}}{2\pi}
 	\begin{pmatrix}
-		\hat{a}_1^\dagger \\
-		\hat{a}_2^\dagger
-	\end{pmatrix}
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
+	\end{pmatrix}^\dagger
 	\mathbb{1}_2
 	\begin{pmatrix}
-		\hat{a}_1 \\
-		\hat{a}_2
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
 	\end{pmatrix}
 	=
 	\frac{1}{2}
+	\int\frac{\dd{\omega}}{2\pi}
 	\left(
-		\hat{a}_1^\dagger
-		\hat{a}_1
+		\hat{a}_1^\dagger(\omega)
+		\hat{a}_1(\omega)
 		+
-		\hat{a}_2^\dagger
-		\hat{a}_2
+		\hat{a}_2^\dagger(\omega)
+		\hat{a}_2(\omega)
 	\right)
 	\\
 	\hat{L}_x
 	&=
 	\frac{1}{2}
+	\int\frac{\dd{\omega}}{2\pi}
 	\begin{pmatrix}
-		\hat{a}_1^\dagger \\
-		\hat{a}_2^\dagger
-	\end{pmatrix}
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
+	\end{pmatrix}^\dagger
 	\sigma_x
 	\begin{pmatrix}
-		\hat{a}_1 \\
-		\hat{a}_2
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
 	\end{pmatrix}
 	=
 	\frac{1}{2}
+	\int\frac{\dd{\omega}}{2\pi}
 	\left(
-		\hat{a}_1^\dagger
-		\hat{a}_2
+		\hat{a}_1^\dagger(\omega)
+		\hat{a}_2(\omega)
 		+
-		\hat{a}_2^\dagger
-		\hat{a}_1
+		\hat{a}_2^\dagger(\omega)
+		\hat{a}_1(\omega)
 	\right)
 	\\
 	\hat{L}_y
 	&=
 	\frac{1}{2}
+	\int\frac{\dd{\omega}}{2\pi}
 	\begin{pmatrix}
-		\hat{a}_1^\dagger \\
-		\hat{a}_2^\dagger
-	\end{pmatrix}
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
+	\end{pmatrix}^\dagger
 	\sigma_y
 	\begin{pmatrix}
-		\hat{a}_1 \\
-		\hat{a}_2
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
 	\end{pmatrix}
 	=
 	\frac{i}{2}
+	\int\frac{\dd{\omega}}{2\pi}
 	\left(
-		\hat{a}_2^\dagger
-		\hat{a}_1
+		\hat{a}_2^\dagger(\omega)
+		\hat{a}_1(\omega)
 		-
-		\hat{a}_1^\dagger
-		\hat{a}_2
+		\hat{a}_1^\dagger(\omega)
+		\hat{a}_2(\omega)
 	\right)
 	\\
 	\hat{L}_z
 	&=
 	\frac{1}{2}
+	\int\frac{\dd{\omega}}{2\pi}
 	\begin{pmatrix}
-		\hat{a}_1^\dagger \\
-		\hat{a}_2^\dagger
-	\end{pmatrix}
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
+	\end{pmatrix}^\dagger
 	\sigma_z
 	\begin{pmatrix}
-		\hat{a}_1 \\
-		\hat{a}_2
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
 	\end{pmatrix}
 	=
 	\frac{1}{2}
+	\int\frac{\dd{\omega}}{2\pi}
 	\left(
-		\hat{a}_1^\dagger
-		\hat{a}_1
+		\hat{a}_1^\dagger(\omega)
+		\hat{a}_1(\omega)
 		-
-		\hat{a}_2^\dagger
-		\hat{a}_2
+		\hat{a}_2^\dagger(\omega)
+		\hat{a}_2(\omega)
 	\right)
 \end{align}
 where $\sigma_1,\sigma_2,\sigma_3$ denote the two-dimensional Pauli matrices.
@@ -472,9 +507,9 @@ The Jordan-Schwinger operators satisfy the angular-momentum commutation algebra~
 	\comm{\hat{L}_t}{\hat{L}_i}
 	&=
 	0
-	.
 \end{align}
-The unitary operator
+and act as generator for the individual components of the matrix decomposition in \cref{eq:unitary_matrix}.
+The generator of the unitary matrix, \cref{eq:unitary_matrix}, is
 \begin{equation}
 	\hat{U}
 	=
@@ -483,34 +518,9 @@ The unitary operator
 	e^{i\Theta\hat{L}_y}
 	e^{i\Psi\hat{L}_z}
 	\label{eq:unitary_operator}
-\end{equation}
-relates the annihilation operators to the matrix transform, \cref{eq:unitary_matrix}, via~\cite[p.~99]{Leonhardt2010}
-\begin{equation}
-	U
-	\begin{pmatrix}
-		\hat{a}_1 \\
-		\hat{a}_2
-	\end{pmatrix}
-	=
-	\begin{pmatrix}
-		\hat{a}_1^\prime \\
-		\hat{a}_2^\prime
-	\end{pmatrix}
-	=
-	\begin{pmatrix}
-		\hat{U}^\dagger\hat{a}_1\hat{U} \\
-		\hat{U}^\dagger\hat{a}_2\hat{U}
-	\end{pmatrix}
-	=
-	\hat{U}^\dagger
-	\begin{pmatrix}
-		\hat{a}_1 \\
-		\hat{a}_2
-	\end{pmatrix}
-	\hat{U}
 	.
 \end{equation}
-The inverse of the unitary operator, \cref{eq:unitary_matrix}, which is convenient when transforming the creation operators, can be rewritten
+The inverse of the unitary operator, \cref{eq:unitary_operator}, can be written
 \begin{equation}
 	\begin{split}
 		\hat{U}(\Lambda,\Phi,\Theta,\Psi)^\dagger
@@ -532,46 +542,35 @@ The inverse of the unitary operator, \cref{eq:unitary_matrix}, which is convenie
 	\end{split}
 	\label{eq:unitary_operator_inverse}
 \end{equation}
-where we used that $\hat{L}_t$ commutes with the other Jordan-Schwinger operators.
-
-\subsection{Coherent input states}
-
-Let us consider how coherent input states transform under coupling.
-Let 
-\begin{align}
-	\ket{\vb{\alpha}(t)}
-	&=
-	\ket{\alpha_1(t),\alpha_2(t)}
-	&
-	\vb{\alpha}(t)
-	=
-	\begin{pmatrix}
-		\alpha_1(t),
-		\alpha_2(t)
-	\end{pmatrix}
-	\in
-	\mathbb{C}^{2\times1}
-\end{align}
-denote the tensor product of two coherent states.
-Let us further adopt the matrix notation for the annihilation operators used in Ref.~\cite[p.~206]{Vogel2006} and write
-\begin{align}
-	\vu{a}(\omega)
-	&=
+where we used that $\hat{L}_t$ commutes with the other Jordan-Schwinger operators, and can be used to find the reversed transform,
+\begin{equation}
+	\hat{U}
 	\begin{pmatrix}
 		\hat{a}_1(\omega) \\
 		\hat{a}_2(\omega)
 	\end{pmatrix}
-	&
-	\vu{a}^\dagger(\omega)
-	&=
+	\hat{U}^\dagger
+	=
+	U(\omega)^\dagger
 	\begin{pmatrix}
-		\hat{a}_1^\dagger(\omega),
-		\hat{a}_2^\dagger(\omega)
+		\hat{a}_1(\omega) \\
+		\hat{a}_2(\omega)
 	\end{pmatrix}
+	\label{eq:unitary_matrix_operator_reverse}
+	,
+\end{equation}
+ of the annihilation operators.
+
+\subsection{Coherent input states}
+
+Let us now consider the action of the ideal coupler on the tensor product of coherent input states\footnote{Other quantum states typically produce entangled output states, see, for instance, Ref.~\cite{Windhager2011}, which is not of interest here.}
+\begin{equation}
+	\ket{\vb{\alpha}(t)}
+	=
+	\ket{\alpha_1(t),\alpha_2(t)}
 	.
-\end{align}
-The action of the coupling on a quantum state is equivalent to having the unitary (evolution) operator act on the quantum state.
-For the coherent input state, we have
+\end{equation}
+The output states are given by applying the unitary evolution operator $\hat{U}$, e.g., \cref{eq:unitary_operator}, onto the input state
 \begin{equation}
 	\hat{U}
 	\ket{\vb{\alpha}(t)}
@@ -580,18 +579,16 @@ For the coherent input state, we have
 	\hat{D}\left[\vb{\alpha}(t)\right]
 	\hat{U}^\dagger
 	\hat{U}
-	\ket{0}
+	\ket{0,0}
 	=
 	\hat{U}
 	\hat{D}\left[\vb{\alpha}(t)\right]
 	\hat{U}^\dagger
-	\ket{0}
-	=
-	\hat{D}^\prime\left[\vb{\alpha}(t)\right]
-	\ket{0}
+	\ket{\vb{0}}
+	,
 \end{equation}
-where we used the unitarity of the evolution operator to replace the identity, $\mathbb{1}=\hat{U}^\dagger\hat{U}$, and the invariance of the vacuum state.
-The transformed displacement operator reads
+wherein we inserted $\mathbb{1}=\hat{U}^\dagger\hat{U}$ in the second step and we used the invariance of the vacuum state in the third step.
+The transformed displacement operator reads\footnote{We adopt matrix notation as in Ref.~\cite[p.~206]{Vogel2006} to have our result independent of a particular choice of the unitary matrix.}
 \begin{equation}
 	\begin{split}
 		\hat{D}^\prime\left[\vb{\alpha}(t)\right]
@@ -604,27 +601,17 @@ The transformed displacement operator reads
 		\exp\left\{
 			\int\frac{\dd{\omega}}{2\pi}
 			\left\{
-				\alpha_1(\omega)
-				\hat{a}_1^\dagger(\omega,t)
-				+
-				\alpha_2(\omega)
-				e^{+i\omega t}
-				\hat{a}_2^\dagger(\omega,t)
-				-
-				\text{h.c.}
-			\right\}
-		\right\}
-		\hat{U}^\dagger
-		\\
-		&=
-		\hat{U}
-		\exp\left\{
-			\int\frac{\dd{\omega}}{2\pi}
-			\left\{
 				\vb{\alpha}(\omega)^\trans
-				\vu{a}^\dagger(\omega,t)
+				\begin{pmatrix}
+					\hat{a}_1^\dagger(\omega) \\
+					\hat{a}_2^\dagger(\omega)
+				\end{pmatrix}
 				-
-				\text{h.c.}
+				\vb{\alpha}(\omega)^\dagger
+				\begin{pmatrix}
+					\hat{a}_1(\omega) \\
+					\hat{a}_2(\omega)
+				\end{pmatrix}
 			\right\}
 		\right\}
 		\hat{U}^\dagger
@@ -633,30 +620,25 @@ The transformed displacement operator reads
 		\exp\left\{
 			\int\frac{\dd{\omega}}{2\pi}
 			\left\{
-				\vb{\alpha}(\omega)^\trans
+				\vb{\alpha}^\trans
 				\hat{U}
-				\hat{\vb{a}}^\dagger(\omega,t)
+				\begin{pmatrix}
+					\hat{a}_1^\dagger(\omega) \\
+					\hat{a}_2^\dagger(\omega)
+				\end{pmatrix}
 				\hat{U}^\dagger
 				-
-				\text{h.c.}
-			\right\}
-		\right\}
-		\\
-		&=
-		\exp\left\{
-			\int\frac{\dd{\omega}}{2\pi}
-			\left\{
-				\vb{\alpha}(\omega)^\trans
-				\left(
-					\hat{U}
-					\hat{\vb{a}}(\omega)
-					\hat{U}^\dagger
-				\right)^\dagger
-				-
-				\text{h.c.}
+				\vb{\alpha}^\dagger
+				\hat{U}
+				\begin{pmatrix}
+					\hat{a}_1(\omega) \\
+					\hat{a}_2(\omega)
+				\end{pmatrix}
+				\hat{U}^\dagger
 			\right\}
 		\right\}
 	\end{split}
+	\label{eq:displacement_operator_transformed}
 \end{equation}
 where we used the operator identity
 \begin{equation}
@@ -690,39 +672,74 @@ where we used the operator identity
 	=
 	e^{\hat{U}\hat{A}\hat{U}^\dagger}
 \end{equation}
-which follows from inserting $\hat{U}\hat{U}^\dagger=\mathbb{1}$ between the $\hat{A}$s.
-Using the inverse of the transform operator, \cref{eq:unitary_operator}, we find
+in the second step to move the unitary operators into the argument of the exponential.
+We already expressed the transformed annihilation operators in the second term of the exponential using the unitary matrix in \cref{eq:unitary_matrix_operator_reverse}.
+The transformed creation operators in the first term can be brought into a similar form, i.e.,
 \begin{equation}
 	\begin{split}
-		\hat{U}(\Lambda,\Phi,\Psi,\Theta)
-		\hat{\vb{a}}(\omega)
-		\hat{U}(\Lambda,\Phi,\Psi,\Theta)^\dagger
+		\hat{U}
+		\begin{pmatrix}
+			\hat{a}_1^\dagger(\omega) \\
+			\hat{a}_2^\dagger(\omega)
+		\end{pmatrix}
+		\hat{U}^\dagger
 		&=
-		\hat{U}(-\Lambda,-\Psi,-\Phi,-\Theta)^\dagger
-		\hat{\vb{a}}(\omega)
-		\hat{U}(-\Lambda,-\Psi,-\Phi,-\Theta)
+		\begin{pmatrix}
+			\left[
+				\hat{U}
+				\hat{a}_1(\omega)
+				\hat{U}^\dagger
+			\right]^\dagger \\
+			\left[
+				\hat{U}
+				\hat{a}_2(\omega)
+				\hat{U}^\dagger
+			\right]^\dagger
+		\end{pmatrix}
+		=
+		\left[
+			\begin{pmatrix}
+				\hat{U}
+				\hat{a}_1(\omega)
+				\hat{U}^\dagger
+				\\
+				\hat{U}
+				\hat{a}_2(\omega)
+				\hat{U}^\dagger
+			\end{pmatrix}^\dagger
+		\right]^\trans
+		=
+		\left[
+			\left(
+				U(\omega)
+				\begin{pmatrix}
+					\hat{a}_1(\omega)
+					\\
+					\hat{a}_2(\omega)
+				\end{pmatrix}
+			\right)^\dagger
+		\right]^\trans		
 		\\
 		&=
-		U(-\Lambda,-\Psi,-\Phi,-\Theta)
-		\hat{\vb{a}}(\omega)
-		\\
-		&=
-		U(\Lambda,\Phi,\Psi,\Theta)^\dagger
-		\hat{\vb{a}}(\omega)
-		,
+		\left[
+			\begin{pmatrix}
+				\hat{a}_1(\omega)
+				\\
+				\hat{a}_2(\omega)
+			\end{pmatrix}^\dagger
+			U(\omega)
+		\right]^\trans
+		=
+		U(\omega)^\trans
+		\begin{pmatrix}
+			\hat{a}_1^\dagger(\omega)
+			\\
+			\hat{a}_2^\dagger(\omega)
+		\end{pmatrix}
 	\end{split}
-\end{equation}
-or in short notation omitting the angle arguments
-\begin{equation}
-	\hat{U}
-	\hat{\vb{a}}(\omega)
-	\hat{U}^\dagger
-	=
-	\hat{U}^\dagger
-	\vu{a}(\omega)
 	.
 \end{equation}
-Inserting the result back into the transformed displacement operator, we find
+Inserting the previous result back into the transformed displacement operator, \cref{eq:displacement_operator_transformed}, we factor the unitary matrix to the Fourier amplitudes
 \begin{equation}
 	\begin{split}
 		\hat{D}^\prime\left[\vb{\alpha}(t)\right]
@@ -731,12 +748,18 @@ Inserting the result back into the transformed displacement operator, we find
 			\int\frac{\dd{\omega}}{2\pi}
 			\left\{
 				\vb{\alpha}(\omega)^\trans
-				\left(
-					\hat{U}^\dagger
-					\vu{a}(\omega)
-				\right)^\dagger
+				U(\omega)^\trans
+				\begin{pmatrix}
+					\hat{a}_1^\dagger(\omega) \\
+					\hat{a}_2^\dagger(\omega)
+				\end{pmatrix}
 				-
-				\text{h.c.}
+				\vb{\alpha}(\omega)^\dagger
+				U(\omega)^\dagger
+				\begin{pmatrix}
+					\hat{a}_1(\omega) \\
+					\hat{a}_2(\omega)
+				\end{pmatrix}
 			\right\}
 		\right\}
 		\\
@@ -745,28 +768,67 @@ Inserting the result back into the transformed displacement operator, we find
 			\int\frac{\dd{\omega}}{2\pi}
 			\left\{
 				\left(
-					U
+					U(\omega)
 					\vb{\alpha}(\omega)
 				\right)^\trans
-				\vu{a}^\dagger(\omega)
+				\begin{pmatrix}
+					\hat{a}_1^\dagger(\omega) \\
+					\hat{a}_2^\dagger(\omega)
+				\end{pmatrix}
 				-
-				\text{h.c.}
+				\left(
+					U(\omega)
+					\vb{\alpha}(\omega)
+				\right)^\dagger
+				\begin{pmatrix}
+					\hat{a}_1(\omega) \\
+					\hat{a}_2(\omega)
+				\end{pmatrix}
 			\right\}
 		\right\}
 	\end{split}
 \end{equation}
-and we conclude the displacement operator to transform as 
-Using the transformed operators, we find the transformed displacement operator to be~\cite[p.~210]{Vogel2006}
-\begin{align}
-	\hat{D}^\prime\left[\vb{\alpha}(t)\right]
-	&=
-	\hat{D}\left[\vb{\alpha}^\prime(t)\right]
-	&
+in agreement with Ref.~\cite[p.~210]{Vogel2006}.
+The transformed Fourier amplitudes are given by the matrix product
+\begin{equation}
+	\vb{\alpha}^\prime(\omega)
+	=
+	U(\omega)
+	\vb{\alpha}(\omega)
+	.
+\end{equation}
+The product in frequency space implies a convolution in the time domain, i.e.,
+\begin{equation}
 	\vb{\alpha}^\prime(t)
-	&=
+	=
 	\left(U*\vb{\alpha}\right)(t)
+	=
+	\int\frac{\dd{\omega}}{2\pi}
+	U(\omega)
+	\vb{\alpha}(\omega)
+	e^{-i\omega t}
+	,
+\end{equation}
+and we conclude that a tensor product of coherent states transforms under an ideal optical coupler according to
+\begin{align}
+	\hat{U}
+	\ket{\alpha(t)}
+	&=
+	\ket{\left(U*\vb{\alpha}\right)(t)}	
+	&
+	U(t)
+	&=
+	\int\frac{\dd{\omega}}{2\pi}
+	U(\omega)e^{-i\omega t}
 \end{align}
-where $*$ denotes the convolution.
+wherein $U(\omega)$ is a two-dimensional unitary matrix characterizing the coupler.
+
+\subsection{Application as a splitter}
+
+\subsection{Application as spectral filter}
+
+The optical coupler being 
+
 We therefore find the \gls{mzm} to transform the coherent input states according to
 \begin{align}
 	\hat{U}_\text{MZM}
@@ -837,8 +899,3 @@ and thus
 i.e., the partial trace over a tensor product of coherent states is equivalent to the projection of the non-traced out states.
 This is a special property of the coherent states.
 In general, the partial trace over a tensor product of (entangled) quantum states returns a mixed state.
-
-The \gls{mzm} produces highly entangled output states for (displaced) number states, see, for instance, Ref.~\cite{Windhager2011}.
-In the transmitter setting, we are exclusively interested in coherent input states, contrary to the receiver, where an attacker could have sent non-coherent states.
-
-\subsection{Application as spectral filter}
