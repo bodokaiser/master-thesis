@@ -418,137 +418,155 @@ which corresponds to the convolution kernel
 
 \subsection{Amplitude (Mach-Zehnder)}
 
-The \gls{mzm} arranges two phase modulators to perform amplitude and phase modulation on an optical input field.
-Using two electrical-driven phase modulators, the \gls{mzm} performs amplitude and phase modulation on an optical input field.
-To begin with, we derive the quantum operator matrix transform from a specific implementation of the \gls{mzm}, the symmetric free-space \gls{mzi}.
-Then, we link the quantum operator matrix transform to more general unitary operators.
-Finally, we derive the quantum state transform for a coherent input state to the \gls{mzm}.
-
+The \gls{mzm} uses two phase modulators to perform amplitude modulation through interference.
+The \gls{mzm} enables electrically-driven amplitude modulation if the phase modulators are driven electrically, for instance, using the Pockels effect as discussed previously.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/mzi-symmetric}
-	\caption{Free-space setup of a symmetric \gls{mzm}: The input light mode $\hat{a}_1$ enters a first beam splitter BS1 from the left. A vacuum light mode $\hat{a}_2$ enters BS2 from the top. The transformed mode $\hat{a}_1^\prime$ and $\hat{a}_2^\prime$ exit BS1 to the right and the bottom. A first phase shifter and first mirror M1, right to BS1, add a relative phase of $\varphi_1+\pi$ from mode $\hat{a}_1$ to $\hat{a}_1^{\prime\prime}$. Below BS1, a second mirror M2 directs the light to a right second phase shifter, both adding a relative phase of $\varphi_2+\pi$ from mode $\hat{a}_2^\prime$ to $\hat{a}_2^{\prime\prime}$. A second beam splitter BS2 transforms the input modes $\hat{a}_1^{\prime\prime}$ and $\hat{a}_2^{\prime\prime}$ to the output modes $\hat{a}_1^{\prime\prime\prime}$ and $\hat{a}_2^{\prime\prime\prime}$.}\label{fig:mzi_symmetric}
+	\caption{Symmetric \gls{mzm} using free-space optics comprising two balanced \gls{bs}, BS1 and BS2, two mirrors, M1 and M2, and two phase shifters, PS1 and PS2. The input Fourier amplitudes, $\alpha_1(\omega)$ and $\alpha_2(\omega)$, enter BS1 and are split into an upper and lower path. The upper path receives a phase shift of $\phi_1(\omega)+\pi$ from PS1 and M1 before entering BS2 from the top. The lower path receives a phase shift of $\phi_2(\omega)+\pi$ from M2 and PS2 before entering BS2 from the left. BS2 recombines the phase-shifted upper and lower path into the output Fourier amplitudes $\alpha_1^\prime(\omega)$ and $\alpha_2^\prime(\omega)$.}\label{fig:mzi_symmetric}
 \end{figure}
-\Cref{fig:mzi_symmetric} shows a free-space optics setup of a symmetric \gls{mzi} with one signal input; the other input being in the vacuum state.
+\Cref{fig:mzi_symmetric} shows a free-space optics setup of a symmetric \gls{mzi}\footnote{The \gls{mzi} is a static, i.e., time-independent, \gls{mzm}.} with one signal input; the other input being in the vacuum state.
 The most crucial components of the \gls{mzi} are a splitter, a coupler, and two independent phase modulators.
 The splitter divides the input light into two branches.
-Each branch adds a relative phase shift using an independent phase modulator, i.e., $\phi_1$ and $\phi_2$.
+Each branch adds a relative phase shift, $\phi_1(\omega)$ and $\phi_2(\omega)$, using an independently  driven phase modulator, PS1 and PS2.
 The coupler recombines both branches into two outputs.
-For our free-space setup, two cubic beam splitters implement the splitter (BS1) and the coupler (BS2).
+Two cubic beam splitters implement the splitter (BS1) and the coupler (BS2) for our free-space setup.
 For additional beam alignment, our free-space setup utilizes two mirrors (M1 and M2).
 
-Finding the transformation of the annihilation operators at each stage of the \gls{mzi} is sufficient to find the quantum input-output relations.
-Idealizing the symmetric \gls{mzi}'s passive components as lossless allows relating the annihilation operators by two-dimensional unitary matrices.
-We label the input annihilation operators of the \gls{mzi} $\hat{a}_1,\hat{a}_2$ and the output annihilation operators $\hat{a}_1^{\prime\prime\prime},\hat{a}_2^{\prime\prime\prime}$.
-The annihilation operators after splitting and before (after) phase shifting are denoted by two (three) primes, i.e., $\hat{a}_1^{\prime},\hat{a}_2^{\prime}$ and $\hat{a}_1^{\prime\prime},\hat{a}_2^{\prime\prime}$.
-Going backwards through the transformations from the output to the input annihilation operators
+To find the effect of the \gls{mzm} on a coherent input state, we combine the actions of its individual optical components.
+Approximating each of the optical components an ideal optical coupler, for which we showed that the Fourier amplitudes transform according to a unitary matrix, lets us write the output Fourier amplitudes of the \gls{mzm} as the matrix product
 \begin{equation}
-	\vb{\hat{a}}^{\prime\prime\prime}
+	\vb{\alpha}^\prime(\omega)
 	=
-	U_\text{BS2}
-	\hat{\vb{a}}^{\prime\prime}
+	U_\text{MZM}(\omega)
+	\vb{\alpha}(\omega)
 	=
-	U_\text{BS2}
-	U_\text{PS}
-	\hat{\vb{a}}^{\prime}
-	=
-	U_\text{BS2}
-	U_\text{PS}
-	U_\text{BS1}
-	\hat{\vb{a}}
-	=
-	U_\text{MZI}
-	\vb{\hat{a}}
+	U_\text{BS2}(\omega)
+	U_\text{PS}(\omega)
+	U_\text{BS1}(\omega)
+	\vb{\alpha}(\omega)
+	\label{eq:mzm_fourier}
+	,
 \end{equation}
-we find the symmetric \gls{mzi}'s unitary matrix transform $U_\text{MZM}$ to be equal to the matrix product of the second beam splitter's, the phase shifts', and the first beam splitter's unitary matrix transform  $U_\text{BS2}U_\text{PS}U_\text{BS1}$.
-
-An ideal cubic beam splitter with a single dielectric layer has the unitary matrix transform~\cite[p.~139]{Gerry2005}
-\begin{equation}
+i.e., the matrix transform of the symmetric \gls{mzm}, $U_\text{MZM}$, is equal to the matrix product of the second beam splitter's, the phase shifts', and the first beam splitter's matrix transform, $U_\text{BS2}U_\text{PS}U_\text{BS1}$.
+Ignoring the relative phases between the individual components, we use the beam splitter transforms
+\begin{align}
 	U_\text{BS1}
-	=
+	&=
 	\frac{1}{\sqrt{2}}
 	\begin{pmatrix}
 		1 & i \\
 		i & 1
 	\end{pmatrix}
-\end{equation}
-where the off-diagonal elements of $U_\text{BS1}$, $i/\sqrt{2}$, account for the phase-shift due to the reflection at the diagonal of the cubic beam splitter.
-The matrix encoding the phase shifts from the phase modulation $\phi_1,\phi_2$ and the reflection at the mirrors M1 and M2, $\pi$ is
-\begin{equation}
-	U_\text{PS}
-	=
-	\begin{pmatrix}
-		ie^{i\phi_1} & 0 \\
-		0 & ie^{i\phi_2}
-	\end{pmatrix}
-\end{equation}
-For the second beam splitter, BS2, we again assume an ideal cubic beam splitter with a single dielectric layer.
-The corresponding matrix transform is
-\begin{equation}
+	&
 	U_\text{BS2}
-	=
+	&=
 	\frac{1}{\sqrt{2}}
 	\begin{pmatrix}
 		i & 1 \\
 		1 & i
-	\end{pmatrix}	
+	\end{pmatrix}
+	,
+\end{align}
+corresponding to a perfect cubic beam splitter with a single dielectric layer~\cite[p.~139]{Gerry2005}, where we exchanged the rows for consistency with the input labels.
+The matrix encoding the phase shifts from the phase modulation $\phi_1(\omega),\phi_2(\omega)$ and the reflection at the mirrors M1 and M2, $\pi$ is
+\begin{equation}
+	U_\text{PS}(\omega)
+	=
+	\begin{pmatrix}
+		ie^{i\phi_1(\omega)} & 0 \\
+		0 & ie^{i\phi_2(\omega)}
+	\end{pmatrix}
 \end{equation}
-where we exchanged the rows for consistency with the input labels.
-
 Performing the matrix multiplication and writing the exponentials as trigonometric functions, we find the matrix transform of the symmetric \gls{mzi} to be
 \begin{equation}
-	U_\text{MZI}
+	U_\text{MZM}(\omega)
 	=
 	-
 	\begin{pmatrix}
-		\cos\left(\frac{\phi_2-\phi_1}{2}\right) & \sin\left(\frac{\phi_2-\phi_1}{2}\right) \\
-		-\sin\left(\frac{\phi_2-\phi_1}{2}\right) & \cos\left(\frac{\phi_2-\phi_1}{2}\right)
+		\cos\left(\frac{\phi_2(\omega)-\phi_1(\omega)}{2}\right) & \sin\left(\frac{\phi_2(\omega)-\phi_1(\omega)}{2}\right) \\
+		-\sin\left(\frac{\phi_2(\omega)-\phi_1(\omega)}{2}\right) & \cos\left(\frac{\phi_2(\omega)-\phi_1(\omega)}{2}\right)
 	\end{pmatrix}
-	e^{i\frac{\phi_1+\phi_2}{2}}
+	e^{i\frac{\phi_1(\omega)+\phi_2(\omega)}{2}}
+	\label{eq:mzm_matrix1}
 	.
 \end{equation}
+Comparing \cref{eq:mzi_matrix1} with the unitary matrix decomposition \cref{eq:unitary_matrix} suggests that accounting for relative phase would not change the main characteristics significantly or could be compensated by offsetting $\phi_1(\omega)$ or $\phi_2(\omega)$.
 It appears useful to define the common-mode and differential-mode phases
 \begin{align}
-	\phi_+
+	\phi_+(\omega)
 	&=
-	\phi_2
-	+
-	\phi_1
+	\frac{\phi_2(\omega)+\phi_1(\omega)}{2}
 	&
-	\phi_-
+	\phi_-(\omega)
 	&=
-	\phi_2-\phi_1
+	\frac{\phi_2(\omega)-\phi_1(\omega)}{2}
 \end{align}
 for which the matrix transform simplifies to
 \begin{equation}
-	U_\text{MZI}
+	U_\text{MZM}(\omega)
 	=
 	-
 	\begin{pmatrix}
-		\cos(\phi_-/2) & \sin(\phi_-/2) \\
-		-\sin(\phi_-/2) & \cos(\phi_-/2)
+		\cos\phi_-(\omega) & \sin\phi_-(\omega) \\
+		-\sin\phi_-(\omega) & \cos\phi_-(\omega)
 	\end{pmatrix}
-	e^{i\phi_+/2}
+	e^{i\phi_+(\omega)}
+	\label{eq:mzm_matrix2}
 \end{equation}
-and we note that the common-mode phase $\phi_+$ adds a global phase shift of $\phi_+/2$ while the differential-mode phase $\phi_-$ changes the splitting ratios at the output.
+and we note that the common-mode phase $\phi_+(\omega)$ adds a global phase shift of $\phi_+(\omega)$ while the differential-mode phase $\phi_-(\omega)$ changes the splitting ratios at the output.
 
-We conclude that the the action of a static \gls{mzm} on a coherent input state $\ket{\alpha}$ is a amplitude and phase modulation, i.e.,
+For the first input being $\alpha_1(\omega)=\alpha(\omega)$ and the second input being in vacuum, i.e., $\alpha_2(\omega)=0$, we find the transformed Fourier amplitudes to be
 \begin{equation}
-	\ket{\alpha}
+	\begin{pmatrix}
+		\alpha_1^\prime(\omega) \\
+		\alpha_2^\prime(\omega)
+	\end{pmatrix}
+	=
+	\alpha_\prime(\omega)
+	\begin{pmatrix}
+		-\cos\phi_-(\omega) \\
+		+\sin\phi_-(\omega)
+	\end{pmatrix}
+	e^{i\phi_+(\omega)}
+	\label{eq:mzm_fourier_signal}
+\end{equation}
+where we used \cref{eq:mzm_matrix2} and \cref{eq:mzm_fourier}.
+Without restricting us to a particular parametrization, we can rewrite \cref{eq:mzm_fourier_signal}
+\begin{align}
+	\begin{pmatrix}
+		\alpha_1^\prime(\omega) \\
+		\alpha_2^\prime(\omega)
+	\end{pmatrix}
+	&=
+	\alpha_(\omega)
+	\begin{pmatrix}
+		c_1(\omega) \\
+		c_2(\omega)
+	\end{pmatrix}
+	,
+	&
+	\abs*{c_1(\omega)}^2
+	+
+	\abs*{c_2(\omega)}^2
+	&=
+	1
+	.
+\end{align}
+We are only interested in one of the outputs, the relevant output state then turns out to be
+\begin{equation}
+	\ket{\alpha(t)}
 	\to
-	\ket{\alpha^\prime}
+	\ket*{\alpha^\prime(t)}
 	=
 	\hat{P}_1
 	\hat{U}_\text{MZM}
-	\ket{\alpha,0}
+	\ket*{\alpha(t),0}
 	=
-	\ket{\alpha\cos(\Theta/2)e^{i\Lambda/2}}
-	\label{eq:mzm_transform}
+	\ket*{\left(h*\alpha\right)(t)}
+	\label{eq:mzm_state}
 \end{equation}
-where $\Theta$ is the differential- and $\Lambda$ is the common-mode phase applied to the Pockels modulator of the \gls{mzm}.
-We have effectively multiplied the amplitude of the initial coherent state with a real value $\cos(\Theta/2)$.
-
-Our result holds true for time-dependent modulation.
-From the discussion of the Pockels modulator we know that phase modulation can be written as a convolution in momentum space which is a linear operation and therefore compatible with our derivation of the \gls{mzm}.
+wherein $h=c_1$ characterizes the response function of the \gls{mzm}.
+Our result is therefore analog to our result for the spectral filter.
 
 \subsection{In-phase and quadrature}
