@@ -736,8 +736,8 @@ The transformed creation operators in the first term can be brought into a simil
 			\\
 			\hat{a}_2^\dagger(\omega)
 		\end{pmatrix}
+		.
 	\end{split}
-	.
 \end{equation}
 Inserting the previous result back into the transformed displacement operator, \cref{eq:displacement_operator_transformed}, we factor the unitary matrix to the Fourier amplitudes
 \begin{equation}
@@ -795,6 +795,7 @@ The transformed Fourier amplitudes are given by the matrix product
 	=
 	U(\omega)
 	\vb{\alpha}(\omega)
+	\label{eq:coupler_coherent_amplitudes_frequency}
 	.
 \end{equation}
 The product in frequency space implies a convolution in the time domain, i.e.,
@@ -807,6 +808,7 @@ The product in frequency space implies a convolution in the time domain, i.e.,
 	U(\omega)
 	\vb{\alpha}(\omega)
 	e^{-i\omega t}
+	\label{eq:coupler_coherent_amplitudes_time}
 	,
 \end{equation}
 and we conclude that a tensor product of coherent states transforms under an ideal optical coupler according to
@@ -820,38 +822,13 @@ and we conclude that a tensor product of coherent states transforms under an ide
 	&=
 	\int\frac{\dd{\omega}}{2\pi}
 	U(\omega)e^{-i\omega t}
+	\label{eq:coupler_coherent_state}
 \end{align}
 wherein $U(\omega)$ is a two-dimensional unitary matrix characterizing the coupler.
 
-\subsection{Application as a splitter}
-
-\subsection{Application as spectral filter}
-
-The optical coupler being 
-
-We therefore find the \gls{mzm} to transform the coherent input states according to
-\begin{align}
-	\hat{U}_\text{MZM}
-	\ket{\vb{\alpha}}
-	&=
-	\ket{\vb{\alpha}^\prime}
-	&
-	\vb{\alpha}^\prime
-	&=
-	U_\text{MZM}
-	\vb{\alpha}
-	.
-\end{align}
-Using the explicit matrix elements in \cref{eq:mzm_matrix} and setting the second input to zero $\alpha_2=0$ and identifying the first as $\alpha_1=\alpha$, we find
-\begin{equation}
-	\hat{U}_\text{MZM}
-	\ket{\alpha,0}
-	=
-	\ket{\alpha\cos(\Theta/2)e^{+i(\Psi+\Phi)/2},-\alpha\sin(\Theta/2)e^{-i(\Psi-\Phi)/2}}
-	.
-\end{equation}
-We are only interested in the first output mode.
-We can remove the second output via partial trace, i.e.,
+The fact that the ideal optical coupler only transforms the amplitudes of the coherent input states is specific to coherent states.
+The coherent states owe this special property due to having a Poisson number distribution and the Poisson distribution being memoryless.
+As a consequence, the coherent output states are independent and consider a subsystem by performing a partial trace, e.g.,
 \begin{equation}
 	\trace_2\left\{
 		\ketbra{\alpha,\beta}
@@ -868,8 +845,11 @@ We can remove the second output via partial trace, i.e.,
 	\trace_2\left\{
 		\ketbra{\beta}
 	\right\}
+	=
+	\ketbra{\alpha}
+	,
 \end{equation}
-where
+where we used
 \begin{equation}
 	\trace_2\left\{
 		\ketbra{\beta}
@@ -883,8 +863,9 @@ where
 	\abs{\braket{n}{\beta}}^2
 	=
 	1
+	,
 \end{equation}
-and thus
+is equivalent to the projection of the subsystem
 \begin{equation}
 	\trace_2\left\{
 		\ketbra{\alpha,\beta}
@@ -895,7 +876,122 @@ and thus
 	\hat{P}_1
 	\ketbra{\alpha,\beta}
 	\hat{P}_1
+	.
 \end{equation}
-i.e., the partial trace over a tensor product of coherent states is equivalent to the projection of the non-traced out states.
-This is a special property of the coherent states.
-In general, the partial trace over a tensor product of (entangled) quantum states returns a mixed state.
+For non-coherent quantum states, it is not correct to project out a subsystem as the partial trace does not generally yield a mixed but a pure state.
+
+\subsection{Application as splitter and spectral filter}
+
+Our considerations have so far been quite general except for restricting ourselves to coherent input states.
+We will now discuss two applications of our results:
+First, we consider the special case of an optical being used as a splitter. 
+Second, we consider a coupler as an optical filter relevant to signal processing and quantum information theory.
+
+An ideal optical splitter redistributes the power of one input among two outputs and is a special case of the optical coupler with one input state being the vacuum state.
+Using \cref{eq:coupler_coherent_amplitudes_frequency}, we find the transformed Fourier amplitudes to be
+\begin{equation}
+	\begin{split}
+		\begin{pmatrix}
+			\alpha_1^\prime(\omega) \\
+			\alpha_2^\prime(\omega)
+		\end{pmatrix}
+		&=
+		e^{i\Lambda/2}
+		\begin{pmatrix}
+			\cos(\Theta/2)
+			e^{i\left(+\Phi+\Psi\right)/2}
+			&
+			\sin(\Theta/2)
+			e^{i\left(+\Phi-\Psi\right)/2}
+			\\
+			-
+			\sin(\Theta/2)
+			e^{i\left(-\Phi+\Psi\right)/2}
+			&
+			\cos(\Theta/2)
+			e^{i\left(-\Phi-\Psi\right)/2}
+		\end{pmatrix}
+		\begin{pmatrix}
+			\alpha(\omega) \\
+			0
+		\end{pmatrix}
+		\\
+		&=
+		\alpha(\omega)
+		\begin{pmatrix}
+			+
+			\cos(\Theta/2)
+			e^{+i\Phi/2}
+			\\
+			-
+			\sin(\Theta/2)
+			e^{-i\Phi/2}
+		\end{pmatrix}
+		e^{i(\Lambda+\Psi)/2}
+	\end{split}
+\end{equation}
+wherein we again suppressed the frequency dependency of the splitting parameters.
+Instead of choosing a parametrization for the splitting coefficients, which directly ensures energy conservation, we can more generally write
+\begin{align}
+	\begin{pmatrix}
+		\alpha_1^\prime(\omega) \\
+		\alpha_2^\prime(\omega)
+	\end{pmatrix}
+	&=
+	\alpha(\omega)
+	\begin{pmatrix}
+		c_1(\omega) \\
+		c_2(\omega)
+	\end{pmatrix}
+	&
+	\abs{c_1(\omega)}^2
+	+
+	\abs{c_2(\omega)}^2
+	&=
+	1
+	.
+\end{align}
+Assuming the Fourier transform of $c_1(\omega),c_2(\omega)$ to be well-defined, we find the coherent output states to be
+\begin{equation}
+	\hat{U}
+	\ket{\alpha(t),0}
+	=
+	\ket{\left(c_1*\alpha\right)(t),\left(c_2*\alpha\right)(t)}
+	\label{eq:splitter_state_convolution}
+\end{equation}
+according to \cref{eq:coupler_coherent_state}.
+If we further assume the signal $\alpha(t)$ to be bandwidth-limited to $B$ and the splitting coefficients to be approximately constant over the bandwidth, i.e.,
+\begin{align}
+	c_1(\omega)
+	&\approx
+	c_1(\omega_0)
+	&
+	c_2(\omega)
+	&\approx
+	c_2(\omega_0)
+	&
+	\forall
+	\omega
+	&\in
+	B
+	,
+\end{align}
+the output state takes the simple form
+\begin{equation}
+	\hat{U}
+	\ket{\alpha(t),0}
+	=
+	\ket{c_1\alpha(t),c_2\alpha(t)}
+\end{equation}
+and the splitter only redistributes the signal power among the outputs while leaving the signal itself unaltered.
+
+\Cref{eq:splitter_state_convolution} already suggests the similarity of the ideal optical splitter with an optical filter, the difference being that only one output matters for the optical filter.
+To remove the second output, we perform a partial trace over the second subsystem, equivalent to applying the projection operator to \cref{eq:splitter_state_convolution}, i.e.,
+\begin{equation}
+	\hat{P}_1
+	\hat{U}
+	\ket{\alpha(t),0}
+	=
+	\ket{\left(h*\alpha\right)(t)}
+\end{equation}
+where we introduced the optical filter function $h=c_1$.
