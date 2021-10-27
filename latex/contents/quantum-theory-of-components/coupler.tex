@@ -565,34 +565,32 @@ where we used that $\hat{L}_t$ commutes with the other Jordan-Schwinger operator
 
 Let us now consider the action of the ideal coupler on the tensor product of coherent input states\footnote{Other quantum states typically produce entangled output states, see, for instance, Ref.~\cite{Windhager2011}, which is not of interest here.}
 \begin{equation}
-	\ket{\vb{\alpha}(t)}
+	\ket*{\vb{\alpha}(t)}
 	=
-	\ket{\alpha_1(t),\alpha_2(t)}
+	\ket*{\alpha_1(t),\alpha_2(t)}
 	.
 \end{equation}
 The output states are given by applying the unitary evolution operator $\hat{U}$, e.g., \cref{eq:unitary_operator}, onto the input state
 \begin{equation}
 	\hat{U}
-	\ket{\vb{\alpha}(t)}
+	\ket*{\vb{\alpha}(t)}
 	=
 	\hat{U}
 	\hat{D}\left[\vb{\alpha}(t)\right]
 	\hat{U}^\dagger
 	\hat{U}
-	\ket{0,0}
+	\ket*{0,0}
 	=
 	\hat{U}
 	\hat{D}\left[\vb{\alpha}(t)\right]
 	\hat{U}^\dagger
-	\ket{\vb{0}}
+	\vacuum
 	,
 \end{equation}
 wherein we inserted $\mathbb{1}=\hat{U}^\dagger\hat{U}$ in the second step and we used the invariance of the vacuum state in the third step.
 The transformed displacement operator reads\footnote{We adopt matrix notation as in Ref.~\cite[p.~206]{Vogel2006} to have our result independent of a particular choice of the unitary matrix.}
 \begin{equation}
 	\begin{split}
-		\hat{D}^\prime\left[\vb{\alpha}(t)\right]
-		=
 		\hat{U}
 		\hat{D}\left[\vb{\alpha}(t)\right]
 		\hat{U}^\dagger
@@ -602,12 +600,14 @@ The transformed displacement operator reads\footnote{We adopt matrix notation as
 			\int\frac{\dd{\omega}}{2\pi}
 			\left\{
 				\vb{\alpha}(\omega)^\trans
+				e^{-i\omega t}
 				\begin{pmatrix}
 					\hat{a}_1^\dagger(\omega) \\
 					\hat{a}_2^\dagger(\omega)
 				\end{pmatrix}
 				-
 				\vb{\alpha}(\omega)^\dagger
+				e^{+i\omega t}
 				\begin{pmatrix}
 					\hat{a}_1(\omega) \\
 					\hat{a}_2(\omega)
@@ -621,6 +621,7 @@ The transformed displacement operator reads\footnote{We adopt matrix notation as
 			\int\frac{\dd{\omega}}{2\pi}
 			\left\{
 				\vb{\alpha}^\trans
+				e^{-i\omega t}
 				\hat{U}
 				\begin{pmatrix}
 					\hat{a}_1^\dagger(\omega) \\
@@ -629,6 +630,7 @@ The transformed displacement operator reads\footnote{We adopt matrix notation as
 				\hat{U}^\dagger
 				-
 				\vb{\alpha}^\dagger
+				e^{+i\omega t}
 				\hat{U}
 				\begin{pmatrix}
 					\hat{a}_1(\omega) \\
@@ -639,8 +641,9 @@ The transformed displacement operator reads\footnote{We adopt matrix notation as
 		\right\}
 	\end{split}
 	\label{eq:displacement_operator_transformed}
+	,
 \end{equation}
-where we used the operator identity
+wherein we used the operator identity
 \begin{equation}
 	\hat{U}
 	e^{\hat{A}}
@@ -713,8 +716,7 @@ The transformed creation operators in the first term can be brought into a simil
 			\left(
 				U(\omega)
 				\begin{pmatrix}
-					\hat{a}_1(\omega)
-					\\
+					\hat{a}_1(\omega) \\
 					\hat{a}_2(\omega)
 				\end{pmatrix}
 			\right)^\dagger
@@ -732,8 +734,7 @@ The transformed creation operators in the first term can be brought into a simil
 		=
 		U(\omega)^\trans
 		\begin{pmatrix}
-			\hat{a}_1^\dagger(\omega)
-			\\
+			\hat{a}_1^\dagger(\omega) \\
 			\hat{a}_2^\dagger(\omega)
 		\end{pmatrix}
 		.
@@ -748,6 +749,7 @@ Inserting the previous result back into the transformed displacement operator, \
 			\int\frac{\dd{\omega}}{2\pi}
 			\left\{
 				\vb{\alpha}(\omega)^\trans
+				e^{-i\omega t}
 				U(\omega)^\trans
 				\begin{pmatrix}
 					\hat{a}_1^\dagger(\omega) \\
@@ -755,6 +757,7 @@ Inserting the previous result back into the transformed displacement operator, \
 				\end{pmatrix}
 				-
 				\vb{\alpha}(\omega)^\dagger
+				e^{+i\omega t}
 				U(\omega)^\dagger
 				\begin{pmatrix}
 					\hat{a}_1(\omega) \\
@@ -771,6 +774,7 @@ Inserting the previous result back into the transformed displacement operator, \
 					U(\omega)
 					\vb{\alpha}(\omega)
 				\right)^\trans
+				e^{-i\omega t}
 				\begin{pmatrix}
 					\hat{a}_1^\dagger(\omega) \\
 					\hat{a}_2^\dagger(\omega)
@@ -780,6 +784,7 @@ Inserting the previous result back into the transformed displacement operator, \
 					U(\omega)
 					\vb{\alpha}(\omega)
 				\right)^\dagger
+				e^{+i\omega t}
 				\begin{pmatrix}
 					\hat{a}_1(\omega) \\
 					\hat{a}_2(\omega)
@@ -807,21 +812,22 @@ The product in frequency space implies a convolution in the time domain, i.e.,
 	\int\frac{\dd{\omega}}{2\pi}
 	U(\omega)
 	\vb{\alpha}(\omega)
-	e^{-i\omega t}
+	e^{+i\omega t}
 	\label{eq:coupler_coherent_amplitudes_time}
 	,
 \end{equation}
 and we conclude that a tensor product of coherent states transforms under an ideal optical coupler according to
 \begin{align}
 	\hat{U}
-	\ket{\alpha(t)}
+	\ket*{\alpha(t)}
 	&=
-	\ket{\left(U*\vb{\alpha}\right)(t)}	
+	\ket*{\left(U*\vb{\alpha}\right)(t)}	
 	&
 	U(t)
 	&=
 	\int\frac{\dd{\omega}}{2\pi}
-	U(\omega)e^{-i\omega t}
+	U(\omega)
+	e^{+i\omega t}
 	\label{eq:coupler_coherent_state}
 \end{align}
 wherein $U(\omega)$ is a two-dimensional unitary matrix characterizing the coupler.
@@ -954,9 +960,9 @@ Instead of choosing a parametrization for the splitting coefficients, which dire
 Assuming the Fourier transform of $c_1(\omega),c_2(\omega)$ to be well-defined, we find the coherent output states to be
 \begin{equation}
 	\hat{U}
-	\ket{\alpha(t),0}
+	\ket*{\alpha(t),0}
 	=
-	\ket{\left(c_1*\alpha\right)(t),\left(c_2*\alpha\right)(t)}
+	\ket*{\left(c_1*\alpha\right)(t),\left(c_2*\alpha\right)(t)}
 	\label{eq:splitter_state_convolution}
 \end{equation}
 according to \cref{eq:coupler_coherent_state}.
@@ -979,9 +985,9 @@ If we further assume the signal $\alpha(t)$ to be bandwidth-limited to $B$ and t
 the output state takes the simple form
 \begin{equation}
 	\hat{U}
-	\ket{\alpha(t),0}
+	\ket*{\alpha(t),0}
 	=
-	\ket{c_1\alpha(t),c_2\alpha(t)}
+	\ket*{c_1\alpha(t),c_2\alpha(t)}
 \end{equation}
 and the splitter only redistributes the signal power among the outputs while leaving the signal itself unaltered.
 
@@ -990,8 +996,30 @@ To remove the second output, we perform a partial trace over the second subsyste
 \begin{equation}
 	\hat{P}_1
 	\hat{U}
-	\ket{\alpha(t),0}
+	\ket*{\alpha(t),0}
 	=
-	\ket{\left(h*\alpha\right)(t)}
+	\ket*{\left(h*\alpha\right)(t)}
+	\label{eq:filter_state}
 \end{equation}
 where we introduced the optical filter function $h=c_1$.
+Ref.~\cite[p.~199]{Vogel2006} discusses a spectral filter made of a dielectric slab of thickness $l$ and refractive index $n$, see \Cref{fig:dielectric_filter}, with incoming and outgoing quantum modes to each side.
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/dielectric-filter}
+    \caption{Dielectric slab of thickness $l$ and refractive index $n$ used as a spectral filter with incident quantum modes, denoted by the annihilation operators, $\hat{a}_1(\omega)$ from the left, and $\hat{a}_2(\omega)$ from the right, and outgoing quantum modes, $\hat{a}_1^\prime(\omega)$ to the left, and $\hat{a}_2(\omega)$ to the right.}\label{fig:dielectric_filter}
+\end{figure}
+Let $\hat{a}_1(\omega)$ be the signal mode approaching the dielectric slab from the left.
+Let us assume that the mode $\hat{a}_2(\omega)$ is in vacuum and that we are only interested in the mode $\hat{a}_2^\prime(\omega)$, outgoing to the right.
+Then the optical filter function in \cref{eq:filter_state} is equal to the transmission coefficient of the dielectric slab which is equal to~\cite[p.~199]{Vogel2006}
+\begin{align}
+	h(\omega)
+	&=
+	\frac{1-r^2}{1-r^2\exp(2i\omega nl)}
+	\exp\left[-i(n-1)l\omega\right]
+	&
+	r^2
+	&=
+	\left(\frac{n-1}{n+1}\right)^2
+	.
+\end{align}
+By carefully selecting the geometry and dielectric (layers), it should be possible to tailor the transmission coefficient in a specific bandwidth to implement a custom optical filter function $h$.

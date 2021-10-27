@@ -1,0 +1,18 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[]
+	
+		\draw[-Latex] (0,1) -- ++(2,0) node[midway, above] {$\hat{a}_1(\omega)$};
+		\draw[Latex-] (0,0) -- ++(2,0) node[midway, above] {$\hat{a}_1^\prime(\omega)$};
+	
+		\draw[-Latex] (4,1) -- ++(2,0) node[midway, above] {$\hat{a}_2^\prime(\omega)$};
+		\draw[Latex-] (4,0) -- ++(2,0) node[midway, above] {$\hat{a}_2(\omega)$};
+	
+		\draw[very thick] (2.25,-1) rectangle ++(1.5,3);
+		\draw (3,0.5) node {$n$};
+		\draw[Bar-Bar] (2.25,-1.25) -- ++(1.5,0) node[midway, below] {$l$};
+	\end{tikzpicture}
+\end{document}
