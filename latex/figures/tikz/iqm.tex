@@ -11,15 +11,15 @@
 		waveguide/.style={line width=1.2mm, rounded corners=1mm},
 	]
 		\draw[electrode] (0,2.8) rectangle ++(2,0.2);
-		\draw[electrode] (0,1.9) rectangle ++(2,0.6) node[pos=0.5] {AC I};
+		\draw[electrode] (0,1.9) rectangle ++(2,0.6) node[pos=0.5] {$I(t)$};
 		\draw[electrode] (0,1.4) rectangle ++(2,0.2);
-		\draw[electrode] (0,0.5) rectangle ++(2,0.6) node[pos=0.5] {AC Q};
+		\draw[electrode] (0,0.5) rectangle ++(2,0.6) node[pos=0.5] {$Q(t)$};
 		\draw[electrode] (0,0) rectangle ++(2,0.2);
 
 		\draw[waveguide] (1,0.8) node[draw, regular polygon, regular polygon sides=6, minimum width=1.05cm, xscale=4] (mzm1) {};
 		\draw[waveguide] (1,2.2) node[draw, regular polygon, regular polygon sides=6, minimum width=1.05cm, xscale=4] (mzm2) {};
 		
-		\draw[electrode] (3.8,1.2) rectangle ++(2,0.6) node[pos=0.5] {DC};
+		\draw[electrode] (3.8,1.2) rectangle ++(2,0.6) node[pos=0.5] {Bias};
 		\draw[electrode] (3.8,0.7) rectangle ++(2,0.2);
 		\draw[electrode] (3.8,2.1) rectangle ++(2,0.2);
 
@@ -38,7 +38,7 @@
 
 		\draw[waveguide] (mzm1.west) ++(0.3,0) -- ++(-0.2,0) -- ++(-1.2,0.7) coordinate (in) -- ++(1.2,0.7) -- ++(0.2,0) -- ++(0.2,0) (mzm2.west);
 		
-		\draw[waveguide] (in) -- ++(-1.5,0) node[midway, above] {$\hat{E}(\omega)$};
-		\draw[waveguide] (out) -- ++(1.5,0) node[midway, above] {$\hat{E}^\prime(\omega)$};
+		\draw[waveguide] (in) -- ++(-1.5,0) node[midway, above] {$\alpha(t)$};
+		\draw[waveguide] (out) -- ++(1.5,0) node[midway, above] {$\alpha^\prime(t)$};
 	\end{tikzpicture}
 \end{document}

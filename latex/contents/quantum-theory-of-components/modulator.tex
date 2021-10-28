@@ -1,5 +1,9 @@
 \section{Modulator}
 
+The (electro-optical) modulators allow us to encode an electrical signal onto an optical carrier.
+In that sense, they are the interface between the electrical and optical domains.
+Strictly speaking, the crossover occurs at the electro-optical phase modulator as other modulators follow from an optical arrangement of phase modulators.
+
 \subsection{Phase (Pockels)}
 
 The Pockels modulator is a phase modulator where an electric field drives the phase of an optical field.
@@ -10,9 +14,9 @@ For a complete quantum description of the transmitter, understanding the underly
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/pockels-cell}
-    \caption{Pockels modulator comprising a Pockels cell embedded into a waveguide: The Pockels cell consists of two capacitor plates of length $L$ distanced at $d$. An optical field $\hat{E}_z(t)$ approaches the Pockels cell from the left and exits it to the right as $\hat{E}_z^\prime(t)$. An electric field $\hat{E}_x(t)$ perpendicular to the optical field spans the Pockels cell.}\label{fig:pm}
+    \caption{Pockels cell of length $l$ and diameter $d$: The quantum mode of an optical field, $\hat{E}_1(\omega)$, enters the Pockels cell from the left. Inside the Pockels cell, a quantum mode of an electric field, $\hat{E}_2(\omega^\prime)$, couples with the optical field and produces an outgoing quantum mode of an optical field, $\hat{E}_1^\prime(\omega+\omega^\prime)$.}\label{fig:pockels_cell}
 \end{figure}
-\Cref{fig:pm} depicts a Pockels modulator comprising a Pockels cell embedded into a dielectric waveguide.
+\Cref{fig:pockels_cell} depicts a Pockels modulator comprising a Pockels cell embedded into a dielectric waveguide.
 The Pockels cell is a dielectric plate capacitor with a specific dielectric that mediates the electric and optical field coupling.
 The electric field inside the Pockels cell $E_x$ is proportional to the voltage $V$ applied to the Pockels cell.
 Assuming the Pockels dielectric to be non-absorbing with \gls{lti} response, the dielectric permittivity tensor can be approximated, see Ref.~\cite{Murti2014} and Ref.~\cite[p.~1070]{Mandel1995},
@@ -516,63 +520,15 @@ for which the matrix transform simplifies to
 \end{equation}
 and we note that the common-mode phase $\phi_+(\omega)$ adds a global phase shift of $\phi_+(\omega)$ while the differential-mode phase $\phi_-(\omega)$ changes the splitting ratios at the output.
 
-For the first input being $\alpha_1(\omega)=\alpha(\omega)$ and the second input being in vacuum, i.e., $\alpha_2(\omega)=0$, we find the transformed Fourier amplitudes to be
-\begin{equation}
-	\begin{pmatrix}
-		\alpha_1^\prime(\omega) \\
-		\alpha_2^\prime(\omega)
-	\end{pmatrix}
-	=
-	\alpha_\prime(\omega)
-	\begin{pmatrix}
-		-\cos\phi_-(\omega) \\
-		+\sin\phi_-(\omega)
-	\end{pmatrix}
-	e^{i\phi_+(\omega)}
-	\label{eq:mzm_fourier_signal}
-\end{equation}
-where we used \cref{eq:mzm_matrix2} and \cref{eq:mzm_fourier}.
-Without restricting us to a particular parametrization, we can rewrite \cref{eq:mzm_fourier_signal}
-\begin{align}
-	\begin{pmatrix}
-		\alpha_1^\prime(\omega) \\
-		\alpha_2^\prime(\omega)
-	\end{pmatrix}
-	&=
-	\alpha(\omega)
-	\begin{pmatrix}
-		c_1(\omega) \\
-		c_2(\omega)
-	\end{pmatrix}
-	,
-	&
-	\abs*{c_1(\omega)}^2
-	+
-	\abs*{c_2(\omega)}^2
-	&=
-	1
-	.
-\end{align}
-We are only interested in one of the outputs, the relevant output state then turns out to be
-\begin{equation}
-	\ket{\alpha(t)}
-	\to
-	\ket*{\alpha^\prime(t)}
-	=
-	\hat{P}_1
-	\hat{U}_\text{MZM}
-	\ket*{\alpha(t),0}
-	=
-	\ket*{\left(h*\alpha\right)(t)}
-	\label{eq:mzm_state}
-\end{equation}
-wherein $h=c_1$ characterizes the response function of the \gls{mzm}.
 Our result is therefore analog to our result for the spectral filter.
+\textcolor{red}{Is this actually correct? Who says that $\phi(\omega)$ and not that $\phi(t)$?}
 
 \subsection{In-phase and quadrature}
+
+
 
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/iqm}
-    \caption{foo}\label{fig:iqm}
+    \caption{Integrated \gls{iqm} using three \gls{mzm} arms: A coherent input amplitude, $\alpha(t)$, is split into an upper and lower branch. The upper and lower branches comprise an integrated \gls{mzm} that performs amplitude modulation with the in-phase and quadrature signal, $I(t)$ respectively $Q(t)$. The integrated \gls{mzm} consists of a hexagonal-shaped waveguide with an inside signal electrode and two outer grounds. The outputs of the in-phase and quadrature modulated form a third \gls{mzm} used to set a relative phase shift of $\pi$ between the in-phase and quadrature signals, yielding the coherent output amplitude $\alpha^\prime(t)$.}\label{fig:iqm}
 \end{figure}
