@@ -1,0 +1,18 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}
+		\draw[very thick] (0,0) rectangle ++(3,2);
+
+		\draw[-Latex] (-2.3,1) -- ++(2,0) node[midway, above] {$\hat{E}_1(\omega)$};
+		\draw[-Latex] (3.3,1) -- ++(2,0) node[midway, above] {$\hat{E}_1^\prime(\omega)$};
+		\draw[-Latex] (2,0.1) -- ++(0,1.8) node[midway, left] {$\hat{E}_2(\omega)$};
+	
+%		\draw (3,0.5) node {$n$};
+
+		\draw[Bar-Bar] (0,-0.2) -- ++(3,0) node[midway, below] {$l$};
+		\draw[Bar-Bar] (3.2,0) -- ++(0,2) node[midway, below right] {$d$};
+	\end{tikzpicture}
+\end{document}
