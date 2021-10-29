@@ -3,16 +3,20 @@
 \input{preamble}
 
 \begin{document}
-	\begin{tikzpicture}
+	\begin{tikzpicture}[
+		electrode/.style={very thick, fill=black},
+	]
 		\draw[very thick] (0,0) rectangle ++(3,2);
+		\draw (2.2,1) node {$n_{ij}(\omega)$};
+		
+		\draw[electrode] (0,0) rectangle ++(3,-0.2);
+		\draw[electrode] (0,2) rectangle ++(3,0.2);
 
-		\draw[-Latex] (-2.3,1) -- ++(2,0) node[midway, above] {$\hat{E}_1(\omega)$};
-		\draw[-Latex] (3.3,1) -- ++(2,0) node[midway, above] {$\hat{E}_1^\prime(\omega+\omega^\prime)$};
+		\draw[-Latex] (-2.5,1) -- ++(2,0) node[midway, above] {$\hat{E}_1(\omega)$};
+		\draw[-Latex] (4,1) -- ++(2,0) node[midway, above] {$\hat{E}_1^\prime(\omega+\omega^\prime)$};
 		\draw[-Latex] (1.4,0.1) -- ++(0,1.8) node[midway, left] {$\hat{E}_2(\omega^\prime)$};
-	
-%		\draw (3,0.5) node {$n$};
 
-		\draw[Bar-Bar] (0,-0.2) -- ++(3,0) node[midway, below] {$l$};
-		\draw[Bar-Bar] (2.5,0.1) -- ++(0,1.8) node[midway, left] {$d$};
+		\draw[Bar-Bar] (0,-0.4) -- ++(3,0) node[midway, below] {$l$};
+		\draw[Bar-Bar] (3.2,0) -- ++(0,2) node[midway, right] {$d$};
 	\end{tikzpicture}
 \end{document}

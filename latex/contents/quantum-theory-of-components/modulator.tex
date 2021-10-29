@@ -1,34 +1,39 @@
-\section{Modulator}
+\section{Modulators}
 
-The (electro-optical) modulators allow us to encode an electrical signal onto an optical carrier.
-In that sense, they are the interface between the electrical and optical domains.
-Strictly speaking, the crossover occurs at the electro-optical phase modulator as other modulators follow from an optical arrangement of phase modulators.
+The (electro-optical) modulators allow us to encode an electrical signal onto an optical carrier, and in that sense, are the interface between the electrical and optical domains.
+The domain crossover occurs at the electro-optical phase modulator, which we attempt to describe in a (quantum) nonlinear mixing process mediated by the dielectric.
+In the remaining parts, we construct, in the optical domain, real and complex amplitude modulators using constructive and destructive interference driven by electro-optical phase modulators.
 
-\subsection{Phase (Pockels)}
+\subsection{Phase modulator based on the Pockels effect}
 
-The Pockels modulator is a phase modulator where an electric field drives the phase of an optical field.
-In the optical domain, we can use interference to perform amplitude modulation.
-In that sense, the Pockels modulator is the interface between the electrical and optical domains.
-For a complete quantum description of the transmitter, understanding the underlying dynamics of the Pockels modulator, particularly the implications of time-dependent modulation, is crucial.
+The electro-optical phase modulator relates an electric signal to a phase shift of an optical signal by changing the refractive index of its transmission medium.
+There are many ways to change the refractive index, such as applying an electric field, the charge carrier density, the temperature, or the mechanical strain of the optical transmission medium.
+Changing the refractive index directly through an electric field is, for many applications, the most convenient.
+The two most relevant electro-optical effects are the Pockels and Kerr effects~\cite[Ch.~18]{Saleh2007}.
+The Pockels effect labels a linear change, while the Kerr effect characterizes a quadratic refractive index change in terms of an external electric field.
+If a material exhibits an electro-optical effect depends strongly on the crystal symmetry~\cite[p.~237]{Yariv1984}.
+In the following, we focus on the linear electro-optic effect, the Pockels effect, which is present in lithium niobate and commonly used in integrated telecommunication modulators.
 
+The Pockels cell is a Pockels medium embedded inside a plate capacitor, see \Cref{fig:pockels_cell}, and constitutes a primitive embodiment of a phase modulator.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/pockels-cell}
-    \caption{Pockels cell of length $l$ and diameter $d$: The quantum mode of an optical field, $\hat{E}_1(\omega)$, enters the Pockels cell from the left. Inside the Pockels cell, a quantum mode of an electric field, $\hat{E}_2(\omega^\prime)$, couples with the optical field and produces an outgoing quantum mode of an optical field, $\hat{E}_1^\prime(\omega+\omega^\prime)$.}\label{fig:pockels_cell}
+    \caption{Pockels cell of length $l$ and diameter $d$: The quantum optical input field, $\hat{E}_1(\omega)$, enters the cell from the left. Inside the Pockels cell, an electric quantum field, $\hat{E}_2(\Omega)$, created by applying a voltage to the capacitor plates (black rectangles), couples with the input field via the refractive index tensor $n_{ij}(\omega,\Omega)$ and produces an quantum optical output field, $\hat{E}_1^\prime(\omega+\Omega)$.}\label{fig:pockels_cell}
 \end{figure}
-\Cref{fig:pockels_cell} depicts a Pockels modulator comprising a Pockels cell embedded into a dielectric waveguide.
-The Pockels cell is a dielectric plate capacitor with a specific dielectric that mediates the electric and optical field coupling.
-The electric field inside the Pockels cell $E_x$ is proportional to the voltage $V$ applied to the Pockels cell.
-Assuming the Pockels dielectric to be non-absorbing with \gls{lti} response, the dielectric permittivity tensor can be approximated, see Ref.~\cite{Murti2014} and Ref.~\cite[p.~1070]{Mandel1995},
+Applying a voltage signal $V(\Omega)$ to the capacitor plates creates an electric field inside the cell, perpendicular to the plates, denoted by $\hat{E}_2(\Omega)$.\footnote{The mean expectation value for the electric field operator inside the cell is $\expval{\hat{E}_2(\Omega)}=V(\Omega)/d$.}
+An optical input field, $\hat{E}_1(\omega)$, approaches from the left couples to $\hat{E}_1(\omega)$ through the refractive index tensor, $n_{ij}(\omega,\Omega)$, over the length of the Pockels cell, $l$.
+The optical output field, $\hat{E}_1^\prime(\omega+\Omega)$, exiting the cell to the right contains frequency components from both the optical input field, $\hat{E}_1(\omega)$, and the electric field inside the cell, $\hat{E}_2(\Omega)$.
+
+An ideal Pockels medium is a lossless time-invariant system for which the dielectric permittivity tensor can be approximated\footnote{See, for instance, Ref.~\cite{Murti2014} and Ref.~\cite[p.~1070]{Mandel1995}.}
 \begin{equation}
-	\varepsilon_{ij}(\omega)
+	\varepsilon_{ij}(\omega,\Omega)
 	\approx
 	\delta_{ij}
 	+
 	\chi_{ij}^{(1)}(\omega)
 	+
 	\chi_{ijk}^{(2)}(\omega)
-	E^k(\Omega_0)
+	E^k(\Omega)
 \end{equation}
 wherein $\chi^{(n)}$ the denotes the $n$th order of the Pockels dielectric's electric susceptibility tensor and $\Omega_0\ll\omega$ is the center frequency of the electric signal.
 The refractive index tensor of the Pockels dielectric takes the form
