@@ -12,17 +12,17 @@ Changing the refractive index directly through an electric field is, for many ap
 The two most relevant electro-optical effects are the Pockels and Kerr effects~\cite[Ch.~18]{Saleh2007}.
 The Pockels effect labels a linear change, while the Kerr effect characterizes a quadratic refractive index change in terms of an external electric field.
 If a material exhibits an electro-optical effect depends strongly on the crystal symmetry~\cite[p.~237]{Yariv1984}.
-In the following, we focus on the linear electro-optic effect, the Pockels effect, which is present in lithium niobate and commonly used in integrated telecommunication modulators.
+In the following, we focus on the linear electro-optic effect, the Pockels effect, which is present in noncentrosymmetric crystals~\cite[p.~2]{Boyd2020}, e.g., lithium niobate, and commonly used in integrated telecommunication modulators.
 
 The Pockels cell is a Pockels medium embedded inside a plate capacitor, see \Cref{fig:pockels_cell}, and constitutes a primitive embodiment of a phase modulator.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/pockels-cell}
-    \caption{Pockels cell of length $l$ and diameter $d$: The quantum optical input field, $\hat{E}_1(\omega)$, enters the cell from the left. Inside the Pockels cell, an electric quantum field, $\hat{E}_2(\Omega)$, created by applying a voltage to the capacitor plates (black rectangles), couples with the input field via the refractive index tensor $n_{ij}(\omega,\Omega)$ and produces an quantum optical output field, $\hat{E}_1^\prime(\omega+\Omega)$.}\label{fig:pockels_cell}
+    \caption{Pockels cell of length $l$ and diameter $d$: The quantum optical input field, $\hat{t}_1(t)$, enters the cell from the left. Inside the Pockels cell, an electric quantum field, $\hat{E}_2(t)$, created by applying a voltage to the capacitor plates (black rectangles), couples with the input field and produces an quantum optical output field, $\hat{E}_1^\prime(t)$.}\label{fig:pockels_cell}
 \end{figure}
-Applying a voltage signal $V(\Omega)$ to the capacitor plates creates an electric field inside the cell, perpendicular to the plates, denoted by $\hat{E}_2(\Omega)$.\footnote{The mean expectation value for the electric field operator inside the cell is $\expval{\hat{E}_2(\Omega)}=V(\Omega)/d$.}
-An optical input field, $\hat{E}_1(\omega)$, approaches from the left couples to $\hat{E}_1(\omega)$ through the refractive index tensor, $n_{ij}(\omega,\Omega)$, over the length of the Pockels cell, $l$.
-The optical output field, $\hat{E}_1^\prime(\omega+\Omega)$, exiting the cell to the right contains frequency components from both the optical input field, $\hat{E}_1(\omega)$, and the electric field inside the cell, $\hat{E}_2(\Omega)$.
+Applying a voltage signal $V(t)$ to the capacitor plates creates an electric field inside the cell, perpendicular to the plates, denoted by $\hat{E}_2(t)$.\footnote{The mean expectation value for the electric field operator inside the cell is $\expval{\hat{E}_2(t)}=V(t)/d$.}
+An optical input field, $\hat{E}_1(\omega)$, approaches from the left couples to $\hat{E}_1(t)$ over the length of the Pockels cell, $l$.
+The optical output field, $\hat{E}_1^\prime(t)$, exiting the cell to the right contains frequency components from both the optical input field, $\hat{E}_1(t)$, and the electric field inside the cell, $\hat{E}_2(t)$.
 
 An ideal Pockels medium is a lossless time-invariant system for which the dielectric permittivity tensor can be approximated\footnote{See, for instance, Ref.~\cite{Murti2014} and Ref.~\cite[p.~1070]{Mandel1995}.}
 \begin{equation}
