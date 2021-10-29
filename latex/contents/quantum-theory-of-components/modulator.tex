@@ -1,8 +1,8 @@
 \section{Modulators}
 
 The (electro-optical) modulators allow us to encode an electrical signal onto an optical carrier, and in that sense, are the interface between the electrical and optical domains.
-The domain crossover occurs at the electro-optical phase modulator, which we attempt to describe in a (quantum) nonlinear mixing process mediated by the dielectric.
-In the remaining parts, we construct, in the optical domain, real and complex amplitude modulators using constructive and destructive interference driven by electro-optical phase modulators.
+The domain crossover occurs at the electro-optical phase modulator, which we attempt to describe as a (quantum) nonlinear mixing process mediated by the dielectric, in a first part.
+In a second part, we construct, in the optical domain, a complex, in-phase and quadrature, amplitude modulator using \gls{mzi}s driven by electro-optical phase modulators.
 
 \subsection{Phase modulator based on the Pockels effect}
 
@@ -24,18 +24,22 @@ Applying a voltage signal $V(t)$ to the capacitor plates creates an electric fie
 An optical input field, $\hat{E}_1(\omega)$, approaches from the left couples to $\hat{E}_1(t)$ over the length of the Pockels cell, $l$.
 The optical output field, $\hat{E}_1^\prime(t)$, exiting the cell to the right contains frequency components from both the optical input field, $\hat{E}_1(t)$, and the electric field inside the cell, $\hat{E}_2(t)$.
 
-An ideal Pockels medium is a lossless time-invariant system for which the dielectric permittivity tensor can be approximated\footnote{See, for instance, Ref.~\cite{Murti2014} and Ref.~\cite[p.~1070]{Mandel1995}.}
+The refractive index tensor of an ideal Pockels medium can be approximated\footnote{See, for instance, Ref.~\cite{Murti2014} and Ref.~\cite[p.~1070]{Mandel1995}.}
 \begin{equation}
-	\varepsilon_{ij}(\omega,\Omega)
+	\varepsilon_{ij}(\omega)
 	\approx
 	\delta_{ij}
 	+
 	\chi_{ij}^{(1)}(\omega)
 	+
-	\chi_{ijk}^{(2)}(\omega)
-	E^k(\Omega)
+	\int\frac{\dd{\omega^\prime}}{(2\pi)^3}
+	\chi_{ijk}^{(2)}(\omega^\prime,\omega)
+	E^j(\omega^\prime)
+	E^k(\omega-\omega^\prime)
 \end{equation}
-wherein $\chi^{(n)}$ the denotes the $n$th order of the Pockels dielectric's electric susceptibility tensor and $\Omega_0\ll\omega$ is the center frequency of the electric signal.
+wherein $\chi^{(n)}$ the denotes the $n$th order of the electric susceptibility tensor.
+
+
 The refractive index tensor of the Pockels dielectric takes the form
 \begin{equation}
 	n_{ij}(\omega)
@@ -425,7 +429,7 @@ which corresponds to the convolution kernel
 	.
 \end{equation}
 
-\subsection{Amplitude (Mach-Zehnder)}
+\subsection{Amplitude modulator based on Mach-Zehnder interferometer}
 
 The \gls{mzm} uses two phase modulators to perform amplitude modulation through interference.
 The \gls{mzm} enables electrically-driven amplitude modulation if the phase modulators are driven electrically, for instance, using the Pockels effect as discussed previously.
@@ -527,10 +531,6 @@ and we note that the common-mode phase $\phi_+(\omega)$ adds a global phase shif
 
 Our result is therefore analog to our result for the spectral filter.
 \textcolor{red}{Is this actually correct? Who says that $\phi(\omega)$ and not that $\phi(t)$?}
-
-\subsection{In-phase and quadrature}
-
-
 
 \begin{figure}[htb]
     \centering
