@@ -1,0 +1,230 @@
+\chapter{Macroscopic electrodynamics}
+
+\section{Polarization density and electric susceptibility tensor}\label{sec:polarization_density_susceptibility}
+
+In the time domain, the first-order polarization density is~\cite[p.~17]{Murti2014}
+\begin{equation}
+	P_i^{(1)}(t)
+	=
+	\int\dd{t_1}
+	\chi^{(1)}_{ij}(t_1)
+	E^j(t-t_1)
+	\label{eq:polarization_density_fo_time}
+\end{equation}
+wherein $\chi^{(1)}_{ijk}(t_1)$ is the first-order time response tensor of the dielectric media.
+Inserting the Fourier transform of the electric field components, we find
+\begin{equation}
+	P_i^{(1)}(t)
+	=
+	\int\frac{\dd{\omega_1}}{2\pi}
+	\chi^{(1)}_{ij}(\omega_1)
+	E^j(\omega_1)
+	e^{-i\omega_1t}
+	\label{eq:polarization_density_fo_time_fourier}
+	,
+\end{equation}
+wherein the second-order frequency response tensor is the Fourier transform of the time response tensor, i.e.,
+\begin{equation}
+	\chi^{(1)}_{ij}(\omega_1)
+	=
+	\int\dd{t_1}
+	\chi^{(1)}_{ij}(t_1)
+	e^{+i\omega_1t}
+	.
+\end{equation}
+From \cref{eq:polarization_density_fo_time_fourier} we can directly read of the first-order polarization density in the frequency domain
+\begin{equation}
+	P_i^{(1)}(\omega)
+	=
+	\chi^{(1)}_{ij}(\omega)
+	E^j(\omega)
+	.
+	\label{eq:polarization_density_fo_freq}
+\end{equation}
+
+In the time domain, the second-order polarization density is~\cite[p.~55]{Boyd2020}
+\begin{equation}
+	P_i^{(2)}(t)
+	=
+	\int\dd{t_1}
+	\int\dd{t_2}
+	\chi^{(2)}_{ijk}(t_1,t_2)
+	E^j(t-t_1)
+	E^k(t-t_2)
+	\label{eq:polarization_density_so_time}
+\end{equation}
+wherein $\chi^{(2)}_{ijk}(t_1,t_2)$ is the second-order time response tensor of the dielectric media.
+Inserting the Fourier transform of the electric field components, we find
+\begin{equation}
+	P_i^{(2)}(t)
+	=
+	\int\frac{\dd{\omega_1}}{2\pi}
+	\int\frac{\dd{\omega_2}}{2\pi}
+	\chi^{(2)}_{ijk}(\omega_1,\omega_2)
+	E^j(\omega_1)
+	E^k(\omega_2)
+	e^{-i(\omega_1+\omega_2)t}
+	\label{eq:polarization_density_so_time_fourier}
+\end{equation}
+wherein the second-order frequency response tensor is the Fourier transform of the time response tensor, i.e.,
+\begin{equation}
+	\chi^{(2)}_{ijk}(\omega_1,\omega_2)
+	=
+	\int\dd{t_1}
+	\int\dd{t_2}
+	\chi^{(2)}_{ijk}(t_1,t_2)
+	e^{+i\omega_1t}
+	e^{+i\omega_2t}
+	.
+\end{equation}
+Contrary to \cref{eq:polarization_density_fo_time_fourier}, we cannot directly read of the polarization density in the frequency domain from \cref{eq:polarization_density_so_time_fourier}.
+Instead, we insert \cref{eq:polarization_density_so_time_fourier} into the Fourier transform of the second-order polarization density
+\begin{equation}
+	\begin{split}
+		P_i^{(2)}(\omega)
+		&=
+		\int\dd{t}
+		P_i^{(2)}(t)
+		e^{+i\omega t}
+		\\
+		&=
+		\int\frac{\dd{\omega_1}}{2\pi}
+		\int\frac{\dd{\omega_2}}{2\pi}
+		\chi^{(2)}_{ijk}(\omega_1,\omega_2)
+		E^j(\omega_1)
+		E^k(\omega_2)
+		\int\dd{t}
+		e^{-i(\omega_1+\omega_2-\omega)t}
+		\\
+		&=
+		\int\frac{\dd{\omega_1}}{2\pi}
+		\int\frac{\dd{\omega_2}}{2\pi}
+		\chi^{(2)}_{ijk}(\omega_1,\omega_2)
+		E^j(\omega_1)
+		E^k(\omega_2)
+		(2\pi)
+		\delta^{(1)}(\omega_2-\omega+\omega_1)
+		\\
+		&=
+		\int\frac{\dd{\omega^\prime}}{2\pi}
+		\chi^{(2)}_{ijk}(\omega^\prime,\omega-\omega^\prime)
+		E^j(\omega^\prime)
+		E^k(\omega-\omega^\prime)
+		.
+	\end{split}
+	\label{eq:polarization_density_so_freq}
+\end{equation}
+
+The presence of the integral in \cref{eq:polarization_density_so_freq} breaks the linearity of the second-order polarization density in the electric field $E^k$.
+To restore linearity, we use the mean value theorem for integrals at the radio center frequency $\Omega_0$,
+\begin{equation}
+	\begin{split}
+		P_i^{(2)}(\omega)
+		&\approx
+		\chi^{(2)}_{ijk}(0,\omega)
+		E^j(0)
+		E^k(\omega)
+		\\
+		&+
+		\chi^{(2)}_{ijk}(-\Omega_0,\omega+\Omega_0)
+		E^j(-\Omega_0)
+		E^k(\omega)
+		\\
+		&+
+		\chi^{(2)}_{ijk}(+\Omega_0,\omega-\Omega_0)
+		E^j(+\Omega_0)
+		E^k(\omega)
+		,
+	\end{split}
+\end{equation}
+and find one zero-frequency component and two sidebands at $\pm\Omega_0$.
+Usually, the second-order polarization density of the Pockels effect is only given with the zero-frequency component, corresponding to a static (time-independent) electric field~\cite[p.~495]{Boyd2020}.
+
+\section{Refractive index of static Pockels effect}\label{sec:static_pockels}
+
+The second-order polarization density of the static Pockels effect is~\cite[p.~495]{Boyd2020}
+\begin{equation}
+	P_i^{(2)}(\omega)
+	=
+	\chi^{(2)}_{ijk}(0,\omega)
+	E^j(0)
+	E^k(\omega)
+	.
+	\label{eq:polarization_density_so_freq_pockels}
+\end{equation}
+The electric displacement field in the frequency domain with polarization density expanded to second-order is~\cite[p.~1070]{Mandel1995}
+\begin{equation}
+	D_i(\omega)
+	=
+	E_i(\omega)
+	+
+	P_i^{(1)}(\omega)
+	+
+	P_i^{(2)}(\omega)
+	.
+	\label{eq:electric_displacement_field_expanded}
+\end{equation}
+Inserting \cref{eq:polarization_density_fo_freq} and \cref{eq:polarization_density_so_freq_pockels} into \cref{eq:electric_displacement_field_expanded}, we find
+\begin{equation}
+	D_i(\omega)
+	=
+	E_i(\omega)
+	+
+	\chi^{(1)}_{ij}(\omega)
+	E^j(\omega)
+	+
+	\chi^{(2)}_{ijk}(0,\omega)
+	E^j(0)
+	E^k(\omega)
+	.
+\end{equation}
+Rewriting the expansion of the electric displacement field as
+\begin{equation}
+	D_i(\omega)
+	=
+	\left[
+		\delta_{ik}
+		+
+		\chi^{(1)}_{ik}(\omega)
+		+
+		\chi^{(2)}_{ijk}(0,\omega)
+		E^j(0)
+	\right]
+	E^k(\omega)
+	,
+\end{equation}
+we can read off the electric susceptibility tensor
+\begin{equation}
+	\varepsilon_{ik}(\omega)
+	=
+	\delta_{ik}
+	+
+	\chi^{(1)}_{ik}(\omega)
+	+
+	\chi^{(2)}_{ijk}(0,\omega)
+	E^j(0)
+	.
+\end{equation}
+The electric susceptibility tensor is equal to the squared refractive index tensor, $\varepsilon_{ik}(\omega)=n_{ik}(\omega)^2$, or equivalently~\cite[p.~3]{Brooker2003}
+\begin{equation}
+	n_{ij}(\omega)
+	=
+	\sqrt{\varepsilon_{ij}}
+	\approx
+	n_{ik}^{(0)}
+	+
+	n_{ijk}^{(1)}(\omega)
+	E^j(0)
+\end{equation}
+wherein the refractive index coefficients relate to the dielectric susceptibility tensor via~\cite{Rerat2020}
+\begin{align}
+	n^{(0)}_{ij}(\omega)
+	&=
+	\sqrt{1+\chi^{(1)}_{ij}(\omega)}
+	&
+	n^{(1)}_{ijk}(\omega)
+	&=
+	\frac{\chi^{(2)}_{ijk}(\omega)
+	E^k(0)}{2\sqrt{1+\chi^{(1)}_{ij}(\omega)}}
+	.
+\end{align}

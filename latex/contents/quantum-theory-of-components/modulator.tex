@@ -18,197 +18,94 @@ The Pockels cell is a Pockels medium embedded inside a plate capacitor, see \Cre
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/pockels-cell}
-    \caption{Pockels cell of length $l$ and diameter $d$: The quantum optical input field, $\hat{t}_1(t)$, enters the cell from the left. Inside the Pockels cell, an electric quantum field, $\hat{E}_2(t)$, created by applying a voltage to the capacitor plates (black rectangles), couples with the input field and produces an quantum optical output field, $\hat{E}_1^\prime(t)$.}\label{fig:pockels_cell}
+    \caption{Pockels cell of length $l$ and diameter $d$: The quantum optical input field, $\hat{t}_1(t)$, enters the cell from the left. Inside the Pockels cell, an electric quantum field, $\hat{E}_2(t)$, created by applying a voltage to the capacitor plates (black rectangles), couples with the input field and produces an quantum optical output field, $\hat{E}_3(t)$.}\label{fig:pockels_cell}
 \end{figure}
-Applying a voltage signal $V(t)$ to the capacitor plates creates an electric field inside the cell, perpendicular to the plates, denoted by $\hat{E}_2(t)$.\footnote{The mean expectation value for the electric field operator inside the cell is $\expval{\hat{E}_2(t)}=V(t)/d$.}
+Applying a voltage signal $V(t)$ to the capacitor plates creates an electric field inside the cell, perpendicular to the plates, denoted by $\hat{E}_2(t)$.
 An optical input field, $\hat{E}_1(\omega)$, approaches from the left couples to $\hat{E}_1(t)$ over the length of the Pockels cell, $l$.
-The optical output field, $\hat{E}_1^\prime(t)$, exiting the cell to the right contains frequency components from both the optical input field, $\hat{E}_1(t)$, and the electric field inside the cell, $\hat{E}_2(t)$.
+The optical output field, $\hat{E}_3(t)$, exiting the cell to the right contains frequency components from both the optical input field, $\hat{E}_1(t)$, and the electric field inside the cell, $\hat{E}_2(t)$.
 
-The refractive index tensor of an ideal Pockels medium can be approximated\footnote{See, for instance, Ref.~\cite{Murti2014} and Ref.~\cite[p.~1070]{Mandel1995}.}
-\begin{equation}
-	\varepsilon_{ij}(\omega)
-	\approx
-	\delta_{ij}
-	+
-	\chi_{ij}^{(1)}(\omega)
-	+
-	\int\frac{\dd{\omega^\prime}}{(2\pi)^3}
-	\chi_{ijk}^{(2)}(\omega^\prime,\omega)
-	E^j(\omega^\prime)
-	E^k(\omega-\omega^\prime)
-\end{equation}
-wherein $\chi^{(n)}$ the denotes the $n$th order of the electric susceptibility tensor.
+% usual description via refractive index not possible!
+% Ref.~\cite{Horoshko2018}, which we briefly summarize.
 
-
-The refractive index tensor of the Pockels dielectric takes the form
+The energy of the electromagnetic field inside a dielectric medium is symbolically~\cite[p.~124]{Jackson2007}
 \begin{equation}
-	n_{ij}(\omega)
-	=
-	\sqrt{\varepsilon_{ij}}
-	\approx
-	n_{ij}^{(0)}
-	+
-	n_{ijk}^{(1)}(\omega)
-	E^k(\Omega_0)
-\end{equation}
-wherein the refractive index coefficients relate to the dielectric susceptibility tensor via~\cite{Rerat2020}
-\begin{align}
-	n^{(0)}_{ij}(\omega)
-	&=
-	\sqrt{1+\chi^{(1)}_{ij}(\omega)}
-	&
-	n^{(1)}_{ijk}(\omega)
-	&=
-	\frac{\chi^{(2)}_{ijk}(\omega)
-	E^k(\Omega_0)}{2\sqrt{1+\chi^{(1)}_{ij}(\omega)}}
-	.
-\end{align}
-Many elements of the refractive index tensor vanish because of crystal symmetries~\cite[p.~237]{Yariv1984} and we can express the refractive index relevant for the optical field
-\begin{equation}
-	n_{zz}(\omega,\Omega_0)
-	\approx
-	n^{(0)}_{zz}(\omega)
-	+
-	n^{(1)}_{zzx}(\omega)
-	E^x(\Omega_0)
-\end{equation}
-which is linear in the electric \gls{rf} field inside the Pockels cell.
-If we now imagine an optical field with frequency $\omega_0$ traveling through a Pockels cell it will accumulate a phase of
-\begin{equation}
-	\phi(E_x)
-	=
-	2\pi\frac{n_{zz}(\omega_0,E^x)}{\lambda_0}L
-\end{equation} 
-and the phase difference compared to a Pockels cell without electric field is proportional to the electric field, i.e.,
-\begin{equation}
-	\Delta\phi(E_x)
-	=
-	2\pi\frac{n_{zz}(\omega_0,E^x)-n_{zz}(\omega_0,0)}{\lambda_0}L
-	=
-	2\pi\frac{n_{zzx}^{(1)}(\omega_0)E^x}{\lambda_0}L
-	.
-\end{equation}
-
-Up to now, the analysis was entirely classical.
-A complete quantum description of the Pockels modulator is given in Ref.~\cite{Horoshko2018}, which we briefly summarize.
-The Hamiltonian density of an electromagnetic field in a Pockels dielectric is, see Ref.~\cite[p.~21]{Vogel2006} together with Ref.~\cite[p.~124]{Jackson2007},
-\begin{equation}
-	H
+	H(t)
 	=
 	\frac{1}{2}
 	\int\dd[3]{x}
 	\left\{
-		\vb{E}(\vb{x})
-		\vdot
-		\vb{D}(\vb{x})
+		E^i(\vb{x},t)
+		D_i(\vb{x},t)
 		+
-		\vb{B}(\vb{x})^2
+		B^i(\vb{x},t)
+		B_i(\vb{x},t)
 	\right\}
-	\label{eq:dielectric_em_hamiltonian}
-\end{equation}
-wherein $\vb{E}$ is the electric field, $\vb{B}$ is the magnetic field and $\vb{D}$ is the displacement field with components
-\begin{equation}
-	D_i(\vb{p})
-	=
-	\varepsilon_{ij}(\vb{p})
-	E^j(\vb{p})
-	\approx
-	E_i(\vb{p})
-	+
-	\int\frac{\dd[3]{q}}{(2\pi)^3}
-	\chi_{ijk}^{(2)}(\vb{q},\vb{p})
-	E^j(\vb{p})
-	E^k(\vb{q})
-\end{equation}
-is the electric displacement field where we inserted the nonlinear expansion of the dielectric permittivity tensor and neglected the first-order susceptibility $\chi^{(1)}$.\footnote{The first-order susceptibility can be treated as an additional interaction.}
-Inserting the displacement field into the Hamiltonian density, \cref{eq:dielectric_em_hamiltonian}, we recover the free Hamiltonian plus an interaction term
-\begin{equation}
-	H
-	=
-	H_0
-	+
-	H_\text{int}
-\end{equation}
-where the interaction term is given by
-\begin{equation}
-	H_\text{int}
-	=	
-	\frac{1}{2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\int\frac{\dd[3]{q}}{(2\pi)^3}
-	\chi_{ijk}^{(2)}(\vb{q},\vb{p})
-	E^i(\vb{p})
-	E^j(\vb{p})
-	E^k(\vb{q})	
-\end{equation}
-describing any three-point interactions including the linear electro-optical (Pockels) effect but also second harmonic generation, parametric mixing and amplification as well as optical rectification~\cite[p.~14]{Murti2014}.
-Adapting the geometry of \Cref{fig:pm} the interaction Hamiltonian becomes
-\begin{equation}
-	H_\text{int}
-	=	
-	\frac{1}{2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\int\frac{\dd[3]{q}}{(2\pi)^3}
-	\chi_{zzx}^{(2)}(\vb{q},\vb{p})
-	E^z(\vb{p}-\vb{q})
-	E^z(\vb{p}+\vb{q})
-	E^x(\vb{q})	
-\end{equation}
-describing energy transfer from the electric field to the outgoing optical field.
-Comparison of the classic interaction with the quantum nonlinear interactions in Ref.~\cite[p.~33]{QuesadaMejia2015} suggests the quantum interaction Hamiltonian
-\begin{equation}
-	\hat{H}_\text{int}
-	=
-	\frac{1}{2}
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\int\frac{\dd[3]{q}}{(2\pi)^3}
-	\Upsilon(\vb{p},\vb{q})
-	\hat{a}_x(\vb{q})
-	\hat{a}_z^\dagger(\vb{p}-\vb{q})
-	\hat{a}_z(\vb{p}+\vb{q})
-	+
-	\text{h.c.}
-\end{equation}
-wherein the spatial and response properties of the Pockels cell as well as the phase and momentum matching are encoded into $\Upsilon$.
-Assuming only two perpendicular momenta $p_x,p_z$ and taking the electric \gls{rf} as classic, the interaction Hamiltonian further simplifies to
-\begin{equation}
-	\hat{H}_\text{int}
-	=
-	\frac{1}{2}
-	\int\frac{\dd{p}}{2\pi}
-	\int\frac{\dd{q}}{2\pi}
-	\Upsilon(p,q)
-	\hat{a}_x(q)
-	\hat{a}_z^\dagger(p-q)
-	\hat{a}_z(p+q)
-	+
-	\text{h.c.}
 	.
 \end{equation}
-Let $\ket{\beta(t)}$ be the coherent state describing the electric \gls{rf} field, then the interaction Hamiltonian becomes
+Expanding the electric displacement field in terms of polarization density vectors, see \cref{sec:polarization_density_susceptibility}, we identify the relevant interaction term for the Pockels effect to be
 \begin{equation}
-	\hat{H}_\text{int}(t)
+	H_\text{int}(t)
 	=
 	\frac{1}{2}
-	\int\frac{\dd{p}}{2\pi}
-	\int\frac{\dd{q}}{2\pi}
-	\Upsilon(p,q)
-	\beta_x(q)^*
-	e^{-ipt}
-	\hat{a}_z^\dagger(p-q)
-	\hat{a}_z(p+q)
+	\int\dd[3]{x}
+	\hat{E}^i(t,\vb{x})
+	\hat{P}_i^{(2)}(t,\vb{x})
+	=
+	\int\dd[3]{x}
+	\mathcal{H}_\text{int}(\vb{x})
+	.
+\end{equation}
+Inserting the time Fourier transform, we find the interaction energy density to be~\cite[p.~1070]{Mandel1995}
+\begin{equation}
+	\mathcal{H}_\text{int}
+	=
+	\frac{1}{3}
+	\int\frac{\dd{\omega_1}}{2\pi}\frac{\dd{\omega_2}}{2\pi}\frac{\dd{\omega_3}}{2\pi}
+	\chi_{ijk}^{(2)}\left(\omega_3;\omega_1-\omega_2,\omega_2\right)
+	E^i(\omega_3)
+	E^j(\omega_1-\omega_2)
+	E^k(\omega_2)
+	,
+\end{equation}
+where we suppressed the spatial dependency in the arguments.
+The first argument in the second-order electric susceptibility tensor, $\chi_{ijk}^{(2)}$, reads as a reminder for energy conservation, $\omega_3=\omega_1+\omega_2$, which can equivalently be written
+\begin{equation}
+	\mathcal{H}_\text{int}
+	=
+	\frac{1}{3}
+	\int\frac{\dd{\omega_1}}{2\pi}\frac{\dd{\omega_2}}{2\pi}
+	\chi_{ijk}^{(2)}\left(\omega_1-\omega_2,\omega_2\right)
+	E^i(\omega_1+\omega_2)
+	E^j(\omega_1-\omega_2)
+	E^k(\omega_2)
+	.
+\end{equation}
+The particular situation depicted in \Cref{fig:pockels_cell} where we labeled the ingoing optical field $E_1$, the electrical field $E_2$, and the outgoing optical field $E_3$, is described by the interaction Hamiltonian density
+\begin{equation}
+	\mathcal{H}_\text{int}
+	=
+	\frac{1}{3}
+	\int\frac{\dd{\omega_1}}{2\pi}\frac{\dd{\omega_2}}{2\pi}
+	\chi_{312}^{(2)}\left(\omega_1-\omega_2,\omega_2\right)
+	E^1(\omega_1-\omega_2)
+	E^2(\omega_2)
+	E^3(\omega_1+\omega_2)
+	.
+\end{equation}
+Replacing the classical electric field amplitudes with the quantum operator and only keeping terms corresponding to an energy transfer from the electric to the optical field, we find
+\begin{equation}
+	\mathcal{H}_\text{int}
+	=
+	\int\frac{\dd{\omega_1}}{2\pi}\frac{\dd{\omega_2}}{2\pi}
+	\Gamma(\omega_1-\omega_2,\omega_2)
+	\hat{a}_1(\omega_1-\omega_2)
+	\hat{a}_2(\omega_2)
+	\hat{a}_3^\dagger(\omega_1+\omega_2)
 	+
 	\text{h.c.}
 \end{equation}
-and when taking the momentum of the electric \gls{rf} field to be small compared to the momentum of the optical field, $p\ll q$, such that
-\begin{equation}
-	\hat{a}_z^\dagger(p-q)
-	\hat{a}_z(p+q)
-	\approx
-	\hat{a}_z^\dagger(p)
-	\hat{a}_z(p)
-\end{equation}
-we obtain the approximate interaction Hamiltonian
+
+
 \begin{equation}
 	\hat{H}_\text{int}(t)
 	\approx

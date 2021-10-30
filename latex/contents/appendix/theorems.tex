@@ -1,8 +1,8 @@
-\chapter{Supplements}
+\chapter{Supplemental theorems to quantum theory of optics}
 
 The supplemental material captures auxiliary calculations which would otherwise disrupt the reading.
 
-\section{Theorems for quantum states}
+\section{Commutator between momentum and spacetime annihilation and creation operators}
 
 \begin{lemma}\label{th:annihilation_field_commutators}
 	Let $\hat{a}(\vb{k})$ and $\hat{a}^\dagger(\vb{k})$ be the annihilation and creation operator satisfying the \gls{ccr} and $\hat{A}^{(\pm)}$ be the positive and negative frequency field operator, then the commutator of the annihilation and creation operator with the positive and negative smeared field operators yields
@@ -126,6 +126,8 @@ The supplemental material captures auxiliary calculations which would otherwise 
 	\end{equation}
 	where we used the recursive relation.
 \end{proof}
+
+\section{Expectation values of number and coherent states}
 
 \begin{lemma}
 	Let $\ket{n_f}$ be a number state and $\vu{P}$ be the momentum operator, \cref{eq:maxwell_momentum_operator}, then number state has the expectation value
@@ -422,97 +424,3 @@ The supplemental material captures auxiliary calculations which would otherwise 
 		\end{split}
 	\end{equation}
 \end{proof}
-
-\section{Second-order electric susceptibility tensor}
-
-The susceptibility tensor relevant for the Pockels effect is usually given in a DC approximation without sidebands.
-
-In the time domain, the second-order polarization density is~\cite[p.~55]{Boyd2020}
-\begin{equation}
-	P_i^{(2)}(t)
-	=
-	\int\dd{t_1}
-	\int\dd{t_2}
-	\chi^{(2)}_{ijk}(t_1,t_2)
-	E^j(t-t_1)
-	E^k(t-t_2)
-	\label{eq:polarization_density_so_time}
-\end{equation}
-wherein $\chi^{(2)}_{ijk}(t_1,t_2)$ is the second-order time response tensor of the dielectric media.
-Inserting the Fourier transform of the electric field components, we find
-\begin{equation}
-	P_i^{(2)}(t)
-	=
-	\int\frac{\dd{\omega_1}}{2\pi}
-	\int\frac{\dd{\omega_2}}{2\pi}
-	\chi^{(2)}_{ijk}(\omega_1,\omega_2)
-	E^j(\omega_1)
-	E^k(\omega_2)
-	e^{-i(\omega_1+\omega_2)t}
-	\label{eq:polarization_density_so_freq}
-\end{equation}
-wherein the second-order frequency response tensor is the Fourier transform of the time response tensor, i.e.,
-\begin{equation}
-	\chi^{(2)}_{ijk}(\omega_1,\omega_2)
-	=
-	\int\dd{t_1}
-	\int\dd{t_2}
-	\chi^{(2)}_{ijk}(t_1,t_2)
-	e^{+i\omega_1t}
-	e^{+i\omega_2t}
-	.
-\end{equation}
-Inserting the \cref{eq:polarization_density_so_freq} into the Fourier transform of the second-order polarization density, we find
-\begin{equation}
-	\begin{split}
-		P_i^{(2)}(\omega)
-		&=
-		\int\dd{t}
-		P_i^{(2)}(t)
-		e^{+i\omega t}
-		\\
-		&=
-		\int\frac{\dd{\omega_1}}{2\pi}
-		\int\frac{\dd{\omega_2}}{2\pi}
-		\chi^{(2)}_{ijk}(\omega_1,\omega_2)
-		E^j(\omega_1)
-		E^k(\omega_2)
-		\int\dd{t}
-		e^{-i(\omega_1+\omega_2-\omega)t}
-		\\
-		&=
-		\int\frac{\dd{\omega_1}}{2\pi}
-		\int\frac{\dd{\omega_2}}{2\pi}
-		\chi^{(2)}_{ijk}(\omega_1,\omega_2)
-		E^j(\omega_1)
-		E^k(\omega_2)
-		(2\pi)
-		\delta^{(1)}(\omega_2-\omega+\omega_1)
-		\\
-		&=
-		\int\frac{\dd{\omega^\prime}}{2\pi}
-		\chi^{(2)}_{ijk}(\omega^\prime,\omega-\omega^\prime)
-		E^j(\omega^\prime)
-		E^k(\omega-\omega^\prime)
-		.
-	\end{split}
-\end{equation}
-Assuming that only a static electric field contributes,
-\begin{equation}
-	\chi^{(2)}_{ijk}(\omega^\prime,\omega-\omega^\prime)
-	\propto
-	\delta^{(1)}(\omega^\prime)
-	,
-\end{equation}
-we recover the polarization density for the static Pockels effect~\cite[p.~495]{Boyd2020}
-\begin{equation}
-	P_i^{(2)}(\omega)
-	=
-	\chi^{(2)}_{ijk}(0,\omega)
-	E^j(0)
-	E^k(\omega)
-	=
-	\varepsilon^{(2)}_{ij}(\omega)
-	E^j(\omega)
-\end{equation}
-wherein $\varepsilon^{(2)}_{ij}(\omega)$ is the second-order dielectric susceptibility tensor in the frequency domain.
