@@ -228,3 +228,77 @@ wherein the refractive index coefficients relate to the dielectric susceptibilit
 	E^k(0)}{2\sqrt{1+\chi^{(1)}_{ij}(\omega)}}
 	.
 \end{align}
+
+\section{Interaction energy for frequency conversion}
+
+The interaction Hamiltonian for a general three-wave mixing process is\footnote{The interaction Hamiltonian is time-independent as the total field energy is conserved.}
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\int\dd[3]{x}
+	\hat{E}^i(\vb{x})
+	\hat{P}_i^{(2)}(\vb{x})
+	=
+	\int\dd[3]{x}
+	\chi^{(2)}_{ijk}(\vb{x})
+	\hat{E}^i(\vb{x})
+	\hat{E}^j(\vb{x})
+	\hat{E}^k(\vb{x})
+	.
+\end{equation}
+We perform the scalar approximation and assume the electric field components to be in the same axis\footnote{For lithium niobate, the second-order susceptibility is indeed the highest in this case.}, i.e.,
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\int\dd{x}
+	\chi^{(2)}(x)
+	\hat{E}(x)
+	\hat{E}(x)
+	\hat{E}(x)
+	.
+\end{equation}
+Expansion of the electric field operators in terms of positive and negative frequency parts, we find
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\int\dd{x}
+	\chi^{(2)}(x)
+	\hat{E}^{(-)}(x)
+	\hat{E}^{(-)}(x)
+	\hat{E}^{(+)}(x)
+	+
+	\text{h.c.}
+\end{equation}
+to correspond to frequency conversion.
+Inserting the quantum mode expansion, we find
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\int\frac{\dd{\omega_1}}{2\pi}
+	\int\frac{\dd{\omega_2}}{2\pi}
+	\int\frac{\dd{\omega_3}}{2\pi}
+	\omega_1
+	\omega_2
+	\omega_3
+	\hat{a}(\omega_1)
+	\hat{a}(\omega_2)
+	\hat{a}^\dagger(\omega_3)
+	\chi^{(2)}(\omega_1+\omega_2-\omega_3)
+	+
+	\text{h.c.}
+\end{equation}
+assuming the interaction to be highly peaked at the resonance $\omega_3=\omega_1+\omega_2$, we can replace the susceptibility with a delta distribution
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\int\frac{\dd{\omega_1}}{2\pi}
+	\int\frac{\dd{\omega_2}}{2\pi}
+	\omega_1
+	\omega_2
+	\left(\omega_1+\omega_2\right)
+	\hat{a}(\omega_1)
+	\hat{a}(\omega_2)
+	\hat{a}^\dagger(\omega_1+\omega_2)
+	+
+	\text{h.c.}
+\end{equation}
