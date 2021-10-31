@@ -229,76 +229,339 @@ wherein the refractive index coefficients relate to the dielectric susceptibilit
 	.
 \end{align}
 
-\section{Interaction energy for frequency conversion}
+\section{Nonlinear interaction Hamiltonians}
 
-The interaction Hamiltonian for a general three-wave mixing process is\footnote{The interaction Hamiltonian is time-independent as the total field energy is conserved.}
+The Hamiltonian of the electromagnetic field in a dielectric medium is symbolically~\cite[p.~124]{Jackson2007}
 \begin{equation}
-	\hat{H}_\text{int}
+	\hat{H}
 	=
+	\frac{1}{2}
 	\int\dd[3]{x}
-	\hat{E}^i(\vb{x})
-	\hat{P}_i^{(2)}(\vb{x})
-	=
-	\int\dd[3]{x}
-	\chi^{(2)}_{ijk}(\vb{x})
-	\hat{E}^i(\vb{x})
-	\hat{E}^j(\vb{x})
-	\hat{E}^k(\vb{x})
+	\left\{
+		\hat{E}^i(t,\vb{x})
+		\hat{D}_i(t,\vb{x})
+		+
+		\hat{B}^i(t,\vb{x})
+		\hat{B}_i(t,\vb{x})
+	\right\}
 	.
 \end{equation}
-We perform the scalar approximation and assume the electric field components to be in the same axis\footnote{For lithium niobate, the second-order susceptibility is indeed the highest in this case.}, i.e.,
+We expand the electric displacement field up to the second-order polarization density
 \begin{equation}
-	\hat{H}_\text{int}
+	\hat{D}_i(t,\vb{x})
 	=
-	\int\dd{x}
-	\chi^{(2)}(x)
-	\hat{E}(x)
-	\hat{E}(x)
-	\hat{E}(x)
+	\hat{E}_i(t,\vb{x})
+	+
+	\hat{P}_i^{(1)}(t,\vb{x})
+	+
+	\hat{P}_i^{(2)}(t,\vb{x})
+\end{equation}
+and insert it back into the Hamiltonian of the electromagnetic field
+\begin{equation}
+	\hat{H}
+	=
+	\frac{1}{2}
+	\int\dd[3]{x}
+	\left\{
+		\hat{E}^i(t,\vb{x})
+		\hat{E}_i(t,\vb{x})
+		+
+		\hat{B}^i(t,\vb{x})
+		\hat{B}_i(t,\vb{x})
+	\right\}
+	+
+	\hat{H}_\text{int}^{(1)}(t)
+	+
+	\hat{H}_\text{int}^{(2)}(t)
+\end{equation}
+and identify the free field Hamiltonian and two interaction terms with
+\begin{align}
+	\hat{H}_\text{int}^{(n)}(t)
+	=	
+	\frac{1}{2}
+	\int\dd[3]{x}
+	\hat{E}^i(t,\vb{x})
+	\hat{P}_i^{(n)}(t,\vb{x})
+	.
+\end{align}
+
+\subsection{First-order susceptibility}
+
+Assuming the dielectric to be absorption-free and time-invariant, we can write the first-order polarization density as
+\begin{equation}
+	\hat{P}_i^{(1)}(t,\vb{x})
+	=
+	\int\dd{t_1}
+	\chi_{ij}^{(1)}(t_1,\vb{x})
+	\hat{E}_i^{(i)}(t-t_1,\vb{x})
+\end{equation}
+and insert it back into the interaction Hamiltonian
+\begin{equation}
+	\hat{H}_\text{int}^{(1)}(t)
+	=	
+	\frac{1}{2}
+	\int\dd{t_1}
+	\chi_{ij}^{(1)}(t_1,\vb{x})
+	\int\dd[3]{x}
+	\hat{E}^i(t,\vb{x})
+	\hat{E}^j(t-t_1,\vb{x})
 	.
 \end{equation}
-Expansion of the electric field operators in terms of positive and negative frequency parts, we find
+We assume the electric fields to be polarized along the same axis and neglect the transverse mode profile
 \begin{equation}
-	\hat{H}_\text{int}
-	=
+	\hat{H}_\text{int}^{(1)}(t)
+	\approx
+	\frac{1}{2}
+	\int\dd{t_1}
+	\chi^{(1)}(t_1,x)
 	\int\dd{x}
-	\chi^{(2)}(x)
-	\hat{E}^{(-)}(x)
-	\hat{E}^{(-)}(x)
-	\hat{E}^{(+)}(x)
+	\hat{E}(t,x)
+	\hat{E}(t-t_1,x)
 	+
 	\text{h.c.}
+	.
 \end{equation}
-to correspond to frequency conversion.
-Inserting the quantum mode expansion, we find
+We expand the electric field into positive and negative frequency parts and perform the rotating-wave approximation
 \begin{equation}
-	\hat{H}_\text{int}
-	=
-	\int\frac{\dd{\omega_1}}{2\pi}
-	\int\frac{\dd{\omega_2}}{2\pi}
-	\int\frac{\dd{\omega_3}}{2\pi}
-	\omega_1
-	\omega_2
-	\omega_3
-	\hat{a}(\omega_1)
-	\hat{a}(\omega_2)
-	\hat{a}^\dagger(\omega_3)
-	\chi^{(2)}(\omega_1+\omega_2-\omega_3)
+	\hat{H}_\text{int}^{(1)}(t)
+	\approx
+	\frac{1}{2}
+	\int\dd{t_1}
+	\chi^{(1)}(t_1,x)
+	\int\dd{x}
+	\hat{E}^{(-)}(t,x)
+	\hat{E}^{(+)}(t-t_1,x)
 	+
 	\text{h.c.}
 \end{equation}
-assuming the interaction to be highly peaked at the resonance $\omega_3=\omega_1+\omega_2$, we can replace the susceptibility with a delta distribution
+by only keeping mixed frequency parts.
+Inserting the mode expansion, \cref{eq:electric_positive_operator,eq:electric_positive_operator}, we find
 \begin{equation}
-	\hat{H}_\text{int}
+	\begin{split}
+		\hat{H}_\text{int}^{(1)}(t)
+		&=
+		\int\frac{\dd{p}}{2\pi\sqrt{2\omega(p)}}
+		\omega(p)
+		\hat{a}(p)
+		e^{-i\omega(p)t}
+		\int\frac{\dd{q}}{2\pi\sqrt{2\omega(q)}}
+		\omega(q)
+		\hat{a}^\dagger(q)
+		e^{+i\omega(p)(t-t_1)}
+		\\
+		&\times
+		\frac{1}{2}
+		\int\dd{t_1}
+		\int\dd{x}
+		\chi^{(1)}(t_1,x)
+		e^{i(p-q)x}
+		+
+		\text{h.c.}
+		.
+	\end{split}
+\end{equation}
+Furthermore, assuming the interaction strength to be uniform inside the dielectric, we can evaluate the first integral
+\begin{equation}
+	\int\dd{x}
+	\chi^{(1)}(t_1,x)
+	e^{i(p-q)x}
 	=
-	\int\frac{\dd{\omega_1}}{2\pi}
-	\int\frac{\dd{\omega_2}}{2\pi}
-	\omega_1
-	\omega_2
-	\left(\omega_1+\omega_2\right)
-	\hat{a}(\omega_1)
-	\hat{a}(\omega_2)
-	\hat{a}^\dagger(\omega_1+\omega_2)
+	\chi^{(1)}(t_1)
+	\int_{-L/2}^{+L/2}\dd{x}
+	e^{i(p-q)x}
+	=
+	\chi^{(1)}(t_1)
+	\sinc\left(\frac{p-q}{2/L}\right)
+	L
+\end{equation}
+which is known as the phase-matching function in non-linear optics~\cite[p.~33]{QuesadaMejia2015}.
+We assume perfect phase-matching
+\begin{equation}
+	\chi^{(1)}(t_1)
+	\sinc\left(\frac{p-q}{2/L}\right)
+	L
+	\approx
+	\chi^{(1)}(t_1)L
+	(2\pi)
+	\delta^{(1)}(p-q)
+\end{equation}
+and insert the result into the interaction Hamiltonian
+\begin{equation}
+	\begin{split}
+		\hat{H}_\text{int}^{(1)}(t)
+		&=
+		\frac{L}{2}
+		\int\frac{\dd{p}}{2\pi}
+		\omega(p)
+		\hat{a}(p)
+		\hat{a}^\dagger(p)
+		\int\dd{t_1}
+		\chi^{(1)}(t_1)
+		e^{-ipt_1}
+		+
+		\text{h.c.}
+		\\
+		&=
+		\frac{L}{2}
+		\int\frac{\dd{p}}{2\pi}
+		\chi^{(1)}(p)
+		\omega(p)
+		\hat{a}(p)
+		\hat{a}^\dagger(p)
+		+
+		\text{h.c.}
+	\end{split}
+\end{equation}
+which can be solved exactly with the Magnus expansion.
+The interaction Hamiltonian corresponds to a constant energy shift due to the polarization inside the dielectric.
+
+\subsection{Second-order susceptibility (frequency conversion)}\label{sec:frequency_convserion}
+
+In general, we follow the same approach as for the first-order susceptibility.
+However, now we have to deal with nonlinearities.
+
+The second-order polarization density operator for a lossless and time-invariant dielectric is
+\begin{equation}
+	\hat{P}_i^{(2)}(t,\vb{x})
+	=
+	\int\dd{t_1}
+	\int\dd{t_2}
+	\chi^{(2)}_{ijk}(t_1,t_2,\vb{x})
+	\hat{E}^j(t-t_1,\vb{x})
+	\hat{E}^k(t-t_2,\vb{x})
+\end{equation}
+which inserted into the second-order interaction Hamiltonian yields
+\begin{equation}
+	\hat{H}_\text{int}^{(2)}(t)
+	=
+	\frac{1}{2}
+	\int\dd[3]{x}
+	\int\dd{t_1}
+	\int\dd{t_2}
+	\chi^{(2)}_{ijk}(t_1,t_2,\vb{x})
+	\hat{E}^i(t,\vb{x})
+	\hat{E}^j(t-t_1,\vb{x})
+	\hat{E}^k(t-t_2,\vb{x})
+	.
+\end{equation}
+We assume the electric fields to be polarized along the same axis and neglect the transverse mode profile
+\begin{equation}
+	\hat{H}_\text{int}^{(2)}(t)
+	\approx
+	\frac{1}{2}
+	\int\dd{x}
+	\int\dd{t_1}
+	\int\dd{t_2}
+	\chi^{(2)}(t_1,t_2,x)
+	\hat{E}(t,x)
+	\hat{E}(t-t_1,x)
+	\hat{E}(t-t_2,x)
+	.
+\end{equation}
+Furthermore, we expand the electric fields into positive and negative frequency parts and only keep the terms corresponding to frequency conversion
+\begin{equation}
+	\hat{H}_\text{int}^\text{FC}(t)
+	\approx
+	\frac{1}{2}
+	\int\dd{x}
+	\int\dd{t_1}
+	\int\dd{t_2}
+	\chi^{(2)}(t_1,t_2,x)
+	\hat{E}^{(-)}(t-t_1,x)
+	\hat{E}^{(-)}(t-t_2,x)
+	\hat{E}^{(+)}(t,x)
 	+
 	\text{h.c.}
 \end{equation}
+dropping all other terms.
+Performing the mode expansion, \cref{eq:electric_positive_operator,eq:electric_negative_operator},
+\begin{equation}
+	\begin{split}
+		\hat{H}_\text{int}^\text{FC}(t)
+		&=
+		\frac{1}{2}
+		\int\dd{x}
+		\int\dd{t_1}
+		\int\dd{t_2}
+		\chi^{(2)}(t_1,t_2,x)
+		\\
+		&\times
+		\int\frac{\dd{q_1}}{2\pi\sqrt{2\omega(q_1)}}
+		\omega(q_1)
+		\hat{a}(q_1)
+		e^{-i\omega(q_1)(t-t_1)+iq_1x}
+		\\
+		&\times
+		\int\frac{\dd{q_2}}{2\pi\sqrt{2\omega(q_2)}}
+		\omega(q_2)
+		\hat{a}(q_2)
+		e^{-i\omega(q_2)(t-t_2)+iq_2x}
+		\\
+		&\times
+		\int\frac{\dd{p}}{2\pi\sqrt{2\omega(p)}}
+		\omega(p)
+		\hat{a}^\dagger(p)
+		e^{+i\omega(p)t-ipx}
+		+
+		\text{h.c.}
+	\end{split}
+\end{equation}
+We again approximate the phase-matching to be perfect
+\begin{equation}
+	\int\dd{x}
+	\chi^{(2)}(t_1,t_2,x)
+	e^{+i(q_1+q_2-p)x}
+	\approx
+	\chi^{(2)}(t_1,t_2)L
+	(2\pi)
+	\delta^{(1)}(q_1+q_2-p)
+\end{equation}
+and simplify the interaction Hamiltonian to
+\begin{equation}
+	\begin{split}
+		\hat{H}_\text{int}^\text{FC}(t)
+		&=
+		\frac{L}{2}
+		\int\frac{\dd{p}}{2\pi}
+		\int\frac{\dd{q_1}}{2\pi}
+		\sqrt{\frac{\omega(p)}{2}}
+		\sqrt{\frac{\omega(q_1)}{2}}
+		\sqrt{\frac{\omega(p-q_1)}{2}}
+		\hat{a}(q_1)
+		\hat{a}(p-q_1)
+		\hat{a}^\dagger(p)
+		\\
+		&\times
+		\int\dd{t_1}
+		\int\dd{t_2}
+		\chi^{(2)}(t_1,t_2)
+		e^{+iq_1t_1}
+		e^{+i(p-q_1)t_2}
+		+
+		\text{h.c.}
+	\end{split}
+\end{equation}
+We identify the Fourier transform of the second-order susceptibility and write
+\begin{equation}
+	\hat{H}_\text{int}^\text{FC}(t)
+	=
+	\int\frac{\dd{p}}{2\pi}
+	\int\frac{\dd{q}}{2\pi}
+	g(p,q)
+	\hat{a}(p-q)
+	\hat{a}(q)
+	\hat{a}^\dagger(p)
+	+
+	\text{h.c.}
+\end{equation}
+where we have introduced the coupling
+\begin{equation}
+	g(p,q)
+	=
+	\frac{L}{2}
+	\chi^{(2)}(q,p-q)
+	\sqrt{\frac{p}{2}}
+	\sqrt{\frac{q}{2}}
+	\sqrt{\frac{p-q}{2}}
+\end{equation}
+which agrees from the main characteristics with the result reported in Ref.~\cite[eq.~35].{Horoshko2018}

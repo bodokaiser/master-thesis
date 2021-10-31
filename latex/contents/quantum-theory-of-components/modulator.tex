@@ -4,7 +4,7 @@ The (electro-optical) modulators allow us to encode an electrical signal onto an
 The domain crossover occurs at the electro-optical phase modulator, which we attempt to describe as a (quantum) nonlinear mixing process mediated by the dielectric, in a first part.
 In a second part, we construct, in the optical domain, a complex, in-phase and quadrature, amplitude modulator using \gls{mzi}s driven by electro-optical phase modulators.
 
-\subsection{Phase modulator based on the Pockels effect}
+\subsection{Phase modulator based on nonlinear frequency conversion}
 
 The electro-optical phase modulator relates an electric signal to a phase shift of an optical signal by changing the refractive index of its transmission medium.
 There are many ways to change the refractive index, such as applying an electric field, the charge carrier density, the temperature, or the mechanical strain of the optical transmission medium.
@@ -14,13 +14,13 @@ The Pockels effect labels a linear change, while the Kerr effect characterizes a
 If a material exhibits an electro-optical effect depends strongly on the crystal symmetry~\cite[p.~237]{Yariv1984}.
 In the following, we focus on the linear electro-optic effect, the Pockels effect, which is present in noncentrosymmetric crystals~\cite[p.~2]{Boyd2020}, e.g., lithium niobate, and commonly used in integrated telecommunication modulators.
 
-The Pockels cell is a Pockels medium embedded inside a plate capacitor, see \Cref{fig:pockels_cell}, and constitutes a primitive embodiment of a phase modulator.
+The Pockels cell is a Pockels medium embedded inside a plate capacitor (\Cref{fig:pockels_cell}) and constitutes a primitive embodiment of a phase modulator.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/pockels-cell}
     \caption{Pockels cell of length $l$ and diameter $d$: The quantum optical input field, $\hat{t}_1(t)$, enters the cell from the left. Inside the Pockels cell, an electric quantum field, $\hat{E}_2(t)$, created by applying a voltage to the capacitor plates (black rectangles), couples with the input field and produces an quantum optical output field, $\hat{E}_3(t)$.}\label{fig:pockels_cell}
 \end{figure}
-Applying a voltage signal $V(t)$ to the capacitor plates creates an electric field inside the cell, perpendicular to the plates, denoted by $\hat{E}_2(t)$.
+Applying a voltage signal $V(t)$ to the capacitor plates creates an electric field inside the cell, depicted by the black, low-frequency sine wave in \Cref{fig:pockels_cell}.
 An optical input field, $\hat{E}_1(\omega)$, approaches from the left couples to $\hat{E}_1(t)$ over the length of the Pockels cell, $l$.
 The optical output field, $\hat{E}_3(t)$, exiting the cell to the right contains frequency components from both the optical input field, $\hat{E}_1(t)$, and the electric field inside the cell, $\hat{E}_2(t)$.
 
@@ -29,6 +29,8 @@ The optical output field, $\hat{E}_3(t)$, exiting the cell to the right contains
 % which reduces to the phase-rotation operator proposed in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006} in the single-mode limit and time-independent $\varphi$.
 % The energy of the electromagnetic field inside a dielectric medium is symbolically~\cite[p.~124]{Jackson2007}
 %where $v_\text{gr}$ is the group velocity in the quasi-monochromatic approximation~\cite[p.~211]{Jackson2007}.
+
+%\footnote{An introduction to the phase-rotation operator is found in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006}.}
 
 The interaction Hamiltonian~\cite[p.~1070]{Mandel1995}
 \begin{equation}
