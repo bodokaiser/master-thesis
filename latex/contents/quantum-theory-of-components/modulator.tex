@@ -4,7 +4,7 @@ The (electro-optical) modulators allow us to encode an electrical signal onto an
 The domain crossover occurs at the electro-optical phase modulator, which we attempt to describe as a (quantum) nonlinear mixing process mediated by the dielectric, in a first part.
 In a second part, we construct, in the optical domain, a complex, in-phase and quadrature, amplitude modulator using \gls{mzi}s driven by electro-optical phase modulators.
 
-\subsection{Phase modulator based on nonlinear frequency conversion}
+\subsection{Phase modulator using nonlinear frequency conversion}
 
 The electro-optical phase modulator relates an electric signal to a phase shift of an optical signal by changing the refractive index of its transmission medium.
 There are many ways to change the refractive index, such as applying an electric field, the charge carrier density, the temperature, or the mechanical strain of the optical transmission medium.
@@ -18,7 +18,7 @@ The Pockels cell is a Pockels medium embedded inside a plate capacitor (\Cref{fi
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/pockels-cell}
-    \caption{Pockels cell of length $l$ and diameter $d$: The quantum optical input field, $\hat{t}_1(t)$, enters the cell from the left. Inside the Pockels cell, an electric quantum field, $\hat{E}_2(t)$, created by applying a voltage to the capacitor plates (black rectangles), couples with the input field and produces an quantum optical output field, $\hat{E}_3(t)$.}\label{fig:pockels_cell}
+    \caption{Pockels cell of length $L$ modulating sidebands onto an optical carrier: The unmodulated optical input field $\hat{E}(\omega)$ approaches the Pockels cell from the left. Inside the Pockels cell, a modulation field $\hat{E}(\Omega)$, polarized along the optical input field, adds two sidebands, $\hat{E}(\omega),\hat{E}(\omega\pm\Omega)$, to the optical carrier.}\label{fig:pockels_cell}
 \end{figure}
 Applying a voltage signal $V(t)$ to the capacitor plates creates an electric field inside the cell, depicted by the black, low-frequency sine wave in \Cref{fig:pockels_cell}.
 An optical input field, $\hat{E}_1(\omega)$, approaches from the left couples to $\hat{E}_1(t)$ over the length of the Pockels cell, $l$.
@@ -32,26 +32,22 @@ The optical output field, $\hat{E}_3(t)$, exiting the cell to the right contains
 
 %\footnote{An introduction to the phase-rotation operator is found in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006}.}
 
-The interaction Hamiltonian~\cite[p.~1070]{Mandel1995}
+In \cref{sec:frequency_convserion} we motivated the interaction Hamiltonian corresponding to frequency conversion
 \begin{equation}
-	\begin{split}
-		\hat{H}_\text{int}(t)
-		&=
-		\frac{1}{3}
-		\int\dd[3]{x}
-		\int\frac{\dd{\omega_1}}{2\pi}
-		\int\frac{\dd{\omega_2}}{2\pi}
-		\int\frac{\dd{\omega_3}}{2\pi}
-		\\
-		&\times
-		\chi_{ijk}(\omega_3=\omega_1+\omega_2;\omega_1-\omega_2,\omega_2)
-		\hat{E}^i(\omega_3,\vb{x})
-		\hat{E}^j(\omega_1-\omega_2,\vb{x})
-		\hat{E}^k(\omega_1,\vb{x})
-	\end{split}
+	\hat{H}_\text{int}(t)
+	=
+	\int\frac{\dd{\omega}}{2\pi}
+	\int\frac{\dd{\omega^\prime}}{2\pi}
+	g(\omega,\omega^\prime)
+	\hat{a}(\omega-\omega^\prime)
+	\hat{a}(\omega^\prime)
+	\hat{a}^\dagger(\omega)
+	+
+	\text{h.c.}
 \end{equation}
+capturing the main characteristics of more carefully derived results in Ref.~\cite[eq.~35]{Horoshko2018} and Ref.~\cite[p.~89]{QuesadaMejia2015} when replacing the first annihilation operator with the classical amplitude.
 
-\subsection{Amplitude modulator based on Mach-Zehnder interferometer}
+\subsection{Amplitude modulator using Mach-Zehnder interferometer}
 
 The \gls{mzm} uses two phase modulators to perform amplitude modulation through interference.
 The \gls{mzm} enables electrically-driven amplitude modulation if the phase modulators are driven electrically, for instance, using the Pockels effect as discussed previously.
