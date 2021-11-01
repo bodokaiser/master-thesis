@@ -292,6 +292,79 @@ where we used
 	.
 \end{equation}
 
+In \Cref{sec:frequency_convserion} we motivated the interaction Hamiltonian
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\int\frac{\dd{\omega}}{2\pi}
+	\int\frac{\dd{\omega^\prime}}{2\pi}
+	g(\omega,\omega^\prime)
+	\hat{a}^\dagger(\omega)
+	\hat{a}(\omega^\prime)
+	\hat{a}(\omega-\omega^\prime)
+	+
+	\text{h.c.}
+\end{equation}
+wherein $g(\omega,\omega^\prime)$ encodes the geometry and properties of the dielectric material.
+Approximating the electric \gls{rf} field as classical, we replace the annihilation operator with the complex amplitude of the modulation field, $\beta(\omega^\prime)$,
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\int\frac{\dd{\omega}}{2\pi}
+	\int\frac{\dd{\omega^\prime}}{2\pi}
+	g(\omega,\omega^\prime)
+	\beta(\omega^\prime)
+	\hat{a}^\dagger(\omega)
+	\hat{a}(\omega-\omega^\prime)
+	+
+	\text{h.c.}
+\end{equation}
+We assume the modulation field to be sinusoidal
+\begin{equation}
+	\beta(t)
+	=
+	\beta_0
+	\sin(\Omega_0t)
+\end{equation}
+and therefore compose two frequency components
+\begin{equation}
+	\beta(\omega)
+	=
+	\beta_0
+	(2\pi)
+	\delta^{(1)}(\omega-\Omega_0)
+\end{equation}
+which inserted into the interaction Hamiltonian yields
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\beta_0
+	\int\frac{\dd{\omega}}{2\pi}
+	g(\omega,\Omega_0)
+	\hat{a}^\dagger(\omega)
+	\hat{a}(\omega+\Omega_0)
+	+
+	\text{h.c.}
+\end{equation}
+Performing the narrow-bandwidth approximation for the optical field
+\begin{equation}
+	\gamma
+	=
+	\beta_0
+	g(\omega_0,\Omega_0)
+\end{equation}
+we identify the interaction Hamiltonian with the operator
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\gamma
+	\hat{T}_+
+	+
+	\gamma^*
+	\hat{T}_-	
+\end{equation}
+which solved with the Magnus expansion yields the unitary operator used in ...
+
 \subsection{Amplitude modulator using Mach-Zehnder interferometer}
 
 The \gls{mzm} uses two phase modulators to perform amplitude modulation through interference.
