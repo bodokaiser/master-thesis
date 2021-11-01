@@ -6,25 +6,27 @@ In a second part, we construct, in the optical domain, a complex, in-phase and q
 
 \subsection{Phase modulator using nonlinear frequency conversion}
 
-The electro-optical phase modulator relates an electric signal to a phase shift of an optical signal by changing the refractive index of its transmission medium.
-There are many ways to change the refractive index, such as applying an electric field, the charge carrier density, the temperature, or the mechanical strain of the optical transmission medium.
-Changing the refractive index directly through an electric field is, for many applications, the most convenient.
-The two most relevant electro-optical effects are the Pockels and Kerr effects~\cite[Ch.~18]{Saleh2007}.
-The Pockels effect labels a linear change, while the Kerr effect characterizes a quadratic refractive index change in terms of an external electric field.
-If a material exhibits an electro-optical effect depends strongly on the crystal symmetry~\cite[p.~237]{Yariv1984}.
-In the following, we focus on the linear electro-optic effect, the Pockels effect, which is present in noncentrosymmetric crystals~\cite[p.~2]{Boyd2020}, e.g., lithium niobate, and commonly used in integrated telecommunication modulators.
-
-The Pockels cell is a Pockels medium embedded inside a plate capacitor (\Cref{fig:pockels_cell}) and constitutes a primitive embodiment of a phase modulator.
+In an electro-optical phase modulator, an electrical signal changes the refractive index of an optical transmission medium, causing a phase shift.
+While the refractive index changes with the charge carrier density, temperature, and mechanical stress applied to the dielectric medium, it also changes through external electric fields, named electro-optical effects.
+The Pockels effect characterizes a linear change of the refractive index in terms of an external electric field and is present in noncentrosymmetric crystals~\cite[p.~2]{Boyd2020}, e.g., lithium niobate~\cite[p.~237]{Yariv1984}, commonly used in photonic integration.
 \begin{figure}[htb]
     \centering
-    \includegraphics{figures/tikz/pockels-cell}
-    \caption{Pockels cell of length $L$ modulating sidebands onto an optical carrier: The unmodulated optical input field $\hat{E}(\omega)$ approaches the Pockels cell from the left. Inside the Pockels cell, a modulation field $\hat{E}(\Omega)$, polarized along the optical input field, adds two sidebands, $\hat{E}(\omega),\hat{E}(\omega\pm\Omega)$, to the optical carrier.}\label{fig:pockels_cell}
+    \includegraphics{figures/tikz/phase-modulator}
+    \caption{Traveling-wave electro-optical phase modulator: A single frequency optical field, traveling from the left along the $x$, $\hat{E}(\omega)$, enters a dielectric medium of length $L$ embedded between two electrodes. The electrodes are driven by a voltage to create the electric field $\hat{E}(\Omega)$ between the electrodes along the $x$ direction. An optical field with three frequency components, $\hat{E}(\omega),\hat{E}(\omega\pm\Omega)$, exits the dielectric medium to the right.}\label{fig:phase_modulator}
 \end{figure}
-Applying a voltage signal $V(t)$ to the capacitor plates creates an electric field inside the cell, depicted by the black, low-frequency sine wave in \Cref{fig:pockels_cell}.
-An optical input field, $\hat{E}_1(\omega)$, approaches from the left couples to $\hat{E}_1(t)$ over the length of the Pockels cell, $l$.
-The optical output field, $\hat{E}_3(t)$, exiting the cell to the right contains frequency components from both the optical input field, $\hat{E}_1(t)$, and the electric field inside the cell, $\hat{E}_2(t)$.
 
-% usual description via refractive index not possible!
+
+
+The usual presentation of the Pockels effect assumes a static, time-independent external electric field~\cite[Ch.~18]{Saleh2007}.\footnote{\Cref{sec:static_pockels} discusses the time-independence assumption of the Pockels effect.}
+
+
+%Instead, we present a model for phase modulation based on nonlinear quantum optics describing frequency conversion.
+%Finally, we link an approximation to the time-evolution operator of the nonlinear frequency conversion interaction with a time-dependent phase-rotation operator.
+
+%\Cref{fig:phase_modulator} depicts a traveling-wave electro-optical phase modulator where we denote the optical frequency with $\omega$ and the electrical \gls{rf} frequency with $\Omega$.
+
+
+
 % Ref.~\cite{Horoshko2018}, which we briefly summarize.
 % which reduces to the phase-rotation operator proposed in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006} in the single-mode limit and time-independent $\varphi$.
 % The energy of the electromagnetic field inside a dielectric medium is symbolically~\cite[p.~124]{Jackson2007}
@@ -32,20 +34,128 @@ The optical output field, $\hat{E}_3(t)$, exiting the cell to the right contains
 
 %\footnote{An introduction to the phase-rotation operator is found in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006}.}
 
-In \cref{sec:frequency_convserion} we motivated the interaction Hamiltonian corresponding to frequency conversion
+The interaction Hamiltonian corresponding to frequency conversion is\footnote{See \cref{sec:frequency_convserion} for a detailed motivation.}
 \begin{equation}
-	\hat{H}_\text{int}(t)
+	\hat{H}_\text{int}
 	=
 	\int\frac{\dd{\omega}}{2\pi}
 	\int\frac{\dd{\omega^\prime}}{2\pi}
 	g(\omega,\omega^\prime)
-	\hat{a}(\omega-\omega^\prime)
 	\hat{a}(\omega^\prime)
 	\hat{a}^\dagger(\omega)
+	\hat{a}(\omega-\omega^\prime)
 	+
 	\text{h.c.}
 \end{equation}
-capturing the main characteristics of more carefully derived results in Ref.~\cite[eq.~35]{Horoshko2018} and Ref.~\cite[p.~89]{QuesadaMejia2015} when replacing the first annihilation operator with the classical amplitude.
+wherein $g(\omega,\omega^\prime)$ encodes the interaction strength, dependent on the material properties and geometry.
+Approximating the annihilation operator, $\hat{a}(\omega-\omega^\prime)$, with the classical field amplitude, $\alpha(\omega-\omega^\prime)$, we arrive at
+\begin{equation}
+	\hat{H}_\text{int}
+	\approx
+	\int\frac{\dd{\omega}}{2\pi}
+	\int\frac{\dd{\omega^\prime}}{2\pi}
+	g(\omega,\omega^\prime)
+	\alpha(\omega^\prime)
+	\hat{a}^\dagger(\omega)
+	\hat{a}(\omega-\omega^\prime)
+	+
+	\text{h.c.}
+	,
+\end{equation}
+which captures the essence of more carefully derived results in Ref.~\cite[eq.~35]{Horoshko2018} and Ref.~\cite[p.~89]{QuesadaMejia2015}.
+
+We define the time-dependent phase-rotation operator to be\footnote{See Ref.~\cite[p.~103]{Vogel2006} for the time-independent single-mode phase-rotation operator.}
+\begin{equation}
+	\hat{U}\left[\varphi(t)\right]
+	=
+	\exp\left\{
+		-i\varphi(t)
+		\hat{N}
+	\right\}
+\end{equation}
+wherein $\hat{N}$ is the continuous-mode number operator.
+
+The annihilation operator transforms as in time-independent case~\cite[p.~38]{Leonhardt2010}
+\begin{equation}
+	\hat{U}\left[\varphi(t)\right]^\dagger
+	\hat{a}(\omega)
+	\hat{U}\left[\varphi(t)\right]
+	=
+	\hat{a}(\omega)
+	e^{-i\varphi(t)}
+\end{equation}
+which can be showed through the \gls{bch} formula as done for the quantum mode coupler.
+The continuous-mode displacement operator transforms with 
+\begin{equation}
+	\begin{split}
+		\hat{U}\left[\varphi(t)\right]
+		\hat{D}\left[\alpha(t)\right]
+		\hat{U}\left[\varphi(t)\right]^\dagger
+		&=
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left\{
+				\alpha(\omega)
+				\hat{U}\left[\varphi(t)\right]
+				\hat{a}^\dagger(\omega)
+				\hat{U}\left[\varphi(t)\right]^\dagger
+				-
+				\text{h.c.}
+			\right\}
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left\{
+				\alpha(\omega)
+				e^{-i\varphi(t)}
+				\hat{a}^\dagger(\omega)
+				-
+				\text{h.c.}
+			\right\}
+		\right\}
+	\end{split}
+\end{equation}
+where we used
+\begin{equation}
+	\begin{split}
+		\hat{U}\left[\varphi(t)\right]
+		\hat{a}^\dagger(\omega)
+		\hat{U}\left[\varphi(t)\right]^\dagger
+		&=
+		\left(
+			\hat{U}\left[\varphi(t)\right]
+			\hat{a}(\omega)
+			\hat{U}\left[\varphi(t)\right]^\dagger
+		\right)^\dagger
+		\\
+		&=
+		\left(
+			\hat{U}\left[-\varphi(t)\right]^\dagger
+			\hat{a}(\omega)
+			\hat{U}\left[-\varphi(t)\right]
+		\right)^\dagger
+		\\
+		&=
+		\left(
+			\hat{a}(\omega)
+			e^{+i\varphi(t)}
+		\right)^\dagger
+		=
+		\hat{a}^\dagger(\omega)
+		e^{-i\varphi(t)}
+		.
+	\end{split}
+\end{equation}
+The input-output relation for a coherent state is
+\begin{equation}
+	\hat{U}\left[\varphi(t)\right]
+	\ket*{\alpha(t)}
+	=
+	\ket*{\alpha(t)e^{-i\varphi(t)}}
+\end{equation}
+wherein $h$ is a linear phase filter.
 
 \subsection{Amplitude modulator using Mach-Zehnder interferometer}
 

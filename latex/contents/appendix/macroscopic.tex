@@ -467,9 +467,9 @@ Furthermore, we expand the electric fields into positive and negative frequency 
 	\int\dd{t_1}
 	\int\dd{t_2}
 	\chi^{(2)}(t_1,t_2,x)
+	\hat{E}^{(+)}(t,x)
 	\hat{E}^{(-)}(t-t_1,x)
 	\hat{E}^{(-)}(t-t_2,x)
-	\hat{E}^{(+)}(t,x)
 	+
 	\text{h.c.}
 \end{equation}
@@ -486,6 +486,12 @@ Performing the mode expansion, \cref{eq:electric_positive_operator,eq:electric_n
 		\chi^{(2)}(t_1,t_2,x)
 		\\
 		&\times
+		\int\frac{\dd{p}}{2\pi\sqrt{2\omega(p)}}
+		\omega(p)
+		\hat{a}^\dagger(p)
+		e^{+i\omega(p)t-ipx}
+		\\
+		&\times
 		\int\frac{\dd{q_1}}{2\pi\sqrt{2\omega(q_1)}}
 		\omega(q_1)
 		\hat{a}(q_1)
@@ -496,12 +502,6 @@ Performing the mode expansion, \cref{eq:electric_positive_operator,eq:electric_n
 		\omega(q_2)
 		\hat{a}(q_2)
 		e^{-i\omega(q_2)(t-t_2)+iq_2x}
-		\\
-		&\times
-		\int\frac{\dd{p}}{2\pi\sqrt{2\omega(p)}}
-		\omega(p)
-		\hat{a}^\dagger(p)
-		e^{+i\omega(p)t-ipx}
 		+
 		\text{h.c.}
 	\end{split}
@@ -527,9 +527,9 @@ and simplify the interaction Hamiltonian to
 		\sqrt{\frac{\omega(p)}{2}}
 		\sqrt{\frac{\omega(q_1)}{2}}
 		\sqrt{\frac{\omega(p-q_1)}{2}}
+		\hat{a}^\dagger(p)
 		\hat{a}(q_1)
 		\hat{a}(p-q_1)
-		\hat{a}^\dagger(p)
 		\\
 		&\times
 		\int\dd{t_1}
@@ -548,9 +548,9 @@ We identify the Fourier transform of the second-order susceptibility and write
 	\int\frac{\dd{p}}{2\pi}
 	\int\frac{\dd{q}}{2\pi}
 	g(p,q)
+	\hat{a}^\dagger(p)
 	\hat{a}(p-q)
 	\hat{a}(q)
-	\hat{a}^\dagger(p)
 	+
 	\text{h.c.}
 \end{equation}
@@ -564,4 +564,4 @@ where we have introduced the coupling
 	\sqrt{\frac{q}{2}}
 	\sqrt{\frac{p-q}{2}}
 \end{equation}
-which agrees from the main characteristics with the result reported in Ref.~\cite[eq.~35].{Horoshko2018}
+which agrees from the main characteristics with the result reported in Ref.~\cite[eq.~35]{Horoshko2018}.
