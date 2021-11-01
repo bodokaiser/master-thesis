@@ -4,7 +4,7 @@ The (electro-optical) modulators allow us to encode an electrical signal onto an
 The domain crossover occurs at the electro-optical phase modulator, which we attempt to describe as a (quantum) nonlinear mixing process mediated by the dielectric, in a first part.
 In a second part, we construct, in the optical domain, a complex, in-phase and quadrature, amplitude modulator using \gls{mzi}s driven by electro-optical phase modulators.
 
-\subsection{Phase modulator using nonlinear frequency conversion}
+\subsection{Phase modulator using linear electro-optic effect}
 
 In an electro-optical phase modulator, an electrical signal changes the refractive index of an optical transmission medium, causing a phase shift.
 While the refractive index changes with the charge carrier density, temperature, and mechanical stress applied to the dielectric medium, it also changes through external electric fields, named electro-optical effects.
@@ -17,7 +17,7 @@ The Pockels effect characterizes a linear change of the refractive index in term
 
 
 
-The usual presentation of the Pockels effect assumes a static, time-independent external electric field~\cite[Ch.~18]{Saleh2007}.\footnote{\Cref{sec:static_pockels} discusses the time-independence assumption of the Pockels effect.}
+%The usual presentation of the Pockels effect assumes a static, time-independent external electric field~\cite[Ch.~18]{Saleh2007}.\footnote{\Cref{sec:static_pockels} discusses the time-independence assumption of the Pockels effect.}
 
 
 %Instead, we present a model for phase modulation based on nonlinear quantum optics describing frequency conversion.
@@ -33,72 +33,73 @@ The usual presentation of the Pockels effect assumes a static, time-independent 
 %where $v_\text{gr}$ is the group velocity in the quasi-monochromatic approximation~\cite[p.~211]{Jackson2007}.
 
 %\footnote{An introduction to the phase-rotation operator is found in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006}.}
+% which captures the essence of more carefully derived results in Ref.~\cite[eq.~35]{Horoshko2018} and Ref.~\cite[p.~89]{QuesadaMejia2015}.
+% We define the time-dependent phase-rotation operator to be\footnote{See Ref.~\cite[p.~103]{Vogel2006} for the time-independent single-mode phase-rotation operator.}
+% The annihilation operator transforms as in time-independent case~\cite[p.~38]{Leonhardt2010}
 
-The interaction Hamiltonian corresponding to frequency conversion is\footnote{See \cref{sec:frequency_convserion} for a detailed motivation.}
+In this particular case, it makes sense to first start from the classical result and move into the quantum direction.
+Classically, phase modulation adds a time-dependent phase.
+For a coherent state, we therefore expect the existence of a unitary operator, which is a functional of the phase signal, acting on a coherent state to add such time-dependent phase factor, i.e.,
 \begin{equation}
-	\hat{H}_\text{int}
+	\hat{U}\left[\phi(t)\right]
+	\ket*{\alpha(t)}
 	=
-	\int\frac{\dd{\omega}}{2\pi}
-	\int\frac{\dd{\omega^\prime}}{2\pi}
-	g(\omega,\omega^\prime)
-	\hat{a}(\omega^\prime)
-	\hat{a}^\dagger(\omega)
-	\hat{a}(\omega-\omega^\prime)
-	+
-	\text{h.c.}
+	\ket*{\alpha(t)e^{-i\phi(t)}}
+	.
 \end{equation}
-wherein $g(\omega,\omega^\prime)$ encodes the interaction strength, dependent on the material properties and geometry.
-Approximating the annihilation operator, $\hat{a}(\omega-\omega^\prime)$, with the classical field amplitude, $\alpha(\omega-\omega^\prime)$, we arrive at
-\begin{equation}
-	\hat{H}_\text{int}
-	\approx
-	\int\frac{\dd{\omega}}{2\pi}
-	\int\frac{\dd{\omega^\prime}}{2\pi}
-	g(\omega,\omega^\prime)
-	\alpha(\omega^\prime)
-	\hat{a}^\dagger(\omega)
-	\hat{a}(\omega-\omega^\prime)
-	+
-	\text{h.c.}
-	,
-\end{equation}
-which captures the essence of more carefully derived results in Ref.~\cite[eq.~35]{Horoshko2018} and Ref.~\cite[p.~89]{QuesadaMejia2015}.
-
-We define the time-dependent phase-rotation operator to be\footnote{See Ref.~\cite[p.~103]{Vogel2006} for the time-independent single-mode phase-rotation operator.}
-\begin{equation}
-	\hat{U}\left[\varphi(t)\right]
-	=
-	\exp\left\{
-		-i\varphi(t)
-		\hat{N}
-	\right\}
-\end{equation}
-wherein $\hat{N}$ is the continuous-mode number operator.
-
-The annihilation operator transforms as in time-independent case~\cite[p.~38]{Leonhardt2010}
-\begin{equation}
-	\hat{U}\left[\varphi(t)\right]^\dagger
-	\hat{a}(\omega)
-	\hat{U}\left[\varphi(t)\right]
-	=
-	\hat{a}(\omega)
-	e^{-i\varphi(t)}
-\end{equation}
-which can be showed through the \gls{bch} formula as done for the quantum mode coupler.
-The continuous-mode displacement operator transforms with 
+However, classically, we already have the problem that there exists no closed Fourier representation of a multiplication with a time-dependent factor.
+The best we can do is for single-mode modulation at frequency $\Omega_0$ the Jacobi-Anger expansion for which we can then rewrite the phase-modulated amplitude
 \begin{equation}
 	\begin{split}
-		\hat{U}\left[\varphi(t)\right]
-		\hat{D}\left[\alpha(t)\right]
-		\hat{U}\left[\varphi(t)\right]^\dagger
+		\alpha^\prime(t)
+		=
+		\alpha(t)
+		e^{-id\sin(\Omega_0t+\varphi)}
+		&=
+		\int\frac{\dd{\omega}}{2\pi}
+		\alpha(\omega)
+		e^{+i\omega t}
+		\sum_{m\in\mathbb{Z}}
+		J_m(d)
+		e^{-im(\Omega_0t+\varphi)}
+		\\
+		&=
+		\int\frac{\dd{\omega}}{2\pi}
+		\sum_{m\in\mathbb{Z}}
+		J_m(d)
+		\alpha(\omega)
+		e^{-im\varphi}
+		e^{+i(\omega-m\Omega_0)t}
+		\\
+		&=
+		\int\frac{\dd{\omega}}{2\pi}
+		\sum_{m\in\mathbb{Z}}
+		J_m(d)
+		e^{-im\varphi}
+		\alpha(\omega+m\Omega_0)
+		e^{+i\omega t}
+	\end{split}
+\end{equation}
+and we can read off the transformed Fourier amplitude\footnote{In Ref.~\cite{Horoshko2018}, we find $\omega-m\Omega_0$ because the authors use a different sign convention for the Fourier transform.}
+\begin{equation}
+	\alpha^\prime(\omega)
+	=
+	\sum_{m\in\mathbb{Z}}
+	J_m(d)
+	e^{-im\varphi}
+	\alpha(\omega+m\Omega_0)
+	.
+\end{equation}
+For the transformed displacement operator this means
+\begin{align}
+	\begin{split}
+		\hat{D}\left[\alpha^\prime(t)\right]
 		&=
 		\exp\left\{
 			\int\frac{\dd{\omega}}{2\pi}
 			\left\{
-				\alpha(\omega)
-				\hat{U}\left[\varphi(t)\right]
+				\alpha^\prime(\omega)
 				\hat{a}^\dagger(\omega)
-				\hat{U}\left[\varphi(t)\right]^\dagger
 				-
 				\text{h.c.}
 			\right\}
@@ -109,53 +110,187 @@ The continuous-mode displacement operator transforms with
 			\int\frac{\dd{\omega}}{2\pi}
 			\left\{
 				\alpha(\omega)
-				e^{-i\varphi(t)}
-				\hat{a}^\dagger(\omega)
+				\sum_{m\in\mathbb{Z}}
+				J_m(d)
+				e^{-im\varphi}
+				\hat{a}^\dagger(\omega-m\Omega_0)
 				-
 				\text{h.c.}
 			\right\}
 		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left\{
+				\alpha(\omega)
+				\hat{U}\left[d\sin(\Omega_0t+\varphi)\right]
+				\hat{a}^\dagger(\omega)
+				\hat{U}\left[d\sin(\Omega_0t+\varphi)\right]^\dagger
+				-
+				\text{h.c.}
+			\right\}
+		\right\}
+	\end{split}	
+\end{align}
+and we reverse-engineered the relation down to
+\begin{equation}
+	\sum_{m\in\mathbb{Z}}
+	J_m(d)
+	e^{-im\varphi}
+	\hat{a}^\dagger(\omega-m\Omega_0)
+	=
+	\hat{U}\left[d\sin(\Omega_0t+\varphi)\right]
+	\hat{a}^\dagger(\omega)
+	\hat{U}\left[d\sin(\Omega_0t+\varphi)\right]^\dagger
+	.
+\end{equation}
+
+We define
+\begin{align}
+	\hat{U}(\theta,\varphi)
+	&=
+	e^{-i\hat{G}(\varphi)\theta/2}
+	&
+	\hat{G}(\varphi)
+	&=
+	-
+	\left(
+		\hat{T}_+(\Omega_0)
+		e^{-i\varphi}
+		+
+		\hat{T}_-(\Omega_0)
+		e^{+i\varphi}
+	\right)
+\end{align}
+wherein
+\begin{align}
+	\hat{T}_\pm(\Omega_0)
+	&=
+	\int\frac{\dd{\omega}}{2\pi}
+	\hat{a}^\dagger(\omega\pm\Omega_0)
+	\hat{a}(\omega)
+	&
+	\hat{T}_+(\Omega_0)
+	&=
+	\hat{T}_-(\Omega_0)^\dagger
+\end{align}
+satisfy the commutation relations
+\begin{align}
+	\comm{\hat{T}_\pm(\Omega_0)}{\hat{a}(\omega)}
+	&=
+	-
+	\hat{a}(\omega\mp\Omega_0)
+	&
+	\comm{\hat{T}_\pm(\Omega_0)}{\hat{a}^\dagger(\omega)}
+	&=
+	+
+	\hat{a}^\dagger(\omega\pm\Omega_0)
+\end{align}
+
+We then transform the annihilation operator
+\begin{equation}
+	\hat{U}(\theta,\varphi)^\dagger
+	\hat{a}(\omega)
+	\hat{U}(\theta,\varphi)
+	=
+	\sum_{m\in\mathbb{Z}}
+	J_m(\theta)
+	e^{im(\theta-\pi/2)}
+	\hat{a}(\omega+m\Omega_0)
+\end{equation}
+in agreement with Ref.~\cite[eq.~40]{Horoshko2018} which can find using the commutators
+\begin{align}
+	\comm{\hat{G}}{\hat{a}(\omega)}
+	&=
+	\hat{a}(\omega-\Omega_0)
+	e^{-i\varphi}
+	+
+	\hat{a}(\omega+\Omega_0)
+	e^{+i\varphi}
+	\\
+	\comm{\hat{G}}{\comm{\hat{G}}{\hat{a}(\omega)}}
+	&=
+	\hat{a}(\omega-2\Omega_0)
+	e^{-2i\varphi}
+	+
+	2\hat{a}(\omega)
+	+
+	\hat{a}(\omega+2\Omega_0)
+	e^{+2i\varphi}
+	\\
+	\comm{\hat{G}}{\comm{\hat{G}}{\comm{\hat{G}}{\hat{a}(\omega)}}}
+	&=
+	\hat{a}(\omega-3\Omega_0)
+	e^{-3i\varphi}
+	+
+	2^2
+	\hat{a}(\omega-\Omega_0)
+	e^{-i\varphi}
+	\\
+	&+
+	\hat{a}(\omega+3\Omega_0)
+	e^{+3i\varphi}
+	+
+	2^2
+	\hat{a}(\omega+\Omega_0)
+	e^{+i\varphi}
+\end{align}
+
+Then to transform the creation operator for the displacement operator, we use the usual trick
+\begin{equation}
+	\begin{split}
+		\hat{U}(\theta,\varphi)^\dagger
+		\hat{a}(\omega)
+		\hat{U}(\theta,\varphi)
+		&=
+		\left[
+			\hat{U}(\theta,\varphi)^\dagger
+			\hat{a}(\omega)
+			\hat{U}(\theta,\varphi)	
+		\right]^\dagger
+		\\
+		&=
+		\left[
+			\hat{U}(-\theta,\varphi)
+			\hat{a}(\omega)
+			\hat{U}(-\theta,\varphi)^\dagger	
+		\right]^\dagger
+		\\
+		&=
+		\left[
+			\sum_{m\in\mathbb{Z}}
+			J_m(-\theta)
+			e^{-im(\theta+\pi/2)}
+			\hat{a}(\omega+m\Omega_0)
+		\right]^\dagger
+		\\
+		&=
+		\sum_{m\in\mathbb{Z}}
+		J_m(-\theta)
+		e^{+im(\theta+\pi/2)}
+		\hat{a}^\dagger(\omega+m\Omega_0)
+		\\
+		&=
+		\sum_{m\in\mathbb{Z}}
+		J_m(\theta)
+		e^{+im(\theta-\pi/2)}
+		\hat{a}^\dagger(\omega+m\Omega_0)
 	\end{split}
 \end{equation}
 where we used
 \begin{equation}
-	\begin{split}
-		\hat{U}\left[\varphi(t)\right]
-		\hat{a}^\dagger(\omega)
-		\hat{U}\left[\varphi(t)\right]^\dagger
-		&=
-		\left(
-			\hat{U}\left[\varphi(t)\right]
-			\hat{a}(\omega)
-			\hat{U}\left[\varphi(t)\right]^\dagger
-		\right)^\dagger
-		\\
-		&=
-		\left(
-			\hat{U}\left[-\varphi(t)\right]^\dagger
-			\hat{a}(\omega)
-			\hat{U}\left[-\varphi(t)\right]
-		\right)^\dagger
-		\\
-		&=
-		\left(
-			\hat{a}(\omega)
-			e^{+i\varphi(t)}
-		\right)^\dagger
-		=
-		\hat{a}^\dagger(\omega)
-		e^{-i\varphi(t)}
-		.
-	\end{split}
-\end{equation}
-The input-output relation for a coherent state is
-\begin{equation}
-	\hat{U}\left[\varphi(t)\right]
-	\ket*{\alpha(t)}
+	J_m(-\theta)
+	e^{+im(\theta+\pi/2)}
 	=
-	\ket*{\alpha(t)e^{-i\varphi(t)}}
+	J_m(\theta)
+	(-1)^m
+	e^{+im(\theta+\pi/2)}
+	=
+	J_m(\theta)
+	e^{+im(\theta-\pi/2)}
+	.
 \end{equation}
-wherein $h$ is a linear phase filter.
 
 \subsection{Amplitude modulator using Mach-Zehnder interferometer}
 
