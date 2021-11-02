@@ -26,6 +26,7 @@ In this case, we expect the complex amplitude of the optical signal leaving the 
 	=
 	\alpha(t)
 	e^{-i\varphi(t)}
+	\label{eq:phase_modulation}
 	,
 \end{equation}
 wherein $\alpha(t)$ is the initial amplitude and $\varphi(t)$ is some time-dependent phase.
@@ -43,14 +44,176 @@ with $h(t)$ being the linear time-response of the phase modulator system and $x(
 As a rough estimate of when the phase is effectively static concerning the optical field, we can compare the transmission time of the optical signal through the modulator with the period of the optical signal.\footnote{The transmission time $T$ is equal to the group velocity, $v_g(\omega)$, divided by the length of the modulator, $L$.}
 
 
-%The usual presentation of the Pockels effect assumes a static, time-independent external electric field~.\footnote{\Cref{sec:static_pockels} discusses the time-independence assumption of the Pockels effect.}
+While the former classical approach is perfectly sufficient, it does not fit well into our quantum mechanical framework regarding interactions and unitary operators.
+In the following, we present the essence of Ref.~\cite{QuesadaMejia2015} and Ref.~\cite{Horoshko2018} to get an insight into quantum optical frequency conversion.
+To simplify the discussion, we approximate the electric field (averages) inside the dielectric with free electric field operators at the cost of correctness relating, e.g., to phase-matching.
+One particular challenge regarding time-dependent phase modulation is that there exists no simple representation in the frequency domain for arbitrary modulation signals. 
+The best we can do is assume a sinusoidal modulation, e.g.,
+\begin{equation}
+	\varphi(t)
+	=
+	\beta_0
+	\sin(\Omega_0t+\phi)
+	\label{eq:sinusoidal_phase_signal}
+	,
+\end{equation}
+for which we can use the Jacobi-Anger expansion~\cite[eq.~23]{Horoshko2018}
+\begin{equation}
+	e^{-i\beta_0\sin(\Omega_0t+\phi)}
+	=
+	\sum_{m\in\mathbb{Z}}
+	J_m(\beta_0)
+	e^{-im(\Omega_0t+\phi)}
+	\label{eq:jacobi_anger_expansion}
+\end{equation}
+wherein $J_m(\beta_0)$ is the $m$th Bessel function of the first kind.
+Inserting \cref{eq:sinusoidal_phase_signal} into \cref{eq:phase_modulation} and performing the Jacobi-Anger expansion, we identify the Fourier transform with
+\begin{equation}
+	\alpha^\prime(\omega)
+	=
+	\sum_{m\in\mathbb{Z}}
+	J_m(\beta_0)
+	e^{-im\phi}
+	\alpha(\omega+m\Omega_0)
+	\label{eq:sinusoidal_phase_signal_fourier}
+\end{equation}
+after transforming the integration variable.
+Sinusoidal phase modulation with frequency $\Omega_0$ creates infinitely many sidebands around the carrier frequency $\omega$.
+As we can write an arbitrary time-dependent signal as a sum of sinusoidals of different frequencies, we have to deal with an integral of infinite sums, making arbitrary phase-modulation untractable.
 
-
-%Instead, we present a model for phase modulation based on nonlinear quantum optics describing frequency conversion.
-%Finally, we link an approximation to the time-evolution operator of the nonlinear frequency conversion interaction with a time-dependent phase-rotation operator.
-
-%\Cref{fig:phase_modulator} depicts a traveling-wave electro-optical phase modulator where we denote the optical frequency with $\omega$ and the electrical \gls{rf} frequency with $\Omega$.
-
+Creating new frequency components requires a nonlinear interaction, not unlike classical signal-processing, where a diode is used as a nonlinear element for frequency conversion.
+In the appendix, particular \Cref{sec:frequency_convserion}, we discuss nonlinear processes mediated by the electric susceptibility of a nonabsorptive dielectric and find the
+interaction Hamiltonian corresponding to frequency conversion to be
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\int\frac{\dd{\omega}}{2\pi}
+	\int\frac{\dd{\Omega}}{2\pi}
+	g(\omega,\Omega)
+	\hat{a}^\dagger(\omega)
+	\hat{a}(\Omega)
+	\hat{a}(\omega-\Omega)
+	+
+	\text{h.c.}
+	\label{eq:frequency_conversion_interaction}
+	,
+\end{equation}
+wherein $g(\omega,\Omega)$ encodes the geometry and properties of the dielectric material.
+The coupling parameter $g(\omega,\Omega)$ is only non-zero for $\omega$ being an optical and $\Omega$ being an electrical frequency.
+The operators in \cref{eq:frequency_conversion_interaction} describe the simultaneous absorption of an "electric" photon with \gls{rf} $\Omega$, $\hat{a}(\Omega)$, and an "optical" photon with frequency $\omega-\Omega$, $\hat{a}(\omega-\Omega)$, to create an "optical" photon at a higher frequency $\omega$, $\hat{a}^\dagger(\omega)$.
+We are not interested in the quantum properties of the \gls{rf} field and assume it to be in a coherent state with complex amplitude $\beta(t)$
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\int\frac{\dd{\omega}}{2\pi}
+	\int\frac{\dd{\Omega}}{2\pi}
+	g(\omega,\Omega)
+	\beta(\Omega)
+	\hat{a}^\dagger(\omega)
+	\hat{a}(\omega-\Omega)
+	+
+	\text{h.c.}
+	,
+	\label{eq:frequency_conversion_interaction_approx}
+\end{equation}
+wherein $\beta(\Omega)$ is the Fourier amplitude corresponding to $\beta(t)$.
+A sinusoidal modulation signal has a single frequency component,
+\begin{align}
+	\beta(t)
+	&=
+	\beta_0
+	e^{i\Omega_0t}
+	&
+	\beta(\Omega)
+	&=
+	\beta_0
+	(2\pi)
+	\delta^{(1)}(\Omega-\Omega_0)
+	,
+\end{align}
+Inserting the frequency representation of the sinusoidal modulation into the interaction Hamiltonian, \cref{eq:frequency_conversion_interaction_approx}, we find
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\beta_0
+	\int\frac{\dd{\omega}}{2\pi}
+	g(\omega,\Omega_0)
+	\hat{a}^\dagger(\omega)
+	\hat{a}(\omega+\Omega_0)
+	+
+	\text{h.c.}
+	\label{eq:frequency_conversion_interaction_sinusoidal}
+	.
+\end{equation}
+Let the optical signal be limited to the bandwidth $B$, then
+according to the mean-value theorem for integrals, there exists an $\omega_0\in B$ such that we can write
+\begin{equation}
+	\hat{H}_\text{int}
+	=
+	\beta_0
+	g(\omega_0,\Omega_0)
+	\int\frac{\dd{\omega}}{2\pi}
+	\hat{a}^\dagger(\omega)
+	\hat{a}(\omega+\Omega_0)
+	+
+	\text{h.c.}
+	\label{eq:frequency_conversion_interaction_meanvalue}
+	.
+\end{equation}
+The time-evolution operator corresponding to the interaction Hamiltonian, \cref{eq:frequency_conversion_interaction_meanvalue}, is equal to
+\begin{align}
+	\hat{U}(\theta,\varphi)
+	&=
+	e^{-i\hat{G}(\varphi)\theta/2}
+	&
+	\hat{G}(\varphi)
+	&=
+	-
+	\left(
+		\hat{T}_+(\Omega_0)
+		e^{-i\varphi}
+		+
+		\hat{T}_-(\Omega_0)
+		e^{+i\varphi}
+	\right)
+	\label{eq:frequency_conversion_evolution}
+\end{align}
+wherein we introduced the real-valued coupling constants $\theta,\varphi$ satisfying
+\begin{equation}
+	\beta_0
+	g(\omega_0,\Omega_0)
+	T
+	=
+	\frac{1}{2}
+	\theta
+	e^{+i\varphi}
+\end{equation}
+with $T$ being the interaction time approximately equal to the transmit time of the light through the phase modulator.\footnote{Strictly speaking, the transmit time is frequency-dependent requiring a frequency response filter instead of coupling constant.}
+The operators in \cref{eq:frequency_conversion_evolution} are defined as
+\begin{align}
+	\hat{T}_\pm(\Omega)
+	&=
+	\int\frac{\dd{\omega}}{2\pi}
+	\hat{a}^\dagger(\omega\pm\Omega)
+	\hat{a}(\omega)
+	&
+	\hat{T}_+(\Omega)
+	&=
+	\hat{T}_-(\Omega)^\dagger
+\end{align}
+and satisfy the commutation relations
+\begin{align}
+	\comm{\hat{T}_\pm(\Omega)}{\hat{a}(\omega)}
+	&=
+	-
+	\hat{a}(\omega\mp\Omega)
+	&
+	\comm{\hat{T}_\pm(\Omega)}{\hat{a}^\dagger(\omega)}
+	&=
+	+
+	\hat{a}^\dagger(\omega\pm\Omega)
+\end{align}
+suggesting to identify $\hat{T}_\pm(\Omega)$ as up- and down-conversion operators.
 
 
 % Ref.~\cite{Horoshko2018}, which we briefly summarize.
@@ -75,37 +238,7 @@ For a coherent state, we therefore expect the existence of a unitary operator, w
 \end{equation}
 However, classically, we already have the problem that there exists no closed Fourier representation of a multiplication with a time-dependent factor.
 The best we can do is for single-mode modulation at frequency $\Omega_0$ the Jacobi-Anger expansion for which we can then rewrite the phase-modulated amplitude
-\begin{equation}
-	\begin{split}
-		\alpha^\prime(t)
-		=
-		\alpha(t)
-		e^{-id\sin(\Omega_0t+\varphi)}
-		&=
-		\int\frac{\dd{\omega}}{2\pi}
-		\alpha(\omega)
-		e^{+i\omega t}
-		\sum_{m\in\mathbb{Z}}
-		J_m(d)
-		e^{-im(\Omega_0t+\varphi)}
-		\\
-		&=
-		\int\frac{\dd{\omega}}{2\pi}
-		\sum_{m\in\mathbb{Z}}
-		J_m(d)
-		\alpha(\omega)
-		e^{-im\varphi}
-		e^{+i(\omega-m\Omega_0)t}
-		\\
-		&=
-		\int\frac{\dd{\omega}}{2\pi}
-		\sum_{m\in\mathbb{Z}}
-		J_m(d)
-		e^{-im\varphi}
-		\alpha(\omega+m\Omega_0)
-		e^{+i\omega t}
-	\end{split}
-\end{equation}
+
 and we can read off the transformed Fourier amplitude\footnote{In Ref.~\cite{Horoshko2018}, we find $\omega-m\Omega_0$ because the authors use a different sign convention for the Fourier transform.}
 \begin{equation}
 	\alpha^\prime(\omega)
@@ -173,46 +306,8 @@ and we reverse-engineered the relation down to
 \end{equation}
 
 We define
-\begin{align}
-	\hat{U}(\theta,\varphi)
-	&=
-	e^{-i\hat{G}(\varphi)\theta/2}
-	&
-	\hat{G}(\varphi)
-	&=
-	-
-	\left(
-		\hat{T}_+(\Omega_0)
-		e^{-i\varphi}
-		+
-		\hat{T}_-(\Omega_0)
-		e^{+i\varphi}
-	\right)
-\end{align}
-wherein
-\begin{align}
-	\hat{T}_\pm(\Omega_0)
-	&=
-	\int\frac{\dd{\omega}}{2\pi}
-	\hat{a}^\dagger(\omega\pm\Omega_0)
-	\hat{a}(\omega)
-	&
-	\hat{T}_+(\Omega_0)
-	&=
-	\hat{T}_-(\Omega_0)^\dagger
-\end{align}
 satisfy the commutation relations
-\begin{align}
-	\comm{\hat{T}_\pm(\Omega_0)}{\hat{a}(\omega)}
-	&=
-	-
-	\hat{a}(\omega\mp\Omega_0)
-	&
-	\comm{\hat{T}_\pm(\Omega_0)}{\hat{a}^\dagger(\omega)}
-	&=
-	+
-	\hat{a}^\dagger(\omega\pm\Omega_0)
-\end{align}
+
 
 We then transform the annihilation operator
 \begin{equation}
@@ -317,79 +412,6 @@ where we used
 	e^{+im(\theta-\pi/2)}
 	.
 \end{equation}
-
-In \Cref{sec:frequency_convserion} we motivated the interaction Hamiltonian
-\begin{equation}
-	\hat{H}_\text{int}
-	=
-	\int\frac{\dd{\omega}}{2\pi}
-	\int\frac{\dd{\omega^\prime}}{2\pi}
-	g(\omega,\omega^\prime)
-	\hat{a}^\dagger(\omega)
-	\hat{a}(\omega^\prime)
-	\hat{a}(\omega-\omega^\prime)
-	+
-	\text{h.c.}
-\end{equation}
-wherein $g(\omega,\omega^\prime)$ encodes the geometry and properties of the dielectric material.
-Approximating the electric \gls{rf} field as classical, we replace the annihilation operator with the complex amplitude of the modulation field, $\beta(\omega^\prime)$,
-\begin{equation}
-	\hat{H}_\text{int}
-	=
-	\int\frac{\dd{\omega}}{2\pi}
-	\int\frac{\dd{\omega^\prime}}{2\pi}
-	g(\omega,\omega^\prime)
-	\beta(\omega^\prime)
-	\hat{a}^\dagger(\omega)
-	\hat{a}(\omega-\omega^\prime)
-	+
-	\text{h.c.}
-\end{equation}
-We assume the modulation field to be sinusoidal
-\begin{equation}
-	\beta(t)
-	=
-	\beta_0
-	\sin(\Omega_0t)
-\end{equation}
-and therefore compose two frequency components
-\begin{equation}
-	\beta(\omega)
-	=
-	\beta_0
-	(2\pi)
-	\delta^{(1)}(\omega-\Omega_0)
-\end{equation}
-which inserted into the interaction Hamiltonian yields
-\begin{equation}
-	\hat{H}_\text{int}
-	=
-	\beta_0
-	\int\frac{\dd{\omega}}{2\pi}
-	g(\omega,\Omega_0)
-	\hat{a}^\dagger(\omega)
-	\hat{a}(\omega+\Omega_0)
-	+
-	\text{h.c.}
-\end{equation}
-Performing the narrow-bandwidth approximation for the optical field
-\begin{equation}
-	\gamma
-	=
-	\beta_0
-	g(\omega_0,\Omega_0)
-\end{equation}
-we identify the interaction Hamiltonian with the operator
-\begin{equation}
-	\hat{H}_\text{int}
-	=
-	\gamma
-	\hat{T}_+
-	+
-	\gamma^*
-	\hat{T}_-	
-\end{equation}
-which solved with the Magnus expansion yields the unitary operator used in ...
 
 \subsection{Amplitude modulator using Mach-Zehnder interferometer}
 
