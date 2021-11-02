@@ -518,7 +518,7 @@ We conclude that a coherent state transform under sinusoidal phase-modulation as
 	\ket*{\alpha(t)e^{+i\theta\cos(\Omega_0t-\varphi)}}
 	.
 \end{equation}
-We extend our result to signals of finite duration by noting that we can write an arbitrary signal as a sum of harmonics, i.e.,
+We extend our result to signals of finite duration by noting that we can write such a signal as a sum of harmonics, i.e.,
 \begin{equation}
 	\varphi(t)
 	=
@@ -538,17 +538,18 @@ and apply a product of sinusoidal phase modulation operators, \cref{eq:frequency
 	\ket*{\alpha(t)e^{+i\varphi(t)}}
 	.
 \end{equation}
+Although we cannot write down a closed solution for an arbitrary time-dependent signal in frequency space, we expect such a solution to exist and to be a convolution.
 
 \subsection{Amplitude modulator using Mach-Zehnder interferometer}
 
-The \gls{mzm} uses two phase modulators to perform amplitude modulation through interference.
-The \gls{mzm} enables electrically-driven amplitude modulation if the phase modulators are driven electrically, for instance, using the Pockels effect as discussed previously.
+The \gls{mzm} uses two electro-optical phase modulators to perform amplitude modulation through interference.
+We first derive the state transformation of an \gls{mzm} for a fixed, time-independent phase, i.e., an \gls{mzi}, and then argue how the state transformation generalizes to the time-dependent modulation.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/mzi-symmetric}
 	\caption{Symmetric \gls{mzm} using free-space optics comprising two balanced \gls{bs}, BS1 and BS2, two mirrors, M1 and M2, and two phase shifters, PS1 and PS2. The input Fourier amplitudes, $\alpha_1(\omega)$ and $\alpha_2(\omega)$, enter BS1 and are split into an upper and lower path. The upper path receives a phase shift of $\phi_1(\omega)+\pi$ from PS1 and M1 before entering BS2 from the top. The lower path receives a phase shift of $\phi_2(\omega)+\pi$ from M2 and PS2 before entering BS2 from the left. BS2 recombines the phase-shifted upper and lower path into the output Fourier amplitudes $\alpha_1^\prime(\omega)$ and $\alpha_2^\prime(\omega)$.}\label{fig:mzi_symmetric}
 \end{figure}
-\Cref{fig:mzi_symmetric} shows a free-space optics setup of a symmetric \gls{mzi}\footnote{The \gls{mzi} is a static, i.e., time-independent, \gls{mzm}.} with one signal input; the other input being in the vacuum state.
+\Cref{fig:mzi_symmetric} shows a symmetric \gls{mzi} using free-space optics with one signal input; the other input being in the vacuum state.
 The most crucial components of the \gls{mzi} are a splitter, a coupler, and two independent phase modulators.
 The splitter divides the input light into two branches.
 Each branch adds a relative phase shift, $\phi_1(\omega)$ and $\phi_2(\omega)$, using an independently  driven phase modulator, PS1 and PS2.
@@ -556,8 +557,8 @@ The coupler recombines both branches into two outputs.
 Two cubic beam splitters implement the splitter (BS1) and the coupler (BS2) for our free-space setup.
 For additional beam alignment, our free-space setup utilizes two mirrors (M1 and M2).
 
-To find the effect of the \gls{mzm} on a coherent input state, we combine the actions of its individual optical components.
-Approximating each of the optical components an ideal optical coupler, for which we showed that the Fourier amplitudes transform according to a unitary matrix, lets us write the output Fourier amplitudes of the \gls{mzm} as the matrix product
+To find the effect of the \gls{mzi} on a coherent input state, we combine the actions of its individual optical components.
+Approximating each of the optical components an ideal optical coupler allows us to write the output Fourier amplitudes of the \gls{mzm} as the matrix product
 \begin{equation}
 	\vb{\alpha}^\prime(\omega)
 	=
@@ -638,9 +639,10 @@ for which the matrix transform simplifies to
 	\label{eq:mzm_matrix2}
 \end{equation}
 and we note that the common-mode phase $\phi_+(\omega)$ adds a global phase shift of $\phi_+(\omega)$ while the differential-mode phase $\phi_-(\omega)$ changes the splitting ratios at the output.
+The matrix transformation, \cref{eq:mzm_matrix2}, is a specific beam splitter transform.
+Dumping one of the outputs makes it equivalent to the spectral filter.
 
-Our result is therefore analog to our result for the spectral filter.
-\textcolor{red}{Is this actually correct? Who says that $\phi(\omega)$ and not that $\phi(t)$?}
+
 
 \begin{figure}[htb]
     \centering
