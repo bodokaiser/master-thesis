@@ -7,17 +7,43 @@ In a second part, we construct, in the optical domain, a complex, in-phase and q
 \subsection{Phase modulator using linear electro-optic effect}
 
 In an electro-optical phase modulator, an electrical signal changes the refractive index of an optical transmission medium, causing a phase shift.
-While the refractive index changes with the charge carrier density, temperature, and mechanical stress applied to the dielectric medium, it also changes through external electric fields, named electro-optical effects.
-The Pockels effect characterizes a linear change of the refractive index in terms of an external electric field and is present in noncentrosymmetric crystals~\cite[p.~2]{Boyd2020}, e.g., lithium niobate~\cite[p.~237]{Yariv1984}, commonly used in photonic integration.
+The linear electro-optic effect, also known as the Pockels effect, characterizes a linear refractive index change proportional to the amplitude of an external electric field~\cite[Ch.~18]{Saleh2007}.
+It is present in noncentrosymmetric crystals~\cite[p.~2]{Boyd2020}, e.g., lithium niobate~\cite[p.~237]{Yariv1984}, commonly used in photonic integration.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/phase-modulator}
-    \caption{Traveling-wave electro-optical phase modulator: A single frequency optical field, traveling from the left along the $x$, $\hat{E}(\omega)$, enters a dielectric medium of length $L$ embedded between two electrodes. The electrodes are driven by a voltage to create the electric field $\hat{E}(\Omega)$ between the electrodes along the $x$ direction. An optical field with three frequency components, $\hat{E}(\omega),\hat{E}(\omega\pm\Omega)$, exits the dielectric medium to the right.}\label{fig:phase_modulator}
+    \caption{Traveling-wave electro-optical phase modulator comprising two electrodes of length $L$ (black): The electrodes are driven by a sinusoidal voltage signal creating an \gls{rf} field with frequency $\Omega_0$ between the electrodes. An optical field with frequency $\omega$ reaches the phase modulator from the left, and an optical field with multiple frequency components, $\omega,\omega\pm\Omega_0$, exits the phase modulator to the right.}\label{fig:phase_modulator}
 \end{figure}
+\Cref{fig:phase_modulator} depicts a traveling-wave electro-optical phase modulator.
+The phase modulation signal is applied to the electrodes creating a traveling-wave \gls{rf} field between the two electrodes.
+The linear-electro optical effect couples the different \gls{rf} and optical frequency components.
+The output field contains sidebands, $\omega\pm\Omega_0$, at the modulation frequency, $\Omega_0$.
+
+The modulation frequency, $\Omega$, is typically many magnitudes smaller than the optical frequency, $\omega$, and the phase-shift due to the refractive index change appears static from the optical domain.
+In this case, we expect the complex amplitude of the optical signal leaving the phase modulator to be
+\begin{equation}
+	\alpha^\prime(t)
+	=
+	\alpha(t)
+	e^{-i\varphi(t)}
+	,
+\end{equation}
+wherein $\alpha(t)$ is the initial amplitude and $\varphi(t)$ is some time-dependent phase.
+To a good approximation, the phase modulator is an \gls{lti} system for which the time-dependent phase signal is a convolution
+\begin{equation}
+	\varphi(t)
+	=
+	\left(h*x\right)(t)
+	=
+	\int\dd{t^\prime}
+	h(t^\prime)
+	x(t-t^\prime)
+\end{equation}
+with $h(t)$ being the linear time-response of the phase modulator system and $x(t)$ being the voltage signal driving the modulator.
+As a rough estimate of when the phase is effectively static concerning the optical field, we can compare the transmission time of the optical signal through the modulator with the period of the optical signal.\footnote{The transmission time $T$ is equal to the group velocity, $v_g(\omega)$, divided by the length of the modulator, $L$.}
 
 
-
-%The usual presentation of the Pockels effect assumes a static, time-independent external electric field~\cite[Ch.~18]{Saleh2007}.\footnote{\Cref{sec:static_pockels} discusses the time-independence assumption of the Pockels effect.}
+%The usual presentation of the Pockels effect assumes a static, time-independent external electric field~.\footnote{\Cref{sec:static_pockels} discusses the time-independence assumption of the Pockels effect.}
 
 
 %Instead, we present a model for phase modulation based on nonlinear quantum optics describing frequency conversion.
