@@ -69,15 +69,25 @@ for which we can use the Jacobi-Anger expansion~\cite[eq.~23]{Horoshko2018}
 wherein $J_m(\beta_0)$ is the $m$th Bessel function of the first kind.
 Inserting \cref{eq:sinusoidal_phase_signal} into \cref{eq:phase_modulation} and performing the Jacobi-Anger expansion, we identify the Fourier transform with
 \begin{equation}
-	\alpha^\prime(\omega)
-	=
-	\sum_{m\in\mathbb{Z}}
-	J_m(\beta_0)
-	e^{-im\phi}
-	\alpha(\omega+m\Omega_0)
+	\begin{split}
+		\alpha^\prime(\omega)
+		&=
+		\sum_{m\in\mathbb{Z}}
+		J_m(\beta_0)
+		e^{-im\phi}
+		\int\dd{t}
+		\alpha(t)
+		e^{-i(\omega+m\Omega_0)t}
+		\\
+		&=
+		\sum_{m\in\mathbb{Z}}
+		J_m(\beta_0)
+		e^{-im\phi}
+		\alpha(\omega+m\Omega_0)
+		.
+	\end{split}
 	\label{eq:sinusoidal_phase_signal_fourier}
 \end{equation}
-after transforming the integration variable.
 Sinusoidal phase modulation with frequency $\Omega_0$ creates infinitely many sidebands around the carrier frequency $\omega$.
 As we can write an arbitrary time-dependent signal as a sum of sinusoidals of different frequencies, we have to deal with an integral of infinite sums, making arbitrary phase-modulation untractable.
 
@@ -148,40 +158,91 @@ Inserting the frequency representation of the sinusoidal modulation into the int
 Let the optical signal be limited to the bandwidth $B$, then
 according to the mean-value theorem for integrals, there exists an $\omega_0\in B$ such that we can write
 \begin{equation}
-	\hat{H}_\text{int}
-	=
-	\beta_0
-	g(\omega_0,\Omega_0)
-	\int\frac{\dd{\omega}}{2\pi}
-	\hat{a}^\dagger(\omega)
-	\hat{a}(\omega+\Omega_0)
-	+
-	\text{h.c.}
+	\begin{split}
+		\hat{H}_\text{int}
+		&=
+		\beta_0
+		g(\omega_0,\Omega_0)
+		\int\frac{\dd{\omega}}{2\pi}
+		\hat{a}^\dagger(\omega)
+		\hat{a}(\omega+\Omega_0)
+		+
+		\beta_0^*
+		g(\omega_0,\Omega_0)^*
+		\int\frac{\dd{\omega}}{2\pi}
+		\hat{a}^\dagger(\omega)
+		\hat{a}(\omega-\Omega_0)
+		\\
+		&=
+		\beta_0
+		g(\omega_0,\Omega_0)
+		\int\frac{\dd{\omega}}{2\pi}
+		\hat{a}^\dagger(\omega-\Omega_0)
+		\hat{a}(\omega)
+		+
+		\beta_0^*
+		g(\omega_0,\Omega_0)^*
+		\int\frac{\dd{\omega}}{2\pi}
+		\hat{a}^\dagger(\omega+\Omega_0)
+		\hat{a}(\omega)
+	\end{split}
 	\label{eq:frequency_conversion_interaction_meanvalue}
-	.
 \end{equation}
-The time-evolution operator corresponding to the interaction Hamiltonian, \cref{eq:frequency_conversion_interaction_meanvalue}, is equal to
+where we performed an integration variable substitution in the second step.
+
+We define the up- and down-conversion operators for the frequency $\Omega_0$ as
+\begin{equation}
+	\hat{T}_\pm(\Omega_0)
+	=
+	\int\frac{\dd{\omega}}{2\pi}
+	\hat{a}^\dagger(\omega\pm\Omega_0)
+	\hat{a}(\omega)
+	\label{eq:frequency_conversion_operator}
+\end{equation}
+which are related via the hermitian conjugate, $\hat{T}_+(\Omega_0)=\hat{T}_-(\Omega_0)^\dagger$, and satisfy the commutation relations
 \begin{align}
-	\hat{U}(\theta,\varphi)
-	&=
-	e^{-i\hat{G}(\varphi)\theta/2}
-	&
-	\hat{G}(\varphi)
+	\comm{\hat{T}_\pm(\Omega_0)}{\hat{a}(\omega)}
 	&=
 	-
-	\left(
-		\hat{T}_+(\Omega_0)
-		e^{-i\varphi}
-		+
-		\hat{T}_-(\Omega_0)
-		e^{+i\varphi}
-	\right)
-	\label{eq:frequency_conversion_evolution}
+	\hat{a}(\omega\mp\Omega_0)
+	&
+	\comm{\hat{T}_\pm(\Omega_0)}{\hat{a}^\dagger(\omega)}
+	&=
+	+
+	\hat{a}^\dagger(\omega\pm\Omega_0)
+	,
 \end{align}
-wherein we introduced the real-valued coupling constants $\theta,\varphi$ satisfying
+which can be used to up- or donw-convert the frequency of a photon by $\Omega_0$.
+
+The time-evolution operator corresponding to the interaction Hamiltonian in \cref{eq:frequency_conversion_interaction_meanvalue} turns out to be
 \begin{equation}
-	\beta_0
-	g(\omega_0,\Omega_0)
+	\begin{split}
+		\hat{U}(\theta,\Omega_0,\varphi)
+		=
+		\exp\left\{
+			-iT
+			\hat{H}_\text{int}
+		\right\}
+		=
+		\exp\left\{
+			-i
+			\frac{1}{2}
+			\theta
+			\left[
+				\hat{T}_+(\Omega_0)
+				e^{-i\varphi}
+				+
+				\hat{T}_-(\Omega_0)
+				e^{+i\varphi}
+			\right]
+		\right\}
+	\end{split}
+	\label{eq:frequency_conversion_evolution}
+\end{equation}
+where we new parameters $\Theta,\varphi$ relate to the old coupling parameters via
+\begin{equation}
+	\beta_0^*
+	g(\omega_0,\Omega_0)^*
 	T
 	=
 	\frac{1}{2}
@@ -189,159 +250,58 @@ wherein we introduced the real-valued coupling constants $\theta,\varphi$ satisf
 	e^{+i\varphi}
 \end{equation}
 with $T$ being the interaction time approximately equal to the transmit time of the light through the phase modulator.\footnote{Strictly speaking, the transmit time is frequency-dependent requiring a frequency response filter instead of coupling constant.}
-The operators in \cref{eq:frequency_conversion_evolution} are defined as
-\begin{align}
-	\hat{T}_\pm(\Omega)
-	&=
-	\int\frac{\dd{\omega}}{2\pi}
-	\hat{a}^\dagger(\omega\pm\Omega)
-	\hat{a}(\omega)
-	&
-	\hat{T}_+(\Omega)
-	&=
-	\hat{T}_-(\Omega)^\dagger
-\end{align}
-and satisfy the commutation relations
-\begin{align}
-	\comm{\hat{T}_\pm(\Omega)}{\hat{a}(\omega)}
-	&=
-	-
-	\hat{a}(\omega\mp\Omega)
-	&
-	\comm{\hat{T}_\pm(\Omega)}{\hat{a}^\dagger(\omega)}
-	&=
+Before, we transform the annihilation operator, we define the generator
+\begin{equation}
+	\hat{G}(\varphi,\Omega_0)
+	=
+	\hat{T}_+(\Omega_0)
+	e^{-i\varphi}
 	+
-	\hat{a}^\dagger(\omega\pm\Omega)
-\end{align}
-suggesting to identify $\hat{T}_\pm(\Omega)$ as up- and down-conversion operators.
-
-
-% Ref.~\cite{Horoshko2018}, which we briefly summarize.
-% which reduces to the phase-rotation operator proposed in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006} in the single-mode limit and time-independent $\varphi$.
-% The energy of the electromagnetic field inside a dielectric medium is symbolically~\cite[p.~124]{Jackson2007}
-%where $v_\text{gr}$ is the group velocity in the quasi-monochromatic approximation~\cite[p.~211]{Jackson2007}.
-
-%\footnote{An introduction to the phase-rotation operator is found in Ref.~\cite[p.~38]{Leonhardt2010} and Ref.~\cite[p.~103]{Vogel2006}.}
-% which captures the essence of more carefully derived results in Ref.~\cite[eq.~35]{Horoshko2018} and Ref.~\cite[p.~89]{QuesadaMejia2015}.
-% We define the time-dependent phase-rotation operator to be\footnote{See Ref.~\cite[p.~103]{Vogel2006} for the time-independent single-mode phase-rotation operator.}
-% The annihilation operator transforms as in time-independent case~\cite[p.~38]{Leonhardt2010}
-
-In this particular case, it makes sense to first start from the classical result and move into the quantum direction.
-Classically, phase modulation adds a time-dependent phase.
-For a coherent state, we therefore expect the existence of a unitary operator, which is a functional of the phase signal, acting on a coherent state to add such time-dependent phase factor, i.e.,
+	\hat{T}_-(\Omega_0)
+	e^{+i\varphi}
+	\label{eq:frequency_conversion_generator}
+\end{equation}
+which relates to the evolution operator via
 \begin{equation}
-	\hat{U}\left[\phi(t)\right]
-	\ket*{\alpha(t)}
+	\hat{U}(\theta,\Omega_0,\varphi)
 	=
-	\ket*{\alpha(t)e^{-i\phi(t)}}
+	\exp\left\{
+		-i\frac{1}{2}
+		\theta
+		\hat{G}(\varphi,\Omega_0)
+	\right\}
 	.
 \end{equation}
-However, classically, we already have the problem that there exists no closed Fourier representation of a multiplication with a time-dependent factor.
-The best we can do is for single-mode modulation at frequency $\Omega_0$ the Jacobi-Anger expansion for which we can then rewrite the phase-modulated amplitude
-
-and we can read off the transformed Fourier amplitude\footnote{In Ref.~\cite{Horoshko2018}, we find $\omega-m\Omega_0$ because the authors use a different sign convention for the Fourier transform.}
-\begin{equation}
-	\alpha^\prime(\omega)
-	=
-	\sum_{m\in\mathbb{Z}}
-	J_m(d)
-	e^{-im\varphi}
-	\alpha(\omega+m\Omega_0)
-	.
-\end{equation}
-For the transformed displacement operator this means
-\begin{align}
-	\begin{split}
-		\hat{D}\left[\alpha^\prime(t)\right]
-		&=
-		\exp\left\{
-			\int\frac{\dd{\omega}}{2\pi}
-			\left\{
-				\alpha^\prime(\omega)
-				\hat{a}^\dagger(\omega)
-				-
-				\text{h.c.}
-			\right\}
-		\right\}
-		\\
-		&=
-		\exp\left\{
-			\int\frac{\dd{\omega}}{2\pi}
-			\left\{
-				\alpha(\omega)
-				\sum_{m\in\mathbb{Z}}
-				J_m(d)
-				e^{-im\varphi}
-				\hat{a}^\dagger(\omega-m\Omega_0)
-				-
-				\text{h.c.}
-			\right\}
-		\right\}
-		\\
-		&=
-		\exp\left\{
-			\int\frac{\dd{\omega}}{2\pi}
-			\left\{
-				\alpha(\omega)
-				\hat{U}\left[d\sin(\Omega_0t+\varphi)\right]
-				\hat{a}^\dagger(\omega)
-				\hat{U}\left[d\sin(\Omega_0t+\varphi)\right]^\dagger
-				-
-				\text{h.c.}
-			\right\}
-		\right\}
-	\end{split}	
-\end{align}
-and we reverse-engineered the relation down to
-\begin{equation}
-	\sum_{m\in\mathbb{Z}}
-	J_m(d)
-	e^{-im\varphi}
-	\hat{a}^\dagger(\omega-m\Omega_0)
-	=
-	\hat{U}\left[d\sin(\Omega_0t+\varphi)\right]
-	\hat{a}^\dagger(\omega)
-	\hat{U}\left[d\sin(\Omega_0t+\varphi)\right]^\dagger
-	.
-\end{equation}
-
-We define
-satisfy the commutation relations
-
-
-We then transform the annihilation operator
-\begin{equation}
-	\hat{U}(\theta,\varphi)^\dagger
-	\hat{a}(\omega)
-	\hat{U}(\theta,\varphi)
-	=
-	\sum_{m\in\mathbb{Z}}
-	J_m(\theta)
-	e^{im(\theta-\pi/2)}
-	\hat{a}(\omega+m\Omega_0)
-\end{equation}
-in agreement with Ref.~\cite[eq.~40]{Horoshko2018} which can find using the commutators
+The iterated commutators of the generator with the annihilation operator are
 \begin{align}
 	\comm{\hat{G}}{\hat{a}(\omega)}
 	&=
-	\hat{a}(\omega-\Omega_0)
-	e^{-i\varphi}
-	+
-	\hat{a}(\omega+\Omega_0)
-	e^{+i\varphi}
+	(-1)
+	\left[
+		\hat{a}(\omega-\Omega_0)
+		e^{-i\varphi}
+		+
+		\hat{a}(\omega+\Omega_0)
+		e^{+i\varphi}
+	\right]
 	\\
 	\comm{\hat{G}}{\comm{\hat{G}}{\hat{a}(\omega)}}
 	&=
-	\hat{a}(\omega-2\Omega_0)
-	e^{-2i\varphi}
-	+
-	2\hat{a}(\omega)
-	+
-	\hat{a}(\omega+2\Omega_0)
-	e^{+2i\varphi}
+	(-1)^2
+	\left[
+		\hat{a}(\omega-2\Omega_0)
+		e^{-2i\varphi}
+		+
+		2\hat{a}(\omega)
+		+
+		\hat{a}(\omega+2\Omega_0)
+		e^{+2i\varphi}
+	\right]
 	\\
 	\comm{\hat{G}}{\comm{\hat{G}}{\comm{\hat{G}}{\hat{a}(\omega)}}}
 	&=
+	(-1)^3
+	\bigl[
 	\hat{a}(\omega-3\Omega_0)
 	e^{-3i\varphi}
 	+
@@ -356,60 +316,226 @@ in agreement with Ref.~\cite[eq.~40]{Horoshko2018} which can find using the comm
 	2^2
 	\hat{a}(\omega+\Omega_0)
 	e^{+i\varphi}
+	\bigr]
 \end{align}
-
-Then to transform the creation operator for the displacement operator, we use the usual trick
+and we can invoke the \gls{bch} formula, to transform the annihilation operator
 \begin{equation}
 	\begin{split}
-		\hat{U}(\theta,\varphi)^\dagger
+		\hat{a}^\prime(\omega)
+		&=
+		\hat{U}(\theta,\Omega_0,\varphi)^\dagger
 		\hat{a}(\omega)
-		\hat{U}(\theta,\varphi)
+		\hat{U}(\theta,\Omega_0,\varphi)
+		\\
+		&=
+		\hat{a}(\omega)
+		+
+		\frac{i\theta}{2}
+		\comm{\hat{G}}{\hat{a}(\omega)}
+		+
+		\frac{i^2\theta^2}{2^22!}
+		\comm{\hat{G}}{\comm{\hat{G}}{\hat{a}(\omega)}}
+		+
+		\frac{i^3\theta^3}{2^33!}
+		\comm{\hat{G}}{\comm{\hat{G}}{\dots}}
+		+
+		\dots
+		\\
+		&=
+		\sum_{m\in\mathbb{Z}}
+		J_m(\theta)
+		e^{im(\varphi-\pi/2)}
+		\hat{a}(\omega+m\Omega_0)
+	\end{split}
+	\label{eq:frequency_conversion_annihilation}
+\end{equation}
+in agreement with Ref.~\cite[eq.~40]{Horoshko2018}.
+
+To transform the displacement operator, we need to evaluate
+\begin{equation}
+	\begin{split}
+		\hat{U}(\theta,\Omega_0,\varphi)
+		\hat{a}^\dagger(\omega)
+		\hat{U}(\theta,\Omega_0,\varphi)^\dagger
 		&=
 		\left[
-			\hat{U}(\theta,\varphi)^\dagger
+			\hat{U}(\theta,\Omega_0,\varphi)
 			\hat{a}(\omega)
-			\hat{U}(\theta,\varphi)	
+			\hat{U}(\theta,\Omega_0,\varphi)^\dagger	
 		\right]^\dagger
 		\\
 		&=
 		\left[
-			\hat{U}(-\theta,\varphi)
+			\hat{U}(-\theta,\Omega_0,\varphi)^\dagger
 			\hat{a}(\omega)
-			\hat{U}(-\theta,\varphi)^\dagger	
+			\hat{U}(-\theta,\Omega_0,\varphi)
 		\right]^\dagger
 		\\
 		&=
 		\left[
 			\sum_{m\in\mathbb{Z}}
 			J_m(-\theta)
-			e^{-im(\theta+\pi/2)}
+			e^{+im(\varphi-\pi/2)}
 			\hat{a}(\omega+m\Omega_0)
 		\right]^\dagger
 		\\
 		&=
 		\sum_{m\in\mathbb{Z}}
 		J_m(-\theta)
-		e^{+im(\theta+\pi/2)}
+		e^{-im(\varphi-\pi/2)}
 		\hat{a}^\dagger(\omega+m\Omega_0)
 		\\
 		&=
 		\sum_{m\in\mathbb{Z}}
 		J_m(\theta)
-		e^{+im(\theta-\pi/2)}
+		e^{+im(\varphi+\pi/2)}
 		\hat{a}^\dagger(\omega+m\Omega_0)
 	\end{split}
 \end{equation}
 where we used
 \begin{equation}
 	J_m(-\theta)
-	e^{+im(\theta+\pi/2)}
+	e^{-im(\varphi-\pi/2)}
 	=
-	J_m(\theta)
 	(-1)^m
-	e^{+im(\theta+\pi/2)}
+	J_m(\theta)
+	e^{+im(\varphi-\pi/2)}
 	=
 	J_m(\theta)
-	e^{+im(\theta-\pi/2)}
+	e^{+im(\varphi+\pi/2)}
+\end{equation}
+in the last step.
+The transformed displacement operator then reads
+\begin{align}
+	\begin{split}
+		\hat{D}^\prime\left[\alpha(t)\right]
+		&=
+		\hat{U}(\theta,\Omega_0,\varphi)
+		\hat{D}\left[\alpha(t)\right]
+		\hat{U}(\theta,\Omega_0,\varphi)^\dagger
+		\\
+		&=
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left[
+				\alpha(\omega)
+				\hat{U}(\theta,\Omega_0,\varphi)
+				\hat{a}^\dagger(\omega)
+				\hat{U}(\theta,\Omega_0,\varphi)^\dagger
+				-
+				\text{h.c.}
+			\right]
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left[
+				\sum_{m\in\mathbb{Z}}
+				\alpha(\omega)
+				J_m(\theta)
+				e^{+im(\varphi+\pi/2)}
+				\hat{a}^\dagger(\omega+m\Omega_0)
+				-
+				\text{h.c.}
+			\right]
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left[
+				\sum_{m\in\mathbb{Z}}
+				J_m(\theta)
+				\alpha(\omega-m\Omega_0)
+				e^{im(\varphi+\pi/2)}
+				\hat{a}^\dagger(\omega)
+				-
+				\text{h.c.}
+			\right]
+		\right\}
+		\\
+		&=
+		\exp\left\{
+			\int\frac{\dd{\omega}}{2\pi}
+			\left[
+				\alpha^\prime(\omega)
+				\hat{a}^\dagger(\omega)
+				-
+				\text{h.c.}
+			\right]
+		\right\}
+	\end{split}	
+\end{align}
+where we identified the transformed Fourier amplitude with
+\begin{equation}
+	\alpha^\prime(\omega)
+	=
+	\sum_{m\in\mathbb{Z}}
+	J_m(\theta)
+	e^{im(\varphi+\pi/2)}
+	\alpha(\omega-m\Omega_0)
+	.
+\end{equation}
+In the time domain, the transformed amplitude is
+\begin{equation}
+	\begin{split}
+		\alpha^\prime(t)
+		=
+		\int\frac{\dd{\omega}}{2\pi}
+		\alpha^\prime(\omega)
+		e^{-i\omega t}
+		&=
+		\int\frac{\dd{\omega}}{2\pi}
+		\alpha(\omega-m\Omega_0)
+		e^{-i\omega t}
+		\sum_{m\in\mathbb{Z}}
+		J_m(\theta)
+		e^{im(\varphi+\pi/2)}
+		\\
+		&=
+		\int\frac{\dd{\omega}}{2\pi}
+		\alpha(\omega)
+		e^{-i\omega t}
+		\sum_{m\in\mathbb{Z}}
+		J_m(\theta)
+		e^{-im(\Omega_0t-\varphi-\pi/2)}
+		\\
+		&=
+		\alpha(t)
+		e^{-i\theta\sin(\Omega_0t-\varphi-\pi/2)}
+		=
+		\alpha(t)
+		e^{+i\theta\cos(\Omega_0t-\varphi)}
+	\end{split}
+\end{equation}
+where we again used the Jacobi-Anger expansion, \cref{eq:jacobi_anger_expansion}.
+We conclude that a coherent state transform under sinusoidal phase-modulation as
+\begin{equation}
+	\hat{U}(\theta,\Omega_0,\varphi)
+	\ket*{\alpha(t)}
+	=
+	\ket*{\alpha(t)e^{+i\theta\cos(\Omega_0t-\varphi)}}
+	.
+\end{equation}
+We extend our result to signals of finite duration by noting that we can write an arbitrary signal as a sum of harmonics, i.e.,
+\begin{equation}
+	\varphi(t)
+	=
+	\sum_{k=0}^N
+	\theta_k
+	\cos(\Omega_kt-\varphi_k)
+	,
+\end{equation}
+and apply a product of sinusoidal phase modulation operators, \cref{eq:frequency_conversion_evolution},
+\begin{equation}
+	\left(
+		\prod^N_{k=0}
+		\hat{U}(\theta_k,\Omega_k,\varphi_k)
+	\right)
+	\ket*{\alpha(t)}
+	=
+	\ket*{\alpha(t)e^{+i\varphi(t)}}
 	.
 \end{equation}
 
