@@ -475,9 +475,28 @@ where we identified the transformed Fourier amplitude with
 	J_m(\theta)
 	e^{im(\varphi+\pi/2)}
 	\alpha(\omega-m\Omega_0)
+	\label{eq:frequency_conversion_frequency_amplitude}
 	.
 \end{equation}
-In the time domain, the transformed amplitude is
+Written as a convolution, the transformed Fourier amplitude reads
+\begin{equation}
+	\alpha^\prime(\omega)
+	=
+	\int\frac{\dd{\omega^\prime}}{2\pi}
+	h(\omega^\prime)
+	\alpha(\omega-\omega^\prime)
+	,
+\end{equation}
+where the convolution kernel is the Dirac train
+\begin{equation}
+	\sum_{m\in\mathbb{Z}}
+	J_m(\theta)
+	e^{im(\varphi+\pi/2)}
+	(2\pi)
+	\delta^{(1)}(\omega^\prime-m\Omega_0)
+	.
+\end{equation}
+As the transformed Fourier amplitude is a convolution in frequency space, we expect a product in time space, i.e.,
 \begin{equation}
 	\begin{split}
 		\alpha^\prime(t)
@@ -542,38 +561,24 @@ Although we cannot write down a closed solution for an arbitrary time-dependent 
 
 \subsection{Amplitude modulator using Mach-Zehnder interferometer}
 
-The \gls{mzm} uses two electro-optical phase modulators to perform amplitude modulation through interference.
-We first derive the state transformation of an \gls{mzm} for a fixed, time-independent phase, i.e., an \gls{mzi}, and then argue how the state transformation generalizes to the time-dependent modulation.
+The \gls{mzm} uses two phase modulators to perform amplitude modulation through interference.
 \begin{figure}[htb]
 	\centering
 	\includestandalone{figures/pstricks/mzi-symmetric}
-	\caption{Symmetric \gls{mzm} using free-space optics comprising two balanced \gls{bs}, BS1 and BS2, two mirrors, M1 and M2, and two phase shifters, PS1 and PS2. The input Fourier amplitudes, $\alpha_1(\omega)$ and $\alpha_2(\omega)$, enter BS1 and are split into an upper and lower path. The upper path receives a phase shift of $\phi_1(\omega)+\pi$ from PS1 and M1 before entering BS2 from the top. The lower path receives a phase shift of $\phi_2(\omega)+\pi$ from M2 and PS2 before entering BS2 from the left. BS2 recombines the phase-shifted upper and lower path into the output Fourier amplitudes $\alpha_1^\prime(\omega)$ and $\alpha_2^\prime(\omega)$.}\label{fig:mzi_symmetric}
+	\caption{Symmetric \gls{mzi} using free-space optics comprising two balanced \gls{bs}, BS1 and BS2, two mirrors, M1 and M2, and two phase modulators, PM1 and PM2. The input amplitudes, $\alpha_1(t)$ and $\alpha_2(t)$, enter BS1 and are split into an upper and lower path. The upper path receives a phase shift of $\phi_1(t)+\pi$ from PM1 and M1 before entering BS2 from the top. The lower path receives a phase shift of $\phi_2(t)+\pi$ from M2 and PM2 before entering BS2 from the left. BS2 recombines the phase-shifted upper and lower path into the output Fourier amplitudes $\alpha_1^\prime(t)$ and $\alpha_2^\prime(t)$.}\label{fig:mzi_symmetric}
 \end{figure}
-\Cref{fig:mzi_symmetric} shows a symmetric \gls{mzi} using free-space optics with one signal input; the other input being in the vacuum state.
+\Cref{fig:mzi_symmetric} shows a symmetric \gls{mzi}\footnote{We distinguish between \gls{mzi} and \gls{mzm}, whether it is an optical (\gls{mzi}) or integrated (\gls{mzm}) embodiment. However, there is no difference in the theoretical treatment.} using free-space optics with one signal input; the other input being in the vacuum state.
 The most crucial components of the \gls{mzi} are a splitter, a coupler, and two independent phase modulators.
-The splitter divides the input light into two branches.
-Each branch adds a relative phase shift, $\phi_1(\omega)$ and $\phi_2(\omega)$, using an independently  driven phase modulator, PS1 and PS2.
+The splitter divides the input light into two branches, which are phase modulated with $\phi_1(t)$ and $\phi_2(t)$ by PM1 respectively PM2.
 The coupler recombines both branches into two outputs.
 Two cubic beam splitters implement the splitter (BS1) and the coupler (BS2) for our free-space setup.
 For additional beam alignment, our free-space setup utilizes two mirrors (M1 and M2).
 
-To find the effect of the \gls{mzi} on a coherent input state, we combine the actions of its individual optical components.
-Approximating each of the optical components an ideal optical coupler allows us to write the output Fourier amplitudes of the \gls{mzm} as the matrix product
-\begin{equation}
-	\vb{\alpha}^\prime(\omega)
-	=
-	U_\text{MZM}(\omega)
-	\vb{\alpha}(\omega)
-	=
-	U_\text{BS2}(\omega)
-	U_\text{PS}(\omega)
-	U_\text{BS1}(\omega)
-	\vb{\alpha}(\omega)
-	\label{eq:mzm_fourier}
-	,
-\end{equation}
-i.e., the matrix transform of the symmetric \gls{mzm}, $U_\text{MZM}$, is equal to the matrix product of the second beam splitter's, the phase shifts', and the first beam splitter's matrix transform, $U_\text{BS2}U_\text{PS}U_\text{BS1}$.
-Ignoring the relative phases between the individual components, we use the beam splitter transforms
+To find the effect of the \gls{mzm} on a coherent input state, we study the cumulative effect of the individual optical components.
+One particular challenge is that the transformation of passive components is a convolution in the time domain.
+In contrast, the transformation of active components is a convolution in the frequency domain.
+A possible way forward is to invoke the narrow-bandwidth approximation and assume that the passive components are free of dispersion over the relevant optical bandwidth.
+Under this simplifying assumption, the passive components are described by the ideal transformations
 \begin{align}
 	U_\text{BS1}
 	&=
@@ -592,60 +597,118 @@ Ignoring the relative phases between the individual components, we use the beam 
 	\end{pmatrix}
 	,
 \end{align}
-corresponding to a perfect cubic beam splitter with a single dielectric layer~\cite[p.~139]{Gerry2005}, where we exchanged the rows for consistency with the input labels.
-The matrix encoding the phase shifts from the phase modulation $\phi_1(\omega),\phi_2(\omega)$ and the reflection at the mirrors M1 and M2, $\pi$ is
+which are valid in both time and frequency space.\footnote{The particular choice corresponds to a perfect cubic beam splitter with a single dielectric layer~\cite[p.~139]{Gerry2005}, where we exchanged the rows of the second \gls{bs} for consistency with the input labels.}
+The transformation of the active phase modulation is
 \begin{equation}
-	U_\text{PS}(\omega)
+	U_\text{PM}(t)
 	=
 	\begin{pmatrix}
-		ie^{i\phi_1(\omega)} & 0 \\
-		0 & ie^{i\phi_2(\omega)}
+		e^{i\phi_1(\omega)} & 0 \\
+		0 & e^{i\phi_2(\omega)}
 	\end{pmatrix}
+	,
 \end{equation}
-Performing the matrix multiplication and writing the exponentials as trigonometric functions, we find the matrix transform of the symmetric \gls{mzi} to be
+where we ignored static phase shifts.\footnote{For practical applications, one calibrates the phase modulators with a static bias voltage to compensate for undesired static phase shifts.}
+The composition of these transformations yields the transformation of the \gls{mzm}
 \begin{equation}
-	U_\text{MZM}(\omega)
+	U_\text{MZM}(t)
 	=
-	-
+	U_\text{BS2}
+	U_\text{PM}(t)
+	U_\text{BS1}
+	=
 	\begin{pmatrix}
-		\cos\left(\frac{\phi_2(\omega)-\phi_1(\omega)}{2}\right) & \sin\left(\frac{\phi_2(\omega)-\phi_1(\omega)}{2}\right) \\
-		-\sin\left(\frac{\phi_2(\omega)-\phi_1(\omega)}{2}\right) & \cos\left(\frac{\phi_2(\omega)-\phi_1(\omega)}{2}\right)
+		\cos\phi_-(t) & +\sin\phi_-(t) \\
+		-\sin\phi_-(t) & \cos\phi_-(t)
 	\end{pmatrix}
-	e^{i\frac{\phi_1(\omega)+\phi_2(\omega)}{2}}
-	\label{eq:mzm_matrix1}
+	ie^{i\varphi_+(t)}
+	\label{eq:mzm_matrix}
+	,
+\end{equation}
+where we introduced the common-mode and differential-mode phase signals
+\begin{align}
+	\phi_+(t)
+	&=
+	\frac{\phi_2(t)+\phi_1(t)}{2}
+	&
+	\phi_-(t)
+	&=
+	\frac{\phi_2(t)-\phi_1(t)}{2}
+	.
+\end{align}
+For the input state being a tensor product of a coherent and a vacuum state
+\begin{equation}
+	\ket{\vb{\alpha}(t)}
+	=
+	\ket{\alpha(t),0}
+	,
+\end{equation}
+the matrix transformation of the \gls{mzm}, \cref{eq:mzm_matrix}, predicts the output amplitudes to be
+\begin{equation}
+	\alpha^\prime(t)
+	=
+	U_\text{MZM}(t)
+	\alpha(t)
+	=
+	\alpha(t)
+	\begin{pmatrix}
+		\cos\phi_-(t) \\
+		-\sin\phi_-(t)
+	\end{pmatrix}
+	ie^{i\varphi_+(t)}
+	\label{eq:mzm_amplitude_time}
+\end{equation}
+where the common-mode phase signal $\varphi_+(t)$ changes the global phase of the output signal and the differential-mode signal $\varphi_-(t)$ changes the power splitting ratio of the outputs.
+In the previous sections, we derived the unitary evolution operator corresponding to the unitary matrix transforms.
+We therefore claim the existence of an unitary operator, $\hat{U}_\text{MZM}$, corresponding to the unitary matrix transform of \cref{eq:mzm_matrix}, where the action of such operator on a coherent and vacuum input state is
+\begin{equation}
+	\hat{U}_\text{MZM}(t)
+	\ket*{\alpha(t),0}
+	=
+	\ket*{\alpha(t)\cos\phi_-(t)ie^{i\varphi_+(t)},\alpha(t)\sin\phi_-(t)ie^{i\varphi_+(t)}}
 	.
 \end{equation}
-Comparing \cref{eq:mzm_matrix1} with the unitary matrix decomposition \cref{eq:unitary_matrix} suggests that accounting for relative phase would not change the main characteristics significantly or could be compensated by offsetting $\phi_1(\omega)$ or $\phi_2(\omega)$.
-It appears useful to define the common-mode and differential-mode phases
-\begin{align}
-	\phi_+(\omega)
-	&=
-	\frac{\phi_2(\omega)+\phi_1(\omega)}{2}
-	&
-	\phi_-(\omega)
-	&=
-	\frac{\phi_2(\omega)-\phi_1(\omega)}{2}
-\end{align}
-for which the matrix transform simplifies to
+Usually, one output is monitored for bias control of the phase modulators, and the other output is used for further processing.
+In this case, we can remove the other other output using a projection operator, $\hat{P}$, and we find
 \begin{equation}
-	U_\text{MZM}(\omega)
+	\hat{P}
+	\hat{U}_\text{MZM}(t)
+	\ket*{\alpha(t),0}
 	=
-	-
-	\begin{pmatrix}
-		\cos\phi_-(\omega) & \sin\phi_-(\omega) \\
-		-\sin\phi_-(\omega) & \cos\phi_-(\omega)
-	\end{pmatrix}
-	e^{i\phi_+(\omega)}
-	\label{eq:mzm_matrix2}
+	\ket*{\alpha(t)\beta_\text{MZM}(t)}
+	\label{eq:mzm_state}
+	,
 \end{equation}
-and we note that the common-mode phase $\phi_+(\omega)$ adds a global phase shift of $\phi_+(\omega)$ while the differential-mode phase $\phi_-(\omega)$ changes the splitting ratios at the output.
-The matrix transformation, \cref{eq:mzm_matrix2}, is a specific beam splitter transform.
-Dumping one of the outputs makes it equivalent to the spectral filter.
+where we defined the complex-valued amplitude modulation signal $\beta(t)$ with $\abs{\beta(t)}\leq 1$.
 
-
-
+\Cref{eq:mzm_state} suggests that a \gls{mzm} with two independent phase modulators allows for complex amplitude modulation, i.e.,  modulation of in-phase and quadrature components of the input signal $\alpha(t)$.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/iqm}
-    \caption{Integrated \gls{iqm} using three \gls{mzm} arms: A coherent input amplitude, $\alpha(t)$, is split into an upper and lower branch. The upper and lower branches comprise an integrated \gls{mzm} that performs amplitude modulation with the in-phase and quadrature signal, $I(t)$ respectively $Q(t)$. The integrated \gls{mzm} consists of a hexagonal-shaped waveguide with an inside signal electrode and two outer grounds. The outputs of the in-phase and quadrature modulated form a third \gls{mzm} used to set a relative phase shift of $\pi$ between the in-phase and quadrature signals, yielding the coherent output amplitude $\alpha^\prime(t)$.}\label{fig:iqm}
+    \caption{Integrated \gls{iqm} using three \gls{mzm} arms: A coherent input amplitude, $\alpha(t)$, is split into an upper and lower branch. The upper and lower branches comprise an integrated \gls{mzm} that performs amplitude modulation with the in-phase and quadrature signal, $I(t)$ respectively $Q(t)$. The integrated \gls{mzm} consists of a hexagonal-shaped waveguide with an inside signal electrode and two outer grounds. The outputs of the in-phase and quadrature modulated form a third \gls{mzm} used to set a relative phase of $\Lambda$ between the in-phase and quadrature signals, yielding the coherent output amplitude $\alpha^\prime(t)$.}\label{fig:iqm}
 \end{figure}
+In practice, however, we the \gls{iqm} to be implemented using three \gls{mzm}s as depicted in \Cref{fig:iqm}.
+The phases of the \gls{mzm} in an integrated \gls{iqm} are only driven differentially.
+The upper branch modulates the in-phase component, $I(t)$, while the lower branch modulates the quadrature component, $Q(t)$.
+A third \gls{mzm} adds a static relative phase $\Lambda$ between the in-phase and quadrature branch such that these branches are recombined at $\pi/2$.
+For the coherent output state, we find
+\begin{equation}
+	\ket*{\alpha^\prime(t)}
+	=
+	\hat{U}_\text{IQM}(t)
+	\ket*{\alpha(t)}
+	=
+	\ket*{\alpha(t)\beta_\text{IQM}(t)}
+\end{equation}
+wherein the complex amplitude modulation signal is now
+\begin{equation}
+	\beta_\text{IQM}(t)
+	=
+	I(t)
+	+
+	iQ(t)
+	\label{eq:iqm_modulation}
+	.
+\end{equation}
+While the \gls{iqm} is equivalent to a \gls{mzm} with two independent phase modulators for time-independent modulation, the \gls{mzm} cannot, in general, perform continuously phase modulation.
+The reason being that the complex phase of the \gls{mzm}, \cref{eq:mzm_amplitude_time}, cannot be increased arbitrary for practical electro-optical phase modulators but must be brought back to some working point, which would require instantaneous jumps.

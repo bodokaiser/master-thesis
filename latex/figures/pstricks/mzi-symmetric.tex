@@ -17,22 +17,22 @@
         \pnode([offset=-2]BS2){OUT2}
         \begin{optexp}
             \beamsplitter[compname=BS1, labelangle=-135, labeloffset=1](IN1)(BS1)(M2){BS1}
-            \optbox[compname=PS1, innerlabel, optboxsize=1.2 0.8](BS1)(M1){$\phi_1(\omega)$}
-            \optbox[optboxsize=1.2 0.8, labelangle=180](BS1)(M1){PS1}
+            \optbox[compname=PS1, innerlabel, optboxsize=1.2 0.8](BS1)(M1){$\varphi_1(t)$}
+            \optbox[optboxsize=1.2 0.8, labelangle=180](BS1)(M1){PM1}
             \mirror[compname=M1, labeloffset=0.6](BS1)(M1)(BS2){M1}
             \beamsplitter[compname=BS2, labelangle=135, labeloffset=1](M1)(BS2)(M2){BS2}
             \mirror[compname=M2, labeloffset=0.6](BS1)(M2)(BS2){M2}
-            \optbox[compname=PS2, innerlabel, optboxsize=1.2 0.8](M2)(BS2){$\phi_2(\omega)$}
-            \optbox[optboxsize=1.2 0.8](M2)(BS2){PS2}
+            \optbox[compname=PS2, innerlabel, optboxsize=1.2 0.8](M2)(BS2){$\varphi_2(t)$}
+            \optbox[optboxsize=1.2 0.8](M2)(BS2){PM2}
 			\drawbeam(IN1){BS1}{M2}{PS2}
 			\drawbeam{PS2}{BS2}(OUT1)
 			\drawbeam(IN2){BS1}{PS1}
 			\drawbeam{PS1}{M1}{BS2}(OUT2)
 
-			\rput[l](0.6,5.3){$\alpha_1(\omega)$}
-			\rput[l](2.1,5.7){$\alpha_2(\omega)$}
+			\rput[l](0.8,5.3){$\alpha_1(t)$}
+			\rput[l](2.1,5.7){$\alpha_2(t)$}
 
-			\rput[l](9.1,1.25){$\alpha_2^\prime(\omega)$}
-			\rput[l](9.5,2.3){$\alpha_1^\prime(\omega)$}        \end{optexp}
+			\rput[l](9.1,1.25){$\alpha_2^\prime(t)$}
+			\rput[l](9.5,2.3){$\alpha_1^\prime(t)$}        \end{optexp}
     \end{pspicture}
 \end{document}
