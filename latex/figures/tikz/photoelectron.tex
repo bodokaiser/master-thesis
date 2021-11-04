@@ -1,0 +1,23 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\begin{document}
+	\begin{tikzpicture}[
+		photon/.style={-Latex, decorate, decoration={snake, post length=1mm}},
+	]
+		\draw[very thick] (0,0) -- ++(7,0) node[right] {$\ket{g}$};
+		\draw (0,2) node[left] {$\min_eE_e$} ++(0,1) node[left] {$\max_eE_e$};
+		
+		\draw[very thick] node[left] {$E_g$} (0,2) rectangle ++(7,1);
+		\draw (7,2.5) node[right] {$\ket{e}$};
+		
+		\draw[-Latex] (2.5,0.1) -- ++(0,2.5);
+		\draw[photon] (0.4,1.35) -- ++(1.9,0) node[midway, below, yshift=-0.1cm] {$\gamma$};
+		
+		\draw[Bar-Bar] (5,0.1) -- ++(0,1.8) node[midway, right] {$E_g-\min_eE_e$};
+		\draw[Bar-Bar] (2.9,0.1) -- ++(0,2.5) node[midway, right] {$E_\gamma$};
+	\end{tikzpicture}
+\end{document}
