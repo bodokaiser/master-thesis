@@ -11,18 +11,20 @@
 		electron/.style={Circle-Latex},
 	]
 		\draw[line width=5mm] (0,0) -- ++(4,0) node[right, xshift=-0.2cm] {Cathode};
-		\draw[-Latex, very thick] (2,-0.2) -- ++(0,-2) node[midway, right] {$I>0$};
+	
+		\draw[thick, -Latex] (2,0) -- ++(0,-1) node[right, yshift=0.15cm] {$I$};
+		\draw[thick, -{Circle[open]}] (2,-0.6) -- ++(0,-1);
 		
-		\draw[line width=1mm, bend left] (0,4) to ++(4,0) node[right] {Anode};
-		\draw[-Bar, very thick] (2,4.6) coordinate (ca) -- ++(0,1) node[midway, right] {$V>0$};
+		\draw[line width=1mm, bend left] (0,3) to ++(4,0) node[right] {Anode};
+		\draw[thick, -{Circle[open]}] (2,3.6) coordinate (ca) -- ++(0,1) node[midway, right] {$V$};
 		
 		\draw[photon] (-2,2) -- (0.5,0.3);
 		\draw[photon] (-2,2.5) -- (1,0.3);
 		\draw[photon] (-2,3) -- (1.5,0.3);
 		\draw (-1.2,0.9) node {$\gamma$};
 		
-		\draw[electron] (2,3) node[right] {$e_-$} -- ++(0,1);
+		\draw[electron] (2,2) node[right] {$e_-$} -- ++(0,1);
 		\draw[electron] (3,1) node[right] {$e_-$} -- ++(-0.2,1);
-		\draw[electron] (1,2.5) node[right] {$e_-$} -- ++(0.2,1);
+		\draw[electron] (1,1.5) node[right] {$e_-$} -- ++(0.2,1);
 	\end{tikzpicture}
 \end{document}

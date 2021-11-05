@@ -1,8 +1,10 @@
 \section{Photodetector}
 
+% We follow mostly Mandel & Wolf supplemented by Knight and Vogel.
+
 \subsection{Differential photoelectron emission probability}
 
-The photoelectric effect characterizes the emission of electrons from an illuminated material.
+The photoelectric effect describes the emission of electrons from an illuminated material.
 Historically, it provided strong evidence for the existence of a light quantum, the photon, as the kinetic energy of the emitted electrons,
 \begin{equation}
 	E_k
@@ -10,40 +12,83 @@ Historically, it provided strong evidence for the existence of a light quantum, 
 	E_\gamma
 	-
 	E_w
+	\label{eq:photoelectric_effect}
 	,
 \end{equation}
-does not depend on the intensity but the frequency, $E_\gamma=\omega$, of the incident light minus some work energy, $E_w$.
-The photoelectric effect relates the momentum spectrum of electrons with the frequency spectrum of photons and provides a mechanism for photodetection (\Cref{fig:phototube}).
-In a phototube, photons with energy $\omega$ hit a metallic cathode.
-For photon energies greater than the work-energy of the cathode, $\omega>E_w$, electron emission occurs.
-An anode biased with voltage $V>0$, parallel to the cathode, pulls the emitted electrons away from the cathode, leaving the cathode in excess of positive charge carriers, creating a positive current at the cathode.
+does not depend on the intensity but on the frequency, $E_\gamma=\omega$, of the incident light minus some work energy, $E_w$.
+The photoelectric effect relates the momentum spectrum of electrons with the frequency spectrum of photons and provides a mechanism for photodetection.
+We present two kinds of photodetectors exploiting the photoelectric effect: the phototube and the photodiode.
+
+A phototube (\Cref{fig:phototube}) comprises a metallic cathode and a biased anode parallel to the cathode.
+Whenever photons with energy $\omega>E_w$, wherein $E_w$ is the work energy of the cathode, hit eject an electrode, the anode accelerates the emitted electrons away from the cathode.
+The cathode is then in excess of positive charge carriers, creating a positive current, $I$.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/phototube}
     \caption{Schematic of a phototube, a vacuum tube utilizing the photoelectric effect for photodetection. Photons, $\gamma$, hit a metallic cathode and eject electrons, $e_-$, through the photoelectric effect. The anode is biased with a positive voltage, $V>0$, to attract the emitted electrons. The cathode is in excess of positive charge carriers, creating a positive electric current, $I>0$.}\label{fig:phototube}
 \end{figure}
-Semiconductor photodetectors show no actual photoelectron emission.
-However, the main idea of exciting photoelectrons through photon absorption to some higher energy band still applies~\cite[p.~128]{Cohen1992}.\footnote{For a review of semiconductor quantum mechanics see Ref.~\cite{Hoyer2002} and Ref.~\cite{Rossi2002}.}
-This subsection aims to derive the probability of a single photoelectron emission, which we generalize to a photocurrent in the preceding section.
+A photodiode is typically made of a PN-junction (\Cref{fig:photodiode}), a junction of a positively- (P) with a negatively-doped (N) semiconductor, supplemented by a contact on the P- and a contact on the N-doped semiconductor.
+The contact at the P-doped semiconductor is negatively charged, creating a depletion layer between the PN-junction with no free charge carriers.
+The P layer absorbs incident photons, $\gamma$, exciting electrons, which accelerate through the depletion layer towards the cathode, creating the photocurrent, $I$.
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/photodiode}
+    \caption{Schematic of a photodiode, a PN-junction. The P layer absorbs incident photons, $\gamma$, exciting electrons. The electrons are accelerated towards the cathode, creating a photocurrent $I$.}\label{fig:photodiode}
+\end{figure}
+Contrary to the phototube, the excited electrons are not truly free but rather excited to an energy band, where they move with higher mobility through the semiconductor.
+That said, the central idea of exciting photoelectrons through photon absorption to some higher energy, applies to both kinds of photodetectors~\cite[p.~128]{Cohen1992}.
+We will oversee the subtile differences and assume a single photoelectron bound to a single atom in a unique ground state, $\ket{g}$, which is excited through photon absorption to some excited state continuum, $\ket{e}$.\footnote{Quantum models for photon absorption specific to semiconductors are found in Ref.~\cite{Hoyer2002} and Ref.~\cite{Rossi2002}.}
 
-
+The Hamiltonian of an electron is
+\begin{equation}
+	\hat{H}_e
+	=
+	\frac{\vu{p}^2}{2m_e}
+	+
+	V(\vu{x})
+	,
+\end{equation}
+wherein $V(\vu{x})$ denotes the binding potential.
+We expect the ground state, $\ket{g}$, to be an energy eigenstate with eigenvalue, $E_g$.\footnote{Not to be confused with the bandgap energy, $E_g-\min_e E_e$!}
+In the ground state, $\ket{g}$, the electron is bound and dominated by the potential term in the Hamiltonian.
+In an excited state, $\ket{e}$, the electron is approximately free and dominated by the kinetic term in the Hamiltonian.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/photoelectron}
-    \caption{Electron transition from a bound ground state $\ket{g}$ with energy $E_g$ to a free excited state $\ket{e}$ with energy $E_e$ through absorption of a photon $\gamma$ with energy $E_\gamma$. To excite the electron from the ground state the photon must have at least the energy of the bandgap, $E_g-\min_eE_e$, wherein $\min_eE_e$ is the minimum energy of the excitation energy band.}
+    \caption{Energy level diagram of a photoelectron excited from a bound ground state, $\ket{g}$, with energy $E_g$ to a free excited state, $\ket{e}$, with energy $E_e$ by absorbing a photon with energy $E_\gamma$. To excite the electron from the ground state the photon must have at least the energy of the bandgap, $E_g-\min_eE_e$, wherein $\min_eE_e$ is the minimum energy of the excitation energy band.}\label{fig:photoelectron}
 \end{figure}
+\Cref{fig:photoelectron} shows the corresponding energy level diagram.
+The ground state, $\ket{g}$, is unique and has the single energy $E_g$.
+For the excited state, $\ket{e}$, an energy continuum exists with energies ranging from $\min_eE_e$ to $\max_eE_e$.
+The difference of the lowest excited energy, $\min_eE_e$, and the ground state energy, $E_g$, is equivalent to the bandgap energy inside a semiconductor.
+The transition from the ground to an excited state, $\ket{g}\to\ket{e}$, through photon absorption requires the photon energy, $\omega$, to be at least the bandgap energy, $\omega\leq\min_eE_e-E_g$.
+Un
 
-In the ground state $\ket{g}$, the electron is bound and satisfies
+
+with the potential term capturing the binding of the electron to the atom.
+The photoelectron ground state, $\ket{g}$, is an eigenstate of the full 
 \begin{equation}
-	\hat{H}_a
+	\hat{H}_e
 	\ket{g}
 	=
 	E_g
 	\ket{g}
-	.
+	,
 \end{equation}
-For energies $E>0$, the electron is in one of many free excited state $\ket{e}$.
-\textcolor{red}{photoelectric effect. why can this be used for photodiodes where there is no ionization happening. See Cohen-Tannoudji for explanation.}
+with energy $E_g$.
+An excited state, $\ket{e}$, is an eigenstate of the free electron Hamiltonian,
+\begin{equation}
+	\hat{H}_a
+	\ket{e}
+	=
+	\frac{\vu{p}^2}{2}
+	=
+	E_e
+	\ket{e}
+	,
+\end{equation}
+with energy $E_e\leq E_g-\min_eE_e$.
+The probability of the system to emit a free photoelectron is equal to the probability of finding the photoelectron and the field
 
 Whenever, we ionize the atom, we can collect the free electron indicating a photo detection.
 The probability that such an event occurs in the time interval $[t_0,t_0+\Delta t]$ is
