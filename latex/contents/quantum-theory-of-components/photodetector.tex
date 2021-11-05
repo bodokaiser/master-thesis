@@ -1,6 +1,31 @@
 \section{Photodetector}
 
-\subsection{Differential photoionization probability of a single atom}
+\subsection{Differential photoelectron emission probability}
+
+The photoelectric effect characterizes the emission of electrons from an illuminated material.
+Historically, it provided strong evidence for the existence of a light quantum, the photon, as the kinetic energy of the emitted electrons,
+\begin{equation}
+	E_k
+	=
+	E_\gamma
+	-
+	E_w
+	,
+\end{equation}
+does not depend on the intensity but the frequency, $E_\gamma=\omega$, of the incident light minus some work energy, $E_w$.
+The photoelectric effect relates the momentum spectrum of electrons with the frequency spectrum of photons and provides a mechanism for photodetection (\Cref{fig:phototube}).
+In a phototube, photons with energy $\omega$ hit a metallic cathode.
+For photon energies greater than the work-energy of the cathode, $\omega>E_w$, electron emission occurs.
+An anode biased with voltage $V>0$, parallel to the cathode, pulls the emitted electrons away from the cathode, leaving the cathode in excess of positive charge carriers, creating a positive current at the cathode.
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/phototube}
+    \caption{Schematic of a phototube, a vacuum tube utilizing the photoelectric effect for photodetection. Photons, $\gamma$, hit a metallic cathode and eject electrons, $e_-$, through the photoelectric effect. The anode is biased with a positive voltage, $V>0$, to attract the emitted electrons. The cathode is in excess of positive charge carriers, creating a positive electric current, $I>0$.}\label{fig:phototube}
+\end{figure}
+Semiconductor photodetectors show no actual photoelectron emission.
+However, the main idea of exciting photoelectrons through photon absorption to some higher energy band still applies~\cite[p.~128]{Cohen1992}.\footnote{For a review of semiconductor quantum mechanics see Ref.~\cite{Hoyer2002} and Ref.~\cite{Rossi2002}.}
+This subsection aims to derive the probability of a single photoelectron emission, which we generalize to a photocurrent in the preceding section.
+
 
 \begin{figure}[htb]
     \centering
