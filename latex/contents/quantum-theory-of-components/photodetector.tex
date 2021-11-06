@@ -33,7 +33,7 @@ The P layer absorbs incident photons, $\gamma$, exciting electrons, which accele
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/photodiode}
-    \caption{Schematic of a photodiode, a PN-junction. The P layer absorbs incident photons, $\gamma$, exciting electrons. The electrons are accelerated towards the cathode, creating a photocurrent $I$.}\label{fig:photodiode}
+    \caption{Schematic of a photodiode, a PN-junction. The P layer absorbs incident photons, $\gamma$, exciting electrons, $e_-$, and holes, $e_+$. The electrons are accelerated towards the anode (not shown), and the holes are accelerated towards the cathode, creating a photocurrent $I$.}\label{fig:photodiode}
 \end{figure}
 Contrary to the phototube, the excited electrons are not truly free but rather excited to an energy band, where they move with higher mobility through the semiconductor.
 That said, the central idea of exciting photoelectrons through photon absorption to some higher energy, applies to both kinds of photodetectors~\cite[p.~128]{Cohen1992}.
@@ -49,321 +49,340 @@ The Hamiltonian of an electron is
 	,
 \end{equation}
 wherein $V(\vu{x})$ denotes the binding potential.
-We expect the ground state, $\ket{g}$, to be an energy eigenstate with eigenvalue, $E_g$.\footnote{Not to be confused with the bandgap energy, $E_g-\min_e E_e$!}
+We expect the ground state, $\ket{g}$, to be an energy eigenstate with eigenvalue, $E_g$.
 In the ground state, $\ket{g}$, the electron is bound and dominated by the potential term in the Hamiltonian.
 In an excited state, $\ket{e}$, the electron is approximately free and dominated by the kinetic term in the Hamiltonian.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/photoelectron}
-    \caption{Energy level diagram of a photoelectron excited from a bound ground state, $\ket{g}$, with energy $E_g$ to a free excited state, $\ket{e}$, with energy $E_e$ by absorbing a photon with energy $E_\gamma$. To excite the electron from the ground state the photon must have at least the energy of the bandgap, $E_g-\min_eE_e$, wherein $\min_eE_e$ is the minimum energy of the excitation energy band.}\label{fig:photoelectron}
+    \caption{Energy level diagram of a photoelectron excited from a bound ground state, $\ket{g}$, with energy $E_g$ to a free excited state, $\ket{e}$, with energy $E_e$ by absorbing a photon with energy $E_\gamma$. To excite the electron from the ground state the photon must have at least the energy of the bandgap, $\min_eE_e-E_g$, wherein $\min_eE_e$ is the minimum energy of the excitation energy band.}\label{fig:photoelectron}
 \end{figure}
 \Cref{fig:photoelectron} shows the corresponding energy level diagram.
 The ground state, $\ket{g}$, is unique and has the single energy $E_g$.
 For the excited state, $\ket{e}$, an energy continuum exists with energies ranging from $\min_eE_e$ to $\max_eE_e$.
 The difference of the lowest excited energy, $\min_eE_e$, and the ground state energy, $E_g$, is equivalent to the bandgap energy inside a semiconductor.
-The transition from the ground to an excited state, $\ket{g}\to\ket{e}$, through photon absorption requires the photon energy, $\omega$, to be at least the bandgap energy, $\omega\leq\min_eE_e-E_g$.
-Un
+The transition from the ground to an excited state, $\ket{g}\to\ket{e}$, through photon absorption requires the photon energy, $\omega$, to be at least the bandgap energy, $\omega\geq\min_eE_e-E_g$.
 
-
-with the potential term capturing the binding of the electron to the atom.
-The photoelectron ground state, $\ket{g}$, is an eigenstate of the full 
+The transition of a bound electron to a free photoelectron is a probabilistic process.
+Let $\ket{i}$ and $\ket{f}$ denote the initial and final light states, and let $\ket{g}$ and $\ket{e}$ be the electron ground and excited states.
+The probability for the transition, $\ket{g,i}\to\ket{e,f}$, from time $t$ to $t+\Delta t$ is equal to
 \begin{equation}
-	\hat{H}_e
-	\ket{g}
-	=
-	E_g
-	\ket{g}
-	,
-\end{equation}
-with energy $E_g$.
-An excited state, $\ket{e}$, is an eigenstate of the free electron Hamiltonian,
-\begin{equation}
-	\hat{H}_a
-	\ket{e}
-	=
-	\frac{\vu{p}^2}{2}
-	=
-	E_e
-	\ket{e}
-	,
-\end{equation}
-with energy $E_e\leq E_g-\min_eE_e$.
-The probability of the system to emit a free photoelectron is equal to the probability of finding the photoelectron and the field
-
-Whenever, we ionize the atom, we can collect the free electron indicating a photo detection.
-The probability that such an event occurs in the time interval $[t_0,t_0+\Delta t]$ is
-\begin{equation}
-	p_{e,f}(t_0,t_0+\Delta t)
-	=
 	\abs{
 		\bra{e,f}
-		\hat{U}(t_0,t_0+\Delta t)
+		\hat{U}_\text{int}(t,t+\Delta t)
 		\ket{g,i}
 	}^2
-	.
+	\label{eq:photoelectric_transition_prob}
+	,
 \end{equation}
-wherein $\hat{U}$ is the time-evolution operator.
-We can recast the probability in the more general density operator formalism
-\begin{equation}
-	\begin{split}
-		p_{e,f}(t_0,t_0+\Delta t)
-		&=
-		\bra{e,f}
-		\hat{U}(t_0,t_0+\Delta t)
-		\ketbra{g,i}
-		\hat{U}^\dagger(t_0,t_0+\Delta t)
-		\ket{e,f}
-		\\
-		&=
-		\trace\left\{
-			\bra{e,f}
-			\hat{U}(t_0,t_0+\Delta t)
-			\ketbra{g,i}
-			\hat{U}^\dagger(t_0,t_0+\Delta t)
-			\ket{e,f}
-		\right\}
-		\\
-		&=
-		\trace\left\{
-			\ketbra{e,f}
-			\hat{U}(t_0,t_0+\Delta t)
-			\ketbra{g,i}
-			\hat{U}^\dagger(t_0,t_0+\Delta t)
-		\right\}
-		\\
-		&=
-		\trace\left\{
-			\hat\varrho
-			\hat{U}(t_0,t_0+\Delta t)
-			\hat\rho(t_0)
-			\hat{U}^\dagger(t_0,t_0+\Delta t)
-		\right\}
-		\\
-		&=
-		\trace\left\{
-			\hat\varrho
-			\hat\rho(t_0+\Delta t)
-		\right\}
-	\end{split}
-\end{equation}
-where we used that the trace of a scalar is the scalar in the second line and the cyclic property of the trace in the third line.
-The time-evolution operator is
-\begin{equation}
-	\hat{U}(t_0,t)
-	=
+wherein $\hat{U}_\text{int}$ is the time-evolution operator of the photo-atom interaction in the dipole approximation~\cite[p.~689]{Mandel1995},
+\begin{align}
+	\hat{U}_\text{int}(t,t+\Delta t)
+	&=
 	\mathcal{T}_+
 	\exp\left\{
 		-i
-		\int_{t_0}^t\dd{t^\prime}
+		\int_t^{t+\Delta t}
+		\dd{t^\prime}
 		\hat{H}_\text{int}(t^\prime)
 	\right\}
-\end{equation}
-with the interaction Hamiltonian in the electric-dipole and rotating wave approximation being
-\begin{equation}
+	&
 	\hat{H}_\text{int}(t)
-	=
+	&=
 	-
 	\hat{\vb{p}}(t)
 	\vdot
-	\hat{\vb{A}}(\vb{x}_0,t)
-	.
-\end{equation}
-Instead of the time-ordered exponential, we can use the Magnus expansion
-\begin{align}
-	\hat{U}(t_0,t)
-	&=
-	e^{\Omega(t_0,t)}
-	&
-	\Omega(t_0,t)
-	&=
-	\sum_{n=1}\Omega^{(n)}(t_0,t)
+	\hat{\vb{A}}(t)
+	\label{eq:photoelectric_time_evolution_operator}
 \end{align}
-The time evolved quantum state is then
+with $\vu{p}$ being the electron's momentum operator, $\vu{A}(t)=\vu{A}(t,\vb{x}_0)$ being the Maxwell field in the Coulomb gauge approximated at the atom \gls{com}, and $\mathcal{T}_+$ denoting (forward) time-ordering.
+In the more general density operator formailism \cref{eq:photoelectric_transition_prob} reads~\cite[p.~686]{Mandel1995}
 \begin{equation}
 	\begin{split}
-		\hat\rho(t_0+\Delta t)
+		\abs{
+			\bra{e,f}
+			\hat{U}_\text{int}(t,t+\Delta t)
+			\ket{g,i}
+		}^2
 		&=
-		\hat{U}(t_0,t_0+\Delta t)
-		\hat\rho(t_0)
-		\hat{U}^\dagger(t_0,t_0+\Delta t)
+		\bra{e,f}
+		\hat{U}_\text{int}(t,t+\Delta t)
+		\ketbra{g,i}
+		\hat{U}_\text{int}(t,t+\Delta t)^\dagger
+		\ket{e,f}
 		\\
 		&=
-		\hat\rho(t_0)
-		+
-		\comm{\Omega(t_0,t)}{\hat\rho(t_0)}
-		+
-		\frac{1}{2!}
-		\comm{\Omega(t_0,t)}{\comm{\Omega(t_0,t)}{\hat\rho(t_0)}}
-		+
-		\dots
+		\trace\biggl\{
+			\bra{e,f}
+			\hat{U}_\text{int}(t,t+\Delta t)
+			\ketbra{g,i}
+			\hat{U}_\text{int}(t,t+\Delta t)^\dagger
+			\ket{e,f}
+		\biggr\}
+		\\
+		&=
+		\trace\biggl\{
+			\ketbra{e,f}
+			\hat{U}_\text{int}(t,t+\Delta t)
+			\ketbra{g,i}
+			\hat{U}_\text{int}(t,t+\Delta t)^\dagger
+		\biggr\}
+		\\
+		&=
+		\trace\biggl\{
+			\hat\varrho_{e,f}
+			\hat{U}_\text{int}(t,t+\Delta t)
+			\hat\rho(t)
+			\hat{U}_\text{int}(t,t+\Delta t)^\dagger
+		\biggr\}
+		\\
+		&=
+		\trace\biggl\{
+			\hat\varrho_{e,f}
+			\hat\rho(t+\Delta t)
+		\biggr\}
+		,
 	\end{split}
+	\label{eq:photoelectric_transition_prob_density}
 \end{equation}
-where we used the \gls{bch} formula.
-We perform Magnus expansion up to the first term and find the perturbative solution
+wherein we used that the trace of a scalar is the scalar in the second line and the cyclic property of the trace in the third line.
+Performing the Magnus expansion of the time-evolution operator, \cref{eq:photoelectric_time_evolution_operator}, up to the first term,
+\begin{equation}
+	\hat{U}_\text{int}(t,t+\Delta t)
+	\approx
+	\exp\left\{
+		\Omega^{(1)}(t,t+\Delta t)
+	\right\}
+	=
+	\exp\left\{
+		-i
+		\int_t^{t+\Delta t}\dd{t^\prime}
+		\hat{H}_\text{int}(t^\prime)
+	\right\}
+	,
+\end{equation}
+we use it to evolve the state in \cref{eq:photoelectric_transition_prob_density},
 \begin{equation}
 	\begin{split}
-		\hat\rho(t_0+\Delta t)
-		\approx
-		\hat\rho(t_0)
-		&+
+		\hat\rho(t+\Delta t)
+		&=
+		\hat{U}_\text{int}(t,t+\Delta t)
+		\hat\rho(t)
+		\hat{U}_\text{int}(t,t+\Delta t)^\dagger
+		\\
+		&=
+		\hat\rho(t)
+		+
+		\comm{\Omega^{(1)}(t,t+\Delta t)}{\hat\rho(t)}
+		+
+		\frac{1}{2!}
+		\comm{\Omega^{(1)}(t,t+\Delta t)}{\comm{\Omega^{(1)}(t,t+\Delta t)}{\hat\rho(t)}}
+		+
+		\dots
+		\\
+		&=
+		\hat\rho(t)
+		+
 		(-i)
-		\int_{t_0}^{t_0+\Delta t}\dd{t_1}
+		\int_t^{t+\Delta t}\dd{t_1}
 		\comm{\hat{H}_\text{int}(t_1)}{\hat\rho(t_0)}
 		\\
 		&+
 		\frac{(-i)^2}{2!}
-		\int_{t_0}^{t_0+\Delta t}\dd{t_1}
-		\int_{t_0}^{t_1}\dd{t_2}
-		\comm{\hat{H}_\text{int}(t_1)}{\comm{\hat{H}_\text{int}(t_2)}{\hat\rho(t_0)}}
-	\end{split}	
+		\int_{t}^{t+\Delta t}\dd{t_1}
+		\int_{t}^{t_1}\dd{t_2}
+		\comm{\hat{H}_\text{int}(t_1)}{\comm{\hat{H}_\text{int}(t_2)}{\hat\rho(t)}}
+	\end{split}
 \end{equation}
-and insert the expansion into the photoemission probability
+where the second equation follows from the \gls{bch} formula.
+Inserting the expansion into the photoemission probability, \cref{eq:photoelectric_transition_prob_density}, the first two term vanishes due to orthogonality with $\hat\varrho_{e,f}$~\cite[p.~686]{Mandel1995}, leaving us with
 \begin{equation}
 	\begin{split}
-		p_{e,f}(t_0,t_0+\Delta t)
-		&=
 		\trace\left\{
-			\hat\varrho
+			\hat\varrho_{e,f}
 			\hat\rho(t_0+\Delta t)
 		\right\}
-		\\
 		&=
-		\int_{t_0}^{t_0+\Delta t}\dd{t_1}
-		\int_{t_0}^{t_1}\dd{t_2}
+		\int_t^{t+\Delta t}\dd{t_1}
+		\int_t^{t_1}
+		\dd{t_2}
 		\trace\left\{
+			\hat\varrho_{e,f}
 			\hat{H}_\text{int}(t_1)
-			\hat\rho(t_0)
+			\hat\rho(t)
 			\hat{H}_\text{int}(t_2)
 		\right\}
 		+
 		\text{c.c.}
 		\\
 		&=
-		\bra{e}\hat{p}_i\ket{g}
-		\bra{g}\hat{p}_j\ket{e}
-		\int_{t_0}^{t_0+\Delta t}\dd{t_1}
-		\int_{t_0}^{t_1}\dd{t_2}
-		e^{i(E_e-E_g)(t_1-t_2)}
-		\\
-		&\times
-		\expval{
-			\hat{A}_j(\vb{x}_0,t_2)
-			\hat\rho(t_0)
-			\hat{A}_i(\vb{x}_0,t_1)
-		}{i}
+		\int_t^{t+\Delta t}\dd{t_1}
+		\int_t^{t_1}
+		\dd{t_2}
+		\bra{e,f}
+			\hat{H}_\text{int}(t_1)
+			\hat\rho(t)
+			\hat{H}_\text{int}(t_2)
+		\ket{e,f}
 		+
 		\text{c.c.}
+		.
 	\end{split}
 \end{equation}
-\textcolor{red}{steps to second line missing!}
-We are not interested in the final states and can integrate this degree of freedom.
-Furthermore, we can assume an ensemble of independent detector atoms, so the probability for a photoemission is
-\begin{equation}
-	p(t_0,t_0+\Delta t)
-	=
-	\int_{t_0}^{t_0+\Delta t}\dd{t_1}
-	\int_{t_0}^{t_1}\dd{t_2}
-	k_{ij}(t_1-t_2)
-	\expval{
-		\hat{A}_j(\vb{x}_0,t_2)
-		\hat{A}_i(\vb{x}_0,t_1)
-	}
-	+
-	\text{c.c.}
-\end{equation}
-wherein $k_{ij}$ encodes the microscopic properties of the detector atom ensemble, see Ref.~\cite[p.~694]{Mandel1995}.
-Expansion of the Maxwell field operator into positive and negative frequency parts as well as discarding high-frequency terms, we find~\cite[p.~698]{Mandel1995}.
-\begin{equation}
-	p(t_0,t_0+\Delta t)
-	\approx
-	\int_0^{\Delta t}\dd{t^\prime}
-	\int_0^{t^\prime}\dd{t^{\prime\prime}}
-	k_{ij}(t^{\prime}-t^{\prime\prime})
-	\expval{
-		\hat{A}_j^{(+)}(\vb{x}_0,t_0+t^{\prime\prime})
-		\hat{A}_i^{(-)}(\vb{x}_0,t_0+t^{\prime})
-	}
-	+
-	\text{c.c.}
-	.
-\end{equation}
-Furthermore, performing the quasi-monochromatic approximation
-\begin{align}
-	\hat{A}_j^{(+)}(\vb{x}_0,t_0+t^{\prime\prime})
-	&\approx
-	\hat{A}_j^{(+)}(\vb{x}_0,t_0)
-	e^{+i\omega_0t^{\prime\prime}}
-	\\
-	\hat{A}_j^{(-)}(\vb{x}_0,t_0+t^{\prime})
-	&\approx
-	\hat{A}_j^{(-)}(\vb{x}_0,t_0)
-	e^{-i\omega_0t^{\prime}}
-\end{align}
-we find
+Inserting the interaction Hamiltonian, \cref{eq:photoelectric_time_evolution_operator}, into our previous result, we find~\cite[p.~693]{Mandel1995}
 \begin{equation}
 	\begin{split}
-		p(t_0,t_0+\Delta t)
-		&\approx
-		\expval{
-			\hat{A}_j^{(+)}(\vb{x}_0,t_0)
-			\hat{A}_i^{(-)}(\vb{x}_0,t_0)
-		}
-		\int_0^{\Delta t}\dd{t^\prime}
-		\int_0^{t^\prime}\dd{t^{\prime\prime}}
-		k_{ij}(t^{\prime}-t^{\prime\prime})
-		e^{-i\omega_0(t^\prime-t^{\prime\prime})}
+		\trace\left\{
+			\hat\varrho_{e,f}
+			\hat\rho(t_0+\Delta t)
+		\right\}
+		&=
+		\bra{e}\hat{p}^i\ket{g}
+		\bra{g}\hat{p}^j\ket{e}
+		\int_t^{t+\Delta t}\dd{t_1}
+		\int_t^{t_1}
+		\dd{t_2}
+		\\
+		&\times
+		\bra{f}
+			\hat{A}_i(t_1)
+			\ketbra{i}
+			\hat{A}_j(t_2)
+		\ket{f}
+		e^{i(E_e-E_g)(t_1-t_2)}
 		+
 		\text{c.c.}
+		,
+	\end{split}	
+\end{equation}
+wherein we used the energy eigenvalues of the electron's ground and excited state, $\ket{g},\ket{e}$.
+The final states of the light field are of no interest to use and can be marginalized~\cite[p.~694]{Mandel1995}, i.e.,
+\begin{equation}
+	\begin{split}
+		\sum_f
+		\trace\left\{
+			\hat\varrho_{e,f}
+			\hat\rho(t_0+\Delta t)
+		\right\}
+		&=
+		\bra{e}\hat{p}^i\ket{g}
+		\bra{g}\hat{p}^j\ket{e}
+		\int_t^{t+\Delta t}\dd{t_1}
+		\int_t^{t_1}
+		\dd{t_2}
+		\\
+		&\times
+		\bra{i}
+			\hat{A}_i(t_1)
+			\hat{A}_j(t_2)
+		\ket{i}
+		e^{i(E_e-E_g)(t_1-t_2)}
+		+
+		\text{c.c.}
+	\end{split}	
+\end{equation}
+and we conclude the probability for a single photoelectron to be emitted between time $t$ and $t+\Delta t$ to be
+\begin{equation}
+	p(t,\Delta t)
+	=
+	\int_t^{t+\Delta t}\dd{t_1}
+	\int_t^{t_1}
+	\dd{t_2}
+	k_{ij}(t_1-t_2)
+	\expval{
+		\hat{A}_i(t_1)
+		\hat{A}_j(t_2)
+	}
+	+
+	\text{c.c.}
+	,
+\end{equation}
+wherein $k_{ij}(t)$ is the effective response function of the detector\footnote{The effective response function depends on the electron's density of states and dipole transition moments, see Ref.~\cite[p.~694]{Mandel1995}.}, and the expectation value of the Maxwell field two-point correlation function is with respect to the initial light state.
+It is possible to show that only the normal-ordered Maxwell field expectation value contributes to the photoemission probability~\cite[p.~696]{Mandel1995}
+\begin{equation}
+	p(t,\Delta t)
+	=
+	\int_t^{t+\Delta t}\dd{t_1}
+	\int_t^{t_1}
+	\dd{t_2}
+	k_{ij}(t_1-t_2)
+	\expval{
+		\norder{
+			\hat{A}_i(t_1)
+			\hat{A}_j(t_2)
+		}
+	}
+	+
+	\text{c.c.}
+	.	
+\end{equation}
+Expanding the normal-ordered two-point correlation function of the Maxwell field into positive and negative frequency parts
+\begin{equation}
+	\begin{split}
+		\expval{
+			\norder{
+				\hat{A}_i(t_1)
+				\hat{A}_j(t_2)
+			}
+		}
+		&=
+		\expval{
+			\norder{
+				\left[
+					\hat{A}_i^{(-)}(t_1)
+					+
+					\hat{A}_i^{(+)}(t_1)
+				\right]
+				\left[
+					\hat{A}_j^{(-)}(t_2)
+					+
+					\hat{A}_j^{(+)}(t_2)
+				\right]
+			}
+		}
 		\\
 		&=
 		\expval{
-			\hat{A}_j^{(+)}(\vb{x}_0,t_0)
-			\hat{A}_i^{(-)}(\vb{x}_0,t_0)
+			\hat{A}_i^{(-)}(t_1)
+			\hat{A}_j^{(-)}(t_2)
 		}
-		\int_0^{\Delta t}\dd{t^\prime}
-		\int_0^{t^\prime}\dd{\tau}
-		k_{ij}(\tau)
-		e^{-i\omega_0\tau}
 		+
-		\text{c.c.}
-		\\
-		&=
 		\expval{
-			\hat{A}_j^{(+)}(\vb{x}_0,t_0)
-			\hat{A}_i^{(-)}(\vb{x}_0,t_0)
+			\hat{A}_i^{(+)}(t_1)
+			\hat{A}_j^{(-)}(t_2)
 		}
-		\int_0^{\Delta t}\dd{t^\prime}
-		\int_{-t^\prime}^{t^\prime}\dd{\tau}
-		k_{ij}(\tau)
-		e^{-i\omega_0\tau}
 		\\
-		&\approx
+		&+
 		\expval{
-			\hat{A}_j^{(+)}(\vb{x}_0,t_0)
-			\hat{A}_i^{(-)}(\vb{x}_0,t_0)
+			\hat{A}_i^{(+)}(t_2)
+			\hat{A}_j^{(-)}(t_1)
 		}
-		k_{ij}(\omega_0)
-		\Delta t
+		+
+		\expval{
+			\hat{A}_i^{(+)}(t_1)
+			\hat{A}_j^{(+)}(t_2)
+		}
+		,
 	\end{split}
 \end{equation}
-as in Ref.~\cite[p.~699]{Mandel1995} where $k_{ij}(\omega_0)$ is the frequency response of the detector atom ensemble.
-We assume a detector equally sensitive to both polarizations and finally find
+we perform the rotating-wave approximation and only keep the mixed frequency terms
 \begin{equation}
-	p(t_0,t_0+\Delta t)
+	\expval{
+		\norder{
+			\hat{A}_i(t_1)
+			\hat{A}_j(t_2)
+		}
+	}
 	\approx
-	\expval{\hat{N}}
-	k(\omega_0)
-	\Delta t
-\end{equation}
-we can even relax the quasi-monochromatic approximation a bit by writing
-\begin{equation}
-	p(t_0,t_0+\Delta t)
-	\approx
-	\int\dd{\omega}
-	k(\omega)
-	\expval{\hat{n}(\omega)}
-	\Delta t
-	.
+	\expval{
+		\hat{A}_i^{(+)}(t_1)
+		\hat{A}_j^{(-)}(t_2)
+	}
+	+
+	\expval{
+		\hat{A}_i^{(+)}(t_2)
+		\hat{A}_j^{(-)}(t_1)
+	}
 \end{equation}
 
 \subsection{Multiple photoelectron excitation}
