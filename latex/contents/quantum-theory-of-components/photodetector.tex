@@ -170,12 +170,18 @@ For a coherent state, $\ket{\alpha(t)}$, we find the mean photocurrent to be equ
 % \cite{Kikuchi2016}
 % \cite{Shapiro2009}
 % \cite{Loudon2000}
-
 % \cite[p.~206]{Vogel2006}
+
 \begin{figure}[htb]
     \centering
-    \includestandalone{figures/tikz/balanced-detector}
-    \caption{Optical part of the balanced detector comprising a beam splitter and two photodetectors: A first signal mode $\hat{a}_s=\hat{a}_1$ enters the beam splitter from the left. A second \gls{lo} mode $\hat{a}_l=\hat{a}_2$ enters the beam splitter from the top. A first output mode $\hat{a}_1^\prime$ exits the beam splitter to the right where a first photodetector with photocurrent $i_1$ is placed. A second output mode $\hat{a}_2^\prime$ exits the beam splitter to the bottom where a second photodetector with photocurrent $i_2$ is placed.}\label{fig:balanced_detector_optics}
+    \includegraphics{figures/tikz/detector-balanced}
+    \caption{Optical part of the balanced detector comprising a beam splitter and two photodetectors: A first signal mode $\hat{a}_s=\hat{a}_1$ enters the beam splitter from the left. A second \gls{lo} mode $\hat{a}_l=\hat{a}_2$ enters the beam splitter from the top. A first output mode $\hat{a}_1^\prime$ exits the beam splitter to the right where a first photodetector with photocurrent $i_1$ is placed. A second output mode $\hat{a}_2^\prime$ exits the beam splitter to the bottom where a second photodetector with photocurrent $i_2$ is placed.}\label{fig:detector_balanced_optics}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/circuitikz/detector-balanced}
+    \caption{Electronic schematic of a direct (intensity) detector comprising a photodiode and an operational amplifier in \gls{tia} configuration. The anode of the photodiode is reverse biased with voltage $-V_b<0$. The cathode of the photodiode emits the photocurrent $i_p$ and is connected to the inverting input of the operational amplifier. The non-inverting input of the operational amplifier is connected with ground, while the inverting input is coupled with feedback impedance $Z_f$ to the operational amplifier output.}\label{fig:detector_balanced_electronics}
 \end{figure}
 
 We write the frequency-dependent beam splitter \cite[p.~207]{Vogel2006}
@@ -407,7 +413,7 @@ The photodiodes are both biased with bias voltage $\pm V_b$ to improve frequency
 At the node between the anode of $\text{PD}_1$ and the cathode of $\text{PD}_2$, the two photocurrents $i_1$ and $i_2$ are directly subtracted.
 \begin{figure}[htb]
     \centering
-    \includestandalone{figures/circuitikz/balanced-detector}
+    \includegraphics{figures/circuitikz/detector-balanced}
     \caption{Electronic part of the balanced detector comprising two biassed photodiodes in balanced configuration with a \gls{tia} frontend: The cathode of a first photodiode $\text{PD}_1$ is biased with a positive bias voltage $+V_b$. The anode of a second photodiode $\text{PD}_2$ is biased with a negative bias voltage $-V_b$. The photocurrent difference $i_1-i_2$ runs through the line connecting the anode of $\text{PD}_1$ and the cathode of $\text{PD}_2$. A \gls{tia} with complex feedback impedance $Z_f$ converts and amplifies the photocurrent difference $i_1-i_2$ to an output voltage $V_o$.}\label{fig:balanced_detector_electronics}
 \end{figure}
 The mean of the photocurrent difference is equal to

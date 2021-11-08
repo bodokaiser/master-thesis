@@ -1,0 +1,20 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+    \begin{tikzpicture}
+        \draw[very thick, rounded corners=2pt] (0, 0) -- ++(2, 0) -- ++(0, -2) -- (0, 0) -- ++(0, -2) -- ++(2, 0);
+        
+        \draw[fill, rotate=-90, yshift=22mm] (2, 2) -- (2, 2) arc(0:180:1) --cycle;
+        \draw[fill=black, rotate=-180, yshift=22mm, xshift=-20mm] (2, 2) -- (2, 2) arc(0:180:1) --cycle;
+   
+        \draw[very thick] (5, -1) to[out=-20, in=-70] ++(1, 1) node[above] {$i_+(t)$};
+        \draw[very thick] (1.8, -4.6) to[out=-20, in=40] ++(1, 0) node[right] {$i_-(t)$};
+        
+        \draw[-Latex] (-2, -1) -- ++(1.9, 0) node[midway, above] {$\alpha_s(t)$};
+        \draw[-Latex] (1, 2) -- ++(0, -1.9) node[midway, right] {$\alpha_l(t)$};
+        \draw[Latex-] (1, -4) -- ++(0, 1.9) node[midway, left] {$\alpha_-(t)$};
+        \draw[Latex-] (4, -1) -- ++(-1.9, 0) node[midway, above] {$\alpha_+(t)$};
+    \end{tikzpicture}
+\end{document}
