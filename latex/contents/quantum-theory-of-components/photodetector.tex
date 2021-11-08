@@ -1,8 +1,8 @@
-\section{Photodetector}
+\section{Photodetectors}
 
 % We follow mostly Mandel & Wolf supplemented by Knight and Vogel.
 
-\subsection{Differential photoelectron emission probability}
+\subsection{Photoelectric effect in phototube and photodiode}
 
 The photoelectric effect describes the emission of electrons from an illuminated material.
 Historically, it provided strong evidence for the existence of a light quantum, the photon, as the kinetic energy of the emitted electrons,
@@ -62,6 +62,8 @@ The ground state, $\ket{g}$, is unique and has the single energy $E_g$.
 For the excited state, $\ket{e}$, an energy continuum exists with energies ranging from $\min_eE_e$ to $\max_eE_e$.
 The difference of the lowest excited energy, $\min_eE_e$, and the ground state energy, $E_g$, is equivalent to the bandgap energy inside a semiconductor.
 The transition from the ground to an excited state, $\ket{g}\to\ket{e}$, through photon absorption requires the photon energy, $\omega$, to be at least the bandgap energy, $\omega\geq\min_eE_e-E_g$.
+
+\subsection{Single photoelectron excitation probability}
 
 The transition of a bound electron to a free photoelectron is a probabilistic process.
 Let $\ket{i}$ and $\ket{f}$ denote the initial and final light states, and let $\ket{g}$ and $\ket{e}$ be the electron ground and excited states.
@@ -151,10 +153,6 @@ Performing the Magnus expansion of the time-evolution operator, \cref{eq:photoel
 	\hat{U}_\text{int}(t,t+\Delta t)
 	\approx
 	\exp\left\{
-		\Omega^{(1)}(t,t+\Delta t)
-	\right\}
-	=
-	\exp\left\{
 		-i
 		\int_t^{t+\Delta t}\dd{t^\prime}
 		\hat{H}_\text{int}(t^\prime)
@@ -173,29 +171,20 @@ we use it to evolve the state in \cref{eq:photoelectric_transition_prob_density}
 		&=
 		\hat\rho(t)
 		+
-		\comm{\Omega^{(1)}(t,t+\Delta t)}{\hat\rho(t)}
-		+
-		\frac{1}{2!}
-		\comm{\Omega^{(1)}(t,t+\Delta t)}{\comm{\Omega^{(1)}(t,t+\Delta t)}{\hat\rho(t)}}
-		+
-		\dots
-		\\
-		&=
-		\hat\rho(t)
-		+
 		(-i)
 		\int_t^{t+\Delta t}\dd{t_1}
 		\comm{\hat{H}_\text{int}(t_1)}{\hat\rho(t_0)}
-		\\
-		&+
+		+
 		\frac{(-i)^2}{2!}
 		\int_{t}^{t+\Delta t}\dd{t_1}
 		\int_{t}^{t_1}\dd{t_2}
 		\comm{\hat{H}_\text{int}(t_1)}{\comm{\hat{H}_\text{int}(t_2)}{\hat\rho(t)}}
+		+
+		\dots
 	\end{split}
 \end{equation}
 where the second equation follows from the \gls{bch} formula.
-Inserting the expansion into the photoemission probability, \cref{eq:photoelectric_transition_prob_density}, the first two term vanishes due to orthogonality with $\hat\varrho_{e,f}$~\cite[p.~686]{Mandel1995}, leaving us with
+Inserting the expansion into the photoemission probability, \cref{eq:photoelectric_transition_prob_density}, the first two term vanish due to orthogonality with $\hat\varrho_{e,f}$~\cite[p.~686]{Mandel1995}, leaving us with
 \begin{equation}
 	\begin{split}
 		\trace\left\{
@@ -288,7 +277,7 @@ and we conclude the probability for a single photoelectron to be emitted between
 	\int_t^{t+\Delta t}\dd{t_1}
 	\int_t^{t_1}
 	\dd{t_2}
-	k_{ij}(t_1-t_2)
+	k^{ij}(t_1-t_2)
 	\expval{
 		\hat{A}_i(t_1)
 		\hat{A}_j(t_2)
@@ -297,7 +286,7 @@ and we conclude the probability for a single photoelectron to be emitted between
 	\text{c.c.}
 	,
 \end{equation}
-wherein $k_{ij}(t)$ is the effective response function of the detector\footnote{The effective response function depends on the electron's density of states and dipole transition moments, see Ref.~\cite[p.~694]{Mandel1995}.}, and the expectation value of the Maxwell field two-point correlation function is with respect to the initial light state.
+wherein $k_{ij}(t)$ is the effective response function of the detector atom\footnote{The effective response function depends on the electron's density of states and dipole transition moments, see Ref.~\cite[p.~694]{Mandel1995}.}, and the expectation value of the Maxwell field two-point correlation function is with respect to the initial light state.
 It is possible to show that only the normal-ordered Maxwell field expectation value contributes to the photoemission probability~\cite[p.~696]{Mandel1995}
 \begin{equation}
 	p(t,\Delta t)
@@ -305,7 +294,7 @@ It is possible to show that only the normal-ordered Maxwell field expectation va
 	\int_t^{t+\Delta t}\dd{t_1}
 	\int_t^{t_1}
 	\dd{t_2}
-	k_{ij}(t_1-t_2)
+	k^{ij}(t_1-t_2)
 	\expval{
 		\norder{
 			\hat{A}_i(t_1)
@@ -316,6 +305,49 @@ It is possible to show that only the normal-ordered Maxwell field expectation va
 	\text{c.c.}
 	.	
 \end{equation}
+We select a coordinate system in which the Maxwell field propagates along the $z$ direction, then one can show~\cite{Kimble1984} that
+\begin{equation}
+	\begin{split}
+		p(t,\Delta t)
+		&=
+		\int_t^{t+\Delta t}\dd{t_1}
+		\int_t^{t_1}
+		\dd{t_2}
+		k(t_1-t_2)
+		\sum_{\lambda=1,2}
+		\expval{
+			\norder{
+				\hat{A}_\lambda(t_1)
+				\hat{A}_\lambda(t_2)
+			}
+		}
+		\\
+		&=
+		\int_t^{t+\Delta t}\dd{t_1}
+		\int_t^{t_1}
+		\dd{t_2}
+		k(t_1-t_2)
+		\expval{
+			\norder{
+				\hat{A}(t_1)
+				\hat{A}(t_2)
+			}
+		}
+		+
+		\text{c.c.}
+		,
+	\end{split}
+\end{equation}
+wherein we defined the scalar polarization-averaged Maxwell field and have the effective response function
+\begin{equation}
+	k(t)
+	=
+	\int_0^\infty\frac{\dd{E}}{2\pi}
+	K(E)
+	e^{-i(E-E_g)t}
+\end{equation}
+with $K(E)$ being a function of the electron wave function along the $xy$ plane.
+
 Expanding the normal-ordered two-point correlation function of the Maxwell field into positive and negative frequency parts
 \begin{equation}
 	\begin{split}
@@ -343,58 +375,209 @@ Expanding the normal-ordered two-point correlation function of the Maxwell field
 		\\
 		&=
 		\expval{
-			\hat{A}_i^{(-)}(t_1)
-			\hat{A}_j^{(-)}(t_2)
-		}
-		+
-		\expval{
 			\hat{A}_i^{(+)}(t_1)
 			\hat{A}_j^{(-)}(t_2)
 		}
-		\\
-		&+
+		+
 		\expval{
 			\hat{A}_i^{(+)}(t_2)
 			\hat{A}_j^{(-)}(t_1)
 		}
-		+
-		\expval{
-			\hat{A}_i^{(+)}(t_1)
-			\hat{A}_j^{(+)}(t_2)
-		}
 		,
 	\end{split}
 \end{equation}
-we perform the rotating-wave approximation and only keep the mixed frequency terms
+where the non-mixed frequency terms vanish because they contain an unequal number of annihilation and creation operators~\cite[p.~134]{Cohen1992}.
+Inserting the mixed frequency terms into the photoemission probability and expanding the effective detector response function in the frequency domain, we drop the highly oscillatory terms and find\footnote{See Ref.~\cite[p.~697]{Mandel1995} and Ref.~\cite[p.~136]{Cohen1992} for an exact argument.}
 \begin{equation}
-	\expval{
-		\norder{
-			\hat{A}_i(t_1)
-			\hat{A}_j(t_2)
-		}
-	}
-	\approx
+	p(t,\Delta t)
+	=
+	\int_t^{t+\Delta t}\dd{t_1}
+	\int_t^{t_1}
+	\dd{t_2}
+	k^{ij}(t_1-t_2)
 	\expval{
 		\hat{A}_i^{(+)}(t_1)
 		\hat{A}_j^{(-)}(t_2)
 	}
 	+
-	\expval{
-		\hat{A}_i^{(+)}(t_2)
-		\hat{A}_j^{(-)}(t_1)
-	}
+	\text{c.c.}
+	.
 \end{equation}
 
-\subsection{Multiple photoelectron excitation}
 
-% Absolute probability for multi photoelectron excitation
 
-\subsection{Imperfect photoelectric detection}
+The differential probability for photoelectron emission of a single detector atom is~\cite{Kimble1984}
+\begin{equation}
+	p(t,\Delta t)
+	\approx
+	K(\omega_0+E_g)
+	\expval{
+		\hat{A}^{(+)}(t)
+		\hat{A}^{(-)}(t)
+	}
+	\Delta t
+	\label{eq:differential_photoemission_probability}
+\end{equation}
+wherein $\omega_0$ is an optical center frequency.
 
-% < 100% QE
+\subsection{Two-point time correlation of Maxwell and electric field}
+
+We previously derived that the differential single photoelectron excitation probability is proportional to the two-point time correlation function of the Maxwell field,
+\begin{equation}
+	\hat{A}^{(+)}(t_1)
+	\hat{A}^{(-)}(t_2)
+	=
+	\left(
+		\int\frac{\dd{p}}{2\pi}
+		\frac{1}{\sqrt{2p}}
+		\hat{a}^\dagger(p)
+		e^{+ipt_1}
+	\right)
+	\left(
+		\int\frac{\dd{q}}{2\pi}
+		\frac{1}{\sqrt{2q}}
+		\hat{a}(q)
+		e^{-iqt_2}
+	\right)
+	,
+	\label{eq:maxwell_field_two_point_correlation}
+\end{equation}
+where we inserted the one-dimensional reduction of the positive and negative frequency Maxwell field operators, \cref{eq:maxwell_positive_operator,eq:maxwell_negative_operator}.
+It is convenient to relate the two-point time correlation of the Maxwell field, \cref{eq:maxwell_field_two_point_correlation}, with the two-point time correlation of the electric field,
+\begin{equation}
+	\hat{E}^{(+)}(t_1)
+	\hat{E}^{(-)}(t_2)
+	=
+	\left(
+		\int\frac{\dd{p}}{2\pi}
+		\sqrt{\frac{p}{2}}
+		\hat{a}^\dagger(p)
+		e^{+ipt_1}
+	\right)
+	\left(
+		\int\frac{\dd{q}}{2\pi}
+		\sqrt{\frac{q}{2}}
+		\hat{a}(q)
+		e^{-iqt_2}
+	\right)
+	,
+	\label{eq:electric_field_two_point_correlation}
+\end{equation}
+where we used \cref{eq:electric_positive_operator,eq:electric_negative_operator}, because for a coherent state, $\ket{\alpha}$, we can express the expectation value in terms of the signal amplitude, $\alpha(t)$, i.e.,
+\begin{equation}
+	\begin{split}
+		\bra{\alpha(t)}
+		\hat{E}^{(+)}(t_1)
+		\hat{E}^{(-)}(t_2)
+		\ket{\alpha(t)}
+		&=
+		\left(
+			\int\frac{\dd{p}}{2\pi}
+			\sqrt{\frac{p}{2}}
+			\frac{\alpha(p)^*}{\sqrt{2p}}
+			e^{+ipt_1}
+		\right)
+		\left(
+			\int\frac{\dd{q}}{2\pi}
+			\sqrt{\frac{q}{2}}
+			\frac{\alpha(q)}{\sqrt{2q}}
+			e^{-iqt_2}
+		\right)
+		\\
+		&=
+		\frac{1}{4}
+		\left(
+			\int\frac{\dd{p}}{2\pi}
+			\alpha(p)
+			e^{-ipt_1}
+		\right)^*
+		\left(
+			\int\frac{\dd{q}}{2\pi}
+			\alpha(q)
+			e^{-iqt_2}
+		\right)
+		\\
+		&=
+		\frac{1}{4}
+		\alpha(t_1)^*
+		\alpha(t_2)
+		.
+	\end{split}
+\end{equation}
+Ref.~\cite{Kimble1984} claims that for quasimonochromatic light with center frequency $\omega_0$, we can connect both time-correlation functions by
+\begin{equation}
+	\hat{E}^{(+)}(t_1)
+	\hat{E}^{(-)}(t_2)
+	=
+	\omega_0^2
+	\hat{A}^{(+)}(t_1)
+	\hat{A}^{(-)}(t_2)
+	.
+\end{equation}
+Quasimonochromatic light is bandwidth limited, hence, we can invoke the mean-value theorem for definite integrals to write
+\begin{equation}
+	\omega_0
+	\hat{A}^{(+)}(t)
+	\approx
+	\int\frac{\dd{p}}{2\pi}
+	\frac{p}{\sqrt{2p}}
+	\hat{a}^\dagger(p)
+	e^{+ipt_1}
+	=
+	\hat{E}^{(+)}(t)
+	,
+\end{equation}
+assuming $\omega_0$ represents the \gls{com} in the frequency distribution.
+The argument becomes problematic if we consider a time-dependent signal, e.g., a time-dependent coherent state, $\ket{\alpha(t)}$.
+
+\textcolor{red}{How to resolve this conflict? Absorb frequency dependence into linear filter?}
+
+\subsection{Photoelectrons counting probability}
+
+In Ref.~\cite[p.~725]{Mandel1995} and Ref.~\cite[p.~180]{Vogel2006}, the differential probability for a single photoelectron excitation is generalized to the integral probability of counting $m$ photoelectrons from infinitely many detector atoms from time $t$ to $t+T$
+\begin{equation}
+	p_m(t,T)
+	=
+	\frac{1}{m!}
+	\expval{
+		\mathcal{T}_+
+		\norder{
+			\hat{I}(t,T)^m
+			\exp\left\{
+				-\hat{I}(t,T)
+			\right\}
+		}
+	}
+	\label{eq:photoelectron_counting_prob}
+	,	
+\end{equation}
+wherein we defined the bandwidth-limited intensity operator\footnote{In the literature the detector efficiency, $\eta$, is assumed constant. From a signal-processing viewpoint, a linear filter function is a better fit.}
+\begin{align}
+	\hat{I}(t,T)
+	=
+	\int_t^{t+T}\dd{t^\prime}
+	\eta(t^\prime)
+	\expval{
+		\hat{E}^{(+)}(t-t^\prime)
+		\hat{E}^{(-)}(t-t^\prime)
+	}
+\end{align}
+with detector efficiency response function $\eta(t)$.
+
+\textcolor{red}{How to derive this?}
+
+% independent atoms in ensemble: Rocca 1971, Arnedo and Rocca 1974
+% effective detector response including spatiality in z?
+% mean and variance for photoelectrons
 % renormalization of inefficiency when considering spatial detector
 
-\subsection{Balanced detection}
+\subsection{Direct (intensity) detector}
+
+% photocurrent for coherent state
+% transimpedance amplifier
+% statistics
+
+\subsection{Balanced (quadrature) detector}
 
 % literature review
 % \cite{Kikuchi2016}

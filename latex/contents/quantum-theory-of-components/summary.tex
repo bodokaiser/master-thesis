@@ -1,44 +1,24 @@
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
 
-The optical coupler, or beam splitter, transforms the coherent input state
 \begin{equation}
-	\ket{\alpha(\omega),\beta(\omega)}
-	\to
-	\ket{
-		t(\omega)\alpha(\omega)+r(\omega)\beta(\omega),
-		t(\omega)^*\beta(\omega)-r(\omega)^*\alpha(\omega)
-	}
-\end{equation}
-wherein the coefficients satisfy
-\begin{equation}
-	\abs{t(\omega)}^2
-	+
-	\abs{r(\omega)}^2
+	\hat{U}
+	\ket{\vb{\alpha}(t)}
 	=
-	1
-	.
+	\ket{\vb{\alpha}^\prime(t)}
 \end{equation}
-With $\beta(\omega)=0$ and dumping the second output mode, we find the optical filter
-\begin{equation}
-	\ket{\alpha(\omega)}
-	\to
-	\ket{t(\omega)\alpha(\omega)}
-\end{equation}
-wherein $\abs{t(\omega)}\leq1$.
 
-For the different modulators, we find
 \begin{table}[htb]
 	\centering	
-	\begin{tabular}{lcc}
+	\begin{tabular}{lccc}
 		\toprule
-			Modulator & Output state & Constraint \\
+			Component & Time $\alpha^\prime(t)$ & Frequency $\alpha^\prime(\omega)$ & Constraint \\
 		\midrule
-			Phase & $\ket{\alpha(t)e^{i\varphi(t)}}$ & $0\leq\varphi(t)<2\pi$ \\
-			Amplitude & $\ket{\alpha(t)\beta(t)}$ & $\abs{\beta(t)}\leq1$ \\
+			Optical coupler & $\left(U*\vb{\alpha}\right)(t)$ & $U(\omega)\vb{\alpha}(\omega)$ & $U(\omega)\in SU(2)$ \\
+			Spectral filter & $\left(h*\alpha\right)(t)$ & $h(\omega)\alpha(\omega)$ & $\abs{h(\omega)}\leq1$ \\
+			Phase modulator & $\alpha(t)e^{i\varphi(t)}$ & - & $\varphi(t)$ is finite-time \\
+			Amplitude modulator & $\alpha(t)\beta(t)$ & - & $\abs{\beta(t)}\leq1$ is finite-time \\
 		\bottomrule
 	\end{tabular}
-	\caption{Quantum input-output relations for modulators with input state $\ket{\alpha(t)}$.}
+	\caption{Transformed amplitudes of a coherent state in time and frequency space for important (electro-)optical components.}
 \end{table}
-
-The measurement operator for 
