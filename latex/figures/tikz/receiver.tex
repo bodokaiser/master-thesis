@@ -1,9 +1,6 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{physics}
-
-\usetikzlibrary{arrows.meta,positioning}
+\input{preamble}
 
 \begin{document}
 	\begin{tikzpicture}[
@@ -12,18 +9,16 @@
 		block/.style={draw, very thick, fill=white, minimum height=8ex, minimum width=3.5em},
 	]
 		\coordinate (in) at (0,0);
-		\node (osp) [block, right=of in] {\textsf{OSP}};
-		\node (det) [block, right=of osp] {\textsf{DET}};
-		\node (asp) [block, right=of det] {\textsf{ASP}};
-		\node (adc) [block, right=of asp] {\textsf{ADC}};
-		\node (dsp) [block, right=of adc] {\textsf{DSP}};
+		\node (osp) [block, right=of in] {OSP};
+		\node (det) [block, right=of osp] {DET};
+		\node (asp) [block, right=of det] {ASP};
+		\node (adc) [block, right=of asp] {ADC};
+		\node (dsp) [block, right=of adc] {DSP};
 		\coordinate[right=of dsp] (out);
 		
-		\draw[arrow] (in) -- (osp) node[midway, above]{$\ket{\beta(t)}$};
-		\draw[arrow] ([yshift=2.5ex]osp.east) -- ([yshift=2.5ex]det.west) node[midway, above]{$\ket{\beta_1(t)}$};
-		\draw[arrow] ([yshift=-2.5ex]osp.east) -- ([yshift=-2.5ex]det.west) node[midway, above]{$\ket{\beta_2(t)}$};
-		\draw[arrow] ([yshift=2.5ex]det.east) -- ([yshift=2.5ex]asp.west) node[midway, above]{$i_1(t)$};
-		\draw[arrow] ([yshift=-2.5ex]det.east) -- ([yshift=-2.5ex]asp.west) node[midway, above]{$i_2(t)$};
+		\draw[arrow] (in) -- (osp) node[midway, above]{$\ket{\alpha(t)}$};
+		\draw[arrow] (osp.east) -- (det.west) node[midway, above]{$\ket{\alpha_\pm(t)}$};
+		\draw[arrow] (det.east) -- (asp.west) node[midway, above]{$i(t)$};
 		\draw[arrow] (asp) -- (adc) node[midway, above]{$\beta^\prime(t)$};
 		\draw[arrow] (adc) -- (dsp) node[midway, above]{$\beta^\prime[m]$};
 		\draw[arrow] (dsp) -- (out) node[midway, above]{$\beta[n]$};

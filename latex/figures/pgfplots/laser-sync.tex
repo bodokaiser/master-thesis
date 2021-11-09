@@ -1,24 +1,19 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{pgfplots}
-\usepackage{siunitx}
+\input{preamble}
 
 \usetikzlibrary{positioning}
 
-\pgfplotsset{compat=1.17}
-
 \begin{document}
-	\begin{tikzpicture}[
-		block/.style={minimum height=4ex, minimum width=8em, text width=8em, align=left, fill=white},
-		font=\small,
-	]
+	\begin{tikzpicture}
 		\begin{axis}[
 			grid=both,
-			width=0.95\linewidth,
+			width=\linewidth,
 			height=38ex,
 			title={Transmitted and received pilot tone},
 			xlabel={Frequency offset $\Delta f/f_s$},
 			ylabel style={align=center},
+			axis line style={thick},
 			xmin=-0.3,
 			xmax=0.3,
 			ymin=-60,
@@ -26,8 +21,8 @@
 			ylabel={Power spectral density (\si{\decibel})},
 			cycle list name=exotic,
 		]
-			\addplot+[no markers] plot table[col sep=comma] {../../../data/laser-sync-tx.csv};
-			\addplot+[no markers] plot table[col sep=comma] {../../../data/laser-sync-rx.csv};
+			\addplot+[no markers, very thick] plot table[col sep=comma] {../../../data/laser-sync-tx.csv};
+			\addplot+[no markers, very thick] plot table[col sep=comma] {../../../data/laser-sync-rx.csv};
 		\end{axis}
 	\end{tikzpicture}
 \end{document}

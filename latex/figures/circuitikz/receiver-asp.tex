@@ -1,12 +1,9 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{circuitikz}
-
-\usetikzlibrary{positioning}
+\input{preamble}
 
 \begin{document}
-	\begin{tikzpicture}
+	\begin{tikzpicture}[line width=1pt]
 		\coordinate (in) at (0,0);
 		\node [ampshape, right=5em of in, label=TIA] (tia) {};
 		\node [lowpassshape, right=of tia, label=LP] (lp) {};

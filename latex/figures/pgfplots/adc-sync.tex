@@ -1,22 +1,17 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{lmodern}
-\usepackage{pgfplots}
-
-\pgfplotsset{compat=1.17}
-\usepgfplotslibrary{groupplots}
+\input{preamble}
 
 \begin{document}
-	\begin{tikzpicture}[
-		font=\fontsize{8}{9}\selectfont,
-	]
+	\begin{tikzpicture}
 		\begin{groupplot}[
 			group style={
 				group name=plot,
 				group size=1 by 3,
-				vertical sep=1ex,
+				vertical sep=2ex,
 			},
-			ylabel style={align=center, font=\fontsize{7}{8}\selectfont},
+			ylabel style={align=center},
+			axis line style={thick},
 			grid=major,
 			width=0.8\linewidth,
 			height=26ex,
@@ -31,11 +26,12 @@
 				ylabel={Transmitter\\signal},
 			]
 			\addplot+[
+				thick,
 				ycomb,
 				mark=o,
 			] plot table[col sep=comma] {../../../data/adc-sync-time-tx.csv};
 			\addplot+[
-				thick,
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/adc-sync-time-tx.csv};
 			\nextgroupplot[
@@ -46,11 +42,12 @@
 				ylabel={Receiver\\signal},
 			]
 			\addplot+[
+				thick,
 				ycomb,
 				mark=o,
 			] plot table[col sep=comma] {../../../data/adc-sync-time-rx.csv};
 			\addplot+[
-				thick,
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/adc-sync-time-rx.csv};
 			\nextgroupplot[
@@ -59,7 +56,7 @@
 				xlabel={Relative frequency $f/f_s$},
 				ymin=24,
 				ymax=27,
-				ylabel={Transmitted\\phase (unwrapped)},
+				ylabel={Transmitted phase\\(unwrapped)},
 				ylabel style={align=center},
 				xticklabel style={
 			        /pgf/number format/fixed,
@@ -68,11 +65,11 @@
 				scaled x ticks=false,
 			]
 			\addplot+[
-				thick,
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/adc-sync-phase-tx.csv};
 			\addplot+[
-				thick,
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/adc-sync-phase-rx.csv};
 		\end{groupplot}

@@ -1,24 +1,13 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{lmodern}
-\usepackage{pgfplots}
-\usepackage{physics}
+\input{preamble}
 
-\let\Re\undefined
-\let\Im\undefined
-\DeclareMathOperator{\Re}{\operatorname{Re}}
-\DeclareMathOperator{\Im}{\operatorname{Im}}
-
-\pgfplotsset{compat=1.17}
 \usetikzlibrary{arrows.meta}
 
 \begin{document}
-    \begin{tikzpicture}[
-        font=\fontsize{8}{9}\selectfont,
-    ]
+    \begin{tikzpicture}
         \begin{axis}[
-       		width=0.95\linewidth,
+       		width=\linewidth,
             axis lines=center,
         	axis equal image,
             axis line style=thick,

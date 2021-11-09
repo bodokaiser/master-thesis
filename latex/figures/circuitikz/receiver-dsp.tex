@@ -1,23 +1,16 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{circuitikz}
-
-\usetikzlibrary{positioning}
-
-\let\Re\undefined
-\let\Im\undefined
-\DeclareMathOperator{\Re}{\operatorname{Re}}
-\DeclareMathOperator{\Im}{\operatorname{Im}}
+\input{preamble}
 
 \begin{document}
 	\begin{tikzpicture}[
+		line width=1pt,
 		node distance=4.5em,
 	]
 		\coordinate (in) at (0,0);
 		\node [mixer, right=of in] (mixer) {};
 		\node [twoportshape, t=$\downarrow$, right=of mixer] (dwn1) {};
-		\node [twoportshape, t=\sffamily{RRC}, right=of dwn1] (rrc) {};
+		\node [twoportshape, t=RRC, right=of dwn1] (rrc) {};
 		\node [twoportshape, t=$\downarrow$, right=of rrc] (dwn2) {};
 		\coordinate[right=of dwn2] (out);
 		\node [below=2em of mixer] (osc) {$\exp(i\omega_it)$};
