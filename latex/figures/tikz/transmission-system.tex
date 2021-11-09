@@ -1,25 +1,24 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{physics}
-
-\usetikzlibrary{arrows.meta,positioning}
+\input{preamble}
 
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=4em,
-		arrow/.style={-Latex},
-		block/.style={draw, very thick, minimum height=10ex, minimum width=6em, align=center},
+		node distance=10pt,
+        block/.style={draw, very thick, fill=white, minimum height=28pt, minimum width=58pt, text width=52pt, align=center},
+        arrow/.style={-Latex},
 	]
-		\coordinate (in) at (0,0);
-		\node (tx) [block, right=of in] {Transmitter};
-		\node (ch) [block, right=of tx] {Quantum\\channel};
-		\node (rx) [block, right=of ch] {Receiver};
-		\coordinate[right=of rx] (out);
+		\node[block] (src) {Information source};
+		\node[block, right=of src] (tx) {Transmitter};
+		\node[block, right=of tx] (ch) {Channel};
+		\node[block, right=of ch] (rx) {Receiver};
+		\node[block, right=of rx] (dst) {Information destination};
+		\node[block, below=of ch] (ns) {Noise source};
 		
-		\draw[arrow] (in) -- node[above]{$\alpha[n]$} (tx);
-		\draw[arrow] (tx) -- node[above]{$\ket{\alpha(t)}$} (ch);
-		\draw[arrow] (ch) -- node[above]{$\ket{\beta(t)}$} (rx);
-		\draw[arrow] (rx) -- node[above]{$\beta[n]$} (out);
+		\draw[arrow] (src) -- (tx);
+		\draw[arrow] (tx) -- (ch);
+		\draw[arrow] (ch) -- (rx);
+		\draw[arrow] (rx) -- (dst);
+		\draw[arrow] (ns) -- (ch);
 	\end{tikzpicture}
 \end{document}

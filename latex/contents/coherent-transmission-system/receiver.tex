@@ -49,7 +49,7 @@ The conversion of the optical to the digital signal and the symbol extraction.
 For both these stages we will assume the receiver to be perfectly in sync with the transmitter to focus on the essential signal-processing.
 In a last part, we give a rough overview of syncronization challenges and possible mitigations.
 
-\subsection{Balanced detection and digital conversion}
+\subsection{Down-conversion}
 
 The optical-to-digital conversion in the software-defined heterodyne receiver describes the conversion of a received coherent state $\ket{\beta(t)}$ to the digital samples $\beta^\prime[m]$.
 In the optical domain, we superimpose the received optical signal with a \gls{lo} in an optical coupler or beam splitter and monitor the two outputs using two photodiodes as depicted in \Cref{fig:fiber_optical_heterodyne_detector}.
@@ -74,7 +74,7 @@ So far, we described the conversion from the baseband signal of the received coh
 By mixing the input signal with an \gls{lo} with offset $\omega_i>$ compared to the carrier frequency, we can move the quadrature information into the frequency domain while utilizing only a single balanced detector, keeping the electro-optical complexity low.
 
 \FloatBarrier
-\subsection{Digital signal processing}
+\subsection{Symbol reconstruction}
 
 Assuming perfect synchronization between the transmitter and the receiver, we are left to remove the intermediate frequency from the digital baseband, complete the pulse-shaping by applying the second \gls{rrc}, and perform downsampling to recover the symbols, see \Cref{fig:receiver_dsp}.
 \begin{figure}[htb]
@@ -95,5 +95,3 @@ Applying the second \gls{rrc} filter increases the steepness at the band edges (
 	\includestandalone[width=\textwidth]{figures/pgfplots/rx-rand-time}
 	\caption{Time domain of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The samples from the \gls{adc} $\beta^\prime[m]e^{-i\omega_it}$ (first row) are multiplied by the complex exponential $e^{+i\omega_it}$ to remove the intermediate frequency (second row). Then, the samples without the intermediate frequency $\beta^\prime[m]$ are downsampled for the matched \gls{rrc} filter (third row). Finally, the matched filtered samples $\beta[m]$ are downsampled to reveal the receiver's symbol sequence $\beta[n]$ (last row).}\label{fig:receiver_time}
 \end{figure}
-
-\FloatBarrier

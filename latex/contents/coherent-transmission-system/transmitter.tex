@@ -1,4 +1,4 @@
-\section{Classical transmitter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+\section{Transmitter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
 We introduced the transmitter in the coherent state transmission system model as a device that encodes symbols $\alpha[n]$ onto a coherent state $\ket{\alpha(t)}$.
 The far-reaching significance of electronic processing in our present state-of-the-art strongly suggests the symbols $\alpha[n]$ to be electrically encoded while the coherent state resides in the optical domain.
@@ -22,7 +22,7 @@ The optical modulator encodes the analog signals $x(t), p(t)$ onto the coherent 
 \end{figure}
 % TODO: explain components (and artifacts?) of the transmit spectrum and which of them we are going to discuss and why
 
-\subsection{Digital signal-processing and analog conversion}
+\subsection{Signal synthesis}
 
 In the first half of the transmitter's signal processing, we aim to synthesize two analog baseband signals that encode the real respective imaginary part of the complex symbols later modulated onto the optical carrier.
 The essential steps are digitally constructing a waveform encoding the complex symbols that satisfy our bandwidth requirements and converting the digital waveform to the analog domain.
@@ -121,7 +121,7 @@ Furthermore, \Cref{fig:pulse_shaping_freq} visualizes the pulse-shaping steps in
 \end{figure}
 
 \FloatBarrier
-\subsection{Modulation and optical signal processing}
+\subsection{Upconversion}
 
 After digital-to-analog conversion and some additional \gls{asp}, we have the analog baseband signals $x(t)$ and $p(t)$ which we want to modulate onto an optical carrier with frequency $\omega_c$ for two reasons:
 First, the transmission properties of the channel dictates the frequency bands, for instance, \SI{1550}{\nano\meter} in standard telecommunication optical fiber, for efficient transmission.
@@ -175,91 +175,3 @@ The upper branch is modulated by a second \gls{mzm}, MZM2, which is driven by a 
 The outputs of MZM1 and MZM2 are coupled with a second fiber coupler where the majority of the output power, \SI{99}{\percent}, is feed into a third \gls{mzm}, MZM3 for power control.
 The remaining minority of the output power of the second fiber coupler is monitored by a power meter photodiode, PD.
 The power controller operates on a timescale much larger than the modulation time scale and compensates for (thermal) power fluctuations of the laser while ensuring that the output power makes a description in terms of optical coherent state necessary.
-
-% TODO: explain implementation of optical setup (in particular, show relevant quantum properties)
-
-\section{Quantum transmitter}
-
-The transmitter consists of a coherent light source, an \gls{iqm}, and a \gls{voa}.
-
-Practically, a laser implements the coherent light source.
-Advanced quantum stochastic models predicting laser characteristics (gain, stability, coherence, linewidth) are established and found in  Ref.~\cite[p.~900]{Mandel1995} and Ref.~\cite{Haken2012}.
-For our purpose, it is sufficient to know that lasers emit coherent states with a frequency spectrum.\footnote{For an intuitive argument why laser emit coherent states based on decoherence, see Ref.~\cite{Gea1998}.}
-
-The \gls{voa} attenuates the \gls{iq}-modulated signal such that the signal power becomes comparable with the quantum noise.
-It is straightforward to model the \gls{voa}'s with a beam splitter transform, such that we will not draw further attention to it.
-
-The \gls{iq} modulation is the most important step in the transmitter as it indicates the borderline between the classical and quantum signals.
-It is also the most mysterious as we are unaware of any published quantum mechanical investigation.
-The modulation occurs at three stages: the Pockels (phase) modulator, the \gls{mzm} (amplitude) modulator, and the \gls{iqm} modulator.
-The transition from the classical signal to the quantum state occurs at the phase modulation, while the MZM and \gls{iqm} modulator operate on the quantum state.
-
-\subsection{In-phase and quadrature modulator}
-
-In the previous section we derived that the \gls{mzm} performs amplitude and phase modulation on a coherent state.
-The amplitude modulation is equivalent to multiplying the initial amplitude of the coherent state by a real number.
-However, the amplitude of a coherent state is a complex number
-The \gls{iqm} arranges two \gls{mzm} such that both quadratures of the coherent light can be modulator, i.e., we multiply the amplitude of the coherent state by a complex number.
-This can be done by first splitting the signal into two branches, where each branch has an \gls{mzm}, and then recombining the two branches.
-The \gls{mzm} \gls{pm} must hold a total phase difference of $\pi/2$ between the branches.
-Otherwise, the quadrature components become correlated.
-
-\Cref{fig:iqm} presents a fiber-optical embodiment of an \gls{iqm} where we labeled the in- and output modes using the corresponding quantum annihilation operator.
-We indicated non-signal in- and outputs by a dashed orange line.
-The non-signal inputs must be in a vacuum state.
-The non-signal outputs may be dumped or monitored.
-Two voltage signals, not indicated in the figure, drive each of the \gls{mzm}.
-\begin{figure}[htb]
-	\centering
-	\caption{Possible fiber-optical setup of a \gls{iqm} comprising a splitter, a coupler, and two \gls{mzm}: An input coherent state $\ket{\alpha}$ enters the splitter, which distributes the input coherent state's amplitude among an upper and lower branch, then hosts coherent states $\ket{\alpha_1}$ and $\ket{\alpha_2}$. The first \gls{mzm}, MZM1, at the upper branch, transforms the coherent state $\ket{\alpha_1}$ to the coherent state $\ket{\alpha_1^\prime}$. The second \gls{mzm}, MZM2, at the lower branch, transforms the coherent state $\ket{\alpha_2}$ to the coherent state $\ket{\alpha_2^\prime}$. The coupler recombines the coherent states $\ket{\alpha_1^\prime}$ and $\ket{\alpha_2^\prime}$ into the output coherent state $\ket{\alpha^\prime}$, exiting the \gls{iqm}.}\label{fig:iqm}
-\end{figure}
-
-Let us consider the coherent input state $\ket{\alpha}$.
-The splitter takes the coherent input state together with a vacuum state and performs a beam splitter transform.
-For a balanced beam splitter, we find
-\begin{equation}
-	\ket{\alpha_1,\alpha_2}
-	=
-	\hat{U}_\text{BS1}(\varphi_1)
-	\ket{\alpha,0}
-	=
-	\ket*{\frac{\alpha}{\sqrt{2}},\frac{\alpha}{\sqrt{2}}ie^{-i\varphi_1}}
-\end{equation}
-where the splitter added a relative phase shift of $\varphi$ between the two branches.
-The \gls{mzm} transform the upper and lower branch coherent states according to
-\begin{align}
-	\ket{\alpha_1}
-	&\to
-	\ket{\alpha_1^\prime}
-	=
-	\ket*{\frac{\alpha}{\sqrt{2}}\cos(\Theta_1/2)e^{i\Lambda_1/2}}
-	\\
-	\ket{\alpha_2}
-	&\to
-	\ket{\alpha_2^\prime}
-	=
-	\ket*{\frac{\alpha}{\sqrt{2}}ie^{-i\varphi_1}\cos(\Theta_2/2)e^{i\Lambda_2/2}}
-	.
-\end{align}
-For the second balanced beam splitter, we find for the output mode
-\begin{equation}
-	\ket{\alpha^\prime}
-	=
-	\hat{P}_1
-	\hat{U}_\text{BS2}(\varphi_2)
-	\ket{\alpha_1^\prime,\alpha_2^\prime}
-	=
-	\ket{\alpha z(\Theta_1,\Theta_2)}
-\end{equation}
-where we choose the first \gls{mzm} phase to be zero $\Lambda_1=0$ and the second phase $\Lambda_2$ such that
-\begin{equation}
-	z(\Theta_1,\Theta_2)
-	=
-	\frac{1}{2}
-	\left[
-		\cos(\Theta_1/2)
-		+
-		i\cos(\Theta_2/2)
-	\right]
-	.
-\end{equation}
