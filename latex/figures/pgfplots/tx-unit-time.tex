@@ -1,31 +1,18 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{lmodern}
-\usepackage{pgfplots}
-
-\pgfplotsset{compat=1.17}
-\usetikzlibrary{positioning}
-\usepgfplotslibrary{groupplots}
-
-\let\Re\undefined
-\let\Im\undefined
-\DeclareMathOperator{\Re}{\operatorname{Re}}
-\DeclareMathOperator{\Im}{\operatorname{Im}}
+\input{preamble}
 
 \begin{document}
-	\begin{tikzpicture}[
-		font=\fontsize{8}{9}\selectfont,
-	]
+	\begin{tikzpicture}
 		\begin{groupplot}[
 			group style={
 				group name=plot,
 				group size=1 by 4,
-				vertical sep=1ex,
+				vertical sep=2ex,
 			},
-			ylabel style={align=center, font=\fontsize{7}{8}\selectfont},
+			ylabel style={align=center},
 			grid=major,
-			width=0.8\linewidth,
+			width=\linewidth,
 			height=20ex,
 			cycle list name=exotic,
 		]
@@ -35,8 +22,8 @@
 				xlabel={Symbol index $n$},
 				xlabel near ticks,
 				xticklabel pos=top,
-%				ymin=-0.2,
-%				ymax=1.2,
+				ymin=-0.2,
+				ymax=1.2,
 				ylabel={Symbols\\$\Re\alpha[n]$},
 			]
 			\addplot+[
@@ -47,6 +34,8 @@
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
+				ymin=-0.2,
+				ymax=1.2,
 				xlabel={},
 				xticklabels={},
 				ylabel={Samples\\$\Re\alpha^\prime[m]$},
@@ -59,9 +48,11 @@
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
+				ymin=-0.2,
+				ymax=1.2,
 				xlabel={},
 				xticklabels={},
-				ylabel={Pulse-shaped\\$x^\prime[m]$},
+				ylabel={Pulse-\\shaped\\$x^\prime[m]$},
 			]
 			\addplot+[
 				ycomb,
@@ -71,13 +62,15 @@
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
+				ymin=-0.2,
+				ymax=1.2,
 				xlabel={Signal time $t/T_s$},
 				ylabel={Analog\\(anti-aliased)\\$x^\prime(t)$},
 			]
 			\addplot+[
 				no markers,
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/unit-time-tx-lp.csv};
+			] plot table[col sep=comma, y expr=\thisrow{c2}*4] {../../../data/unit-time-tx-lp.csv};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}

@@ -8,7 +8,7 @@ Additionally, digital signal processing can be defined on the software side, whi
 In summary, the considerations made strongly advocate to start the signal processing of the transmitter in the software-defined digital domain and end the signal processing in the optical domain with analog signal processing mediating between these two ends.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/tikz/transmitter}
+	\includegraphics{figures/tikz/transmitter}
 	\caption{Block diagram showing the signal flow across the transmitter: Information is coded into complex-valued symbols $\alpha[n]$, the complex-valued symbols $\alpha[n]$ are converted to samples $\alpha^\prime[m]$ by upsampling and provided to the \gls{dsp}. The \gls{dsp} outputs the real-valued samples $x^\prime[m],p^\prime[m]$ which are converted to physical voltage signals $x^\prime(t),p^\prime(t)$ by digital-to-analog conversion and provided to the \gls{asp}. The \gls{asp} outputs the real-valued voltage signals $x(t),p(t)$ which are modulated onto a coherent state $\ket{\alpha^\prime(t)}$. Finally, \gls{osp} transforms $\ket{\alpha^\prime(t)}$ to $\ket{\alpha(t)}$.}\label{fig:transmitter}
 \end{figure}
 \Cref{fig:transmitter} depicts the proposed signal processing pipeline across the different domains.
@@ -17,7 +17,6 @@ An \gls{asp} stage prepares the analog signals $x(t),p(t)$ to drive the optical 
 The optical modulator encodes the analog signals $x(t), p(t)$ onto the coherent state $\ket{\alpha^\prime(t)}$, which might be further subject to a last \gls{osp} stage to output $\ket{\alpha(t)}$.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/pgfplots/transmit-spectrum}
 	\caption{Transmit spectrum.}\label{fig:transmit_spectrum}
 \end{figure}
 % TODO: explain components (and artifacts?) of the transmit spectrum and which of them we are going to discuss and why
@@ -29,7 +28,7 @@ The essential steps are digitally constructing a waveform encoding the complex s
 
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/circuitikz/transmitter-dsp}
+	\includegraphics{figures/circuitikz/transmitter-dsp}
 	\caption{Block diagram of the digital and analog signal-processing of the pulse-shaping: First, the real and imaginary part of the symbols $\alpha[n]$ are upsampled to yield the samples $\alpha^\prime[m]$. Second, the samples $\alpha^\prime[m]$ are \gls{rrc} filtered yielding the samples $x^\prime[m]$ for real respective $p^\prime[m]$ for the imaginary part. Third, a \gls{dac} converts $x^\prime[m]$ and the $p^\prime[m]$ to the analog signals $x^\prime(t)$ and $p^\prime(t)$. Finally, an analog \gls{lp} filter removes aliases from the \gls{dac} output.}\label{fig:pulse_shaping_block}
 \end{figure}
 
@@ -42,7 +41,7 @@ The pulse-shaped samples $x^\prime[m]$ are converted to an analog waveform $x^\p
 
 \begin{figure}[htb]
 	\centering
-	\includestandalone[width=\textwidth]{figures/pgfplots/tx-unit-time}
+	\includegraphics{figures/pgfplots/tx-unit-time}
 	\caption{Pulse-shaping steps in the time domain for a single unit symbol: A unit symbol sequence $\Re\alpha[n]$ (first row) is upsampled by two (second row) to yield the samples $\Re\alpha^\prime[m]$. The digital \gls{rrc} filter is applied to the samples $x^\prime[m]$ determining the pulse-shape (third row). We can observe the diminishing ripple for the unit response of the filter to reduce the bandwidth. Finally, the pulse-shape $x^\prime[m]$ is converted to an analog signal and filtered by a \gls{lp} filter for smoothing and anti-aliasing.}\label{fig:pulse_shaping_unit_time}
 \end{figure}
 
@@ -70,7 +69,7 @@ The Nyquist criteria states that the samples $x[m]$ together with a sampling fre
 
 \begin{figure}[htb]
 	\centering
-	\includestandalone[width=\textwidth]{figures/pgfplots/tx-rand-time}
+	\includegraphics{figures/pgfplots/tx-rand-time}
 	\caption{Pulse-shaping steps in the time domain for random symbols from a complex uniform distribution over the interval $[-1,+1]$. The first row shows the real (orange) and imaginary part (blue) of the complex symbols $\alpha[n]$ at their corresponding symbol index $n$. The second row shows the symbols after upsampling to $\alpha^\prime[m]$. The third row shows the samples after applying the \gls{rrc} filter $x^\prime[m]+ip^\prime[m]$. The fourth row shows the anti-aliased analog signal $x(t)+ip(t)$.}\label{fig:pulse_shaping_rand_time}
 \end{figure}
 
@@ -116,7 +115,7 @@ We illustrated the pulse-shaping using a single unit symbol $\alpha[15]=1$ in \C
 Furthermore, \Cref{fig:pulse_shaping_freq} visualizes the pulse-shaping steps in the frequency domain.
 \begin{figure}[htb]
 	\centering
-	\includestandalone[width=\textwidth]{figures/pgfplots/tx-frequency}
+	\includegraphics{figures/pgfplots/tx-frequency}
 	\caption{Pulse-shaping steps in the frequency domain (showing the relative \gls{psd}) for unit symbol (orange) and random symbols from a complex uniform distribution over the interval $[-1,+1]$ (blue). The unit response symbols have a perfectly flat power spectrum (first row). The random symbols have an approximately flat power spectrum (first row). Both symbol spectra (first row) occupy the Nyquist bandwidth. Upsampling doubles the Nyquist bandwidth by aliasing the spectrum (second row). Pulse-shaping acts as a bandpass by strongly suppressing the frequency components outside the original Nyquist bandwidth. Conversion to an analog signal (fourth row) is equivalent to infinite upsampling or adding infinitely many aliases to occupy the complete frequency spectrum. Finally, filtering with a \gls{lp} removes aliases.}\label{fig:pulse_shaping_freq}
 \end{figure}
 
@@ -140,7 +139,7 @@ with the complex exponential oscillation factor $e^{-i\omega_ct}$ to get to the 
 The multiplication of the complex baseband with an oscillating exponential is also known as up-conversion.
 \begin{figure}[htb]
 	\centering
-	\includestandalone{figures/circuitikz/iq-modulator}
+	\includegraphics{figures/circuitikz/iq-modulator}
 	\caption{Block diagram of an electro-optical \gls{iq}-modulator: A sinusoidal oscillator with carrier frequency $\omega_c$ is equally split into two branches. The upper branch is mixed with the baseband signal $p(t)$ while the lower branch is phase-shifted by $\pi/2$ and mixed with the baseband signal $x(t)$. The output of both mixers are added and yield the \gls{iq} passband signal.}\label{fig:iqmod}
 \end{figure}
 The signal flow is depicted in a signal-processing block diagram in \Cref{fig:iqmod}.
@@ -166,7 +165,6 @@ A particular implementation of the up-conversion into the optical domain is the 
 \Cref{fig:optical_transmitter} depicts the fiber-optical configuration such a \gls{iq}-modulator.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/pstricks/transmitter}
 	\caption{Optical \gls{iq}-modulator: The output of a coherent laser source with telecommunication wavelength \SI{1550}{\nano\meter} is equally split into two branches. The lower branch is optically phase-shifted by $\pi/2$ and passed to a \gls{mzm} MZM1 which is electro-optically modulated by the analog baseband signal $x(t)$. The upper branch is directly passed to MZM2 which is modulated by the analog baseband signal $p(t)$. The output of MZM1 is combined with MZM2 in an optical coupler. \SI{99}{\percent} of the output power is monitored by a photodiode PD. \SI{1}{\percent} of the output power is passed to a third \gls{mzm} MZM3 which is controlled by a power controller which uses the electrical signal of PD as input. Finally, the output of MZM3 is passed through an optical isolator.}\label{fig:optical_transmitter}
 \end{figure}
 An ultra-narrow-linewidth continuous-wave laser with center wavelength $\lambda_c=\SI{1550}{\nano\meter}$ is connected to a phase-symmetric and balanced 50:50 coupler which divides into an upper and lower branch.

@@ -1,9 +1,6 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{physics}
-
-\usetikzlibrary{arrows.meta,positioning}
+\input{preamble}
 
 \begin{document}
 	\begin{tikzpicture}[
@@ -12,11 +9,11 @@
 		block/.style={draw, very thick, fill=white, minimum height=8ex, minimum width=3.5em},
 	]
 		\coordinate (in) at (0,0);
-		\node (dsp) [block, right=of in] {\textsf{DSP}};
-		\node (dac) [block, right=of dsp] {\textsf{DAC}};
-		\node (asp) [block, right=of dac] {\textsf{ASP}};
-		\node (mod) [block, right=of asp] {\textsf{MOD}};
-		\node (osp) [block, right=of mod] {\textsf{OSP}};
+		\node (dsp) [block, right=of in] {DSP};
+		\node (dac) [block, right=of dsp] {DAC};
+		\node (asp) [block, right=of dac] {ASP};
+		\node (mod) [block, right=of asp] {MOD};
+		\node (osp) [block, right=of mod] {OSP};
 		\coordinate[right=of osp] (out);
 		
 		\draw[arrow] (in) -- (dsp) node[midway, above]{$\alpha[n]$};

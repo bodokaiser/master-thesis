@@ -1,28 +1,21 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{circuitikz}
-
-\usetikzlibrary{positioning}
-
-\let\Re\undefined
-\let\Im\undefined
-\DeclareMathOperator{\Re}{\operatorname{Re}}
-\DeclareMathOperator{\Im}{\operatorname{Im}}
+\input{preamble}
 
 \begin{document}
 	\begin{tikzpicture}[
+		line width=1pt,
 		node distance=4.5em,
 	]
 		\coordinate (in) at (0,0);
-		\node (cri) [twoportsplitshape, right=of in, circuitikz/t1=\textsf{Re}, circuitikz/t2=\textsf{Im}] {};
+		\node (cri) [twoportsplitshape, right=of in, circuitikz/t1=Re, circuitikz/t2=Im] {};
 		\node (ups1) [twoportshape, above right=of cri, t=$\uparrow2$] {};
-		\node (psh1) [twoportshape, right=of ups1, t=\textsf{RRC}] {};
+		\node (psh1) [twoportshape, right=of ups1, t=RRC] {};
 		\node (dac1) [dacshape, right=of psh1] {};
 		\node (lwp1) [lowpassshape, right=of dac1] {};
 		\coordinate[right=of lwp1] (out1);
 		\node (ups2) [twoportshape, below right=of cri, t=$\uparrow2$] {};
-		\node (psh2) [twoportshape, right=of ups2, t=\textsf{RRC}] {};
+		\node (psh2) [twoportshape, right=of ups2, t=RRC] {};
 		\node (dac2) [dacshape, right=of psh2] {};
 		\node (lwp2) [lowpassshape, right=of dac2] {};
 		\coordinate[right=of lwp2] (out2);

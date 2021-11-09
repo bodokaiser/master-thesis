@@ -1,14 +1,11 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{amsmath}
-\usepackage{circuitikz}
+\input{preamble}
+
 \usepackage{siunitx}
 
-\let\Re\undefined
-\DeclareMathOperator{\Re}{\operatorname{Re}}
-
 \begin{document}
-	\begin{tikzpicture}
+	\begin{tikzpicture}[line width=1pt]
 		\draw (2.5,0) node[left]{$x(t)$} (4,0)
             node[mixer](mixer){};
         \draw (2.5,0) to[short] (mixer.west) node[inputarrow, anchor=tip]{};

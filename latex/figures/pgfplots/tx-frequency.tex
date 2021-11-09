@@ -1,26 +1,19 @@
 \documentclass[tikz]{standalone}
 
-\usepackage{pgfplots}
-
-\usetikzlibrary{positioning}
-\usepgfplotslibrary{groupplots}
-
-\pgfplotsset{compat=1.17}
+\input{preamble}
 
 \begin{document}
-	\begin{tikzpicture}[
-		font=\small,
-	]
+	\begin{tikzpicture}
 		\begin{groupplot}[
 			group style={
 				group name=plot,
 				group size=1 by 5,
 				xlabels at=edge bottom,
 				xticklabels at=edge bottom,
-				vertical sep=1ex,
+				vertical sep=2ex,
 			},
 			grid=major,
-			width=0.95\linewidth,
+			width=\linewidth,
 			height=24ex,
 			xlabel={Frequency $f/f_s$},
 			yticklabels={},
