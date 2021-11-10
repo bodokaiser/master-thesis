@@ -1,30 +1,4 @@
 \chapter{Coherent state transmission system}
 
-%The following chapter describes a coherent state transmission system from a signal-processing point of view, bridging the gap between the quantum theory of optical components and the quantum information theory of the \gls{cvqkd} protocol. In particular, we extend the standard description of a digital transmission system~\cite{Gallager2008,Nossek2015,Oppenheim1989,Proakis2007} to coherent light states following the setup described in Ref.~\cite{Brunner2017}.
-
-
-A transmission system attempts to reproduce information from a spacetime event $x$, the information source, at some space-like separated event $y$, the information destination.\footnote{Contemporary to the literature, we distinguish between a transmission and a communication system. The former allows only unidirectional, the later bidirectional transport of information.}
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/tikz/transmission-system}
-	\caption{Block diagram of a general transmission system according to Ref.~\cite{Shannon1948}. An information source produces information that a transmitter encodes into a signal and transmits it through a channel to the receiver. The channel adds noise from a noise source to the transmitted signal. The receiver recovers the information from the received signal and passes it to the intended information destination.}\label{fig:transmission_system}
-\end{figure}
-To transport information from the information source and the information destination, the transmission system uses a transmitter-receiver pair connected by a physical channel (\Cref{fig:transmission_system}).
-The task of the transmitter is to encode the information in a physical signal for efficient transmission over the channel.
-In its most general form, the channel is a mapping from the transmitted to the received signal.
-The received signal may contain additional information, not of interest to the information destination, which we refer to as noise.
-The receiver listens to the channel and attempts to recover the transmitted from the received signal for the information destination.
-
-Based on the type of information source and the channel, we distinguish between different transmission systems.
-For instance, the information source may produce information in a continuous or discrete value range.
-It is impossible to transmit continuous-valued information without error, so communication typically considers information in the form of a finite set of symbols, the alphabet.
-Regarding the channel, one typically assumes the channel to be a linear mapping with additive noise.
-
-% logical vs. physical channel?
-
-% discrete noiseless systems (continuous systems are impossible to transmit exactly, noiseless for simplification)
-% atomic elements of communication (symbol, alphabet, bit, ...)
-
-
-
-% how does a classical communication system relate to a coherent transmission system? (concept of noise)
+The following chapter describes a coherent state transmission system from a signal-processing point of view, bridging the gap between the quantum theory of optical components and the quantum information theory of the \gls{cvqkd} protocol.
+In particular, we extend the standard description of a digital transmission system~\cite{Gallager2008,Nossek2015,Oppenheim1989,Proakis2007} to coherent light states following the setup described in Ref.~\cite{Brunner2017}.

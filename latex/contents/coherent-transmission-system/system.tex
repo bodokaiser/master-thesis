@@ -1,0 +1,21 @@
+\section{Classical and quantum transmission system}
+
+A classical transmission system attempts to reproduce information from a spacetime event $x$, the information source, at a spacetime event $y$, the information destination, wherein $y$ is in the forward light cone of $x$.\footnote{Contemporary to the literature, we distinguish between a transmission and a communication system. The former allows only unidirectional, the later bidirectional transport of information.}
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/tikz/transmission-system}
+	\caption{Block diagram of a general transmission system according to Ref.~\cite{Shannon1948}. An information source produces information that a transmitter encodes into a signal and transmits it through a channel to the receiver. The channel adds noise from a noise source to the transmitted signal. The receiver recovers the information from the received signal and passes it to the intended information destination.}\label{fig:transmission_system}
+\end{figure}
+To transport information from the information source and the information destination, the transmission system uses a transmitter-receiver pair connected by a physical channel (\Cref{fig:transmission_system}).
+The task of the transmitter is to encode the information in a physical signal for efficient transmission over the channel.
+In its most general form, the channel is a mapping from the transmitted to the received signal.
+The received signal may contain additional information, not of interest to the information destination, which we refer to as noise.
+The receiver listens to the channel and attempts to recover the transmitted from the received signal for the information destination.
+
+How to generalize the classical transmission system to a quantum transmission system?
+First of all, it appears natural to define the channel as the distinguishing feature between a classical and quantum transmission system: While a classical channel maps a classical signal, we expect a quantum channel to map a quantum state.
+Secondly, we need to address the inherent uncertainty associated with quantum measurements.
+In principle, we could remove the quantum uncertainty by demanding the transmitter and receiver use the same basis and the quantum channel preserving orthogonality.
+However, such a requirement would limit the capabilities of the quantum transmission system to the classical analog and be an unrealistic demand for realistic channels.
+Finally, we are left with the information source, which can be either classical or quantum, depending on if we want to encode classical information onto a quantum state or if we want to transmit quantum states themselves for further processing, e.g., computation or sensing.
+To conclude, we propose to define a quantum transmission system as a system that attempts to correlate a classical or quantum information destination at a spacetime event $y$ with an information source at a spacetime event $x$, wherein $y$ is in the forward light cone of $x$.

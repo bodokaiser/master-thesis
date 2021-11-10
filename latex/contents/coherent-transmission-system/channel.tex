@@ -1,0 +1,20 @@
+\section{Channel}
+
+Based on the type of information source and the channel, we distinguish between different transmission systems.
+For instance, the information source may produce information in a continuous or discrete value range.
+It is impossible to transmit continuous-valued information without error~\cite[p.~47]{Shannon1948}, so communication typically considers information in the form of a finite set of symbols, the alphabet.
+Regarding the channel, one typically assumes the channel to be a linear map $T$ with additive noise $n$ relating the transmitted signal $x$ with the received signal $y$ via
+\begin{equation}
+	y
+	=
+	Tx
+	+
+	n
+	\label{eq:classic_channel}
+	.
+\end{equation}
+Because of the linearity of the channel, the noise term $n$ can summarize any kind of (independent) noise, including transmitter noise or electronic noise from the receiver.
+For a quantum channel, i.e., a channel mapping quantum states, a simple map as in \cref{eq:channel_linear}
+
+% noise part of the quantum state -> assume noiseless channel
+% logical and physical channel for coherent states (symbols are complex numbers)
