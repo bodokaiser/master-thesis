@@ -1,0 +1,24 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		node distance=1cm,
+        block/.style={draw, very thick, fill=white, minimum height=28pt, minimum width=58pt, text width=52pt, align=center},
+        arrow/.style={-Latex},
+	]
+		\node[block] (src) {Information source};
+		\node[block, below=of src] (tx) {Transmitter};
+		\node[block, right=1.3cm of tx] (ch) {Channel};
+		\node[block, right=1.3cm of ch] (rx) {Receiver};
+		\node[block, above=of rx] (dst) {Information destination};
+		\node[block, below=of ch] (ns) {Noise source};
+		
+		\draw[arrow] (src) -- (tx) node[midway, right] {$\left\{\alpha_n\right\}_{n\in I}$};
+		\draw[arrow] (tx) -- (ch) node[midway, above] {$\ket{\alpha(t)}$};
+		\draw[arrow] (ch) -- (rx) node[midway, above] {$\ket{\beta(t)}$};
+		\draw[arrow] (rx) -- (dst) node[midway, left] {$\left\{\beta_n\right\}_{n\in I}$};
+		\draw[arrow] (ns) -- (ch) node[midway, right] {$\ket{\psi(t)}$};;
+	\end{tikzpicture}
+\end{document}
