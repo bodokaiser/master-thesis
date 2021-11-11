@@ -1,4 +1,4 @@
-# A theoretical framework for quantum optical communication - towards CV-QKD
+# A theoretical framework for quantum optical communication - towards practical QKD
 
 Notable links:
 * [BibTeX Tidy][1]
