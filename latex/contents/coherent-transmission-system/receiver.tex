@@ -73,7 +73,7 @@ So far, we described the conversion from the baseband signal of the received coh
 By mixing the input signal with an \gls{lo} with offset $\omega_i>$ compared to the carrier frequency, we can move the quadrature information into the frequency domain while utilizing only a single balanced detector, keeping the electro-optical complexity low.
 
 \FloatBarrier
-\subsection{Symbol reconstruction}
+\subsection{Symbol recovery}
 
 Assuming perfect synchronization between the transmitter and the receiver, we are left to remove the intermediate frequency from the digital baseband, complete the pulse-shaping by applying the second \gls{rrc}, and perform downsampling to recover the symbols, see \Cref{fig:receiver_dsp}.
 \begin{figure}[htb]

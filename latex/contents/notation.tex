@@ -151,3 +151,16 @@ The Minkowski metric can be used to raise and lower indices,
 and a spatial component with a lower index is not in general equal to a spatial component with a raised index, $a_i\neq a^i$!
 
 With regard to quantum mechanics, we use the standard bra-ket notation where we denote scalar-valued operators by a hat, e.g., $\hat{X}$, and vector-valued operators by boldface hat, e.g., $\vu{X}$.
+
+In analog to the time-continuous signal $x(t)$, we define the time-discrete signal
+\begin{equation}
+	x[n]
+	=
+	\int\dd{t}
+	x(t)
+	\delta^{(1)}(t-nT)
+	,
+\end{equation}
+wherein $T$ is the sampling period.
+Sometimes we refer to $x[n]$ as samples or sample like $x(t)$ corresponds to a value and a function.
+To distinguish samples from symbols, which do not require a sampling period $T$, we use the index notation, i.e., $x_m$ denotes a symbol while $x[m]$ denotes a sample.

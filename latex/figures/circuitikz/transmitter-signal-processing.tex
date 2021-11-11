@@ -1,0 +1,61 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\usepackage{siunitx}
+
+\begin{document}
+	\begin{tikzpicture}[
+		line width=1pt,
+		node distance=20pt,
+	]
+		\coordinate (in);
+		\node (cri) [twoportsplitshape, right=of in, circuitikz/t1=Re, circuitikz/t2=Im] {};
+		\coordinate[above=1.5cm of cri] (re);
+		\coordinate[below=1.5cm of cri] (im);
+
+		\node (ups1) [twoportshape, right=1.2cm of re, t=$\uparrow k$]{};
+		\node (psh1) [twoportshape, right=of ups1, t=RRC] {};
+		\node (dac1) [dacshape, right=of psh1] {};
+		\node (lwp1) [lowpassshape, right=of dac1] {};
+
+		\node (ups2) [twoportshape, right=1.2cm of im, t=$\uparrow k$] {};
+		\node (psh2) [twoportshape, right=of ups2, t=RRC] {};
+		\node (dac2) [dacshape, right=of psh2] {};
+		\node (lwp2) [lowpassshape, right=of dac2] {};
+		
+		\node at (ups1.north|-cri) [rotate=90] {Upsampling};
+		\node at (psh1.north|-cri) [rotate=90] {Pulse-shaping};
+		\node at (dac1.north|-cri) [text width=8em, align=center, rotate=90] {Digital-to-analog conversion};
+		\node at (lwp1.north|-cri) [rotate=90, text width=8em, align=center] {Anti-aliasing};
+		
+		\node (mix1) [mixer, right=2cm of lwp1] {};
+		\node (mix2) [mixer, right=2cm of lwp2] {};
+		\node (div) [twoportsplitshape, circuitikz/t1=$\SI{0}{\degree}$, circuitikz/t2=$\SI{90}{\degree}$] at (cri-|mix1.south) {};
+		\node (osc) [oscillator, left=of div] {};
+		\node (add) [adder, right=of div] {};
+		\coordinate[right=of add] (out);
+		
+		\draw[-Latex] (cri.north) -- (cri.north|-ups1.west) -- (ups1.west);
+		\draw[-Latex] (ups1) -- (psh1);
+		\draw[-Latex] (psh1) -- (dac1);
+		\draw[-Latex] (dac1) -- (lwp1);
+		\draw[-Latex] (lwp1) -- (mix1) node[midway, above] {$x(t)$};
+		\draw[-Latex] (div) -- (mix1);
+		\draw[-Latex] (mix1.east) -- (mix1.east-|add.north) -- (add.north);
+		
+		\draw[-Latex] (cri.south) -- (cri.south|-ups2.west) -- (ups2.west);
+		\draw[-Latex] (ups2) -- (psh2);
+		\draw[-Latex] (psh2) -- (dac2);
+		\draw[-Latex] (dac2) -- (lwp2);
+		\draw[-Latex] (lwp2) -- (mix2) node[midway, above] {$p(t)$};
+		\draw[-Latex] (div) -- (mix2);
+		\draw[-Latex] (mix2.east) -- (mix2.east-|add.south) -- (add.south);
+		
+		\draw (osc.north) node[above, yshift=2pt] {$\sin(\omega_c t)$};
+
+		\draw[-Latex] (in) node[above] {$\alpha[n]$} -- (cri);
+		\draw[-Latex] (osc) -- (div);
+		\draw[-Latex] (add) -- (out) node[midway, above] {$\alpha(t)$};
+	\end{tikzpicture}
+\end{document}

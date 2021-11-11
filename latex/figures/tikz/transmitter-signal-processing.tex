@@ -1,0 +1,32 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		node distance=3.5em,
+		arrow/.style={-Latex},
+		drange/.style={Bar-Bar, thick},
+		block/.style={draw, very thick, fill=white, minimum height=8ex, minimum width=3.5em},
+	]
+		\coordinate (in) at (0,0);
+		\node (dsp) [block, right=of in] {DSP};
+		\node (dac) [block, right=of dsp] {DAC};
+		\node (asp) [block, right=of dac] {ASP};
+		\node (mod) [block, right=of asp] {MOD};
+		\coordinate[right=of mod] (out);
+		
+		\draw[arrow] (in) -- (dsp) node[midway, above]{$\left\{\alpha_n\right\}_{n\in I}$};
+		\draw[arrow] ([yshift=2.5ex]dsp.east) -- ([yshift=2.5ex]dac.west) node[midway, above]{$x^\prime[n]$};
+		\draw[arrow] ([yshift=-2.5ex]dsp.east) -- ([yshift=-2.5ex]dac.west) node[midway, above]{$p^\prime[n]$};
+		\draw[arrow] ([yshift=-2.5ex]dac.east) -- ([yshift=-2.5ex]asp.west) node[midway, above]{$p^\prime(t)$};
+		\draw[arrow] ([yshift=2.5ex]dac.east) -- ([yshift=2.5ex]asp.west) node[midway, above]{$x^\prime(t)$};
+		\draw[arrow] ([yshift=2.5ex]asp.east) -- ([yshift=2.5ex]mod.west) node[midway, above]{$x(t)$};
+		\draw[arrow] ([yshift=-2.5ex]asp.east) -- ([yshift=-2.5ex]mod.west) node[midway, above]{$p(t)$};
+		\draw[arrow] (mod) -- (out) node[midway, above]{$\ket{\alpha(t)}$};
+		
+		%\draw[drange] (in) ++(0,-1) coordinate (dom) -- ++(4.2,0) node[midway, below] {Digital};
+		%\draw[drange] (dom-|dac.south) ++(0.1,0) -- ++(4.8,0) node[midway, below] {Analog};
+		%\draw[drange] (dom-|mod.south) ++(0.15,0) -- (dom-|out) node[midway, below] {Quantum};
+	\end{tikzpicture}
+\end{document}
