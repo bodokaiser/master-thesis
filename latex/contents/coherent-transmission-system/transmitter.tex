@@ -1,29 +1,32 @@
 \section{Transmitter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
-We introduced the transmitter as a component encoding a sequence of complex symbols, $\left\{\alpha_n\in\mathbb{C}\colon n\in I\right\}$, onto a time-continuous coherent state $\ket{\alpha(t)}$.
-% what else does a transmitter need to do? (further requirements regarding the transmitter)
-% - modulation bandwidth in modulation
-% - up-conversion for physical channel (fiber)
-
-The symbol sequence alone has no notion of time.
-Time enters through the symbol period $T$ denoting the time between two consecutive symbols.
-
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/circuitikz/transmitter-signal-processing}
-	\caption{Block diagram of the transmitter's signal-processing. The real and imaginary part of a complex digital signal $\alpha[n]$ is upsampled, pulse-shaped and converted to anti-aliased analog signals, $x(t)$ and $p(t)$. The analog signals are individually mixed with a phase-shifted \gls{lo} with carrier frequency $\omega_c$ and then added to yield a complex signal $\alpha(t)$.}\label{fig:transmitter_signal_processing}
-\end{figure}
-
-% implementation concerns
-% - software-defined
+We introduced the transmitter as a component encoding a sequence of complex symbols, $\left\{\alpha_n\in\mathbb{C}\colon n\in I\right\}$, onto a time-continuous coherent state $\ket{\alpha(t)}$, which we submit through the channel to the receiver.
+Usually, a physical channel is shard by multiple users and only shows favorable transmission properties over a certain frequency range, outside the signal is strongly suppressed and distorted.\footnote{For instance, telecommunications widely deploys the C-band, spanning wavelengths from \SI{1530}{\nano\meter} to \SI{1565}{\nano\meter}, for optical data transmission.}
+To use the available bandwidth efficiently and reduce interference between users, one should minimize the signal bandwidth.
+Typically, the transmitter meets these two goals by
+\begin{enumerate}
+	\item encoding the symbols in a time-continuous signal $\alpha(t)$ with minimal bandwidth (signal synthesis), and
+	\item modulating the signal $\alpha(t)$ onto a carrier in the frequency range where the channel demonstrates favorable transmission characteristics (up-conversion).
+\end{enumerate}
+Nowadays, the signal is almost exclusively constructed in the digital domain, and the analog part is limited to the digital-to-analog conversion.
+Constructing the signal digitally allows for greater flexibility in the development process as the synthesis is mostly software-defined.
+For up-conversion of the synthesized signal to the optical domain, we modulate the electric signal onto an optical carrier.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/transmitter-signal-processing}
-	\caption{Block diagram of the the transmitter's signal processing domains. The \gls{dsp} transforms a symbol sequence $\{\alpha_n\}_{n\in I}$ into digital signals (samples), $x^\prime[n]$ and $p^\prime[n]$, which the \gls{dac} converts to analog signals, $x^\prime(t)$ and $p^\prime(t)$.}\label{fig:transmitter_signal_processing_domains}
+	\caption{Block diagram of the the transmitter's signal processing domains. The \gls{dsp} transforms a complex symbol sequence $\{\alpha_n\}_{n\in I}$ into two digital signals, $x^\prime[m]$ and $p^\prime[m]$, corresponding to the real and imaginary part. The \gls{dac} converts the digital signals to analog signals, $x(t)$ and $p(t)$ we modulate onto a coherent state $\ket{\alpha(t)}$.}\label{fig:transmitter_signal_processing_domains}
 \end{figure}
+\Cref{fig:transmitter_signal_processing_domains} illustrates how such a software-defined transmitter architecture applies to our coherent state transmission system.
+The software-defined \gls{dsp} constructs the bandwidth-optimized digital signals $x[m]$ and $p[m]$, encoding the real and imaginary parts of the complex symbols.
+The \gls{dac} stage converts the digital signals, $x[m]$ and $p[m]$, to bandwidth-limited analog signals $x(t)$ and $p(t)$.
+Finally, the analog signals are modulated onto an optical carrier yielding a coherent state $\ket{\alpha(t)}$ which meets the bandwidth requirements of the channel.
+
+We now take a closer look at how first to encode a symbol sequence in a bandwidth-optimized signal and then transfer it to an optical coherent state.
 
 \subsection{Signal synthesis}
+
+The symbol sequence alone has no notion of time.
+Time enters through the symbol period $T$ denoting the time between two consecutive symbols.
 
 \begin{figure}[htb]
 	\centering
