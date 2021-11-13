@@ -13,64 +13,57 @@
 			ylabel style={align=center},
 			grid=major,
 			width=\linewidth,
-			height=20ex,
+			height=22ex,
+			xmin=10,
+			xmax=20,
+			ymin=-0.3,
+			ymax=1.2,
 			cycle list name=exotic,
+			axis line style={thick},
 		]
 			\nextgroupplot[
-				xmin=10,
-				xmax=20,
-				xlabel={Symbol index $n$},
+				xlabel={Symbol index $km$},
 				xlabel near ticks,
 				xticklabel pos=top,
-				ymin=-0.2,
-				ymax=1.2,
-				ylabel={Symbols\\$\Re\alpha[n]$},
+				ylabel={Symbols\\$x[km]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/unit-time-tx-sym.csv};
 			\nextgroupplot[
-				xmin=10,
-				xmax=20,
-				ymin=-0.2,
-				ymax=1.2,
 				xlabel={},
 				xticklabels={},
-				ylabel={Samples\\$\Re\alpha^\prime[m]$},
+				ylabel={Upsampled\\$x^\prime[m]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/unit-time-tx-up.csv};
 			\nextgroupplot[
-				xmin=10,
-				xmax=20,
-				ymin=-0.2,
-				ymax=1.2,
 				xlabel={},
 				xticklabels={},
-				ylabel={Pulse-\\shaped\\$x^\prime[m]$},
+				ylabel={Pulse-shaped\\$x^{\prime\prime}[m]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/unit-time-tx-rrc.csv};
+			] plot table[col sep=comma, y expr=\thisrow{c2}*1.3] {../../../data/unit-time-tx-rrc.csv};
 			\nextgroupplot[
-				xmin=10,
-				xmax=20,
-				ymin=-0.2,
-				ymax=1.2,
 				xlabel={Signal time $t/T_s$},
-				ylabel={Analog\\(anti-aliased)\\$x^\prime(t)$},
+				ylabel={Analog-conv.\\$x(t)$},
 			]
 			\addplot+[
+				very thick,
 				no markers,
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma, y expr=\thisrow{c2}*4] {../../../data/unit-time-tx-lp.csv};
+			] plot table[col sep=comma, y expr=\thisrow{c2}*5.2] {../../../data/unit-time-tx-lp.csv};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}

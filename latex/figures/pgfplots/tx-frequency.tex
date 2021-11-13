@@ -18,6 +18,7 @@
 			xlabel={Frequency $f/f_s$},
 			yticklabels={},
 			ylabel style={align=center},
+			axis line style={thick},
 			cycle list name=exotic,
 		]
 			\nextgroupplot[
@@ -27,75 +28,80 @@
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Symbols\\$\alpha[n]$},
+				ylabel={Symbols\\$\alpha[km]$},
 			]
 			\addplot+[
-				thick,
-				no markers,
-			] plot table[col sep=comma] {../../../data/unit-freq-tx-sym.csv};
-			\addplot+[
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-tx-sym.csv};
+			\addplot+[
+				very thick,
+				no markers,
+			] plot table[col sep=comma] {../../../data/unit-freq-tx-sym.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Samples\\$\alpha^\prime[m]$},
+				ylabel={Upsampled\\$\alpha^\prime[m]$},
 			]
 			\addplot+[
-				thick,
-				no markers,
-			] plot table[col sep=comma] {../../../data/unit-freq-tx-up.csv};
-			\addplot+[
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-tx-up.csv};
+			\addplot+[
+				very thick,
+				no markers,
+			] plot table[col sep=comma] {../../../data/unit-freq-tx-up.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Pulse-shaped\\$x^\prime[m]+ip^\prime[m]$},
+				ylabel={Pulse-shaped\\$\alpha^{\prime\prime}[m]$},
 			]
 			\addplot+[
-				thick,
-				no markers,
-			] plot table[col sep=comma] {../../../data/unit-freq-tx-rrc.csv};
-			\addplot+[
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-tx-rrc.csv};
+			\addplot+[
+				very thick,
+				no markers,
+			] plot table[col sep=comma] {../../../data/unit-freq-tx-rrc.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Analog\\$x^\prime(t)+ip^\prime(t)$},
+				ylabel={Analog-converted\\$\alpha^\prime(t)$},
 			]
 			\addplot+[
-				thick,
-				no markers,
-			] plot table[col sep=comma] {../../../data/unit-freq-tx-dac.csv};
-			\addplot+[
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-tx-dac.csv};
+			\addplot+[
+				very thick,
+				no markers,
+			] plot table[col sep=comma] {../../../data/unit-freq-tx-dac.csv};
 			\nextgroupplot[
 				xmin=-4,
 				xmax=4,
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Anti-aliased\\$x(t)+ip(t)$},
+				ylabel={Anti-aliased\\$\alpha(t)$},
 			]
 			\addplot+[
-				thick,
-				no markers,
-			] plot table[col sep=comma] {../../../data/unit-freq-tx-lp.csv};
-			\addplot+[
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-tx-lp.csv};
+			\addplot+[
+				very thick,
+				no markers,
+			] plot table[col sep=comma] {../../../data/unit-freq-tx-lp.csv};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}

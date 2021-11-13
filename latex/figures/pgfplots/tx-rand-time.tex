@@ -15,21 +15,24 @@
 			width=\linewidth,
 			height=22ex,
 			cycle list name=exotic,
+			axis line style={thick},
 		]
 			\nextgroupplot[
 				xmin=10,
 				xmax=20,
-				xlabel={Symbol index $n$},
+				xlabel={Symbol index $km$},
 				xlabel near ticks,
 				xticklabel pos=top,
-				ylabel={Symbols\\$\alpha[n]$},
+				ylabel={Symbols\\$\alpha[km]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/rand-time-tx-sym-real.csv};
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=x,
 				restrict expr to domain={\thisrow{c1}}{10:20},
@@ -39,14 +42,16 @@
 				xmax=20,
 				xlabel={},
 				xticklabels={},
-				ylabel={Samples\\$\alpha^\prime[m]$},
+				ylabel={Upsampled\\$\alpha^\prime[m]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/rand-time-tx-up-real.csv};
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=x,
 				restrict expr to domain={\thisrow{c1}}{10:20},
@@ -56,14 +61,16 @@
 				xmax=20,
 				xlabel={},
 				xticklabels={},
-				ylabel={Pulse-shape\\$x^\prime[m]+ip^\prime[m]$},
+				ylabel={Pulse-shape\\$\alpha^{\prime\prime}[m]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/rand-time-tx-rrc-real.csv};
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=x,
 				restrict expr to domain={\thisrow{c1}}{10:20},
@@ -72,13 +79,15 @@
 				xmin=10,
 				xmax=20,
 				xlabel={Signal time $t/T_s$},
-				ylabel={Analog\\(anti-aliased)\\$x(t)+ip(t)$},
+				ylabel={Analog-conv.\\$\alpha(t)$},
 			]
 			\addplot+[
+				very thick,
 				no markers,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma, y expr=\thisrow{c2}*4] {../../../data/rand-time-tx-lp-real.csv};
 			\addplot+[
+				very thick,
 				no markers,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/rand-time-tx-lp-imag.csv};
