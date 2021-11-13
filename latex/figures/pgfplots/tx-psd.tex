@@ -1,0 +1,27 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+%\usepackage{siunitx}
+
+\begin{document}
+	\begin{tikzpicture}
+		\begin{axis}[
+			height=8cm,
+			width=\linewidth,
+			axis line style=thick,
+			cycle list name=exotic,
+			scaled y ticks=false,
+			xmin=-200,
+            xmax=200,
+            ymode=log,
+            ymin=0.1,
+            ymax=1e2,
+			no markers,
+			xlabel={Relative frequency $f$ (\si{\mega\hertz})},
+			ylabel={Power spectral density (\si{\decibel})},
+		]
+			\addplot+[very thick] plot table[col sep=comma] {../../../data/psd.csv};
+		\end{axis}
+	\end{tikzpicture}
+\end{document}

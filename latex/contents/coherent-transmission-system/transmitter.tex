@@ -91,6 +91,58 @@ We also see how the pulse-shaping filter shapes the upsampled spectrum, and the 
 \FloatBarrier
 \subsection{Up-conversion of the baseband to a passband signal}
 
+We previously constructed the bandwidth-optimized baseband signals $x(t)$ and $p(t)$ encoding the real respective imaginary part of a complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$.
+We now want to shift the spectrum of the baseband signals into the optical domain, i.e., transform the baseband to a passband signal centered around some optical carrier frequency $\omega_c$.
+One way to shift a real signal in the frequency domain is to multiply it by a sine or cosine, effectively corresponding to amplitude modulation.
+With the orthogonality of sine and cosine, it is possible to write two real baseband signals as one real passband signal, i.e.,
+\begin{equation}
+	x(t)
+	\cos(\omega_ct)
+	+
+	p(t)
+	\sin(\omega_ct)
+	.
+\end{equation}
+Rewriting the sine as the real part of a complex exponential
+\begin{equation}
+	\sin(\omega_ct)
+	=
+	\cos(\omega_c t-\pi/2)
+	=
+	\Re\left\{e^{-i\omega_c t+i\pi/2}\right\}
+	,
+\end{equation}
+we can rewrite the real passband signal as the real part of a complex signal,
+\begin{equation}
+	\begin{split}
+		x(t)
+		\cos(\omega_ct)
+		+
+		p(t)
+		\sin(\omega_ct)
+		&=
+		\Re\left\{
+			x(t)
+			e^{-i\omega_ct}
+			+
+			p(t)
+			e^{-i\omega_ct+i\pi/2}
+		\right\}
+		\\
+		&=
+		\Re\left\{
+			\left[
+				x(t)
+				+
+				ip(t)
+			\right]
+			e^{-i\omega_ct}
+		\right\}
+		,
+	\end{split}
+	\label{eq:real_complex_passband}
+\end{equation}
+where we can identify the complex baseband
 \begin{equation}
 	\alpha(t)
 	=
@@ -99,22 +151,24 @@ We also see how the pulse-shaping filter shapes the upsampled spectrum, and the 
 	ip(t)
 	.
 \end{equation}
-
+The complex signal is often used when dealing with only a real signal since the up-conversion here corresponds to a simple multiplication by a complex exponent.
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/circuitikz/up-conversion}
+	\caption{Block diagram illustrating up-conversion of two real-valued baseband signals, $x(t)$ and $p(t)$, to a real-valued passband signal, $\Re\left\{\alpha(t)e^{-i\omega_ct}\right\}$. A \gls{lo} with up-conversion frequency $\omega_c$ is split into two branches with a relative phase shift between the branches of $\pi/2$. One branch is mixed with the baseband signal $p(t)$ and the other branch is mixed with $x(t)$. The product of the mixing is added giving the passband signal.}\label{fig:up_conversion}
+\end{figure}
+Our derivation of the complex passband, \cref{eq:real_complex_passband}, already hints implementing efficient up-conversion of two real baseband signals by splitting a \gls{lo} with a relative phase shift of $\pi/2$.
+If we replace the mixer in \Cref{fig:up_conversion} with electro-optical amplitude modulators, e.g.,\gls{mzm}, we find ourselves with an electro-optical \gls{iqm}.
+Indeed, if we assume a single-mode laser as an input state, we find that the \gls{iqm} produces the output state
 \begin{equation}
-	x(t)
-	\cos(\omega_ct)
-	+
-	p(t)
-	\sin(\omega_ct)
-	=
-	\Re\left\{
-		\alpha^\prime(t)
-		e^{-i\omega_ct}
-	\right\}
-	\label{eq:passband_signal}.
+	\ket{e^{-i\omega_c t}}
+	\to
+	\ket{\alpha(t)e^{-i\omega_c t}}
 \end{equation}
+exactly as we found for the up-conversion.
 
 \begin{figure}[htb]
 	\centering
+	\includegraphics{figures/pgfplots/tx-psd}
 	\caption{Transmit spectrum.}\label{fig:transmit_spectrum}
 \end{figure}
