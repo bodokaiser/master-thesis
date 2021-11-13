@@ -1,22 +1,39 @@
 \section{Transmitter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
-We introduced the transmitter as a component encoding a sequence of complex symbols, $\left\{\alpha_n\in\mathbb{C}\colon n\in I\right\}$, onto a time-continuous coherent state $\ket{\alpha(t)}$, which we submit through the channel to the receiver.
-Usually, a physical channel is shard by multiple users and only shows favorable transmission properties over a certain frequency range, outside the signal is strongly suppressed and distorted.\footnote{For instance, telecommunications widely deploys the C-band, spanning wavelengths from \SI{1530}{\nano\meter} to \SI{1565}{\nano\meter}, for optical data transmission.}
-To use the available bandwidth efficiently and reduce interference between users, one should minimize the signal bandwidth.
-Typically, the transmitter meets these two goals by
+We introduced the transmitter as a component encoding a sequence of complex symbols, $\left\{\alpha_n\in\mathbb{C}\colon n\in I\right\}$, onto a coherent state $\ket{\alpha(t)}$.
+Efficient transmission through the channel and effective receiver detection impose additional constraints on the space of useful coherent states.
+Together with practical considerations, these constraints lead to the particular design embodiment of the transmitter we will discuss.
+
+First and foremost, the channel and receiver limit the spectrum of useful coherent states.
+For instance, the receiver has limited bandwidth to detect the signal with signal power outside that bandwidth being lost.
+Apart from that, the physical channel only shows favorable transmission properties over a certain frequency range, outside the signal is strongly suppressed and distorted.\footnote{For instance, the C-band, spanning wavelengths from \SI{1530}{\nano\meter} to \SI{1565}{\nano\meter}, is widely deployed for optical telecommunication.}
+Additionally, different users may jointly use the same physical channel, and using the available bandwidth efficiently while reducing interference between users, requires the signal bandwidth to be minimal.
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/tikz/baseband-passband}
+	\caption{Power spectrum showing the relationship between a real-valued baseband and passband signal. Both base- and passband signals have bandwidth $B$. The baseband signal is centered at $\omega=0$. The passband is shifted by $\omega_0$ and has a conjugate symmetric counterpart at $-\omega_0$.}\label{fig:baseband_passband}
+\end{figure}
+To illustrate the signal and channel bandwidth, we introduce the concept of baseband and passband signals\cite[p.~26]{Madhow2008}.
+\Cref{fig:baseband_passband} depicts the power spectrum of a baseband and passband signal each with bandwidth $B$.
+The spectrum of the baseband signal is centered at zero frequency, $\omega=0$, while the spectrum of the passband signal is located at $\pm\omega_0$.
+For efficient use of the limited channel and receiver bandwidth, we want to minimize $B$ while keeping the \gls{snr} high.
+In addition, we need to shift the baseband spectrum to an optical frequency $\omega_0$ for which the channel shows desirable transmission characteristics.
+So from a signal processing point of view, we want the transmitter to
 \begin{enumerate}
-	\item encoding the symbols in a time-continuous signal $\alpha(t)$ with minimal bandwidth (signal synthesis), and
-	\item modulating the signal $\alpha(t)$ onto a carrier in the frequency range where the channel demonstrates favorable transmission characteristics (up-conversion).
+	\item first create a baseband signal with minimum bandwidth $B$ and
+	\item then transfer it to a passband signal in the optical domain.
 \end{enumerate}
+In the following, we term the first step signal synthesis and the second step up-conversion.
+
 Nowadays, the signal is almost exclusively constructed in the digital domain, and the analog part is limited to the digital-to-analog conversion.
 Constructing the signal digitally allows for greater flexibility in the development process as the synthesis is mostly software-defined.
 For up-conversion of the synthesized signal to the optical domain, we modulate the electric signal onto an optical carrier.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/tikz/transmitter-signal-processing}
-	\caption{Block diagram of the the transmitter's signal processing domains. The \gls{dsp} transforms a complex symbol sequence $\{\alpha_n\}_{n\in I}$ into two digital signals, $x^\prime[m]$ and $p^\prime[m]$, corresponding to the real and imaginary part. The \gls{dac} converts the digital signals to analog signals, $x(t)$ and $p(t)$ we modulate onto a coherent state $\ket{\alpha(t)}$.}\label{fig:transmitter_signal_processing_domains}
+	\includegraphics{figures/tikz/software-defined-transmitter}
+	\caption{Block diagram of the transmitter's signal processing domains. The \gls{dsp} transforms a complex symbol sequence $\{\alpha_n\}_{n\in I}$ into two digital signals, $x^\prime[m]$ and $p^\prime[m]$, corresponding to the real and imaginary part. The \gls{dac} converts the digital signals to analog signals, $x(t)$ and $p(t)$ we modulate onto a coherent state $\ket{\alpha(t)}$.}\label{fig:software_defined_transmitter}
 \end{figure}
-\Cref{fig:transmitter_signal_processing_domains} illustrates how such a software-defined transmitter architecture applies to our coherent state transmission system.
+\Cref{fig:software_defined_transmitter} illustrates how such a software-defined transmitter architecture applies to our coherent state transmission system.
 The software-defined \gls{dsp} constructs the bandwidth-optimized digital signals $x[m]$ and $p[m]$, encoding the real and imaginary parts of the complex symbols.
 The \gls{dac} stage converts the digital signals, $x[m]$ and $p[m]$, to bandwidth-limited analog signals $x(t)$ and $p(t)$.
 Finally, the analog signals are modulated onto an optical carrier yielding a coherent state $\ket{\alpha(t)}$ which meets the bandwidth requirements of the channel.
@@ -25,8 +42,41 @@ We now take a closer look at how first to encode a symbol sequence in a bandwidt
 
 \subsection{Signal synthesis}
 
-The symbol sequence alone has no notion of time.
-Time enters through the symbol period $T$ denoting the time between two consecutive symbols.
+In the signal synthesis stage, we encode a symbol sequence into a bandwidth-limited (baseband) signal.
+
+The very first step is to introduce a notion of time to write the complex symbol sequence, $\left\{\alpha_n\in\mathbb{C}\colon n\in I\right\}$, as a digital (time-discrete) signal,
+\begin{equation}
+	\begin{split}
+		\alpha(t)
+		\colon
+		\mathbb{R}
+		&
+		\to
+		\mathbb{C}
+		\\
+		t
+		&\mapsto
+		\sum_{m\in I}
+		\alpha_m
+		\delta^{(1)}(t-mT)
+		,
+	\end{split}
+	\label{eq:complex_digital_signal}
+\end{equation}
+by introducing the symbol period $T$, denoting the temporal distance between two consecutive symbols.
+The digital signal in \cref{eq:complex_digital_signal} requires an infinite bandwidth and is therefore not suitable for direct transmission.
+
+
+% why can't we directly use the digital signal?
+% concept of samples
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/circuitikz/signal-synthesis-pipeline}
+	\caption{Block diagram of the signal synthesis pipeline. The digital signal $x[km]$ is upsampled by a factor $k$ to $x[m]$ and transformed by a \gls{rrc} filter to $x^\prime[m]$. A \gls{dac} converts the digital signal $x^\prime[m]$ to the analog signal $x^\prime(t)$ which after a \gls{lp} filter resolves to $x(t)$.}
+\end{figure}
+
 
 \begin{figure}[htb]
 	\centering
