@@ -38,51 +38,25 @@ The software-defined \gls{dsp} constructs the bandwidth-optimized digital signal
 The \gls{dac} stage converts the digital signals, $x[m]$ and $p[m]$, to bandwidth-limited analog signals $x(t)$ and $p(t)$.
 Finally, the analog signals are modulated onto an optical carrier yielding a coherent state $\ket{\alpha(t)}$ which meets the bandwidth requirements of the channel.
 
-We now take a closer look at how first to encode a symbol sequence in a bandwidth-optimized signal and then transfer it to an optical coherent state.
+\subsection{Construction of the baseband signal}
 
-\subsection{Signal synthesis}
-
-In the signal synthesis stage, we encode a symbol sequence into a bandwidth-limited (baseband) signal.
-
-The very first step is to introduce a notion of time to write the complex symbol sequence, $\left\{\alpha_n\in\mathbb{C}\colon n\in I\right\}$, as a digital (time-discrete) signal,
-\begin{equation}
-	\begin{split}
-		\alpha(t)
-		\colon
-		\mathbb{R}
-		&
-		\to
-		\mathbb{C}
-		\\
-		t
-		&\mapsto
-		\sum_{m\in I}
-		\alpha_m
-		\delta^{(1)}(t-mT)
-		,
-	\end{split}
-	\label{eq:complex_digital_signal}
-\end{equation}
-by introducing the symbol period $T$, denoting the temporal distance between two consecutive symbols.
-The digital signal in \cref{eq:complex_digital_signal} requires an infinite bandwidth and is therefore not suitable for direct transmission.
-
-
-% why can't we directly use the digital signal?
-% concept of samples
-
-
+To construct a bandwidth-optimized baseband signal, encoding the complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$, we first remark that the symbol sequence itself has no notion of time.
+In contrast, a digital (time-discrete) signal, consisting of discrete samples, includes a time reference, the sample period $T$, denoting the temporal distance between two consecutive samples.
+By defining the digital signal with samples equal to the symbols, $\alpha[n]=\alpha_n$, and introducing the symbol period $T$ as sample period, we find ourselves with the complete \gls{dsp} toolbox at our disposal.\footnote{Even if the \gls{dsp} itself does not work explicitly with the time reference $T$, we need time to give a meaningful interpretation of the signal between the steps.}
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/circuitikz/signal-synthesis-pipeline}
-	\caption{Block diagram of the signal synthesis pipeline. The digital signal $x[km]$ is upsampled by a factor $k$ to $x[m]$ and transformed by a \gls{rrc} filter to $x^\prime[m]$. A \gls{dac} converts the digital signal $x^\prime[m]$ to the analog signal $x^\prime(t)$ which after a \gls{lp} filter resolves to $x(t)$.}
+	\includegraphics{figures/circuitikz/baseband-construction}
+	\caption{Block diagram of the signal-processing for baseband construction. The digital signal $x[km]$ is upsampled by a factor $k$ to $x[m]$ and pulse-shaped by a \gls{rrc} filter to $x^\prime[m]$. A \gls{dac} converts the digital signal $x^\prime[m]$ to the analog signal $x^\prime(t)$ which after a \gls{lp} filter resolves to $x(t)$.}\label{fig:baseband_construction}
 \end{figure}
-
-
+\Cref{fig:baseband_construction} summarizes the essential \gls{dsp} steps including analog conversion of a real-valued digital signal $x[km]$ to construct a bandwidth-optimized analog baseband signal $x(t)$.\footnote{The baseband construction generalizes to a complex digital signal by applying the real-valued baseband construction separately to the real and imaginary part.}
+The digital signal $x[km]$, containing the symbols, is first upsampled by an upsampling factor of $k$, adding $k$ zero-valued samples in between the original samples.
+The pulse-shaping of the \gls{rrc} filter interpolates between the non-zero samples, the symbols, to reduce the effective signal bandwidth.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/tx-unit-time}
-	\caption{Pulse-shaping steps in the time domain for a single unit symbol: A unit symbol sequence $\Re\alpha[n]$ (first row) is upsampled by two (second row) to yield the samples $\Re\alpha^\prime[m]$. The digital \gls{rrc} filter is applied to the samples $x^\prime[m]$ determining the pulse-shape (third row). We can observe the diminishing ripple for the unit response of the filter to reduce the bandwidth. Finally, the pulse-shape $x^\prime[m]$ is converted to an analog signal and filtered by a \gls{lp} filter for smoothing and anti-aliasing.}\label{fig:pulse_shaping_unit_time}
+	\caption{Pulse-shaping steps in the time domain for a single unit symbol: A unit symbol sequence $\Re\alpha[n]$ (first row) is upsampled by two (second row) to yield the samples $\Re\alpha^\prime[m]$. The digital \gls{rrc} filter is applied to the samples $x^\prime[m]$ determining the pulse-shape (third row). We can observe the diminishing ripple for the unit response of the filter to reduce the bandwidth. Finally, the pulse-shape $x^\prime[m]$ is converted to an analog signal and filtered by a \gls{lp} filter for smoothing and anti-aliasing.}\label{fig:baseband_construction_unit_pulse}
 \end{figure}
+\Cref{fig:baseband_construction_unit_pulse}
 
 \begin{equation}
 	x[m]
@@ -125,7 +99,7 @@ The digital signal in \cref{eq:complex_digital_signal} requires an infinite band
 	\caption{Pulse-shaping steps in the frequency domain (showing the relative \gls{psd}) for unit symbol (orange) and random symbols from a complex uniform distribution over the interval $[-1,+1]$ (blue). The unit response symbols have a perfectly flat power spectrum (first row). The random symbols have an approximately flat power spectrum (first row). Both symbol spectra (first row) occupy the Nyquist bandwidth. Upsampling doubles the Nyquist bandwidth by aliasing the spectrum (second row). Pulse-shaping acts as a bandpass by strongly suppressing the frequency components outside the original Nyquist bandwidth. Conversion to an analog signal (fourth row) is equivalent to infinite upsampling or adding infinitely many aliases to occupy the complete frequency spectrum. Finally, filtering with a \gls{lp} removes aliases.}\label{fig:pulse_shaping_freq}
 \end{figure}
 
-\subsection{Up-conversion}
+\subsection{Up-conversion of the baseband to a passband signal}
 
 \begin{equation}
 	\alpha(t)
