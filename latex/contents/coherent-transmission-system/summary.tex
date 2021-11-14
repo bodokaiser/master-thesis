@@ -6,3 +6,20 @@
 	\includegraphics{figures/circuitikz/transmitter-signal-processing}
 	\caption{Block diagram of the transmitter's signal-processing. The real and imaginary part of a complex digital signal $\alpha[n]$ is upsampled, pulse-shaped and converted to anti-aliased analog signals, $x(t)$ and $p(t)$. The analog signals are individually mixed with a phase-shifted \gls{lo} with carrier frequency $\omega_c$ and then added to yield a complex signal $\alpha(t)$.}\label{fig:transmitter_signal_processing}
 \end{figure}
+
+
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{lccccc}
+    \toprule
+    Receiver design & Homodyne (single) & Homodyne (dual) & Heterodyne \\
+    \midrule
+    Balanced detectors & \num{1} & \num{2} & \num{1} \\
+    Quadratures & \num{1} & \num{2} & \num{2} \\
+    Optical complexity & Low & High & Low \\
+    Signal bandwidth & High & High & Low \\
+    \gls{lo} synchronization & Frequency and phase & Frequency & Bandwidth \\
+    \bottomrule
+  \end{tabular}
+  \caption{Comparison of receiver implementations according to Ref.~\cite{Brunner2017}: The single quadrature homodyne detection offers low optical complexity and high bandwidth but only resolves one of two quadratures and required frequency and phase synchronization of the \gls{lo}. The dual quadrature homodyne detection resolves both quadratures with high bandwidth but requires two balanced detectors increasing the optical complexity and phase synchronization of the \gls{lo}. The heterodyne detection schemes resolves both quadratures with low complexity and no requirements on \gls{lo} synchronization at the cost of signal bandwidth.}\label{tab:receivers}
+\end{table}

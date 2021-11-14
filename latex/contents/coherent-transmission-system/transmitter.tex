@@ -38,7 +38,7 @@ The software-defined \gls{dsp} constructs the bandwidth-optimized digital signal
 The \gls{dac} stage converts the digital signals, $x[m]$ and $p[m]$, to bandwidth-limited analog signals $x(t)$ and $p(t)$.
 Finally, the analog signals are modulated onto an optical carrier yielding a coherent state $\ket{\alpha(t)}$ which meets the bandwidth requirements of the channel.
 
-\subsection{Construction of the baseband signal}
+\subsection{Symbol encoding in baseband}
 
 To construct a bandwidth-optimized baseband signal, encoding the complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$, we first remark that the symbol sequence itself has no notion of time.
 In contrast, a digital (time-discrete) signal, consisting of discrete samples, includes a time reference, the sample period $T_s$, denoting the temporal distance between two consecutive samples.
@@ -89,7 +89,7 @@ In the frequency domain, it is very clear to see how upsampling widens the spect
 We also see how the pulse-shaping filter shapes the upsampled spectrum, and the \gls{lp} filter suppresses aliases.
 
 \FloatBarrier
-\subsection{Up-conversion of the baseband to a passband signal}
+\subsection{Up-conversion of baseband to passband}
 
 We previously constructed the bandwidth-optimized baseband signals $x(t)$ and $p(t)$ encoding the real respective imaginary part of a complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$.
 We now want to shift the spectrum of the baseband signals into the optical domain, i.e., transform the baseband to a passband signal centered around some optical carrier frequency $\omega_c$.
@@ -166,9 +166,3 @@ Indeed, if we assume a single-mode laser as an input state, we find that the \gl
 	\ket{\alpha(t)e^{-i\omega_c t}}
 \end{equation}
 exactly as we found for the up-conversion.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/pgfplots/tx-psd}
-	\caption{Transmit spectrum.}\label{fig:transmit_spectrum}
-\end{figure}

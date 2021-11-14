@@ -736,42 +736,6 @@ where we defined the positive and negative frequency parts to be
 \end{align}
 In the literature, we find different conventions concerning the integration measure, the sign of the complex exponentials, and the complex conjugation of the of polarization basis vectors in \cref{eq:maxwell_positive_operator,eq:maxwell_negative_operator} originating from different conventions for the Fourier transform.
 For example, Refs.~\cite{Peskin1995,Greiner2013} use $\hat{a}_\lambda(\vb{p})e^{-i\omega(\vb{p})t}$ while Refs.~\cite{Srednicki2007,Weinberg1995} use $\hat{a}_\lambda(\vb{p})e^{+i\omega(\vb{p})t}$.
-The dimensionless limit of the Maxwell field operator, $\omega(\vb{p})\to1$, yields the quadrature operator
-\begin{equation}
-	\hat{X}(t,\vb{x})
-	=
-	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
-	\frac{1}{\sqrt{2}}
-	\left\{
-		\hat{a}_\lambda(\vb{p})
-		\vu{e}_\lambda(\vb{p})
-		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
-		+
-		\hat{a}_\lambda^\dagger(\vb{p})
-		\vu{e}_\lambda(\vb{p})^*
-		e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
-	\right\}
-	.
-\end{equation}
-Application of the phase-rotation operator~\cite{Leonhardt2010,Vogel2006} yields the generalized quadrature operator
-\begin{equation}
-	\hat{X}(t,\vb{x};\vartheta)
-	=
-	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
-	\frac{1}{\sqrt{2}}
-	\left\{
-		\hat{a}_\lambda(\vb{p})
-		\vu{e}_\lambda(\vb{p})
-		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}-\vartheta}
-		+
-		\hat{a}_\lambda^\dagger(\vb{p})
-		\vu{e}_\lambda(\vb{p})^*
-		e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}+\vartheta}
-	\right\}
-	.
-\end{equation}
 Analog to the Maxwell field operator, we decompose the electric field operator into a positive and negative frequency part
 \begin{equation}
 	\vu{E}(t,\vb{x})

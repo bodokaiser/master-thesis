@@ -1,14 +1,15 @@
 \section{Receiver}
 
-The receiver extracts a symbol sequence $\beta[n]$ from the received coherent state $\ket{\beta(t)}$.
+% what is the task of the receiver
 
-In contrast to the transmitter, the receiver is more complex:
-On the one hand, the receiver must orient itself towards the sender.
-In this sense, the sender has the freedom to define specific parameters that the recipient does not have.
-In addition, the receiver needs to compensate for signal deterioration.
-The increased complexity of the receiver leaves room for a variety of receiver designs.
-For an overview of practical, coherent receiver designs, see Ref. 1~\cite{Kikuchi2016}.
-Specific to \gls{cvqkd}, Ref.~\cite{Brunner2017} compares the single and dual quadrature intradyne and software-defined heterodyne receivers, see \Cref{tab:receivers}.
+% practical received spectrum, receiver as spectrum analyzer
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/pgfplots/rx-psd}
+	\caption{Power spectral density of a practical transmitter's baseband signal. At \SI{100}{\mega\hertz} a strong }\label{fig:transmit_spectrum}
+\end{figure}
+
+
 \begin{table}[htb]
   \centering
   \begin{tabular}{lccccc}
@@ -24,73 +25,55 @@ Specific to \gls{cvqkd}, Ref.~\cite{Brunner2017} compares the single and dual qu
   \end{tabular}
   \caption{Comparison of receiver implementations according to Ref.~\cite{Brunner2017}: The single quadrature homodyne detection offers low optical complexity and high bandwidth but only resolves one of two quadratures and required frequency and phase synchronization of the \gls{lo}. The dual quadrature homodyne detection resolves both quadratures with high bandwidth but requires two balanced detectors increasing the optical complexity and phase synchronization of the \gls{lo}. The heterodyne detection schemes resolves both quadratures with low complexity and no requirements on \gls{lo} synchronization at the cost of signal bandwidth.}\label{tab:receivers}
 \end{table}
-The single and dual quadrature homodyne receivers mix the received signal with the receiver \gls{lo} tuned to the carrier frequency whereas the heterodyne receivers tune the \gls{lo} to have an offset to the carrier frequency of $\omega_i$, the intermediate frequency.
-The homodyne detection schemes are conceptional simpler as the detected signal directly corresponds to the transmitted baseband.
-However, homodyne receivers require precise calibration of the \gls{lo} which turns out to be practically challenging.
-In addition to the problem of \gls{lo} synchronization, is the optical simple homodyne design only able to resolve one quadrature.
-The dual quadrature homodyne receiver requires twice the detectors to resolve both signal quadratures at the same time.
-If we are willing to give up bandwidth - which is reasonable for \gls{cvqkd} - the heterodyne receiver moves the problem of synchronization to the digital domain and lets us resolve both quadratures while keeping the complexity low.
-Furthermore, having most of the signal-processing to be software-defined makes protocol updates using the same hardware possible.
-Finally, syncronization (of the \gls{lo}s) turns out to be more challenging using the homodyne receivers as these are highly sensitive to phase noise.
-We therefore follow the conclusion of Ref.~\cite{Brunner2017} and limit the discussions of the receiver to that of a software-defined heterodyne kind.
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/tikz/receiver}
-	\caption{Block diagram of a software-defined heterodyne receiver's signal flow: \gls{osp} is performed on a received coherent state $\ket{\beta(t)}$ yielding two coherent states $\ket{\beta_1(t)},\ket{\beta_2(t)}$ which are converted to two photocurrents $i_1(t),i_2(t)$ during photodetection. \gls{asp} transforms the photocurrents to the signal $\beta^\prime(t)$ which is sampled by a \gls{adc}. Finally, the symbols $\beta[n]$ are extracted from the samples $\beta^\prime[m]$ using \gls{dsp}.}\label{fig:receiver_signal_flow}
-\end{figure}
-\Cref{fig:receiver_signal_flow} illustrates the signal flow of a software-defined heterodyne receiver.
-The \gls{osp} maps from the received coherent state $\ket{\beta(t)}$ to two coherent states $\ket{\beta_1(t)}$ and $\ket{\beta_2(t)}$ which represents the output of the mixing of $\ket{\beta(t)}$ with the \gls{lo}.
-The signal encoded in the two coherent states $\ket{\beta_1(t)}$ and $\ket{\beta_2(t)}$ is passed onto two photocurrents $i_1(t),i_2(t)$ in the process of photodetection.
-With the \gls{asp}, we convert the two photocurrents to a single analog signal $\beta^\prime(t)$ which we convert to a digital signal. $\beta^\prime[m]$ using a \gls{adc}.
-Finally, we employ \gls{dsp} to extract the symbols $\beta[n]$ from the digital signal $\beta^\prime[m]$.
 
-In the following, we divide the discussion of the software-defined heterodyne receiver into two stages:
-The conversion of the optical to the digital signal and the symbol extraction.
-For both these stages we will assume the receiver to be perfectly in sync with the transmitter to focus on the essential signal-processing.
-In a last part, we give a rough overview of syncronization challenges and possible mitigations.
+\subsection{Down-conversion of passband to baseband}
 
-\subsection{Down-conversion}
+% figure down-conversion
 
-The optical-to-digital conversion in the software-defined heterodyne receiver describes the conversion of a received coherent state $\ket{\beta(t)}$ to the digital samples $\beta^\prime[m]$.
-In the optical domain, we superimpose the received optical signal with a \gls{lo} in an optical coupler or beam splitter and monitor the two outputs using two photodiodes as depicted in \Cref{fig:fiber_optical_heterodyne_detector}.
-\begin{figure}[htb]
-	\centering
-	\caption{Fiber-optical balanced detector detector: First, the fiber output passes through an optical isolator to limit signal loss through back scattering. Second, the isolated optical signal is coupled with a \gls{lo} laser in a balanced optical coupler. Third, the coupler outputs are detected by  the balanced photodetector comprising the photodiodes PD1 and PD2.}\label{fig:fiber_optical_balanced_detector}
-\end{figure}
-The first photodiode PD1 outputs a photocurrent $i_1(t)$ while the second photodiode PD2 outputs a photocurrent $i_2(t)$.
-The two photodiodes form together a balanced detector if one subtracts the photocurrents from another with the balanced detection signal being $\Delta i(t)=i_1(t)-i_2(t)$.
-Using a \gls{tia}, the balanced current signal $\Delta i(t)$ is amplified and converted to a voltage signal which after \gls{lp} filtering we reference as $\beta^\prime(t)e^{-i\omega_i t}$.
-We explicitly write out the intermediate frequency $\omega_i$ which is the difference between the transmitter's and receivers \gls{lo} such that $\beta^\prime(t)$ denotes the signal baseband.
-The \gls{lp} is important to reduce noise from the \gls{tia} and to remove high-frequency components which cannot be resolved by the subsequent \gls{adc}.
-Finally, the \gls{adc} outputs the samples $\beta^\prime(t)e^{-i\omega_it}$.
-It is essential that the bandwidth of the \gls{adc} can fully resolve the intermediate frequency $\omega_i$ and the baseband bandwidth.
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/circuitikz/receiver-asp}
-	\caption{Block diagram of the receiver's \gls{asp} and analog-to-digital conversion: The photodetectors output the photocurrents $i_1(t),i_2(t)$ and the balanced signal $\Delta i(t)=i_1(t)-i_2(t)$ is formed. A \gls{tia} converts the balanced current signal $\Delta i(t)$ a voltage signal which is filtered by a \gls{lp} filter to remove high-frequency noise from the \gls{tia} and reduce the bandwidth for the \gls{adc}. A \gls{adc} converts the filtered voltage signal $\beta^\prime(t)e^{-i\omega_it}$ to the digital samples $\beta^\prime[m]e^{-i\omega_it}$ completing the analog-to-digital conversion.}
-\end{figure}
-So far, we described the conversion from the baseband signal of the received coherent state from the optical over the analog to the digital domain for the software-defined heterodyne receiver.
-By mixing the input signal with an \gls{lo} with offset $\omega_i>$ compared to the carrier frequency, we can move the quadrature information into the frequency domain while utilizing only a single balanced detector, keeping the electro-optical complexity low.
+% down-conversion equivalent to balanced detection
+
+% equivalence of balanced detection signal with expectation value of quadrature operator
+Assuming the \gls{lo} field to be perfectly monochromatic, i.e.,
+\begin{equation}
+	\alpha_l(t)
+	=
+	\abs{\alpha_l}
+	e^{+i\omega_lt+i\vartheta}
+	,
+\end{equation}
+we can write the detected signal
+\begin{equation}
+	\alpha_s(t)
+	\alpha_l^*(t)
+	+
+	\alpha_s^*(t)
+	\alpha_l(t)
+	=
+	\abs{\alpha_l}
+	\alpha_s(t)
+	e^{+i\omega_l t}
+	+
+	\alpha_s^*(t)
+	\alpha_l(t)	
+\end{equation}
 
 \FloatBarrier
-\subsection{Symbol recovery}
+\subsection{Symbol decoding from baseband}
 
-Assuming perfect synchronization between the transmitter and the receiver, we are left to remove the intermediate frequency from the digital baseband, complete the pulse-shaping by applying the second \gls{rrc}, and perform downsampling to recover the symbols, see \Cref{fig:receiver_dsp}.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/receiver-dsp}
-	\caption{Block diagram of the receiver's \gls{dsp}: First, the intermediate frequency $\omega_i$ is removed from the samples $\beta^\prime[m]e^{-i\omega_it}$ by multiplying the time-domain samples with $e^{+i\omega_lt}$. Second, the samples $\beta^\prime[m]$ are downsampled to be compatible with the \gls{rrc} (matched) filter coefficients of the transmitter. Third, the output of the matched filter $\beta^\prime[l]$ is downsampled to reveal the symbols $\beta[n]$.}\label{fig:receiver_dsp}
+	\caption{foo}
 \end{figure}
-In the frequency domain, removing the intermediate frequency shifts recenters the spectrum, see the transition from the first to the second row in \Cref{fig:receiver_frequency}.
-Applying the second \gls{rrc} filter increases the steepness at the band edges (third row) and downsampling recovers the original spectrum of the samples (last row) in \Cref{fig:receiver_frequency}.
+
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/rx-frequency}
-	\caption{Frequency domain of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The spectrum of the \gls{adc} samples $\beta^\prime[m]e^{-i\omega_it}$ (first row) has a frequency offset equal to the intermediate frequency $\omega_i$ (first row). Down-conversion centers the spectrum (second row) by removing the intermediate frequency. Downsampling and applying the matched \gls{rrc} filter increases the steepness of the spectrum (third row). Finally, downsampling removes the steep band edges (last row) and reveals the symbols $\beta[n]$.}\label{fig:receiver_frequency}
+	\caption{foo}
 \end{figure}
-\Cref{fig:receiver_time} presents the same \gls{dsp} steps in the time domain applied to the samples.
+
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/rx-rand-time}
-	\caption{Time domain of the receiver's \gls{dsp} for the complex random symbol sequence discussed for the transmitter: The samples from the \gls{adc} $\beta^\prime[m]e^{-i\omega_it}$ (first row) are multiplied by the complex exponential $e^{+i\omega_it}$ to remove the intermediate frequency (second row). Then, the samples without the intermediate frequency $\beta^\prime[m]$ are downsampled for the matched \gls{rrc} filter (third row). Finally, the matched filtered samples $\beta[m]$ are downsampled to reveal the receiver's symbol sequence $\beta[n]$ (last row).}\label{fig:receiver_time}
+	\caption{foo}
 \end{figure}
