@@ -1,0 +1,34 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		line width=1pt,
+		node distance=20pt,
+	]
+		\node (in) {$s(t)$};
+		\node (mixa) [mixer, right=of in] {};
+		\node (low) [lowpassshape, right=of mixa] {};
+		\node (osca) [oscillator, below=of mixa] {};
+		\node (adc) [adcshape, right=of low] {};
+		\node (mixd) [mixer, right=of adc] {};
+		\node (oscd) [oscillator, below=of mixd] {};
+		\node (down1) [twoportshape, t={$\downarrow l$}, right=of mixd] {};
+		\node (rrc) [twoportshape, t={RRC}, right=of down1] {};
+		\node (down2) [twoportshape, t={$\downarrow k$}, right=of rrc] {};
+		\node (out) [right=of down2] {$\alpha[n]$};
+		
+		\draw[-Latex] (in) -- (mixa.west);
+		\draw[-Latex] (mixa.east) -- (low.west);
+		\draw[-Latex] (low.east) -- (adc.west);
+		\draw[-Latex] (adc.east) -- (mixd.west);
+		\draw[-Latex] (mixd.east) -- (down1.west);
+		\draw[-Latex] (down1.east) -- (rrc.west);
+		\draw[-Latex] (rrc.east) -- (down2.west);
+		\draw[-Latex] (down2.east) -- (out.west);
+		
+		\draw[-Latex] (osca.north) -- (mixa.south);
+		\draw[-Latex] (oscd.north) -- (mixd.south);
+	\end{tikzpicture}
+\end{document}

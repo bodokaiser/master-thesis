@@ -1,0 +1,47 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		line width=1pt,
+		node distance=20pt,
+	]
+		\node (in) {$\alpha[n]$};
+		\node (up) [twoportshape, right=of in, t={$\uparrow k$}] {};
+		\node (rrc) [twoportshape, right=of up, t=RRC] {};
+		\node (real) [twoportsplitshape, circuitikz/t1={$\Re$}, circuitikz/t2={$\Im$}, right=of rrc] {};
+		\node (noop) [right=of real] {};
+
+		\node (dacx) [dacshape, above=of noop] {};
+		\node (lowx) [lowpassshape, right=of dacx] {};
+		\node (mixx) [mixer, right=of lowx] {};
+		
+		\node (dacp) [dacshape, below=of noop] {};
+		\node (lowp) [lowpassshape, right=of dacp] {};
+		\node (mixp) [mixer, right=of lowp] {};
+		
+		\node (split) [twoportsplitshape, circuitikz/t1={\SI{0}{\degree}}, circuitikz/t2={\SI{90}{\degree}}] at (mixx.south|-real.east) {};
+		\node (osc) [oscillator, right=of split] {};
+		\node (add) [adder, right=of osc] {};
+		\node (out) [right=of add] {$s(t)$};
+		
+		\draw[-Latex] (in) -- (up);
+		\draw[-Latex] (up) -- (rrc);
+		\draw[-Latex] (rrc) -- (real);
+		\draw[-Latex] (osc) -- (split);
+		\draw[-Latex] (add) -- (out);
+
+		\draw[-Latex] (real.north) -- (real.north|-dacx.west) -- (dacx.west);
+		\draw[-Latex] (dacx) -- (lowx);
+		\draw[-Latex] (lowx) -- (mixx.west);
+		\draw[Latex-] (mixx.south) -- (split.north);
+		\draw[-Latex] (mixx.east) -- (mixx.east-|add.north) -- (add.north);
+
+		\draw[-Latex] (real.south) -- (real.south|-dacp.west) -- (dacp.west);
+		\draw[-Latex] (dacp) -- (lowp);
+		\draw[-Latex] (lowp) -- (mixp.west);
+		\draw[Latex-] (mixp.north) -- (split.south);
+		\draw[-Latex] (mixp.east) -- (mixp.east-|add.south) -- (add.south);
+	\end{tikzpicture}
+\end{document}

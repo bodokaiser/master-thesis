@@ -1,0 +1,23 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		line width=1pt,
+		node distance=40pt,
+		block/.style={draw, very thick, fill=white, minimum height=36pt, minimum width=48pt},
+		arrow/.style={-Latex},
+	]
+		\coordinate (in);
+		\node (demod) [block, right=of in] {DEMOD};
+		\node (adc) [block, right=of demod] {ADC};
+		\node (dsp) [block, right=of adc] {DSP};
+		\coordinate[right=of dsp] (out);
+		
+		\draw[arrow] (in) -- (demod) node[midway, above]{$\ket{\beta(t)}$};
+		\draw[arrow] (demod) -- (adc) node[midway, above]{$\beta^\prime(t)$};
+		\draw[arrow] (adc) -- (dsp) node[midway, above]{$\beta^\prime[m]$};
+		\draw[arrow] (dsp) -- (out) node[midway, above]{$\beta[n]$};
+	\end{tikzpicture}
+\end{document}

@@ -2,20 +2,28 @@
 
 \input{preamble}
 
-\usepackage{siunitx}
-
 \begin{document}
-	\begin{tikzpicture}[line width=1pt]
-		\draw (2.5,0) node[left]{$x(t)$} (4,0)
-            node[mixer](mixer){};
-        \draw (2.5,0) to[short] (mixer.west) node[inputarrow, anchor=tip]{};
-        \draw (2.5,2) node[oscillator, label={left:$\sin(\omega_ct)$}](osc){} to[short] (mixer.west |- osc) node[inputarrow]{} node[twoportsplitshape, anchor=west, circuitikz/t1=$\SI{0}{\degree}$, circuitikz/t2=$\SI{90}{\degree}$](splitter){};
-        \draw (splitter.south) to[short] (mixer.north) node[inputarrow, rotate=-90]{};
-        \draw (2.5,4) node[left]{$p(t)$} to[short] (0,4-|mixer.west) node[inputarrow]{} node[mixer, anchor=west](mixer2){};
-        \draw (splitter.north) to[short] (mixer2.south) node[inputarrow, rotate=90]{};
-        \draw (splitter) ++(3,0) node[adder](adder){};
-        \draw (mixer.east) to[short] (mixer-|adder) to[short] (adder.south) node[inputarrow, rotate=90]{};
-        \draw (mixer2.east) to[short] (mixer2-|adder) to[short] (adder.north) node[inputarrow, rotate=-90]{};
-        \draw (adder.east) to[short] ++(1,0) node[inputarrow]{} node[right]{$\operatorname{Re}\left\{\alpha(t)e^{-i\omega_ct}\right\}$};
+	\begin{tikzpicture}[
+		line width=1pt,
+		node distance=20pt,
+	]
+		\node (div) [twoportsplitshape, circuitikz/t1={\SI{0}{\degree}}, circuitikz/t2={\SI{90}{\degree}}] {};
+		\node (osc) [oscillator, right=of div] {};
+		\node (add) [adder, right=of osc] {};
+		\node (mixx) [mixer, above=of div] {};
+		\node (mixp) [mixer, below=of div] {};
+		
+		\node (inx) [left=of mixx] {$x(t)$};
+		\node (inp) [left=of mixp] {$p(t)$};
+		\node (out) [right=of add] {$s(t)$};
+		
+		\draw[-Latex] (inx) -- (mixx.west);
+		\draw[-Latex] (inp) -- (mixp.west);
+		\draw[-Latex] (osc.west) -- (div.east);
+		\draw[-Latex] (div.north) -- (mixx.south);
+		\draw[-Latex] (div.south) -- (mixp.north);
+		\draw[-Latex] (mixx.east) -- (mixx.east-|add.north) -- (add.north);
+		\draw[-Latex] (mixp.east) -- (mixp.east-|add.south) -- (add.south);
+		\draw[-Latex] (add) -- (out);
 	\end{tikzpicture}
 \end{document}

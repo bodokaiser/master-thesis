@@ -1,0 +1,18 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[line width=1pt]
+		\node (in) {$s(t)$};
+		\node (mix) [mixer, right=of in] {};
+		\node (low) [lowpassshape, right=of mix] {};
+		\node (osc) [oscillator, below=of mix] {};
+		\node (out) [right=of low] {$s^\prime(t)$};
+		
+		\draw[-Latex] (in) -- (mix.west);
+		\draw[-Latex] (osc.north) -- (mix.south);
+		\draw[-Latex] (mix.east) -- (low.west);
+		\draw[-Latex] (low.east) -- (out);
+	\end{tikzpicture}
+\end{document}

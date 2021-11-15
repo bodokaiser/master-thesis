@@ -3,15 +3,30 @@
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/circuitikz/transmitter-signal-processing}
+	\includegraphics{figures/circuitikz/transmitter}
 	\caption{Block diagram of the transmitter's signal-processing. The real and imaginary part of a complex digital signal $\alpha[n]$ is upsampled, pulse-shaped and converted to anti-aliased analog signals, $x(t)$ and $p(t)$. The analog signals are individually mixed with a phase-shifted \gls{lo} with carrier frequency $\omega_c$ and then added to yield a complex signal $\alpha(t)$.}\label{fig:transmitter_signal_processing}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/circuitikz/receiver-signal-processing}
+	\includegraphics{figures/circuitikz/receiver}
 	\caption{Block diagram of the receiver's signal-processing.}\label{fig:receiver_signal_processing}
 \end{figure}
+
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{lcccc}
+    \toprule
+    Receiver design & Homodyne & Heterodyne \\
+    \midrule
+    Quadratures & \num{1} & \num{2} \\
+    Optical complexity & Low & Low \\
+    Signal bandwidth & High & Low \\
+    \gls{lo} synchronization & Frequency and phase & Bandwidth \\
+    \bottomrule
+  \end{tabular}
+  \caption{Comparison of single quadrature down-conversion}
+\end{table}
 
 \begin{table}[htb]
   \centering

@@ -5,10 +5,10 @@
 \begin{document}
 	\begin{tikzpicture}[
 		line width=1pt,
-		node distance=1.4cm,
+		node distance=40pt,
 	]
 		\coordinate (in);
-		\node (up) [twoportshape, right=1.2cm of in, t=$\uparrow k$]{};
+		\node (up) [twoportshape, right=of in, t=$\uparrow k$]{};
 		\node (rrc) [twoportshape, right=of up, t=RRC] {};
 		\node (dac) [dacshape, right=of rrc] {};
 		\node (lp) [lowpassshape, right=of dac] {};

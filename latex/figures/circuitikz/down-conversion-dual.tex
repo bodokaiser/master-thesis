@@ -1,0 +1,31 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[line width=1pt]
+		\node (in) {$s(t)$};
+		\node (div) [twoportsplitshape, right=of in, circuitikz/t1={\ \footnotesize\SI{50}{\percent}}, circuitikz/t2={\!\footnotesize\SI{50}{\percent}}] {};
+		\node (split) [twoportsplitshape, circuitikz/t1={\SI{0}{\degree}}, circuitikz/t2={\SI{90}{\degree}}, right=of div] {};
+		\node (osc) [oscillator, right=of split] {};
+		\node (mixx) [mixer, above=of split] {};
+		\node (mixp) [mixer, below=of split] {};
+		\node (lowx) [lowpassshape, right=of mixx] {};
+		\node (lowp) [lowpassshape, right=of mixp] {};
+		\node (outx) [right=of lowx] {$u(t)$};
+		\node (outp) [right=of lowp] {$v(t)$};
+		
+		\draw[-Latex] (in) -- (div);
+		\draw[-Latex] (osc.west) -- (split.east);
+		
+		\draw[-Latex] (div.north) -- (div.north|-mixx.west) -- (mixx.west);
+		\draw[-Latex] (split.north) -- (mixx.south);
+		\draw[-Latex] (mixx.east) -- (lowx.west);
+		\draw[-Latex] (lowx.east) -- (outx);
+		
+		\draw[-Latex] (div.south) -- (div.south|-mixp.west) -- (mixp.west);
+		\draw[-Latex] (split.south) -- (mixp.north);
+		\draw[-Latex] (mixp.east) -- (lowp.west);
+		\draw[-Latex] (lowp.east) -- (outp);
+	\end{tikzpicture}
+\end{document}

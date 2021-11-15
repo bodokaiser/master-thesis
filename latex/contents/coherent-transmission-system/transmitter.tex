@@ -45,10 +45,10 @@ In contrast, a digital (time-discrete) signal, consisting of discrete samples, i
 By defining the digital signal with samples equal to the symbols, $\alpha[n]=\alpha_n$, and introducing the symbol period $T_s$ as sample period, we find ourselves with the complete \gls{dsp} toolbox at our disposal.\footnote{Even if the \gls{dsp} itself does not work explicitly with the time reference $T_s$, we need time to give a meaningful interpretation of the signal between the steps.}
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/circuitikz/baseband-construction}
-	\caption{Block diagram of the signal-processing for baseband construction. The digital signal $x[km]$ is upsampled by a factor $k$ to $x^\prime[m]$ and pulse-shaped by a \gls{rrc} filter to yield $x^{\prime\prime}[m]$. A \gls{dac} converts the pulse-shaped signal $x^{\prime\prime}[m]$ to the analog signal $x^\prime(t)$. Finally, the analog signal $x^\prime(t)$ is \gls{lp} filtered to yield the analog anti-aliased signal $x(t)$.}\label{fig:baseband_construction}
+	\includegraphics{figures/circuitikz/symbol-encoding}
+	\caption{Block diagram of the signal-processing for baseband construction. The digital signal $x[km]$ is upsampled by a factor $k$ to $x^\prime[m]$ and pulse-shaped by a \gls{rrc} filter to yield $x^{\prime\prime}[m]$. A \gls{dac} converts the pulse-shaped signal $x^{\prime\prime}[m]$ to the analog signal $x^\prime(t)$. Finally, the analog signal $x^\prime(t)$ is \gls{lp} filtered to yield the analog anti-aliased signal $x(t)$.}\label{fig:symbol_encoding}
 \end{figure}
-\Cref{fig:baseband_construction} summarizes the essential \gls{dsp} steps including analog conversion of a real-valued digital signal $x[km]$ to construct a bandwidth-optimized analog baseband signal $x(t)$.\footnote{The baseband construction generalizes to a complex digital signal by applying the real-valued baseband construction separately to the real and imaginary part.}
+\Cref{fig:symbol_encoding} summarizes the essential \gls{dsp} steps including analog conversion of a real-valued digital signal $x[km]$ to construct a bandwidth-optimized analog baseband signal $x(t)$.\footnote{The baseband construction generalizes to a complex digital signal by applying the real-valued baseband construction separately to the real and imaginary part.}
 The digital signal $x[km]$, containing the symbols, is first upsampled by an upsampling factor of $k$, adding $k$ zero-valued samples in between the original samples.
 The pulse-shaping of the \gls{rrc} filter interpolates between the non-zero samples, the symbols, to reduce the effective signal bandwidth.
 Finally, a \gls{dac} converts the digital signal $x^{\prime\prime}[m]$ to the analog signal $x^\prime(t)$ through infinite upsampling.
@@ -89,7 +89,7 @@ In the frequency domain, it is very clear to see how upsampling widens the spect
 We also see how the pulse-shaping filter shapes the upsampled spectrum, and the \gls{lp} filter suppresses aliases.
 
 \FloatBarrier
-\subsection{Complex up-conversion}
+\subsection{Dual quadrature up-conversion}
 
 We previously constructed the bandwidth-optimized baseband signals $x(t)$ and $p(t)$ encoding the real respective imaginary part of a complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$.
 We now want to shift the spectrum of the baseband signals into the optical domain, i.e., transform the baseband to a passband signal centered around some optical carrier frequency $\omega_c$.

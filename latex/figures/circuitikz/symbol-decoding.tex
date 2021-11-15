@@ -1,0 +1,30 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		line width=1pt,
+		node distance=40pt,
+	]
+		\coordinate (in);
+		\node (low) [lowpassshape, right=of in] {};
+		\node (adc) [adcshape, right=of low] {};
+		\node (mix) [mixer, right=of adc] {};
+		\node (osc) [oscillator, below=20pt of mix] {};
+		\node (down1) [twoportshape, t={$\downarrow l$}, right=of mix] {};
+		\node (rrc) [twoportshape, t={RRC}, right=of down1] {};
+		\node (down2) [twoportshape, t={$\downarrow k$}, right=of rrc] {};
+		\coordinate[right=of down2] (out);
+		
+		\draw[-Latex] (osc.north) -- (mix.south);
+		
+		\draw[-Latex] (in) -- (low) node[midway, above] {$x^\prime(t)$};
+		\draw[-Latex] (low) -- (adc) node[midway, above] {$x(t)$};
+		\draw[-Latex] (adc) -- (mix) node[midway, above] {$x^{\prime\prime\prime}[m/(kl)]$};
+		\draw[-Latex] (mix) -- (down1) node[midway, above] {f};
+		\draw[-Latex] (down1) -- (rrc) node[midway, above] {$x^{\prime\prime}[m/k]$};
+		\draw[-Latex] (rrc) -- (down2) node[midway, above] {$x^{\prime}[m]$};
+		\draw[-Latex] (down2) -- (out) node[midway, above] {$x[m]$};
+	\end{tikzpicture}
+\end{document}
