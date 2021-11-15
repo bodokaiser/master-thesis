@@ -8,7 +8,7 @@
 		\node (mix) [mixer, right=of in] {};
 		\node (low) [lowpassshape, right=of mix] {};
 		\node (osc) [oscillator, below=of mix] {};
-		\node (out) [right=of low] {$s^\prime(t)$};
+		\node (out) [right=of low] {$u(t)$};
 		
 		\draw[-Latex] (in) -- (mix.west);
 		\draw[-Latex] (osc.north) -- (mix.south);

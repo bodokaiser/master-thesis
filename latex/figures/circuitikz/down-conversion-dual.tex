@@ -12,8 +12,8 @@
 		\node (mixp) [mixer, below=of split] {};
 		\node (lowx) [lowpassshape, right=of mixx] {};
 		\node (lowp) [lowpassshape, right=of mixp] {};
-		\node (outx) [right=of lowx] {$u(t)$};
-		\node (outp) [right=of lowp] {$v(t)$};
+		\node (outx) [right=of lowx] {$v(t)$};
+		\node (outp) [right=of lowp] {$w(t)$};
 		
 		\draw[-Latex] (in) -- (div);
 		\draw[-Latex] (osc.west) -- (split.east);

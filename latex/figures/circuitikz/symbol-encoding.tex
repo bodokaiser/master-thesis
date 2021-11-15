@@ -5,7 +5,7 @@
 \begin{document}
 	\begin{tikzpicture}[
 		line width=1pt,
-		node distance=40pt,
+		node distance=30pt,
 	]
 		\coordinate (in);
 		\node (up) [twoportshape, right=of in, t=$\uparrow k$]{};
@@ -15,9 +15,9 @@
 		\coordinate[right=of lp] (out);
 		
 		\draw[-Latex] (in) -- (up) node[midway, above] {$x[km]$};
-		\draw[-Latex] (up) -- (rrc) node[midway, above] {$x^\prime[m]$};
-		\draw[-Latex] (rrc) -- (dac) node[midway, above] {$x^{\prime\prime}[m]$};
-		\draw[-Latex] (dac) -- (lp) node[midway, above] {$x^\prime(t)$};
+		\draw[-Latex] (up) -- (rrc) node[midway, above] {$r[m]$};
+		\draw[-Latex] (rrc) -- (dac) node[midway, above] {$q[m]$};
+		\draw[-Latex] (dac) -- (lp) node[midway, above] {$q(t)$};
 		\draw[-Latex] (lp) -- (out) node[midway, above] {$x(t)$};
 	\end{tikzpicture}
 \end{document}

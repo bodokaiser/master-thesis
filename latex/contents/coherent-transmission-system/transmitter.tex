@@ -46,22 +46,23 @@ By defining the digital signal with samples equal to the symbols, $\alpha[n]=\al
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/symbol-encoding}
-	\caption{Block diagram of the signal-processing for baseband construction. The digital signal $x[km]$ is upsampled by a factor $k$ to $x^\prime[m]$ and pulse-shaped by a \gls{rrc} filter to yield $x^{\prime\prime}[m]$. A \gls{dac} converts the pulse-shaped signal $x^{\prime\prime}[m]$ to the analog signal $x^\prime(t)$. Finally, the analog signal $x^\prime(t)$ is \gls{lp} filtered to yield the analog anti-aliased signal $x(t)$.}\label{fig:symbol_encoding}
+	\caption{Block diagram of the signal-processing for baseband construction. The digital signal $x[km]$ is upsampled by a factor $k$ to $r[m]$ and pulse-shaped by a \gls{rrc} filter to yield $q[m]$. A \gls{dac} converts the pulse-shaped signal $q[m]$ to the analog signal $q(t)$. Finally, the analog signal $q(t)$ is \gls{lp} filtered to yield the analog anti-aliased signal $x(t)$.}\label{fig:symbol_encoding}
 \end{figure}
 \Cref{fig:symbol_encoding} summarizes the essential \gls{dsp} steps including analog conversion of a real-valued digital signal $x[km]$ to construct a bandwidth-optimized analog baseband signal $x(t)$.\footnote{The baseband construction generalizes to a complex digital signal by applying the real-valued baseband construction separately to the real and imaginary part.}
 The digital signal $x[km]$, containing the symbols, is first upsampled by an upsampling factor of $k$, adding $k$ zero-valued samples in between the original samples.
 The pulse-shaping of the \gls{rrc} filter interpolates between the non-zero samples, the symbols, to reduce the effective signal bandwidth.
-Finally, a \gls{dac} converts the digital signal $x^{\prime\prime}[m]$ to the analog signal $x^\prime(t)$ through infinite upsampling.
-The analog signal $x^\prime(t)$ contains infinite aliases through the upsampling, which we remove by filtering $x^\prime(t)$ with a \gls{lp}, yielding the anti-aliased analog signal $x(t)$.
+Finally, an ideal \gls{dac} converts the digital signal $q[m]$ to the analog signal $q(t)$, equivalent to infinite upsampling.
+The analog signal $q(t)$ contains infinite aliases through the upsampling, which we remove by filtering $q(t)$ with a \gls{lp}, yielding the anti-aliased analog signal $x(t)$.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/pgfplots/tx-unit-time}
-	\caption{Baseband construction for a single unit symbol in the time domain. The symbol sequence $\{x_n\in\mathbb{R}\colon n\in I\}$ is represented by the digital signal $x[km]$ with sample period $T_s$ (first row). The digital signal $x[km]$ is upsampled to $x[m]$ by an upsampling factor of $k=2$ (second row). The upsampled signal $x[m]$ is pulse-shaped with a \gls{rrc} filter to yield $x^\prime[m]$ (third row). The pulse-shaped digital signal $x^\prime[m]$ is converted to the anti-aliased analog signal $x(t)$.}\label{fig:baseband_construction_unit_time}
+	\includegraphics{figures/pgfplots/symbol-encoding-time-unit}
+	\caption{Baseband construction for a single unit symbol in the time domain. The symbol sequence $\{x_n\in\mathbb{R}\colon n\in I\}$ is represented by the digital signal $x[km]$ with sample period $T_s$ (first row). The digital signal $x[km]$ is upsampled to $r[m]$ by an upsampling factor of $k=2$ (second row). The upsampled signal $r[m]$ is pulse-shaped with a \gls{rrc} filter to yield $q[m]$ (third row). The pulse-shaped digital signal $q[m]$ is converted to the anti-aliased analog signal $x(t)$.}\label{fig:baseband_construction_unit_time}
 \end{figure}
 \Cref{fig:baseband_construction_unit_time} illustrates the time domain signals for each signal-processing step for a symbol sequence which contains only a single non-zero symbol with unit value.
 We see very well how the upsampling increases the resolution of the digital signal in the time domain and how the pulse-shaping filter interpolates between the samples.
 We also see that the pulse-shaping filter corresponds to a $\sinc$-like impulse response.
-The similarity of the analog signal with a $\sinc$ pulse is not surprising since its \gls{rrc} square equals a rectangular filter with roll-off, i.e.,
+The similarity of the analog signal with a $\sinc$ pulse is not surprising since the \gls{rrc} is the square-root of the raised-cosine filter.
+The raised-cosine filter has frequency response
 \begin{equation}
 	\abs{h_\text{rc}\left(f/f_s\right)}
 	=
@@ -72,17 +73,18 @@ The similarity of the analog signal with a $\sinc$ pulse is not surprising since
 	\end{cases}
 	,
 \end{equation}
-wherein $f_s=1/T_s$ is the symbol rate and $\alpha$ determines the roll-off.
+wherein $f_s=1/T_s$ is the symbol rate and $\alpha$ determines the roll-off and satisfies the Nyquist criterion for optimal bandwidth~\cite[p.~51]{Madhow2008}.
+Taking the square-root of the raised-cosine pulse-shaping filter and applying it once on the transmitter-side and once on the receiver-side, where it is named the matched filter, also satisfies the Nyquist but yields better performance for typical noisy channels.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/pgfplots/tx-rand-time}
-	\caption{Baseband construction for a random \gls{qpsk} symbol sequence in the time domain. The real and imaginary part are colored orange respectively green. The complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$ is represented by the digital signal $\alpha[km]$ with sample period $T_s$ (first row). The digital signal $\alpha[km]$ is upsampled to $\alpha^\prime[m]$ by an upsampling factor of $k=2$ (second row). The upsampled signal $\alpha^\prime[m]$ is pulse-shaped with a \gls{rrc} filter to yield $\alpha^{\prime\prime}[m]$ (third row). The pulse-shaped digital signal $\alpha^{\prime\prime}[m]$ is converted to the anti-aliased analog signal $\alpha(t)$.}\label{fig:baseband_construction_rand_time}
+	\includegraphics{figures/pgfplots/symbol-encoding-time-qpsk}
+	\caption{Baseband construction for a random \gls{qpsk} symbol sequence in the time domain. The real and imaginary part are colored orange respectively green. The complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$ is represented by the digital signal $\alpha[km]$ with sample period $T_s$ (first row). The digital signal $\alpha[km]$ is upsampled to $\rho[m]$ by an upsampling factor of $k=2$ (second row). The upsampled signal $\rho[m]$ is pulse-shaped with a \gls{rrc} filter to yield $\gamma[m]$ (third row). The pulse-shaped digital signal $\gamma[m]$ is converted to the anti-aliased analog signal $\alpha(t)$.}\label{fig:baseband_construction_rand_time}
 \end{figure}
 \Cref{fig:baseband_construction_rand_time} illustrates the time domain signals for each signal-processing step for a random \gls{qpsk} symbol sequence.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/pgfplots/tx-frequency}
-	\caption{Baseband construction for a random \gls{qpsk} symbol sequence in the frequency domain. The power spectrum corresponding to the unit symbol sequence is colored orange, the \gls{qpsk} symbol sequence is colored green. Initially, the spectrum spans from $-1/2$ to $+1/2$ the normalized sampling frequency $f/f_s$ (first row). Upsampling by $k=2$ adds aliases left and right to the initial spectrum (second row). Pulse-shaping suppresses the left and ride flanks of the spectrum (third row). Analog conversion corresponds to infinite upsampling, adding infinite aliases left and right of the spectrum. (fourth row). Applying a \gls{lp} filter strongly suppresses the aliases (last row).}\label{fig:baseband_construction_freq}
+	\includegraphics{figures/pgfplots/symbol-encoding-frequency}
+	\caption{Power spectrum of the symbol encoding steps for a random \gls{qpsk} symbol sequence (green) and the unit symbol sequence (orange). The initial spectrum spans from $-1/2$ to $+1/2$ the normalized sampling frequency $f/f_s$ (first row). Upsampling by $k=2$ adds aliases left and right to the initial spectrum (second row). Pulse-shaping suppresses the left and ride flanks of the spectrum (third row). Analog conversion corresponds to infinite upsampling, adding infinite aliases left and right of the spectrum. (fourth row). Applying a \gls{lp} filter strongly suppresses the aliases (last row).}\label{fig:baseband_construction_freq}
 \end{figure}
 \Cref{fig:baseband_construction_freq} provides further inside into the signal-processing steps by presenting the power spectrum of the unit and \gls{qpsk} symbol sequences.
 In the frequency domain, it is very clear to see how upsampling widens the spectrum without adding additional information.
@@ -93,9 +95,11 @@ We also see how the pulse-shaping filter shapes the upsampled spectrum, and the 
 
 We previously constructed the bandwidth-optimized baseband signals $x(t)$ and $p(t)$ encoding the real respective imaginary part of a complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$.
 We now want to shift the spectrum of the baseband signals into the optical domain, i.e., transform the baseband to a passband signal centered around some optical carrier frequency $\omega_c$.
-One way to shift a real signal in the frequency domain is to multiply it by a sine or cosine, effectively corresponding to amplitude modulation.
+One way to shift a real signal in the frequency domain is to multiply it by a sine or cosine, i.e., amplitude modulation of the carrier signal.
 With the orthogonality of sine and cosine, it is possible to write two real baseband signals as one real passband signal, i.e.,
 \begin{equation}
+	s(t)
+	=
 	x(t)
 	\cos(\omega_ct)
 	+
@@ -103,66 +107,40 @@ With the orthogonality of sine and cosine, it is possible to write two real base
 	\sin(\omega_ct)
 	.
 \end{equation}
-Rewriting the sine as the real part of a complex exponential
-\begin{equation}
-	\sin(\omega_ct)
-	=
-	\cos(\omega_c t-\pi/2)
-	=
-	\Re\left\{e^{-i\omega_c t+i\pi/2}\right\}
-	,
-\end{equation}
-we can rewrite the real passband signal as the real part of a complex signal,
-\begin{equation}
-	\begin{split}
-		x(t)
-		\cos(\omega_ct)
-		+
-		p(t)
-		\sin(\omega_ct)
-		&=
-		\Re\left\{
-			x(t)
-			e^{-i\omega_ct}
-			+
-			p(t)
-			e^{-i\omega_ct+i\pi/2}
-		\right\}
-		\\
-		&=
-		\Re\left\{
-			\left[
-				x(t)
-				+
-				ip(t)
-			\right]
-			e^{-i\omega_ct}
-		\right\}
-		,
-	\end{split}
-	\label{eq:real_complex_passband}
-\end{equation}
-where we can identify the complex baseband
+Introducing the complex baseband signal,
 \begin{equation}
 	\alpha(t)
 	=
 	x(t)
 	+
 	ip(t)
-	.
+	,
 \end{equation}
-The complex signal is often used when dealing with only a real signal since the up-conversion here corresponds to a simple multiplication by a complex exponent.
+we can write the passband signal as the real part of the complex baseband multiplied with a complex exponential
+\begin{equation}
+	s(t)
+	=
+	\Re\left\{
+		\alpha(t)
+		e^{-i\omega_ct}
+	\right\}
+	.
+	\label{eq:real_complex_passband}
+\end{equation}
+One advantage of describing a real by a complex signal is the simpler handling of the complex exponential function compared to the trigonometric functions.\footnote{However, one should always keep in mind that all physical signals are indeed real.}
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/up-conversion}
-	\caption{Block diagram illustrating up-conversion of two real-valued baseband signals, $x(t)$ and $p(t)$, to a real-valued passband signal, $\Re\left\{\alpha(t)e^{-i\omega_ct}\right\}$. A \gls{lo} with up-conversion frequency $\omega_c$ is split into two branches with a relative phase shift between the branches of $\pi/2$. One branch is mixed with the baseband signal $p(t)$ and the other branch is mixed with $x(t)$. The product of the mixing is added giving the passband signal.}\label{fig:up_conversion}
+	\caption{Block diagram illustrating up-conversion of two real-valued baseband signals, $x(t)$ and $p(t)$, to a real-valued passband signal $s(t)$. A \gls{lo} running at the up-conversion frequency is split into two branches with a relative phase shift between the branches of $\pi/2$. One branch is mixed with the baseband signal $x(t)$, the other is mixed with $p(t)$. The product of the mixing adds up to the passband signal $s(t)$.}\label{fig:up_conversion}
 \end{figure}
-Our derivation of the complex passband, \cref{eq:real_complex_passband}, already hints implementing efficient up-conversion of two real baseband signals by splitting a \gls{lo} with a relative phase shift of $\pi/2$.
-If we replace the mixer in \Cref{fig:up_conversion} with electro-optical amplitude modulators, e.g.,\gls{mzm}, we find ourselves with an electro-optical \gls{iqm}.
-Indeed, if we assume a single-mode laser as an input state, we find that the \gls{iqm} produces the output state
+Another advantage of the complex representation is that the coherent states also use it.
+Indeed, if we identify the mixers in the up-conversion diagram, \cref{fig:up_conversion}, with \gls{mzm}s, we find ourselves with the electro-optical \gls{iqm} for which we already derived the coherent state transform, \cref{eq:iqm_modulation}.
+Identifying the input coherent state of the \gls{iqm} with an ideal single-mode laser with complex signal $e^{-i\omega_ct}$, we find
 \begin{equation}
-	\ket{e^{-i\omega_c t}}
-	\to
-	\ket{\alpha(t)e^{-i\omega_c t}}
+	\hat{U}_\text{IQM}[\alpha(t)]
+	\ket{e^{-i\omega_ct}}
+	=
+	\ket{\alpha(t)e^{-i\omega_ct}}
+	,
 \end{equation}
-exactly as we found for the up-conversion.
+i.e., the \gls{iqm} is an up-converter from the electrical to the (quantum) optical domain.
