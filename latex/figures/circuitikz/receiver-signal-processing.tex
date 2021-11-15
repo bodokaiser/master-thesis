@@ -1,0 +1,46 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		line width=1pt,
+		node distance=20pt,
+	]
+		\coordinate (in);
+		\node (split) [twoportsplitshape, right=of in, circuitikz/t1={$.5$}, circuitikz/t2={$.5$}] {};
+		\node (phase split) [twoportsplitshape, circuitikz/t1={\ \SI{90}{\degree}}, circuitikz/t2={\SI{0}{\degree}}, right=of split)] {};
+		\node (osc) [oscillator, right=of phase split] {};
+		\node (mixerx) [mixer, above=of phase split] {};
+		\node (mixerp) [mixer, below=of phase split] {};
+		\node (adder) [adder, right=of osc] {};
+		\node (lp) [lowpassshape, right=of adder] {};
+		\node (adc) [adcshape, right=of lp] {};
+		\node (dc) [mixer, right=of adc] {};
+		\node (ds1) [twoportshape, t={$\downarrow l$}, right=of dc] {};
+		\node (rrc) [twoportshape, t={RRC}, right=of ds1] {};
+		\node (ds2) [twoportshape, t={$\downarrow k$}, right=of rrc] {};
+		\coordinate[right=of ds2] (out);
+		
+		\draw (in) ++(-0.5,0) node[above] {$\Re\{\alpha(t)e^{-i\omega_ct}\}$};
+		\draw (osc.north) node[above, yshift=2pt] {$\sin(\omega_l t)$};
+
+		\draw[-Latex] (in) -- (split);
+		\draw[-Latex] (osc) -- (phase split);
+		\draw[-Latex] (adder) -- (lp);
+		\draw[-Latex] (lp) -- (adc);
+		\draw[-Latex] (adc) -- (dc);
+		\draw[-Latex] (dc) -- (ds1);
+		\draw[-Latex] (ds1) -- (rrc);
+		\draw[-Latex] (rrc) -- (ds2);
+		\draw[-Latex] (ds2) -- (out);
+		
+		\draw[-Latex] (split.north) -- (split.north|-mixerx.west) -- (mixerx);
+		\draw[-Latex] (phase split) -- (mixerx);
+		\draw[-Latex] (mixerx.east) -- (mixerx.east-|adder.north)  -- (adder);
+				
+		\draw[-Latex] (split.south) -- (split.south|-mixerp.west) -- (mixerp);
+		\draw[-Latex] (phase split) -- (mixerp);
+		\draw[-Latex] (mixerp.east) -- (mixerp.east-|adder.south) -- (adder);
+	\end{tikzpicture}
+\end{document}

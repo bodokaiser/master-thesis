@@ -13,12 +13,12 @@
 		\node[block, right=1.3cm of tx] (ch) {Channel};
 		\node[block, right=1.3cm of ch] (rx) {Receiver};
 		\node[block, above=of rx] (dst) {Information destination};
-		\node[block, below=of ch] (ns) {Noise source};
+		%\node[block, below=of ch] (ns) {Noise source};
 		
 		\draw[arrow] (src) -- (tx) node[midway, right] {$\left\{\alpha_n\right\}_{n\in I}$};
 		\draw[arrow] (tx) -- (ch) node[midway, above] {$\ket{\alpha(t)}$};
 		\draw[arrow] (ch) -- (rx) node[midway, above] {$\ket{\beta(t)}$};
 		\draw[arrow] (rx) -- (dst) node[midway, left] {$\left\{\beta_n\right\}_{n\in I}$};
-		\draw[arrow] (ns) -- (ch) node[midway, right] {$\ket{\psi(t)}$};;
+		%\draw[arrow] (ns) -- (ch) node[midway, right] {$\ket{\psi(t)}$};;
 	\end{tikzpicture}
 \end{document}

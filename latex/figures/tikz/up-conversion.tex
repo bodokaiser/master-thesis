@@ -1,0 +1,26 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		axis/.style={-Latex, very thick},
+	]
+		\coordinate (origin);
+		\draw[axis] (origin) -- ++(0,2.5) node[above] {$\abs{x(\omega)}^2$};
+		\draw[axis] (origin) -- ++(8,0) node[right] {$\omega$};
+		%\draw[very thick] (origin) -- ++(-5,0);
+		
+		\draw[very thick] (0.5,0) rectangle ++(1,0.5);
+		
+		\draw[very thick] (4,0) rectangle ++(1,0.5);
+		\draw[very thick] (6,0) rectangle ++(1,0.5);
+		
+		\draw[Bar-Bar, very thick] (6,1) -- ++(1,0) node[midway, above] {$B$};
+		\draw[Bar-Latex, very thick] (1,1) -- ++(4.5,0) node[midway, above] {$\omega_c$};
+
+		\draw[very thick] (4.5,0) -- ++(0,-0.15) node[below] {$\omega_c-\omega_0$};
+		\draw[very thick] (6.5,0) -- ++(0,-0.15) node[below] {$\omega_c+\omega_0$};
+		\draw[very thick] (1,0) -- ++(0,-0.15) node[below] {$\omega_0$};		
+	\end{tikzpicture}
+\end{document}

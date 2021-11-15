@@ -10,12 +10,12 @@ Apart from that, the physical channel only shows favorable transmission properti
 Additionally, different users may jointly use the same physical channel, and using the available bandwidth efficiently while reducing interference between users, requires the signal bandwidth to be minimal.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/tikz/baseband-passband}
-	\caption{Power spectrum showing the relationship between a real-valued baseband and passband signal. Both base- and passband signals have bandwidth $B$. The baseband signal is centered at $\omega=0$. The passband is shifted by $\omega_0$ and has a conjugate symmetric counterpart at $-\omega_0$.}\label{fig:baseband_passband}
+	\includegraphics{figures/tikz/up-conversion}
+	\caption{Power spectrum illustrating up-conversion of a real-valued passband signal with bandwidth $B$ centered at $\omega_0$. Up-conversion by $\omega_c$ shifts the passband to $\omega_c+\omega_0$ and creates a mirror band at $\omega_c-\omega_0$.}\label{fig:up_conversion}
 \end{figure}
 To illustrate the signal and channel bandwidth, we introduce the concept of baseband and passband signals\cite[p.~26]{Madhow2008}.
-\Cref{fig:baseband_passband} depicts the power spectrum of a baseband and passband signal each with bandwidth $B$.
-The spectrum of the baseband signal is centered at zero frequency, $\omega=0$, while the spectrum of the passband signal is located at $\pm\omega_0$.
+\Cref{fig:up_conversion} depicts up-conversion of a real-valued baseband signal centered at $\omega_0$ with bandwidth $B$ by $\omega_c$.
+If $\omega_0=0$, we would have a baseband instead of a passband signal.
 For efficient use of the limited channel and receiver bandwidth, we want to minimize $B$ while keeping the \gls{snr} high.
 In addition, we need to shift the baseband spectrum to an optical frequency $\omega_0$ for which the channel shows desirable transmission characteristics.
 So from a signal processing point of view, we want the transmitter to
@@ -38,7 +38,7 @@ The software-defined \gls{dsp} constructs the bandwidth-optimized digital signal
 The \gls{dac} stage converts the digital signals, $x[m]$ and $p[m]$, to bandwidth-limited analog signals $x(t)$ and $p(t)$.
 Finally, the analog signals are modulated onto an optical carrier yielding a coherent state $\ket{\alpha(t)}$ which meets the bandwidth requirements of the channel.
 
-\subsection{Symbol encoding in baseband}
+\subsection{Symbol encoding}
 
 To construct a bandwidth-optimized baseband signal, encoding the complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$, we first remark that the symbol sequence itself has no notion of time.
 In contrast, a digital (time-discrete) signal, consisting of discrete samples, includes a time reference, the sample period $T_s$, denoting the temporal distance between two consecutive samples.
@@ -89,7 +89,7 @@ In the frequency domain, it is very clear to see how upsampling widens the spect
 We also see how the pulse-shaping filter shapes the upsampled spectrum, and the \gls{lp} filter suppresses aliases.
 
 \FloatBarrier
-\subsection{Up-conversion of baseband to passband}
+\subsection{Complex up-conversion}
 
 We previously constructed the bandwidth-optimized baseband signals $x(t)$ and $p(t)$ encoding the real respective imaginary part of a complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$.
 We now want to shift the spectrum of the baseband signals into the optical domain, i.e., transform the baseband to a passband signal centered around some optical carrier frequency $\omega_c$.
