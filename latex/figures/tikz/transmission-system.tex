@@ -13,12 +13,12 @@
 		\node[block, right=of tx] (ch) {Channel};
 		\node[block, right=of ch] (rx) {Receiver};
 		\node[block, right=of rx] (dst) {Information destination};
-		\node[block, below=of ch] (ns) {Noise source};
+%		\node[block, below=of ch] (ns) {Noise source};
 		
 		\draw[arrow] (src) -- (tx);
 		\draw[arrow] (tx) -- (ch);
 		\draw[arrow] (ch) -- (rx);
 		\draw[arrow] (rx) -- (dst);
-		\draw[arrow] (ns) -- (ch);
+%		\draw[arrow] (ns) -- (ch);
 	\end{tikzpicture}
 \end{document}
