@@ -1,20 +1,16 @@
 \section{Receiver}
 \FloatBarrier
 
-% what is the task of the receiver
-
-% practical received spectrum, receiver as spectrum analyzer
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/pgfplots/rx-psd}
-	\caption{Power spectral density of a practical transmitter's baseband signal. At \SI{100}{\mega\hertz} a strong }\label{fig:transmit_spectrum}
-\end{figure}
-
+We introduced the receiver as a component decoding a sequence of complex symbols, $\left\{\beta_n\in\mathbb{C}\colon n\in I\right\}$, from a coherent state $\ket{\beta(t)}$.
+As with the transmitter, we want our receiver to be software-defined, meaning that the predominant signal processing is in the digital domain and we need to down-convert the optical signal.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/software-defined-receiver}
-	\caption{ffs}
+	\caption{Block diagram of the receiver's signal processing domains. The analog electrical signals $v(t)$ and $w(t)$ are demodulated from the quadratures of the optical coherent state $\ket{\beta(t)}$, and then converted to the digital signals $v[m]$ and $w[m]$ from which the \gls{dsp} decodes the symbol sequence $\{\beta_n\in\mathbb{C}\colon n\in I\}$.}\label{fig:software_defined_receiver}
 \end{figure}
+\Cref{fig:software_defined_receiver} illustrates the signal flow across the different domains inside the receiver.
+Unlike the transmitter up-conversion, the receiver's down-conversion leaves us some design freedom.
+In particular, it is possible to reduce the hardware complexity significantly by introducing an intermediate frequency, which carries over to the digital domain.
 
 \FloatBarrier
 \subsection{Single quadrature down-conversion}
