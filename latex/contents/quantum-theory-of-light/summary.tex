@@ -94,14 +94,22 @@ Application of the phase-rotation operator~\cite[p.~38]{Leonhardt2010} yields th
 		\hat{a}^\dagger(\vb{p})
 		e^{+i\vartheta}
 	\right\}
+	,
 \end{equation}
-and suggests defining the phase-rotated Maxwell field as the generalized quadrature operator
+where $\hat{N}$ denotes the number operator defined in \cref{eq:maxwell_number_operator}.
+Actual measurements of the quadrature operator are repeated at the same time in space, hence we can absorb the spatial dependency into the phase writing
 \begin{equation}
-	\hat{X}(t,\vb{x};\vartheta)
+	\hat{X}(t,\vartheta)
 	=
-	e^{-i\vartheta\hat{N}}
-	\hat{A}(t,\vb{x})
-	e^{+i\vartheta\hat{N}}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\frac{1}{\sqrt{2\omega(\vb{p})}}
+	\left\{
+		\hat{a}(\vb{p})
+		e^{-i(\omega(\vb{p})t+\vartheta)}
+		+
+		\hat{a}^\dagger(\vb{p})
+		e^{+i(\omega(\vb{p})t+\vartheta)}
+	\right\}
 	.
 	\label{eq:quadrature_operator}
 \end{equation}

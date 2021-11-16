@@ -216,12 +216,12 @@ where we choose the phase properties of the beam splitter for notational conveni
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/circuitikz/detector-balanced}
-    \caption{Electronic schematic of a balanced (quadrature) detector comprising two photodiodes and an operational amplifier in \gls{tia} configuration. The cathode of the first photodiode, PD1, is reverse biased with voltage $+V_b>0$. The cathode of the second photodiode, PD2, is reverse biased with voltage $-V_b<0$. The cathode of PD1 and the anode of PD2 are connected to supply the difference photocurrent signal, $i_p(t)=i_+(t)-i_-(t)$, to the inverting input of the operational amplifier. The non-inverting input of the operational amplifier is connected to ground. The inverting input is coupled to the output through the feedback impedance $Z_f$. The \gls{tia} outputs a voltage signal $V_p(t)$.}\label{fig:detector_balanced_electronics}
+    \caption{Electronic schematic of a balanced (quadrature) detector comprising two photodiodes and an operational amplifier in \gls{tia} configuration. The cathode of the first photodiode, PD1, is reverse biased with voltage $+V_b>0$. The cathode of the second photodiode, PD2, is reverse biased with voltage $-V_b<0$. The cathode of PD1 and the anode of PD2 are connected to supply the difference photocurrent signal, $i_p(t)=i_+(t)-i_-(t)$, to the inverting input of the operational amplifier. The non-inverting input of the operational amplifier is connected to ground. The inverting input is coupled to the output through the feedback impedance $Z_f$. The \gls{tia} outputs a voltage signal $V_p(t)$ proportional to the difference photocurrent signal $i_p(t)$.}\label{fig:detector_balanced_electronics}
 \end{figure}
 PD1 and PD2 are both reverse biased to reduce the response time and connected to each other to directly produce a difference photocurrent signal,
 \begin{equation}
 	\begin{split}
-		i_p(t)
+		i(t)
 		=
 		i_+(t)
 		-
@@ -250,12 +250,6 @@ PD1 and PD2 are both reverse biased to reduce the response time and connected to
 				\alpha_l
 			\right]
 		\right)(t)
-		\\
-		&=
-		2\Re\left\{
-			\eta*
-			(\alpha_s\alpha_l^*)
-		\right\}(t)
 		,
 	\end{split}
 	\label{eq:detector_balanced_photocurrent}
@@ -263,39 +257,64 @@ PD1 and PD2 are both reverse biased to reduce the response time and connected to
 wherein we used the linearity of the convolution and inserted \cref{eq:detector_balanced_amplitudes}.
 For a meaningful measurement the \gls{lo} must be a narrow linewidth laser for which we can write
 \begin{equation}
-	\left(\alpha_s\alpha_l^*\right)(t)
+	\alpha_l(t)
 	=
-	\left(g\alpha_s\right)(t)
+	g(t)
+	e^{-i(\omega_lt+\vartheta)}
+	\label{eq:detector_balanced_lo}
+\end{equation}
+with $g(t)$ encoding the linewidth profile\footnote{For instance, $g(t)\propto e^{-\gamma t/2}$ for a Lorentzian profile, see Ref.~\cite{Demtroeder2014}.}.
+Using \cref{eq:detector_balanced_lo}, we can write the product of the signal and \gls{lo} amplitude
+\begin{equation}
+	\alpha_s(t)
+	\alpha_l(t)^*
+	=
+	(g\alpha_s)(t)
 	e^{+i(\omega_lt+\vartheta)}
+	=
+	\int_0^\infty
+	\frac{\dd{\omega}}{2\pi}
+	(g\alpha_s)(\omega)
+	e^{+i\omega_l t}
+	e^{+i(\omega t+\vartheta)}
+\end{equation}
+which inserted into \cref{eq:detector_balanced_photocurrent} yields
+\begin{equation}
+	i(t)
+	=
+	\int_0^\infty
+	\frac{\dd{\omega}}{2\pi}
+	\left[
+		\eta(\omega)
+		(g\alpha_s)(\omega)
+		e^{+i\omega_l t}
+		e^{+i(\omega t+\vartheta)}
+		+
+		\text{c.c.}
+	\right]
+	.
+\end{equation}
+Compared with the expectation value of the generalized quadrature operator,
+\begin{equation}
+	\bra{\alpha(t)}
+	\hat{X}(\vartheta)
+	\ket{\alpha(t)}
+	=
+	\int_0^\infty
+	\frac{\dd{\omega}}{2\pi}
+	\left[
+		\alpha(\omega)
+		e^{-i(\omega t+\vartheta)}
+		+
+		\text{c.c.}
+	\right]
 	,
 \end{equation}
-wherein $g(t)$ encodes the linewidth profile, e.g., $g(t)\propto e^{-\gamma t/2}$ for a Lorentzian profile~\cite{Demtroeder2014}.
-The Fourier transform of the signal product is
+we identify
 \begin{equation}
-	\left(\alpha_s\alpha_l^*\right)(\omega)
+	\alpha(\omega)
 	=
-	\int\dd{t}
-	\left(g\alpha_s\right)(t)
-	e^{+i(\omega_lt+\vartheta)}
-	e^{-i\omega t}
-	=
-	\left(g\alpha_s\right)(\omega-\omega_l)
-	e^{i\vartheta}
-\end{equation}
-We then find for the convolution with the detector response $\eta$,
-\begin{equation}
-	\begin{split}
-		\left[\eta*(\alpha_s\alpha_l^*)\right](t)
-		&=
-		\int\frac{\dd{\omega}}{2\pi}
-		\eta(\omega)
-		\left(\alpha_s\alpha_l^*\right)(\omega)
-		e^{+i\omega t}
-		\\
-		&=
-		\int\frac{\dd{\omega}}{2\pi}
-		\eta(\omega)
-		\left(g\alpha_s\right)(\omega-\omega_l)
-		e^{+i(\omega t+\vartheta)}
-	\end{split}
+	\eta(\omega)
+	(g\alpha_s)(\omega)
+	e^{+i\omega_l t}
 \end{equation}
