@@ -21,9 +21,9 @@
 		\node (lowp) [lowpassshape, right=of dacp] {};
 		\node (mixp) [mixer, right=of lowp] {};
 		
-		\node (split) [twoportsplitshape, circuitikz/t1={\SI{0}{\degree}}, circuitikz/t2={\SI{90}{\degree}}] at (mixx.south|-real.east) {};
-		\node (osc) [oscillator, right=of split] {};
-		\node (add) [adder, right=of osc] {};
+		\node (split) [twoportsplitshape, circuitikz/t1={\ \SI{90}{\degree}}, circuitikz/t2={\SI{0}{\degree}}] at (mixx.south|-real.east) {};
+		\node (osc) [left=of split] {$\sqrt{2}\sin(\omega_ct+\vartheta)$};
+		\node (add) [adder, right=of split] {};
 		\node (out) [right=of add] {$s(t)$};
 		
 		\draw[-Latex] (in) -- (up);

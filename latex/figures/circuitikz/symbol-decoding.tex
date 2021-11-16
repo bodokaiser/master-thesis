@@ -11,7 +11,7 @@
 		\node (low) [lowpassshape, right=of in] {};
 		\node (adc) [adcshape, right=of low] {};
 		\node (mix) [mixer, right=of adc] {};
-		\node (osc) [oscillator, below=20pt of mix] {};
+		\node (osc) [below=20pt of mix] {$\exp(i\omega_it+\vartheta)$};
 		\node (down1) [twoportshape, t={$\downarrow l$}, right=of mix] {};
 		\node (rrc) [twoportshape, t={RRC}, right=of down1] {};
 		\node (down2) [twoportshape, t={$\downarrow k$}, right=of rrc] {};

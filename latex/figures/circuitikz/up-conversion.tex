@@ -7,8 +7,8 @@
 		line width=1pt,
 		node distance=20pt,
 	]
-		\node (div) [twoportsplitshape, circuitikz/t1={\SI{0}{\degree}}, circuitikz/t2={\SI{90}{\degree}}] {};
-		\node (osc) [oscillator, right=of div] {};
+		\node (div) [twoportsplitshape, circuitikz/t1={\ \SI{90}{\degree}}, circuitikz/t2={\SI{0}{\degree}}] {};
+		\node (osc) [right=of div] {$\sqrt{2}\sin(\omega_ct)$};
 		\node (add) [adder, right=of osc] {};
 		\node (mixx) [mixer, above=of div] {};
 		\node (mixp) [mixer, below=of div] {};

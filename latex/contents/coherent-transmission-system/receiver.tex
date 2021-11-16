@@ -13,51 +13,139 @@ Unlike the transmitter up-conversion, the receiver's down-conversion leaves us s
 In particular, it is possible to reduce the hardware complexity significantly by introducing an intermediate frequency, which carries over to the digital domain.
 
 \FloatBarrier
-\subsection{Single quadrature down-conversion}
+\subsection{Down-conversion}
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/down-conversion-single}
-	\caption{Block diagram of single quadrature down-conversion.}\label{fig:down_conversion_single}
+	\caption{Block diagram of single quadrature down-conversion. The signal $z(t)$ is mixed with the \gls{lo} $\sin(\omega_lt+\vartheta)$. The output of the mixing is filtered by a \gls{lp} to produce the down-converted signal $u(t)$.}\label{fig:down_conversion_single}
 \end{figure}
-
-\FloatBarrier
-\subsection{Dual quadrature down-conversion}
+The mixing of the real-valued passband signal,
+\begin{equation}
+	\begin{split}
+		z(t)
+		=
+		\int_{-\infty}^{+\infty}\frac{\dd{\omega}}{2\pi}
+		z(\omega)
+		e^{+i\omega t}
+		&=
+		\int_0^{+\infty}\frac{\dd{\omega}}{2\pi}
+		z(\omega)
+		e^{+i\omega t}
+		+
+		\int_{-\infty}^0\frac{\dd{\omega}}{2\pi}
+		z(\omega)
+		e^{+i\omega t}
+		\\
+		&=
+		\int_0^{+\infty}\frac{\dd{\omega}}{2\pi}
+		z(\omega)
+		e^{+i\omega t}
+		-
+		\int_{\infty}^0\frac{\dd{\omega}}{2\pi}
+		z(-\omega)
+		e^{-i\omega t}
+		\\
+		&=
+		\int_0^{+\infty}\frac{\dd{\omega}}{2\pi}
+		\left[
+			z(\omega)
+			e^{+i\omega t}
+			+
+			z(\omega)^*
+			e^{-i\omega t}
+		\right]
+		,
+	\end{split}
+\end{equation}
+with the \gls{lo} signal
+\begin{equation}
+	\sin(\omega_lt+\vartheta)
+	=
+	\frac{1}{2i}
+	\left[
+		e^{+i(\omega_lt+\vartheta)}
+		-
+		e^{-i(\omega_lt+\vartheta)}
+	\right]
+\end{equation}
+produces a high- and low-frequency band
+\begin{equation}
+	\begin{split}
+		z(t)
+		\sin(\omega_lt+\vartheta)
+		&=
+		\Im
+		\int_0^\infty\frac{\dd{\omega}}{2\pi}
+		\left[
+			e^{+i(\omega-\omega_l)t}
+			+
+			e^{+i(\omega+\omega_l)t}
+		\right]
+		z(\omega)
+		e^{+i\vartheta}
+		\\
+		&=
+		\Im
+		\int_0^\infty\frac{\dd{\omega}}{2\pi}
+		\left[
+			z(\omega+\omega_l)
+			+
+			z(\omega-\omega_l)
+		\right]
+		e^{+i\omega t+i\vartheta}
+		.
+	\end{split}
+\end{equation}
+The high-frequency band is highly suppressed by the ideal \gls{lp},
+\begin{equation}
+	\begin{split}
+		v(t)
+		&=
+		\Im
+		\int_0^B\frac{\dd{\omega}}{2\pi}
+		\left[
+			z(\omega+\omega_l)
+			+
+			z(\omega-\omega_l)
+		\right]
+		e^{+i(\omega t+\vartheta)}
+		\\
+		&\approx
+		\Im
+		\int_0^B\frac{\dd{\omega}}{2\pi}
+		z(\omega-\omega_l)
+		e^{+i(\omega t+\vartheta)}
+		,
+	\end{split}
+	\label{eq:down_conversion_imag}
+\end{equation}
+where we assumed that the baseband bandwidth, mathematical the support of $z(\omega)$, is zero outside the \gls{lp} cutoff frequency $B$.
+According to \cref{eq:down_conversion_single} does the single quadrature down-conversion only recover the a projection of the 
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/down-conversion-dual}
-	\caption{Block diagram of dual quadrature down-conversion.}\label{fig:down_conversion_dual}
+	\caption{Block diagram of dual quadrature down-conversion. The signal $z(t)$ is divided with equal power among an upper and a lower branch. The upper branch is mixed with the phase shifted $\gls{lo}$ signal $\cos(\omega_ct+\vartheta)$. The lower branch is mixed with \gls{lo} signal $\sin(\omega_ct+\vartheta)$. The mixer outputs are filtered separately by a \gls{lp} yielding the down-converted signals $v(t)$ and $w(t)$.}\label{fig:down_conversion_dual}
 \end{figure}
+\Cref{fig:down_conversion_dual} shows the block diagram corresponding to down-conversion of both quadratures.
+The lower branch is equal to the result of the single quadrature downconversion after accounting for the power loss due to the signal split, i.e.,
+\begin{equation}
+	u(t)
+	=
+	\frac{1}{2\sqrt{2}}
+	\Re
+	\int_0^B\frac{\dd{\omega}}{2\pi}
+	z(\omega+\omega_l)
+	e^{+i(\omega t+\vartheta)}
+	\label{eq:down_conversion_real}	
+\end{equation}
 
 % figure down-conversion
 
 % down-conversion equivalent to balanced detection
 
 % equivalence of balanced detection signal with expectation value of quadrature operator
-Assuming the \gls{lo} field to be perfectly monochromatic, i.e.,
-\begin{equation}
-	\alpha_l(t)
-	=
-	\abs{\alpha_l}
-	e^{+i\omega_lt+i\vartheta}
-	,
-\end{equation}
-we can write the detected signal
-\begin{equation}
-	\alpha_s(t)
-	\alpha_l^*(t)
-	+
-	\alpha_s^*(t)
-	\alpha_l(t)
-	=
-	\abs{\alpha_l}
-	\alpha_s(t)
-	e^{+i\omega_l t}
-	+
-	\alpha_s^*(t)
-	\alpha_l(t)	
-\end{equation}
 
 \FloatBarrier
 \subsection{Symbol decoding}

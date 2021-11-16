@@ -4,11 +4,11 @@
 
 \begin{document}
 	\begin{tikzpicture}[line width=1pt]
-		\node (in) {$s(t)$};
+		\node (in) {$z(t)$};
 		\node (mix) [mixer, right=of in] {};
 		\node (low) [lowpassshape, right=of mix] {};
-		\node (osc) [oscillator, below=of mix] {};
-		\node (out) [right=of low] {$u(t)$};
+		\node (osc) [below=of mix] {$\sin(\omega_lt+\vartheta)$};
+		\node (out) [right=of low] {$v(t)$};
 		
 		\draw[-Latex] (in) -- (mix.west);
 		\draw[-Latex] (osc.north) -- (mix.south);
