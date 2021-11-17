@@ -16,10 +16,10 @@
 		\coordinate[right=of dsp] (out);
 		
 		\draw[arrow] (in) -- (demod) node[midway, above]{$\ket{\beta(t)}$};
-		\draw[arrow] ([yshift=2.5ex]demod.east) -- ([yshift=2.5ex]adc.west) node[midway, above]{$v(t)$};
-		\draw[arrow] ([yshift=-2.5ex]demod.east) -- ([yshift=-2.5ex]adc.west) node[midway, above]{$w(t)$};
-		\draw[arrow] ([yshift=2.5ex]adc.east) -- ([yshift=2.5ex]dsp.west) node[midway, above]{$v[m]$};
-		\draw[arrow] ([yshift=-2.5ex]adc.east) -- ([yshift=-2.5ex]dsp.west) node[midway, above]{$w[m]$};
+		\draw[arrow] ([yshift=2.5ex]demod.east) -- ([yshift=2.5ex]adc.west) node[midway, above]{$u(t)$};
+		\draw[arrow, dashed] ([yshift=-2.5ex]demod.east) -- ([yshift=-2.5ex]adc.west) node[midway, above]{$v(t)$};
+		\draw[arrow] ([yshift=2.5ex]adc.east) -- ([yshift=2.5ex]dsp.west) node[midway, above]{$u[m]$};
+		\draw[arrow, dashed] ([yshift=-2.5ex]adc.east) -- ([yshift=-2.5ex]dsp.west) node[midway, above]{$v[m]$};
 		\draw[arrow] (dsp) -- (out) node[midway, above]{$\{\beta_n\}_{n\in I}$};
 	\end{tikzpicture}
 \end{document}

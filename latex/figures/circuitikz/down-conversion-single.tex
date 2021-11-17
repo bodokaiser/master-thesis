@@ -7,8 +7,8 @@
 		\node (in) {$z(t)$};
 		\node (mix) [mixer, right=of in] {};
 		\node (low) [lowpassshape, right=of mix] {};
-		\node (osc) [below=of mix] {$\sin(\omega_lt+\vartheta)$};
-		\node (out) [right=of low] {$v(t)$};
+		\node (osc) [below=of mix] {$\cos(\omega_lt+\vartheta)$};
+		\node (out) [right=of low] {$u(t)$};
 		
 		\draw[-Latex] (in) -- (mix.west);
 		\draw[-Latex] (osc.north) -- (mix.south);
