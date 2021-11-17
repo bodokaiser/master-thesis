@@ -15,53 +15,61 @@
 			ymin=-1.2,
 			ymax=1.2,
 			ylabel style={align=center},
+			axis line style={thick},
 			grid=major,
 			width=\linewidth,
-			height=22ex,
+			height=24ex,
 			cycle list name=exotic,
 		]
 			\nextgroupplot[
 				xlabel={Signal time $t/T_s$},
 				xlabel near ticks,
 				xticklabel pos=top,
-				ylabel={Samples\\$\beta^\prime[m]e^{-i\omega_it}$},
+				ylabel={Demodulation\\$u[m/(kl)]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma, y expr=\thisrow{c2}*3] {../../../data/rand-time-rx-det-real.csv};
-			\addplot+[
-				ycomb,
-				mark=x,
-				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma, y expr=\thisrow{c2}*3] {../../../data/rand-time-rx-det-imag.csv};
+%			\addplot+[
+%				very thick,
+%				ycomb,
+%				mark=x,
+%				restrict expr to domain={\thisrow{c1}}{10:20},
+%			] plot table[col sep=comma, y expr=\thisrow{c2}*3] {../../../data/rand-time-rx-det-imag.csv};
 			\nextgroupplot[
 				xlabel={},
 				xticklabels={},
-				ylabel={Down-conv.\\$\beta^\prime[m]$},
+				ylabel={Down-conv.\\$\sigma[m/(kl)]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma, y expr=\thisrow{c2}*3] {../../../data/rand-time-tx-lp-real.csv};
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=x,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma, y expr=\thisrow{c2}*3] {../../../data/rand-time-tx-lp-imag.csv};
 			\nextgroupplot[
+				very thick,
 				xlabel={},
 				xticklabels={},
-				ylabel={Matched filter\\$\beta[m]$},
+				ylabel={Pulse-shaping\\$\kappa[m/k]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma, y expr=\thisrow{c2}*3] {../../../data/rand-time-rx-rrc-real.csv};
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=x,
 				restrict expr to domain={\thisrow{c1}}{10:20},
@@ -69,28 +77,32 @@
 			\nextgroupplot[
 				xlabel={},
 				xticklabels={},
-				ylabel={Symbols\\$\beta[n]$},
+				ylabel={Symbols (rec.)\\$\beta[m]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma, y expr=\thisrow{c2}*3] {../../../data/rand-time-rx-dwn-real.csv};
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=x,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma, y expr=\thisrow{c2}*3] {../../../data/rand-time-rx-dwn-imag.csv};
 			\nextgroupplot[
-				xlabel={Symbol index $n$},
-				ylabel={Symbols\\$\alpha[n]$},
+				xlabel={Symbol index $m$},
+				ylabel={Symbols (trans.)\\$\alpha[m]$},
 			]
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=o,
 				restrict expr to domain={\thisrow{c1}}{10:20},
 			] plot table[col sep=comma] {../../../data/rand-time-tx-sym-real.csv};
 			\addplot+[
+				very thick,
 				ycomb,
 				mark=x,
 				restrict expr to domain={\thisrow{c1}}{10:20},

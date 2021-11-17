@@ -55,7 +55,7 @@ By defining the digital signal with samples equal to the symbols, $\alpha[n]=\al
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/symbol-encoding}
-	\caption{Block diagram of the signal-processing for baseband construction. The digital signal $x[km]$ is upsampled by a factor $k$ to $r[m]$ and pulse-shaped by a \gls{rrc} filter to yield $q[m]$. A \gls{dac} converts the pulse-shaped signal $q[m]$ to the analog signal $q(t)$. Finally, the analog signal $q(t)$ is \gls{lp} filtered to yield the analog anti-aliased signal $x(t)$.}\label{fig:symbol_encoding}
+	\caption{Block diagram of the signal-processing for the symbol encoding. The digital signal $x[km]$ is upsampled by a factor $k$ to $r[m]$ and pulse-shaped by a \gls{rrc} filter to yield $q[m]$. A \gls{dac} converts the pulse-shaped signal $q[m]$ to the analog signal $q(t)$. Finally, the analog signal $q(t)$ is \gls{lp} filtered to yield the analog anti-aliased signal $x(t)$.}\label{fig:symbol_encoding}
 \end{figure}
 \Cref{fig:symbol_encoding} summarizes the essential \gls{dsp} steps including analog conversion of a real-valued digital signal $x[km]$ to construct a bandwidth-optimized analog baseband signal $x(t)$.\footnote{The baseband construction generalizes to a complex digital signal by applying the real-valued baseband construction separately to the real and imaginary part.}
 The digital signal $x[km]$, containing the symbols, is first upsampled by an upsampling factor of $k$, adding $k$ zero-valued samples in between the original samples.
@@ -65,7 +65,7 @@ The analog signal $q(t)$ contains infinite aliases through the upsampling, which
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/symbol-encoding-time-unit}
-	\caption{Baseband construction for a single unit symbol in the time domain. The symbol sequence $\{x_n\in\mathbb{R}\colon n\in I\}$ is represented by the digital signal $x[km]$ with sample period $T_s$ (first row). The digital signal $x[km]$ is upsampled to $r[m]$ by an upsampling factor of $k=2$ (second row). The upsampled signal $r[m]$ is pulse-shaped with a \gls{rrc} filter to yield $q[m]$ (third row). The pulse-shaped digital signal $q[m]$ is converted to the anti-aliased analog signal $x(t)$.}\label{fig:baseband_construction_unit_time}
+	\caption{Symbol encoding for a single unit symbol in the time domain. The symbol sequence $\{x_n\in\mathbb{R}\colon n\in I\}$ is represented by the digital signal $x[km]$ with sample period $T_s$ (first row). The digital signal $x[km]$ is upsampled to $r[m]$ by an upsampling factor of $k=2$ (second row). The upsampled signal $r[m]$ is pulse-shaped with a \gls{rrc} filter to yield $q[m]$ (third row). The pulse-shaped digital signal $q[m]$ is converted to the anti-aliased analog signal $x(t)$.}\label{fig:baseband_construction_unit_time}
 \end{figure}
 \Cref{fig:baseband_construction_unit_time} illustrates the time domain signals for each signal-processing step for a symbol sequence which contains only a single non-zero symbol with unit value.
 We see very well how the upsampling increases the resolution of the digital signal in the time domain and how the pulse-shaping filter interpolates between the samples.
@@ -87,7 +87,7 @@ Taking the square-root of the raised-cosine pulse-shaping filter and applying it
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/symbol-encoding-time-qpsk}
-	\caption{Baseband construction for a random \gls{qpsk} symbol sequence in the time domain. The real and imaginary part are colored orange respectively green. The complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$ is represented by the digital signal $\alpha[km]$ with sample period $T_s$ (first row). The digital signal $\alpha[km]$ is upsampled to $\rho[m]$ by an upsampling factor of $k=2$ (second row). The upsampled signal $\rho[m]$ is pulse-shaped with a \gls{rrc} filter to yield $\gamma[m]$ (third row). The pulse-shaped digital signal $\gamma[m]$ is converted to the anti-aliased analog signal $\alpha(t)$.}\label{fig:baseband_construction_rand_time}
+	\caption{Symbol encoding for a random \gls{qpsk} symbol sequence in the time domain. The real and imaginary part are colored orange respectively green. The complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$ is represented by the digital signal $\alpha[km]$ with sample period $T_s$ (first row). The digital signal $\alpha[km]$ is upsampled to $\rho[m]$ by an upsampling factor of $k=2$ (second row). The upsampled signal $\rho[m]$ is pulse-shaped with a \gls{rrc} filter to yield $\gamma[m]$ (third row). The pulse-shaped digital signal $\gamma[m]$ is converted to the anti-aliased analog signal $\alpha(t)$.}\label{fig:baseband_construction_rand_time}
 \end{figure}
 \Cref{fig:baseband_construction_rand_time} illustrates the time domain signals for each signal-processing step for a random \gls{qpsk} symbol sequence.
 \begin{figure}[htb]

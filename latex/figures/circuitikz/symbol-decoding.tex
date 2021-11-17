@@ -8,23 +8,21 @@
 		node distance=40pt,
 	]
 		\coordinate (in);
-		\node (low) [lowpassshape, right=of in] {};
-		\node (adc) [adcshape, right=of low] {};
+		\node (adc) [adcshape, right=of in] {};
 		\node (mix) [mixer, right=of adc] {};
-		\node (osc) [below=20pt of mix] {$\exp(i\omega_it+\vartheta)$};
+		\node (osc) [below=20pt of mix] {$\exp(i\omega_it)$};
 		\node (down1) [twoportshape, t={$\downarrow l$}, right=of mix] {};
 		\node (rrc) [twoportshape, t={RRC}, right=of down1] {};
 		\node (down2) [twoportshape, t={$\downarrow k$}, right=of rrc] {};
 		\coordinate[right=of down2] (out);
 		
-		\draw[-Latex] (osc.north) -- (mix.south);
+		\draw[-Latex] (in) -- (adc.west) node[midway, above]  {$u(t)$};
+		\draw[-Latex] (adc.east) -- (mix.west) node[midway, above] {$u\left[\frac{m}{kl}\right]$};
+		\draw[-Latex] (mix.east) -- (down1.west) node[midway, above] {$\sigma\left[\frac{m}{kl}\right]$};
+		\draw[-Latex] (down1.east) -- (rrc.west) node[midway, above] {$\mu\left[\frac{m}{k}\right]$};
+		\draw[-Latex] (rrc.east) -- (down2.west) node[midway, above] {$\kappa\left[\frac{m}{k}\right]$};
+		\draw[-Latex] (down2.east) -- (out.west) node[midway, above] {$\beta[m]$};
 		
-		\draw[-Latex] (in) -- (low) node[midway, above] {$v(t)$};
-		\draw[-Latex] (low) -- (adc);
-		\draw[-Latex] (adc) -- (mix) node[midway, above] {$v\left[\frac{m}{kl}\right]$};
-		\draw[-Latex] (mix) -- (down1) node[midway, above] {f};
-		\draw[-Latex] (down1) -- (rrc) node[midway, above] {$x^{\prime\prime}[m/k]$};
-		\draw[-Latex] (rrc) -- (down2) node[midway, above] {$x^{\prime}[m]$};
-		\draw[-Latex] (down2) -- (out) node[midway, above] {$[m]$};
+		\draw[-Latex] (osc.north) -- (mix.south);
 	\end{tikzpicture}
 \end{document}

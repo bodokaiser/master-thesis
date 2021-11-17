@@ -15,6 +15,12 @@
 			grid=major,
 			width=\linewidth,
 			height=24ex,
+			xmin=-3,
+			xmax=3,
+			xtick distance=0.5,
+			ymin=-60,
+			ymax=5,
+			axis line style={thick},
 			xlabel={Frequency $f/f_s$},
 			yticklabels={},
 			ylabel style={align=center},
@@ -22,47 +28,31 @@
 		]
 			\nextgroupplot[
 				title={Relative power spectral density},
-				xmin=-4,
-				xmax=4,
-				xtick distance=0.5,
-				ymin=-60,
-				ymax=5,
-				ylabel={Detection\\$\beta^\prime[m]e^{-i\omega_it}$},
+				ylabel={Demodulation\\$u[m/(kl)]$},
 			]
 			\addplot+[
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-rx-det.csv};
 			\nextgroupplot[
-				xmin=-4,
-				xmax=4,
-				xtick distance=0.5,
-				ymin=-60,
-				ymax=5,
-				ylabel={Down-conversion\\$\beta^\prime[m]$},
+				ylabel={Down-conversion\\$\sigma[m/(kl)]$},
 			]
 			\addplot+[
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-tx-lp.csv};
 			\nextgroupplot[
-				xmin=-4,
-				xmax=4,
-				xtick distance=0.5,
-				ymin=-60,
-				ymax=5,
-				ylabel={Matched filter\\$\beta[m]$},
+				ylabel={Pulse-shaping\\$\kappa[m/k]$},
 			]
 			\addplot+[
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-rx-rrc.csv};
 			\nextgroupplot[
-				xmin=-4,
-				xmax=4,
-				xtick distance=0.5,
-				ymin=-60,
-				ymax=5,
-				ylabel={Symbols\\$\beta[n]$},
+				ylabel={Symbols\\$\beta[m]$},
 			]
 			\addplot+[
+				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-rx-dwn.csv};
 		\end{groupplot}

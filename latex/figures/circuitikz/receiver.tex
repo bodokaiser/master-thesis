@@ -7,10 +7,10 @@
 		line width=1pt,
 		node distance=20pt,
 	]
-		\node (in) {$z(t)$};
+		\node (in) {$u(t)$};
 		\node (mixa) [mixer, right=of in] {};
 		\node (low) [lowpassshape, right=of mixa] {};
-		\node (osca) [below=of mixa] {$\sin(\omega_ct+\vartheta)$};
+		\node (osca) [below=of mixa] {$\cos(\omega_ct+\vartheta)$};
 		\node (adc) [adcshape, right=of low] {};
 		\node (mixd) [mixer, right=of adc] {};
 		\node (oscd) [below=of mixd] {$\exp(i\omega_it)$};

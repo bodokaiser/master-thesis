@@ -165,6 +165,7 @@ If we now assume the input signal to be from the coherent state transmitter $\ke
 	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
 	\beta(\omega+\omega_i)
 	e^{+i(\omega t+\vartheta)}
+	\label{eq:receiver_demod_real}
 	\\
 	v(t)
 	&=
@@ -172,6 +173,7 @@ If we now assume the input signal to be from the coherent state transmitter $\ke
 	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
 	\beta(\omega+\omega_i)
 	e^{+i(\omega t+\vartheta)}
+	\label{eq:receiver_demod_imag}
 	,
 \end{align}
 where we defined the intermediate frequency as the difference between the transmitter and receiver laser frequency
@@ -190,7 +192,7 @@ If the detector bandwidth is large enough to cover the baseband signal at the in
   \centering
   \begin{tabular}{lccccc}
     \toprule
-    Receiver design & Homodyne (single) & Homodyne (dual) & Heterodyne \\
+    Scheme & Homodyne (single) & Homodyne (dual) & Heterodyne \\
     \midrule
     Balanced detectors & \num{1} & \num{2} & \num{1} \\
     Quadratures & \num{1} & \num{2} & \num{2} \\
@@ -200,30 +202,44 @@ If the detector bandwidth is large enough to cover the baseband signal at the in
     \gls{lo} synchronization & Frequency and phase & Frequency & Bandwidth \\
     \bottomrule
   \end{tabular}
-  \caption{Comparison of receiver implementations according to Ref.~\cite{Brunner2017}: The single quadrature homodyne detection offers low optical complexity and high bandwidth but only resolves one of two quadratures and required frequency and phase synchronization of the \gls{lo}. The dual quadrature homodyne detection resolves both quadratures with high bandwidth but requires two balanced detectors increasing the optical complexity and phase synchronization of the \gls{lo}. The heterodyne detection schemes resolves both quadratures with low complexity and no requirements on \gls{lo} synchronization at the cost of signal bandwidth.}\label{tab:receivers}
+  \caption{Comparison of receiver schemes according to Ref.~\cite{Brunner2017}: The single quadrature homodyne detection offers low optical complexity and high bandwidth but only resolves one of two quadratures and required frequency and phase synchronization of the \gls{lo}. The dual quadrature homodyne detection resolves both quadratures with high bandwidth but requires two balanced detectors increasing the optical complexity and phase synchronization of the \gls{lo}. The heterodyne detection schemes resolves both quadratures with low complexity and no requirements on \gls{lo} synchronization at the cost of signal bandwidth.}\label{tab:receivers}
 \end{table}
-\Cref{tab:receivers} summarizes the characteristics between the single and dual homodyne and the heterodyne receiver designs.
+\Cref{tab:receivers} summarizes the characteristics between the single and dual homodyne and the heterodyne receiver schemes.
 A strong advantage of the heterodyne receiver design is that both quadratures can be resolved with a single balanced detector, keeping the optical complexity low.
 
 \FloatBarrier
 \subsection{Symbol decoding}
 
-We 
-
+We continue our receiver description, starting from the single-quadrature down-conversion and assuming the more general heterodyning, which for $\omega_i=0$ reduces to single quadrature homodyning.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/symbol-decoding}
-	\caption{foo}
+	\caption{Block diagram of the signal-processing for the symbol decoding. The analog signal $u(t)$ is converted to the digital signal $u[m/(kl)]$. The real digital signal $u[m/(kl)]$ is multiplied with the complex exponential $\exp(i\omega_it)$, yielding the complex digital signal $\sigma[m/(kl)]$. $\sigma[m/(kl)]$ is downsampled by $l$ to yield the complex digital signal $\mu[m/k]$. $\mu[m/k]$ is pulse-shaped with the matched \gls{rrc} filter to yield the complex digital signal $\kappa[m/k]$. $\kappa[m/k]$ is downsampled to the complex digital signal $\beta[m]$ corresponding to the decoded symbol sequence.}\label{fig:symbol_decoding_blocks}
 \end{figure}
-
+\Cref{fig:symbol_decoding_blocks} summarizes the relevant signal-processing for the symbol decoding.
+The down-converted signal $u(t)$ corresponding to the real part of the received coherent state spectrum $\beta(\omega)$, \cref{eq:receiver_demod_real}, is sampled by an \gls{adc}, yielding the digital signal $u[m/(kl)]$.
+We remove the intermediate frequency in $u[m/(kl)]$ by multiplication with a complex exponential, i.e,
+\begin{equation}
+	\sigma\left[\frac{m}{kl}\right]
+	=
+	u\left[\frac{m}{kl}\right]
+	e^{+2\pi i (m/kl) T_s}
+	,
+\end{equation}
+making the signal too complex.
+It follows a downsampling by $l$ of the signal such that we can apply the same \gls{rrc} filter, the matched filter, which we used in the symbol encoding.
+Finally, we downsample by $k$ to restore a digital signal corresponding to the symbol sequence.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/pgfplots/rx-frequency}
-	\caption{foo}
+	\includegraphics{figures/pgfplots/symbol-decoding-frequency}
+	\caption{Power spectrum of the symbol decoding steps for a random \gls{qpsk} symbol sequence. The demodulated signal is a real-valued passband signal centered at the intermediate frequency (first row). After digital down-conversion we have a complex-valued baseband signal, centered at zero frequency (second row). Applying the matched \gls{rrc} filter completes the pulse-shaping (third row). Downsampling recovers the initial symbol band (last row).}\label{fig:symbol_decoding_frequency}
 \end{figure}
-
+\Cref{fig:symbol_decoding_frequency} illustrates how the symbol decoding is carried out in the frequency domain.
+The demodulated signal spectrum is a passband signal at the intermediate frequency and down-conversion reduces the passband to a baseband signal.
+Completing the pulse-shaping with the matched filter increases the steepness of the flanks which are then removed by the final downsampling step.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/pgfplots/rx-rand-time}
-	\caption{foo}
+	\includegraphics{figures/pgfplots/symbol-decoding-time-qpsk}
+	\caption{Signal amplitude of the symbol decoding steps for a random \gls{qpsk} symbol sequence. The real-valued demodulated signal oscillates at the intermediate frequency (first row). Digital down-conversion removed the intermediate frequency, yielding a complex signal (second row). Completing the pulse-shaping by applying a matched \gls{rrc} filter (third row). Downsampling recovers the complex symbol sequence equal to the transmitted sequence (fourth and last row).}\label{fig:symbol_decoding_time}
 \end{figure}
+\Cref{fig:symbol_decoding_time}) shows the symbol decoding in the time domain.
