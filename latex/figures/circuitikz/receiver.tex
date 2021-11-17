@@ -7,7 +7,7 @@
 		line width=1pt,
 		node distance=20pt,
 	]
-		\node (in) {$u(t)$};
+		\node (in) {$z(t)$};
 		\node (mixa) [mixer, right=of in] {};
 		\node (low) [lowpassshape, right=of mixa] {};
 		\node (osca) [below=of mixa] {$\cos(\omega_ct+\vartheta)$};
@@ -17,7 +17,7 @@
 		\node (down1) [twoportshape, t={$\downarrow l$}, right=of mixd] {};
 		\node (rrc) [twoportshape, t={RRC}, right=of down1] {};
 		\node (down2) [twoportshape, t={$\downarrow k$}, right=of rrc] {};
-		\node (out) [right=of down2] {$\alpha[n]$};
+		\node (out) [right=of down2] {$\beta[n]$};
 		
 		\draw[-Latex] (in) -- (mixa.west);
 		\draw[-Latex] (mixa.east) -- (low.west);

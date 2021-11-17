@@ -1,24 +1,33 @@
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
 
-% discuss limitations
-% - ideal syncronization -> appendix
-% - perfect channel (one-to-one)
+We presented an abstract transmission system en- and decoding a complex symbol sequence onto and from an optical coherent state by following the signal-processing across the quantum optical, analog and digital domains.
+We assumed a software-defined implementation of the transmitter and receiver where most of the signal-processing is performed in the digital domain.
+For simplicity, we assumed a perfect noiseless quantum channel without attenuation and perfect synchronization between the transmitter and receiver clocks.\footnote{\Cref{app:synchronization} summarizes some important techniques to compensate for synchronization error of the optical \gls{lo}s and the \gls{adc} clock.}
 
-% compare results with Kikuchi (?)
-
+\Cref{fig:transmitter_signal_processing} summarizes the transmitter's signal-processing in a block diagram.
+First, the complex digital signal corresponding to the symbol sequence $\alpha[n]$ are encoded in two real-valued bandwidth-optimized digital baseband signals.
+The digital baseband signals are transferred to the analog domain, where we up-convert them to a single passband signal.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/transmitter}
 	\caption{Block diagram of the transmitter's signal-processing. The real and imaginary part of a complex digital signal $\alpha[n]$ is upsampled, pulse-shaped and converted to anti-aliased analog signals, $x(t)$ and $p(t)$. The analog signals are individually mixed with a phase-shifted \gls{lo} with carrier frequency $\omega_c$ and then added to yield a complex signal $\alpha(t)$.}\label{fig:transmitter_signal_processing}
 \end{figure}
-
+For the receiver we discussed the differences between a single, dual homo- and heterodyne receiver.
+With homodyning, the optical signal is directly down-converted without intermediate frequency, $\omega_i=0$, while with heterodyning we have an intermediate frequency, which we remove in the digital domain.
+Although, homodyning directly reveals the quadrature information, it requires dual quadrature down-conversion in the electro-optical domain, increasing the hardware complexity.
+Using heterodyning both quadratures can be digitally restored given sufficient detector bandwidth.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/receiver}
-	\caption{Block diagram of the receiver's signal-processing.}\label{fig:receiver_signal_processing}
+	\caption{Block diagram of the heterodying receiver's signal-processing. The signal $z(t)$ is mixed with $\cos(\omega_ct+\vartheta)$. The mixed analog signal is bandwidth-limited through a \gls{lp} filter and converted to the digital domain where it is digitally down-converted through multiplication with $\exp(i\omega_it)$. The digitally down-converted signal is downsampled a first time for compatibility with the matched \gls{rrc} filter and then downsampled a second time to recover the symbols.}\label{fig:receiver_signal_processing}
 \end{figure}
+\Cref{fig:receiver_signal_processing} summarizes a heterodyning receiver's signal-processing in a block diagram.
+First, the received passband signal $z(t)$ is down-converted to an intermediate (radio) frequency and converted to a digital signal.
+The digital signal is multiplied by a complex exponential removing the intermediate frequency and recovering dual quadrature information.
+Finally, the pulse-shaping is completed and the digital signal is downsampled to recover the digital signal $\beta[n]$ corresponding to the symbol sequence.
 
+We found the coherent state transformations for the \gls{iqm} and balanced detector, derived in the previous chapter, to exactly implement the electro-optical up- and down-conversion of the transmitter respectively receiver.
 \begin{table}[htb]
   \centering
   \begin{tabular}{lccc}
@@ -29,5 +38,7 @@
     Down-conversion & Balanced detection & $\ket{\alpha(t)e^{-i\omega_c t}}$ & $\alpha(t)e^{-i\omega_mt}$ \\
     \bottomrule
   \end{tabular}
-  \caption{Foo}
+  \caption{Electro-optical components implementing signal-processing operations.}\label{tab:electro_optical_signal_processing}
 \end{table}
+\Cref{tab:electro_optical_signal_processing} summarizes the relation between input and output state/signals for the electro-optical components implementing the up- and down-conversion.
+We have thus successfully bridged the gap between signal-processing and quantum optical communication.
