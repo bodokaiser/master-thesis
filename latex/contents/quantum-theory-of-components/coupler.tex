@@ -815,7 +815,7 @@ The product in frequency space implies a convolution in the time domain, i.e.,
 \begin{equation}
 	\vb{\alpha}^\prime(t)
 	=
-	\left(U*\vb{\alpha}\right)(t)
+	\left(U\conv\vb{\alpha}\right)(t)
 	=
 	\int\frac{\dd{\omega}}{2\pi}
 	U(\omega)
@@ -829,7 +829,7 @@ and we conclude that a tensor product of coherent states transforms under an ide
 	\hat{U}
 	\ket*{\alpha(t)}
 	&=
-	\ket*{\left(U*\vb{\alpha}\right)(t)}	
+	\ket*{\left(U\conv\vb{\alpha}\right)(t)}	
 	&
 	U(t)
 	&=
@@ -970,7 +970,7 @@ Assuming the Fourier transform of $c_1(\omega),c_2(\omega)$ to be well-defined, 
 	\hat{U}
 	\ket*{\alpha(t),0}
 	=
-	\ket*{\left(c_1*\alpha\right)(t),\left(c_2*\alpha\right)(t)}
+	\ket*{\left(c_1\conv\alpha\right)(t),\left(c_2\conv\alpha\right)(t)}
 	\label{eq:splitter_state_convolution}
 \end{equation}
 according to \cref{eq:coupler_coherent_state}.
@@ -1006,7 +1006,7 @@ To remove the second output, we perform a partial trace over the second subsyste
 	\hat{U}
 	\ket*{\alpha(t),0}
 	=
-	\ket*{\left(h*\alpha\right)(t)}
+	\ket*{\left(h\conv\alpha\right)(t)}
 	\label{eq:filter_state}
 \end{equation}
 where we introduced the optical filter function $h=c_1$.

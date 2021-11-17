@@ -1,6 +1,14 @@
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
 
+Comparison of results with literature
+% literature review
+% \cite{Kikuchi2016}
+% \cite{Shapiro2009}
+% \cite{Loudon2000}
+% \cite[p.~206]{Vogel2006}
+% quantum noise p. 265
+
 \begin{equation}
 	\hat{U}
 	\ket{\vb{\alpha}(t)}
@@ -14,8 +22,8 @@
 		\toprule
 			Component & Time $\alpha^\prime(t)$ & Frequency $\alpha^\prime(\omega)$ & Constraint \\
 		\midrule
-			Optical coupler & $\left(U*\vb{\alpha}\right)(t)$ & $U(\omega)\vb{\alpha}(\omega)$ & $U(\omega)\in SU(2)$ \\
-			Spectral filter & $\left(h*\alpha\right)(t)$ & $h(\omega)\alpha(\omega)$ & $\abs{h(\omega)}\leq1$ \\
+			Optical coupler & $\left(U\conv\vb{\alpha}\right)(t)$ & $U(\omega)\vb{\alpha}(\omega)$ & $U(\omega)\in SU(2)$ \\
+			Spectral filter & $\left(h\conv\alpha\right)(t)$ & $h(\omega)\alpha(\omega)$ & $\abs{h(\omega)}\leq1$ \\
 			Phase modulator & $\alpha(t)e^{i\varphi(t)}$ & - & $\varphi(t)$ is finite-time \\
 			Amplitude modulator & $\alpha(t)\beta(t)$ & - & $\abs{\beta(t)}\leq1$ is finite-time \\
 		\bottomrule
@@ -29,8 +37,8 @@
 		\toprule
 			Detection & Signal & Modulation \\
 		\midrule
-			Direct & $\left(h*\abs{\alpha_s}^2\right)$ & Intensity \\
-			Balanced & $\left(h*2\Re{\alpha_s\alpha_l^*}\right)$ & Quadratures \\
+			Direct & $\left(h\conv\abs{\alpha_s}^2\right)$ & Intensity \\
+			Balanced & $\left(h\conv2\Re{\alpha_s\alpha_l^*}\right)$ & Quadratures \\
 		\bottomrule
 	\end{tabular}
 	\caption{Detection signals for a signal, $\ket{\alpha_s(t)}$, and \gls{lo} coherent state, $\ket{\alpha_l(t)}$, with effective response function $h(t)$ of the detector.}

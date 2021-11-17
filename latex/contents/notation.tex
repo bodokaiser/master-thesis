@@ -52,6 +52,33 @@ The four-dimensional (spacetime), Fourier transform follows from the combined te
 	e^{-ip_0 t+i\vb{p}\vdot\vb{x}}
 \end{align*}
 where we identify $p_0$ with the energy $\omega$.
+We denote the convolution operator with $\conv$, i.e,
+\begin{equation*}
+	\left(f\conv g\right)(t)
+	=
+	\int\dd{t^\prime}
+	f(t^\prime)
+	g(t-t^\prime)
+	=
+	\int\frac{\dd{\omega}}{2\pi}
+	f(\omega)
+	g(\omega)
+	e^{+i\omega t}
+\end{equation*}
+in the frequency and
+\begin{equation*}
+	\left(f\conv g\right)(\omega)
+	=
+	\int\frac{\dd{\omega^\prime}}{2\pi}
+	f(\omega^\prime)
+	g(\omega-\omega^\prime)
+	=
+	\int\dd{t}
+	f(t)
+	g(t)
+	e^{-i\omega t}
+\end{equation*}
+in the time domain.
 
 We strongly recommend Ref.~\cite{Carroll1997} to get comfortable with four-dimensional vectors, tensors, and the Minkowski metric.
 Three-dimensional vectors are denoted by boldface, i.e.,

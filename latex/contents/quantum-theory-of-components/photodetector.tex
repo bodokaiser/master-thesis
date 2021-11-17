@@ -144,21 +144,21 @@ wherein $\expval{\left(\Delta\hat{I}(t)\right)^2}$ denotes the variance of the b
 
 \Cref{fig:detector_direct} presents the electronic schematic of a direct detector circuit.
 A photodiode, PD, is reverse biased with voltage $-V_b<0$ to reduce the response time of the photodiode.
-Under optical illumination, PD produces a photocurrent, $i_p$, which in natural units is equal to the mean photoelectron number, \cref{eq:photoelectron_povm_mean}.
+Under optical illumination, PD produces a photocurrent, $i(t)$, which in natural units is equal to the mean photoelectron number, \cref{eq:photoelectron_povm_mean}.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/circuitikz/detector-direct}
-    \caption{Electronic schematic of a direct (intensity) detector comprising a photodiode and an operational amplifier in \gls{tia} configuration. The anode of the photodiode is reverse biased with voltage $-V_b<0$. The cathode of the photodiode emits the photocurrent $i_p$ and is connected to the inverting input of the operational amplifier. The non-inverting input of the operational amplifier is connected with ground, while the inverting input is coupled with feedback impedance $Z_f$ to the operational amplifier output voltage, $V_p$.}\label{fig:detector_direct}
+    \caption{Electronic schematic of a direct (intensity) detector comprising a photodiode and an operational amplifier in \gls{tia} configuration. The anode of the photodiode is reverse biased with voltage $-V_b<0$. The cathode of the photodiode emits the photocurrent $i$ and is connected to the inverting input of the operational amplifier. The non-inverting input of the operational amplifier is connected with ground, while the inverting input is coupled with feedback impedance $Z_f$ to the operational amplifier output voltage, $V$.}\label{fig:detector_direct}
 \end{figure}
 For a coherent state, $\ket{\alpha(t)}$, we find the mean photocurrent to be equal to the power of the signal, $\abs{\alpha(t)}^2$, convolved with the detector response function,
 \begin{equation}
-	i_p(t)
+	i(t)
 	=
 	\int\dd{t^\prime}
 	\eta(t^\prime)
 	\abs{\alpha(t-t^\prime)}^2
 	=
-	\left(\eta*\abs{\alpha}^2\right)(t)
+	\left(\eta\conv\abs{\alpha}^2\right)(t)
 	\label{eq:detector_direct_photocurrent}
 	.
 \end{equation}
@@ -175,22 +175,16 @@ More realistically, we expect the response of the \gls{tia} to be characterized 
 \begin{equation}
 	V_p(t)
 	=
-	\left(h*i_p\right)(t)
+	\left(h\conv i\right)(t)
 	=
-	\left(h*\eta*\abs{\alpha}^2\right)(t)
+	\left(h\conv\eta\conv\abs{\alpha}^2\right)(t)
 	\label{eq:detector_direct_photovoltage}
 	.
 \end{equation}
 In \cref{eq:detector_direct_photovoltage}, we find the absolute square of the signal to be convolved with the detector response function and the response function of the \gls{tia}, which can be summarized into one effective response function.
 
 \FloatBarrier
-\subsection{Balanced (amplitude) detector}
-
-% literature review
-% \cite{Kikuchi2016}
-% \cite{Shapiro2009}
-% \cite{Loudon2000}
-% \cite[p.~206]{Vogel2006}
+\subsection{Balanced (quadrature) detector}
 
 \Cref{fig:detector_balanced_optics} shows a possible arrangement of electro-optical components for balanced detection.
 \begin{figure}[htb]
@@ -216,7 +210,7 @@ where we choose the phase properties of the beam splitter for notational conveni
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/circuitikz/detector-balanced}
-    \caption{Electronic schematic of a balanced (quadrature) detector comprising two photodiodes and an operational amplifier in \gls{tia} configuration. The cathode of the first photodiode, PD1, is reverse biased with voltage $+V_b>0$. The cathode of the second photodiode, PD2, is reverse biased with voltage $-V_b<0$. The cathode of PD1 and the anode of PD2 are connected to supply the difference photocurrent signal, $i_p(t)=i_+(t)-i_-(t)$, to the inverting input of the operational amplifier. The non-inverting input of the operational amplifier is connected to ground. The inverting input is coupled to the output through the feedback impedance $Z_f$. The \gls{tia} outputs a voltage signal $V_p(t)$ proportional to the difference photocurrent signal $i_p(t)$.}\label{fig:detector_balanced_electronics}
+    \caption{Electronic schematic of a balanced (quadrature) detector comprising two photodiodes and an operational amplifier in \gls{tia} configuration. The cathode of the first photodiode, PD1, is reverse biased with voltage $+V_b>0$. The cathode of the second photodiode, PD2, is reverse biased with voltage $-V_b<0$. The cathode of PD1 and the anode of PD2 are connected to supply the difference photocurrent signal, $i(t)=i_+(t)-i_-(t)$, to the inverting input of the operational amplifier. The non-inverting input of the operational amplifier is connected to ground. The inverting input is coupled to the output through the feedback impedance $Z_f$. The \gls{tia} outputs a voltage signal $V(t)$ proportional to the difference photocurrent signal $i(t)$.}\label{fig:detector_balanced_electronics}
 \end{figure}
 PD1 and PD2 are both reverse biased to reduce the response time and connected to each other to directly produce a difference photocurrent signal,
 \begin{equation}
@@ -229,25 +223,34 @@ PD1 and PD2 are both reverse biased to reduce the response time and connected to
 		&=
 		\left(
 			\eta
-			*
-			\abs{\alpha_+}^2
-		\right)(t)
-		-
-		\left(
-			\eta
-			*
-			\abs{\alpha_-}^2
+			\conv
+			\left[
+				\abs{\alpha_+}^2
+				-
+				\abs{\alpha_-}^2
+			\right]		
 		\right)(t)
 		\\
 		&=
 		\left(
-			\eta*
+			\eta
+			\conv
 			\left[
 				\alpha_s
 				\alpha_l^*
 				+
 				\alpha_s^*
 				\alpha_l
+			\right]
+		\right)(t)
+		\\
+		&=
+		\left(
+			\eta
+			\conv
+			2\Re\left[
+				\alpha_s
+				\alpha_l^*
 			\right]
 		\right)(t)
 		,
@@ -260,61 +263,101 @@ For a meaningful measurement the \gls{lo} must be a narrow linewidth laser for w
 	\alpha_l(t)
 	=
 	g(t)
-	e^{-i(\omega_lt+\vartheta)}
+	e^{+i(\omega_lt+\vartheta)}
 	\label{eq:detector_balanced_lo}
 \end{equation}
 with $g(t)$ encoding the linewidth profile\footnote{For instance, $g(t)\propto e^{-\gamma t/2}$ for a Lorentzian profile, see Ref.~\cite{Demtroeder2014}.}.
-Using \cref{eq:detector_balanced_lo}, we can write the product of the signal and \gls{lo} amplitude
+We absorb the linewidth profile into the signal amplitude by defining
+\begin{equation}
+	\alpha(t)
+	=
+	g(t)^*
+	\alpha_s(t)
+\end{equation}
+and rewrite the product of the signal with the \gls{lo} in \cref{eq:detector_balanced_photocurrent} as
 \begin{equation}
 	\alpha_s(t)
 	\alpha_l(t)^*
 	=
-	(g\alpha_s)(t)
-	e^{+i(\omega_lt+\vartheta)}
+	\alpha(t)
+	e^{-i(\omega_lt+\vartheta)}
 	=
-	\int_0^\infty
+	\int_0^{\infty}
 	\frac{\dd{\omega}}{2\pi}
-	(g\alpha_s)(\omega)
-	e^{+i\omega_l t}
-	e^{+i(\omega t+\vartheta)}
-\end{equation}
-which inserted into \cref{eq:detector_balanced_photocurrent} yields
-\begin{equation}
-	i(t)
-	=
-	\int_0^\infty
-	\frac{\dd{\omega}}{2\pi}
-	\left[
-		\eta(\omega)
-		(g\alpha_s)(\omega)
-		e^{+i\omega_l t}
-		e^{+i(\omega t+\vartheta)}
-		+
-		\text{c.c.}
-	\right]
+	\alpha(\omega)
+	e^{-i\vartheta}
+	e^{+i(\omega-\omega_l) t}
 	.
+	\label{eq:detector_balanced_signal_product}
 \end{equation}
-Compared with the expectation value of the generalized quadrature operator,
+Inserting \cref{eq:detector_balanced_signal_product} into \cref{eq:detector_balanced_photocurrent}, we find
 \begin{equation}
-	\bra{\alpha(t)}
-	\hat{X}(\vartheta)
-	\ket{\alpha(t)}
-	=
-	\int_0^\infty
-	\frac{\dd{\omega}}{2\pi}
-	\left[
+	\begin{split}
+		i(t)
+		=
+		2\Re\left[
+			\eta
+			\conv
+			(\alpha_s\alpha_l^*)
+		\right](t)
+		=
+		2\Re
+		\int_0^{B/2}
+		\frac{\dd{\omega}}{2\pi}
+		\eta(\omega)
 		\alpha(\omega)
+		e^{-i\vartheta}
+		e^{+i(\omega-\omega_l) t}
+		,
+	\end{split}
+	\label{eq:detector_balanced_photocurrent_final}
+\end{equation}
+where we introduced the detector bandwidth $B$ equal to the support of $\eta(\omega)$.\footnote{The support of a function $f\colon X\to Y$ is the subset of the domain, $U\subset X$, for which the function is non-zero for all values of the subset, i.e., $f(x)\neq 0$ for all $x\in U$.}
+Comparing our final result for the photocurrent, \cref{eq:detector_balanced_photocurrent_final}, with the expectation value of the quadrature operator for a coherent state $\ket{\beta(t)}$,
+\begin{equation}
+	\begin{split}
+		\bra{\beta(t)}
+		\hat{X}(t)
+		\ket{\beta(t)}
+		&=
+		\int_0^\infty
+		\frac{\dd{\omega}}{2\pi}
+		\left[
+			\beta(\omega)
+			e^{-i\omega t}
+			+
+			\text{c.c.}
+		\right]
+		=
+		2\Re
+		\int_0^\infty
+		\frac{\dd{\omega}}{2\pi}
+		\beta(\omega)
+		e^{-i\omega t}
+		,
+	\end{split}
+\end{equation}
+we identify that the balanced photocurrent signal corresponds to a quadrature measurement of a coherent state with bandwidth-limited and down-converted spectrum
+\begin{equation}
+	\beta(\omega)
+	=
+	\eta(\omega)
+	\alpha(\omega)
+	e^{-i(\omega_lt+\vartheta)}
+	,
+\end{equation}
+suggesting the definition of a generalized quadrature operator including phase, frequency and bandwidth, i.e.,
+\begin{equation}
+	\hat{\chi}(\omega_0,\vartheta;B)
+	=
+	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
+	\left[
+		\hat{a}(\omega+\omega_0)
 		e^{-i(\omega t+\vartheta)}
 		+
 		\text{c.c.}
 	\right]
-	,
+	.
+	\label{eq:quadrature_operator_generalized}
 \end{equation}
-we identify
-\begin{equation}
-	\alpha(\omega)
-	=
-	\eta(\omega)
-	(g\alpha_s)(\omega)
-	e^{+i\omega_l t}
-\end{equation}
+The generalized quadrature operator reduces to the phase-rotated quadrature operator for a quadrature measurement at zero frequency, $\omega_0=0$, with infinite bandwidth $B\to\infty$.\footnote{The zero-frequency quadrature measurement equals the time average of the quadrature.}
