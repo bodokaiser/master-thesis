@@ -2,7 +2,7 @@
 
 % We follow mostly Mandel & Wolf supplemented by Knight and Vogel.
 
-\subsection{Photoelectric effect in phototube and photodiode}
+\subsection{Photoelectric effect}
 
 The photoelectric effect describes the emission of electrons from an illuminated material.
 Historically, it provided strong evidence for the existence of a light quantum, the photon, as the kinetic energy of the emitted electrons,
@@ -63,7 +63,7 @@ For the excited state, $\ket{e}$, an energy continuum exists with energies rangi
 The difference of the lowest excited energy, $\min_eE_e$, and the ground state energy, $E_g$, is equivalent to the bandgap energy inside a semiconductor.
 The transition from the ground to an excited state, $\ket{g}\to\ket{e}$, through photon absorption requires the photon energy, $\omega$, to be at least the bandgap energy, $\omega\geq\min_eE_e-E_g$.
 
-\subsection{Photoelectron counting probability}
+\subsection{Photocurrent operator}
 
 % independent atoms in ensemble: Rocca 1971, Arnedo and Rocca 1974
 % effective detector response including spatiality in z?
@@ -140,7 +140,7 @@ For the variance, we find~\cite[p.~736]{Mandel1995}
 wherein $\expval{\left(\Delta\hat{I}(t)\right)^2}$ denotes the variance of the bandwidth-limited intensity operator, \cref{eq:intensity_operator_convolved}, which can become negative indicating sub-Poissionian statistics for certain quantum states.
 
 \FloatBarrier
-\subsection{Direct (intensity) detector}
+\subsection{Intensity detector}
 
 \Cref{fig:detector_direct} presents the electronic schematic of a direct detector circuit.
 A photodiode, PD, is reverse biased with voltage $-V_b<0$ to reduce the response time of the photodiode.
@@ -184,7 +184,9 @@ More realistically, we expect the response of the \gls{tia} to be characterized 
 In \cref{eq:detector_direct_photovoltage}, we find the absolute square of the signal to be convolved with the detector response function and the response function of the \gls{tia}, which can be summarized into one effective response function.
 
 \FloatBarrier
-\subsection{Balanced (quadrature) detector}
+\subsection{Balanced detector}
+
+% problems with intensity detector (nonlinear)
 
 \Cref{fig:detector_balanced_optics} shows a possible arrangement of electro-optical components for balanced detection.
 \begin{figure}[htb]
