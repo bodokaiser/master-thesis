@@ -1,0 +1,23 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		line width=1pt,
+		node distance=20pt,
+        block/.style={draw, very thick, minimum height=40pt, minimum width=60pt, align=center},
+	]
+		\node (mod) [block] {Coupler};
+		\node (left in) [left, left=of mod, yshift=10pt] {$\ket{\alpha(t)}$};
+		\node (left out) [left, left=of mod, yshift=-10pt] {$\ket{\beta^\prime(t)}$};
+		\node (right out) [right, right=of mod.east, yshift=10pt] {$\ket{\alpha^\prime(t)}$};
+		\node (right in) [right, right=of mod, yshift=-10pt] {$\ket{\beta(t)}$};
+		
+		
+		\draw[-Latex] (left in) -- (left in-|mod.west);
+		\draw[Latex-] (left out) -- (left out-|mod.west);
+		\draw[-Latex] (right in) -- (right in-|mod.east);
+		\draw[Latex-] (right out) -- (right out-|mod.east);
+	\end{tikzpicture}
+\end{document}

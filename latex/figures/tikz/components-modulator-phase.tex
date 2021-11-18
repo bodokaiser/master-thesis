@@ -1,0 +1,20 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		line width=1pt,
+		node distance=20pt,
+        block/.style={draw, very thick, minimum height=30pt, minimum width=60pt, align=center},
+	]
+		\node (mod) [block] {PM};
+		\node (state in) [left, left=of mod] {$\ket{\alpha(t)}$};
+		\node (phase in) [above, above=of mod] {$\varphi(t)$};
+		\node (state out) [right, right=of mod] {$\ket{\alpha(t)e^{i\varphi(t)}}$};
+		
+		\draw[-Latex] (state in) -- (mod);
+		\draw[-Latex] (phase in) -- (mod);
+		\draw[Latex-] (state out) -- (mod);
+	\end{tikzpicture}
+\end{document}

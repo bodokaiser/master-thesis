@@ -140,7 +140,7 @@ For the variance, we find~\cite[p.~736]{Mandel1995}
 wherein $\expval{\left(\Delta\hat{I}(t)\right)^2}$ denotes the variance of the bandwidth-limited intensity operator, \cref{eq:intensity_operator_convolved}, which can become negative indicating sub-Poissionian statistics for certain quantum states.
 
 \FloatBarrier
-\subsection{Intensity detector}
+\subsection{Direct detector}
 
 \Cref{fig:detector_direct} presents the electronic schematic of a direct detector circuit.
 A photodiode, PD, is reverse biased with voltage $-V_b<0$ to reduce the response time of the photodiode.
@@ -350,7 +350,7 @@ we identify that the balanced photocurrent signal corresponds to a quadrature me
 \end{equation}
 suggesting the definition of a generalized quadrature operator including phase, frequency and bandwidth, i.e.,
 \begin{equation}
-	\hat{\chi}(\omega_0,\vartheta;B)
+	\hat{\chi}(t;\omega_0,\vartheta,B)
 	=
 	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
 	\left[

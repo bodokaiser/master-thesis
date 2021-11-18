@@ -1,0 +1,20 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[
+		line width=1pt,
+		node distance=20pt,
+        block/.style={draw, very thick, minimum height=30pt, minimum width=60pt, align=center},
+	]
+		\node (mod) [block] {BDET};
+		\node (state in) [left, left=of mod] {$\ket{\alpha(t)}$};
+		\node (state lo) [left, above=of mod] {$\ket{e^{+i(\omega_0t+\vartheta)}}$};
+		\node (signal out) [right, right=of mod] {$\expval{\hat{\chi}(t;\omega_0,\vartheta,B)}$};
+		
+		\draw[-Latex] (state in) -- (mod);
+		\draw[-Latex] (state lo) -- (mod);
+		\draw[Latex-] (signal out) -- (mod);
+	\end{tikzpicture}
+\end{document}
