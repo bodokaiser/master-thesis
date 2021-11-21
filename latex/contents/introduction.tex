@@ -1,38 +1,12 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-Optical communication enables humanity worldwide to share information in a split second, and companies like Huawei undergo a tremendous effort to overcome existing boundaries.
-Besides incremental innovation increasing the capacity and decreasing the cost of optical communication technology, we observe intensified activities towards disruptive innovations that challenge our present understanding of communication.
-One such branch of activity, quantum optical communication, attempts to incorporate quantum properties of light into classical communication to open up entirely new avenues.
-One such avenue considers the practical and secure key generation for secure communication, \gls{qkd}.
+% generate interest
+Optical communication enables humanity worldwide to share information in a split second, with companies like Huawei undergoing tremendous efforts to advance the frontiers.
+In addition to incremental innovation increasing the performance and decreasing the cost of optical communication technology, we observe intensified activities towards disruptive innovations that challenge our present understanding of communication.
+One such branch of activity is quantum optical communication, incorporating quantum aspects of light into classical communication and leading to novel communication technology like \gls{qkd}, which enables practical and secure key generation.
+As a still young discipline, which emerged from two highly advanced fields, communication engineering and quantum physics, quantum communication lacks a unified description to which both communication engineers and quantum physicists agree.
+The present thesis aims to resolve the seeming discrepancies between communication engineering and quantum physics by reviewing a practical implementation of a quantum communication system implementing a \gls{qkd} protocol.
+In the process, we hope to develop a theoretical framework for quantum optical communication, which has applicability beyond \gls{qkd}.
 
-\gls{qkd} exploits the inherent uncertainty in quantum measurements to create mutual information between two distanced parties.
-Any attempts to 
-
-
-
-which we pursue here.
-Whenever two highly advanced disciplines like optical communication and quantum mechanics interface, we are confronted with two different schools of thought, which at first may appear in conflict.
-However, we also face the opportunity to challenge our existing knowledge and broaden our understanding of the world.
-The present thesis aims to resolve the seeming discrepancies by reviewing a practical implementation of a \gls{qkd} system through a theoretical framework under which communication engineers and quantum physicists agree and recognize the key concepts of their domain in a unified language.
-
-
-A classical transmission system attempts to reproduce information from a spacetime event $x$, the information source, at a spacetime event $y$, the information destination, wherein $y$ is in the forward light cone of $x$.\footnote{Contemporary to the literature, we distinguish between a transmission and a communication system. The former allows only unidirectional, the later bidirectional transport of information.}
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/tikz/transmission-system}
-	\caption{Block diagram of a general transmission system according to Ref.~\cite{Shannon1948}. An information source produces information that a transmitter encodes into a signal and transmits it through a channel to the receiver. The channel adds noise from a noise source to the transmitted signal. The receiver recovers the information from the received signal and passes it to the intended information destination.}\label{fig:transmission_system}
-\end{figure}
-To transport information from the information source and the information destination, the transmission system uses a transmitter-receiver pair connected by a physical channel (\Cref{fig:transmission_system}).
-The task of the transmitter is to encode the information in a physical signal for efficient transmission over the channel.
-In its most general form, the channel is a mapping from the transmitted to the received signal.
-The received signal may contain additional information, not of interest to the information destination, which we refer to as noise.
-The receiver listens to the channel and attempts to recover the transmitted from the received signal for the information destination.
-
-How to generalize the classical transmission system to a quantum transmission system?
-First of all, it appears natural to define the channel as the distinguishing feature between a classical and quantum transmission system: While a classical channel maps a classical signal, we expect a quantum channel to map a quantum state.
-Secondly, we need to address the inherent uncertainty associated with quantum measurements.
-In principle, we could remove the quantum uncertainty by demanding the transmitter and receiver use the same basis and the quantum channel preserving orthogonality.
-However, such a requirement would limit the capabilities of the quantum transmission system to the classical analog and be an unrealistic demand for realistic channels.
-Finally, we are left with the information source, which can be either classical or quantum, depending on if we want to encode classical information onto a quantum state or if we want to transmit quantum states themselves for further processing, e.g., computation or sensing.
-To conclude, we propose to define a quantum transmission system as a system that attempts to correlate a classical or quantum information destination at a spacetime event $y$ with an information source at a spacetime event $x$, wherein $y$ is in the forward light cone of $x$.
+% provide context to understand our research problem
