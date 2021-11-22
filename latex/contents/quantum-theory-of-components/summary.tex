@@ -83,18 +83,47 @@ The coherent output state in \Cref{fig:components_filter} relates to the coheren
 \end{align*}
 in the time and frequency domain, wherein the frequency response function of the filter is required to satisfy $\abs{h(\omega)}\leq1$.
 
-
+Using the linear electro-optical effect and nonlinear frequency conversion with the help of Ref.~\cite{Horoshko2018,QuesadaMejia2015}, we derived a unitary evolution corresponding to phase modulation with a sinusoidal signal.
+Neglecting second-order interactions between the modulation sidebands, we argued that phase modulation with an arbitrary signal is thinkable.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-modulator-phase}
     \caption{Quantum optical phase modulator with electric phase signal $\varphi(t)$, coherent input state, $\ket{\alpha(t)}$, and coherent output state, $\ket{\alpha^\prime(t)}$.}\label{fig:components_modulator_phase}
 \end{figure}
-
+The amplitude of the coherent output state in \Cref{fig:components_modulator_phase} is
+\begin{align}
+	\alpha^\prime(t)
+	&=
+	\alpha(t)
+	e^{i\varphi(t)}
+	&
+	\alpha^\prime(\omega)
+	&=
+	\left(g\conv\alpha\right)(\omega)
+\end{align}
+in the time and frequency domain, wherein we can only give an explicit expression for the kernel $g(\omega)$ in the case of a sinusoidal modulation, \cref{eq:phase_modulation_sinusoidal_kernel}.
+Arranging two electro-optical phase modulators in an \gls{mzm} and driving the modulators with a differential voltage enables electro-optical amplitude modulation.
+Arranging two electrically driven \gls{mzm}s with a relative phase shift of $\pi/2$ generalizes amplitude modulation with a real- to a complex-valued signal.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-modulator-amplitude}
     \caption{Quantum optical amplitude modulator with input voltage signals, $x(t)$ and $p(t)$, coherent input state, $\ket{\alpha(t)}$, and coherent output state $\ket{\alpha^\prime(t)}$.}\label{fig:components_modulator_phase}
 \end{figure}
+The amplitude of the coherent output state in \Cref{fig:components_modulator_phase} is
+\begin{equation}
+	\alpha^\prime(t)
+	=
+	\left[
+		x(t)
+		+
+		ip(t)
+	\right]
+	\alpha(t)
+	,
+\end{equation}
+wherein $x(t)$ and $p(t)$ are proportional to the differential voltages driving the \gls{mzm}s.
+As with the phase modulator, no closed form exists for the convolution kernel in the frequency domain.
+Furthermore, one should keep in mind that constructive interference in the \gls{mzm}s constraints the components of the complex amplitude modulation, $x(t)+ip(t)$, by $\abs{x(t)},\abs{p(t)}\leq1$.
 
 %Comparison of results with literature
 % literature review
@@ -103,6 +132,7 @@ in the time and frequency domain, wherein the frequency response function of the
 % \cite{Loudon2000}
 % \cite[p.~206]{Vogel2006}
 % quantum noise p. 265
+
 
 \begin{figure}[htb]
     \centering
