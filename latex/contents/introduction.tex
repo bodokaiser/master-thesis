@@ -1,12 +1,115 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-% generate interest
 Optical communication enables humanity worldwide to share information in a split second, with companies like Huawei undergoing tremendous efforts to advance the frontiers.
 In addition to incremental innovation increasing the performance and decreasing the cost of optical communication technology, we observe intensified activities towards disruptive innovations that challenge our present understanding of communication.
 One such branch of activity is quantum optical communication, incorporating quantum aspects of light into classical communication and leading to novel communication technology like \gls{qkd}, which enables practical and secure key generation.
 As a still young discipline, which emerged from two highly advanced fields, communication engineering and quantum physics, quantum communication lacks a unified description to which both communication engineers and quantum physicists agree.
 The present thesis aims to resolve the seeming discrepancies between communication engineering and quantum physics by reviewing a practical implementation of a quantum communication system implementing a \gls{qkd} protocol.
-In the process, we hope to develop a theoretical framework for quantum optical communication, which has applicability beyond \gls{qkd}.
+In the process, we hope to develop a theoretical framework for quantum optical communication, incorporating quantum effects into classical communication, which has applicability beyond \gls{qkd}.
+To raise awareness of the challenges ahead, we first review the standard description of optical quantum effects along with classical communication and, second, outline where these pictures conflict.
 
-% provide context to understand our research problem
+The physical subfield responsible for the quantum aspects of light is quantum optics.
+Typically quantum optics models monochromatic light with frequency $\omega_0$ as a quantum harmonic oscillator with unit mass, $m=1$, and Hamiltonian~\cite{Gerry2005,Fox2006}
+\begin{equation*}
+	\hat{H}
+	=
+	\omega_0
+	\hat{a}^\dagger
+	\hat{a}
+	,
+\end{equation*}
+wherein $\hat{a}$ and $\hat{a}^\dagger$ are the quantum annihilation and creation operators, destroying or creating an excitation or mode of frequency $\omega_0$.
+The electric field operator connects the annihilation and creation operators of the harmonic oscillator with light and, in the dipole approximation, is given by~\cite[p.~44]{Gerry2005}
+\begin{equation*}
+	\hat{E}(t)
+	=
+	\frac{i\mathcal{E}_0}{\sqrt{2}}
+	\left[
+		\hat{a}
+		e^{-i\omega_0t}
+		+
+		\hat{a}^\dagger
+		e^{+i\omega_0t}
+	\right]
+	,
+\end{equation*}
+wherein $\mathcal{E}_0$ has the interpretation of an electric field density.
+The number state of the harmonic oscillator
+\begin{equation*}
+	\ket{n}
+	=
+	\frac{1}{\sqrt{n!}}
+	\left(\hat{a}^\dagger\right)^n
+	\ket{0}
+\end{equation*}
+is identified with a $n$ photon state of frequency $\omega_0$.
+The coherent superposition of number states~\cite[p.~44]{Gerry2005}
+\begin{equation*}
+	\ket{\alpha}
+	=
+	\exp\left(-\frac{1}{2}\abs{\alpha}^2\right)
+	\sum_{n=0}^\infty
+	\frac{\alpha^n}{\sqrt{n!}}
+	\ket{n}
+\end{equation*}
+is termed a coherent state and parametrized by the complex number $\alpha\in\mathbb{C}$.
+The coherent state is the most classical quantum state because its expectation values reduce to that of classical monochromatic light waves.
+For example, writing the complex parameter $\alpha$ in polar form $\abs{\alpha}e^{i\theta}$, the expectation of the electric field operator regarding a coherent state $\ket{\alpha}$~\cite[p.~45]{Gerry2005},
+\begin{equation*}
+	\bra{\alpha}
+	\hat{E}(t)
+	\ket{\alpha}
+	=
+	\sqrt{2}
+	\abs{\alpha}
+	\mathcal{E}_0
+	\sin\left(\omega_0t-\theta\right)
+	,
+\end{equation*}
+equals that of a classical monochromatic wave with amplitude proportional to $\abs{\alpha}$ and phase $\theta$.
+
+In communication engineering, light is primarily a means of transmitting signals, and the physical aspects receive little attention as long as there is no impact on the transmitted signal.
+The transmitted signal usually comprises one or more signal bands centered around a carrier frequency $\omega_c$, as illustrated by the figure below.
+\begin{figure*}[htb]
+	\centering
+	\includegraphics{figures/pgfplots/signal-spectrum}
+	\caption*{Receiver spectrum comprising multiple signal bands relative to a carrier frequency at $\omega=0$. At \SI{+100}{\mega\hertz}, the spectrum has a pilot tone broadened by phase noise. Centered at \SI{-25}{\mega\hertz}, the spectrum contains a first signal band with \SI{12.5}{\mega\hertz} bandwidth. Centered at \SI{-168.75}{\mega\hertz}, the spectrum contains a second signal band with \SI{12.5}{\mega\hertz} bandwidth. The remaining segments of the spectrum include mirror bands or disturbances.}
+\end{figure*}
+The efficient description of such signal spectra requires the concept of base- and passband signals.
+For a baseband signal $x_b(t)$, the signal power outside of the signal's bandwidth $B$ is negligible~\cite[p.~15]{Madhow2008}, i.e.,
+\begin{equation*}
+	\abs{x_b(\omega)}^2
+	\approx
+	0
+	\qquad
+	\abs{\omega}
+	>
+	B/2
+	.
+\end{equation*}
+For a passband signal $x_p(t)$, the signal power outside the signal's band around a carrier frequency $\omega_c$ is negligible~\cite[p.~16]{Madhow2008}, i.e.,
+\begin{equation*}
+	\abs{x_p(\omega)}^2
+	\approx
+	0
+	\qquad
+	\abs{\omega\pm\omega_c}
+	>
+	B/2
+	.	
+\end{equation*}
+\begin{figure*}[htb]
+	\centering
+	\includegraphics{figures/tikz/up-conversion}
+	\caption*{Power spectrum illustrating up-conversion of a real-valued passband signal with bandwidth $B$ centered at $\omega_0$. Up-conversion by $\omega_c$ shifts the passband to $\omega_c+\omega_0$ and creates a mirror band at $\omega_c-\omega_0$.}
+\end{figure*}
+A baseband signal can be up-converted to a passband signal at carrier frequency $\omega_c$ by shifting the spectrum by $\omega_c$ is known as up-conversion, and implemented by modulation onto a carrier signal.
+Similar, a passband signal at carrier frequency $\omega_c$ is down-converted to a baseband signal by demodulation~\cite[p.~26]{Madhow2008}.
+The prerequisite for base- and passband signals is that the information coding is bandwidth-optimized.
+
+% apparent conflicts when attempting to combine both descriptions
+
+% literature review
+
+% outline thesis structure

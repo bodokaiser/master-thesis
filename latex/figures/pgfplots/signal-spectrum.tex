@@ -2,8 +2,6 @@
 
 \input{preamble}
 
-%\usepackage{siunitx}
-
 \begin{document}
 	\begin{tikzpicture}
 		\begin{axis}[
@@ -18,7 +16,7 @@
             ymin=0.1,
             ymax=1e2,
 			no markers,
-			xlabel={Relative frequency $f$ (\si{\mega\hertz})},
+			xlabel={Relative frequency $\omega$ (\si{\mega\hertz})},
 			ylabel={Power spectral density (\si{\decibel})},
 		]
 			\addplot+[very thick] plot table[col sep=comma] {../../../data/psd.csv};

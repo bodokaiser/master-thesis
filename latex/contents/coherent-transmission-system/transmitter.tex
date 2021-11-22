@@ -17,14 +17,7 @@ First and foremost, the channel and receiver limit the spectrum of useful cohere
 For instance, the receiver has limited bandwidth to detect the signal with signal power outside that bandwidth being lost.
 Apart from that, the physical channel only shows favorable transmission properties over a certain frequency range, outside the signal is strongly suppressed and distorted.\footnote{For instance, the C-band, spanning wavelengths from \SI{1530}{\nano\meter} to \SI{1565}{\nano\meter}, is widely deployed for optical telecommunication.}
 Additionally, different users may jointly use the same physical channel, and using the available bandwidth efficiently while reducing interference between users, requires the signal bandwidth to be minimal.
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/tikz/up-conversion}
-	\caption{Power spectrum illustrating up-conversion of a real-valued passband signal with bandwidth $B$ centered at $\omega_0$. Up-conversion by $\omega_c$ shifts the passband to $\omega_c+\omega_0$ and creates a mirror band at $\omega_c-\omega_0$.}\label{fig:up_conversion}
-\end{figure}
-To illustrate the signal and channel bandwidth, we introduce the concept of baseband and passband signals\cite[p.~26]{Madhow2008}.
-\Cref{fig:up_conversion} depicts up-conversion of a real-valued baseband signal centered at $\omega_0$ with bandwidth $B$ by $\omega_c$.
-If $\omega_0=0$, we would have a baseband instead of a passband signal.
+
 For efficient use of the limited channel and receiver bandwidth, we want to minimize $B$ while keeping the \gls{snr} high.
 In addition, we need to shift the baseband spectrum to an optical frequency $\omega_0$ for which the channel shows desirable transmission characteristics.
 So from a signal processing point of view, we want the transmitter to
