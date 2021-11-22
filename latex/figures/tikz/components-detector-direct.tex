@@ -6,11 +6,13 @@
 	\begin{tikzpicture}[
 		line width=1pt,
 		node distance=20pt,
-        block/.style={draw, very thick, minimum height=30pt, minimum width=60pt, align=center},
+        block/.style={draw, very thick, minimum height=40pt, minimum width=60pt, align=center},
 	]
-		\node (mod) [block] {DDET};
+		\path (-4,0) -- (4,0);
+
+		\node (mod) [block] {Direct\\detection};
 		\node (state in) [left, left=of mod] {$\ket{\alpha(t)}$};
-		\node (signal out) [right, right=of mod] {$(\eta\ast\abs{\alpha}^2)(t)$};
+		\node (signal out) [right, right=of mod] {$i(t)$};
 		
 		\draw[-Latex] (state in) -- (mod);
 		\draw[Latex-] (signal out) -- (mod);

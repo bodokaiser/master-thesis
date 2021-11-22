@@ -6,11 +6,13 @@
 	\begin{tikzpicture}[
 		line width=1pt,
 		node distance=20pt,
-        block/.style={draw, very thick, minimum height=30pt, minimum width=60pt, align=center},
+        block/.style={draw, very thick, minimum height=40pt, minimum width=60pt, align=center},
 	]
+		\path (-4,0) -- (4,0);
+
 		\node (mod) [block] {Filter};
 		\node (state in) [left, left=of mod] {$\ket{\alpha(t)}$};
-		\node (state out) [right, right=of mod] {$\ket{(h\conv\alpha)(t)}$};
+		\node (state out) [right, right=of mod] {$\ket{\alpha^\prime(t)}$};
 		
 		\draw[-Latex] (state in) -- (mod);
 		\draw[Latex-] (state out) -- (mod);
