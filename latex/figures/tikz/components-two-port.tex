@@ -12,9 +12,9 @@
 
 		\node (mod) [block] {Two-port};
 		\node (left in) [left, left=of mod, yshift=10pt] {$\ket{\alpha(t)}$};
-		\node (left out) [left, left=of mod, yshift=-10pt] {$\ket{\beta^\prime(t)}$};
-		\node (right out) [right, right=of mod.east, yshift=10pt] {$\ket{\alpha^\prime(t)}$};
-		\node (right in) [right, right=of mod, yshift=-10pt] {$\ket{\beta(t)}$};
+		\node (left out) [left, left=of mod, yshift=-10pt] {$\ket{\alpha^\prime(t)}$};
+		\node (right in) [right, right=of mod.east, yshift=10pt] {$\ket{\beta(t)}$};
+		\node (right out) [right, right=of mod, yshift=-10pt] {$\ket{\beta^\prime(t)}$};
 		
 		\draw[-Latex] (left in) -- (left in-|mod.west);
 		\draw[Latex-] (left out) -- (left out-|mod.west);

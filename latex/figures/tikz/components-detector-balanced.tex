@@ -10,10 +10,10 @@
 	]
 		\path (-4,0) -- (4,0);
 
-		\node (mod) [block] {Balanced\\detection};
+		\node (mod) [block] {Balanced\\detector};
 		\node (state in) [left, left=of mod, yshift=10pt] {$\ket{\alpha(t)}$};
 		\node (state lo) [left, left=of mod, yshift=-10pt] {$\ket{e^{+i(\omega_0t+\vartheta)}}$};
-		\node (signal out) [right, right=of mod] {$i(t)$};
+		\node (signal out) [right, right=of mod] {$z(t)$};
 		
 		\draw[-Latex] (state in) -- (state in-|mod.west);
 		\draw[-Latex] (state lo) -- (state lo-|mod.west);

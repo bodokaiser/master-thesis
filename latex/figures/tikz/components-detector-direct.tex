@@ -10,9 +10,9 @@
 	]
 		\path (-4,0) -- (4,0);
 
-		\node (mod) [block] {Direct\\detection};
+		\node (mod) [block] {Direct\\detector};
 		\node (state in) [left, left=of mod] {$\ket{\alpha(t)}$};
-		\node (signal out) [right, right=of mod] {$i(t)$};
+		\node (signal out) [right, right=of mod] {$y(t)$};
 		
 		\draw[-Latex] (state in) -- (mod);
 		\draw[Latex-] (signal out) -- (mod);

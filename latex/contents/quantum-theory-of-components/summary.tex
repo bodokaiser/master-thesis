@@ -1,7 +1,102 @@
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
 
-Comparison of results with literature
+In this chapter, we presented quantum models of the optical coupler, electro-optical modulator, and detector.
+What we are missing is a quantum theory of a coherent state source with narrow linewidth in the optical range, typically implemented by a laser.
+A full laser quantum treatment of the laser requires analysis of nonlinear quantum stochastic equations and is out of the scope of this thesis but can be found in Ref.~\cite[p.~900]{Mandel1995} and Ref.~\cite{Haken2012,Gardiner2000}.
+For an intuitive argument why lasers emit coherent states based on decoherence, see Ref.~\cite{Gea1998}.
+
+One of the most important components is the optical two-port characterized by the complex transmission and reflection coefficients of the two inputs.
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/components-two-port}
+    \caption{Quantum optical two-port with the incident and reflected coherent states, $\ket{\alpha(t)}$ and $\ket{\alpha^\prime(t)}$, on the left side, and the incident and reflected coherent states, $\ket{\beta(t)}$ and $\ket{\beta^\prime(t)}$, on the right side.}\label{fig:components_two_port}
+\end{figure}
+For a lossless \gls{lti} two-port, the amplitudes of the in- and output coherent states in \Cref{fig:components_two_port} are related by
+\begin{align}
+	\begin{pmatrix}
+		\alpha^\prime(t)
+		\\
+		\beta^\prime(t)
+	\end{pmatrix}
+	&=
+	\begin{pmatrix}
+		r(t) & t^\prime(t) \\
+		t(t) & r^\prime(t)
+	\end{pmatrix}
+	\conv
+	\begin{pmatrix}
+		\alpha(t)
+		\\
+		\beta(t)
+	\end{pmatrix}
+	\\
+	\begin{pmatrix}
+		\alpha^\prime(\omega)
+		\\
+		\beta^\prime(\omega)
+	\end{pmatrix}
+	&=
+	\begin{pmatrix}
+		r(\omega) & t^\prime(\omega) \\
+		t(\omega) & r^\prime(\omega)
+	\end{pmatrix}
+	\begin{pmatrix}
+		\alpha(\omega)
+		\\
+		\beta(\omega)
+	\end{pmatrix}
+\end{align}
+in the time and frequency domain, wherein the complex reflection and transmission coefficients, the scattering paramters, are required to satisfy
+\begin{equation}
+	\abs{r(\omega)}
+	+
+	\abs{t^\prime(\omega)}
+	=
+	1
+	=
+	\abs{t(\omega)}
+	+
+	\abs{r^\prime(\omega)}
+\end{equation}
+for conservation of energy flow and the \gls{ccr}.
+If we assume the coherent input states to be of narrow-bandwidth and the optical two-port to have constant frequency response over the optical bandwidth, the convolution in the time domain reduces to a multiplication.
+Certain embodiments of the optical two-port, such as the plate beam splitter, implement an optical coupler, which arbitrarily superimposes two coherent input states.
+Most implementations of optical couplers exhibit backscattering, which accounting for requires an optical four-port.
+However, an optical four-port requires \num{16} complex parameters for characterization, which makes most calculations impractical and one therefore assumes an ideal two-port for coupling.
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/components-filter}
+    \caption{Quantum optical filter with input coherent state, $\ket{\alpha(t)}$, and output coherent state, $\ket{\alpha^\prime(t)}$.}\label{fig:components_filter}
+\end{figure}
+An optical two-port with a vacuum state as a second input and tracing out one output effectively implements a linear filter.
+The coherent output state in \Cref{fig:components_filter} relates to the coherent input state via
+\begin{align*}
+	\alpha^\prime(t)
+	&=
+	\left(h\conv\alpha\right)(t)
+	&
+	\alpha^\prime(\omega)
+	&=
+	h(\omega)
+	\alpha(\omega)
+\end{align*}
+in the time and frequency domain, wherein the frequency response function of the filter is required to satisfy $\abs{h(\omega)}\leq1$.
+
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/components-modulator-phase}
+    \caption{Quantum optical phase modulator with electric phase signal $\varphi(t)$, coherent input state, $\ket{\alpha(t)}$, and coherent output state, $\ket{\alpha^\prime(t)}$.}\label{fig:components_modulator_phase}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics{figures/tikz/components-modulator-amplitude}
+    \caption{Quantum optical amplitude modulator with input voltage signals, $x(t)$ and $p(t)$, coherent input state, $\ket{\alpha(t)}$, and coherent output state $\ket{\alpha^\prime(t)}$.}\label{fig:components_modulator_phase}
+\end{figure}
+
+%Comparison of results with literature
 % literature review
 % \cite{Kikuchi2016}
 % \cite{Shapiro2009}
@@ -11,75 +106,12 @@ Comparison of results with literature
 
 \begin{figure}[htb]
     \centering
-    \includegraphics{figures/tikz/components-two-port}
-    \caption{Foo}
-\end{figure}
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics{figures/tikz/components-coupler}
-    \caption{Foo}
-\end{figure}
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics{figures/tikz/components-filter}
-    \caption{Foo}
-\end{figure}
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics{figures/tikz/components-modulator-phase}
-    \caption{Foo}
-\end{figure}
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics{figures/tikz/components-modulator-amplitude}
-    \caption{Foo}
-\end{figure}
-
-\begin{figure}[htb]
-    \centering
     \includegraphics{figures/tikz/components-detector-direct}
-    \caption{Foo}
+    \caption{Quantum optical direct detector with coherent input state, $\ket{\alpha(t)}$, and voltage output signal, $y(t)$.}\label{fig:components_detector_direct}
 \end{figure}
 
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-detector-balanced}
-    \caption{Foo}
+    \caption{Quantum optical balanced detector with coherent input signal state, $\ket{\alpha(t)}$, coherent input \gls{lo} state, $\ket{e^{i(\omega_0t+\vartheta)}}$, and voltage output signal, $z(t)$}\label{fig:components_detector_balanced}
 \end{figure}
-
-\begin{table}[htb]
-	\centering	
-	\begin{tabular}{lccc}
-		\toprule
-			Component & Time $\alpha^\prime(t)$ & Frequency $\alpha^\prime(\omega)$ & Constraint \\
-		\midrule
-			Optical coupler & $\left(U\conv\vb{\alpha}\right)(t)$ & $U(\omega)\vb{\alpha}(\omega)$ & $U(\omega)\in SU(2)$ \\
-			Spectral filter & $\left(h\conv\alpha\right)(t)$ & $h(\omega)\alpha(\omega)$ & $\abs{h(\omega)}\leq1$ \\
-			Phase modulator & $\alpha(t)e^{i\varphi(t)}$ & - & $\varphi(t)$ is finite-time \\
-			Amplitude modulator & $\alpha(t)\beta(t)$ & - & $\abs{\beta(t)}\leq1$ is finite-time \\
-		\bottomrule
-	\end{tabular}
-	\caption{Transformed amplitudes of a coherent state in time and frequency space for important (electro-)optical components.}
-\end{table}
-
-\begin{table}[htb]
-	\centering	
-	\begin{tabular}{lcc}
-		\toprule
-			Detection & Signal & Modulation \\
-		\midrule
-			Direct & $\left(h\conv\abs{\alpha_s}^2\right)$ & Intensity \\
-			Balanced & $\left(h\conv2\Re{\alpha_s\alpha_l^*}\right)$ & Quadratures \\
-		\bottomrule
-	\end{tabular}
-	\caption{Detection signals for a signal, $\ket{\alpha_s(t)}$, and \gls{lo} coherent state, $\ket{\alpha_l(t)}$, with effective response function $h(t)$ of the detector.}
-\end{table}
-
-What we haven't considered are coherent light sources, e.g., lasers.
-Practically, a laser implements the coherent light source.
-Advanced quantum stochastic models predicting laser characteristics (gain, stability, coherence, linewidth) are established and found in  Ref.~\cite[p.~900]{Mandel1995} and Ref.~\cite{Haken2012}.
-For our purpose, it is sufficient to know that lasers emit coherent states with a frequency spectrum.\footnote{For an intuitive argument why laser emit coherent states based on decoherence, see Ref.~\cite{Gea1998}.}
