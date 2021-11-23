@@ -538,7 +538,7 @@ We conclude that a coherent state transform under sinusoidal phase-modulation as
 	\ket*{\alpha(t)e^{+i\theta\cos(\Omega_0t-\varphi)}}
 	.
 \end{equation}
-We extend our result to signals of finite duration by noting that we can write such a signal as a sum of harmonics, i.e.,
+To extend our result to signals of finite duration, we first note that we can write such a signal as a sum of harmonics, i.e.,
 \begin{equation}
 	\varphi(t)
 	=
@@ -556,9 +556,11 @@ and apply a product of sinusoidal phase modulation operators, \cref{eq:frequency
 	\ket*{\alpha(t)}
 	=
 	\ket*{\alpha(t)e^{+i\varphi(t)}}
-	.
+	,
 \end{equation}
-Although we cannot write down a closed solution for an arbitrary time-dependent signal in frequency space, we expect such a solution to exist and to be a convolution.
+which corresponds to having a different sinusoidal phase modulators in sequence.
+For different frequencies in the same phase modulator, we have the problem that they all interact.
+That said, it should be possible to generalize the frequency up- and down-conversion operators to a spectrum and argue that the commutator between the generator, \cref{eq:frequency_conversion_generator}, and the annihilation operator vanishes except for the dominant frequency components.
 
 \subsection{Amplitude modulator}
 
