@@ -170,8 +170,8 @@ For example, the delta distribution $\delta(x-y)$ is the integration kernel of t
 \end{equation}
 Fourier transforms are another class of functionals we already used frequently.
 Linear functionals share many convenient properties with ordinary functions and physicists often skip the distinction.
-In axiomatic quantum field theory, the quantum field operators are precisely defined as operator-valued tempered distributions mapping from the space smearing or test functions $\mathcal{S}(\mathbb{R}^4)$ to the the set a set of operators defined on the corresponding Hilbert space $\mathcal{O}(\mathcal{H})$~\cite[p.~56]{Haag2012}.
-A typical functional space for smearing functions is the Schwartz space, a subset of the space of square-integrable functions $L^2$, which rapidly fall off at infinitely, a property which we exploit for partial integration with vanishing boundary terms of the action integral.\footnote{Typical Schwartz functions are Gaussian functions multiplied with a monomial, e.g., $x^ne^{-a\norm{x}^2}$ where $n\in\mathbb{N}_0$ and $a\in\mathbb{R}_+$.}
+In axiomatic quantum field theory, the quantum field operators are precisely defined as operator-valued tempered distributions mapping from the space of smearing or test functions $\mathcal{S}(\mathbb{R}^4)$ to the the set of operators defined on the corresponding Hilbert space $\mathcal{O}(\mathcal{H})$~\cite[p.~56]{Haag2012}.
+A typical functional space for smearing functions is the Schwartz space, a subset of the space of square-integrable functions $L^2$, which rapidly fall off at infinity, a property which we exploit for partial integration with vanishing boundary terms of the action integral.\footnote{Typical Schwartz functions are Gaussian functions multiplied with a monomial, e.g., $x^ne^{-a\norm{x}^2}$ where $n\in\mathbb{N}_0$ and $a\in\mathbb{R}_+$.}
 
 Let us reinterpret the (positive frequency) field operator with this mathematical background by considering its action on a smearing function, i.e.,
 \begin{equation}
@@ -225,7 +225,7 @@ With the normalization condition imposed, the smeared state $\ket{1_f}$ is an ei
 	1
 	\ket{1_f}
 \end{equation}
-suggesting the smeared state $\ket{1_f}$ to the physical single-particle state, we were looking for.
+suggesting the smeared state $\ket{1_f}$ to be the physical single-particle state we were looking for.
 The smeared state $\ket{1_f}$ is not an eigenstate of the energy and momentum operator anymore but has expectation values
 \begin{align}
 	\bra{1_f}
@@ -258,7 +258,14 @@ Let $\ket{1_f}$ be a smeared particle state, then the wave function $\Psi(t,\vb{
 	D(t-t^\prime,\vb{x}-\vb{x}^\prime)
 	f(t^\prime,\vb{x}^\prime)
 \end{equation}
-wherein $f(t,\vb{x})$ is the spacetime representation of the (initial) smearing function and $D(t,\vb{x})$ is the propagator as defined in Ref.~\cite[p.~27]{Peskin1995}.
+wherein $f(t,\vb{x})$ is the spacetime representation of the (initial) smearing function and
+\begin{equation}
+	D(t,\vb{x})
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+\end{equation}
+is the propagator as defined in Ref.~\cite[p.~27]{Peskin1995}.
 Given the wave function, the relativistic probability current
 \begin{equation}
 	j_\mu(t,\vb{x})
@@ -418,7 +425,7 @@ The interaction of a classical current $\vb{j}(t,\vb{x})$ with the Maxwell field
 	\hat{\vb{A}}(t,\vb{x})
 	.
 \end{equation}
-Inserting the spatial Fourier transform of the current $\vb{j}(t,\vb{p})$ and the quantum mode mode expansion, \cref{eq:maxwell_positive_operator,eq:maxwell_negative_operator}, the interaction Hamiltonian becomes
+Inserting the spatial Fourier transform of the current $\vb{j}(t,\vb{p})$ and the plane-wave expansion, \cref{eq:maxwell_positive_operator,eq:maxwell_negative_operator}, the interaction Hamiltonian becomes
 \begin{equation}
 	\hat{H}_\text{int}(t)
 	=
@@ -522,7 +529,7 @@ The second term in the Magnus expansion turns out to be complex
 	\right\}
 \end{equation}
 which only contributes a phase to the time-evolution operator.
-As the second commutator is complex-valued, higher order commutators vanish and the Magnus expansion is exact with the first two terms.
+As the second commutator is complex-valued, and therefore commutes, higher order commutators vanish and the Magnus expansion is exact with the first two terms.
 As long as we consider a single current source, no interference of phases can occur and we can ignore the complex phase originating from the second Magnus coefficient.
 The time-evolution operator of the Maxwell field interacting with a classical source current therefore is~\cite[p.~168]{Itzykson2012}
 \begin{equation}
@@ -555,7 +562,7 @@ Neglecting the polarization
 		\right\}
 	\right\}
 \end{equation}
-we identify the time-evolution operator with the generalization of the displacement operator from quantum optics~\cite[p.~xx]{Barnett2002}
+we identify the time-evolution operator with the generalization of the displacement operator from quantum optics~\cite[p.~47]{Barnett2002}
 \begin{equation}
 	\lim_{t\to\infty}\hat{U}(-t,+t)
 	=
@@ -592,9 +599,9 @@ Noting that
 	\comm{\hat{A}^{(+)}[\alpha]}{\hat{A}^{(-)}[\alpha^*]}
 	=
 	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
-	\abs*{\alpha(\vb{p})}
+	\abs*{\alpha(\vb{p})}^2
 \end{equation}
-we can employ the \gls{bch} formula as in Ref.~\cite[p.~xx]{Barnett2002} to write the displacement operator in normal-order
+we can employ the \gls{bch} formula as in Ref.~\cite[p.~48]{Barnett2002} to write the displacement operator in normal-order
 \begin{equation}
 	\hat{D}[\alpha]
 	=
@@ -814,5 +821,5 @@ The inner product of a coherent state with a number state yields
 	\label{eq:coherent_state_inner_number}
 	.
 \end{equation}
-We have derived the generalized coherent state from the interaction of the Maxwell field with a classical current where found the time-evolution operator to yield the displacement operator.
+We have derived the generalized coherent state from the interaction of the Maxwell field with a classical current where we found the time-evolution operator to yield the displacement operator.
 The generalized coherent state and displacement operators share the same properties as their single-mode quantum optics counterparts which is not too surprising given that the modes are independent of another.

@@ -1,16 +1,16 @@
 \section{Maxwell theory}
 
-The Maxwell field is the (quantum) field theory whose excitations correspond to photons, the mediator of the electromagnetic force.
+The Maxwell field is the (quantum) field whose excitations correspond to photons, the mediator of the electromagnetic force.
 
 Our presentation of the Maxwell field heavily exploits the modern field-theoretic arguments that have shown great success in developing the standard model.
 We first motivate the Lagrangian describing the Maxwell field, the Maxwell Lagrangian.
 Second, we relate the Maxwell field to the electromagnetic field components and discuss Maxwell theory in the context of classical electromagnetism.
-Third, we discuss and interpret the physical implications of the local gauge symmetry of the Maxwell field.
+Third, we discuss and interpret the physical implications of the gauge symmetry of the Maxwell field.
 In the last two sections, we perform a plane-wave (mode) expansion of the Maxwell field and observables, followed by canonical quantization.
 
 \subsection{Maxwell Lagrangian}
 
-From a theoretical physics viewpoint, Maxwell theory is a relativistic vector field theory with local gauge symmetry.
+From a theoretical physics viewpoint, Maxwell theory is a relativistic vector field theory with gauge symmetry.
 That alone is sufficient to "guess" the Maxwell Lagrangian from first principles~\cite[p.~149]{Greiner2013}.
 Having established the Maxwell Lagrangian, we can fully infer the physics of electromagnetism inside the field theoretical framework.
 
@@ -80,7 +80,18 @@ For the action integral
 to exist, we need $A^\mu$ to be square-integrable, i.e., vanish at the integration boundaries.
 Using partial integration, we can show the redundancy of two of the first three terms in \cref{eq:proposed_maxwell_lagrangian}, see Ref.~\cite{deRham2014}.
 We remove the redundancy by setting the third coefficient to zero, $c_3=0$.
-Demanding invariance under local gauge transformations requires removing the mass term and determining the Lagrangian up to an overall constant.
+Demanding invariance under gauge transformations, i.e.,
+\begin{equation}
+	A_\mu
+	\to
+	A_\mu^\prime
+	=
+	A_\mu
+	+
+	\partial_\mu\chi
+	,
+\end{equation}
+wherein $\chi$ is the scalar gauge field, requires removing the mass term and determining the Lagrangian up to an overall constant.
 The overall constant does not affect the dynamics, and its absolute value is equal to $1/2$ by convention.
 We finally arrive at the well-known Lagrangian density of the Maxwell field,
 \begin{equation}
@@ -109,8 +120,8 @@ We finally arrive at the well-known Lagrangian density of the Maxwell field,
 	\label{eq:maxwell_lagrangian_field}
 	.
 \end{equation}
-While we can experimentally verify the vector nature of the Maxwell field by polarization experiments, the requirement of the Maxwell field having local gauge symmetry appears artificial.
-If we accept the Dirac Lagrangian, describing charged fermions, then Noether's theorem links local gauge symmetry to charge conservation.
+While we can experimentally verify the vector nature of the Maxwell field by polarization experiments, the requirement of the Maxwell field having gauge symmetry appears artificial.
+If we accept the Dirac Lagrangian, describing charged fermions, then Noether's theorem links gauge symmetry to charge conservation.
 However, the Dirac Lagrangian itself cannot be made gauge-invariant without coupling to a gauge-invariant vector field, which turns out to be the Maxwell field.
 The complete gauge-invariant Lagrangian describing charged fermions coupled to the Maxwell field lays down the foundation of \gls{qed}.
 
@@ -291,7 +302,7 @@ Inserting \cref{eq:field_strength_scalar} into \cref{eq:maxwell_lagrangian_field
 	\vb{j}
 \end{equation}
 where we expanded the Minkowski inner product $A_\mu j^\mu$ in terms of the time and spatial components.
-We identify $j^0$ and $\vb{j}$ as the charge and $\vb{j}$ as the current density as well as $A_0$ as the scalar and $\vb{A}$ as the vector potential of electromagnetism.
+We identify $j^0$ as the charge and $\vb{j}$ as the current density as well as $A_0$ as the scalar and $\vb{A}$ as the vector potential of electromagnetism.
 
 The manifest Lorentz-covariant Maxwell equations are~\cite[p.~336]{Srednicki2007}
 \begin{align}
@@ -347,8 +358,8 @@ We derived Maxwell equations by guessing the Maxwell Lagrangian from fundamental
 As a four-dimensional vector field, we would expect the Maxwell field $A^\mu$ to have four \gls{dof}s, one temporal $A^0$, one longitudinal $A_\parallel$, and two transverse $\vb{A}_\perp$.
 At the same time, freely propagating electromagnetic waves have only two \gls{dof}s, the polarization.\footnote{Alternatively, we can take the particle picture and say that the photon has two helicities, $\pm1$.}
 The zero mass of the photon requires the photon to travel at light speed, restricting the photon's temporal and longitudinal \gls{dof}.
-Local gauge symmetry reflects the non-physicality, more precisely, the mathematical redundancy of two of the four \gls{dof}s.
-To remove the unphysical \gls{dof}s, we impose a gauge condition, i.e., we choose a specific gauge field $\chi$ and perform a local gauge transformation
+Gauge symmetry reflects the non-physicality, more precisely, the mathematical redundancy of two of the four \gls{dof}s.
+To remove the unphysical \gls{dof}s, we impose a gauge condition, i.e., we choose a specific gauge field $\chi$ and perform a gauge transformation
 \begin{equation}
 	A_\mu
 	\to
@@ -525,7 +536,7 @@ we further decompose the plane-wave expansion into a positive and negative frequ
 		\vb{A}(p_0,\vb{p})
 		e^{-ip_0t+i\vb{p}\vdot\vb{x}}
 		\\
-		&+
+		&\qquad+
 		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\delta^{(1)}
 		\left(
@@ -541,7 +552,7 @@ we further decompose the plane-wave expansion into a positive and negative frequ
 		\vb{A}\left(\omega(\vb{p}),\vb{p}\right)
 		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
 		\\
-		&+
+		&\qquad+
 		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\vb{A}\left(-\omega(\vb{p}),\vb{p}\right)
 		e^{+i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
@@ -551,7 +562,7 @@ we further decompose the plane-wave expansion into a positive and negative frequ
 		\vb{A}\left(\omega(\vb{p}),\vb{p}\right)
 		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
 		\\
-		&+
+		&\qquad+
 		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\vb{A}\left(\omega(\vb{p}),\vb{p}\right)^*
 		e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
@@ -651,7 +662,7 @@ In the Coulomb gauge, the electric field components are equal to the negative co
 	-
 	\Pi^i
 \end{equation}
-where we used \cref{eq:field_strength_components} and the temporal gauge.
+where we used \cref{eq:field_strength_components} and the temporal gauge, $A^0=0$.\footnote{We may not always explicitly write that we use the temporal gauge, $A^0=0$.}
 In the following, we replace the conjugate momentum with the electric field components, $\Pi^i=-E^i$.
 The Hamiltonian density of the Maxwell field is equal to
 \begin{equation}
@@ -770,8 +781,6 @@ where we find the electric field operator components via $\hat{E}^i=\partial_t\h
 	\label{eq:electric_positive_operator}
 	.
 \end{align}
-The 
-
 Inserting the Maxwell and electric field operators into the equal-time commutation relation, we derive the \gls{ccr}
 \begin{align}
 	\comm{\hat{a}_\lambda(\vb{p})}{\hat{a}_{\lambda^\prime}^\dagger(\vb{q})}
@@ -830,7 +839,7 @@ the energy and momentum operators then read as the total energy $\omega(\vb{p})$
 	\label{eq:maxwell_number_operator}
 	.
 \end{equation}
-Unsurprisingly, are total particle number and total momentum conserved quantities
+Unsurprisingly, total particle number and total momentum are conserved quantities
 \begin{align}
 	\comm{\hat{H}}{\vu{P}}
 	&=
