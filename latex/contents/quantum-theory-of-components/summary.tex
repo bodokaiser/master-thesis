@@ -1,25 +1,27 @@
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
 
-In this chapter, we presented quantum models of the optical coupler, electro-optical modulator, and detector.
-What we are missing is a quantum theory of a coherent state source with narrow linewidth in the optical range, typically implemented by a laser.
-A full laser quantum treatment of the laser requires analysis of nonlinear quantum stochastic equations and is out of the scope of this thesis but can be found in Ref.~\cite[p.~900]{Mandel1995} and Ref.~\cite{Haken2012,Gardiner2000}.
+In this chapter, we presented quantum models of the optical two-port, electro-optical modulator, and detector.
+We left out a quantum theory of a coherent state source with narrow linewidth in the optical range, typically implemented by a laser.
+Proper quantum treatment of the laser requires analysis of nonlinear quantum stochastic equations and is beyond the scope of this thesis.
+We refer the interested reader to Ref.~\cite[p.~900]{Mandel1995} and Ref.~\cite{Haken2012,Gardiner2000}.
 For an intuitive argument why lasers emit coherent states based on decoherence, see Ref.~\cite{Gea1998}.
 
-One of the most important components is the optical two-port characterized by the complex transmission and reflection coefficients of the two inputs.
+For the ideal optical two-port being a lossless \gls{lti} system, we found most intuitive a characterization in terms of a unitary scattering matrix including reflection and transmission coefficients~\cite{Vogel2006}.
+That said, we also investigated theoretical methods including evolution operators~\cite{Haroche2006} and the Jordan-Schwinger operator algebra~\cite{Leonhardt2003}.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-two-port}
     \caption{Quantum optical two-port with the incident and reflected coherent states, $\ket{\alpha(t)}$ and $\ket{\alpha^\prime(t)}$, on the left side, and the incident and reflected coherent states, $\ket{\beta(t)}$ and $\ket{\beta^\prime(t)}$, on the right side.}\label{fig:components_two_port}
 \end{figure}
-For a lossless \gls{lti} two-port, the amplitudes of the in- and output coherent states in \Cref{fig:components_two_port} are related by
-\begin{align}
+Concerning coherent states, the scattering matrix connects the amplitudes of the coherent in- and output states in \Cref{fig:components_two_port} via
+\begin{equation}
 	\begin{pmatrix}
 		\alpha^\prime(t)
 		\\
 		\beta^\prime(t)
 	\end{pmatrix}
-	&=
+	=
 	\begin{pmatrix}
 		r(t) & t^\prime(t) \\
 		t(t) & r^\prime(t)
@@ -29,14 +31,16 @@ For a lossless \gls{lti} two-port, the amplitudes of the in- and output coherent
 		\alpha(t)
 		\\
 		\beta(t)
-	\end{pmatrix}
-	\\
+	\end{pmatrix}	
+\end{equation}
+in the time and
+\begin{equation}
 	\begin{pmatrix}
 		\alpha^\prime(\omega)
 		\\
 		\beta^\prime(\omega)
 	\end{pmatrix}
-	&=
+	=
 	\begin{pmatrix}
 		r(\omega) & t^\prime(\omega) \\
 		t(\omega) & r^\prime(\omega)
@@ -45,9 +49,10 @@ For a lossless \gls{lti} two-port, the amplitudes of the in- and output coherent
 		\alpha(\omega)
 		\\
 		\beta(\omega)
-	\end{pmatrix}
-\end{align}
-in the time and frequency domain, wherein the complex reflection and transmission coefficients, the scattering paramters, are required to satisfy
+	\end{pmatrix}	
+\end{equation}
+in the frequency domain.
+The complex reflection and transmission coefficients, the scattering matrix parameters, are required to satisfy
 \begin{equation}
 	\abs{r(\omega)}
 	+
@@ -59,11 +64,11 @@ in the time and frequency domain, wherein the complex reflection and transmissio
 	+
 	\abs{r^\prime(\omega)}
 \end{equation}
-for conservation of energy flow and the \gls{ccr}.
+for conservation of energy flow and the \gls{ccr}, making the scattering matrix unitary.
 If we assume the coherent input states to be of narrow-bandwidth and the optical two-port to have constant frequency response over the optical bandwidth, the convolution in the time domain reduces to a multiplication.
 Certain embodiments of the optical two-port, such as the plate beam splitter, implement an optical coupler, which arbitrarily superimposes two coherent input states.
-Most implementations of optical couplers exhibit backscattering, which accounting for requires an optical four-port.
-However, an optical four-port requires \num{16} complex parameters for characterization, which makes most calculations impractical and one therefore assumes an ideal two-port for coupling.
+That said, most implementations of optical couplers exhibit backscattering, which accounting for requires an optical four-port.
+As the scattering matrix of an optical four-port requires \num{16} complex parameters, most calculations become impractical.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-filter}
@@ -119,29 +124,66 @@ The amplitude of the coherent output state in \Cref{fig:components_modulator_pha
 		ip(t)
 	\right]
 	\alpha(t)
+	\qquad
+	\abs{x(t)},
+	\abs{p(t)}
+	\leq
+	1
 	,
 \end{equation}
-wherein $x(t)$ and $p(t)$ are proportional to the differential voltages driving the \gls{mzm}s.
+wherein $x(t)$ and $p(t)$ are proportional to the differential voltages driving the \gls{mzm}s and the constraint follows from the constructive interference used for \gls{am}.
 As with the phase modulator, no closed form exists for the convolution kernel in the frequency domain.
-Furthermore, one should keep in mind that constructive interference in the \gls{mzm}s constraints the components of the complex amplitude modulation, $x(t)+ip(t)$, by $\abs{x(t)},\abs{p(t)}\leq1$.
 
-%Comparison of results with literature
-% literature review
-% \cite{Kikuchi2016}
-% \cite{Shapiro2009}
-% \cite{Loudon2000}
-% \cite[p.~206]{Vogel2006}
-% quantum noise p. 265
-
-
+Regarding the detectors, we studied photodetection theory from Ref.~\cite{Mandel1995,Kimble1984,Vogel2006} in the appendix, \Cref{app:photodetection_theory}, and started employing the photocurrent operator to predict the mean photocurrent.
+Additionally, we presented an electric circuit of a \gls{tia} converting and amplifying the photocurrent to a voltage signal.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-detector-direct}
     \caption{Quantum optical direct detector with coherent input state, $\ket{\alpha(t)}$, and voltage output signal, $y(t)$.}\label{fig:components_detector_direct}
 \end{figure}
-
+The voltage output signal $y(t)$ in \Cref{fig:components_detector_direct} is equal to the photon flux $\abs{\alpha(t)}^2$ convolved with the combined response of the detector and the \gls{tia} $\eta$, i.e.,
+\begin{equation}
+	y(t)
+	=
+	\left(\eta\conv\abs{\alpha}^2\right)(t)
+	=
+	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
+	\eta(\omega)
+	\abs{\alpha(\omega)}^2
+	,
+\end{equation}
+wherein $\abs{\alpha(\omega)}^2$ is the signal power and $B/2$ is the minimum of the detector and \gls{tia} bandwidth.
+The direct detector is a square-law detector where the photocurrent is proportional to the signal power.
+To resolve the quadratures of the signal, we combine the signal with a \gls{lo} in an optical coupler and monitor the outputs with two direct detectors in a balanced configuration.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-detector-balanced}
     \caption{Quantum optical balanced detector with coherent input signal state, $\ket{\alpha(t)}$, coherent input \gls{lo} state, $\ket{e^{i(\omega_0t+\vartheta)}}$, and voltage output signal, $z(t)$}\label{fig:components_detector_balanced}
 \end{figure}
+The voltage output signal $z(t)$ in \Cref{fig:components_detector_balanced} is equal to the projection of the down-converted complex signal $\alpha(t)$ onto a real axis under the \gls{lo} angle $\vartheta$, i.e.,
+\begin{equation}
+	z(t)
+	=
+	2\Re
+	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
+	\eta(\omega)
+	\alpha(\omega)
+	e^{+i(\omega-\omega_l)t-i\vartheta}
+	,
+\end{equation}
+wherein $\omega_l$ is the \gls{lo} frequency and the \gls{lo} line profile is absorbed into the signal, $\alpha(\omega)$.
+Comparison of the balanced detector's mean voltage signal with the expectation value of the phase-rotated quadrature operator suggests defining a generalized quadrature operator
+\begin{equation}
+	\hat\chi(t)
+	=
+	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
+	\left[
+		\hat{a}(\omega+\omega_0)
+		e^{-i(\omega t+\vartheta)}
+		+
+		\text{h.c.}
+	\right]
+	,
+\end{equation}
+which extends the phase-rotated quadrature operator by the effective detector bandwidth $B/2$ and the frequency shift by $\omega_0$.
+Our results are compatible with Ref.~\cite{Gardiner2000,Shapiro2009,Loudon2000,Vogel2006,Kikuchi2016} on homo- and heterodyne detection but are more general in that we do not assume a particular coherent input signal and included the detector response as well as \gls{lo} line profile.

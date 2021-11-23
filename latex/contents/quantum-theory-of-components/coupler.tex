@@ -1,17 +1,16 @@
-\section{Coupler}
+\section{Two-port}
 
-Optical couplers, including optical splitters, redistribute two optical inputs among two outputs and are an essential passive component for almost every setup.\footnote{The optical splitter is a special case of the optical coupler where one of the two optical inputs is zero, or, more precisely, the vacuum state.}
+An optical two-port is a passive component with two optical in- and outputs, generally assumed to be \gls{lti}.\footnote{The optical splitter is a special case of the optical coupler where one of the two optical inputs is zero, or, more precisely, the vacuum state.}
+Two particular optical two-ports, optical couplers and splitters, appear in almost every optical setup or are building blocks of more complex components, making a thorough analysis advisable.
 
-A plethora of approaches towards the (quantum) beam splitter exists~\cite{Leonhardt2010,Gerry2005,Loudon2000} but are vague on assumptions, which, if not discussed, lead to misconception and confusion, for instance, regarding the phase and energy conservation.
-We would therefore approach the optical coupler, or beam splitter, from two directions:
-First, we approach the free-ray beam splitter from an experimentalist's perspective, considering the reflection and transmission properties of a beam splitter.
-Second, we discuss the fiber coupler from a theoretical mode-coupling perspective leading to an interaction Hamiltonian.
-Of course, both paths lead to the same unitary transformations, which we present in matrix and operator form.
-Finally, we discuss the input-output relations for coherent states and the interpretation of a frequency-dependent beam splitter as an optical filter.
+In the following, we would like to illuminate the versatile aspects of the optical two-port.
+We begin our investigation with the beam splitter, implementing an optical coupler and splitter, considering its reflection and transmission properties~\cite{Gerry2005,Vogel2006}.
+Subsequently, we examine the waveguide coupler, which offers an alternative approach using an interaction Hamiltonian~\cite{Haroche2006}.
+Finally, we provide a third entry point using a unitary transformation to transform the displacement operator yielding input-output relations for coherent states and discuss applications as a spectral filter~\cite{Leonhard2010,Vogel2006}.
 
 \subsection{Beam splitter}
 
-The most commonly employed (free-ray) designs of the beam splitter are the cubic, plate, and pellicle beam splitters, see \Cref{fig:beam_splitter_types}.
+The most commonly employed designs of the beam splitter are the cubic, plate, and pellicle beam splitters, see \Cref{fig:beam_splitter_types}.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/beam-splitter-types}
@@ -103,7 +102,7 @@ Inserting the mode expansion of the electric field operators, \cref{eq:electric_
 \end{equation}
 in agreement with Refs.~\cite{Leonhardt2010,Gerry2005}.
 
-\subsection{Mode coupler}
+\subsection{Waveguide coupler}
 
 Contrary to the direct coupling in free-ray beam splitters, a fiber or waveguide coupler uses indirect coupling through the evanescent field.
 The evanescent field of an electromagnetic field does not propagate but decays exponentially.
