@@ -10,56 +10,52 @@ In the process, we hope to develop a theoretical framework for quantum optical c
 
 \section*{Problem statement}
 
-To raise awareness of the challenges ahead, we first review the standard description of optical quantum effects along with classical communication and, second, outline where these pictures conflict.
+To raise awareness of the challenges ahead, we review the best-known quantum theory of light, single-mode quantum optics, along with central ideas from classical communication and outline where these pictures conflict.
 
-The physical subfield responsible for the quantum aspects of light is quantum optics.
-Typically quantum optics models monochromatic light with frequency $\omega_0$ as a quantum harmonic oscillator with unit mass, $m=1$, and Hamiltonian~\cite{Gerry2005,Fox2006}
-\begin{equation*}
+In single-mode quantum optics, we model monochromatic light with frequency $\omega_0$ as a quantum harmonic oscillator with unit mass, $m=1$, and Hamiltonian~\cite{Gerry2005,Fox2006}
+\begin{equation}
 	\hat{H}
 	=
 	\omega_0
 	\hat{a}^\dagger
 	\hat{a}
 	,
-\end{equation*}
-wherein $\hat{a}$ and $\hat{a}^\dagger$ are the quantum annihilation and creation operators, destroying or creating an excitation or mode of frequency $\omega_0$.
-The electric field operator connects the annihilation and creation operators of the harmonic oscillator with light and, in the dipole approximation, is given by~\cite[p.~44]{Gerry2005}
-\begin{equation*}
-	\hat{E}(t)
+\end{equation}
+wherein $\hat{a}$ and $\hat{a}^\dagger$ are the quantum annihilation and creation operators, destroying or creating an excitation or "mode" of frequency $\omega_0$.
+The electric field operator,
+\begin{equation}
+	\hat{E}(t,x)
 	=
-	\frac{i\mathcal{E}_0}{\sqrt{2}}
-	\left[
+	\mathcal{E}_0
+	\left(
 		\hat{a}
-		e^{-i\omega_0t}
 		+
 		\hat{a}^\dagger
-		e^{+i\omega_0t}
-	\right]
+	\right)
+	\sin(\omega_0x)
 	,
-\end{equation*}
-wherein $\mathcal{E}_0$ has the interpretation of an electric field density.
-The number state of the harmonic oscillator
-\begin{equation*}
+\end{equation}
+wherein $\mathcal{E}_0$ has the interpretation of an electric field density, establishes the connection between the quantum harmonic oscillator and electromagnetic radiation, including light~\cite[p.~12]{Gerry2005}.
+Two of the most important quantum states are the number and the coherent state,
+\begin{align}
 	\ket{n}
-	=
+	&=
 	\frac{1}{\sqrt{n!}}
 	\left(\hat{a}^\dagger\right)^n
 	\ket{0}
-\end{equation*}
-is identified with a $n$ photon state of frequency $\omega_0$.
-The coherent superposition of number states~\cite[p.~44]{Gerry2005}
-\begin{equation*}
+	&
 	\ket{\alpha}
-	=
+	&=
 	\exp\left(-\frac{1}{2}\abs{\alpha}^2\right)
 	\sum_{n=0}^\infty
 	\frac{\alpha^n}{\sqrt{n!}}
 	\ket{n}
-\end{equation*}
-is termed a coherent state and parametrized by the complex number $\alpha\in\mathbb{C}$.
-The coherent state is the most classical quantum state because its expectation values reduce to that of classical monochromatic light waves.
-For example, writing the complex parameter $\alpha$ in polar form $\abs{\alpha}e^{i\theta}$, the expectation of the electric field operator regarding a coherent state $\ket{\alpha}$~\cite[p.~45]{Gerry2005},
-\begin{equation*}
+	.
+\end{align}
+The number state is parametrized by a natural number $n\in\mathbb{N}_0$ counting the number excitations.
+The coherent state is parametrized by a complex number $\alpha\in\mathbb{C}$ encoding amplitude and phase.
+The expectation value of the electric field operator with respect to a coherent state,
+\begin{equation}
 	\bra{\alpha}
 	\hat{E}(t)
 	\ket{\alpha}
@@ -69,55 +65,58 @@ For example, writing the complex parameter $\alpha$ in polar form $\abs{\alpha}e
 	\mathcal{E}_0
 	\sin\left(\omega_0t-\theta\right)
 	,
-\end{equation*}
-equals that of a classical monochromatic wave with amplitude proportional to $\abs{\alpha}$ and phase $\theta$.
+\end{equation}
+equals a classical monochromatic wave with amplitude proportional to $\abs{\alpha}$ and phase $\theta$~\cite[p.~45]{Gerry2005}.
 
-In communication engineering, light is primarily a means of transmitting signals, and the physical aspects receive little attention as long as there is no impact on the transmitted signal.
-The transmitted signal usually comprises one or more signal bands centered around a carrier frequency $\omega_c$, as illustrated by the figure below.
-\begin{figure*}[htb]
+In communication engineering, light is primarily a means of transmitting signals that appear as frequency bands centered around an optical carrier frequency $\omega_c$, as illustrated in \Cref{fig:signal_spectrum}.
+\begin{figure}[ht]
 	\centering
 	\includegraphics{figures/pgfplots/signal-spectrum}
-	\caption*{Receiver spectrum comprising multiple signal bands relative to a carrier frequency at $\omega=0$. At \SI{+100}{\mega\hertz}, the spectrum has a pilot tone broadened by phase noise. Centered at \SI{-25}{\mega\hertz}, the spectrum contains a first signal band with \SI{12.5}{\mega\hertz} bandwidth. Centered at \SI{-168.75}{\mega\hertz}, the spectrum contains a second signal band with \SI{12.5}{\mega\hertz} bandwidth. The remaining segments of the spectrum include mirror bands or disturbances.}
-\end{figure*}
-The efficient description of such signal spectra requires the concept of base- and passband signals.
+	\caption{Receiver spectrum comprising multiple signal bands relative to a carrier frequency at $\omega=0$. At \SI{+100}{\mega\hertz}, the spectrum has a pilot tone broadened by phase noise. Centered at \SI{-25}{\mega\hertz}, the spectrum contains a first signal band with \SI{12.5}{\mega\hertz} bandwidth. Centered at \SI{-168.75}{\mega\hertz}, the spectrum contains a second signal band with \SI{12.5}{\mega\hertz} bandwidth. The remaining segments of the spectrum include mirror bands or disturbances.}\label{fig:signal_spectrum}
+\end{figure}
+The concept of frequency bands is extremely powerful as it allows the transmission of multiple independent signals around one carrier frequency.
+More formally, we need to distinguish between base- and passband signals.
 For a baseband signal $x_b(t)$, the signal power outside of the signal's bandwidth $B$ is negligible~\cite[p.~15]{Madhow2008}, i.e.,
-\begin{equation*}
+\begin{align}
 	\abs{x_b(\omega)}^2
 	\approx
 	0
-	\qquad
+	&&
 	\abs{\omega}
 	>
 	B/2
 	.
-\end{equation*}
+\end{align}
 For a passband signal $x_p(t)$, the signal power outside the signal's band around a carrier frequency $\omega_c$ is negligible~\cite[p.~16]{Madhow2008}, i.e.,
-\begin{equation*}
+\begin{align}
 	\abs{x_p(\omega)}^2
 	\approx
 	0
-	\qquad
+	&&
 	\abs{\omega\pm\omega_c}
 	>
 	B/2
 	.	
-\end{equation*}
-\begin{figure*}[htb]
+\end{align}
+\begin{figure}[ht]
 	\centering
 	\includegraphics{figures/tikz/up-conversion}
-	\caption*{Power spectrum illustrating up-conversion of a real-valued passband signal with bandwidth $B$ centered at $\omega_0$. Up-conversion by $\omega_c$ shifts the passband to $\omega_c+\omega_0$ and creates a mirror band at $\omega_c-\omega_0$.}
-\end{figure*}
-A baseband signal can be up-converted to a passband signal at carrier frequency $\omega_c$ by shifting the spectrum by $\omega_c$ is known as up-conversion, and implemented by modulation onto a carrier signal.
+	\caption{Power spectrum illustrating up-conversion of a real-valued passband signal with bandwidth $B$ centered at $\omega_0$. Up-conversion by $\omega_c$ shifts the passband to $\omega_c+\omega_0$ and creates a mirror band at $\omega_c-\omega_0$.}\label{fig:up_conversion}
+\end{figure}
+A baseband signal can be up-converted to a passband signal at carrier frequency $\omega_c$ by shifting the spectrum by $\omega_c$ is known as up-conversion, see \Cref{fig:up_conversion}, and implemented by modulation.
 Similar, a passband signal at carrier frequency $\omega_c$ is down-converted to a baseband signal by demodulation~\cite[p.~26]{Madhow2008}.
-The prerequisite for base- and passband signals is that the information coding is bandwidth-optimized.
 
-% apparent conflicts when attempting to combine both descriptions
+
+At first glance, it seems that the two descriptions could not have been more different.
+At a second glance, we notice that the monochromatic assumption limits the presented quantum optics theory but extending the quantum theory of light to a continuous frequency spectrum should make it possible to transfer the concepts from communication engineering.
+
+
 % literature review
 
 \section*{Thesis outline}
 
 Our work is divided into four chapters.
-In the first chapter, \Cref{ch:qkd}, we present an introduction to \gls{qkd}, emphasizing the similarities between the plethora of seemingly different protocols and attempting to argue why practical \gls{qkd} based on weak coherent states is effectively a coherent state communication system.
+In \Cref{ch:qkd}, we present an introduction to \gls{qkd}, emphasizing the similarities between the plethora of seemingly different protocols and attempting to argue why practical \gls{qkd} based on weak coherent states is effectively a coherent state communication system.
 In the following three chapters, we construct our theoretical framework for quantum optical communication towards practical \gls{qkd}, starting from a general quantum theory of light, \Cref{ch:light}, over applying the quantum theory to describe the building blocks of coherent communication systems, \Cref{ch:components}, to an abstract description of a coherent state transmission system's signal-processing, \Cref{ch:system}.
 While the thesis chapter structure supports a bottom-up approach, it is equally possible to read the thesis from the back to the front, revealing more and more details.
 Likewise, it is possible to skip certain chapters and pare down to the chapter summary at the end of each chapter.
