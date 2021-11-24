@@ -79,22 +79,22 @@ More formally, we need to distinguish between base- and passband signals.
 For a baseband signal $x_b(t)$, the signal power outside of the signal's bandwidth $B$ is negligible~\cite[p.~15]{Madhow2008}, i.e.,
 \begin{align}
 	\abs{x_b(\omega)}^2
-	\approx
+	&\approx
 	0
-	&&
+	&
 	\abs{\omega}
-	>
+	&>
 	B/2
 	.
 \end{align}
 For a passband signal $x_p(t)$, the signal power outside the signal's band around a carrier frequency $\omega_c$ is negligible~\cite[p.~16]{Madhow2008}, i.e.,
 \begin{align}
 	\abs{x_p(\omega)}^2
-	\approx
+	&\approx
 	0
-	&&
+	&
 	\abs{\omega\pm\omega_c}
-	>
+	&>
 	B/2
 	.	
 \end{align}
@@ -115,7 +115,12 @@ For example, a single-mode quantum state has a single well-defined frequency $\o
 The typical counter-argument is that single-mode quantum optics implicitly assumes pulses with $\omega_0$ being the center frequency of the pulse.
 While the counter-argument is technically valid, we must admit that it only raises new questions, such as bandwidth-limitations on the pulse parameters, all properly addressed in communication engineering.
 
-% literature review
+The multi-mode quantum optics mentioned in popular quantum optics books~\cite{Gerry2005,Fox2006} are insufficient to represent continuous-time signals, and performing a continuum limit might not be correct if we consider the huge differences between linear algebra and functional analysis.
+The advanced quantum optics literature~\cite{Vogel2006,Mandel1995} does sometimes use a continuous-mode formalism but does not explicitly investigate its properties.
+We are only aware of two books~\cite{Loudon2000,Barnett2002} that explicitly present a continuous-mode theory of light but again open up new questions regarding the fundamental assumptions and justification thereof.
+If we are willing to go one step deeper, we find answers in the quantum field theory literature~\cite{Peskin1995,Srednicki2007,Greiner2013,Itzykson2012}, but it is up to us to transfer these insights from particle physics to quantum optics applications.
+We even have to go a bit deeper and look into mathematical quantum field theory~\cite{Streater2016,Bogoliubov1982,Bogolubov1989} to answer some questions.
+Finally, we want to understand and upgrade quantum models of (electro-)optical components in the literature~\cite{Vogel2006,Leonhardt2003,Haroche2006,Mandel1995} to a mode continuum for comparison with the results from the optical communication community~\cite{Shapiro2009,Kikuchi2016}.
 
 \subsection*{Thesis outline}
 
