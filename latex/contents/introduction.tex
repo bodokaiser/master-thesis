@@ -8,7 +8,7 @@ As a still young discipline, which emerged from two highly advanced fields, comm
 The present thesis aims to resolve the seeming discrepancies between communication engineering and quantum physics by reviewing a practical implementation of a quantum communication system implementing a \gls{qkd} protocol.
 In the process, we hope to develop a theoretical framework for quantum optical communication, incorporating quantum effects into classical communication, which has applicability beyond \gls{qkd}.
 
-\section*{Problem statement}
+\subsection*{Problem statement}
 
 To raise awareness of the challenges ahead, we review the best-known quantum theory of light, single-mode quantum optics, along with central ideas from classical communication and outline where these pictures conflict.
 
@@ -106,14 +106,18 @@ For a passband signal $x_p(t)$, the signal power outside the signal's band aroun
 A baseband signal can be up-converted to a passband signal at carrier frequency $\omega_c$ by shifting the spectrum by $\omega_c$ is known as up-conversion, see \Cref{fig:up_conversion}, and implemented by modulation.
 Similar, a passband signal at carrier frequency $\omega_c$ is down-converted to a baseband signal by demodulation~\cite[p.~26]{Madhow2008}.
 
-
-At first glance, it seems that the two descriptions could not have been more different.
-At a second glance, we notice that the monochromatic assumption limits the presented quantum optics theory but extending the quantum theory of light to a continuous frequency spectrum should make it possible to transfer the concepts from communication engineering.
-
+To sum up, single-mode quantum optics provides precise physical meaning to light, including quantum effects, although limited to monochromatic light.
+On the other side, communication engineering provides a framework for efficiently constructing and transmitting signals.
+For quantum optical communication, it is inevitable to welcome and incorporate both views.
+For instance, people with a background in quantum optics but foreign to communication engineering often advocate the concept of "one state, one universe", where each quantum transmission is completely independent.
+However, if we include practical considerations, like assuming a single transmission line, the picture of "one state, one universe" is plagued by several ambiguities.
+For example, a single-mode quantum state has a single well-defined frequency $\omega_0$, which by Fourier uncertainty implies infinite temporal duration but makes information transmission absurd.
+The typical counter-argument is that single-mode quantum optics implicitly assumes pulses with $\omega_0$ being the center frequency of the pulse.
+While the counter-argument is technically valid, we must admit that it only raises new questions, such as bandwidth-limitations on the pulse parameters, all properly addressed in communication engineering.
 
 % literature review
 
-\section*{Thesis outline}
+\subsection*{Thesis outline}
 
 Our work is divided into four chapters.
 In \Cref{ch:qkd}, we present an introduction to \gls{qkd}, emphasizing the similarities between the plethora of seemingly different protocols and attempting to argue why practical \gls{qkd} based on weak coherent states is effectively a coherent state communication system.
