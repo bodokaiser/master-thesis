@@ -1,17 +1,17 @@
 \section*{Abstract}
 
-Quantum optical communication exploits the unique quantum properties of light to challenge the frontier of established communication.
+Quantum optical communication combines quantum aspects of light and communication engineering to bring forth novel approaches to communication.
+One of these approaches is quantum-key distribution, enabling practical and secure key generation.
+As a fledgling discipline, quantum optical communication lacks a unified theoretical framework to which both communication engineers and quantum physicists agree.
+Single-mode quantum optics, the standard framework used to describe the quantum properties of light, lacks the notion of a continuous spectrum essential for communication theory.
 
-As a discipline that emerged from telecommunication and quantum optics, quantum optical communication lacks a unified theoretical framework incorporating the quantum properties into traditional signal processing theory.
-For example, typical quantum optics has no notion of a frequency spectrum but uses a single-mode, a single frequency mode.
-The present thesis attempts such a unified theoretical framework.
+The present thesis aims to deliver the missing theoretical framework for quantum optical communication by reviewing the quantum description of a coherent state transmission system implementing QKD in three steps:
+First, we present and compare QKD protocols and argue why practical QKD based on weak coherent states effectively represents a coherent state transmission system.
+Second, we derive a continuous-mode quantum theory of light rooted in quantum field theory and apply it to describe the building blocks of a coherent state transmission system.
+Third, we assemble the previously derived building blocks to a coherent state transmission system and compare it to a software-defined implementation of a coherent transmission system while emphasizing the signal-processing aspects.
 
-Since a theory without an experiment is of limited use, we develop our theory together with a quantum description of real-world \gls{cvqkd} prototypes.
-\gls{cvqkd} utilizes both state-of-the-art signal-processing and quantum (information) theory, making it an ideal testbed for our proposal.
+Our continuous-mode quantum theory of light is compatible with few references on continuous-mode quantum optics but is more transparent in the underlying assumptions.
+Applied to quantum optical communication, we motivated a generalized quadrature operator, which accounts for measurements of particular frequency bands.
+Furthermore, we showed that the electro-optical IQ modulator and balanced detector implement up- and down-conversion of classical signal-processing.
 
-We approach our theoretical framework in three steps: First, we present and compare \acrshort{qkd} protocols, introducing the abstract concepts of qubit- and boson-based \acrshort{qkd} protocols.
-Second, we recap the quantum theory of the light, including the momentum spectrum, which turns out to be the frequency spectrum essential for signal processing.
-Third, we apply and test our quantum theory to describe a coherent state transmission system used for \gls{cvqkd}.
-
-While our theory is mostly equivalent to a continuous-mode generalization of quantum optics, it is, to the best of our knowledge, the first attempt to justify and discuss the explicit form of such a generalization.
-Applied to \gls{cvqkd}, we found a self-contained description that the respective domain experts can agree on, allowing for a future transfer of methods between quantum optics and telecommunication.
+Applied to CV-QKD, we found a self-contained description that the respective domain experts can agree on, allowing for a future transfer of methods between quantum optics and telecommunication.
