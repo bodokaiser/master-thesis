@@ -1,7 +1,10 @@
 \chapter{Maxwell theory}
 
-\section{Commutation relations}
+In the present section, we provide supplementary material to support our claims of \Cref{ch:light}.
+As the following excerpts highlight, many proofs reduce to exercising operator algebra, which is rather verbose than interesting.
 
+When working with the operator algebra of the Maxwell field, we frequently expand the Maxwell field into positive and negative frequency parts and sometimes into the annihilation and creation operators to invoke the \gls{ccr}.
+The following lemma is useful when working with both representations.
 \begin{lemma}\label{th:annihilation_field_commutators}
 	Let $\hat{a}(\vb{k})$ and $\hat{a}^\dagger(\vb{k})$ be the annihilation and creation operator satisfying the \gls{ccr} and $\hat{A}^{(\pm)}$ be the positive and negative frequency field operator, then the commutator of the annihilation and creation operator with the positive and negative smeared field operators yields
 	\begin{align}
@@ -39,7 +42,8 @@
 		.
 	\end{equation}
 \end{proof}
-
+The number states form a countable and complete basis which heavily suggests employing mathematical induction as a proof technique.
+The following lemma turns out to be of great help in simplifying the induction steps.
 \begin{lemma}\label{th:number_annihilation}
 	Let $\hat{a}(\vb{k})$ be the annihilation operator and $\hat{A}^{(-)}$ be the negative frequency field operator, then their commutator yields
 	\begin{equation}
@@ -124,11 +128,9 @@
 	\end{equation}
 	where we used the recursive relation.
 \end{proof}
-
-\section{Expectation values}
-
-\begin{lemma}
-	Let $\ket{n_f}$ be a number state and $\vu{P}$ be the momentum operator, \cref{eq:maxwell_momentum_operator}, then number state has the expectation value
+With the help of \cref{th:number_annihilation}, most of the expectation values of the number states follow easily, as we demonstrate with the expectation value of the momentum operator.
+\begin{theorem}
+	Let $\ket{n_f}$ be a number state and $\vu{P}$ be the momentum operator, \cref{eq:maxwell_momentum_operator}, then
 	\begin{equation}
 		\bra{n_f}
 		\vu{P}
@@ -138,11 +140,12 @@
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\vb{p}
 		\abs*{\frac{f\left(\omega(\vb{q}),\vb{q}\right)}{\sqrt{2\omega(\vb{p})}}}^2
+		\label{eq:number_momentum_mean}
+		.
 	\end{equation}
-	of the momentum operator.
-\end{lemma}
+\end{theorem}
 \begin{proof}
-	We insert the definition of the momentum operator and use the action of the annihilation operator on the number state, \cref{th:number_annihilation},
+	We insert the definition of the momentum operator and use the action of the annihilation operator on the number state, \cref{th:number_annihilation}, and the hermitian conjugate thereof, i.e.,
 	\begin{equation}
 		\begin{split}
 			\bra{n_f}
@@ -162,72 +165,69 @@
 			\vb{p}
 			\abs*{\frac{f\left(\omega(\vb{q}),\vb{q}\right)}{\sqrt{2\omega(\vb{p})}}}^2
 			\braket{{n-1}_f}{{n-1}_f}
+			,
 		\end{split}
 	\end{equation}
-	and we used took the hermitian conjugate of \cref{eq:number_annihilation}.
+	and are left to note that the number states are normalized to arrive at \cref{eq:number_momentum_mean}.
 \end{proof}
-
-\begin{lemma}\label{th:electric_operator_mixed_frequency}
-	Let $\hat{E}^{(-)}(t,\vb{x})$ be the negative frequency and $\hat{E}^{(+)}(t,\vb{x})$ be the positive frequency part of the electric field operator, then
+For the mean and variance of the electric field operator, we need the following lemma.
+\begin{lemma}\label{th:comm_electric_field_equal}
+	Let $\hat{E}^{(+)}(t,\vb{x})$ and $\hat{E}^{(-)}(t,\vb{x})$ be the positive and negative frequency part of the electric field operator, then their commutator equals
 	\begin{equation}
-		\hat{E}^{(-)}(t,\vb{x})
-		\hat{E}^{(+)}(t,\vb{x})
+		\comm{\hat{E}^{(+)}(t,\vb{x})}{\hat{E}^{(-)}(t,\vb{x})}
 		=
 		\frac{1}{2}
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\omega(\vb{p})
-		+
-		\hat{E}^{(+)}(-t,-\vb{x})
-		\hat{E}^{(-)}(-t,-\vb{x})
-		.
+		,
 	\end{equation}
+	known as the "vacuum energy".
 \end{lemma}
 \begin{proof}
-	The identity follows from the definitions of the electric and positive frequency electric field operator, \cref{eq:electric_positive_operator,eq:electric_negative_operator},
-	and using the \gls{ccr} of the annihilation and creation operator, i.e.,
+	Inserting the mode expansion of the positive and negative frequency operators and using the \gls{ccr} of the annihilation and creation operator, we find
 	\begin{equation}
 		\begin{split}
-			\hat{E}^{(-)}(t,\vb{x})
-			\hat{E}^{(+)}(t,\vb{x})
+			\comm{\hat{E}^{(+)}(t,\vb{x})}{\hat{E}^{(-)}(t,\vb{x})}
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			\omega(\vb{p})
 			e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
 			\\
-			&\times
+			&\qquad+
 			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
 			\omega(\vb{q})
 			e^{-i\omega(\vb{q})t+i\vb{q}\vdot\vb{x}}
-			\\
-			&\times
-			\left\{
-				\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
-				+
-				\hat{a}^\dagger(\vb{q})
-				\hat{a}(\vb{p})
-			\right\}
+			\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
 			\\
 			&=
-			\frac{1}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			\omega(\vb{p})
-			+
-			\hat{E}^{(+)}(-t,-\vb{x})
-			\hat{E}^{(-)}(-t,-\vb{x})
+			e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+			\\
+			&\qquad+
+			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
+			\omega(\vb{q})
+			e^{-i\omega(\vb{q})t+i\vb{q}\vdot\vb{x}}
+			(2\pi)^3\delta^{(3)}(\vb{q}-\vb{p})
+			\\
+			&=
+			\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+			\omega(\vb{p})^2
 			.
 		\end{split}
 	\end{equation}
 \end{proof}
-
+Although the "vacuum energy" appears to be infinite, our processes are always bandwidth-limited.
+We now employ \cref{th:comm_electric_field_equal} to find the mean and variance of the electric field operator with respect to a number state.
 \begin{theorem}
-	Let $\ket{n_f}$ be a number state and $\hat{E}(t,\vb{x})$ be the electric field operator,
-	then we have the expectation values
+	Let $\ket{n_f}$ be a number state and $\hat{E}(t,\vb{x})$ be the electric field operator, then we have zero mean and variance equal to the vacuum energy plus the wave function probability, i.e.,
 	\begin{align}
 		\bra{n_f}
 		\hat{E}(t,\vb{x})
 		\ket{n_f}
 		&=
 		0
+		,
 		\\
 		\bra{n_f}
 		\left(
@@ -240,8 +240,9 @@
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
 		\omega(\vb{p})
 		+
-		\frac{1}{2}
+		n
 		\abs*{\Psi(t,\vb{x})}^2
+		.
 	\end{align}
 \end{theorem}
 \begin{proof}
@@ -261,7 +262,7 @@
 		\ket{n_f}
 		,
 	\end{equation}
-	we note that the first term comprises $n+1$ annihilation and $n$ creation operators, and the second term comprises $n$ annihilation and $n+1$ creation operators, i.e., an unequal number of annihilation and creation operators, and we conclude that the expectation value of the electric field operator given a number state is zero.
+	we note that the first term comprises $n+1$ annihilation and $n$ creation operators, and the second term comprises $n$ annihilation and $n+1$ creation operators, i.e., an unequal number of annihilation and creation operators, and conclude that the expectation value is zero.
 	The variance is equal to the second moment as the first moment is zero
 	\begin{equation}
 		\bra{n_f}
@@ -283,6 +284,26 @@
 		\text{h.c.}
 	\end{equation}
 	where we expanded the square of the electric field operator in its positive and negative frequency parts and used that only mixed terms survive in the second equation.
+	Using \cref{th:comm_electric_field_equal}, we can rewrite
+	\begin{equation}
+		\bra{n_f}
+		\left(
+			\Delta
+			\hat{E}(t,\vb{x})
+		\right)^2
+		\ket{n_f}
+		=
+		\frac{1}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\omega(\vb{p})
+		+		
+		2
+		\bra{n_f}
+		\hat{E}^{(+)}(t,\vb{x})
+		\hat{E}^{(-)}(t,\vb{x})
+		\ket{n_f}
+	\end{equation}
+	and are left to evaluate the remaining mixed frequency term.
 	Using \cref{th:number_annihilation}, we find
 	\begin{equation}
 		\begin{split}
@@ -295,86 +316,41 @@
 			\omega(\vb{p})
 			e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
 			\\
-			&\times
+			&\qquad\times
 			\int\frac{\dd[3]{q}}{(2\pi)^3\sqrt{2\omega(\vb{q})}}
 			\omega(\vb{q})
 			e^{-i\omega(\vb{q})t+i\vb{q}\vdot\vb{x}}
 			\\
-			&\times
+			&\qquad\times
 			\bra{n_f}
 			\hat{a}^\dagger(\vb{p})
 			\hat{a}(\vb{q})
 			\ket{n_f}
 			\\
 			&=
+			\frac{n}{2}
 			\abs*{
-				\frac{1}{2}
 				\int\frac{\dd[3]{p}}{(2\pi)^3}
 				f\left(\omega(\vb{p}),\vb{p}\right)
 				e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
 			}^2
-			.
-		\end{split}
-	\end{equation}
-	The second mixed term can be written in terms of the first by using \cref{th:electric_operator_mixed_frequency}
-	\begin{equation}
-		\begin{split}
-			\bra{n_f}
-			\hat{E}^{(-)}(t,\vb{x})
-			\hat{E}^{(+)}(t,\vb{x})
-			\ket{n_f}
-			&=
-			\frac{1}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\omega(\vb{p})
-			+
-			\bra{n_f}
-			\hat{E}^{(+)}(-t,-\vb{x})
-			\hat{E}^{(-)}(-t,-\vb{x})
-			\ket{n_f}
 			\\
 			&=
-			\frac{1}{2}
-			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\omega(\vb{p})
-			+
-			\abs*{
-				\frac{1}{2}
-				\int\frac{\dd[3]{p}}{(2\pi)^3}
-				f\left(\omega(\vb{p}),\vb{p}\right)
-				e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
-			}^2
-			.
+			\frac{n}{2}
+			\abs*{\Psi(t,\vb{x})}^2
+			,
 		\end{split}
 	\end{equation}
-	Adding both terms together and identifying the restricted Fourier transform of the momentum spectrum as the wave function, $\Psi(t,\vb{x})$, we find the electric field variance to be
-	\begin{equation}
-		\bra{n_f}
-		\left(
-			\Delta
-			\hat{E}(t,\vb{x})
-		\right)^2
-		\ket{n_f}
-		=
-		\frac{1}{2}
-		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\omega(\vb{p})
-		+
-		\frac{1}{4}
-		\abs*{\Psi(t,\vb{x})}^2
-		+
-		\frac{1}{4}
-		\abs*{\Psi(-t,-\vb{x})}^2
-	\end{equation}
-	where the first term denotes the "vacuum fluctuations".
+	where we identified the momentum space representation of the momentum distribution with the probability of the wave function.
 \end{proof}
-
+Unlike in single-mode quantum optics, the variance of the electric field of a number state contains a contribution from the wave function.
+Let us now find the mean and variance of the electric field operator with respect to a coherent state.
 \begin{theorem}
 	Let $\ket{\alpha}$ be a coherent state and $\hat{E}(t,\vb{x})$ be the electric field operator, then its expectation value is
 	\begin{equation}
-		\bra{\alpha}
+		\bra{\alpha(t,\vb{x})}
 		\hat{E}(t,\vb{x})
-		\ket{\alpha}
+		\ket{\alpha(t,\vb{x})}
 		=
 		\frac{i}{2}
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
@@ -388,37 +364,70 @@
 	\end{equation}
 \end{theorem}
 \begin{proof}
-	The expectation value follows from using the the definition of the electric field operator, \cref{eq:electric_operator}, and using that the coherent state is an eigenstate of the annihilation operator, \cref{eq:coherent_state_annihilation}.
-	Expanding the squared electric field operator into its positive and negative frequency parts
+	Inserting the positive and negative parts of the electric field operator
+	\begin{equation}
+		\bra{\alpha(t,\vb{x})}
+		\hat{E}(t,\vb{x})
+		\ket{\alpha(t,\vb{x})}
+		=
+		\bra{\alpha(t,\vb{x})}
+		\hat{E}^{(-)}(t,\vb{x})
+		\ket{\alpha(t,\vb{x})}
+		+
+		\bra{\alpha(t,\vb{x})}
+		\hat{E}^{(+)}(t,\vb{x})
+		\ket{\alpha(t,\vb{x})}
+		,
+	\end{equation}
+	we evaluate the first term using that the coherent state is eigenstate of the annihilation operator, \cref{eq:coherent_state_annihilation},
+	\begin{equation*}
+		\begin{split}
+			\hat{E}^{(-)}(t,\vb{x})
+			\ket{\alpha(t,\vb{x})}
+			&=
+			-i\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\omega(\vb{p})
+			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+			\hat{a}(\vb{p})
+			\ket{\alpha(t,\vb{x})}
+			\\
+			&=
+			-i\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+			\omega(\vb{p})
+			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+			\frac{\alpha\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
+			\ket{\alpha(t,\vb{x})}
+			\\
+			&=
+			-\frac{i}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+			\ket{\alpha(t,\vb{x})}
+			.
+		\end{split}
+	\end{equation*}
+	Using the normalization of the coherent states the expectation value equals
 	\begin{equation}
 		\begin{split}
-			\hat{E}(t,\vb{x})^2
+			\bra{\alpha(t,\vb{x})}
+			\hat{E}(t,\vb{x})
+			\ket{\alpha(t,\vb{x})}
 			&=
-			\hat{E}^{(+)}(t,\vb{x})^2
-			+
-			\hat{E}^{(+)}(t,\vb{x})
-			\hat{E}^{(-)}(t,\vb{x})
-			+
-			\hat{E}^{(-)}(t,\vb{x})
-			\hat{E}^{(+)}(t,\vb{x})
-			+
-			\hat{E}^{(-)}(t,\vb{x})^2
-			\\
-			&=
-			\frac{1}{2}
+			\frac{1}{2i}
 			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\omega(\vb{p})
-			+
-			\hat{E}^{(+)}(t,\vb{x})^2
-			+
-			\hat{E}^{(-)}(t,\vb{x})^2
+			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+			-
+			\text{c.c.}
 			\\
-			&+
-			\hat{E}^{(+)}(t,\vb{x})
-			\hat{E}^{(-)}(t,\vb{x})
-			+
-			\hat{E}^{(+)}(-t,-\vb{x})
-			\hat{E}^{(-)}(-t,-\vb{x})
+			&=
+			\Im
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+			,
 		\end{split}
 	\end{equation}
+	resembling a superposition of plane-waves in three dimensions.
 \end{proof}
