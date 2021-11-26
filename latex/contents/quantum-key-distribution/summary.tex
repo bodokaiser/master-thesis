@@ -17,9 +17,9 @@ We then analyzed the quantum transmission phase of qubit- and boson-based \gls{q
 	\end{tabular}
 	\caption{Comparison of qubit- and boson-based \gls{qkd} protocols.}\label{tab:qkd_comparison}
 \end{table}
-By introducing the concept of qubit- and boson-based \gls{qkd} protocols, with their respective key properties summarized in \Cref{tab:qkd_comparison}, we formalized the concept of DV- and CV-QKD.
-Additionally, we formulated the concept of a logical and an encoding quantum system allowing us to encode qubits onto number or coherent states, which might share some similarity with the concept of symbols and pulse-shaping in classical signal-processing.
-Because the technology to prepare and measure coherent states is highly mature, most practical QKD implementations, regardless of qubit- or boson-based, transmit weak coherent states.
+By introducing the concept of qubit- and boson-based \gls{qkd} protocols, with their respective key properties summarized in \Cref{tab:qkd_comparison}, we formalized the concept of \gls{dvqkd} and \gls{cvqkd}.
+Additionally, we formulated the concept of a logical and an encoding quantum system allowing us to encode qubits onto number or coherent states, which might share some similarity with the concept of symbols and pulse-shaping in classical signal processing.
+Because the technology to prepare and measure coherent states is highly mature, most practical \gls{qkd} implementations, regardless of qubit- or boson-based, transmit weak coherent states.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/qkd-protocol}
@@ -27,7 +27,7 @@ Because the technology to prepare and measure coherent states is highly mature, 
 \end{figure}
 Given the correlated data from the quantum transmission, we compiled classical methods to distill a shared secret key between the transmitter and receiver, known as classical post-processing. 
 The classical post-processing maps the discrete or continuous data from the transmission sequence to binary symbols, corrects errors, discards failed data blocks, and removes information from the partially secret key using privacy amplification.
-Finally, we roughly outlined some ideas for the security analysis of QKD.
+Finally, we roughly outlined some ideas for the security analysis of \gls{qkd}.
 
-The concept of a logical and en encoding quantum layer in QKD needs further investigation but might open up new more general protocols and simplify security proofs.
-Concerning our thesis, our investigations suggest developing our theoretical framework for quantum optical communication towards a coherent state transmission system.
+The concept of a logical and en encoding quantum layer in \gls{qkd} needs further investigation but might open up new more general protocols and simplify security proofs.
+Concerning our thesis, our investigations suggest developing our theoretical framework for quantum optical communication towards a coherent-state transmission system.

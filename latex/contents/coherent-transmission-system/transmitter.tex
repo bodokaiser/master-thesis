@@ -35,7 +35,7 @@ For upconversion of the synthesized signal to the optical domain, we modulate th
 	\includegraphics{figures/tikz/software-defined-transmitter}
 	\caption{Block diagram of the transmitter's signal-processing domains. The \gls{dsp} transforms a complex symbol sequence $\{\alpha_n\}_{n\in I}$ into two digital signals, $x^\prime[m]$ and $p^\prime[m]$, corresponding to the real and imaginary part. The \gls{dac} converts the digital signals to analog signals, $x(t)$ and $p(t)$ we modulate onto a coherent state $\ket{\alpha(t)}$.}\label{fig:software_defined_transmitter}
 \end{figure}
-\Cref{fig:software_defined_transmitter} illustrates how such a software-defined transmitter architecture applies to our coherent state transmission system.
+\Cref{fig:software_defined_transmitter} illustrates how such a software-defined transmitter architecture applies to our coherent-state transmission system.
 The software-defined \gls{dsp} constructs the bandwidth-optimized digital signals $x[m]$ and $p[m]$, encoding the real and imaginary parts of the complex symbols.
 The \gls{dac} stage converts the digital signals, $x[m]$ and $p[m]$, to bandwidth-limited analog signals $x(t)$ and $p(t)$.
 Finally, the analog signals are modulated onto an optical carrier yielding a coherent state $\ket{\alpha(t)}$ with well-defined spectrum.

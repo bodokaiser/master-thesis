@@ -32,7 +32,7 @@ We first consider the simpler case of direct downconversion as depicted in \Cref
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/downconversion-single}
-	\caption{Block diagram of single-quadrature downconversion. The signal $z(t)$ is mixed with the \gls{lo} signal $\cos(\omega_lt+\vartheta)$. The down-converted signal $u(t)$ is obtained by \gls{lp} filtering the output signal of the mixing.}\label{fig:downconversion_single}
+	\caption{Block diagram of single-quadrature downconversion. The signal $z(t)$ is mixed with the \gls{lo} signal $\cos(\omega_lt+\vartheta)$. The downconverted signal $u(t)$ is obtained by \gls{lp} filtering the output signal of the mixing.}\label{fig:downconversion_single}
 \end{figure}
 In direct downconversion, we mix a real-valued signal,
 \begin{equation}
@@ -268,6 +268,7 @@ If the detector bandwidth is large enough to cover the baseband signal at the in
 \end{table}
 \Cref{tab:receivers} summarizes the characteristics between the single and dual homodyne and the heterodyne receiver schemes.
 A strong advantage of the heterodyne receiver design is that both quadratures can be resolved with a single balanced detector, keeping the optical complexity low.
+That said, 
 
 \FloatBarrier
 \subsection{Symbol decoding}
@@ -288,8 +289,8 @@ We remove the intermediate frequency in $u[m/(kl)]$ by multiplication with a com
 	e^{+2\pi i (m/kl) T_s}
 	,
 \end{equation}
-making the signal too complex.
-It follows a downsampling by $l$ of the signal such that we can apply the same \gls{rrc} filter, the matched filter, which we used in the symbol encoding.
+making the signal complex-valued.
+It follows a downsampling by $l$ of the signal such that we can apply the same \gls{rrc} filter, the matched filter, which we used in the symbol encoding to maximize \gls{snr}.
 Finally, we downsample by $k$ to restore a digital signal corresponding to the symbol sequence.
 \begin{figure}[htb]
 	\centering
@@ -298,10 +299,10 @@ Finally, we downsample by $k$ to restore a digital signal corresponding to the s
 \end{figure}
 \Cref{fig:symbol_decoding_frequency} illustrates how the symbol decoding is carried out in the frequency domain.
 The demodulated signal spectrum is a passband signal at the intermediate frequency and downconversion reduces the passband to a baseband signal.
-Completing the pulse-shaping with the matched filter increases the steepness of the flanks which are then removed by the final downsampling step.
+Completing the pulse-shaping with the matched filter increases the steepness of the flanks which are collapsed with aliasing by the final downsampling step.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/symbol-decoding-time-qpsk}
-	\caption{Signal amplitude of the symbol decoding steps for a random \gls{qpsk} symbol sequence. The real-valued demodulated signal oscillates at the intermediate frequency (first row). Digital downconversion removed the intermediate frequency, yielding a complex signal (second row). Completing the pulse-shaping by applying a matched \gls{rrc} filter (third row). Downsampling recovers the complex symbol sequence equal to the transmitted sequence (fourth and last row).}\label{fig:symbol_decoding_time}
+	\caption{Signal amplitude of the symbol decoding steps for a random \gls{qpsk} symbol sequence. The real-valued demodulated signal oscillates at the intermediate frequency (first row). Digital downconversion removed the intermediate frequency, yielding a complex signal (second row). Completing the pulse-shaping and downsampling by applying a matched \gls{rrc} filter (third row). Downsampling recovers the complex symbol sequence equal to the transmitted sequence (fourth and last row).}\label{fig:symbol_decoding_time}
 \end{figure}
 \Cref{fig:symbol_decoding_time}) shows the symbol decoding in the time domain.
