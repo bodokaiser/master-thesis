@@ -284,11 +284,10 @@ and rewrite the product of the signal with the \gls{lo} in \cref{eq:detector_bal
 	\alpha(t)
 	e^{-i(\omega_lt+\vartheta)}
 	=
-	\int_0^{\infty}
+	\int_{-\infty}^{+\infty}
 	\frac{\dd{\omega}}{2\pi}
 	\alpha(\omega)
-	e^{-i\vartheta}
-	e^{+i(\omega-\omega_l) t}
+	e^{+i(\omega-\omega_l)t-i\vartheta}
 	.
 	\label{eq:detector_balanced_signal_product}
 \end{equation}
@@ -304,7 +303,7 @@ Inserting \cref{eq:detector_balanced_signal_product} into \cref{eq:detector_bala
 		\right](t)
 		=
 		2\Re
-		\int_0^{B/2}
+		\int_{-B/2}^{+B/2}
 		\frac{\dd{\omega}}{2\pi}
 		\eta(\omega)
 		\alpha(\omega)
@@ -322,7 +321,7 @@ Comparing our final result for the photocurrent, \cref{eq:detector_balanced_phot
 		\hat{X}(t)
 		\ket{\beta(t)}
 		&=
-		\int_0^\infty
+		\int_{-\infty}^{+\infty}
 		\frac{\dd{\omega}}{2\pi}
 		\left[
 			\beta(\omega)
@@ -332,7 +331,7 @@ Comparing our final result for the photocurrent, \cref{eq:detector_balanced_phot
 		\right]
 		=
 		2\Re
-		\int_0^\infty
+		\int_{-\infty}^{+\infty}
 		\frac{\dd{\omega}}{2\pi}
 		\beta(\omega)
 		e^{-i\omega t}
@@ -352,12 +351,12 @@ suggesting the definition of a generalized quadrature operator including phase, 
 \begin{equation}
 	\hat{\chi}(t;\omega_0,\vartheta,B)
 	=
-	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
+	\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
 	\left[
-		\hat{a}(\omega+\omega_0)
+		\hat{a}(\omega-\omega_0)
 		e^{-i(\omega t+\vartheta)}
 		+
-		\text{h.c.}
+		\text{H.c.}
 	\right]
 	.
 	\label{eq:quadrature_operator_generalized}

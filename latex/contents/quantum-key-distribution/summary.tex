@@ -1,23 +1,8 @@
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
 
-Information-theoretical secure communication is achievable by symmetric ciphers given a practical and secure method for key distribution.
-\Gls{pkd} uses an asymmetric cipher for easy to deploy, algorithmic key distribution but has questionable forward security.
-In contrast, \gls{qkd} uses the inherent uncertainty in measuring non-orthogonal quantum states to have two distanced parties distill correlated data for key generation.
-
-We introduced the concept of a physical and logical quantum system analog to the concept of symbols and waveforms in telecommunication.
-The physical quantum system is a subspace of the Maxwell field.
-The logical quantum system is often either a qubit or a quantum harmonic oscillator, a boson.
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/tikz/qkd-protocol}
-	\caption{An abstract \gls{qkd} protocol comprises a binary encoder, a logical quantum system, a binary decoder, and some post-processing. The binary encoder maps bits onto a quantum state of the logical quantum system. The binary decoder extracts the bits from the logical quantum system. The logical quantum system is a subspace of a larger physical quantum system. The state encoder and decoder map between the logical and physical quantum states.}\label{fig:qkd_protocol}
-\end{figure}
-\Cref{fig:qkd_protocol} presents an attempt to employ the thoughts of layers to define an abstract \gls{qkd} protocol.
-In the end, \gls{qkd} should yield correlated binary symbols from which we can distill a secret key.
-On a protocol level, we need non-orthogonal quantum states to encode these binary symbols.
-Furthermore, technical considerations require us to use a different physical system to encode the logical quantum state.
-The introduced abstraction is limited to \gls{cvqkd} and \gls{dvqkd} protocols, it does not attempt to integrate \gls{dpsqkd}.
+In the present chapter, we introduced \gls{qkd} as an example for quantum optical communication and as a mechanism for practical and secure key distribution, which, together with classical symmetric ciphers, enables secure communication with means to estimate information leakage.
+We then analyzed the quantum transmission phase of qubit- and boson-based \gls{qkd} protocols generating correlated information between the receiver and transmitter.
 \begin{table}[htb]
 	\centering	
 	\begin{tabular}{lcc}
@@ -30,21 +15,19 @@ The introduced abstraction is limited to \gls{cvqkd} and \gls{dvqkd} protocols, 
 			Standard basis & $\left\{\ket{0},\ket{1}\right\}$ & $\left\{\ket{x},\ket{p}\colon x,p\in\mathbb{R}\right\}$ \\
 		\bottomrule
 	\end{tabular}
-	\caption{Comparison of qubit- and boson-based \gls{qkd} protocols.}
+	\caption{Comparison of qubit- and boson-based \gls{qkd} protocols.}\label{tab:qkd_comparison}
 \end{table}
-On the logical level, we distinguish between qubit- and boson-based protocols, see \Cref{fig:qkd_protocol} for a comparison.
-Qubit-based protocols use the qubit, a two-dimensional complex space, as logical quantum system, while boson-based protocols use the Hilbert space of the quantum harmonic oscillator, a boson.
-The measurement operator for qubit- and boson-based protocols are the generalized spin respective quadrature operator.
-In principle, qubit and boson systems can be generalized to higher dimensions, e.g., qudits.
-Such generalization is also not covered by our proposal.
+By introducing the concept of qubit- and boson-based \gls{qkd} protocols, with their respective key properties summarized in \Cref{tab:qkd_comparison}, we formalized the concept of DV- and CV-QKD.
+Additionally, we formulated the concept of a logical and an encoding quantum system allowing us to encode qubits onto number or coherent states, which might share some similarity with the concept of symbols and pulse-shaping in classical signal-processing.
+Because the technology to prepare and measure coherent states is highly mature, most practical QKD implementations, regardless of qubit- or boson-based, transmit weak coherent states.
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/tikz/qkd-protocol}
+	\caption{An abstract \gls{qkd} protocol comprises a binary encoder, a logical quantum system, a binary decoder, and some post-processing. The binary encoder maps bits onto a quantum state of the logical quantum system. The binary decoder extracts the bits from the logical quantum system. The logical quantum system is a subspace of a larger physical quantum system. The state encoder and decoder map between the logical and physical quantum states.}\label{fig:qkd_protocol}
+\end{figure}
+Given the correlated data from the quantum transmission, we compiled classical methods to distill a shared secret key between the transmitter and receiver, known as classical post-processing. 
+The classical post-processing maps the discrete or continuous data from the transmission sequence to binary symbols, corrects errors, discards failed data blocks, and removes information from the partially secret key using privacy amplification.
+Finally, we roughly outlined some ideas for the security analysis of QKD.
 
-Post-processing summarizes classical methods that allow the distillation of a secret key from the raw transmission data.
-Important post-processing steps are symbol mapping, information reconciliation, and privacy amplification.
-Symbol mapping converts the raw transmission data to correlated (binary) data.
-Information reconciliation equalizes the correlated data through base sifting, error correction, and discarding invalid blocks.
-Privacy amplification removes Eve's information from the partially secret key by reducing the key length by XORing the key bits randomly.
-
-\Gls{qkd} fundamentally assumes quantum theory to be complete and correct and authenticated communication to be possible.
-Usually, further assumptions regarding the practical implementation are made.
-The $\varepsilon$ parameter quantifies the derivation from a perfect key.
-The final result of a security proof is to relate the epsilon parameter with a lower bound for the secret key length (or rate).
+The concept of a logical and en encoding quantum layer in QKD needs further investigation but might open up new more general protocols and simplify security proofs.
+Concerning our thesis, our investigations suggest developing our theoretical framework for quantum optical communication towards a coherent state transmission system.

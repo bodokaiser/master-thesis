@@ -5,8 +5,8 @@ Optical communication enables humanity worldwide to share information in a split
 In addition to incremental innovation increasing the performance and decreasing the cost of optical communication technology, we observe intensified activities towards disruptive innovations that challenge our present understanding of communication.
 One such branch of activity is quantum-optical communication, incorporating quantum aspects of light into classical communication and leading to novel communication technology like \gls{qkd}, which enables practical and secure key generation.
 As a still young discipline, which emerged from two highly advanced fields, communication engineering and quantum physics, quantum communication lacks a unified description to which both communication engineers and quantum physicists agree.
-The present thesis aims to resolve the seeming discrepancies between communication engineering and quantum physics by reviewing a practical implementation of a quantum communication system implementing a \gls{qkd} protocol.
-In the process, we intend to develop a theoretical framework for quantum-optical communication, incorporating quantum effects into classical communication, which has applicability beyond \gls{qkd}.
+The present thesis aims to resolve the seeming discrepancies between communication engineering and quantum physics by reviewing a practical implementation of a quantum communication system implementing a \gls{cvqkd} protocol.
+In the process, we intend to develop a theoretical framework for quantum-optical communication, incorporating quantum effects into classical communication, which has applicability beyond \gls{cvqkd}.
 
 \subsection*{Problem statement}
 
@@ -39,15 +39,15 @@ wherein $\mathcal{E}_0$ has the interpretation of an electric field density, est
 Two of the most important quantum states are the number and the coherent state,
 \begin{align}
 	\ket{n}
-	=
+	&=
 	\frac{1}{\sqrt{n!}}
 	\left(\hat{a}^\dagger\right)^n
 	\ket{0}
 	&
-	\text{and}
+	&\text{and}
 	&
 	\ket{\alpha}
-	=
+	&=
 	\exp\left(-\frac{1}{2}\abs{\alpha}^2\right)
 	\sum_{n=0}^\infty
 	\frac{\alpha^n}{\sqrt{n!}}
@@ -70,7 +70,8 @@ The expectation value of the electric field operator with respect to a coherent 
 \end{equation}
 equals a classical monochromatic wave with amplitude proportional to $\abs{\alpha}$ and phase $\theta$~\cite[p.~45]{Gerry2005}.
 
-In communication engineering, light is primarily a means of carrying signals.
+The subject of communication engineering is the practical and efficient reproduction of information over a spatial distance, which typically involves coding the information into a continuous-time signal and modulating the continuous-time signal onto a carrier signal.
+Light is primarily a means of carrying signals through a physical channel.
 To elaborate, we need to distinguish between base- and passband signals.
 For a baseband signal $x_b(t)$, the signal power outside of the signal's bandwidth $B$ is negligible~\cite[p.~15]{Madhow2008}, i.e.,
 \begin{align}
@@ -113,13 +114,13 @@ On the other side, communication engineering provides a framework for efficientl
 For quantum-optical communication, it is inevitable to welcome and incorporate both views.
 For instance, people with a background in quantum optics but foreign to communication engineering often advocate the concept of "one state, one universe", where each quantum transmission is completely independent.
 However, if we include practical considerations, like assuming a single transmission line, the picture of "one state, one universe" is plagued by several ambiguities.
-For example, a single-mode quantum state has a single well-defined frequency $\omega_0$, which by Fourier uncertainty implies infinite temporal duration which makes information transmission absurd.
+For example, a single-mode quantum state with well-defined frequency $\omega_0$ represents a perfect sinusoidal wave with infinite duration, making information transmission absurd.
 The typical counter-argument is that single-mode quantum optics implicitly assumes pulses with $\omega_0$ being the center frequency of the pulse.
 While the counter-argument is technically valid, we must admit that it only raises new questions, such as bandwidth-limitations on the pulse parameters, all properly addressed in communication engineering.
 
-The multi-mode quantum-optics mentioned in popular quantum optics books~\cite{Gerry2005,Fox2006} are insufficient to represent continuous-time signals, and performing a continuum limit might not be correct if we consider the huge differences between linear algebra and functional analysis.
+The multi-mode quantum-optics mentioned in popular quantum-optics books~\cite{Gerry2005,Fox2006} are insufficient to represent continuous-time signals, and performing a continuum limit might not be correct if we consider the huge differences between linear algebra and functional analysis.
 The advanced quantum-optics literature~\cite{Vogel2006,Mandel1995} does sometimes use a continuous-mode formalism but does not explicitly investigate its properties.
-We are only aware of two books~\cite{Loudon2000,Barnett2002} that explicitly present a continuous-mode theory of light but again open up new questions regarding the fundamental assumptions and justification thereof.
+We are only aware of two quantum-optics books~\cite{Loudon2000,Barnett2002} that explicitly discuss a continuous-mode theory of light but again open up new questions regarding the fundamental assumptions and justification thereof.
 If we are willing to go one step deeper, we find answers in the quantum field-theory literature~\cite{Peskin1995,Srednicki2007,Greiner2013,Itzykson2012}, but it is up to us to transfer these insights from particle physics to quantum-optics applications.
 We even have to go a bit deeper and look into mathematical quantum field-theory~\cite{Streater2016,Bogoliubov1982,Bogolubov1989} to answer some questions.
 Finally, we want to understand and upgrade quantum models of (electro-)optical components in the literature~\cite{Vogel2006,Leonhardt2003,Haroche2006,Mandel1995} to a mode continuum for comparison with the results from the optical-communication community~\cite{Shapiro2009,Kikuchi2016}.
@@ -127,7 +128,7 @@ Finally, we want to understand and upgrade quantum models of (electro-)optical c
 \subsection*{Thesis outline}
 
 Our work is divided into four chapters.
-In \Cref{ch:qkd}, we present an introduction to \gls{qkd}, emphasizing the similarities between the plethora of seemingly different protocols and attempting to argue why practical \gls{qkd} based on weak coherent states is effectively a coherent-state communication system.
-In the following three chapters, we construct our theoretical framework for quantum-optical communication towards practical \gls{qkd}.
-Starting from a general quantum theory of light in \Cref{ch:light} applying the quantum theory to describe the building blocks of coherent communication systems in \Cref{ch:components}, to an abstract description of a coherent-state transmission system's signal processing in \Cref{ch:system}.
+In \Cref{ch:qkd}, we present an introduction to \gls{qkd}, emphasizing the similarities between the plethora of seemingly different protocols and attempting to argue why \gls{cvqkd} resembles a coherent-state communication system.
+In the following three chapters, we construct our theoretical framework for quantum-optical communication towards \gls{cvqkd}.
+Starting from a general quantum theory of light in \Cref{ch:light}, applying the quantum theory to describe the building blocks of coherent communication systems in \Cref{ch:components}, to an abstract description of a coherent-state transmission system's signal processing in \Cref{ch:system}.
 While the thesis chapter structure supports a bottom-up approach, it is equally possible to read the thesis from the back to the front, revealing more and more details.

@@ -1,21 +1,21 @@
 \chapter{Coherent state transmission system}\label{ch:system}
 
-In the chapter on \gls{qkd}, \Cref{ch:qkd}, we argued why practical \gls{qkd} devices are effectively coherent state transmission systems from a communication theoretic viewpoint.
-In the present chapter, we use the theoretical framework we derived in the preceding sections to provide a quantum description of a coherent state transmission system and solve the mystery of practical \gls{qkd} like \gls{cvqkd}.
+In the chapter on \gls{qkd}, \Cref{ch:qkd}, we argued why practical \gls{qkd} devices are effectively coherent-state transmission systems from a communication-theoretic viewpoint.
+In the present chapter, we use the theoretical framework we derived in the preceding sections to provide a quantum description of a coherent-state transmission system and solve the mystery of \gls{cvqkd}.
 
-A coherent state transmission system attempts to correlate a classical information destination at a spacetime event $y$ with a classical information source at a spacetime event $x$, wherein $y$ is in the forward light cone of $x$, by sending coherent states.
+A coherent-state transmission system attempts to correlate a classical information destination at a spacetime event $y$ with a classical information source at a spacetime event $x$, wherein $y$ is in the forward light cone of $x$, by sending coherent states.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/coherent-state-transmission-system}
-	\caption{Block diagram of a coherent state transmission system used for practical \gls{qkd}. An information source supplies a sequence of complex numbers, $\left\{\alpha_n\in\mathbb{C}\colon n\in I\right\}$, to a transmitter which encodes the information onto a coherent state $\ket{\alpha(t)}$ and transmits it through a (quantum) channel. The channel maps the transmitted state $\ket{\alpha(t)}$ to a received state $\ket{\beta(t)}$. The receiver decodes a sequence of complex numbers, $\left\{\beta_n\in\mathbb{C}\colon n\in I\right\}$, from the received state $\ket{\beta(t)}$ and passes it to the information destination.}\label{fig:coherent_state_transmission_system}
+	\caption{Block diagram of a coherent state transmission system used for practical \gls{qkd}. An information source supplies a sequence of complex numbers, $\left\{\alpha_n\in\mathbb{C}\colon n\in I\right\}$, to a transmitter which encodes the information onto a coherent state $\ket{\alpha(t)}$ and transmits it through a (quantum) channel. The channel maps the transmitted coherent state $\ket{\alpha(t)}$ to a received coherent state $\ket{\beta(t)}$. The receiver decodes a sequence of complex numbers, $\left\{\beta_n\in\mathbb{C}\colon n\in I\right\}$, from the received coherent state $\ket{\beta(t)}$ and passes it to the information destination.}\label{fig:coherent_state_transmission_system}
 \end{figure}
 \Cref{fig:coherent_state_transmission_system} presents an attempt to extend the classical communication system introduced by Shannon~\cite{Shannon1948} to coherent states.\footnote{Contemporary to the literature, we distinguish between a transmission and a communication system. The former allows only unidirectional, the later bidirectional transport of information.}
 We represent the classical information of the source and destination as a sequence of complex numbers, which we term symbols.
 On the one hand, a complex number is a natural parameterization for the amplitude and phase of a single-mode coherent state also representing a plane wave.
 On the other hand, there are many established techniques to map information to complex numbers, e.g., \gls{qpsk}.
 For our description, it is irrelevant whether the complex numbers are value-continuous or -discrete, so we only restrict ourselves to time-discrete symbols.
-The transmitter encodes the symbol sequence $\left\{\alpha_n\in\mathbb{C}\colon n\in I\right\}$\footnote{$I$ denotes an index set, e.g., $I=\mathbb{N}$} onto a time-continuous coherent state $\ket{\alpha(t)}$ and passes to the (quantum) channel.
-The received state $\ket{\beta(t)}$ contains information about the transmitted state.
+The transmitter encodes the symbol sequence $\left\{\alpha_n\in\mathbb{C}\colon n\in I\right\}$\footnote{$I$ denotes an index set, e.g., $I=\mathbb{N}$} onto a time-continuous coherent state $\ket{\alpha(t)}$ and passes this on to the (quantum) channel.
+The received coherent state $\ket{\beta(t)}$ contains information about the transmitted state.
 The receiver decodes a symbol sequence $\left\{\beta_n\in\mathbb{C}\colon n\in I\right\}$ from the received state $\ket{\beta(t)}$.
 The received symbols are realizations of a complex normal distribution due to the quantum uncertainty in the measurement.
 More precisely, the $j$th symbol at the receiver, $\beta_j$, is a realization of the complex normal distribution
@@ -25,5 +25,5 @@ More precisely, the $j$th symbol at the receiver, $\beta_j$, is a realization of
 		\Sigma
 	\right),
 \end{equation*}
-wherein $\alpha_j$ os the corresponding $j$th symbol at the transmitter and $\Sigma$ is a two-dimensional Hermitian and non-negative definite covariance matrix.
-For an ideal coherent state transmission system, we expect the covariance matrix to be proportional to the noise of the system.
+wherein $\alpha_j$ is the corresponding $j$th symbol at the transmitter and $\Sigma$ is a two-dimensional Hermitian and non-negative definite covariance matrix.
+For an ideal coherent-state transmission system, we expect the covariance matrix to be proportional to the noise of the system.

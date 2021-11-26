@@ -21,21 +21,20 @@ Just like the transmitter, we want to keep the receiver software-defined.
 \end{figure}
 \Cref{fig:software_defined_receiver} shows the signal processing of a possible software-defined receiver.
 The coherent state is transferred from the optical via the analog to the digital.
-Unlike the transmitter, we have the option of using only one demodulator for the receiver.
 
 \FloatBarrier
-\subsection{Down-conversion}
+\subsection{Downconversion}
 
-At the transmitter, we up-converted two real baseband signals to a real passband signal.
-As we will see, this is not absolutely necessary for the receiver.
+At the transmitter, we upconverted two real baseband signals to a real passband signal.
+For the receiver, we discuss options involving one and two real baseband signals.
 
-We first consider the simpler case of direct down-conversion as depicted in \Cref{fig:down_conversion_single}.
+We first consider the simpler case of direct downconversion as depicted in \Cref{fig:downconversion_single}.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/circuitikz/down-conversion-single}
-	\caption{Block diagram of single quadrature down-conversion. The signal $z(t)$ is mixed with the \gls{lo} signal $\cos(\omega_lt+\vartheta)$. The down-converted signal $u(t)$ is obtained by \gls{lp} filtering the output signal of the mixing.}\label{fig:down_conversion_single}
+	\includegraphics{figures/circuitikz/downconversion-single}
+	\caption{Block diagram of single-quadrature downconversion. The signal $z(t)$ is mixed with the \gls{lo} signal $\cos(\omega_lt+\vartheta)$. The down-converted signal $u(t)$ is obtained by \gls{lp} filtering the output signal of the mixing.}\label{fig:downconversion_single}
 \end{figure}
-In direct down-conversion, we mix a real-valued signal,
+In direct downconversion, we mix a real-valued signal,
 \begin{equation}
 	\begin{split}
 		z(t)
@@ -57,7 +56,7 @@ In direct down-conversion, we mix a real-valued signal,
 		z(\omega)
 		e^{+i\omega t}
 		-
-		\int_{\infty}^0\frac{\dd{\omega}}{2\pi}
+		\int_{+\infty}^0\frac{\dd{\omega}}{2\pi}
 		z(-\omega)
 		e^{-i\omega t}
 		\\
@@ -70,35 +69,61 @@ In direct down-conversion, we mix a real-valued signal,
 			z(\omega)^*
 			e^{-i\omega t}
 		\right]
+		\\
+		&=
+		\int_0^{+\infty}\frac{\dd{\omega}}{2\pi}
+		2\Re\left[
+			z(\omega)
+			e^{+i\omega t}
+		\right]
 		,
 	\end{split}
 \end{equation}
-with a \gls{lo} signal $\cos(\omega_lt+\vartheta)$.
-The mixing produces a high- and low-frequency band
+where we used the conjugate symmetry, $z(-\omega)=z(\omega)^*$, of the Fourier transform of a real-valued function $z(t)$.
+Multiplication with the \gls{lo} signal $\cos(\omega_lt+\vartheta)$, the mixing produces a high- and low-frequency band
 \begin{equation}
 	\begin{split}
 		z(t)
 		\cos(\omega_lt+\vartheta)
 		&=
-		\Re
+		2\Re
 		\int_0^\infty\frac{\dd{\omega}}{2\pi}
-		\left[
-			e^{+i(\omega-\omega_l)t}
-			+
-			e^{+i(\omega+\omega_l)t}
-		\right]
 		z(\omega)
-		e^{+i\vartheta}
+		e^{+i\omega t}
+		\cos(\omega_lt+\vartheta)
 		\\
 		&=
 		\Re
 		\int_0^\infty\frac{\dd{\omega}}{2\pi}
+		z(\omega)
+		e^{+i\omega t}
 		\left[
-			z(\omega+\omega_l)
+			e^{+i(\omega_lt+\vartheta)}
 			+
-			z(\omega-\omega_l)
+			e^{-i(\omega_lt+\vartheta)}
 		\right]
-		e^{+i(\omega t+\vartheta)}
+		\\
+		&=
+		\Re
+		\int_0^\infty\frac{\dd{\omega}}{2\pi}
+		z(\omega)
+		\left[
+			e^{+i(\omega+\omega_l)t+i\vartheta}
+			+
+			e^{+i(\omega-\omega_l)t-i\vartheta}
+		\right]
+		\\
+		&=
+		\Re
+		\int_{-\omega_l}^\infty\frac{\dd{\omega}}{2\pi}
+		z(\omega-\omega_l)
+		e^{+i\omega t+i\vartheta}
+		\\
+		&\qquad+
+		\Re
+		\int_{+\omega_l}^\infty\frac{\dd{\omega}}{2\pi}
+		z(\omega+\omega_l)
+		e^{+i\omega t-i\vartheta}
 		.
 	\end{split}
 \end{equation}
@@ -108,75 +133,112 @@ However, we suppress the high-frequency band using an ideal \gls{lp} filter with
 		u(t)
 		&=
 		\Re
-		\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
-		\left[
-			z(\omega+\omega_l)
-			+
-			z(\omega-\omega_l)
-		\right]
-		e^{+i(\omega t+\vartheta)}
-		\\
-		&\approx
-		\Re
-		\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
+		\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
 		z(\omega-\omega_l)
 		e^{+i(\omega t+\vartheta)}
-		.
+		\\
+		&=
+		\Re
+		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		z(\omega-\omega_l)
+		e^{+i\omega t+i\vartheta}
+		+
+		\Re
+		\int_{-B/2}^{0}\frac{\dd{\omega}}{2\pi}
+		z(\omega-\omega_l)
+		e^{+i\omega t+i\vartheta}
+		\\
+		&=
+		\Re
+		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		z(\omega-\omega_l)
+		e^{+i\omega t+i\vartheta}
+		-
+		\Re
+		\int_{+B/2}^{0}\frac{\dd{\omega}}{2\pi}
+		z(-\omega-\omega_l)
+		e^{-i\omega t+i\vartheta}
+		\\
+		&=
+		\Re
+		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		\left[
+			z(\omega-\omega_l)
+			e^{+i(\omega t+\vartheta)}
+			+
+			z(\omega+\omega_l)^*
+			e^{-i(\omega t+\vartheta)}
+		\right]
+		,
 	\end{split}
-	\label{eq:down_conversion_real}
+	\label{eq:downconversion_real}
 \end{equation}
-For $\vartheta=0$, the down-converted signal $v(t)$ is equal to projecting the input signal's complex spectrum $z(\omega)$ onto the real axis.
+where we assumed $\omega_l>B/2$.
+For $\vartheta=0$, the downconverted signal $v(t)$ is equal to projecting the input signal's complex spectrum $z(\omega)$ onto the real axis.
 We loose the information on the imaginary axis with our choice for a particular phase reference of the \gls{lo}.
-Hence direct down-conversion only conserves a single quadrature.
+Hence direct downconversion only conserves a single quadrature.
 
-To conserve both quadratures, we need to split the input signal into two branches and perform single quadrature down-conversion with two orthogonal phase references of the \gls{lo}, see \Cref{fig:down_conversion_dual}.
+To conserve both quadratures, we need to split the input signal into two branches and perform single-quadrature downconversion with two orthogonal phase references of the \gls{lo}, see \Cref{fig:downconversion_dual}.
 \begin{figure}[htb]
 	\centering
-	\includegraphics{figures/circuitikz/down-conversion-dual}
-	\caption{Block diagram of dual quadrature down-conversion. The signal $z(t)$ is divided equally into an upper and a lower branch. The upper branch is mixed with the phase shifted $\gls{lo}$ signal $\cos(\omega_ct+\vartheta)$. The lower branch is mixed with \gls{lo} signal $\sin(\omega_ct+\vartheta)$. The mixer outputs are filtered separately by a \gls{lp} yielding the down-converted signals $u(t)$ and $v(t)$.}\label{fig:down_conversion_dual}
+	\includegraphics{figures/circuitikz/downconversion-dual}
+	\caption{Block diagram of dual-quadrature downconversion. The signal $z(t)$ is divided equally into an upper and a lower branch. The upper branch is mixed with the phase shifted $\gls{lo}$ signal $\cos(\omega_ct+\vartheta)$. The lower branch is mixed with \gls{lo} signal $\sin(\omega_ct+\vartheta)$. The mixer outputs are filtered separately by a \gls{lp} yielding the down-converted signals $u(t)$ and $v(t)$.}\label{fig:downconversion_dual}
 \end{figure}
-The signal of the upper branch $u(t)$ is equal to our result for the single quadrature down-conversion, \cref{eq:down_conversion_real}.
+The signal of the upper branch $u(t)$ is equal to our result for the single-quadrature downconversion, \cref{eq:downconversion_real}.
 The signal of the lower branch,
 \begin{equation}
-	v(t)
-	=
-	\Im
-	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
-	z(\omega+\omega_l)
-	e^{+i(\omega t+\vartheta)}
-	,
-	\label{eq:down_conversion_imag}	
+	\begin{split}
+		v(t)
+		&=
+		\Im
+		\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		z(\omega-\omega_l)
+		e^{+i(\omega t+\vartheta)}
+		\\
+		&=
+		\Im
+		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		\left[
+			z(\omega-\omega_l)
+			e^{+i(\omega t+\vartheta)}
+			+
+			z(\omega+\omega_l)^*
+			e^{-i(\omega t+\vartheta)}
+		\right]
+		,
+	\end{split}
+	\label{eq:downconversion_imag}	
 \end{equation}
-is simply obtained from \cref{eq:down_conversion_real} by shifting the \gls{lo} phase reference by \SI{90}{\degree}, i.e., $\vartheta\to\vartheta+\pi/2$.
-Regardless of the particular value of the \gls{lo} phase reference $\vartheta$, dual quadrature down-conversion recovers the complete information, the real and imaginary part, of the input signal spectrum $z(\omega)$.
+is simply obtained from \cref{eq:downconversion_real} by shifting the \gls{lo} phase reference by \SI{90}{\degree}, i.e., $\vartheta\to\vartheta+\pi/2$.
+Regardless of the particular value of the \gls{lo} phase reference $\vartheta$, dual-quadrature downconversion recovers the complete information, the real and imaginary part, of the input signal spectrum $z(\omega)$.
 
-We presented the electro-optical receiver setups implementing single and dual quadrature down-conversion in \Cref{fig:coherent_receiver_active} and \Cref{fig:coherent_receiver_passive} in \Cref{ch:qkd}.
+We presented the electro-optical receiver setups implementing single- and dual-quadrature downconversion in \Cref{fig:coherent_receiver_active} and \Cref{fig:coherent_receiver_passive} in \Cref{ch:qkd}.
 Essentially, the electro-optical setups combine the optical signal and \gls{lo} in an optical coupler and perform balanced detection on the coupler outputs for which derived the quantum theory in \Cref{sec:photodetectors}.
 From a quantum viewpoint, balanced detection corresponds to a quadrature measurement at a particular frequency represented by the generalized quadrature operator, \cref{eq:quadrature_operator_generalized}.
 
 \subsection{Homo- and heterodyning}
 
-So far, we have not assumed any particular signal for the down-conversion but treated the receiver as a spectrum analyzer.
-If we now assume the input signal to be from the coherent state transmitter $\ket{\beta(t)}$, the down-converted signals read
+So far, we have not assumed any particular signal for the downconversion but treated the receiver as a spectrum analyzer.
+If we now assume the input signal to be from the coherent-state transmitter $\ket{\beta(t)}$, the downconverted signals read
 \begin{align}
 	u(t)
 	&=
 	\Re
-	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
-	\beta(\omega+\omega_i)
+	\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
+	\beta(\omega-\omega_i)
 	e^{+i(\omega t+\vartheta)}
 	\label{eq:receiver_demod_real}
 	\\
 	v(t)
 	&=
 	\Im
-	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
-	\beta(\omega+\omega_i)
+	\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
+	\beta(\omega-\omega_i)
 	e^{+i(\omega t+\vartheta)}
 	\label{eq:receiver_demod_imag}
 	,
 \end{align}
-where we defined the intermediate frequency as the difference between the transmitter and receiver laser frequency
+where we defined the intermediate frequency as the difference between the transmitter- and receiver-laser frequency
 \begin{equation}
 	\omega_i
 	=
@@ -186,8 +248,8 @@ where we defined the intermediate frequency as the difference between the transm
 	.
 \end{equation}
 If the intermediate frequency is zero, $\omega_i=0$, we perform homodyning, otherwise, heterodyning.
-Furthermore, we distinguish between single and dual homodyning, depending if we perform single or dual quadrature down-conversion.
-If the detector bandwidth is large enough to cover the baseband signal at the intermediate frequency, we can resolve both quadratures with heterodyning and single quadrature down-conversion.
+Furthermore, we distinguish between single- and dual-quadrature homodyning, depending if we perform single- or dual- quadrature downconversion.
+If the detector bandwidth is large enough to cover the baseband signal at the intermediate frequency, we can resolve both quadratures of the incoming signal with heterodyning and single-quadrature downconversion.
 \begin{table}[htb]
   \centering
   \begin{tabular}{lccccc}
@@ -202,7 +264,7 @@ If the detector bandwidth is large enough to cover the baseband signal at the in
     \gls{lo} synchronization & Frequency and phase & Frequency & Bandwidth \\
     \bottomrule
   \end{tabular}
-  \caption{Comparison of receiver schemes according to Ref.~\cite{Brunner2017}: The single quadrature homodyne detection offers low optical complexity and high bandwidth but only resolves one of two quadratures and required frequency and phase synchronization of the \gls{lo}. The dual quadrature homodyne detection resolves both quadratures with high bandwidth but requires two balanced detectors increasing the optical complexity and phase synchronization of the \gls{lo}. The heterodyne detection schemes resolves both quadratures with low complexity and no requirements on \gls{lo} synchronization at the cost of signal bandwidth.}\label{tab:receivers}
+  \caption{Comparison of receiver schemes according to Ref.~\cite{Brunner2017}: The single-quadrature homodyne detection offers low optical complexity and high bandwidth but only resolves one of two quadratures and required frequency and phase synchronization of the \gls{lo}. The dual-quadrature homodyne-detection resolves both quadratures with high bandwidth but requires two balanced detectors increasing the optical complexity and phase synchronization of the \gls{lo}. The heterodyne detection schemes resolves both quadratures with low complexity and no requirements on \gls{lo} synchronization at the cost of signal bandwidth.}\label{tab:receivers}
 \end{table}
 \Cref{tab:receivers} summarizes the characteristics between the single and dual homodyne and the heterodyne receiver schemes.
 A strong advantage of the heterodyne receiver design is that both quadratures can be resolved with a single balanced detector, keeping the optical complexity low.
@@ -210,14 +272,14 @@ A strong advantage of the heterodyne receiver design is that both quadratures ca
 \FloatBarrier
 \subsection{Symbol decoding}
 
-We continue our receiver description, starting from the single-quadrature down-conversion and assuming the more general heterodyning, which for $\omega_i=0$ reduces to single quadrature homodyning.
+We continue our receiver description, starting from the single-quadrature downconversion and assuming the more general heterodyning, which for $\omega_i=0$ reduces to single-quadrature homodyning.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/symbol-decoding}
-	\caption{Block diagram of the signal-processing for the symbol decoding. The analog signal $u(t)$ is converted to the digital signal $u[m/(kl)]$. The real digital signal $u[m/(kl)]$ is multiplied with the complex exponential $\exp(i\omega_it)$, yielding the complex digital signal $\sigma[m/(kl)]$. $\sigma[m/(kl)]$ is downsampled by $l$ to yield the complex digital signal $\mu[m/k]$. $\mu[m/k]$ is pulse-shaped with the matched \gls{rrc} filter to yield the complex digital signal $\kappa[m/k]$. $\kappa[m/k]$ is downsampled to the complex digital signal $\beta[m]$ corresponding to the decoded symbol sequence.}\label{fig:symbol_decoding_blocks}
+	\caption{Block diagram of the signal processing for the symbol decoding. The analog signal $u(t)$ is converted to the digital signal $u[m/(kl)]$. The real digital signal $u[m/(kl)]$ is multiplied with the complex exponential $\exp(i\omega_it)$, yielding the complex digital signal $\sigma[m/(kl)]$. $\sigma[m/(kl)]$ is downsampled by $l$ to yield the complex digital signal $\mu[m/k]$. $\mu[m/k]$ is pulse-shaped with the matched \gls{rrc} filter to yield the complex digital signal $\kappa[m/k]$. $\kappa[m/k]$ is downsampled to the complex digital signal $\beta[m]$ corresponding to the decoded symbol sequence.}\label{fig:symbol_decoding_blocks}
 \end{figure}
-\Cref{fig:symbol_decoding_blocks} summarizes the relevant signal-processing for the symbol decoding.
-The down-converted signal $u(t)$ corresponding to the real part of the received coherent state spectrum $\beta(\omega)$, \cref{eq:receiver_demod_real}, is sampled by an \gls{adc}, yielding the digital signal $u[m/(kl)]$.
+\Cref{fig:symbol_decoding_blocks} summarizes the relevant signal processing for the symbol decoding.
+The downconverted signal $u(t)$ corresponding to the real part of the received coherent-state spectrum $\beta(\omega)$, \cref{eq:receiver_demod_real}, is sampled by an \gls{adc}, yielding the digital signal $u[m/(kl)]$.
 We remove the intermediate frequency in $u[m/(kl)]$ by multiplication with a complex exponential, i.e,
 \begin{equation}
 	\sigma\left[\frac{m}{kl}\right]
@@ -232,14 +294,14 @@ Finally, we downsample by $k$ to restore a digital signal corresponding to the s
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/symbol-decoding-frequency}
-	\caption{Power spectrum of the symbol decoding steps for a random \gls{qpsk} symbol sequence. The demodulated signal is a real-valued passband signal centered at the intermediate frequency (first row). After digital down-conversion we have a complex-valued baseband signal, centered at zero frequency (second row). Applying the matched \gls{rrc} filter completes the pulse-shaping (third row). Downsampling recovers the initial symbol band (last row).}\label{fig:symbol_decoding_frequency}
+	\caption{Power spectrum of the symbol-decoding steps for a random \gls{qpsk} symbol sequence. The demodulated signal is a real-valued passband signal centered at the intermediate frequency (first row). After digital downconversion we have a complex-valued baseband signal, centered at zero frequency (second row). Applying the matched \gls{rrc} filter completes the pulse-shaping (third row). Downsampling recovers the initial symbol band (last row).}\label{fig:symbol_decoding_frequency}
 \end{figure}
 \Cref{fig:symbol_decoding_frequency} illustrates how the symbol decoding is carried out in the frequency domain.
-The demodulated signal spectrum is a passband signal at the intermediate frequency and down-conversion reduces the passband to a baseband signal.
+The demodulated signal spectrum is a passband signal at the intermediate frequency and downconversion reduces the passband to a baseband signal.
 Completing the pulse-shaping with the matched filter increases the steepness of the flanks which are then removed by the final downsampling step.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/symbol-decoding-time-qpsk}
-	\caption{Signal amplitude of the symbol decoding steps for a random \gls{qpsk} symbol sequence. The real-valued demodulated signal oscillates at the intermediate frequency (first row). Digital down-conversion removed the intermediate frequency, yielding a complex signal (second row). Completing the pulse-shaping by applying a matched \gls{rrc} filter (third row). Downsampling recovers the complex symbol sequence equal to the transmitted sequence (fourth and last row).}\label{fig:symbol_decoding_time}
+	\caption{Signal amplitude of the symbol decoding steps for a random \gls{qpsk} symbol sequence. The real-valued demodulated signal oscillates at the intermediate frequency (first row). Digital downconversion removed the intermediate frequency, yielding a complex signal (second row). Completing the pulse-shaping by applying a matched \gls{rrc} filter (third row). Downsampling recovers the complex symbol sequence equal to the transmitted sequence (fourth and last row).}\label{fig:symbol_decoding_time}
 \end{figure}
 \Cref{fig:symbol_decoding_time}) shows the symbol decoding in the time domain.
