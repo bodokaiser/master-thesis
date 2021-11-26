@@ -4,25 +4,14 @@
 
 \begin{document}
 	\begin{tikzpicture}[
-		node distance=10pt,
-		block/.style={draw, very thick, fill=white, minimum height=32pt, minimum width=58pt, text width=40pt, align=center},
+		node distance=20pt,
+		block/.style={draw, very thick, fill=white, minimum height=28pt, minimum width=58pt, text width=58pt, align=center},
 		superblock/.style={draw, very thick, inner sep=8pt},
 	]
-		\node[block] (phy) {Physical quantum system};
-		\node[block, left=of phy] (senc) {State encoder};
-		\node[block, right=of phy] (sdec) {State decoder};
-		\node[superblock, fit=(senc) (sdec), label={Logical quantum system}, inner xsep=8pt, inner ysep=10pt] (log) {};
-		\node[block, left=20pt of senc] (benc) {Binary encoder};
-		\node[block, right=20pt of sdec] (bdec) {Binary decoder};
-
-		\coordinate[left=of benc] (in);
-		\coordinate[right=of bdec] (out);
-		
-		\draw[-Latex] (in) -- (benc);
-		\draw[-Latex] (benc) -- (senc);
-		\draw[-Latex] (senc) -- (phy) ;
-		\draw[-Latex] (phy) -- (sdec);
-		\draw[-Latex] (sdec) -- (bdec);
-		\draw[-Latex] (bdec) -- (out);
+		\coordinate (in);
+		\node (info source) [block, right=of in] {Information source};
+		\node (tx log state) [block, right=of info source] {Logical quantum state};
+		\node (tx enc state) [block, right=of tx log state] {Encoding quantum state};
+		\node (rx enc state) [block, right=of tx log state] {Encoding quantum state};
 	\end{tikzpicture}
 \end{document}
