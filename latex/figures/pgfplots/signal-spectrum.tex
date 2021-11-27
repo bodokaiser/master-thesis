@@ -16,10 +16,11 @@
 %            ymin=0.1,
 %            ymax=1e2,
 			no markers,
-			xlabel={Relative frequency $\omega$ (\si{\mega\hertz})},
-			ylabel={Power spectral density (\si{\decibel})},
+			xlabel={Frequency $\omega-\omega_l$ (\si{\mega\hertz})},
+			ylabel={Power spectral density\\$\abs{x(\omega)}^2$ (\si{\decibel})},
+			ylabel style={align=center},
 		]
-			\addplot+[very thick] plot table[col sep=comma] {../../../data/psd.csv};
+			\addplot+[very thick] plot table[x=f, y=P, col sep=comma] {../../../data/psd.csv};
 		\end{axis}
 	\end{tikzpicture}
 \end{document}

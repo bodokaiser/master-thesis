@@ -70,47 +70,40 @@ The expectation value of the electric field operator with respect to a coherent 
 \end{equation}
 equals a classical monochromatic wave with amplitude proportional to $\abs{\alpha}$ and phase $\theta$~\cite[p.~45]{Gerry2005}.
 
-The subject of communication engineering is the practical and efficient reproduction of information over a spatial distance, which typically involves coding the information into a continuous-time signal and modulating the continuous-time signal onto a carrier signal.
-Light is primarily a means of carrying signals through a physical channel.
-To elaborate, we need to distinguish between base- and passband signals.
-For a baseband signal $x_b(t)$, the signal power outside of the signal's bandwidth $B$ is negligible~\cite[p.~15]{Madhow2008}, i.e.,
-\begin{align}
-	\abs{x_b(\omega)}^2
-	&\approx
-	0
-	&
-	\abs{\omega}
-	&>
-	B/2
-	.
-\end{align}
-For a passband signal $x_p(t)$, the signal power outside the signal's band around a carrier frequency $\omega_c$ is negligible~\cite[p.~16]{Madhow2008}, i.e.,
-\begin{align}
-	\abs{x_p(\omega)}^2
-	&\approx
-	0
-	&
-	\abs{\omega\pm\omega_c}
-	&>
-	B/2
-	.	
-\end{align}
-A baseband signal can be up-converted to a passband signal at carrier frequency $\omega_c$ by shifting the spectrum by $\omega_c$ is known as upconversion, see \Cref{fig:upconversion}, and implemented by modulation.
-Similar, a passband signal at carrier frequency $\omega_c$ is down-converted to a baseband signal by demodulation~\cite[p.~26]{Madhow2008}.
+The central concept in communication engineering is that of a signal, not specific to a particular physical realization, e.g., mechanical or electromagnetic waves.
+In that sense, light is primarily an implementation detail for carrying information-bearing signals.
+In the following, we assume the information-bearing signals to be narrowband, i.e., have a well-defined narrow bandwidth $B_d$ in the power spectrum.\footnote{In general, there is no requirement for the information-bearing signal to be narrowband, see, for instance, \gls{ofdm} and spread-spectrum techniques.}
+Complementary, the carrying signal, ideally, only comprises a single well-defined frequency component, tailored to the physical transmission channel, which typically is many magnitudes higher than the frequency components of the information-bearing signal.
+Superimposing carrier signals with frequencies sufficiently spaced apart allows multiplexing of information-bearing signals on a common transmission medium.
 \begin{figure}[ht]
 	\centering
-	\includegraphics{figures/tikz/upconversion}
-	\caption{Power spectrum illustrating upconversion of a real-valued passband signal with bandwidth $B$ centered at $\omega_0$. Upconversion by $\omega_c$ shifts the passband to $\omega_c+\omega_0$ and creates a mirror band at $\omega_c-\omega_0$.}\label{fig:upconversion}
+	\includegraphics{figures/tikz/spectrum-upconversion}
+	\caption{Power spectrum comprising an information-bearing signal with bandwidth $B_s$ at zero frequency, $\omega=0$, a carrier signal at a carrier frequency much greater than the bandwidth, $\omega_c\gg B$. The upconverted information-bearing spectrum is indicated by dashed lines.}\label{fig:spectrum_upconversion}
 \end{figure}
-In practice, multiple baseband signals are upconverted
+Affiliating an information-bearing signal with a carrier is implemented by modulating the information-bearing signal onto the carrier signal.
+On a more abstract level, the power spectrum of the information-bearing signal is shifted by the carrier frequency, as illustrated in \Cref{fig:spectrum_upconversion}.
+The asymmetry of the information-bearing spectrum around zero frequency, $\omega=0$, in \Cref{fig:spectrum_upconversion} implies that the information-bearing signal is complex-valued.
+At the same time, the spectrum of the information-bearing signal modulated onto the carrier, denoted by the dashed spectrum around $\omega_c$, has complex conjugate symmetry, i.e., is thus real-valued, as we would expect from a physical signal.
+\begin{figure}[ht]
+	\centering
+	\includegraphics{figures/tikz/spectrum-downconversion}
+	\caption{Power spectrum comprising a modulated carrier signal at carrier frequency $\omega_c$ with bandwidth $B_d$, a \gls{lo} signal with frequency slightly above the carrier frequency, $\omega_l>\omega_c$. The downconverted modulated-carrier spectra are indicated by dashed lines, lower band at $\omega_l-\omega_c>0$, and dotted lines, upper band at $\omega_l+\omega_c$. The detector bandwidth is indicated by $B_d>\omega_l-\omega_c$.}\label{fig:spectrum_downconversion}
+\end{figure}
+As it is technical unfeasible to measure the modulated carrier directly at the carrier frequency, we demodulate or downconvert the information-bearing signal from the carrier by mixing the received signal with a \gls{lo} at frequency $\omega_l$, producing a low- and high-frequency signal at $\omega_l-\omega_c$ respectively $\omega_l+\omega_c$, as depicted in \Cref{fig:spectrum_downconversion}.
+For a useful measurement, the \gls{lo} frequency $\omega_l$ should be chosen such that the detector bandwidth $B_d$ covers the complete low-frequency signal, i.e., $\omega_l-\omega_c+B_s/2<B_d$.
+The relative dependence of the measured spectrum from the \gls{lo} frequency $\omega_l$ and the fact that the modulated carrier signal and the information-bearing signal contain the same information suggests introducing the concept of base- and passband representation~\cite{Madhow2008}.
+The passband representation corresponds to the physical reality where the information-bearing signal is modulated onto the carrier.
+The passband signal is real-valued, and the spectrum has complex conjugate symmetry.
+However, when we measure the spectrum, we do so with a relative frequency and obtain an asymmetric spectrum centered at zero frequency, the baseband representation.
 \begin{figure}[ht]
 	\centering
 	\includegraphics{figures/pgfplots/signal-spectrum}
-	\caption{Power spectrum comprising multiple passband signals. At \SI{+100}{\mega\hertz}, the spectrum has a pilot tone. Centered at \SI{-25}{\mega\hertz}, the spectrum shows a first passband signal with \SI{12.5}{\mega\hertz} bandwidth. Centered at \SI{-168.75}{\mega\hertz}, the spectrum has a second passband signal with \SI{12.5}{\mega\hertz} bandwidth.}\label{fig:signal_spectrum}
+	\caption{Power spectrum comprising showing the received signal as baseband. At \SI{+100}{\mega\hertz}, the spectrum has a pilot tone. Centered at \SI{-25}{\mega\hertz}, the spectrum shows a first passband signal with \SI{12.5}{\mega\hertz} bandwidth. Centered at \SI{-168.75}{\mega\hertz}, the spectrum has a second passband signal with \SI{12.5}{\mega\hertz} bandwidth.}\label{fig:signal_spectrum}
 \end{figure}
+\Cref{fig:signal_spectrum} shows the power spectrum of a received signal in baseband representation comprising two signal bands and a pilot tone.
 
 To sum up, single-mode quantum optics provides precise physical meaning to light, including quantum effects, although limited to monochromatic light.
-On the other side, communication engineering provides a framework for efficiently constructing and transmitting signals.
+On the other side, communication engineering provides a framework for efficiently encoding, transmitting, receiving, and decoding information but attempts no statements about the underlying physics.
 For quantum-optical communication, it is inevitable to welcome and incorporate both views.
 For instance, people with a background in quantum optics but foreign to communication engineering often advocate the concept of "one state, one universe", where each quantum transmission is completely independent.
 However, if we include practical considerations, like assuming a single transmission line, the picture of "one state, one universe" is plagued by several ambiguities.
