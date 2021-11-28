@@ -27,7 +27,6 @@ The coherent state is transferred from the optical via the analog to the digital
 
 At the transmitter, we upconverted two real baseband signals to a real passband signal.
 For the receiver, we discuss options involving one and two real baseband signals.
-
 We first consider the simpler case of direct downconversion as depicted in \Cref{fig:downconversion_single}.
 \begin{figure}[htb]
 	\centering
@@ -173,11 +172,18 @@ However, we suppress the high-frequency band using an ideal \gls{lp} filter with
 	\end{split}
 	\label{eq:downconversion_real}
 \end{equation}
-where we assumed $\omega_l>B/2$.
-For $\vartheta=0$, the downconverted signal $v(t)$ is equal to projecting the input signal's complex spectrum $z(\omega)$ onto the real axis.
-We loose the information on the imaginary axis with our choice for a particular phase reference of the \gls{lo}.
-Hence direct downconversion only conserves a single quadrature.
+where we assumed $\omega_l\gg B/2$.
+For $\vartheta=0$, the downconverted signal $v(t)$ is equal to projecting the real part of the complex input spectrum $z(\omega)$, losing the imaginary part's information.
+Furthermore, when rewriting $u(t)$ as an integral over positive frequencies, i.e., frequencies we can measure, we find a second term mirroring the first term, the so-called image band.
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/tikz/spectrum-downconversion-extended}
+	\caption{Power spectrum illustrating downconversion of a passband signal (solid spectrum) mixed with a \gls{lo} signal $\omega_l$ to the intermediate frequency $\omega_i$ (dashed spectrum) and bandwidth-limited measurement (dotted spectrum).}\label{fig:spectrum_downconversion_extended}
+\end{figure}
+\Cref{fig:spectrum_downconversion_extended} shows the downconversion of the signal $z(t)$ around the \gls{lo} at $\omega_l$ to the intermediate frequency $\omega_i$.
+The actual measurement involved only positive frequencies up to the detector bandwidth $B/2$ causing the actual signal to be imposed with a mirror.
 
+Single-quadrature downconversion only reveals a real projection of the complex spectrum.
 To conserve both quadratures, we need to split the input signal into two branches and perform single-quadrature downconversion with two orthogonal phase references of the \gls{lo}, see \Cref{fig:downconversion_dual}.
 \begin{figure}[htb]
 	\centering
@@ -268,7 +274,11 @@ If the detector bandwidth is large enough to cover the baseband signal at the in
 \end{table}
 \Cref{tab:receivers} summarizes the characteristics between the single and dual homodyne and the heterodyne receiver schemes.
 A strong advantage of the heterodyne receiver design is that both quadratures can be resolved with a single balanced detector, keeping the optical complexity low.
-That said, 
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/tikz/spectrum-heterodyning}
+	\caption{Foo}\label{fig:spectrum_heterodyning}
+\end{figure}
 
 \FloatBarrier
 \subsection{Symbol decoding}
