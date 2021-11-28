@@ -1,3 +1,7 @@
+% expand acronyms in every chapter
+% https://tex.stackexchange.com/questions/435617/glossaries-expand-acronyms-for-first-time-use-within-each-chapter
+\preto\chapter{\glsresetall}
+
 % optics
 \newacronym{ar}{AR}{anti-reflective}
 \newacronym{mzm}{MZM}{Mach-Zehnder modulator}
