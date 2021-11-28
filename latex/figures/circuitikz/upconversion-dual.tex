@@ -12,6 +12,8 @@
 		\node (add) [adder, right=of osc] {};
 		\node (mixx) [mixer, above=of div] {};
 		\node (mixp) [mixer, below=of div] {};
+		\node (bndx) [bandpassshape, right=of mixx] {};
+		\node (bndp) [bandpassshape, right=of mixp] {};
 		
 		\node (inx) [left=of mixx] {$x(t)$};
 		\node (inp) [left=of mixp] {$p(t)$};
@@ -22,8 +24,10 @@
 		\draw[-Latex] (osc.west) -- (div.east);
 		\draw[-Latex] (div.north) -- (mixx.south);
 		\draw[-Latex] (div.south) -- (mixp.north);
-		\draw[-Latex] (mixx.east) -- (mixx.east-|add.north) -- (add.north);
-		\draw[-Latex] (mixp.east) -- (mixp.east-|add.south) -- (add.south);
+		\draw[-Latex] (mixx.east) -- (bndx.west);
+		\draw[-Latex] (mixp.east) -- (bndp.west);
+		\draw[-Latex] (bndx.east) -- (bndx.east-|add.north) -- (add.north);
+		\draw[-Latex] (bndp.east) -- (bndp.east-|add.south) -- (add.south);
 		\draw[-Latex] (add) -- (out);
 	\end{tikzpicture}
 \end{document}

@@ -114,13 +114,13 @@ Multiplication with the \gls{lo} signal $\cos(\omega_lt+\vartheta)$, the mixing 
 		\\
 		&=
 		\Re
-		\int_{-\omega_l}^\infty\frac{\dd{\omega}}{2\pi}
+		\int_{+\omega_l}^\infty\frac{\dd{\omega}}{2\pi}
 		z(\omega-\omega_l)
 		e^{+i\omega t+i\vartheta}
 		\\
 		&\qquad+
 		\Re
-		\int_{+\omega_l}^\infty\frac{\dd{\omega}}{2\pi}
+		\int_{-\omega_l}^\infty\frac{\dd{\omega}}{2\pi}
 		z(\omega+\omega_l)
 		e^{+i\omega t-i\vartheta}
 		.
@@ -133,41 +133,42 @@ However, we suppress the high-frequency band using an ideal \gls{lp} filter with
 		&=
 		\Re
 		\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
-		z(\omega-\omega_l)
-		e^{+i(\omega t+\vartheta)}
+		z(\omega+\omega_l)
+		e^{+i\omega t-i\vartheta}
 		\\
 		&=
 		\Re
 		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
-		z(\omega-\omega_l)
-		e^{+i\omega t+i\vartheta}
+		z(\omega+\omega_l)
+		e^{+i\omega t-i\vartheta}
 		+
 		\Re
 		\int_{-B/2}^{0}\frac{\dd{\omega}}{2\pi}
-		z(\omega-\omega_l)
-		e^{+i\omega t+i\vartheta}
+		z(\omega+\omega_l)
+		e^{+i\omega t-i\vartheta}
 		\\
 		&=
 		\Re
 		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
-		z(\omega-\omega_l)
-		e^{+i\omega t+i\vartheta}
+		z(\omega+\omega_l)
+		e^{+i\omega t-i\vartheta}
 		-
 		\Re
-		\int_{+B/2}^{0}\frac{\dd{\omega}}{2\pi}
-		z(-\omega-\omega_l)
-		e^{-i\omega t+i\vartheta}
+		\int_{B/2}^{0}\frac{\dd{\omega}}{2\pi}
+		z(\omega-\omega_l)^*
+		e^{-i\omega t-i\vartheta}
 		\\
 		&=
 		\Re
 		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
 		\left[
-			z(\omega-\omega_l)
-			e^{+i(\omega t+\vartheta)}
+			z(\omega+\omega_l)
+			e^{+i\omega t}
 			+
-			z(\omega+\omega_l)^*
-			e^{-i(\omega t+\vartheta)}
+			z(\omega-\omega_l)^*
+			e^{-i\omega t}
 		\right]
+		e^{-i\vartheta}
 		,
 	\end{split}
 	\label{eq:downconversion_real}

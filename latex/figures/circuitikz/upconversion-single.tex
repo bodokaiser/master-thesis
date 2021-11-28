@@ -1,0 +1,18 @@
+\documentclass[tikz]{standalone}
+
+\input{preamble}
+
+\begin{document}
+	\begin{tikzpicture}[line width=1pt]
+		\node (in) {$x(t)$};
+		\node (mix) [mixer, right=of in] {};
+		\node (osc) [below=of mix] {$\cos(\omega_lt+\vartheta)$};
+		\node (bnd) [bandpassshape, right=of mix] {};
+		\node (out) [right=of bnd] {$x(t)\cos(\omega_lt+\vartheta)$};
+		
+		\draw[-Latex] (in) -- (mix.west);
+		\draw[-Latex] (osc.north) -- (mix.south);
+		\draw[-Latex] (mix.east) -- (bnd.west);
+		\draw[-Latex] (bnd.east) -- (out);
+	\end{tikzpicture}
+\end{document}
