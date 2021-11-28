@@ -74,13 +74,13 @@ In this particular case, if Bob knows the least significant bit from Alice, he i
 In an alternative scheme, known as multidimensional reconciliation~\cite{Leverrier2008}, Alice and Bob combine multiple variables into a $d$-dimensional vector, e.g., $\vb{x}=(x_1,\dots,x_d)$ respectively $\vb{x}^\prime=(x_1^\prime,\dots,x_d^\prime)$ and agree on a set of equally-spaced apart symbol vectors $\vu{v}_1,\dots,\vu{v}_m\in\mathbb{R}^d$.
 Now, Bob finds a rotation matrix $R^\prime\in\mathbb{R}^{d\times d}$ which maps his variable vector onto a symbol vector $\vb{v}_j=R^\prime\vb{x}^\prime$.
 Bob then discloses the parameters of his rotation matrix $R^\prime$ to Alice.
-Alice rotates her variable vector $R\vb{x}$ and finds the symbol vector $\vb{v}_k$ most with least distance to $R\vb{x}$.
+Alice rotates her variable vector $R\vb{x}$ and finds the symbol vector $\vb{v}_k$ with least distance to $R\vb{x}$.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/multidimensional-reconciliation}
 	\caption{Multidimensional reconciliation in $\mathbb{R}^2$: Alice and Bob encoded their prepared and measured values into two-dimensional vectors $\vb{x}$ and $\vb{x}^\prime$. Bob calculates the rotation matrix $R$ that rotates $\vb{x}^\prime$ close to the symbol vector $\vu{v}_4$ and shares the rotational parameters with Alice. Alice applies the rotation to her vector $R\vb{x}$. Both rotated vectors of Alice and Bob $R\vb{x}$ and $R\vb{x}^\prime$ are assigned the $11$ bit string with high confidence.}\label{fig:multidimensional_reconciliation}
 \end{figure}
-Multidimensional reconciliation works best in high-dimensional spaces as the norm of random vector approaches one (unit sphere) for $n\to\infty$.
+Multidimensional reconciliation works best in high-dimensional spaces as the norm of a random vector approaches one (unit sphere) for $n\to\infty$.
 
 \FloatBarrier
 \subsection{Information reconciliation}
@@ -323,9 +323,9 @@ Bennett and Brassard proposed privacy amplification four years after BB84 in 198
 An information-secure proof that privacy amplification is possible was published one year later, now known as the leftover-hash-lemma~\cite{Impagliazzo1989} and later extended to the quantum leftover-hash-lemma~\cite{Renner2005}.
 In 1995, Bennett and Brassard generalized the privacy amplification outside of \gls{qkd}~\cite{Bennett1995}.
 
-In practice, privacy amplification is performed by randomly XOR the bits of a key.
+In practice, privacy amplification is performed by randomly XORing the bits of a key.
 Let us illustrate this using a partially secret key $(s_1,s_2,s_3)\in\{0,1\}^3$ where Eve knows the value of $s_3$.
-After privacy amplification the initial key could for example $(s_1\oplus s_3,s_2\oplus s_3)$ or $(s_1\oplus s_2,s_2\oplus s_3)$ and Eve's knowledge of the key bit $s_3$ does not help her infering a bit of the new secret key.
+After privacy amplification the initial key could be for example $(s_1\oplus s_3,s_2\oplus s_3)$ or $(s_1\oplus s_2,s_2\oplus s_3)$ and Eve's knowledge of the key bit $s_3$ does not help her infering a single bit of the new secret key.
 
 Although not directly related to privacy amplification, it is helpful to consider the following Gedankenexperiment to gain intuition about XORing:
 Let us assume Alice and Bob generate a key by flipping a coin $n$ times and assigning heads to zero and tails to one.
@@ -428,4 +428,4 @@ For example, if Alice and Bob estimate Eve to know three bits, they could agree 
 	\end{pmatrix}
 	\bmod{2}
 \end{equation}
-which for the key $\vb{s}=(0,1,1,0,1)$ would yield the secret ket $\vb{s}^\prime=(0,0,0)$.
+which for the key $\vb{s}=(0,1,1,0,1)$ would yield the secret key $\vb{s}^\prime=(0,0,0)$.

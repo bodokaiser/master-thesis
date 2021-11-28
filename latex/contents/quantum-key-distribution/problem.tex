@@ -50,7 +50,7 @@ In addition to technological progress in computing, discovering new algorithms m
 For example, Shor's quantum algorithm~\cite{Shor1994} provides an exponential speed-up in prime number factorization compared to the fastest (known) classical algorithm, \gls{gnfs}, see \Cref{fig:prime_number_factorization_runtime}.
 As prime number factorization is used by, for instance, Diffie-Hellman key exchange, as a one-way function, a sufficiently powerful quantum computer can break previously, assumed to be, secure communication.
 
-As long as there exists no mathematical proof for a theoretical lower bound of the computational complexity of a particular class of one-way functions, PKD is not forward secure, i.e., might be broken in the future.\footnote{Post-quantum cryptography~\cite{Bernstein2017,Chen2016} attempts to mitigate the vulnerability of present asymmetric ciphers against quantum algorithms by choosing a different class of one-way functions suspected to be secure. But again, as long as there is no absolute lower bound for the computational complexity of a particle class of one-way functions, forward security of PKD, including post-quantum ciphers, remains contestable.}
+As long as there exists no mathematical proof for a theoretical lower bound of the computational complexity of a particular class of one-way functions, PKD is not forward secure, i.e., might be broken in the future.\footnote{Post-quantum cryptography~\cite{Bernstein2017,Chen2016} attempts to mitigate the vulnerability of present asymmetric ciphers against quantum algorithms by choosing a different class of one-way functions suspected to be secure. But again, as long as there is no absolute lower bound for the computational complexity of a particular class of one-way functions, forward security of PKD, including post-quantum ciphers, remains contestable.}
 
 \FloatBarrier
 \subsection{Quantum-key distribution}
@@ -81,7 +81,7 @@ Leaving out \gls{dpsqkd}, it is unclear what features unambiguously differentiat
 For instance, most practical \gls{dvqkd} protocols use weak coherent states~\cite{Duvsek2006}, which are anything but discrete.
 The accepted opinion considers a protocol discrete when using a single-photon and continuous when using a coherent detector.
 However, this view is challenged by discrete \gls{qkd} protocols, like BB84~\cite{Bennett1984}, using coherent detection~\cite{Qi2021}.
-What other feature can we use if the detection method does not clearly distinguish between \gls{cvqkd} and \gls{dvqkd}?zo
+What other feature can we use if the detection method does not clearly distinguish between \gls{cvqkd} and \gls{dvqkd}?
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.8]{figures/tikz/qkd-classification}
@@ -93,9 +93,8 @@ More opaque is the distinction between the physical encoding and the logical Hil
 The physical encoding refers to the light \gls{dof}s used to encode the data, for example, the polarization of light or the particular quantum state (number, coherent, squeezed).
 More often, the technical facilities determine the physical encoding.
 For example, coherent light sources and detectors are mature technologies.
-Yet, many \gls{qkd} protocols assume quantum states that are different from coherent states.
-We consider the \gls{qkd} protocol-level quantum system the logical Hilbert space.
+Yet, many \gls{qkd} protocols assume a more simple quantum system than that of light, which we refer to as the logical Hilbert space.
 The logical Hilbert space is either finite or countable.
-If it's finite, it is often a qubit or generalization thereof.
-If it's countable, it is often bosonic.
+If it is finite, it is often a qubit or generalization thereof.
+If it is countable, it is often bosonic.
 Therefore, we propose not to partition \gls{qkd} protocols among \gls{cvqkd} or \gls{dvqkd} but by their logical Hilbert space being bosonic- or qubit-based\footnote{Such a distinction appears also in general quantum information theory, see, for instance, Ref.~\cite[p.~2]{Weedbrook2012}.}, which we both present in the next two sections.

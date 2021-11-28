@@ -48,7 +48,7 @@ A useful visualization of qubit states is the Bloch sphere, see \Cref{fig:bloch_
 	\caption{Two-state quantum system in the Bloch sphere representation: The Bloch sphere is a three-dimensional sphere with unit radius. A pure quantum state  $\ket{\psi}$ resides on its surface of a sphere.}\label{fig:bloch_sphere}
 \end{figure}
 The Bloch sphere is a unit sphere embedded in three-dimensional space.
-Pure quantum states are elements on the surface of the Bloch.
+Pure quantum states are elements on the surface of the Bloch sphere.
 Two antiparallel vectors correspond to orthogonal states.
 Typically, the standard axis in $\mathbb{R}^3$ are assigned to the three orthogonal Pauli eigenbases.
 A generic quantum state $\ket{\psi}$ in a certain basis can be found by projection.
@@ -208,7 +208,7 @@ Alice configures her linear polarizer to select a basis element of the rectiline
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/bb84-polarization-active}
-	\caption{Optical setup to implement polarization-encoding BB84 with active basis selection: The transmitter comprises a \gls{sps} and a polarizer connected to a fiber. The receiver comprises a \gls{pc}, a \gls{fc}, a rotatable \gls{pbs} with two \gls{spd} at its outputs.}\label{fig:polarization_encoding_active}
+	\caption{Optical setup to implement polarization-encoding BB84 with active basis selection: The transmitter comprises an \gls{sps} and a polarizer connected to a fiber. The receiver comprises a \gls{pc}, a \gls{fc}, a rotatable \gls{pbs} with two \gls{spd}s at its outputs.}\label{fig:polarization_encoding_active}
 \end{figure}
 Alice selects one of four polarization states $\ket{\leftrightarrow},\ket{\updownarrow},\ket{\nwsearrow},\ket{\neswarrow}$ by adjusting her linear polarizer to one of four angles $\theta\in\{0,\pi,\pi/2,3\pi/2\}$.
 We can write Alice's state as
@@ -331,7 +331,7 @@ to show equivalence to the general qubit description.
 In the following, we discuss the practical time-phase-encoding BB84 protocol and show its equivalence to the polarization-encoding BB84.
 The idea of using phase-encoding was first proposed as part of the BB92 protocol~\cite{Bennett1992}.
 The basic setup is illustrated in \Cref{fig:qubit_time_phase_active}:
-Alice creates an entangled photon state using a first \gls{mzi} with phase $\theta\in\{0,\pi/2,\pi,3\pi/2\}$ and sends it to Bob. Bob detects the photon state using a second \gls{mzi} with phase $\phi\in\{0,\pi/2\}$ and two single-photon detectors monitoring the outputs. and comprises a single-photon source and a first \gls{mzi} on Alice's side as well as a second \gls{mzi} and two single-photon detectors on Bob's side.
+Alice creates an entangled photon state using a first \gls{mzi} with phase $\theta\in\{0,\pi/2,\pi,3\pi/2\}$ and sends it to Bob. Bob detects the photon state using a second \gls{mzi} with phase $\phi\in\{0,\pi/2\}$ and two single-photon detectors monitoring the outputs.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/bb84-time-phase-active}
@@ -382,7 +382,7 @@ The phase shifter adds a relative phase of $\varphi$ between the upper and lower
 		\ket{0,t_0+\tau+\Delta\tau}
 	\right)
 \end{equation}
-wherein $\tau$ is the time delay the pulse accumulates over the short upper path and $\Delta\tau$ is the difference in time delay between the shorter, upper and longer, lower path.
+wherein $\tau$ is the time delay the pulse accumulates over the short upper path and $\Delta\tau$ is the difference in time delay between the shorter, lower and longer, upper path.
 The output state of BS2 is equal to the action of the \gls{mzi}
 \begin{equation}
 	\begin{split}
@@ -432,7 +432,7 @@ The output state of BS2 is equal to the action of the \gls{mzi}
 	\label{eq:mzi_asymmetric}
 \end{equation}
 
-Back to the time-phase-encoding BB84 setup depicted in \Cref{fig:qubit_time_phase_active}, we note that Alice's transmitter consists of a single-photon source and an asymmetric \gls{mzi} where on output is dumped.
+Back to the time-phase-encoding BB84 setup depicted in \Cref{fig:qubit_time_phase_active}, we note that Alice's transmitter consists of a single-photon source and an asymmetric \gls{mzi} where one output is dumped.
 Therefore, Alice's states are parametrized by the relative phase $\theta$,
 \begin{equation}
 	\ket{t_0,\theta}
@@ -446,7 +446,7 @@ Therefore, Alice's states are parametrized by the relative phase $\theta$,
 	\right)
 	,
 \end{equation}
-which is obtained from \cref{eq:mzi_asymmetric} by absorbing the time delay of the shorter path $\tau$ into the time reference $t_0$ and projecting the first output mode of the \gls{mzi}.
+which is obtained from \cref{eq:mzi_asymmetric} by absorbing the time delay of the shorter path $\tau$ into the time reference $t_0$ and projecting onto the first output mode of the \gls{mzi}.
 By adding a time delay to the states of $\Delta\tau$, we receive the states for the time-delayed signal
 \begin{align}
 	\ket{t_1,\phi}_1
@@ -539,7 +539,7 @@ Using the \gls{povm} for detecting a click at time slot $m$,
 	\right\}_{m=0,1,2}
 	,
 \end{equation}
-we find the click probabilities for the plus and minus detectors to equal
+we find the click probabilities for the Bob's detectors to equal
 \begin{equation}
 	\begin{split}
 		p_{\pm,m}
@@ -591,7 +591,7 @@ Alice choosing $\theta\in\{0,\pi\}$ corresponds to choosing the $Z$ eigenbasis w
 	\caption{Click probabilities for the time-phase-encoding BB84 protocol depending on the \gls{mzi} phase angles set by Alice and Bob.}\label{tab:bb84_time_phase_clicks}
 \end{table}
 Comparing the click probabilities of \Cref{tab:bb84_time_phase_clicks} with the probabilities of the qubit-based BB84, suggests equivalence of the time-phase-encoding BB84 with the more general qubit-based description of BB84.
-While we can identify Alice's state in the time basis in terms with the $Y$ qubit basis,
+While we can identify Alice's state in the time basis in terms of the $Y$ qubit basis,
 \begin{equation}
 	\ket{t_0,\theta}
 	=

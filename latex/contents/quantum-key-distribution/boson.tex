@@ -240,11 +240,11 @@ The channel attenuates the coherent state by reducing the mean but the variance 
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/phase-space-coherent}
-	\caption{Phase space representation of two coherent-state transmissions: Alice prepares the coherent states $\ket{\alpha}$ (green), $\ket{\alpha}$ (blue) with mean quadratures $\alpha_1$ (green dot) respectively $\alpha_2$ (blue dot) and sends them to Bob through a channel (gray arrow). Bob receives the attenuated coherent states $\ket{\alpha^\prime}$ (orange) and $\ket{\beta^\prime}$ (red). He performs a dual homodyne measurement with outcomes $\alpha^{\prime\prime}$ respectively $\beta^{\prime\prime}$.}\label{fig:phase_space_coherent}
+	\caption{Phase space representation of two coherent-state transmissions: Alice prepares the coherent states $\ket{\alpha_1}$ (green), $\ket{\alpha_2}$ (blue) with mean quadratures $\alpha_1$ (green dot) respectively $\alpha_2$ (blue dot) and sends them to Bob through a channel (gray arrow). Bob receives the attenuated coherent states $\ket{\beta_1}$ (orange) and $\ket{\beta_2}$ (red). He performs a dual homodyne measurement with outcomes $\beta_1^{\prime}$ respectively $\beta_2^{\prime}$.}\label{fig:phase_space_coherent}
 \end{figure}
 An intercept-resend attempt by Eve is illustrated in \Cref{fig:phase_space_intercept_resend}.
 When Eve intercepts and measures Alice's coherent state $\ket{\alpha}$, her outcome $\beta$ (red star) is distributed around the mean $\alpha$ due to the quadrature uncertainty.
-Eve's best guess is to prepare a new (squeezed) coherent state $\ket{\beta}$ ($\ket{\beta,\xi}$) where she prepares the mean $\beta$ to be equal to her measurement outcome $\beta$.
+Eve's best guess is to prepare a new coherent state $\ket{\beta}$ where she prepares the mean $\beta$ to be equal to her measurement outcome $\beta$.
 Although, the channel attenuation strongly deteriorates the \gls{snr}, Bob's measurement distribution will be ragged due to Eve's imperfect state copy.
 Alice and Bob notice a higher than usual error when performing error correction.
 \begin{figure}[htb]
@@ -252,5 +252,6 @@ Alice and Bob notice a higher than usual error when performing error correction.
 	\includegraphics{figures/pgfplots/phase-space-intercept-resend}
 	\caption{Phase space representation of coherent-state transmission with an intercept-resend attack from Eve using a coherent state (left) and a squeezed coherent state (right). Alice always prepares the same coherent state (green circle). In a first realization, Eve intercepts Alice's state (green circle) and measures (red square) for the quadrature. She then prepares a coherent state with that quadrature and sends it to Bob. Through the attenuated channel (black arrow), Bob receives the coherent state (red circle) and measures (red cross) for the quadrature. In a second realization, Eve measures (orange square) for the quadrature of the intercepted state. She then prepares a new coherent state (orange circle) and sends it to Bob. Bob receives the attenuated state (orange circle) and finds (orange cross) in a quadrature measurement. Instead of preparing a coherent state, Eve can prepare squeezed coherent states (right) for which Bob receives squeezed coherent states of which he measures the quadrature.}\label{fig:phase_space_intercept_resend}
 \end{figure}
-If Bob uses a dual homodyne receiver, he will directly notice the increase of noise in one of the quadratures.
+Alternatively, Eve can only measure a single quadrature and prepare a squeezed coherent state $\ket{\beta,\xi}$ to hide her measurement.
+If Bob uses a dual-quadrature homodyne receiver, he will directly notice the increase of noise in one of the quadratures.
 If Bob uses a single homodyne receiver, he will only notice every second measurement on average, which is still sufficient to detect Eve's tempering.

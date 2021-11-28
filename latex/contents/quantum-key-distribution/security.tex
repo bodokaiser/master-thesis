@@ -31,7 +31,7 @@ For example, consider the security of a binary key of length $n$.
 The probability for an adversary to guess the correct key is $\varepsilon=2^{-n}$.
 Such a brute-force attack marks the absolute floor of a key's security which we refer to as $\varepsilon$-secure.
 
-More formally, we define a $\epsilon$-secure key obtained by a \gls{qkd} protocol to satisfy~\cite[p.~10]{Scarani2009}
+More formally, we define an $\epsilon$-secure key obtained by a \gls{qkd} protocol to satisfy~\cite[p.~10]{Scarani2009}
 \begin{equation}
 	\frac{1}{2}
 	\norm{\rho_{AE}-\rho_U\otimes\rho_E}_{\trace{}}
@@ -72,8 +72,13 @@ One approach for a security proof is to derive an inequality of the form~\cite[p
 	e^{l-F(\rho_{AE},\varepsilon)}
 	\label{eq:qkd_inequality}
 \end{equation}
-where $l$ is the secret key length and $F$ is the secret key length reference scale.
-The secret key length reference scale $F$ depends on the protocol and channel parameters.
+where $l$ is the secret-key length and $F$ is the reference scale of the secret-key length.
+The reference scale $F$ of the secret-key length depends on the protocol and channel parameters, for instance, \Cref{fig:cvsim} shows the estimated secret-key rate for our \gls{cvqkd} protocol given different shot-noise levels.
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/pgfplots/cvsim}
+	\caption{Estimated minimum secret key rate for our \gls{cvqkd} protocol as a function of the channel length for different values of excess noise.}\label{fig:cvsim}
+\end{figure}
 For secure key generation, the secret key length must be chosen smaller than the secret key length reference scale, i.e., $l\ll F$.
 In another approach, the Devetak-Winter rate~\cite[p.~144]{Wolf2021} is derived.
 The Devetak-Winter rate provides a lower bound on the asymptotic secret key rate
@@ -84,11 +89,6 @@ The Devetak-Winter rate provides a lower bound on the asymptotic secret key rate
 	(I_{AB}-\chi_{BE})
 \end{equation}
 wherein $r_\text{raw}$ is the raw transmission rate, $I_{AB}$ is the mutual information between Alice and Bob, and $\chi_{BE}$ is the Holevo information encoding Eve's information on Bob's measurements.
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/pgfplots/cvsim}
-	\caption{Estimated minimum secret key rate for our \gls{cvqkd} protocol as a function of the channel length for different values of excess noise.}\label{fig:cvsim}
-\end{figure}
 
 A systematic approach to security proofs, first pioneered by Lo and Chau~\cite{Lo1999} and later extended by Shor~\cite{Shor2000}, includes the following steps:
 \begin{enumerate}
