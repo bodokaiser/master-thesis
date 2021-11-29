@@ -19,7 +19,7 @@ If Eve's information is beyond a certain threshold or Alice and Bob do not share
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/post-processing}
-	\caption{Data flow in \gls{qkd} post-processing: The quantum transmission produces raw data, and partitioning splits the raw data into raw calibration and key data. Parameter estimation on the raw calibration data assesses the channel characteristics and Eve's information's upper bound, which decides whether to abort the protocol or discard the transmission block. Symbol mapping transforms the raw key data to correlated key data. Information reconciliation includes the channel characteristics to correct errors in the correlated key data or discard data blocks where error correction failed, yielding a partially secret key. Privacy amplification produces a secret key by removing the estimate for Eve's information from the partially secret key. Verification confirms if the post-processing produced a correct secret key, otherwise, abort the protocol or discards the transmission block.}\label{fig:post_processing}
+	\caption{Flow diagram of a generalized \gls{qkd} post-processing procedure. The quantum transmission produces raw data, and partitioning splits the raw data into raw calibration and key data. Parameter estimation on the raw calibration data assesses the channel characteristics and Eve's information's upper bound, which decides whether to abort the protocol or discard the transmission block. Symbol mapping transforms the raw key data to correlated key data. Information reconciliation includes the channel characteristics to correct errors in the correlated key data or discard data blocks where error correction failed, yielding a partially secret key. Privacy amplification produces a secret key by removing the estimate for Eve's information from the partially secret key. Verification confirms if the post-processing produced a correct secret key, otherwise, abort the protocol or discards the transmission block.}\label{fig:post_processing}
 \end{figure}
 In the following, we introduce some of the most important steps in post-processing: symbol mapping, information reconciliation, and privacy amplification.
 
@@ -288,7 +288,7 @@ If the block code does not detect any error, we have $\vb{s}=0$.
 			16 & 1 & 1 & 1 & 1 & 0 & 0 & 0 \\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible syndromes for the $(3,1)$ repetition code: The first and last row are correct codewords (without noise) and yield a zero syndrome indicating no error. All other received codewords contain bit flips and thereby non-zero syndromes.}\label{tab:repetition_syndromes}
+	\caption{Possible syndromes for the $(3,1)$ repetition code. The first and last row are correct codewords (without noise) and yield a zero syndrome indicating no error. All other received codewords contain bit flips and thereby non-zero syndromes.}\label{tab:repetition_syndromes}
 \end{table}
 \Cref{tab:repetition_syndromes} lists the possible syndromes for the $(3,1)$ repetition code.
 To correct the error, one looks up the calculated syndrome in an error correction table.

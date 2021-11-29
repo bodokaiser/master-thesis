@@ -7,7 +7,7 @@ Bob needs to ensure that the message he receives is integer, i.e., only Alice ca
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/secure-communication}
-	\caption{Secure communication system comprising a transmitter (Alice), a receiver (Bob) and a public communication channel: Alice encrypts a plaintext message yielding a ciphertext. By adding the hash to the ciphertext, Alice constructs a message she transmits through the channel to Bob. Bob removes the hash from his received message to resolve the ciphertext. Decrypting the ciphertext unveils the plaintext for Bob.}\label{fig:secure_communication}
+	\caption{Secure communication system comprising a transmitter (Alice), a receiver (Bob) and a public communication channel. Alice encrypts a plaintext message yielding a ciphertext. By adding the hash to the ciphertext, Alice constructs a message she transmits through the channel to Bob. Bob removes the hash from his received message to resolve the ciphertext. Decrypting the ciphertext unveils the plaintext for Bob.}\label{fig:secure_communication}
 \end{figure}
 \Cref{fig:secure_communication} depicts a secure communication system implementing integrity and confidentiality between Alice and Bob.\footnote{For a discussion on the order of hashing and encryption, see Ref.~\cite{Kohno2003,Krawczyk2001,Bellare2000}.}
 First, Alice encrypts a plaintext message, using symmetric encryption like the \gls{otp}~\cite{Shannon1949} or the more practical \gls{aes}~\cite{Daemen1999}, to ensure confidentiality.
@@ -29,7 +29,7 @@ Assuming the asymmetric cipher to be secure, Alice and Bob now share a secret ke
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/pkd-system}
-	\caption{Alices and Bob use an asymmetric cipher to distribute a secret key: Alice possesses the secret key and a public key, and Bob owns a private key corresponding to Alice's public key. Alice encrypts the secret key with the public key and transmits the message over a (public) channel to Bob. Bob decrypts the message with the private key to obtain the secret key.}\label{fig:pkd_system}
+	\caption{Alices and Bob use an asymmetric cipher to distribute a secret key. Alice possesses the secret key and a public key, and Bob owns a private key corresponding to Alice's public key. Alice encrypts the secret key with the public key and transmits the message over a (public) channel to Bob. Bob decrypts the message with the private key to obtain the secret key.}\label{fig:pkd_system}
 \end{figure}
 Public-key distribution algorithms, for instance, Diffie-Hellman~\cite{Diffie1976} and variants thereof, e.g., \gls{ecdh}, are heavily employed on the internet because they are effortless to deploy.
 
@@ -64,7 +64,7 @@ Using classical techniques, Alice and Bob can then compensate for the potential 
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/qkd-system}
-	\caption{Alice and Bob use a quantum and classical channel to generate a shared secret key: Alice possesses a transmitter, and Bob owns a receiver. Transmitter and receiver both output a secret key and connect to a quantum and classical channel. A potential adversary, Eve, has read and write access to the quantum but only read access to the classical channel.}\label{fig:qkd_system}
+	\caption{Alice and Bob use a quantum and classical channel to generate a shared secret key. Alice possesses a transmitter, and Bob owns a receiver. Transmitter and receiver both output a secret key and connect to a quantum and classical channel. A potential adversary, Eve, has read and write access to the quantum but only read access to the classical channel.}\label{fig:qkd_system}
 \end{figure}
 \Cref{fig:qkd_system} presents a communication system proficient for \gls{qkd}.
 The classical and quantum channel connecting Bob's receiver with Alice's transmitter is usually the same physical medium.
@@ -85,7 +85,7 @@ What other feature can we use if the detection method does not clearly distingui
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.8]{figures/tikz/qkd-classification}
-	\caption{Common characteristics of \gls{qkd} protocols in a tree diagram: The protocol schema is either \gls{pandm} or \gls{eb}. The Measurement basis selection is either passive or active. The detection is usually coherent or based on single-photon clicks. The logical Hilbert space is either finite or countable. Among many, the physical encoding uses the field quadratures, polarization, or squeezing \gls{dof}s of light.}\label{fig:qkd_classification}
+	\caption{Common characteristics of \gls{qkd} protocols in a tree diagram. The protocol schema is either \gls{pandm} or \gls{eb}. The Measurement basis selection is either passive or active. The detection is usually coherent or based on single-photon clicks. The logical Hilbert space is either finite or countable. Among many, the physical encoding uses the field quadratures, polarization, or squeezing \gls{dof}s of light.}\label{fig:qkd_classification}
 \end{figure}
 \Cref{fig:qkd_classification} summarizes common features among \gls{qkd} protocols.
 Features like the protocol schema, the measurement basis selection, and the detector are uniquely determined.

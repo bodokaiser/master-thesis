@@ -90,7 +90,7 @@ For instance, we can envision a bosonic BB84 protocol:
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/phase-space-quadrature}
-	\caption{Phase space representation of Alice's quantum states in bosonic BB84: The analog of Alice's basis selection is to choose between the two orthogonal quadratures with $\Delta\vartheta=\pi/2$. The analog of Alice's basis element selection is to choose the sign of the eigenvalue $\pm x$.}\label{fig:phase_space_quadrature}
+	\caption{Phase space representation of Alice's quantum states in bosonic BB84. The analog of Alice's basis selection is to choose between the two orthogonal quadratures with $\Delta\vartheta=\pi/2$. The analog of Alice's basis element selection is to choose the sign of the eigenvalue $\pm x$.}\label{fig:phase_space_quadrature}
 \end{figure}
 If she chooses the quadrature corresponding to $\Delta\vartheta=0$, a measurement in the orthogonal quadrature eigenbasis yields a completely uncorrelated outcome.
 Only if Bob measures in the same quadrature, can he decode the sign of the eigenvalue.
@@ -112,7 +112,7 @@ Alice randomly selects the eigenvalue sign $x/\abs{x}$ and a quadrature $\varthe
 		& Sifted outcome & - & $-x$ & $-x$ & $+x$ & $-x$ \\
 		\bottomrule
 	\end{tabular}
-	\caption{Possible quantum transmission sequence for bosonic BB84 with active basis selection.}\label{tab:boson_transmission_sequence}
+	\caption{Possible quantum-transmission sequence for bosonic BB84 with active basis selection.}\label{tab:boson_transmission_sequence}
 \end{table}
 To convert the sifted outcome to bits, we can simply assign the bit value according to the sign.
 More advanced symbol mapping techniques are discussed in the post-processing section.
@@ -167,7 +167,7 @@ However, the squeezing magnitude $\abs{\xi}$ can (in theory) be chosen arbitrari
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/phase-space-squeezed}
-	\caption{Phase space representation of Alice's squeezed coherent states in bosonic BB84: The uncertainty is sufficiently squeezed to approximate the quadrature eigenstates.}\label{fig:phase_space_squeezed}
+	\caption{Phase space representation of Alice's squeezed coherent states in bosonic BB84. The uncertainty is sufficiently squeezed to approximate the quadrature eigenstates.}\label{fig:phase_space_squeezed}
 \end{figure}
 To implement the quadrature measurement, Bob can employ a homodyne detection.
 A fiber-optical setup for homodyne detection is depicted in \Cref{fig:coherent_receiver_active}.
@@ -177,7 +177,7 @@ In balanced configuration, the photocurrent of the photodiodes is subtracted rem
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/coherent-receiver-active}
-	\caption{Fiber-optical setup of a coherent receiver with active basis selection: The receiver comprises a \gls{rx} laser connected to a \gls{ps} with phase $\varphi$ in the lower left branch, and the signal fiber connected with a \gls{pc} and protected by an optical isolator in the upper left branch. The phase-shifted \gls{rx} laser is superimposed with the isolated and polarization-controlled signal in a balanced coupler where the two coupler outputs are monitored by two \gls{pd}s in balanced configuration, a \gls{bd}.}\label{fig:coherent_receiver_active}
+	\caption{Fiber-optical setup of a coherent receiver with active basis selection. The receiver comprises a \gls{rx} laser connected to a \gls{ps} with phase $\varphi$ in the lower left branch, and the signal fiber connected with a \gls{pc} and protected by an optical isolator in the upper left branch. The phase-shifted \gls{rx} laser is superimposed with the isolated and polarization-controlled signal in a balanced coupler where the two coupler outputs are monitored by two \gls{pd}s in balanced configuration, a \gls{bd}.}\label{fig:coherent_receiver_active}
 \end{figure}
 Assuming a perfect detector and strong \gls{lo} with coherent state $\ket{\alpha_l}$ and $\abs{\alpha_l}\gg1$, the mean balanced photodiode current is proportional to~\cite[p.~217]{Vogel2006}
 \begin{equation}
@@ -202,7 +202,7 @@ Such a setup is illustrated in \Cref{fig:coherent_receiver_passive}.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/coherent-receiver-passive}
-	\caption{Fiber-optical setup of a coherent receiver with passive basis selection: The upper left branch connects to the signal fiber with a \gls{pc} and an optical isolator. The lower left branch splits a \gls{rx} laser with equal power into two branches, where the lower one of them is phase-shifted by $\pi/2$. The isolated and polarization-controlled upper branch is coupled with the phase-shifted and non-phase shifted \gls{rx} laser branches and then monitored by two \gls{bd}s.}\label{fig:coherent_receiver_passive}
+	\caption{Fiber-optical setup of a coherent receiver with passive basis selection. The upper left branch connects to the signal fiber with a \gls{pc} and an optical isolator. The lower left branch splits a \gls{rx} laser with equal power into two branches, where the lower one of them is phase-shifted by $\pi/2$. The isolated and polarization-controlled upper branch is coupled with the phase-shifted and non-phase shifted \gls{rx} laser branches and then monitored by two \gls{bd}s.}\label{fig:coherent_receiver_passive}
 \end{figure}
 Contrary to the quadrature eigenstates, squeezed coherent states are physical and have been prepared and measured with up to \SI{15}{\decibel} squeezing~\cite{Vahlbruch2016}.
 However, the production of squeezed coherent states requires nonlinear interactions, which are challenging to control and require with the current state of art a complex optical setup.
@@ -216,7 +216,7 @@ Coherent states are the "most classical" quantum states and can be prepared usin
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pstricks/coherent-transmitter}
-	\caption{Fiber-optical setup of a coherent transmitter: A \gls{tx} laser is connected with an \gls{iqm}, followed by a \gls{voa}. The output of the \gls{voa} is split into an upper low-power and a lower high-power branch. The high-power branch is monitored by a \gls{pwm}, while the low-power branch passes an optical isolator connected with a fiber.}\label{fig:coherent_transmitter}
+	\caption{Fiber-optical setup of a coherent transmitter. A \gls{tx} laser is connected with an \gls{iqm}, followed by a \gls{voa}. The output of the \gls{voa} is split into an upper low-power and a lower high-power branch. The high-power branch is monitored by a \gls{pwm}, while the low-power branch passes an optical isolator connected with a fiber.}\label{fig:coherent_transmitter}
 \end{figure}
 Moreover, coherent states do not deteriorate to a different quantum state when interacting with the environment, e.g., inside a fiber channel.
 In sum, coherent states seem to be the most practical quantum states.
@@ -240,7 +240,7 @@ The channel attenuates the coherent state by reducing the mean but the variance 
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/phase-space-coherent}
-	\caption{Phase space representation of two coherent-state transmissions: Alice prepares the coherent states $\ket{\alpha_1}$ (green), $\ket{\alpha_2}$ (blue) with mean quadratures $\alpha_1$ (green dot) respectively $\alpha_2$ (blue dot) and sends them to Bob through a channel (gray arrow). Bob receives the attenuated coherent states $\ket{\beta_1}$ (orange) and $\ket{\beta_2}$ (red). He performs a dual homodyne measurement with outcomes $\beta_1^{\prime}$ respectively $\beta_2^{\prime}$.}\label{fig:phase_space_coherent}
+	\caption{Phase space representation of two coherent-state transmissions. Alice prepares the coherent states $\ket{\alpha_1}$ (green), $\ket{\alpha_2}$ (blue) with mean quadratures $\alpha_1$ (green dot) respectively $\alpha_2$ (blue dot) and sends them to Bob through a channel (gray arrow). Bob receives the attenuated coherent states $\ket{\beta_1}$ (orange) and $\ket{\beta_2}$ (red). He performs a dual homodyne measurement with outcomes $\beta_1^{\prime}$ respectively $\beta_2^{\prime}$.}\label{fig:phase_space_coherent}
 \end{figure}
 An intercept-resend attempt by Eve is illustrated in \Cref{fig:phase_space_intercept_resend}.
 When Eve intercepts and measures Alice's coherent state $\ket{\alpha}$, her outcome $\beta$ (red star) is distributed around the mean $\alpha$ due to the quadrature uncertainty.

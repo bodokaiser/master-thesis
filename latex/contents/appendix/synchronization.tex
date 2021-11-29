@@ -20,7 +20,7 @@ The phase offset is a more challenging affair as it involves not only drifts but
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/laser-sync}
-	\caption{Frequency spectrum of the transmitted and received pilot tone: The transmitted pilot tone (green) represents a perfect sinusoidal. The received pilot tone (orange) is broadened by phase variations and shifted by the offset between the transmitter and receiver \gls{lo}.}\label{fig:pilot_tones}
+	\caption{Frequency spectrum of the transmitted and received pilot tone. The transmitted pilot tone (green) represents a perfect sinusoidal. The received pilot tone (orange) is broadened by phase variations and shifted by the offset between the transmitter and receiver \gls{lo}.}\label{fig:pilot_tones}
 \end{figure}
 To compensate for both effects, the transmitter adds a pilot tone to the transmitted signal which the receiver can use as a reference point.
 \Cref{fig:pilot_tones} depicts the transmitted (green) and received (orange) pilot tone.
@@ -37,7 +37,7 @@ The original symbol is located at the peak of the pulse-shape but for the receiv
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/adc-sync}
-	\caption{Timing offset compensation of the \gls{adc} clock: The sampling at the receiver is delayed and not in sync with the symbols compared to the receiver.}\label{fig:adc_sync}
+	\caption{Timing offset compensation of the \gls{adc} clock. The sampling at the receiver is delayed and not in sync with the symbols compared to the receiver.}\label{fig:adc_sync}
 \end{figure}
 From Fourier analysis, we know that a shift in time corresponds to an additional phase.
 By performing a Fourier transform of the received samples, we can see how there is a linear increase of the phase with frequency, see third row in \Cref{fig:adc_sync}.
@@ -51,6 +51,6 @@ The training sequence is the same for all frames and known by both the transmitt
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/frame}
-	\caption{Layout of the transmission frames: A frame comprises a training and data sequence. The training sequence is the same for all frames and used to detect the start of a frame and perform calibration for the data sequence which contains the actual transmission data.}\label{fig:frame}
+	\caption{Layout of the transmission frames. A frame comprises a training and data sequence. The training sequence is the same for all frames and used to detect the start of a frame and perform calibration for the data sequence which contains the actual transmission data.}\label{fig:frame}
 \end{figure}
 The additional identification of the frame number is performed using a classical service communication channel which is used to negotiate further calibration parameters between the receiver and the transmitter.
