@@ -627,12 +627,12 @@ and inserting it back into the plane-wave expansion, \cref{eq:maxwell_plane_wave
 	\label{eq:maxwell_expansion}
 \end{equation}
 The plane-wave expansion looks already similar to the quantum mode expansion of the Maxwell field but relies only on classical arguments.\footnote{The similarity is not surprising if we consider $A(t,\vb{x})$ as the expectation value of the Maxwell field operator given a coherent state, $\bra{\alpha}\vu{A}(t,\vb{x})\ket{\alpha}$.}
-In principle, we could stop here, replace the Fourier modes with the annihilation operator satisfying the canonical commutation relation, and we have quantized our field.\footnote{The equivalence of Fourier and quantum modes has been experimentally established, see Ref.~\cite{Hulet1985}.}
+In principle, we could stop here, replace the Fourier modes with the annihilation operator satisfying the \gls{ccr}, and we have quantized our field.\footnote{The equivalence of Fourier and quantum modes has been experimentally established, see Ref.~\cite{Hulet1985}.}
 However, for completeness, we review the standard canonical quantization of the Maxwell field in the next section.
 
 \subsection{Canonical quantization}
 
-In canonical quantization, we work in the Hamiltonian picture, promoting the conjugate variables with operators that satisfy the equal-time commutation relations.
+In canonical quantization, we work in the Hamiltonian picture, promoting the conjugate variables with operators that satisfy the \gls{etcr}.
 In the canonical quantization of gauge theories, like the Maxwell field, we have the additional technical complication of handling the unphysical \gls{dof}s.
 In the Coulomb gauge, we can take care of the transverse gauge condition by amending the equal-time commutation relations to be transverse, more to that later.
 In the Lorenz gauge, the Gupta-Bleuler method includes the unphysical \gls{dof} in the quantization process but removes them later by constraining the state space, see Ref.~\cite[p.~180]{Greiner2013}.
@@ -678,7 +678,7 @@ The Hamiltonian density of the Maxwell field is equal to
 \end{equation}
 and can be found by Legendre transform of the Lagrangian density~\cite[p.~342]{Srednicki2007} or using the energy density component from the energy-momentum tensor~\cite[p.~148]{Greiner2013}.
 
-We now perform the canonical quantization by replacing the dynamical field variables $A_i,-E_i$ with the field operators $\hat{A}_i,-\hat{E}_i$ satisfying the equal-time commutation relations~\cite[p.~197]{Greiner2013}
+We now perform the canonical quantization by replacing the dynamical field variables $A_i,-E_i$ with the field operators $\hat{A}_i,-\hat{E}_i$ satisfying the \gls{etcr}~\cite[p.~197]{Greiner2013}
 \begin{align}
 	\comm{\hat{A}_i(t,\vb{x})}{\hat{E}_j(t,\vb{y})}
 	&=
