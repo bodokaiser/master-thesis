@@ -1,48 +1,20 @@
-\chapter{Macroscopic interactions}\label{app:macroscopic_interactions}
+\chapter{Nonlinear interaction theory}\label{app:macroscopic_interactions}
 
-\section{Nonlinear tensor expansion}\label{sec:polarization_density_susceptibility}
+In the following, we summarize some results on nonlinear (quantum-)optics from Refs.~\cite{Murti2014,Boyd2020,QuesadaMejia2015,Mandel1995}, which are important for describing the linear electro-optic effect, essential for our investigation of the phase modulator.
 
-In the time domain, the first-order polarization density is~\cite[p.~17]{Murti2014}
+We start by looking into the Pockels effect by investigating the interaction of the classical electric field with a dielectric exhibiting a nonlinear susceptibility.
+The electric displacement field, in the frequency domain given by~\cite[p.~1070]{Mandel1995}
 \begin{equation}
-	P_i^{(1)}(t)
+	D_i(\omega)
 	=
-	\int\dd{t_1}
-	\chi^{(1)}_{ij}(t_1)
-	E^j(t-t_1)
-	\label{eq:polarization_density_fo_time}
-\end{equation}
-wherein $\chi^{(1)}_{ijk}(t_1)$ is the first-order time response tensor of the dielectric media.
-Inserting the Fourier transform of the electric field components, we find
-\begin{equation}
-	P_i^{(1)}(t)
-	=
-	\int\frac{\dd{\omega_1}}{2\pi}
-	\chi^{(1)}_{ij}(\omega_1)
-	E^j(\omega_1)
-	e^{-i\omega_1t}
-	\label{eq:polarization_density_fo_time_fourier}
+	E_i(\omega)
+	+
+	P_i(\omega)
 	,
+	\label{eq:electric_displacement_field}
 \end{equation}
-wherein the second-order frequency response tensor is the Fourier transform of the time response tensor, i.e.,
-\begin{equation}
-	\chi^{(1)}_{ij}(\omega_1)
-	=
-	\int\dd{t_1}
-	\chi^{(1)}_{ij}(t_1)
-	e^{+i\omega_1t}
-	.
-\end{equation}
-From \cref{eq:polarization_density_fo_time_fourier} we can directly read of the first-order polarization density in the frequency domain
-\begin{equation}
-	P_i^{(1)}(\omega)
-	=
-	\chi^{(1)}_{ij}(\omega)
-	E^j(\omega)
-	.
-	\label{eq:polarization_density_fo_freq}
-\end{equation}
-
-In the time domain, the second-order polarization density is~\cite[p.~55]{Boyd2020}
+accounts for macroscopic effects through the macroscopic polarization density $P_i$.
+Although the Pockels effect causes a linear change of the refractive index by an external electric field, it is macroscopically described by the second-order macroscopic polarization density, in the time domain given by~\cite[p.~55]{Boyd2020}
 \begin{equation}
 	P_i^{(2)}(t)
 	=
@@ -53,7 +25,7 @@ In the time domain, the second-order polarization density is~\cite[p.~55]{Boyd20
 	E^k(t-t_2)
 	\label{eq:polarization_density_so_time}
 \end{equation}
-wherein $\chi^{(2)}_{ijk}(t_1,t_2)$ is the second-order time response tensor of the dielectric media.
+wherein $\chi^{(2)}_{ijk}(t_1,t_2)$ is the second-order time-response tensor of the dielectric.
 Inserting the Fourier transform of the electric field components, we find
 \begin{equation}
 	P_i^{(2)}(t)
@@ -66,7 +38,7 @@ Inserting the Fourier transform of the electric field components, we find
 	e^{-i(\omega_1+\omega_2)t}
 	\label{eq:polarization_density_so_time_fourier}
 \end{equation}
-wherein the second-order frequency response tensor is the Fourier transform of the time response tensor, i.e.,
+wherein the second-order frequency-response tensor is the Fourier transform of the time-response tensor, i.e.,
 \begin{equation}
 	\chi^{(2)}_{ijk}(\omega_1,\omega_2)
 	=
@@ -77,8 +49,7 @@ wherein the second-order frequency response tensor is the Fourier transform of t
 	e^{+i\omega_2t}
 	.
 \end{equation}
-Contrary to \cref{eq:polarization_density_fo_time_fourier}, we cannot directly read of the polarization density in the frequency domain from \cref{eq:polarization_density_so_time_fourier}.
-Instead, we insert \cref{eq:polarization_density_so_time_fourier} into the Fourier transform of the second-order polarization density
+The Fourier transform of the second-order polarization density turns out to be
 \begin{equation}
 	\begin{split}
 		P_i^{(2)}(\omega)
@@ -114,35 +85,8 @@ Instead, we insert \cref{eq:polarization_density_so_time_fourier} into the Fouri
 	\end{split}
 	\label{eq:polarization_density_so_freq}
 \end{equation}
-
-The presence of the integral in \cref{eq:polarization_density_so_freq} breaks the linearity of the second-order polarization density in the electric field $E^k$.
-To restore linearity, we use the mean value theorem for integrals at the radio center frequency $\Omega_0$,
-\begin{equation}
-	\begin{split}
-		P_i^{(2)}(\omega)
-		&\approx
-		\chi^{(2)}_{ijk}(0,\omega)
-		E^j(0)
-		E^k(\omega)
-		\\
-		&+
-		\chi^{(2)}_{ijk}(-\Omega_0,\omega+\Omega_0)
-		E^j(-\Omega_0)
-		E^k(\omega)
-		\\
-		&+
-		\chi^{(2)}_{ijk}(+\Omega_0,\omega-\Omega_0)
-		E^j(+\Omega_0)
-		E^k(\omega)
-		,
-	\end{split}
-\end{equation}
-and find one zero-frequency component and two sidebands at $\pm\Omega_0$.
-Usually, the second-order polarization density of the Pockels effect is only given with the zero-frequency component, corresponding to a static (time-independent) electric field~\cite[p.~495]{Boyd2020}.
-
-\section{Static Pockels effect}\label{sec:static_pockels}
-
-The second-order polarization density of the static Pockels effect is~\cite[p.~495]{Boyd2020}
+The presence of the integral in \cref{eq:polarization_density_so_freq} breaks the linearity in the electric field $E^k$.
+To restore linearity, the external electric field is assumed to be effectively static, simplifying the second-order polarization density to~\cite[p.~495]{Boyd2020}
 \begin{equation}
 	P_i^{(2)}(\omega)
 	=
@@ -152,46 +96,27 @@ The second-order polarization density of the static Pockels effect is~\cite[p.~4
 	.
 	\label{eq:polarization_density_so_freq_pockels}
 \end{equation}
-The electric displacement field in the frequency domain with polarization density expanded to second-order is~\cite[p.~1070]{Mandel1995}
+Inserting the so linearized second-order polarization density and inserting it into \cref{eq:electric_displacement_field},
 \begin{equation}
-	D_i(\omega)
-	=
-	E_i(\omega)
-	+
-	P_i^{(1)}(\omega)
-	+
-	P_i^{(2)}(\omega)
-	.
-	\label{eq:electric_displacement_field_expanded}
-\end{equation}
-Inserting \cref{eq:polarization_density_fo_freq} and \cref{eq:polarization_density_so_freq_pockels} into \cref{eq:electric_displacement_field_expanded}, we find
-\begin{equation}
-	D_i(\omega)
-	=
-	E_i(\omega)
-	+
-	\chi^{(1)}_{ij}(\omega)
-	E^j(\omega)
-	+
-	\chi^{(2)}_{ijk}(0,\omega)
-	E^j(0)
-	E^k(\omega)
-	.
-\end{equation}
-Rewriting the expansion of the electric displacement field as
-\begin{equation}
-	D_i(\omega)
-	=
-	\left[
-		\delta_{ik}
-		+
-		\chi^{(1)}_{ik}(\omega)
+	\begin{split}
+		D_i(\omega)
+		&=
+		E_i(\omega)
 		+
 		\chi^{(2)}_{ijk}(0,\omega)
 		E^j(0)
-	\right]
-	E^k(\omega)
-	,
+		E^k(\omega)
+		\\
+		&=
+		\left[
+			\delta_{ik}
+			+
+			\chi^{(2)}_{ijk}(0,\omega)
+			E^j(0)
+		\right]
+		E^k(\omega)
+		,
+	\end{split}
 \end{equation}
 we can read off the electric susceptibility tensor
 \begin{equation}
@@ -199,39 +124,39 @@ we can read off the electric susceptibility tensor
 	=
 	\delta_{ik}
 	+
-	\chi^{(1)}_{ik}(\omega)
-	+
 	\chi^{(2)}_{ijk}(0,\omega)
 	E^j(0)
 	.
 \end{equation}
-The electric susceptibility tensor is equal to the squared refractive index tensor, $\varepsilon_{ik}(\omega)=n_{ik}(\omega)^2$, or equivalently~\cite[p.~3]{Brooker2003}
+The refractive-index tensor is defined as the square root of the electric susceptibility tensor~\cite[p.~3]{Brooker2003}
 \begin{equation}
 	n_{ij}(\omega)
 	=
 	\sqrt{\varepsilon_{ij}}
 	\approx
-	n_{ik}^{(0)}
+	n_{ik}^{(0)}(\omega)
 	+
 	n_{ijk}^{(1)}(\omega)
 	E^j(0)
+	,
+	\label{eq:refractive_index_expansion}
 \end{equation}
-wherein the refractive index coefficients relate to the dielectric susceptibility tensor via~\cite{Rerat2020}
+where we performed a series expansion of the square root and introduced the refractive-index coefficients~\cite{Rerat2020}
 \begin{align}
-	n^{(0)}_{ij}(\omega)
+	n^{(0)}_{ik}(\omega)
 	&=
-	\sqrt{1+\chi^{(1)}_{ij}(\omega)}
+	\sqrt{1+\chi_{ij}^{(1)}(\omega)}
 	&
 	n^{(1)}_{ijk}(\omega)
 	&=
-	\frac{\chi^{(2)}_{ijk}(\omega)
-	E^k(0)}{2\sqrt{1+\chi^{(1)}_{ij}(\omega)}}
+	\frac{\chi^{(2)}_{ijk}(\omega)}{2\sqrt{1+\chi^{(1)}_{ij}(\omega)}}
 	.
 \end{align}
+With \cref{eq:refractive_index_expansion}, we have shown the linear change of the refractive index with an external electric field.
+However, it was necessary to assume the external electric field to be effectively static in time to linearize the second-order macroscopic polarization density.
 
-\section{Frequency conversion}
-
-The Hamiltonian of the electromagnetic field in a dielectric medium is symbolically~\cite[p.~124]{Jackson2007}
+For a simple quantum treatment, we replace the classical fields with their respective free-field operator.
+For instance, the quantum Hamiltonian of the electromagnetic field in a dielectric is~\cite[p.~124]{Jackson2007}
 \begin{equation}
 	\hat{H}
 	=
@@ -244,340 +169,169 @@ The Hamiltonian of the electromagnetic field in a dielectric medium is symbolica
 		\hat{B}^i(t,\vb{x})
 		\hat{B}_i(t,\vb{x})
 	\right\}
-	.
+	,
 \end{equation}
-We expand the electric displacement field up to the second-order polarization density
-\begin{equation}
-	\hat{D}_i(t,\vb{x})
-	=
-	\hat{E}_i(t,\vb{x})
-	+
-	\hat{P}_i^{(1)}(t,\vb{x})
-	+
-	\hat{P}_i^{(2)}(t,\vb{x})
-\end{equation}
-and insert it back into the Hamiltonian of the electromagnetic field
-\begin{equation}
-	\hat{H}
-	=
-	\frac{1}{2}
-	\int\dd[3]{x}
-	\left\{
-		\hat{E}^i(t,\vb{x})
-		\hat{E}_i(t,\vb{x})
-		+
-		\hat{B}^i(t,\vb{x})
-		\hat{B}_i(t,\vb{x})
-	\right\}
-	+
-	\hat{H}_\text{int}^{(1)}(t)
-	+
-	\hat{H}_\text{int}^{(2)}(t)
-\end{equation}
-and identify the free field Hamiltonian and two interaction terms with
-\begin{align}
-	\hat{H}_\text{int}^{(n)}(t)
-	=	
-	\frac{1}{2}
-	\int\dd[3]{x}
-	\hat{E}^i(t,\vb{x})
-	\hat{P}_i^{(n)}(t,\vb{x})
-	.
-\end{align}
-
-Assuming the dielectric to be absorption-free and time-invariant, we can write the first-order polarization density as
-\begin{equation}
-	\hat{P}_i^{(1)}(t,\vb{x})
-	=
-	\int\dd{t_1}
-	\chi_{ij}^{(1)}(t_1,\vb{x})
-	\hat{E}_i^{(i)}(t-t_1,\vb{x})
-\end{equation}
-and insert it back into the interaction Hamiltonian
-\begin{equation}
-	\hat{H}_\text{int}^{(1)}(t)
-	=	
-	\frac{1}{2}
-	\int\dd{t_1}
-	\chi_{ij}^{(1)}(t_1,\vb{x})
-	\int\dd[3]{x}
-	\hat{E}^i(t,\vb{x})
-	\hat{E}^j(t-t_1,\vb{x})
-	.
-\end{equation}
-We assume the electric fields to be polarized along the same axis and neglect the transverse mode profile
-\begin{equation}
-	\hat{H}_\text{int}^{(1)}(t)
-	\approx
-	\frac{1}{2}
-	\int\dd{t_1}
-	\chi^{(1)}(t_1,x)
-	\int\dd{x}
-	\hat{E}(t,x)
-	\hat{E}(t-t_1,x)
-	+
-	\text{H.c.}
-	.
-\end{equation}
-We expand the electric field into positive and negative frequency parts and perform the rotating-wave approximation
-\begin{equation}
-	\hat{H}_\text{int}^{(1)}(t)
-	\approx
-	\frac{1}{2}
-	\int\dd{t_1}
-	\chi^{(1)}(t_1,x)
-	\int\dd{x}
-	\hat{E}^{(-)}(t,x)
-	\hat{E}^{(+)}(t-t_1,x)
-	+
-	\text{H.c.}
-\end{equation}
-by only keeping mixed frequency parts.
-Inserting the mode expansion, \cref{eq:electric_positive_operator,eq:electric_positive_operator}, we find
+wherein $\hat{D}_i(t,\vb{x})$ is the electric displacement operator.
+Expanding the electric displacement operator in terms of the macroscopic polarization-density operators, we find the interaction Hamiltonian to involve three electric fields, i.e.,
 \begin{equation}
 	\begin{split}
-		\hat{H}_\text{int}^{(1)}(t)
+		\hat{H}_\text{int}^{(2)}(t)
 		&=
-		\int\frac{\dd{p}}{2\pi\sqrt{2\omega(p)}}
-		\omega(p)
-		\hat{a}(p)
-		e^{-i\omega(p)t}
-		\int\frac{\dd{q}}{2\pi\sqrt{2\omega(q)}}
-		\omega(q)
-		\hat{a}^\dagger(q)
-		e^{+i\omega(p)(t-t_1)}
-		\\
-		&\times
 		\frac{1}{2}
-		\int\dd{t_1}
-		\int\dd{x}
-		\chi^{(1)}(t_1,x)
-		e^{i(p-q)x}
-		+
-		\text{H.c.}
-		.
-	\end{split}
-\end{equation}
-Furthermore, assuming the interaction strength to be uniform inside the dielectric, we can evaluate the first integral
-\begin{equation}
-	\int\dd{x}
-	\chi^{(1)}(t_1,x)
-	e^{i(p-q)x}
-	=
-	\chi^{(1)}(t_1)
-	\int_{-L/2}^{+L/2}\dd{x}
-	e^{i(p-q)x}
-	=
-	\chi^{(1)}(t_1)
-	\sinc\left(\frac{p-q}{2/L}\right)
-	L
-\end{equation}
-which is known as the phase-matching function in non-linear optics~\cite[p.~33]{QuesadaMejia2015}.
-We assume perfect phase-matching
-\begin{equation}
-	\chi^{(1)}(t_1)
-	\sinc\left(\frac{p-q}{2/L}\right)
-	L
-	\approx
-	\chi^{(1)}(t_1)L
-	(2\pi)
-	\delta^{(1)}(p-q)
-\end{equation}
-and insert the result into the interaction Hamiltonian
-\begin{equation}
-	\begin{split}
-		\hat{H}_\text{int}^{(1)}(t)
-		&=
-		\frac{L}{2}
-		\int\frac{\dd{p}}{2\pi}
-		\omega(p)
-		\hat{a}(p)
-		\hat{a}^\dagger(p)
-		\int\dd{t_1}
-		\chi^{(1)}(t_1)
-		e^{-ipt_1}
-		+
-		\text{H.c.}
+		\int\dd[3]{x}
+		\hat{E}^i(t,\vb{x})
+		\hat{P}_i^{(2)}(t,\vb{x})
 		\\
 		&=
-		\frac{L}{2}
-		\int\frac{\dd{p}}{2\pi}
-		\chi^{(1)}(p)
-		\omega(p)
-		\hat{a}(p)
-		\hat{a}^\dagger(p)
-		+
-		\text{H.c.}
-	\end{split}
-\end{equation}
-which can be solved exactly with the Magnus expansion.
-The interaction Hamiltonian corresponds to a constant energy shift due to the polarization inside the dielectric.
-
-In general, we follow the same approach as for the first-order susceptibility.
-However, now we have to deal with nonlinearities.
-
-The second-order polarization density operator for a lossless and time-invariant dielectric is
-\begin{equation}
-	\hat{P}_i^{(2)}(t,\vb{x})
-	=
-	\int\dd{t_1}
-	\int\dd{t_2}
-	\chi^{(2)}_{ijk}(t_1,t_2,\vb{x})
-	\hat{E}^j(t-t_1,\vb{x})
-	\hat{E}^k(t-t_2,\vb{x})
-\end{equation}
-which inserted into the second-order interaction Hamiltonian yields
-\begin{equation}
-	\hat{H}_\text{int}^{(2)}(t)
-	=
-	\frac{1}{2}
-	\int\dd[3]{x}
-	\int\dd{t_1}
-	\int\dd{t_2}
-	\chi^{(2)}_{ijk}(t_1,t_2,\vb{x})
-	\hat{E}^i(t,\vb{x})
-	\hat{E}^j(t-t_1,\vb{x})
-	\hat{E}^k(t-t_2,\vb{x})
-	.
-\end{equation}
-We assume the electric fields to be polarized along the same axis
-\begin{equation}
-	\hat{H}_\text{int}^{(2)}(t)
-	\approx
-	\frac{1}{2}
-	\int\dd[3]{x}
-	\int\dd{t_1}
-	\int\dd{t_2}
-	\chi^{(2)}(t_1,t_2,\vb{x})
-	\hat{E}(t,\vb{x})
-	\hat{E}(t-t_1,\vb{x})
-	\hat{E}(t-t_2,\vb{x})
-	.
-\end{equation}
-Furthermore, we expand the electric fields into positive and negative frequency parts and only keep the terms corresponding to frequency conversion
-\begin{equation}
-	\begin{split}
-		\hat{H}_\text{int}^\text{FC}(t)
+		\frac{1}{2}
+		\int\dd[3]{x}
+		\int\dd{t_1}
+		\int\dd{t_2}
+		\chi^{(2)}_{ijk}(t_1,t_2,\vb{x})
+		\hat{E}^i(t,\vb{x})
+		\hat{E}^j(t-t_1,\vb{x})
+		\hat{E}^k(t-t_2,\vb{x})
+		\\
 		&\approx
 		\frac{1}{2}
-		\int\dd[3]{x}
+		\int\dd{z}
 		\int\dd{t_1}
 		\int\dd{t_2}
-		\chi^{(2)}(t_1,t_2,\vb{x})
-		\\
-		&\times
-		\hat{E}^{(+)}(t,\vb{x})
-		\hat{E}^{(-)}(t-t_1,\vb{x})
-		\hat{E}^{(-)}(t-t_2,\vb{x})
-		+
-		\text{H.c.}
+		\chi^{(2)}(t_1,t_2,z)
+		\hat{E}(t,z)
+		\hat{E}(t-t_1,z)
+		\hat{E}(t-t_2,z)
+		,
 	\end{split}
 \end{equation}
-dropping all other terms.
-Performing the mode expansion, \cref{eq:electric_positive_operator,eq:electric_negative_operator},
+where we assumed the electric fields to be polarized along the same axis in the last step and ignored the transverse mode profile.
+Expanding the electric field operators into positive and negative frequency parts reveals the possible absorption and emission processes.
+For frequency conversion, we drop all but the following terms
+\begin{equation}
+	\hat{H}_\text{int}^\text{FC}(t)
+	\approx
+	\frac{1}{2}
+	\int\dd{z}
+	\int\dd{t_1}
+	\int\dd{t_2}
+	\chi^{(2)}(t_1,t_2,z)
+	\hat{E}^{(+)}(t,z)
+	\hat{E}^{(-)}(t-t_1,z)
+	\hat{E}^{(-)}(t-t_2,z)
+	+
+	\text{H.c.}
+	.
+\end{equation}
+Inserting the plane-wave expansion of the positive- and negative-frequency electric-field operators, \cref{eq:electric_positive_operator,eq:electric_negative_operator},
 \begin{equation}
 	\begin{split}
 		\hat{H}_\text{int}^\text{FC}(t)
 		&=
 		\frac{1}{2}
-		\int\dd[3]{x}
+		\int\dd{z}
 		\int\dd{t_1}
 		\int\dd{t_2}
-		\chi^{(2)}(t_1,t_2,\vb{x})
+		\chi^{(2)}(t_1,t_2,z)
+		\int\frac{\dd{\omega_1}}{2\pi}
+		\int\frac{\dd{\omega_2}}{2\pi}
+		\int\frac{\dd{\omega_3}}{2\pi}
+		\omega_1
+		\omega_2
+		\omega_3
 		\\
-		&\times
-		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-		\omega(\vb{p})
-		\hat{a}^\dagger(\vb{p})
-		e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
-		\\
-		&\times
-		\int\frac{\dd[3]{q_1}}{(2\pi)^3\sqrt{2\omega(\vb{q}_1)}}
-		\omega(\vb{q}_1)
-		\hat{a}(\vb{q}_1)
-		e^{-i\omega(\vb{q}_1)(t-t_1)+i\vb{q}_1\vdot\vb{x}}
-		\\
-		&\times
-		\int\frac{\dd[3]{q_2}}{(2\pi)^3\sqrt{2\omega(\vb{q}_2)}}
-		\omega(\vb{q}_2)
-		\hat{a}(\vb{q}_2)
-		e^{-i\omega(\vb{q}_2)(t-t_2)+i\vb{q}_2\vdot\vb{x}}
+		&\qquad\times
+		\hat{a}^\dagger(\omega_1)
+		\hat{a}(\omega_2)
+		\hat{a}(\omega_3)
+		e^{+i\omega_1(t-z)}
+		e^{-i\omega_2(t-t_1)+i\omega_2z}
+		e^{-i\omega_3(t-t_2)+i\omega_3z}
 		+
 		\text{H.c.}
-	\end{split}
-\end{equation}
-We neglect the transverse dynamics and reduce the Hamiltonian to one dimension along the propagation direction and assume the susceptibility to be uniform along the dielectric medium
-\begin{equation}
-	\begin{split}
-		\hat{H}_\text{int}^\text{FC}(t)
+		\\
 		&=
-		\frac{1}{4}
-		\int\frac{\dd{p}}{2\pi}
-		\int\frac{\dd{q_1}}{2\pi}
-		\int\frac{\dd{q_2}}{2\pi}
-		\sqrt{\frac{pq_1q_2}{2}}
-		\int\dd{t_1}
-		\int\dd{t_2}
-		\chi^{(2)}(t_1,t_2)
-		e^{+iq_1t_1}
-		e^{+iq_2t_2}
+		\frac{1}{2}
+		\int\frac{\dd{\omega_1}}{2\pi}
+		\int\frac{\dd{\omega_2}}{2\pi}
+		\int\frac{\dd{\omega_3}}{2\pi}
+		\omega_1
+		\omega_2
+		\omega_3
+		\int\dd{z}
+		\chi^{(2)}(\omega_2,\omega_3,z)
 		\\
-		&\times
-		\int_{-L/2}^{+L/2}\dd{x}
-		e^{i(p-q_1-q_2)x}
-		\hat{a}^\dagger(p)
-		\hat{a}(q_1)
-		\hat{a}(q_2)
-		e^{+ipt}
-		e^{-iq_1t}
-		e^{-iq_2t}
+		&\qquad\times
+		\hat{a}^\dagger(\omega_1)
+		\hat{a}(\omega_2)
+		\hat{a}(\omega_3)
+		e^{+i(\omega_1-\omega_2-\omega_3)t}
+		e^{-i(\omega_1-\omega_2-\omega_3)z}
 		+
 		\text{H.c.}
+		,
 	\end{split}
 \end{equation}
-and we identify the Fourier transform of the susceptibility
+where we identified the Fourier transform of the second-order electric susceptibility
 \begin{equation}
-	\begin{split}
-		\hat{H}_\text{int}^\text{FC}(t)
-		&=
-		\frac{1}{4}
-		\int\frac{\dd{p}}{2\pi}
-		\int\frac{\dd{q_1}}{2\pi}
-		\int\frac{\dd{q_2}}{2\pi}
-		\sqrt{\frac{pq_1q_2}{2}}
-		\chi^{(2)}(q_1,q_2)L
-		\sinc\left(\frac{p-q_1-q_2}{L/2}\right)
-		\\
-		&\times
-		\hat{a}^\dagger(p)
-		\hat{a}(q_1)
-		\hat{a}(q_2)
-		e^{+ipt}
-		e^{-iq_1t}
-		e^{-iq_2t}
-		+
-		\text{H.c.}
-	\end{split}
+	\chi^{(2)}(\omega_2,\omega_3,z)
+	=
+	\int\dd{t_1}
+	\int\dd{t_2}
+	\chi^{(2)}(t_1,t_2,z)
+	e^{+i\omega_2 t_1}
+	e^{+i\omega_3 t_2}
+	.
 \end{equation}
-We approximate the phase-matching function
-\begin{equation}
-	\sinc\left(\frac{p-q_1-q_2}{L/2}\right)
-	\approx
-	(2\pi)
-	\delta^{(1)}(p-q_1-q_2)
-\end{equation}
-and simplify the interaction energy to
+We assume the second-order electric susceptibility to be constant over the interaction length $L$ and zero otherwise, then we can further simplify the frequency-conversion Hamiltonian to
 \begin{equation}
 	\hat{H}_\text{int}^\text{FC}(t)
 	=
-	\int\frac{\dd{p}}{2\pi}
-	\int\frac{\dd{q}}{2\pi}
-	g(p,q)
-	\hat{a}^\dagger(p)
-	\hat{a}(q)
-	\hat{a}(p-q)
+	\frac{1}{2}
+	\int\frac{\dd{\omega_1}}{2\pi}
+	\int\frac{\dd{\omega_2}}{2\pi}
+	\int\frac{\dd{\omega_3}}{2\pi}
+	g(\omega_1,\omega_2,\omega_3)
+	\hat{a}^\dagger(\omega_1)
+	\hat{a}(\omega_2)
+	\hat{a}(\omega_3)
+	e^{+i(\omega_1-\omega_2-\omega_3)t}
 	+
 	\text{H.c.}
+	,
+\end{equation}
+where we introduced the phase-matching function
+\begin{equation}
+	g(\omega_1,\omega_2,\omega_3)
+	=
+	\omega_1
+	\omega_2
+	\omega_3
+	\chi^{(2)}(\omega_2,\omega_3)
+	\sinc\left(\frac{\omega_1-\omega_2-\omega_3}{L/2}\right)
 	.
 \end{equation}
-which agrees from the main characteristics with the result reported in Ref.~\cite[eq.~35]{Horoshko2018}.
+Approximating the phase-matching function with a Delta distribution,
+\begin{equation}
+	g(\omega_1,\omega_2,\omega_3)
+	\approx
+	g(\omega_1,\omega_2)
+	(2\pi))
+	\delta^{(1)}(\omega_1-\omega_2-\omega_3)
+	,
+\end{equation}
+the interaction Hamiltonian further simplifies to
+\begin{equation}
+	\hat{H}_\text{int}^\text{FC}
+	=
+	\frac{1}{2}
+	\int\frac{\dd{\omega_1}}{2\pi}
+	\int\frac{\dd{\omega_2}}{2\pi}
+	g(\omega_1,\omega_2)
+	\hat{a}^\dagger(\omega_1)
+	\hat{a}(\omega_2)
+	\hat{a}(\omega_1-\omega_2)
+	+
+	\text{H.c.}
+	,
+\end{equation}
+which agrees in the most important characteristics with the result reported in Ref.~\cite[eq.~35]{Horoshko2018}.
