@@ -10,7 +10,7 @@
 				group size=1 by 4,
 				xlabels at=edge bottom,
 				xticklabels at=edge bottom,
-				vertical sep=2ex,
+				%vertical sep=2ex,
 			},
 			grid=major,
 			width=\linewidth,
@@ -22,34 +22,34 @@
 			ymax=5,
 			axis line style={thick},
 			xlabel={Frequency $f/f_s$},
-			yticklabels={},
+			%yticklabels={},
 			ylabel style={align=center},
+			ylabel={Power spectral\\density (\si{\decibel})},
 			cycle list name=exotic,
 		]
 			\nextgroupplot[
-				title={Relative power spectral density},
-				ylabel={Demodulation\\$u[m/(kl)]$},
+				title={$u[m/(kl)]$ from analog sampling},
 			]
 			\addplot+[
 				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-rx-det.csv};
 			\nextgroupplot[
-				ylabel={Downconversion\\$\sigma[m/(kl)]$},
+				title={$\sigma[m/(kl)]$ after downconversion of $u[m/(kl)]$},
 			]
 			\addplot+[
 				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-tx-lp.csv};
 			\nextgroupplot[
-				ylabel={Pulse-shaping\\$\kappa[m/k]$},
+				title={$\kappa[m/k]$ after downsampling and matched filtering of $\sigma[m/(kl)]$},
 			]
 			\addplot+[
 				very thick,
 				no markers,
 			] plot table[col sep=comma] {../../../data/rand-freq-rx-rrc.csv};
 			\nextgroupplot[
-				ylabel={Symbols\\$\beta[m]$},
+				title={$\beta[m]$ after downsampling of $\kappa[m/k]$},
 			]
 			\addplot+[
 				very thick,
