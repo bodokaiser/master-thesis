@@ -423,11 +423,11 @@ The existence of the Maxwell action requires the Maxwell field to be square-inte
 \begin{equation}
 	\vb{A}(t,\vb{x})
 	=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\vb{A}(t,\vb{p})
 	e^{+i\vb{p}\vdot\vb{x}}
 	=
-	\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^4}
+	\int\frac{\dd[4]{p}}{(2\pi)^4}
 	\vb{A}(p_0,\vb{p})
 	e^{-ip_0t+i\vb{p}\vdot\vb{x}}
 	\label{eq:maxwell_fourier_expansion}
@@ -526,7 +526,7 @@ we further decompose the plane-wave expansion into a positive and negative frequ
 	\begin{split}
 		\vb{A}(t,\vb{x})
 		&=
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\delta^{(1)}
 		\left(
 			p_0
@@ -537,7 +537,7 @@ we further decompose the plane-wave expansion into a positive and negative frequ
 		e^{-ip_0t+i\vb{p}\vdot\vb{x}}
 		\\
 		&\qquad+
-		\int_{\mathbb{R}^4}\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[4]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\delta^{(1)}
 		\left(
 			p_0
@@ -548,22 +548,22 @@ we further decompose the plane-wave expansion into a positive and negative frequ
 		e^{-ip_0t+i\vb{p}\vdot\vb{x}}
 		\\
 		&=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\vb{A}\left(\omega(\vb{p}),\vb{p}\right)
 		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
 		\\
 		&\qquad+
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\vb{A}\left(-\omega(\vb{p}),\vb{p}\right)
 		e^{+i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
 		\\
 		&=
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\vb{A}\left(\omega(\vb{p}),\vb{p}\right)
 		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
 		\\
 		&\qquad+
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 		\vb{A}\left(\omega(\vb{p}),\vb{p}\right)^*
 		e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
 		.
@@ -616,7 +616,7 @@ and inserting it back into the plane-wave expansion, \cref{eq:maxwell_plane_wave
 	\vb{A}(t,\vb{x})
 	=
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left\{
 		a_\lambda(\vb{p})
 		\vu{e}_\lambda(\vb{p})
@@ -704,7 +704,7 @@ where we adapted the transverse delta distribution~\cite[p.~198]{Greiner2013}
 	\right)
 	\delta^{(3)}(\vb{x})
 	=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\left(
 		\delta_{ij}
 		-
@@ -729,7 +729,7 @@ where we defined the positive and negative frequency parts to be
 	\vu{A}^{(-)}(t,\vb{x})
 	&=
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\hat{a}_\lambda(\vb{p})
 	\vu{e}_\lambda(\vb{p})
 	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
@@ -738,7 +738,7 @@ where we defined the positive and negative frequency parts to be
 	\vu{A}^{(+)}(t,\vb{x})
 	&=
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\vu{e}_\lambda(\vb{p})^*
 	e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
@@ -762,7 +762,7 @@ where we find the electric field operator components via $\hat{E}^i=\partial_t\h
 	&=
 	-i
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\omega(\vb{p})
 	\hat{a}_\lambda(\vb{p})
 	\vu{e}_\lambda(\vb{p})
@@ -773,7 +773,7 @@ where we find the electric field operator components via $\hat{E}^i=\partial_t\h
 	&=
 	+i
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\omega(\vb{p})
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\vu{e}_\lambda(\vb{p})^*
@@ -803,7 +803,7 @@ The Maxwell field's Hamilton and momentum operator are~\cite[p.~199]{Greiner2013
 	\hat{H}
 	&=
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\omega(\vb{p})
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
@@ -812,7 +812,7 @@ The Maxwell field's Hamilton and momentum operator are~\cite[p.~199]{Greiner2013
 	\vu{P}
 	&=
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\vb{p}
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
@@ -833,7 +833,7 @@ the energy and momentum operators then read as the total energy $\omega(\vb{p})$
 \begin{equation}
 	\hat{N}
 	=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\hat{a}_\lambda^\dagger(\vb{p})
 	\hat{a}_\lambda(\vb{p})
 	\label{eq:maxwell_number_operator}

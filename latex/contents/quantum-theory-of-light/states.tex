@@ -8,7 +8,7 @@ The Maxwell field then effectively becomes a Klein-Gordon field with field opera
 \begin{equation}
 	\hat{A}(t,\vb{x})
 	=
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left\{
 		\hat{a}(\vb{p})
 		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
@@ -496,7 +496,7 @@ The first term of the Magnus expansion turns out to be
 	=
 	i
 	\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
+	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 	\left\{
 		J_\lambda(t,t_0;\vb{p})
 		\hat{a}_\lambda(\vb{p})
@@ -522,7 +522,7 @@ The second term in the Magnus expansion turns out to be complex
 	\hat{\Omega}^{(2)}(t_0,t)
 	=
 	i\sum_{\lambda=1,2}
-	\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi)^3\omega(\vb{p})}
+	\int\frac{\dd[3]{p}}{(2\pi)^3\omega(\vb{p})}
 	\Im\left\{
 		J_\lambda(t_0,t^\prime;\vb{p})
 		J_\lambda(t_0,t^{\prime\prime};\vb{p})^*
@@ -537,7 +537,7 @@ The time-evolution operator of the Maxwell field interacting with a classical so
 	=
 	\exp\left\{
 		i\sum_{\lambda=1,2}
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi) ^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{p}}{(2\pi) ^3\sqrt{2\omega(\vb{p})}}
 		\left\{
 			J_\lambda(t,t_0;\vb{p})
 			\hat{a}_\lambda(\vb{p})
@@ -552,7 +552,7 @@ Neglecting the polarization
 	\hat{U}(t_0,t)
 	=
 	\exp\left\{
-		\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi) ^3\sqrt{2\omega(\vb{p})}}
+		\int\frac{\dd[3]{p}}{(2\pi) ^3\sqrt{2\omega(\vb{p})}}
 		\left\{
 			i
 			J(t,t_0;\vb{p})
@@ -581,7 +581,7 @@ where we take the generalized displacement operator to be
 		\\
 		&=
 		\exp\left\{
-			\int_{\mathbb{R}^3}\frac{\dd[3]{p}}{(2\pi) ^3\sqrt{2\omega(\vb{p})}}
+			\int\frac{\dd[3]{p}}{(2\pi) ^3\sqrt{2\omega(\vb{p})}}
 			\left\{
 				\alpha(\vb{p})
 				\hat{a}^\dagger(\vb{p})
