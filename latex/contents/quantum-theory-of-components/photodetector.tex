@@ -251,8 +251,8 @@ PD1 and PD2 are both reverse biased to reduce the response time and connected to
 			\eta
 			\conv
 			2\Re\left[
-				\alpha_s
-				\alpha_l^*
+				\alpha_s^*
+				\alpha_l
 			\right]
 		\right)(t)
 		,
@@ -265,7 +265,7 @@ For a meaningful measurement the \gls{lo} must be a narrow linewidth laser for w
 	\alpha_l(t)
 	=
 	g(t)
-	e^{+i(\omega_lt+\vartheta)}
+	e^{-i(\omega_lt+\vartheta)}
 	\label{eq:detector_balanced_lo}
 \end{equation}
 with $g(t)$ encoding the linewidth profile\footnote{For instance, $g(t)\propto e^{-\gamma t/2}$ for a Lorentzian profile, see Ref.~\cite{Demtroeder2014}.}.
@@ -278,16 +278,17 @@ We absorb the linewidth profile into the signal amplitude by defining
 \end{equation}
 and rewrite the product of the signal with the \gls{lo} in \cref{eq:detector_balanced_photocurrent} as
 \begin{equation}
-	\alpha_s(t)
-	\alpha_l(t)^*
+	\alpha_s(t)^*
+	\alpha_l(t)
 	=
-	\alpha(t)
+	\alpha(t)^*
 	e^{-i(\omega_lt+\vartheta)}
 	=
 	\int_{-\infty}^{+\infty}
 	\frac{\dd{\omega}}{2\pi}
-	\alpha(\omega)
-	e^{+i(\omega-\omega_l)t-i\vartheta}
+	\alpha(\omega)^*
+	e^{-i(\omega_l t+\vartheta)}
+	e^{-i\omega t}
 	.
 	\label{eq:detector_balanced_signal_product}
 \end{equation}

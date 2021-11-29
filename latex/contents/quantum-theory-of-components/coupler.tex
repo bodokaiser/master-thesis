@@ -115,7 +115,7 @@ Over the interaction length, the two energy of the field modes oscillates back a
     \caption{Waveguide coupler with input quantum modes $\hat{a}_1(\omega)$ and $\hat{a}_2(\omega)$ coupled evanescent over an interaction length $l$ yielding the output quantum modes $\hat{a}_1^\prime(\omega)$ and $\hat{a}_2^\prime(\omega)$.}\label{fig:waveguide_coupler}
 \end{figure}
 The weak coupling through evanescent fields is conceptionally similar to weakly coupled harmonic oscillators.
-Haroché~\cite[p.~131]{Haroche2006} successfully exploits the analogy to derive the quantum beam splitter transform from interaction theory.
+Haroche~\cite[p.~131]{Haroche2006} successfully exploits the analogy to derive the quantum beam splitter transform from interaction theory.
 We generalize his approach for the mode continuum derived in the previous chapter.
 
 Let $\hat{a}_1(\omega)$ and $\hat{a}_2(\omega)$ be the annihilation operators of the first and second waveguide modes.
@@ -359,7 +359,6 @@ A general decomposition of a two-dimensional unitary matrix is the product~\cite
 \begin{equation}
 	U(\omega)
 	=
-	e^{i\Lambda/2}
 	\begin{pmatrix}
 		e^{+i\Phi/2} & 0 \\
 		0 & e^{-i\Phi/2}
@@ -372,10 +371,11 @@ A general decomposition of a two-dimensional unitary matrix is the product~\cite
 		e^{+i\Psi/2} & 0 \\
 		0 & e^{-i\Psi/2}
 	\end{pmatrix}
+	e^{i\Lambda/2}
 	\label{eq:unitary_matrix}
 \end{equation}
 wherein we suppress the frequency-dependence of the real parameters, $\Lambda(\omega),\Theta(\omega),\Psi(\omega),\Phi(\omega)$, for clarity.
-We can read the matrix decomposition, \cref{eq:unitary_matrix}, as first adding a global and relative phase shift, $\Lambda/2,\pm\Psi/2$, to the incident fields, rotating (mixing) the field amplitudes by the angle $\Theta/2$, and adding another relative phase shift of $\pm\Psi/2$ to the outgoing fields.
+We can read the matrix decomposition, \cref{eq:unitary_matrix}, as first adding a global phase shift $\Lambda/2$, then adding a relative phase shift of $\Psi$ between the incident fields, rotating (mixing) the field amplitudes by the angle $\Theta/2$, and adding another relative phase shift of $\Psi$ between the outgoing fields.
 
 While the unitary matrix transforms the annihilation operators and the field amplitudes, it cannot transform a generic quantum state.
 In the previous subsection, we found a time evolution operator $\hat{U}$ from linear mode coupling theory, which related to the unitary matrix transform $U$ via
@@ -892,12 +892,12 @@ is equivalent to the projection of the subsystem
 \end{equation}
 For non-coherent quantum states, it is not correct to project out a subsystem as the partial trace does not generally yield a mixed but a pure state.
 
-\subsection{Spectral filter}
+\subsection{Splitter and spectral filter}
 
 Our considerations have so far been quite general except for restricting ourselves to coherent input states.
 We will now discuss two applications of our results:
-First, we consider the special case of an optical being used as a splitter. 
-Second, we consider a coupler as an optical filter relevant to signal processing and quantum information theory.
+First, we consider the special case of a coupler being used as a splitter. 
+Second, we consider a coupler as an optical filter relevant to signal processing and quantum-information theory.
 
 An ideal optical splitter redistributes the power of one input among two outputs and is a special case of the optical coupler with one input state being the vacuum state.
 Using \cref{eq:coupler_coherent_amplitudes_frequency}, we find the transformed Fourier amplitudes to be

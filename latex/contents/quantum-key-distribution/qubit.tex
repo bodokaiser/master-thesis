@@ -431,6 +431,32 @@ The output state of BS2 is equal to the action of the \gls{mzi}
 	\end{split}
 	\label{eq:mzi_asymmetric}
 \end{equation}
+Ignoring the vacuum state, we project the product state in \cref{eq:mzi_asymmetric} onto each of the output modes and obtain
+\begin{align}
+	\ket{t_1,\phi}_1
+	&=
+	\frac{1}{\sqrt{2}}
+	\left(
+		\ket{t_1}
+		-
+		e^{i\varphi}
+		\ket{t_1+\Delta\tau}
+	\right)
+	\label{eq:mzi_asymmetric_right}
+	\\
+	\ket{t_1,\phi}_2
+	&=
+	\frac{i}{\sqrt{2}}
+	\left(
+		\ket{t_1}
+		+
+		e^{i\varphi}
+		\ket{t_1+\Delta\tau}
+	\right)
+	\label{eq:mzi_asymmetric_down}
+	,
+\end{align}
+wherein $t_1=t_0+\tau$.
 
 Back to the time-phase-encoding BB84 setup depicted in \Cref{fig:qubit_time_phase_active}, we note that Alice's transmitter consists of a single-photon source and an asymmetric \gls{mzi} where one output is dumped.
 Therefore, Alice's states are parametrized by the relative phase $\theta$,
@@ -446,31 +472,7 @@ Therefore, Alice's states are parametrized by the relative phase $\theta$,
 	\right)
 	,
 \end{equation}
-which is obtained from \cref{eq:mzi_asymmetric} by absorbing the time delay of the shorter path $\tau$ into the time reference $t_0$ and projecting onto the first output mode of the \gls{mzi}.
-By adding a time delay to the states of $\Delta\tau$, we receive the states for the time-delayed signal
-\begin{align}
-	\ket{t_1,\phi}_1
-	&=
-	\frac{1}{\sqrt{2}}
-	\left(
-		\ket{t_1}
-		-
-		e^{i\phi}
-		\ket{t_1+\Delta\tau}
-	\right)
-	\\
-	\ket{t_1,\phi}_2
-	&=
-	\frac{i}{\sqrt{2}}
-	\left(
-		\ket{t_1}
-		+
-		e^{i\phi}
-		\ket{t_1+\Delta\tau}
-	\right)
-	\label{eq:qubit_time_phase_bob_nodelay}
-\end{align}
-where we again choose the time $t_1$ such that it cancels the time delay of the short path $\tau$.
+which equals the first output mode of the \gls{mzi}, \cref{eq:mzi_asymmetric_right}, adapting the new time reference $t_1\to t_0$.
 If Bob receives a pulse with time delay $\Delta\tau$ at some time $t_1$, i.e., $\ket{t_1+\Delta\tau}$, then his \gls{mzi} provides the two detectors with the states
 \begin{align}
 	\ket{t_1+\Delta\tau,\phi}_1
