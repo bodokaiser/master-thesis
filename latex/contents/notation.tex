@@ -191,3 +191,28 @@ Analog to the continuous-time signal $x(t)$, we define the discrete-time signal
 wherein $T$ is the sampling period.
 Sometimes we refer to $x[n]$ as samples or a sample similar as $x(t)$ denotes a function or the function evaluated at $t$.
 To distinguish samples from symbols, which do not require a sampling period $T$, we use the index notation, i.e., $x_m$ denotes a symbol while $x[m]$ denotes a sample.
+
+Regarding operator ordering, we note the normal-ordering symbol, moving the creation operators, e.g., $\hat{a}^\dagger$, to the left and the annihilation operators, e.g., $\hat{a}$, to the right, by
+\begin{equation*}
+	\norder{\hat{a}\hat{a}^\dagger\hat{b}}
+	=
+	\hat{a}^\dagger
+	\hat{a}
+	\hat{b}
+	.
+\end{equation*}
+As time-ordering symbol we adopt $\mathcal{T}_+$, which evaluates an operator in forward time-order~\cite[p.~84]{Peskin1995},
+\begin{equation*}
+	\frac{1}{2}
+	\hat{T}_+
+	\int_{t_0}^t\dd{t_1}
+	\int_{t_0}^t\dd{t_2}
+	\hat{A}(t_1)
+	\hat{B}(t_2)
+	=
+	\int_{t_0}^t\dd{t_1}
+	\int_{t_0}^{t_1}\dd{t_2}
+	\hat{A}(t_1)
+	\hat{B}(t_2)
+	.
+\end{equation*}
