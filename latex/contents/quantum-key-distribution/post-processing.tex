@@ -333,7 +333,7 @@ Eve having no information about the key corresponds to Alice and Bob using an un
 Eve having full information about the key corresponds to Alice and Bob using a biased coin always yielding, e.g., heads.
 Therefore, we can use the probability of the coin yielding heads, $p\in[0,1]$, to indicate Eve's information.
 If we now start to XOR all outcomes, we see the probability for obtaining either a one or zero to approach $1/2$.
-More precisely, let $X_1,X_2,\dots,X_N$ be \gls{iid} Bernoulli random variables with probability $p$, $X_i\sim\text{Bern}(p)$, then the probability that XORing of all outcomes equals one is
+More precisely, let $X_1,X_2,\dots,X_N$ be independent- and identical-distributed Bernoulli random-variables with probability $p$, $X_i\sim\text{Bern}(p)$, then the probability that XORing of all outcomes equals one is
 \begin{equation}
 	\mathbb{P}\left[
 		\text{"XOR of outcomes equals one"}
@@ -346,7 +346,7 @@ More precisely, let $X_1,X_2,\dots,X_N$ be \gls{iid} Bernoulli random variables 
 	\right]
 	.
 \end{equation}
-The sum of \gls{iid} Bernoulli random variables $X_1,\dots,X_n$ equals a Binomial random variable $Y=\sum_{n=1}^NX_n\sim\text{Binom}(N,p)$, yielding
+The sum of Bernoulli random variables $X_1,\dots,X_n$ equals a Binomial random variable $Y=\sum_{n=1}^NX_n\sim\text{Binom}(N,p)$, yielding
 \begin{equation}
 	\mathbb{P}\left[
 		Y\bmod2
