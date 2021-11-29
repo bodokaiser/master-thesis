@@ -170,7 +170,7 @@ For example, the delta distribution $\delta(x-y)$ is the integration kernel of t
 \end{equation}
 Fourier transforms are another class of functionals we already used frequently.
 Linear functionals share many convenient properties with ordinary functions and physicists often skip the distinction.
-In axiomatic quantum field theory, the quantum field operators are precisely defined as operator-valued tempered distributions mapping from the space of smearing or test functions $\mathcal{S}(\mathbb{R}^4)$ to the the set of operators defined on the corresponding Hilbert space $\mathcal{O}(\mathcal{H})$~\cite[p.~56]{Haag2012}.
+In axiomatic quantum field theory, the quantum field operators are precisely defined as operator-valued tempered distributions mapping from the space of smearing or test functions $\mathcal{S}(\mathbb{R}^4)$ to the the set of operators defined on the corresponding Hilbert space $\mathcal{O}(\mathcal{H})$~\cite[p.~56]{Haag2012}.\footnote{A criticism of this approach is that the space of test functions covers only a subset of the Hilbert space.}
 A typical functional space for smearing functions is the Schwartz space, a subset of the space of square-integrable functions $L^2$, which rapidly fall off at infinity, a property which we exploit for partial integration with vanishing boundary terms of the action integral.\footnote{Typical Schwartz functions are Gaussian functions multiplied with a monomial, e.g., $x^ne^{-a\norm{x}^2}$ where $n\in\mathbb{N}_0$ and $a\in\mathbb{R}_+$.}
 
 Let us reinterpret the (positive frequency) field operator with this mathematical background by considering its action on a smearing function, i.e.,
@@ -246,7 +246,7 @@ The smeared state $\ket{1_f}$ is not an eigenstate of the energy and momentum op
 \end{align}
 suggesting that the smearing function has the physical interpretation of a frequency spectrum.
 
-Let $\ket{1_f}$ be a smeared particle state, then the wave function $\Psi(t,\vb{x})$ is the probability amplitude of finding the particle at a spacetime coordinate $(t,\vb{x})$~\cite[p.~24]{Peskin1995}, i.e.,
+Let $\ket{1_f}$ be a smeared particle state, then the single-particle wave function providing the probability amplitude density of finding the particle at $(t,\vb{x})$~\cite[p.~24]{Peskin1995} equals
 \begin{equation}
 	\Psi(t,\vb{x})
 	=
@@ -257,6 +257,7 @@ Let $\ket{1_f}$ be a smeared particle state, then the wave function $\Psi(t,\vb{
 	\int\dd{t^\prime}\dd[3]{x^\prime}
 	D(t-t^\prime,\vb{x}-\vb{x}^\prime)
 	f(t^\prime,\vb{x}^\prime)
+	,
 \end{equation}
 wherein $f(t,\vb{x})$ is the spacetime representation of the (initial) smearing function and
 \begin{equation}
@@ -266,7 +267,7 @@ wherein $f(t,\vb{x})$ is the spacetime representation of the (initial) smearing 
 	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
 \end{equation}
 is the propagator as defined in Ref.~\cite[p.~27]{Peskin1995}.
-Given the wave function, the relativistic probability current
+Given the single-particle wave function, the relativistic probability current
 \begin{equation}
 	j_\mu(t,\vb{x})
 	=
