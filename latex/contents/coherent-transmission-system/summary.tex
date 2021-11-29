@@ -1,9 +1,10 @@
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
 
-We presented an abstract transmission system for en- and decoding of a complex symbol sequence onto and from an optical coherent state by following the signal processing across the quantum-optical, analog and digital domains.
-We assumed a software-defined implementation of the transmitter and receiver where most of the signal processing is performed in the digital domain.
+We presented a software-defined coherent-state transmission system for en- and decoding of a complex symbol sequence onto and from an optical coherent state by following the signal processing across the quantum-optical, analog and digital domains.
 For simplicity, we assumed a perfect noiseless quantum channel without attenuation and perfect synchronization between the transmitter and receiver clocks.\footnote{\Cref{app:synchronization} summarizes some important techniques to compensate for synchronization error of the optical \glspl{lo} and the \gls{adc} clock.}
+Ref.~\cite{Nielsen2010} considers realistic quantum channels, like the quantum analog of the classical additive Gaussian white-noise channel.
+To extend the detection to nonclassical states, methods of quantum tomography, as discussed in, for example, Ref.~\cite{Vogel2006}, need to be considered.
 
 \Cref{fig:transmitter_signal_processing} summarizes the transmitter's signal processing in a block diagram.
 First, the complex digital signal corresponding to the symbol sequence $\alpha[n]$ are encoded in two real-valued bandwidth-optimized digital baseband signals.
