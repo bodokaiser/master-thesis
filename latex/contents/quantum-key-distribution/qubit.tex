@@ -226,7 +226,7 @@ We can write Alice's state as
 \end{equation}
 Unrotated, Bob's rectilinear polarized beam splitter monitored by two single-photon detectors is equivalent to the \gls{povm} for detecting rectilinear-polarized light
 \begin{equation}
-	\left\{
+	\biggl\{
 		\hat{P}_{\leftrightarrow}
 		=
 		\ketbra{\leftrightarrow},
@@ -234,12 +234,12 @@ Unrotated, Bob's rectilinear polarized beam splitter monitored by two single-pho
 		\hat{P}_{\updownarrow}
 		=
 		\ketbra{\updownarrow}
-	\right\}
+	\biggr\}
 	.
 \end{equation}
 Rotated by \SI{45}{\degree}, Bob's rectilinear polarized beam splitter monitored by two single-photon detectors is equivalent to the \gls{povm} for detecting diagonal-polarized light
 \begin{equation}
-	\left\{
+	\biggl\{
 		\hat{P}_{\nwsearrow}
 		=
 		\ketbra{\nwsearrow},
@@ -247,7 +247,7 @@ Rotated by \SI{45}{\degree}, Bob's rectilinear polarized beam splitter monitored
 		\hat{P}_{\neswarrow}
 		=
 		\ketbra{\neswarrow}
-	\right\}
+	\biggr\}
 	.
 \end{equation}
 Instead of Bob actively selecting the measurement basis, he can passively let the quantum randomness decide by splitting the photon with an unpolarized beam splitter towards a rectilinear and diagonal polarization detector.
@@ -262,7 +262,7 @@ Another polarization detector comprises a diagonal-polarized beam splitter.
 \end{figure}
 The \gls{povm} describing Bob's measurement with passive basis selection is
 \begin{equation}
-	\left\{
+	\biggl\{
 		\frac{1}{2}\hat{P}_{\leftrightarrow},
 		\;
 		\frac{1}{2}\hat{P}_{\updownarrow},
@@ -270,7 +270,7 @@ The \gls{povm} describing Bob's measurement with passive basis selection is
 		\frac{1}{2}\hat{P}_{\nwsearrow},
 		\;
 		\frac{1}{2}\hat{P}_{\neswarrow}
-	\right\}
+	\biggr\}
 	.
 \end{equation}
 Bob may still have inconclusive measurements.
@@ -284,13 +284,13 @@ For instance, if he receives a horizontal polarization state $\ket{\leftrightarr
 		\midrule
 		\multirow{2}{*}{$\ket{\updownarrow}$} & Rectilinear & \SI{100}{\percent} & \SI{0}{\percent} \\
 		& Diagonal & \SI{50}{\percent} & \SI{50}{\percent} \\
-		\cmidrule{1-2}
+		\cmidrule{1-1}
 		\multirow{2}{*}{$\ket{\leftrightarrow}$} & Rectilinear & \SI{0}{\percent} & \SI{100}{\percent} \\
 		& Diagonal & \SI{50}{\percent} & \SI{50}{\percent} \\
-		\cmidrule{1-2}
+		\cmidrule{1-1}
 		\multirow{2}{*}{$\ket{\nwsearrow}$} & Rectilinear & \SI{50}{\percent} & \SI{50}{\percent} \\
 		& Diagonal & \SI{100}{\percent} & \SI{0}{\percent} \\
-		\cmidrule{1-2}
+		\cmidrule{1-1}
 		\multirow{2}{*}{$\ket{\neswarrow}$} & Rectilinear & \SI{50}{\percent} & \SI{50}{\percent} \\
 		& Diagonal & \SI{0}{\percent} & \SI{100}{\percent} \\
 		\bottomrule
@@ -545,9 +545,9 @@ we find the click probabilities for the Bob's detectors to equal
 \begin{equation}
 	\begin{split}
 		p_{\pm,m}
-		=
-		\trace{\hat\rho_\pm\hat{P}_m}
 		&=
+		\trace{\hat\rho_\pm\hat{P}_m}
+		=
 		\expval{\hat{P}_m}{\theta,\phi}_{\pm}
 		\\
 		&=
@@ -563,7 +563,11 @@ If we configure the detectors to trigger only on the $m=1$ time slot, we find th
 	p_\pm(\theta-\phi)
 	=
 	\frac{1}{2}
-	\left(1\pm\cos(\theta-\phi)\right)
+	\left[
+		1
+		\pm
+		\cos(\theta-\phi)
+	\right]
 	.
 \end{equation}
 \Cref{tab:bb84_time_phase_clicks} summarizes the click probability of the plus and minus detectors triggered on the $m=1$ time slot for a restricted choice of phases:
@@ -573,19 +577,19 @@ Alice choosing $\theta\in\{0,\pi\}$ corresponds to choosing the $Z$ eigenbasis w
 	\begin{tabular}{cccc}
 		\toprule
 		\multicolumn{2}{c}{Phase} & \multicolumn{2}{c}{Detector click probability} \\
-		\cmidrule{1-2}
-		\cmidrule{3-4}
+%		\cmidrule{1-2}
+%		\cmidrule{3-4}
 		$\theta$ & $\phi$ & $p_1(\theta-\phi)$ & $p_2(\theta-\phi)$ \\
 		\midrule
 		\multirow{2}{*}{$0$} & $0$ & \SI{100}{\percent} & \SI{0}{\percent} \\
 		& $\pi/2$ & \SI{50}{\percent} & \SI{50}{\percent} \\
-		\cmidrule{1-2}
+		\cmidrule{1-1}
 		\multirow{2}{*}{$\pi$} & $0$ & \SI{0}{\percent} & \SI{100}{\percent} \\
 		& $\pi/2$ & \SI{50}{\percent} & \SI{50}{\percent} \\
-		\cmidrule{1-2}
+		\cmidrule{1-1}
 		\multirow{2}{*}{$\pi/2$} & $0$ & \SI{50}{\percent} & \SI{50}{\percent} \\
 		& $\pi/2$ & \SI{100}{\percent} & \SI{0}{\percent} \\
-		\cmidrule{1-2}
+		\cmidrule{1-1}
 		\multirow{2}{*}{$3\pi/2$} & $0$ & \SI{50}{\percent} & \SI{50}{\percent} \\
 		& $\pi/2$ & \SI{0}{\percent} & \SI{100}{\percent} \\
 		\bottomrule

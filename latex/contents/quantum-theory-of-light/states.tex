@@ -39,9 +39,9 @@ To extend the results back to two polarization modes, we can construct a two-dim
 The fundamental assumption our state construction relies upon is the existence of a unique, up to a constant phase factor, vacuum state $\ket{0}$ invariant under the unitary Poincaré transformation~\cite[p.~97]{Streater2016}
 \begin{equation}
 	\hat{U}(a,\Lambda)
-	\ket{0}
+	\vacket
 	=
-	\ket{0}
+	\vacket
 	\label{eq:vacuum_invariance}
 \end{equation}
 where $\Lambda$ denotes a Lorentz transformation and $a$ a spacetime translation.
@@ -59,21 +59,21 @@ The generator of the unitary spacetime translation is the four-momentum operator
 The invariance of the vacuum under spacetime translations, \cref{eq:spacetime_translation}, implies that the vacuum is a zero eigenstate to the Hamilton and momentum operator
 \begin{align}
 	\hat{H}
-	\ket{0}
+	\vacket
 	&=
 	0
 	&
 	\vu{P}
-	\ket{0}
+	\vacket
 	&=
-	\vb{0}
+	\vacket
 	\label{eq:vacuum_energy_momentum}
 	.	
 \end{align}
 From the mode expansion of the Hamilton operator, \cref{eq:maxwell_hamilton_operator}, and the vacuum state being a zero eigenstate to the Hamilton operator, we conclude that the vacuum state is also a zero eigenstate to the annihilation operator
 \begin{equation}
 	\hat{a}(\vb{p})
-	\ket{0}
+	\vacket
 	=
 	0
 	\label{eq:vacuum_annihilation}
@@ -100,19 +100,19 @@ Applying the vacuum state $\ket{0}$ to the right of the commutator equations, yi
 \begin{align}
 	\hat{N}
 	\hat{a}^\dagger(\vb{p})
-	\ket{0}
+	\vacket
 	&=
 	1
 	\hat{a}^\dagger(\vb{p})
-	\ket{0}
+	\vacket
 	&
 	\vu{P}
 	\hat{a}^\dagger(\vb{p})
-	\ket{0}
+	\vacket
 	&=
 	\vb{p}
 	\hat{a}^\dagger(\vb{p})
-	\ket{0}
+	\vacket
 	.
 \end{align}
 The eigenvalue equations suggest
@@ -120,7 +120,7 @@ The eigenvalue equations suggest
 	\ket{\vb{p}}
 	=
 	\hat{a}^\dagger(\vb{p})
-	\ket{0}
+	\vacket
 	\label{eq:momentum_state}
 \end{equation}
 to be a single-particle state with momentum $\vb{p}$ and energy $\omega(\vb{p})$, a momentum state.~\cite[p.~23]{Peskin1995}.
@@ -128,9 +128,9 @@ Unfortunately, the inner product between two momentum states does not yield a co
 \begin{equation}
 	\braket{\vb{p}}{\vb{q}}
 	=
-	\bra{0}
+	\vacbra
 	\comm{\hat{a}(\vb{p})}{\hat{a}^\dagger(\vb{q})}
-	\ket{0}
+	\vacket
 	=
 	(2\pi)^3
 	\delta^{(3)}(\vb{p}-\vb{q})
@@ -192,7 +192,7 @@ Applying the smeared positive frequency field operator to the vacuum state,
 		\ket{1_f}
 		=
 		\hat{A}^{(+)}[f]
-		\ket{0}
+		\vacket
 		,
 	\end{split}
 	\label{eq:single_particle_state}
@@ -250,7 +250,7 @@ Let $\ket{1_f}$ be a smeared particle state, then the wave function $\Psi(t,\vb{
 \begin{equation}
 	\Psi(t,\vb{x})
 	=
-	\bra{0}
+	\vacbra
 	\hat{A}(t,\vb{x})
 	\ket{1_f}
 	=
@@ -314,7 +314,7 @@ Now, it is possible to have a superposition of, e.g., the vacuum state and a par
 	\ket{\psi}
 	=
 	c_1
-	\ket{0}
+	\vacket
 	+
 	c_2
 	\ket{1_f}
@@ -337,7 +337,7 @@ Applying the creation operator $\hat{A}^{(+)}[f]$ wherein $f$ is a smearing func
 	=
 	\frac{1}{\sqrt{n!}}
 	\hat{A}^{(+)}[f]^n
-	\ket{0}
+	\vacket
 	\label{eq:number_state}
 \end{equation}
 as number state with spectrum $f$.\footnote{The factorial is required for normalization because bosons are indistinguishable.}
@@ -672,7 +672,7 @@ The radiation emitted by a classical current is coherent, suggesting to identify
 	\ket{\alpha}
 	=
 	\hat{D}[\alpha]
-	\ket{0}
+	\vacket
 	=
 	\exp\left\{
 		-
@@ -682,7 +682,7 @@ The radiation emitted by a classical current is coherent, suggesting to identify
 	\exp\left\{
 		\hat{A}^{(+)}[\alpha]
 	\right\}
-	\ket{0}
+	\vacket
 	\label{eq:coherent_state}
 \end{equation}
 where we used that the exponential of the generalized annihilation operator acting on the vacuum state produces the vacuum state.

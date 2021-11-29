@@ -585,12 +585,12 @@ The output states are given by applying the unitary evolution operator $\hat{U}$
 	\hat{D}\left[\vb{\alpha}(t)\right]
 	\hat{U}^\dagger
 	\hat{U}
-	\ket*{0,0}
+	\ket*{\vb{0},\vb{0}}
 	=
 	\hat{U}
 	\hat{D}\left[\vb{\alpha}(t)\right]
 	\hat{U}^\dagger
-	\vacket
+	\ket*{\vb{0},\vb{0}}
 	,
 \end{equation}
 wherein we inserted $\mathbb{1}=\hat{U}^\dagger\hat{U}$ in the second step and we used the invariance of the vacuum state in the third step.
@@ -966,7 +966,7 @@ Instead of choosing a parametrization for the splitting coefficients, which dire
 Assuming the Fourier transform of $c_1(\omega),c_2(\omega)$ to be well-defined, we find the coherent output states to be
 \begin{equation}
 	\hat{U}
-	\ket*{\alpha(t),0}
+	\ket*{\alpha(t),\vb{0}}
 	=
 	\ket*{\left(c_1\conv\alpha\right)(t),\left(c_2\conv\alpha\right)(t)}
 	\label{eq:splitter_state_convolution}
@@ -991,7 +991,7 @@ If we further assume the signal $\alpha(t)$ to be bandwidth-limited to $B$ and t
 the output state takes the simple form
 \begin{equation}
 	\hat{U}
-	\ket*{\alpha(t),0}
+	\ket*{\alpha(t),\vb{0}}
 	=
 	\ket*{c_1\alpha(t),c_2\alpha(t)}
 \end{equation}

@@ -643,7 +643,7 @@ For the input state being a tensor product of a coherent and a vacuum state
 \begin{equation}
 	\ket{\vb{\alpha}(t)}
 	=
-	\ket{\alpha(t),0}
+	\ket*{\alpha(t),\vb{0}}
 	,
 \end{equation}
 the matrix transformation of the \gls{mzm}, \cref{eq:mzm_matrix}, predicts the output amplitudes to be
@@ -666,7 +666,7 @@ In the previous sections, we derived the unitary evolution operator correspondin
 We therefore claim the existence of an unitary operator, $\hat{U}_\text{MZM}$, corresponding to the unitary matrix transform of \cref{eq:mzm_matrix}, where the action of such operator on a coherent and vacuum input state is
 \begin{equation}
 	\hat{U}_\text{MZM}(t)
-	\ket*{\alpha(t),0}
+	\ket*{\alpha(t),\vb{0}}
 	=
 	\ket*{\alpha(t)\cos\phi_-(t)ie^{i\varphi_+(t)},\alpha(t)\sin\phi_-(t)ie^{i\varphi_+(t)}}
 	.
@@ -676,7 +676,7 @@ In this case, we can remove the other other output using a projection operator, 
 \begin{equation}
 	\hat{P}
 	\hat{U}_\text{MZM}(t)
-	\ket*{\alpha(t),0}
+	\ket*{\alpha(t),\vb{0}}
 	=
 	\ket*{\alpha(t)\beta_\text{MZM}(t)}
 	\label{eq:mzm_state}

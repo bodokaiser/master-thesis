@@ -10,7 +10,7 @@
        		width=\linewidth,
             axis lines=center,
         	axis equal image,
-            axis line style=thick,
+            axis line style={very thick, -Latex},
             cycle list name=exotic,
             xmin=-1.2,
             xmax=+1.2,
@@ -25,12 +25,12 @@
             x label style={anchor=north},
             y label style={anchor=south},
         ]
-        	\draw[-Latex, gray] (axis cs:0,0) -- (axis cs:1,1);
-        	\draw[-Latex, gray] (axis cs:0,0) -- (axis cs:-1,1);
+        	\draw[-Latex, very thick, dashed] (axis cs:0,0) -- (axis cs:1,1);
+        	\draw[-Latex, very thick, dashed] (axis cs:0,0) -- (axis cs:-1,1);
         	\draw (axis cs:-1.0,1.06) node[]{$\ket{x_+}$};
         	\draw (axis cs:1.0,1.06) node[]{$\ket{x_-}$};
-        	\addplot+[thick] coordinates {(0.707,.707)};
-        	\addplot+[thick, no markers] coordinates {(0,.707) (.707,.707) (.707,0)};
+        	\addplot+[very thick] coordinates {(0.707,.707)};
+        	\addplot+[very thick, no markers] coordinates {(0,.707) (.707,.707) (.707,0)};
         \end{axis}
     \end{tikzpicture}
 \end{document}
