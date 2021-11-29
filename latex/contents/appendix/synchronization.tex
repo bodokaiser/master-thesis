@@ -1,56 +1,33 @@
 \chapter{Receiver synchronization}\label{app:synchronization}
 
-% Citations:
-\cite[p.~359]{Proakis2007} % Symbol timing estimation
-\cite{Godard1978} % Godard algorithm for phase correction
-\cite{Huang2015,Qi2015,Soh2015} % CV-QKD with pilot tone
+Our presentation of the coherent-state transmission system assumes the receiver and transmitter use the same time reference, particularly regarding the \gls{adc}, \gls{dac}, and laser \glspl{lo}.
+However, in practice, the receiver and transmitter run independent clocks requiring synchronization procedures.
 
-So far we have assumed the transmitter and the receiver to be in sync to concentrate on the signal recover.
-In practice, most of the receiver's \gls{dsp} is about compensating for synchronization errors.
-On a hardware level, we need to account for the synchronization of two oscillators:
-The lasers and the clocks of the \gls{dac} or \gls{adc}.
-Usually, errors fall into the receiver's responsibility since the channel already introduces errors that have to be accounted for.
-
-The transmitter \gls{lo} runs at the carrier frequency $\omega_t$ and the receivers \gls{lo} runs at $\omega_r$ with the difference between the two being the intermediate frequency $\omega_i=\abs{\omega_t-\omega_r}$.
-Ideally, the frequency difference between the two \glspl{lo} is constant and there is no phase difference.
-Practically, the laser frequency is subject to drifts due to thermal and electric effects.
-Control loops can compensate for these effects to a certain extent without becoming too complex.
-Concerning the software-defined heterodyne receiver, the frequency drifts should be much less than the target intermediate frequency, otherwise, the detector might not be able to capture the complete signal band.
-The phase offset is a more challenging affair as it involves not only drifts but stochastic effects.
-\begin{figure}[htb]
+As shown in \Cref{ch:system}, the transmitter \gls{lo} defines the upconversion frequency $\omega_c$, and the receiver \gls{lo} determines the downconversion frequency $\omega_l$.
+Together the up- and downconversion frequencies defines the intermediate frequency $\omega_i=\omega_c-\omega_l$.
+For drifting transmitter and receiver \glspl{lo}, the intermediate frequency shifts and, in the worst case, exceeds the detector bandwidth.
+The transmitter adds a pilot tone, a strong narrow-linewidth signal to provide a frequency reference for the receiver.\footnote{Refs.~\cite{Huang2015,Qi2015,Soh2015} discuss the usage of a pilot tone for \gls{cvqkd}.}
+\begin{figure}[ht]
 	\centering
 	\includegraphics{figures/pgfplots/laser-sync}
-	\caption{Frequency spectrum of the transmitted and received pilot tone. The transmitted pilot tone (green) represents a perfect sinusoidal. The received pilot tone (orange) is broadened by phase variations and shifted by the offset between the transmitter and receiver \gls{lo}.}\label{fig:pilot_tones}
+	\caption{Power spectrum of the transmitted and received pilot tone. The transmitted pilot tone (green) represents a perfect sinusoidal. The received pilot tone (orange) is broadened by phase noise and shifted by the offset between the transmitter and receiver \gls{lo}.}\label{fig:pilot_tones}
 \end{figure}
-To compensate for both effects, the transmitter adds a pilot tone to the transmitted signal which the receiver can use as a reference point.
-\Cref{fig:pilot_tones} depicts the transmitted (green) and received (orange) pilot tone.
-Comparing the received and transmitted pilot tones, we notice that the received pilot tone has a relative frequency offset due to the offset of the receiver's \gls{lo} and some significant broadening due to phase noise.
-Using peak detection, the received pilot tone is used to determine the offset from the target intermediate frequency $\omega_i$.
-To suppress the phase noise, a Wiener filter~\cite{Chen2006} is trained on the received phase noise and then applied to the signal spectrum.
+Additionally to frequency offsets, the pilot tone allows to suppress phase noise by employing a Wiener filter~\cite{Chen2006} on the broadened lineprofile of the pilot tone, as illustrated in \Cref{fig:pilot_tones}.
 
-The second set of oscillators which need synchronization are the clocks of the \gls{dac} and \gls{adc}.
-Again, we assume the \gls{dac} to be the reference clock and the \gls{adc} to be the clock which needs compensation.
-Because the \gls{adc} clock oscillates much slower as the optical laser, the relative frequency drifts can be neglected and we are mostly concerned with compensating for a timing offset.
-The timing offset means that we sample the signal at times which do not intersect with the symbol times of the transmitter.
-The situation is depicted in the first two rows of \Cref{fig:adc_sync} where the first row shows the transmitted signal and the second row the received signal.
-The original symbol is located at the peak of the pulse-shape but for the received signal, we have two samples around the peak.
+The second set of oscillators that need synchronization are the clocks of the \gls{dac} and \gls{adc}.
+Unlike the optical \gls{lo}s, the electronic clocks oscillate much slower, and we only need to compensate for timing offsets.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/adc-sync}
-	\caption{Timing offset compensation of the \gls{adc} clock. The sampling at the receiver is delayed and not in sync with the symbols compared to the receiver.}\label{fig:adc_sync}
+	\caption{Timing offset between the \gls{dac} (first row) and \gls{adc} (second row) samples. The third row shows the linear increase in phase due to the accumulated delay.}\label{fig:adc_sync}
 \end{figure}
-From Fourier analysis, we know that a shift in time corresponds to an additional phase.
-By performing a Fourier transform of the received samples, we can see how there is a linear increase of the phase with frequency, see third row in \Cref{fig:adc_sync}.
-We can perform a linear fit and remove the phase shifts which corrects the sample offset.
+\Cref{fig:adc_sync} illustrates the timing offset between the transmitted and received samples.
+To correct for symbol-timing errors on the receiver, one can employ, for instance, the Goddard algorithm~\cite{Godard1978}, which exploits that a delay increases the phase of a signal.\footnote{See Ref.~\cite[p.~359]{Proakis2007} for more details on symbol-timing estimation techniques.}.
 
-Finally, on a protocol level, we need to synchronize the frames sent by the transmitter.
-In particular, the receiver needs to detect the beginning of a frame and to assign a frame number.
-The frame layout is depicted in \Cref{fig:frame}.
-A single frame consists of a training and a data sequence.
-The training sequence is the same for all frames and known by both the transmitter and the receiver such that one can correlate the known training sequence with the received sequence to find the start of a frame.
+On a protocol level, the receiver needs to detect the beginning of a data frame, i.e., a related symbol sequence, and assign a frame number.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/frame}
-	\caption{Layout of the transmission frames. A frame comprises a training and data sequence. The training sequence is the same for all frames and used to detect the start of a frame and perform calibration for the data sequence which contains the actual transmission data.}\label{fig:frame}
+	\caption{Data layout of the transmission frames. A frame comprises a training and data sequence. The training sequence is the same for all frames.}\label{fig:frame}
 \end{figure}
-The additional identification of the frame number is performed using a classical service communication channel which is used to negotiate further calibration parameters between the receiver and the transmitter.
+One possibility for the transmitter to inform the receiver about the beginning of a new frame is to interleave the data sequences with a fixed training sequence, see \Cref{fig:frame}, known to the receiver.

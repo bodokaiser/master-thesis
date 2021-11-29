@@ -1,5 +1,8 @@
 \chapter{Photodetection theory}\label{app:photodetection_theory}
 
+This section aims to derive the differential photoelectron-emission probability from which one can derive the photocurrent operator.
+Our derivation summarizes the steps in Refs.~\cite{Mandel1995,Vogel2006} but adds additional details on the truncated steps.
+
 The transition of a bound electron to a free photoelectron is a probabilistic process.
 Let $\ket{i}$ and $\ket{f}$ denote the initial and final light states, and let $\ket{g}$ and $\ket{e}$ be the electron ground and excited states.
 The probability for the transition, $\ket{g,i}\to\ket{e,f}$, from time $t$ to $t+\Delta t$ is equal to
@@ -109,6 +112,8 @@ we use it to evolve the state in \cref{eq:photoelectric_transition_prob_density}
 		(-i)
 		\int_t^{t+\Delta t}\dd{t_1}
 		\comm{\hat{H}_\text{int}(t_1)}{\hat\rho(t_0)}
+		\\
+		&\qquad\times
 		+
 		\frac{(-i)^2}{2!}
 		\int_{t}^{t+\Delta t}\dd{t_1}
@@ -167,7 +172,7 @@ Inserting the interaction Hamiltonian, \cref{eq:photoelectric_time_evolution_ope
 		\int_t^{t_1}
 		\dd{t_2}
 		\\
-		&\times
+		&\qquad\times
 		\bra{f}
 			\hat{A}_i(t_1)
 			\ketbra{i}
@@ -195,7 +200,7 @@ The final states of the light field are of no interest to use and can be margina
 		\int_t^{t_1}
 		\dd{t_2}
 		\\
-		&\times
+		&\qquad\times
 		\bra{i}
 			\hat{A}_i(t_1)
 			\hat{A}_j(t_2)
