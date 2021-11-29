@@ -569,7 +569,7 @@ where we used that $\hat{L}_t$ commutes with the other Jordan-Schwinger operator
 
 \subsection{Coherent state transform}
 
-Let us now consider the action of the ideal coupler on the tensor product of coherent input states\footnote{Other quantum states typically produce entangled output states, see, for instance, Ref.~\cite{Windhager2011}, which is not of interest here.}
+Let us now consider the action of the ideal coupler on the tensor product of input coherent-states\footnote{Other quantum states typically produce entangled output states, see, for instance, Ref.~\cite{Windhager2011}, which is not of interest here.}
 \begin{equation}
 	\ket*{\vb{\alpha}(t)}
 	=
@@ -838,9 +838,9 @@ and we conclude that a tensor product of coherent states transforms under an ide
 \end{align}
 wherein $U(\omega)$ is a two-dimensional unitary matrix characterizing the coupler.
 
-The fact that the ideal optical coupler only transforms the amplitudes of the coherent input states is specific to coherent states.
+The fact that the ideal optical coupler only transforms the amplitudes of the input coherent-states is specific to coherent states.
 The coherent states owe this special property due to having a Poisson number distribution and the Poisson distribution being memoryless.
-As a consequence, the coherent output states are independent and consider a subsystem by performing a partial trace, e.g.,
+As a consequence, the output coherent-states are independent and consider a subsystem by performing a partial trace, e.g.,
 \begin{equation}
 	\trace_2\left\{
 		\ketbra{\alpha,\beta}
@@ -894,7 +894,7 @@ For non-coherent quantum states, it is not correct to project out a subsystem as
 
 \subsection{Splitter and spectral filter}
 
-Our considerations have so far been quite general except for restricting ourselves to coherent input states.
+Our considerations have so far been quite general except for restricting ourselves to input coherent-states.
 We will now discuss two applications of our results:
 First, we consider the special case of a coupler being used as a splitter. 
 Second, we consider a coupler as an optical filter relevant to signal processing and quantum-information theory.
@@ -963,7 +963,7 @@ Instead of choosing a parametrization for the splitting coefficients, which dire
 	1
 	.
 \end{align}
-Assuming the Fourier transform of $c_1(\omega),c_2(\omega)$ to be well-defined, we find the coherent output states to be
+Assuming the Fourier transform of $c_1(\omega),c_2(\omega)$ to be well-defined, we find the output coherent-states to be
 \begin{equation}
 	\hat{U}
 	\ket*{\alpha(t),\vb{0}}
@@ -972,7 +972,7 @@ Assuming the Fourier transform of $c_1(\omega),c_2(\omega)$ to be well-defined, 
 	\label{eq:splitter_state_convolution}
 \end{equation}
 according to \cref{eq:coupler_coherent_state}.
-If we further assume the signal $\alpha(t)$ to be bandwidth-limited to $B$ and the splitting coefficients to be approximately constant over the bandwidth, i.e.,
+If we further assume the signal $\alpha(t)$ to be bandwidth-limited to $B$ and the splitting coefficients to be approximately constant over the bandwidth $B$, i.e.,
 \begin{align}
 	c_1(\omega)
 	&\approx

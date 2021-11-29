@@ -65,17 +65,17 @@ The complex reflection and transmission coefficients, the scattering-matrix para
 	\abs{r^\prime(\omega)}
 \end{equation}
 for conservation of energy flow and the \gls{ccr}, making the scattering matrix unitary.
-If we assume the coherent input states to be of narrow-bandwidth and the optical coupler to have constant frequency response over the optical bandwidth, the convolution in the time domain reduces to a multiplication.
-Certain embodiments of the optical coupler, such as the plate beam splitter, arbitrarily superimpose two coherent input states.
+If we assume the input coherent-states to be narrow-bandwidth and the optical coupler to have a constant frequency response over the optical bandwidth, the convolution in the time domain reduces to a multiplication.
+Certain embodiments of the optical coupler, such as the plate beam-splitter, arbitrarily superimpose two input coherent-states.
 That said, most implementations of optical couplers exhibit backscattering, which accounting for requires an optical four-port.
 As the scattering matrix of an optical four-port requires \num{16} complex parameters, most calculations become impractical.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-filter}
-    \caption{Quantum optical filter with input coherent state, $\ket{\alpha(t)}$, and output coherent state, $\ket{\alpha^\prime(t)}$.}\label{fig:components_filter}
+    \caption{Quantum optical filter with input coherent-state, $\ket{\alpha(t)}$, and output coherent-state, $\ket{\alpha^\prime(t)}$.}\label{fig:components_filter}
 \end{figure}
 An optical coupler with a vacuum state as a second input and tracing out one output effectively implements a linear filter.
-The coherent output state in \Cref{fig:components_filter} relates to the coherent input state via
+The output coherent-state in \Cref{fig:components_filter} relates to the input coherent-state via
 \begin{align*}
 	\alpha^\prime(t)
 	&=
@@ -86,16 +86,16 @@ The coherent output state in \Cref{fig:components_filter} relates to the coheren
 	h(\omega)
 	\alpha(\omega)
 \end{align*}
-in the time and frequency domain, wherein the frequency response function of the filter is required to satisfy $\abs{h(\omega)}\leq1$.
+in the time and frequency domain, wherein the frequency-response function of the filter is required to satisfy $\abs{h(\omega)}\leq1$.
 
-Using the linear electro-optical effect and nonlinear frequency conversion with the help of Ref.~\cite{Horoshko2018,QuesadaMejia2015}, we derived a unitary evolution operator corresponding to phase modulation with a sinusoidal signal.
+Using the linear electro-optical effect and nonlinear frequency-conversion with the help of Ref.~\cite{Horoshko2018,QuesadaMejia2015}, we derived a unitary evolution operator corresponding to phase modulation with a sinusoidal signal.
 Neglecting second-order interactions between the modulation sidebands, we argued that phase modulation with an arbitrary signal is thinkable.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-modulator-phase}
-    \caption{Quantum optical phase modulator with electric phase signal $\varphi(t)$, coherent input state, $\ket{\alpha(t)}$, and coherent output state, $\ket{\alpha^\prime(t)}$.}\label{fig:components_modulator_phase}
+    \caption{Quantum-optical phase modulator with electric phase signal $\varphi(t)$, input coherent-state $\ket{\alpha(t)}$, and output coherent-state, $\ket{\alpha^\prime(t)}$.}\label{fig:components_modulator_phase}
 \end{figure}
-The amplitude of the coherent output state in \Cref{fig:components_modulator_phase} is
+The amplitude of the output coherent-state in \Cref{fig:components_modulator_phase} is
 \begin{align}
 	\alpha^\prime(t)
 	&=
@@ -106,15 +106,15 @@ The amplitude of the coherent output state in \Cref{fig:components_modulator_pha
 	&=
 	\left(g\conv\alpha\right)(\omega)
 \end{align}
-in the time and frequency domain, wherein we can only give an explicit expression for the kernel $g(\omega)$ in the case of a sinusoidal modulation, \cref{eq:phase_modulation_sinusoidal_kernel}.
+in the time and frequency domain, where we can only give an explicit expression for the kernel $g(\omega)$ in the case of a sinusoidal modulation, \cref{eq:phase_modulation_sinusoidal_kernel}.
 Arranging two electro-optical phase modulators in an \gls{mzm} and driving the modulators with a differential voltage enables electro-optical amplitude modulation.
-Arranging two electrically driven \gls{mzm}s with a relative phase shift of $\pi/2$ generalizes amplitude modulation with a real- to a complex-valued signal.
+Arranging two electrically-driven \gls{mzm}s with a relative phase shift of $\pi/2$ generalizes amplitude modulation with a real- to a complex-valued signal.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-modulator-amplitude}
-    \caption{Quantum optical amplitude modulator with input voltage signals, $x(t)$ and $p(t)$, coherent input state, $\ket{\alpha(t)}$, and coherent output state $\ket{\alpha^\prime(t)}$.}\label{fig:components_modulator_phase}
+    \caption{Quantum-optical amplitude modulator with input voltage-signals, $x(t)$ and $p(t)$, input coherent-state $\ket{\alpha(t)}$, and output coherent-state $\ket{\alpha^\prime(t)}$.}\label{fig:components_modulator_phase}
 \end{figure}
-The amplitude of the coherent output state in \Cref{fig:components_modulator_phase} is
+The amplitude of the output coherent-state in \Cref{fig:components_modulator_phase} is
 \begin{equation}
 	\alpha^\prime(t)
 	=
@@ -139,9 +139,9 @@ Additionally, we presented an electric circuit of a \gls{tia} converting and amp
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-detector-direct}
-    \caption{Quantum optical direct detector with coherent input state, $\ket{\alpha(t)}$, and voltage output signal, $y(t)$.}\label{fig:components_detector_direct}
+    \caption{Quantum-optical direct detector with input coherent-state $\ket{\alpha(t)}$, and output voltage-signal $y(t)$.}\label{fig:components_detector_direct}
 \end{figure}
-The voltage output signal $y(t)$ in \Cref{fig:components_detector_direct} is equal to the photon flux $\abs{\alpha(t)}^2$ convolved with the combined response of the detector and the \gls{tia} $\eta$, i.e.,
+The output voltage-signal $y(t)$ in \Cref{fig:components_detector_direct} is equal to the photon flux $\abs{\alpha(t)}^2$ convolved with the combined response of the detector and the \gls{tia} $\eta$, i.e.,
 \begin{equation}
 	y(t)
 	=
@@ -158,9 +158,9 @@ To resolve the quadratures of the signal, we combine the signal with a \gls{lo} 
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-detector-balanced}
-    \caption{Quantum optical balanced detector with coherent input signal state, $\ket{\alpha(t)}$, coherent input \gls{lo} state, $\ket{e^{i(\omega_0t+\vartheta)}}$, and voltage output signal, $z(t)$}\label{fig:components_detector_balanced}
+    \caption{Quantum-optical balanced detector with input coherent-state $\ket{\alpha(t)}$, \gls{lo} coherent-state $\ket{e^{i(\omega_0t+\vartheta)}}$, and output voltage-signal $z(t)$.}\label{fig:components_detector_balanced}
 \end{figure}
-The voltage output signal $z(t)$ in \Cref{fig:components_detector_balanced} is equal to the projection of the down-converted complex signal $\alpha(t)$ onto a real axis under the \gls{lo} angle $\vartheta$, i.e.,
+The output voltage-signal $z(t)$ in \Cref{fig:components_detector_balanced} is equal to the projection of the downconverted signal $\alpha(t)$ onto a real axis under the \gls{lo} angle $\vartheta$, i.e.,
 \begin{equation}
 	z(t)
 	=
@@ -171,7 +171,7 @@ The voltage output signal $z(t)$ in \Cref{fig:components_detector_balanced} is e
 	e^{+i(\omega-\omega_l)t-i\vartheta}
 	,
 \end{equation}
-wherein $\omega_l$ is the \gls{lo} frequency and the \gls{lo} line profile is absorbed into the signal, $\alpha(\omega)$.
+wherein $\omega_l$ is the \gls{lo} frequency and the \gls{lo} lineshape is absorbed into the signal $\alpha(\omega)$.
 Comparison of the balanced detector's mean voltage signal with the expectation value of the phase-rotated quadrature operator suggests defining a generalized quadrature operator
 \begin{equation}
 	\hat\chi(t)
@@ -186,4 +186,4 @@ Comparison of the balanced detector's mean voltage signal with the expectation v
 	,
 \end{equation}
 which extends the phase-rotated quadrature operator by the effective detector bandwidth $B/2$ and the frequency shift by $\omega_0$.
-Our results are compatible with Ref.~\cite{Gardiner2000,Shapiro2009,Loudon2000,Vogel2006,Kikuchi2016} on homo- and heterodyne detection but are more general in that we do not assume a particular coherent input signal and included the detector response as well as \gls{lo} line profile.
+Our results are compatible with Ref.~\cite{Gardiner2000,Shapiro2009,Loudon2000,Vogel2006,Kikuchi2016} on homo- and heterodyne detection but are more general in that we do not assume a particular input coherent-state and included the detector response as well as \gls{lo} lineshape.

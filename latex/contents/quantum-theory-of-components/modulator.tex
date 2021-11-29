@@ -577,7 +577,7 @@ The coupler recombines both branches into two outputs.
 Two cubic beam splitters implement the splitter (BS1) and the coupler (BS2) for our free-space setup.
 For additional beam alignment, our free-space setup utilizes two mirrors (M1 and M2).
 
-To find the effect of the \gls{mzm} on a coherent input state, we study the cumulative effect of the individual optical components.
+To find the effect of the \gls{mzm} on an input coherent-state, we study the cumulative effect of the individual optical components.
 One particular challenge is that the transformation of passive components is a convolution in the time domain.
 In contrast, the transformation of active components is a convolution in the frequency domain.
 A possible way forward is to invoke the narrow-bandwidth approximation and assume that the passive components are free of dispersion over the relevant optical bandwidth.
@@ -688,13 +688,13 @@ where we defined the complex-valued amplitude modulation signal $\beta(t)$ with 
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/iqm}
-    \caption{Integrated \gls{iqm} using three \gls{mzm} arms. A coherent input amplitude, $\alpha(t)$, is split into an upper and lower branch. The upper and lower branches comprise an integrated \gls{mzm} that performs amplitude modulation with the in-phase and quadrature signal, $I(t)$ respectively $Q(t)$. The integrated \gls{mzm} consists of a hexagonal-shaped waveguide with an inside signal electrode and two outer grounds. The outputs of the in-phase and quadrature modulated form a third \gls{mzm} used to set a relative phase of $\Lambda$ between the in-phase and quadrature signals, yielding the coherent output amplitude $\alpha^\prime(t)$.}\label{fig:iqm}
+    \caption{Integrated \gls{iqm} using three \gls{mzm} arms. An input signal with amplitude $\alpha(t)$ is split into an upper and lower branch. The upper and lower branches comprise an integrated \gls{mzm} that performs amplitude modulation with the in-phase and quadrature signal, $I(t)$ respectively $Q(t)$. The integrated \gls{mzm} consists of a hexagonal-shaped waveguide with an inside signal electrode and two outer grounds. The outputs of the in-phase- and quadrature-modulated form a third \gls{mzm} used to set a relative phase of $\Lambda$ between the in-phase and quadrature signals, yielding an output signal with amplitude $\alpha^\prime(t)$.}\label{fig:iqm}
 \end{figure}
 In practice, however, we implement the \gls{iqm} using three \gls{mzm}s as depicted in \Cref{fig:iqm}.
 The phases of the \gls{mzm} in an integrated \gls{iqm} are only driven differentially.
 The upper branch modulates the in-phase component, $I(t)$, while the lower branch modulates the quadrature component, $Q(t)$.
 A third \gls{mzm} adds a static relative phase $\Lambda$ between the in-phase and quadrature branch such that these branches are recombined at $\pi/2$.
-For the coherent output state, we find
+For the output coherent-state, we find
 \begin{equation}
 	\ket*{\alpha^\prime(t)}
 	=
@@ -703,7 +703,7 @@ For the coherent output state, we find
 	=
 	\ket*{\alpha(t)\beta_\text{IQM}(t)}
 \end{equation}
-wherein the complex amplitude modulation signal is now
+wherein the complex amplitude-modulation signal is now
 \begin{equation}
 	\beta_\text{IQM}(t)
 	=
