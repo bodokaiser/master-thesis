@@ -2,7 +2,7 @@
 
 The (electro-optical) modulators allow us to encode an electrical signal onto an optical carrier, and in that sense, are the interface between the electrical and optical domains.
 The domain crossover occurs at the electro-optical phase modulator, which we attempt to describe as a (quantum) nonlinear mixing process mediated by the dielectric, in a first part.
-In a second part, we construct, in the optical domain, a complex, in-phase and quadrature, amplitude modulator using \gls{mzi}s driven by electro-optical phase modulators.
+In a second part, we construct, in the optical domain, a complex, in-phase and quadrature, amplitude modulator using \glspl{mzi} driven by electro-optical phase modulators.
 
 \subsection{Phase modulator}
 
@@ -570,7 +570,7 @@ The \gls{mzm} uses two phase modulators to perform amplitude modulation through 
 	\includegraphics{figures/pstricks/mzi-symmetric}
 	\caption{Symmetric \gls{mzi} using free-space optics comprising two balanced \gls{bs}, BS1 and BS2, two mirrors, M1 and M2, and two phase modulators, PM1 and PM2. The input amplitudes, $\alpha_1(t)$ and $\alpha_2(t)$, enter BS1 and are split into an upper and lower path. The upper path receives a phase shift of $\phi_1(t)+\pi$ from PM1 and M1 before entering BS2 from the top. The lower path receives a phase shift of $\phi_2(t)+\pi$ from M2 and PM2 before entering BS2 from the left. BS2 recombines the phase-shifted upper and lower path into the output Fourier amplitudes $\alpha_1^\prime(t)$ and $\alpha_2^\prime(t)$.}\label{fig:mzi_symmetric}
 \end{figure}
-\Cref{fig:mzi_symmetric} shows a symmetric \gls{mzi}\footnote{We distinguish between \gls{mzi} and \gls{mzm}, whether it is an optical (\gls{mzi}) or integrated (\gls{mzm}) embodiment. However, there is no difference in the theoretical treatment.} using free-space optics with one signal input; the other input being in the vacuum state.
+\Cref{fig:mzi_symmetric} shows a symmetric \gls{mzi}\footnote{We distinguish between \gls{mzi} and \gls{mzm}, whether it is an optical \gls{mzi} or integrated \gls{mzm} embodiment. However, there is no difference in the theoretical treatment.} using free-space optics with one signal input; the other input being in the vacuum state.
 The most crucial components of the \gls{mzi} are a splitter, a coupler, and two independent phase modulators.
 The splitter divides the input light into two branches, which are phase modulated with $\phi_1(t)$ and $\phi_2(t)$ by PM1 respectively PM2.
 The coupler recombines both branches into two outputs.
@@ -690,7 +690,7 @@ where we defined the complex-valued amplitude modulation signal $\beta(t)$ with 
     \includegraphics{figures/tikz/iqm}
     \caption{Integrated \gls{iqm} using three \gls{mzm} arms. An input signal with amplitude $\alpha(t)$ is split into an upper and lower branch. The upper and lower branches comprise an integrated \gls{mzm} that performs amplitude modulation with the in-phase and quadrature signal, $I(t)$ respectively $Q(t)$. The integrated \gls{mzm} consists of a hexagonal-shaped waveguide with an inside signal electrode and two outer grounds. The outputs of the in-phase- and quadrature-modulated form a third \gls{mzm} used to set a relative phase of $\Lambda$ between the in-phase and quadrature signals, yielding an output signal with amplitude $\alpha^\prime(t)$.}\label{fig:iqm}
 \end{figure}
-In practice, however, we implement the \gls{iqm} using three \gls{mzm}s as depicted in \Cref{fig:iqm}.
+In practice, however, we implement the \gls{iqm} using three \glspl{mzm} as depicted in \Cref{fig:iqm}.
 The phases of the \gls{mzm} in an integrated \gls{iqm} are only driven differentially.
 The upper branch modulates the in-phase component, $I(t)$, while the lower branch modulates the quadrature component, $Q(t)$.
 A third \gls{mzm} adds a static relative phase $\Lambda$ between the in-phase and quadrature branch such that these branches are recombined at $\pi/2$.

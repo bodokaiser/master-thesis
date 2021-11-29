@@ -189,7 +189,7 @@ To conserve both quadratures, we need to split the input signal into two branche
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/downconversion-dual}
-	\caption{Block diagram of dual-quadrature downconversion. The signal $z(t)$ is divided equally into an upper and a lower branch. The upper branch is mixed with the phase shifted $\gls{lo}$ signal $\cos(\omega_ct+\vartheta)$. The lower branch is mixed with \gls{lo} signal $\sin(\omega_ct+\vartheta)$. The mixer outputs are filtered separately by a \gls{lp} yielding the down-converted signals $u(t)$ and $v(t)$.}\label{fig:downconversion_dual}
+	\caption{Block diagram of dual-quadrature downconversion. The signal $z(t)$ is divided equally into an upper and a lower branch. The upper branch is mixed with the phase shifted \gls{lo} signal $\cos(\omega_ct+\vartheta)$. The lower branch is mixed with \gls{lo} signal $\sin(\omega_ct+\vartheta)$. The mixer outputs are filtered separately by a \gls{lp} yielding the downconverted signals $u(t)$ and $v(t)$.}\label{fig:downconversion_dual}
 \end{figure}
 The signal of the upper branch $u(t)$ is equal to our result for the single-quadrature downconversion, \cref{eq:downconversion_real}.
 The signal of the lower branch,
@@ -306,7 +306,7 @@ Finally, we downsample by $k$ to restore a digital signal corresponding to the s
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/symbol-decoding-frequency}
-	\caption{Power spectrum of the symbol-decoding steps for a random \gls{qpsk} symbol sequence. The demodulated signal is a real-valued passband signal centered at the intermediate frequency (first row). After digital downconversion we have a complex-valued baseband signal, centered at zero frequency (second row). Applying the matched \gls{rrc} filter completes the pulse-shaping (third row). Downsampling recovers the initial symbol band (last row).}\label{fig:symbol_decoding_frequency}
+	\caption{Power spectrum of the symbol-decoding steps for a random \gls{qpsk} symbol-sequence. The demodulated signal is a real-valued passband signal centered at the intermediate frequency (first row). After digital downconversion we have a complex-valued baseband signal, centered at zero frequency (second row). Applying the matched \gls{rrc} filter completes the pulse-shaping (third row). Downsampling recovers the initial symbol band (last row).}\label{fig:symbol_decoding_frequency}
 \end{figure}
 \Cref{fig:symbol_decoding_frequency} illustrates how the symbol decoding is carried out in the frequency domain.
 The demodulated signal spectrum is a passband signal at the intermediate frequency and downconversion reduces the passband to a baseband signal.
@@ -314,6 +314,6 @@ Completing the pulse-shaping with the matched filter increases the steepness of 
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/symbol-decoding-time-qpsk}
-	\caption{Signal amplitude of the symbol decoding steps for a random \gls{qpsk} symbol sequence. The real-valued demodulated signal oscillates at the intermediate frequency (first row). Digital downconversion removed the intermediate frequency, yielding a complex signal (second row). Completing the pulse-shaping and downsampling by applying a matched \gls{rrc} filter (third row). Downsampling recovers the complex symbol sequence equal to the transmitted sequence (fourth and last row).}\label{fig:symbol_decoding_time}
+	\caption{Signal amplitude of the symbol decoding steps for a random \gls{qpsk} symbol-sequence. The real-valued demodulated signal oscillates at the intermediate frequency (first row). Digital downconversion removed the intermediate frequency, yielding a complex signal (second row). Completing the pulse-shaping and downsampling by applying a matched \gls{rrc} filter (third row). Downsampling recovers the complex symbol sequence equal to the transmitted sequence (fourth and last row).}\label{fig:symbol_decoding_time}
 \end{figure}
 \Cref{fig:symbol_decoding_time}) shows the symbol decoding in the time domain.

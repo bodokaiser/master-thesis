@@ -80,7 +80,7 @@ Taking the square-root of the raised-cosine pulse-shaping filter and applying it
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/pgfplots/symbol-encoding-time-qpsk}
-	\caption{Symbol encoding for a random \gls{qpsk}-symbol sequence in the time domain with real (orange) and imaginary (green) part . The complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$ is represented by the digital signal $\alpha[km]$ with sample period $T_s$ (first row). The digital signal $\alpha[km]$ is upsampled to $\rho[m]$ by an upsampling factor of $k=2$ (second row). The upsampled signal $\rho[m]$ is pulse-shaped with a \gls{rrc} filter to yield $\gamma[m]$ (third row). The pulse-shaped digital signal $\gamma[m]$ is converted to the anti-aliased analog signal $\alpha(t)$.}\label{fig:baseband_construction_rand_time}
+	\caption{Symbol encoding for a random \gls{qpsk} symbol-sequence in the time domain with real (orange) and imaginary (green) part . The complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$ is represented by the digital signal $\alpha[km]$ with sample period $T_s$ (first row). The digital signal $\alpha[km]$ is upsampled to $\rho[m]$ by an upsampling factor of $k=2$ (second row). The upsampled signal $\rho[m]$ is pulse-shaped with a \gls{rrc} filter to yield $\gamma[m]$ (third row). The pulse-shaped digital signal $\gamma[m]$ is converted to the anti-aliased analog signal $\alpha(t)$.}\label{fig:baseband_construction_rand_time}
 \end{figure}
 \Cref{fig:baseband_construction_rand_time} illustrates the time domain signals for each signal-processing step for a random \gls{qpsk} symbol sequence.
 \begin{figure}[htb]

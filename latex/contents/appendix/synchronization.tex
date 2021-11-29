@@ -12,7 +12,7 @@ The lasers and the clocks of the \gls{dac} or \gls{adc}.
 Usually, errors fall into the receiver's responsibility since the channel already introduces errors that have to be accounted for.
 
 The transmitter \gls{lo} runs at the carrier frequency $\omega_t$ and the receivers \gls{lo} runs at $\omega_r$ with the difference between the two being the intermediate frequency $\omega_i=\abs{\omega_t-\omega_r}$.
-Ideally, the frequency difference between the two \gls{lo}s is constant and there is no phase difference.
+Ideally, the frequency difference between the two \glspl{lo} is constant and there is no phase difference.
 Practically, the laser frequency is subject to drifts due to thermal and electric effects.
 Control loops can compensate for these effects to a certain extent without becoming too complex.
 Concerning the software-defined heterodyne receiver, the frequency drifts should be much less than the target intermediate frequency, otherwise, the detector might not be able to capture the complete signal band.

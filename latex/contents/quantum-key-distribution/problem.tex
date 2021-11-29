@@ -72,7 +72,7 @@ For example, an optical fiber where the quantum and classical channels occupy di
 If the \gls{qkd} succeeds, Alice's transmitter and Bob's receiver output the same secret key to Alice, respectively Bob.
 The adversary, Eve, has full access (read and write) to the quantum channel but only read access to the classical channel.
 The restriction that Eve has only read access over the classical channel is important to exclude man-in-the-middle attacks.
-However, the restriction is not a practical limitation as we can ensure integrity by promoting the classical channel to an authenticated channel using \gls{mac}s.
+However, the restriction is not a practical limitation as we can ensure integrity by promoting the classical channel to an authenticated channel using \glspl{mac}.
 
 The details on \gls{qkd} strongly depend on the particular implementation at hand, the \gls{qkd} protocol.
 A huge zoo of \gls{qkd} protocols exists, and it is useful to overview common features for a systematic presentation.
@@ -85,12 +85,12 @@ What other feature can we use if the detection method does not clearly distingui
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.8]{figures/tikz/qkd-classification}
-	\caption{Common characteristics of \gls{qkd} protocols in a tree diagram. The protocol schema is either \gls{pandm} or \gls{eb}. The Measurement basis selection is either passive or active. The detection is usually coherent or based on single-photon clicks. The logical Hilbert space is either finite or countable. Among many, the physical encoding uses the field quadratures, polarization, or squeezing \gls{dof}s of light.}\label{fig:qkd_classification}
+	\caption{Common characteristics of \gls{qkd} protocols in a tree diagram. The protocol schema is either \gls{pandm} or \gls{eb}. The Measurement basis selection is either passive or active. The detection is usually coherent or based on single-photon clicks. The logical Hilbert space is either finite or countable. Among many, the physical encoding uses the field quadratures, polarization, or squeezing \glspl{dof} of light.}\label{fig:qkd_classification}
 \end{figure}
 \Cref{fig:qkd_classification} summarizes common features among \gls{qkd} protocols.
 Features like the protocol schema, the measurement basis selection, and the detector are uniquely determined.
 More opaque is the distinction between the physical encoding and the logical Hilbert space.
-The physical encoding refers to the light \gls{dof}s used to encode the data, for example, the polarization of light or the particular quantum state (number, coherent, squeezed).
+The physical encoding refers to the light \glspl{dof} used to encode the data, for example, the polarization of light or the particular quantum state (number, coherent, squeezed).
 More often, the technical facilities determine the physical encoding.
 For example, coherent light sources and detectors are mature technologies.
 Yet, many \gls{qkd} protocols assume a more simple quantum system than that of light, which we refer to as the logical Hilbert space.
