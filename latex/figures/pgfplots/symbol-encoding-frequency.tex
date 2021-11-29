@@ -10,25 +10,25 @@
 				group size=1 by 5,
 				xlabels at=edge bottom,
 				xticklabels at=edge bottom,
-				vertical sep=2ex,
+%				vertical sep=2ex,
 			},
 			grid=major,
 			width=\linewidth,
 			height=24ex,
 			xlabel={Frequency $f/f_s$},
 			yticklabels={},
+			ylabel={Rel. PSD (\si{\decibel})},
 			ylabel style={align=center},
 			axis line style={thick},
 			cycle list name=exotic,
 		]
 			\nextgroupplot[
-				title={Relative power spectral density},
+				title={$\alpha[km],x[km]$ encoding symbols},
 				xmin=-4,
 				xmax=4,
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Symbols\\$\alpha[km],x[km]$},
 			]
 			\addplot+[
 				very thick,
@@ -39,12 +39,13 @@
 				no markers,
 			] plot table[col sep=comma] {../../../data/unit-freq-tx-sym.csv};
 			\nextgroupplot[
+				title={$\rho[m],r[m]$ after upsampling $\alpha[km],x[km]$},
 				xmin=-4,
 				xmax=4,
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Upsampling\\$\rho[m],r[m]$},
+%				ylabel={Upsampling\\$\rho[m],r[m]$},
 			]
 			\addplot+[
 				very thick,
@@ -55,12 +56,13 @@
 				no markers,
 			] plot table[col sep=comma] {../../../data/unit-freq-tx-up.csv};
 			\nextgroupplot[
+				title={$\gamma[m],q[m]$ after pulse-shaping $\rho[m],r[m]$},
 				xmin=-4,
 				xmax=4,
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Pulse-shaping\\$\gamma[m],q[m]$},
+%				ylabel={Pulse-shaping\\$\gamma[m],q[m]$},
 			]
 			\addplot+[
 				very thick,
@@ -71,12 +73,13 @@
 				no markers,
 			] plot table[col sep=comma] {../../../data/unit-freq-tx-rrc.csv};
 			\nextgroupplot[
+				title={$\gamma(t),q(t)$ after analog converting $\gamma[m],q[m]$},
 				xmin=-4,
 				xmax=4,
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Analog-conv.\\$\gamma(t),q(t)$},
+				%ylabel={Analog-conv.\\$\gamma(t),q(t)$},
 			]
 			\addplot+[
 				very thick,
@@ -87,12 +90,13 @@
 				no markers,
 			] plot table[col sep=comma] {../../../data/unit-freq-tx-dac.csv};
 			\nextgroupplot[
+				title={$\alpha(t),x(t)$ after anti-aliasing $\gamma(t),q(t)$},
 				xmin=-4,
 				xmax=4,
 				xtick distance=0.5,
 				ymin=-60,
 				ymax=5,
-				ylabel={Anti-aliasing\\$\alpha(t),x(t)$},
+				%ylabel={Anti-aliasing\\$\alpha(t),x(t)$},
 			]
 			\addplot+[
 				very thick,
