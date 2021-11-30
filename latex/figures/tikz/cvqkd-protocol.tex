@@ -9,9 +9,9 @@
 		superblock/.style={draw, very thick, inner sep=8pt},
 	]
 		\node (theo tx info) [block] {Classical information source};
-		\node (theo tx state) [block, right=of theo tx info] {Prepared qubit or boson state};
+		\node (theo tx state) [block, right=of theo tx info] {Prepared tensor-product coherent state};
 		\node (theo channel) [block, right=of theo tx state] {Quantum channel};
-		\node (theo rx state) [block, right=of theo channel] {Received qubit or boson state};
+		\node (theo rx state) [block, right=of theo channel] {Received tensor-product coherent state};
 		\node (theo rx info) [block, right=of theo rx state] {Classical information destination};
 		
 		\draw[-Latex] (theo tx info) -- (theo tx state);
@@ -19,12 +19,12 @@
 		\draw[-Latex] (theo channel) -- (theo rx state);
 		\draw[-Latex] (theo rx state) -- (theo rx info);
 		
-		\node [superblock, label={Theoretical QKD transmission system}, fit=(theo tx info) (theo rx info)] {};
+		\node [superblock, label={Theoretical coherent-state transmission system}, fit=(theo tx info) (theo rx info)] {};
 
 		\node (prac tx info) [block, below=1.5cm of theo tx info] {Classical information source};
-		\node (prac tx state) [block, right=of prac tx info] {Prepared light state};
+		\node (prac tx state) [block, right=of prac tx info] {Continuously-modulated coherent state};
 		\node (prac channel) [block, right=of prac tx state] {Quantum channel};
-		\node (prac rx state) [block, right=of prac channel] {Received light state};
+		\node (prac rx state) [block, right=of prac channel] {Continuously-demodulated coherent state};
 		\node (prac rx info) [block, right=of prac rx state] {Classical information destination};
 		
 		\draw[-Latex] (prac tx info) -- (prac tx state);
@@ -32,6 +32,6 @@
 		\draw[-Latex] (prac channel) -- (prac rx state);
 		\draw[-Latex] (prac rx state) -- (prac rx info);
 		
-		\node [superblock, label={Practical QKD transmission system}, fit=(prac tx info) (prac rx info)] {};
+		\node [superblock, label={Practical coherent-state transmission system}, fit=(prac tx info) (prac rx info)] {};
 	\end{tikzpicture}
 \end{document}
