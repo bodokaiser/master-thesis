@@ -96,16 +96,6 @@ We also see how the pulse-shaping filter shapes the upsampled spectrum, and the 
 \subsection{Upconversion}
 
 We previously constructed the pulse-shaped baseband signals $x(t)$ and $p(t)$ encoding the real respective imaginary part of a complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$.
-For the real-valued signal $x(t)$ with well-defined bandwidth $B_s$, we exploit the complex-conjugate symmetry to write the signal as the real-part of the positive-frequency spectrum, i.e.,
-\begin{equation}
-	x(t)
-	=
-	\int_{-B_s/2}^{+B_s/2}
-	\frac{\dd{\omega}}{2\pi}
-	x(\omega)
-	e^{+i\omega t}
-	.
-\end{equation}
 Shifting the spectrum $x(\omega)$ to the optical domain resembles an upconversion by the optical carrier frequency $\omega_c$.
 \begin{figure}[htb]
 	\centering
@@ -142,49 +132,73 @@ In the frequency representation, we find the upconversion to produce two copies 
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega-\omega_c)
 		e^{+i\omega t+i\vartheta}
-		\\
-		&\qquad+
+		+
 		\frac{1}{2}
 		\int_{-\omega_c-B_s/2}^{-\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega+\omega_c)
 		e^{+i\omega t-i\vartheta}
+		\\
+		&=
+		\frac{1}{2}
+		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
+		\frac{\dd{\omega}}{2\pi}
+		x(\omega-\omega_c)
+		e^{+i\omega t+i\vartheta}
+		-
+		\frac{1}{2}
+		\int_{+\omega_c+B_s/2}^{+\omega_c-B_s/2}
+		\frac{\dd{\omega}}{2\pi}
+		x(-\omega+\omega_c)
+		e^{-i\omega t-i\vartheta}
+		\\
+		&=
+		\frac{1}{2}
+		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
+		\frac{\dd{\omega}}{2\pi}
+		x(\omega-\omega_c)
+		e^{+i\omega t+i\vartheta}
+		+
+		\frac{1}{2}
+		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
+		\frac{\dd{\omega}}{2\pi}
+		x(\omega-\omega_c)^*
+		e^{-i\omega t-i\vartheta}
+		\\
+		&=
+		\Re\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
+		\frac{\dd{\omega}}{2\pi}
+		x(\omega-\omega_c)
+		e^{+i\omega t+i\vartheta}
 		,
 	\end{split}
 	\label{eq:upconversion_real}
 \end{equation}
-wherein one copy is centered at the negative carrier frequency $-\omega_c$ and the other copy is centered at the positive carrier frequency $+\omega_c$, see also \Cref{fig:spectrum_upconversion_single}.
+where we used the conjugate symmetry of the spectrum, $x(-\omega)=x(\omega)^*$, representing a real-valued signal in the time domain, for the last step.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/spectrum-upconversion-single}
 	\caption{Power spectrum illustrating upconversion of the real-valued signal $x(t)$ centered at zero frequency $\omega=0$ (solid spectrum) to the carrier frequencies $\pm\omega_c$ (dashed spectra).}\label{fig:spectrum_upconversion_single}
 \end{figure}
+Graphically, the upconversion creates two copies of the symmetric baseband spectrum around the positive and negative carrier frequencies $\pm\omega_c$, as illustrated in \Cref{fig:spectrum_upconversion_single}.
+
 \Cref{fig:upconversion_dual} shows how to extend the single-quadrature upconversion of \Cref{fig:upconversion_single} to two quadratures by splitting a single \gls{lo} with relative phase shift of $\pi/2$.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/upconversion-dual}
-	\caption{Block diagram illustrating upconversion of two real-valued baseband signals, $x(t)$ and $p(t)$, to a real-valued passband signal $s(t)$. A \gls{lo} running at the upconversion frequency $\omega_c$ is split into two branches with a relative phase shift between the branches of $\pi/2$. One branch is mixed with the baseband signal $x(t)$, the other is mixed with $p(t)$. The output of each mixer is filtered to remove harmonics and then added to yield the upconverted signal $s(t)$.}\label{fig:upconversion_dual}
+	\caption{Block diagram illustrating upconversion of two real-valued baseband signals, $x(t)$ and $p(t)$, to a real-valued passband signal $s(t)$. The \gls{lo} signal $\sqrt{2}\cos(\omega_ct+\vartheta)$ is split into two branches with a relative phase shift between the branches of $\pi/2$. One branch is mixed with the baseband signal $x(t)$, the other is mixed with $p(t)$. The output of each mixer is filtered to remove harmonics and then added to yield the upconverted signal $s(t)$.}\label{fig:upconversion_dual}
 \end{figure}
-The filtered output of the lower branch mixer is obtained by replacing $\vartheta\to\varepsilon+\pi/2$ and $x(t)\to p(t)$ in \cref{eq:upconversion_real}, i.e.,
+The filtered output of the lower branch mixer is obtained by replacing $\vartheta\to\vartheta+\pi/2$ and $x(t)\to p(t)$ in \cref{eq:upconversion_real}, i.e.,
 \begin{equation}
-	\begin{split}
-		p(t)
-		\sin(\omega_ct+\vartheta)
-		&=
-		\frac{i}{2}
-		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
-		\frac{\dd{\omega}}{2\pi}
-		p(\omega-\omega_c)
-		e^{+i\omega t+i\vartheta}
-		\\
-		&\qquad+
-		\frac{i}{2}
-		\int_{-\omega_c-B_s/2}^{-\omega_c+B_s/2}
-		\frac{\dd{\omega}}{2\pi}
-		p(\omega+\omega_c)
-		e^{+i\omega t-i\vartheta}
-		.
-	\end{split}
+	p(t)
+	\sin(\omega_ct+\vartheta)
+	=
+	\Im
+	\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
+	\frac{\dd{\omega}}{2\pi}
+	p(\omega-\omega_c)
+	e^{+i\omega t+i\vartheta}
+	.
 	\label{eq:upconversion_real}
 \end{equation}
 Adding both upconverted signals yields
@@ -194,54 +208,100 @@ Adding both upconverted signals yields
 		&=
 		x(t)
 		\cos(\omega_ct+\vartheta)
-		+
+		-
 		p(t)
 		\sin(\omega_ct+\vartheta)
 		\\
 		&=
+		\Re
 		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
-		\alpha(\omega-\omega_c)
+		x(\omega-\omega_c)
+		e^{+i\omega t+i\vartheta}
+		-
+		\Im
+		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
+		\frac{\dd{\omega}}{2\pi}
+		p(\omega-\omega_c)
 		e^{+i\omega t+i\vartheta}
 		\\
-		&\qquad+
-		\int_{-\omega_c-B_s/2}^{-\omega_c+B_s/2}
+		&=
+		\Re
+		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
-		\alpha(\omega-\omega_c)
-		e^{+i\omega t-i\vartheta}
+		\left[
+			x(\omega-\omega_c)
+			+
+			ip(\omega-\omega_c)
+		\right]
+		e^{+i\omega t+i\vartheta}
 		,
 	\end{split}
 	\label{eq:upconversion_dual}
 \end{equation}
-and suggests introducing the complex-valued baseband signal
+where we used $\Im(z)=-\Re(iz)$ in the last step.
+The final result of the dual-quadrature upconversion, \cref{eq:upconversion_dual}, suggests defining the complex baseband
 \begin{equation}
 	\alpha(\omega)
 	=
-	\frac{
-		x(\omega)
-		+
-		ip(\omega)
-	}{2}
+	x(\omega)
+	+
+	ip(\omega)
+	\label{eq:upconversion_baseband}
 	.
 \end{equation}
-The power spectrum illustrating the dual-quadrature upconversion in \Cref{fig:spectrum_upconversion_dual} is similar to the single-quadrature upconversion in \Cref{fig:spectrum_upconversion_single} with the difference that the baseband spectrum is not anymore symmetric around the carrier frequency.
+Expressing the spectrum in \cref{eq:upconversion_dual} in terms of the complex baseband \cref{eq:upconversion_baseband}
+\begin{equation}
+	\begin{split}
+		\Re
+		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
+		\frac{\dd{\omega}}{2\pi}
+		\alpha(\omega-\omega_c)
+		e^{+i\omega t+i\vartheta}
+		&=
+		\Re
+		\int_{-B_s/2}^{+B_s/2}
+		\frac{\dd{\omega}}{2\pi}
+		\alpha(\omega)
+		e^{+i\omega t}
+		e^{+i(\omega_c t+\vartheta)}
+		\\
+		&=
+		\Re
+		\left[
+			\alpha(t)
+			e^{+i(\omega_c t+\vartheta)}
+		\right]
+		\\
+		&=
+		\Re
+		\left[
+			x(t)
+			e^{+i(\omega_c t+\vartheta)}
+		\right]
+		+
+		\Re
+		\left[
+			ip(t)
+			e^{+i(\omega_c t+\vartheta)}
+		\right]
+		\\
+		&=
+		x(t)
+		\cos(\omega_c t+\vartheta)
+		-
+		p(t)
+		\sin(\omega_c t+\vartheta)
+		,
+	\end{split}
+\end{equation}
+demonstrating equivalence between the baseband and passband representations.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/spectrum-upconversion-dual}
 	\caption{Power spectrum illustrating dual-quadrature upconversion of the complex-valued signal $\alpha(t)$ centered at zero frequency $\omega=0$ (solid spectrum) to the carrier frequencies $\pm\omega_c$ (dashed spectra).}\label{fig:spectrum_upconversion_dual}
 \end{figure}
-The complex-valued baseband signal $\alpha(t)$ lets us write the dual-quadrature upconversion as the multiplication with a complex exponential, i.e.,
-\begin{equation}
-	s(t)
-	=
-	\Re\left\{
-		\alpha(t)
-		e^{-i\omega_ct}
-	\right\}
-	.
-	\label{eq:real_complex_passband}
-\end{equation}
-One advantage of describing a real by a complex signal is the simpler handling of the complex exponential function compared to the trigonometric functions.\footnote{However, one should always keep in mind that all physical signals are real-valued.}
+The power spectrum illustrating the dual-quadrature upconversion in \Cref{fig:spectrum_upconversion_dual} is similar to the single-quadrature upconversion in \Cref{fig:spectrum_upconversion_single} with the difference that the baseband spectrum is not anymore symmetric around the carrier frequency.
 
 Another advantage of the complex representation is that the coherent states also use it.
 Indeed, if we identify the mixers in the upconversion diagram, \Cref{fig:upconversion_dual}, with \glspl{mzm}, we find ourselves with the electro-optical \gls{iqm} for which we derived a coherent state transform, \cref{eq:iqm_modulation}.

@@ -232,29 +232,44 @@ If we now assume the input signal to be from the coherent-state transmitter $\ke
 	&=
 	\Re
 	\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
-	\beta(\omega-\omega_i)
-	e^{+i(\omega t+\vartheta)}
+	\beta(\omega-\omega_c+\omega_l)
+	e^{+i(\omega t+\theta)}
 	\label{eq:receiver_demod_real}
 	\\
 	v(t)
 	&=
 	\Im
 	\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
-	\beta(\omega-\omega_i)
-	e^{+i(\omega t+\vartheta)}
+	\beta(\omega-\omega_c+\omega_l)
+	e^{+i(\omega t+\theta)}
 	\label{eq:receiver_demod_imag}
 	,
 \end{align}
-where we defined the intermediate frequency as the difference between the transmitter- and receiver-laser frequency
+wherein $\theta$ accounts for the phases of the up- and downconversion \glspl{lo}.
+We define the the intermediate frequency as the difference between the transmitter and receiver \glspl{lo}, i.e.,
 \begin{equation}
 	\omega_i
 	=
-	\omega_c-\omega_l
+	\abs{\omega_c-\omega_l}
 	<
 	B_d/2
-	.
+	,
 \end{equation}
-If the intermediate frequency is zero, $\omega_i=0$, we perform homodyning, otherwise, heterodyning.
+and distinguish between homodyning for zero intermediate frequency $\omega_i=0$, and otherwise, heterodyning $\omega_i\neq 0$.
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/tikz/spectrum-heterodyning}
+	\caption{Power spectrum illustrating heterodyne detection. The passband signal with carrier frequency $\omega_c$ and bandwidth $B_s$ (dashed) is downconverted with the \gls{lo} frequency $\omega_l>\omega_c$. The downconverted spectrum is measured with bandwidth $B_d$ (solid), which contains the image band (dotted) from the right side of the \gls{lo}.}\label{fig:spectrum_heterodyning}
+\end{figure}
+In heterodyning, we downconvert the passband signal at $\omega_c$ to an intermediate frequency $\omega_i$.
+
+
+The negative frequencies collapse onto the positive frequencies by being mirrored around zero frequency $\omega=0$.
+In \Cref{fig:spectrum_heterodyning}, the left spectrum at $\omega_l$ (dashed) is mirrored 
+
+\Cref{fig:spectrum_heterodyning} shows how the frequencies left of the $\omega_l$ fold onto the positive frequencies.
+
+
 Furthermore, we distinguish between single- and dual-quadrature homodyning, depending if we perform single- or dual- quadrature downconversion.
 If the detector bandwidth is large enough to cover the baseband signal at the intermediate frequency, we can resolve both quadratures of the incoming signal with heterodyning and single-quadrature downconversion.
 \begin{table}[htb]
@@ -275,11 +290,7 @@ If the detector bandwidth is large enough to cover the baseband signal at the in
 \end{table}
 \Cref{tab:receivers} summarizes the characteristics between the single and dual homodyne and the heterodyne receiver schemes.
 A strong advantage of the heterodyne receiver design is that both quadratures can be resolved with a single balanced detector, keeping the optical complexity low.
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/tikz/spectrum-heterodyning}
-	\caption{Power spectrum illustrating heterodyne detection. The passband signal with carrier frequency $\omega_c$ and bandwidth $B_s$ (dashed) is downconverted with the \gls{lo} frequency $\omega_l>\omega_c$. The downconverted spectrum is measured with bandwidth $B_d$ (solid), which contains the image band (dotted) from the right side of the \gls{lo}.}\label{fig:spectrum_heterodyning}
-\end{figure}
+
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/spectrum-homodyning}
