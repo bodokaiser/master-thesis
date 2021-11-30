@@ -173,7 +173,7 @@ Linear functionals share many convenient properties with ordinary functions and 
 In axiomatic quantum field theory, the quantum field operators are precisely defined as operator-valued tempered distributions mapping from the space of smearing or test functions $\mathcal{S}(\mathbb{R}^4)$ to the the set of operators defined on the corresponding Hilbert space $\mathcal{O}(\mathcal{H})$~\cite[p.~56]{Haag2012}.\footnote{A criticism of this approach is that the space of test functions covers only a subset of the Hilbert space.}
 A typical functional space for smearing functions is the Schwartz space, a subset of the space of square-integrable functions $L^2$, which rapidly fall off at infinity, a property which we exploit for partial integration with vanishing boundary terms of the action integral.\footnote{Typical Schwartz functions are Gaussian functions multiplied with a monomial, e.g., $x^ne^{-a\norm{x}^2}$ where $n\in\mathbb{N}_0$ and $a\in\mathbb{R}_+$.}
 
-Let us reinterpret the (positive frequency) field operator with this mathematical background by considering its action on a smearing function, i.e.,
+Let us reinterpret the positive-frequency field operator with this mathematical background by considering its action on a smearing function, i.e.,
 \begin{equation}
 	\hat{A}^{(+)}[f]
 	=
@@ -182,7 +182,7 @@ Let us reinterpret the (positive frequency) field operator with this mathematica
 	\hat{A}^{(+)}(t,\vb{x})
 	=
 	\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
-	f\left(\omega(\vb{p}),\vb{p}\right)
+	f\!\left(\omega(\vb{p}),\vb{p}\right)
 	\hat{a}^\dagger(\vb{p})
 \end{equation}
 where we inserted the plane-wave expansion for the field and the spacetime Fourier transform for the smearing function and used the orthogonality of the Fourier modes in the second equation.
@@ -234,7 +234,7 @@ The smeared state $\ket{1_f}$ is not an eigenstate of the energy and momentum op
 	&=
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\omega(\vb{p})
-	\abs*{f\left(\omega(\vb{p}),\vb{p}\right)}^2
+	\abs*{f\!\left(\omega(\vb{p}),\vb{p}\right)}^2
 	\\
 	\bra{1_f}
 	\vu{P}
@@ -242,7 +242,7 @@ The smeared state $\ket{1_f}$ is not an eigenstate of the energy and momentum op
 	&=
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\vb{p}
-	\abs*{f\left(\omega(\vb{p}),\vb{p}\right)}^2
+	\abs*{f\!\left(\omega(\vb{p}),\vb{p}\right)}^2
 \end{align}
 suggesting that the smearing function has the physical interpretation of a frequency spectrum.
 
@@ -375,7 +375,7 @@ and has energy and momentum expectation values
 	n
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\omega(\vb{p})
-	\abs*{\frac{f\left(\omega(\vb{q}),\vb{q}\right)}{\sqrt{2\omega(\vb{p})}}}^2
+	\abs*{\frac{f\!\left(\omega(\vb{q}),\vb{q}\right)}{\sqrt{2\omega(\vb{p})}}}^2
 	\\
 	\bra{n_f}
 	\vu{P}
@@ -384,7 +384,7 @@ and has energy and momentum expectation values
 	n
 	\int\frac{\dd[3]{p}}{(2\pi)^3}
 	\vb{p}
-	\abs*{\frac{f\left(\omega(\vb{q}),\vb{q}\right)}{\sqrt{2\omega(\vb{p})}}}^2
+	\abs*{\frac{f\!\left(\omega(\vb{q}),\vb{q}\right)}{\sqrt{2\omega(\vb{p})}}}^2
 	.
 \end{align}
 The expectation value and variance of the electric field operator are
@@ -720,6 +720,20 @@ Coherent states are non-orthogonal, i.e.,
 		.
 	\end{split}
 \end{equation}
+The inner product of a coherent state with a number state yields
+\begin{equation}
+	\braket{n_f}{\alpha}
+	=
+	\frac{1}{\sqrt{n!}}
+	e^{-\overline{n}/2}
+	\left(
+		\int\frac{\dd{p}}{(2\pi)^32\omega(\vb{p})}
+		f\!\left(\omega(\vb{p}),\vb{p}\right)^*
+		\alpha(\vb{p})
+	\right)^n
+	\label{eq:coherent_state_inner_number}
+	.
+\end{equation}
 The coherent state is an eigenstate to the annihilation operator
 \begin{equation}
 	\hat{a}(\vb{p})
@@ -728,8 +742,21 @@ The coherent state is an eigenstate to the annihilation operator
 	\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
 	\ket{\alpha}
 	\label{eq:coherent_state_annihilation}
+	,
 \end{equation}
-which makes it simple to derive the expectation value of the Hamiltonian operator
+and therefore also an eigenstate of the negative-frequency Maxwell field operator
+\begin{equation}
+	\hat{A}(t,\vb{x})
+	\ket{\alpha}
+	=
+	\int\frac{\dd[3]{p}}{(2\pi)^32\omega(\vb{p})}
+	\alpha(\vb{p})
+	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+	\ket{\alpha}
+	\label{eq:coherent_state_eigenstate_maxwell}
+	.
+\end{equation}
+The coherent state being an eigenstate of the annihilation operator makes it easy to derive most expectation values, for instance, for the Hamiltonian operator
 \begin{equation}
 	\bra{\alpha}
 	\hat{H}
@@ -787,7 +814,6 @@ The expectation value of the electric field operator reads
 		\ket{\alpha}
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\sqrt{2\omega(\vb{p})}
 		\Im\left\{
 			\alpha(\vb{p})
 			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
@@ -795,9 +821,8 @@ The expectation value of the electric field operator reads
 		\\
 		&=
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
-		\sqrt{2\omega(\vb{p})}
 		\abs*{\alpha(\vb{p})}
-		\sin\left(
+		\sin\!\left(
 			\vb{p}\vdot\vb{x}
 			-
 			\omega(\vb{p})t
@@ -808,19 +833,35 @@ The expectation value of the electric field operator reads
 	\label{eq:coherent_state_electric_expval}
 \end{equation}
 where we used the polar representation $\alpha(\vb{p})=\abs*{\alpha(\vb{p})}e^{i\varphi}$.
-The inner product of a coherent state with a number state yields
+The variance of the electric field operator,
 \begin{equation}
-	\braket{n_f}{\alpha}
-	=
-	\frac{1}{\sqrt{n!}}
-	e^{-\overline{n}/2}
+	\bra{\alpha}
 	\left(
-		\int\frac{\dd{p}}{(2\pi)^32\omega(\vb{p})}
-		f\left(\omega(\vb{p}),\vb{p}\right)^*
-		\alpha(\vb{p})
-	\right)^n
-	\label{eq:coherent_state_inner_number}
-	.
+		\Delta\hat{E}(t,\vb{x})
+	\right)^2
+	\ket{\alpha}
+	=
+	\frac{1}{2}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\omega(\vb{p})
+	,
+	\label{eq:coherent_state_electric_variance}
 \end{equation}
+is equal to the contribution from the vacuum fluctuations.
+The coherent state is also an eigenstate of the negative-frequency electric field operator
+\begin{equation}
+	\hat{E}^{(-)}(t,\vb{x})
+	\ket{\alpha}
+	=
+	\frac{1}{2i}
+	\int\frac{\dd[3]{p}}{(2\pi)^3}
+	\alpha(\vb{p})
+	e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+	\ket{\alpha}
+	\label{eq:coherent_state_eigenstate_electric}
+	,
+\end{equation}
+which appears similar to a Fourier transform.
+
 We have derived the generalized coherent state from the interaction of the Maxwell field with a classical current where we found the time-evolution operator to yield the displacement operator.
 The generalized coherent state and displacement operators share the same properties as their single-mode quantum optics counterparts which is not too surprising given that the modes are independent of another.

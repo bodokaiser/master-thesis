@@ -1,4 +1,4 @@
-\chapter{Supplementary theorems}
+\chapter{Supplemental theorems to Maxwell field theory}
 
 In the present appendix, we provide supplementary theorems to support our claims of \Cref{ch:light}.
 As the following excerpts highlight, many proofs reduce to exercising operator algebra, which is rather verbose than interesting.
@@ -174,7 +174,7 @@ For the mean and variance of the electric field operator, we need the following 
 \begin{lemma}\label{th:comm_electric_field_equal}
 	Let $\hat{E}^{(+)}(t,\vb{x})$ and $\hat{E}^{(-)}(t,\vb{x})$ be the positive and negative frequency part of the electric field operator, then their commutator equals
 	\begin{equation}
-		\comm{\hat{E}^{(+)}(t,\vb{x})}{\hat{E}^{(-)}(t,\vb{x})}
+		\comm{\hat{E}^{(-)}(t,\vb{x})}{\hat{E}^{(+)}(t,\vb{x})}
 		=
 		\frac{1}{2}
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
@@ -187,7 +187,7 @@ For the mean and variance of the electric field operator, we need the following 
 	Inserting the mode expansion of the positive and negative frequency operators and using the \gls{ccr} of the annihilation and creation operator, we find
 	\begin{equation}
 		\begin{split}
-			\comm{\hat{E}^{(+)}(t,\vb{x})}{\hat{E}^{(-)}(t,\vb{x})}
+			\comm{\hat{E}^{(-)}(t,\vb{x})}{\hat{E}^{(+)}(t,\vb{x})}
 			&=
 			\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			\omega(\vb{p})
@@ -346,11 +346,11 @@ We now employ \cref{th:comm_electric_field_equal} to find the mean and variance 
 Unlike in single-mode quantum optics, the variance of the electric field of a number state contains a contribution from the wave function.
 Let us now find the mean and variance of the electric field operator with respect to a coherent state.
 \begin{theorem}
-	Let $\ket{\alpha}$ be a coherent state and $\hat{E}(t,\vb{x})$ be the electric field operator, then its expectation value is
+	Let $\ket{\alpha}$ be a coherent state and $\hat{E}(t,\vb{x})$ be the electric field operator, then the electric field's mean evaluates to
 	\begin{equation}
-		\bra{\alpha(t,\vb{x})}
+		\bra{\alpha}
 		\hat{E}(t,\vb{x})
-		\ket{\alpha(t,\vb{x})}
+		\ket{\alpha}
 		=
 		\frac{i}{2}
 		\int\frac{\dd[3]{p}}{(2\pi)^3}
@@ -366,57 +366,57 @@ Let us now find the mean and variance of the electric field operator with respec
 \begin{proof}
 	Inserting the positive and negative parts of the electric field operator
 	\begin{equation}
-		\bra{\alpha(t,\vb{x})}
+		\bra{\alpha}
 		\hat{E}(t,\vb{x})
-		\ket{\alpha(t,\vb{x})}
+		\ket{\alpha}
 		=
-		\bra{\alpha(t,\vb{x})}
+		\bra{\alpha}
 		\hat{E}^{(-)}(t,\vb{x})
-		\ket{\alpha(t,\vb{x})}
+		\ket{\alpha}
 		+
-		\bra{\alpha(t,\vb{x})}
+		\bra{\alpha}
 		\hat{E}^{(+)}(t,\vb{x})
-		\ket{\alpha(t,\vb{x})}
+		\ket{\alpha}
 		,
 	\end{equation}
 	we evaluate the first term using that the coherent state is eigenstate of the annihilation operator, \cref{eq:coherent_state_annihilation},
 	\begin{equation*}
 		\begin{split}
 			\hat{E}^{(-)}(t,\vb{x})
-			\ket{\alpha(t,\vb{x})}
+			\ket{\alpha}
 			&=
 			-i\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			\omega(\vb{p})
 			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
 			\hat{a}(\vb{p})
-			\ket{\alpha(t,\vb{x})}
+			\ket{\alpha}
 			\\
 			&=
 			-i\int\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
 			\omega(\vb{p})
 			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
-			\frac{\alpha\left(\omega(\vb{p}),\vb{p}\right)}{\sqrt{2\omega(\vb{p})}}
-			\ket{\alpha(t,\vb{x})}
+			\frac{\alpha(\vb{p})}{\sqrt{2\omega(\vb{p})}}
+			\ket{\alpha}
 			\\
 			&=
 			-\frac{i}{2}
 			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			\alpha(\vb{p})
 			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
-			\ket{\alpha(t,\vb{x})}
+			\ket{\alpha}
 			.
 		\end{split}
 	\end{equation*}
 	Using the normalization of the coherent states the expectation value equals
 	\begin{equation}
 		\begin{split}
-			\bra{\alpha(t,\vb{x})}
+			\bra{\alpha}
 			\hat{E}(t,\vb{x})
-			\ket{\alpha(t,\vb{x})}
+			\ket{\alpha}
 			&=
 			\frac{1}{2i}
 			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			\alpha(\vb{p})
 			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
 			-
 			\text{c.c.}
@@ -424,10 +424,252 @@ Let us now find the mean and variance of the electric field operator with respec
 			&=
 			\Im
 			\int\frac{\dd[3]{p}}{(2\pi)^3}
-			\alpha\left(\omega(\vb{p}),\vb{p}\right)
+			\alpha(\vb{p})
 			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
 			,
 		\end{split}
 	\end{equation}
 	resembling a superposition of plane-waves in three dimensions.
+\end{proof}
+\begin{theorem}
+	Let $\ket{\alpha}$ be a coherent state and $\hat{E}(t,\vb{x})$ be the electric field operator, then the electric field's variance evaluates to
+	\begin{equation}
+		\bra{\alpha}
+		\left(\Delta\hat{E}(t,\vb{x})\right)^2
+		\ket{\alpha}
+		=
+		\frac{1}{2}
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\omega(\vb{p})
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	We expand the square of the electric field operator	and invoke \cref{th:comm_electric_field_equal} to replace one of the mixed-frequency terms, i.e.,
+	\begin{equation}
+		\begin{split}
+			\hat{E}(t,\vb{x})^2
+			&=
+			\left[
+				\hat{E}^{(+)}(t,\vb{x})
+				+
+				\hat{E}^{(-)}(t,\vb{x})
+			\right]^2
+			\\
+			&=
+			\hat{E}^{(+)}(t,\vb{x})^2
+			+
+			\hat{E}^{(-)}(t,\vb{x})^2
+			+
+			\hat{E}^{(+)}(t,\vb{x})
+			\hat{E}^{(-)}(t,\vb{x})
+			+
+			\hat{E}^{(-)}(t,\vb{x})
+			\hat{E}^{(+)}(t,\vb{x})
+			\\
+			&=
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			+
+			\hat{E}^{(+)}(t,\vb{x})^2
+			+
+			\hat{E}^{(-)}(t,\vb{x})^2
+			+
+			2
+			\hat{E}^{(+)}(t,\vb{x})
+			\hat{E}^{(-)}(t,\vb{x})
+			.
+		\end{split}
+	\end{equation}
+	For the mixed-frequency term, we find
+	\begin{equation}
+		\begin{split}
+			\bra{\alpha}
+			\hat{E}^{(+)}(t,\vb{x})
+			\hat{E}^{(-)}(t,\vb{x})
+			\ket{\alpha}
+			&=
+			\bra{\alpha}
+			\left(
+				+i
+				\int\frac{\dd[3]{p}}{(2\pi)^2\sqrt{2\omega(\vb{p})}}
+				\omega(\vb{p})
+				\hat{a}^\dagger(\vb{p})
+				e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+			\right)
+			\\
+			&\qquad\times
+			\left(
+				-i
+				\int\frac{\dd[3]{q}}{(2\pi)^2\sqrt{2\omega(\vb{q})}}
+				\omega(\vb{q})
+				\hat{a}(\vb{q})
+				e^{-i\omega(\vb{q})t+i\vb{q}\vdot\vb{x}}
+			\right)
+			\ket{\alpha}
+			\\
+			&=
+			\bra{\alpha}
+			\left(
+				+\frac{i}{2}
+				\int\frac{\dd[3]{p}}{(2\pi)^2}
+				\alpha(\vb{p})^*
+				e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+			\right)
+			\\
+			&\qquad\times
+			\left(
+				-\frac{i}{2}
+				\int\frac{\dd[3]{p}}{(2\pi)^2}
+				\alpha(\vb{p})
+				e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+			\right)
+			\ket{\alpha}
+			\\
+			&=
+			\frac{1}{4}
+			\abs*{
+				\int\frac{\dd[3]{p}}{(2\pi)^2}
+				\alpha(\vb{p})
+				e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+			}^2
+			.
+		\end{split}
+	\end{equation}
+	For the positive-frequency term, we find
+	\begin{equation}
+		\begin{split}
+			\bra{\alpha}
+			\hat{E}^{(+)}(t,\vb{x})^2
+			\ket{\alpha}
+			&=
+			\bra{\alpha}
+			\left(
+				+
+				\frac{i}{2}
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\alpha(\vb{p})^*
+				e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+			\right)^2
+			\ket{\alpha}
+			\\
+			&=
+			-
+			\frac{1}{4}
+			\left(
+				\int\frac{\dd[3]{p}}{(2\pi)^3}
+				\alpha(\vb{p})^*
+				e^{+i\omega(\vb{p})t-i\vb{p}\vdot\vb{x}}
+			\right)^2
+			,
+		\end{split}
+	\end{equation}
+	and for the negative-frequency term, we find
+	\begin{equation}
+		\bra{\alpha}
+		\hat{E}^{(+)}(t,\vb{x})^2
+		\ket{\alpha}
+		=
+		-
+		\frac{1}{4}
+		\left(
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\alpha(\vb{p})
+			e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}
+		\right)^2
+		.
+	\end{equation}
+	We now define
+	\begin{equation}
+		z(t,\vb{x})
+		=
+		\int\frac{\dd[3]{p}}{(2\pi)^3}
+		\alpha(\vb{p})
+		e^{-i\omega(\vb{p})t+i\vb{p}\vdot\vb{x}}		
+	\end{equation}
+	and find for the second moment
+	\begin{equation}
+		\begin{split}
+			\bra{\alpha}
+			\hat{E}(t,\vb{x})^2
+			\ket{\alpha}
+			&=
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			+
+			\frac{1}{4}
+			\left[
+				2\abs*{z(t,\vb{x})}^2
+				-
+				z(t,\vb{x})^2
+				-
+				\left(z(t,\vb{x})^*\right)^2
+			\right]
+			\\
+			&=
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			+
+			\frac{1}{2}
+			\abs*{z(t,\vb{x})}^2
+			.
+		\end{split}
+	\end{equation}
+	For the square of the first moment, we find
+	\begin{equation}
+		\begin{split}
+			\bra{\alpha}
+			\hat{E}(t,\vb{x})
+			\ket{\alpha}^2
+			&=
+			\left[
+				\frac{i}{2}
+				z(t,\vb{x})
+				-
+				\frac{i}{2}
+				z(t,\vb{x})^*
+			\right]^2
+			\\
+			&=
+			-
+			\frac{1}{4}
+			\left[
+				z(t,\vb{x})^2
+				+
+				\left(z(t,\vb{x})^*\right)^2
+				-
+				2
+				\abs*{z(t,\vb{x})}^2
+			\right]
+			\\
+			&=
+			+
+			\frac{1}{2}
+			\abs*{z(t,\vb{x})}^2
+		\end{split}
+	\end{equation}
+	such that the total variance is equal to
+	\begin{equation}
+		\begin{split}
+			\bra{\alpha}
+			\left(\Delta\hat{E}(t,\vb{x})\right)^2
+			\ket{\alpha}
+			&=
+			\bra{\alpha}
+			\hat{E}(t,\vb{x})^2
+			\ket{\alpha}
+			-
+			\bra{\alpha}
+			\hat{E}(t,\vb{x})
+			\ket{\alpha}^2
+			\\
+			&=
+			\frac{1}{2}
+			\int\frac{\dd[3]{p}}{(2\pi)^3}
+			\omega(\vb{p})
+			.
+		\end{split}
+	\end{equation}
 \end{proof}
