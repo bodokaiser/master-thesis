@@ -199,36 +199,29 @@ Adding both upconverted signals yields
 		\sin(\omega_ct+\vartheta)
 		\\
 		&=
-		\frac{1}{2}
 		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
-		\left[
-			x(\omega-\omega_c)
-			+
-			ip(\omega-\omega_c)
-		\right]
+		\alpha(\omega-\omega_c)
 		e^{+i\omega t+i\vartheta}
 		\\
 		&\qquad+
-		\frac{1}{2}
 		\int_{-\omega_c-B_s/2}^{-\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
-		\left[
-			x(\omega+\omega_c)
-			+
-			ip(\omega+\omega_c)
-		\right]
+		\alpha(\omega-\omega_c)
 		e^{+i\omega t-i\vartheta}
 		,
 	\end{split}
+	\label{eq:upconversion_dual}
 \end{equation}
 and suggests introducing the complex-valued baseband signal
 \begin{equation}
 	\alpha(\omega)
 	=
-	x(\omega)
-	+
-	ip(\omega)
+	\frac{
+		x(\omega)
+		+
+		ip(\omega)
+	}{2}
 	.
 \end{equation}
 The power spectrum illustrating the dual-quadrature upconversion in \Cref{fig:spectrum_upconversion_dual} is similar to the single-quadrature upconversion in \Cref{fig:spectrum_upconversion_single} with the difference that the baseband spectrum is not anymore symmetric around the carrier frequency.

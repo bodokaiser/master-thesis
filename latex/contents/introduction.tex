@@ -78,7 +78,7 @@ Superimposing carrier signals with frequencies sufficiently spaced apart allows 
 \begin{figure}[ht]
 	\centering
 	\includegraphics{figures/tikz/spectrum-upconversion}
-	\caption{Power spectrum comprising an information-bearing signal with bandwidth $B_s$ at zero frequency, $\omega=0$, a carrier signal at a carrier frequency much greater than the bandwidth, $\omega_c\gg B$. The upconverted information-bearing spectrum is indicated by dashed lines.}\label{fig:spectrum_upconversion}
+	\caption{Power spectrum comprising an information-bearing signal with bandwidth $B_s$ at zero frequency, $\omega=0$, a carrier signal at a carrier frequency much greater than the bandwidth, $\omega_c\gg B_s$. The upconverted information-bearing spectrum is indicated by dashed lines.}\label{fig:spectrum_upconversion}
 \end{figure}
 Affiliating an information-bearing signal with a carrier is implemented by modulating the information-bearing signal onto the carrier signal.
 On a more abstract level, the power spectrum of the information-bearing signal is shifted by the carrier frequency, as illustrated in \Cref{fig:spectrum_upconversion}.
@@ -87,7 +87,7 @@ At the same time, the spectrum of the information-bearing signal modulated onto 
 \begin{figure}[ht]
 	\centering
 	\includegraphics{figures/tikz/spectrum-downconversion}
-	\caption{Power spectrum comprising a modulated carrier signal at carrier frequency $\omega_c$ with bandwidth $B_d$, a \gls{lo} signal with frequency slightly above the carrier frequency, $\omega_l>\omega_c$. The downconverted modulated-carrier spectra are indicated by dashed lines, lower band at $\omega_l-\omega_c>0$, and dotted lines, upper band at $\omega_l+\omega_c$. The detector bandwidth is indicated by $B_d>\omega_l-\omega_c$.}\label{fig:spectrum_downconversion}
+	\caption{Power spectrum comprising a modulated carrier signal at carrier frequency $\omega_c$ with bandwidth $B_s$, a \gls{lo} signal with frequency slightly above the carrier frequency, $\omega_l>\omega_c$. The downconverted modulated-carrier spectra are indicated by dashed lines, lower band at $\omega_l-\omega_c>0$, and dotted lines, upper band at $\omega_l+\omega_c$. The detector bandwidth is indicated by $B_d>\omega_l-\omega_c$.}\label{fig:spectrum_downconversion}
 \end{figure}
 As it is technical unfeasible to measure the modulated carrier directly at the carrier frequency, we demodulate or downconvert the information-bearing signal from the carrier by mixing the received signal with a \gls{lo} at frequency $\omega_l$, producing a low- and high-frequency signal at $\omega_l-\omega_c$ respectively $\omega_l+\omega_c$, as depicted in \Cref{fig:spectrum_downconversion}.
 For a useful measurement, the \gls{lo} frequency $\omega_l$ should be chosen such that the detector bandwidth $B_d$ covers the complete low-frequency signal, i.e., $\omega_l-\omega_c+B_s/2<B_d$.
