@@ -2,6 +2,8 @@
 
 % We follow mostly Mandel & Wolf supplemented by Knight and Vogel.
 
+
+
 \subsection{Photoelectric effect}
 
 The photoelectric effect describes the emission of electrons from an illuminated material.
@@ -251,8 +253,8 @@ PD1 and PD2 are both reverse biased to reduce the response time and connected to
 			\eta
 			\conv
 			2\Re\left[
-				\alpha_s^*
-				\alpha_l
+				\alpha_s
+				\alpha_l^*
 			\right]
 		\right)(t)
 		,
@@ -260,38 +262,38 @@ PD1 and PD2 are both reverse biased to reduce the response time and connected to
 	\label{eq:detector_balanced_photocurrent}
 \end{equation}
 wherein we used the linearity of the convolution and inserted \cref{eq:detector_balanced_amplitudes}.
-For a meaningful measurement the \gls{lo} must be a narrow linewidth laser for which we can write
+We rewrite the product of the input and \gls{lo} signal to equal
 \begin{equation}
-	\alpha_l(t)
-	=
-	g(t)
-	e^{-i(\omega_lt+\vartheta)}
-	\label{eq:detector_balanced_lo}
+	\begin{split}
+		\alpha_s(t)
+		\alpha_l(t)^*
+		=
+		\alpha(t)
+		e^{-i(\omega_lt-\vartheta)}
+		&=
+		\int_{-\infty}^{+\infty}
+		\frac{\dd{\omega}}{2\pi}
+		\alpha(\omega)
+		e^{+i\omega t}
+		e^{-i(\omega_l t-\vartheta)}
+		\\
+		&=
+		\int_{-\infty}^{+\infty}
+		\frac{\dd{\omega}}{2\pi}
+		\alpha(\omega+\omega_l)
+		e^{+i(\omega t+\vartheta)}
+		,
+	\end{split}
+	\label{eq:detector_balanced_signal_product}
 \end{equation}
-with $g(t)$ encoding the linewidth profile\footnote{For instance, $g(t)\propto e^{-\gamma t/2}$ for a Lorentzian profile, see Ref.~\cite{Demtroeder2014}.}.
-We absorb the linewidth profile into the signal amplitude by defining
+wherein we redefined the signal amplitude
 \begin{equation}
 	\alpha(t)
 	=
-	g(t)^*
 	\alpha_s(t)
+	g(t)^*
 \end{equation}
-and rewrite the product of the signal with the \gls{lo} in \cref{eq:detector_balanced_photocurrent} as
-\begin{equation}
-	\alpha_s(t)^*
-	\alpha_l(t)
-	=
-	\alpha(t)^*
-	e^{-i(\omega_lt+\vartheta)}
-	=
-	\int_{-\infty}^{+\infty}
-	\frac{\dd{\omega}}{2\pi}
-	\alpha(\omega)^*
-	e^{-i(\omega_l t+\vartheta)}
-	e^{-i\omega t}
-	.
-	\label{eq:detector_balanced_signal_product}
-\end{equation}
+to include the linewidth profile $g(t)$ of the \gls{lo} signal $\alpha_l(t)=g(t)e^{-i(\omega_lt-\vartheta)}$.\footnote{For instance, $g(t)\propto e^{-\gamma t/2}$ for a Lorentzian profile, see Ref.~\cite{Demtroeder2014}.}.
 Inserting \cref{eq:detector_balanced_signal_product} into \cref{eq:detector_balanced_photocurrent}, we find
 \begin{equation}
 	\begin{split}
@@ -304,23 +306,33 @@ Inserting \cref{eq:detector_balanced_signal_product} into \cref{eq:detector_bala
 		\right](t)
 		=
 		2\Re
-		\int_{-B/2}^{+B/2}
+		\int_{-\infty}^{+\infty}
 		\frac{\dd{\omega}}{2\pi}
-		\eta(\omega)
-		\alpha(\omega)
-		e^{-i\vartheta}
-		e^{+i(\omega-\omega_l) t}
-		,
+		\eta(\omega+\omega_l)
+		\alpha(\omega+\omega_l)
+		e^{+i(\omega t+\vartheta)}
+		.
 	\end{split}
 	\label{eq:detector_balanced_photocurrent_final}
 \end{equation}
-where we introduced the detector bandwidth $B$ equal to the support of $\eta(\omega)$.\footnote{The support of a function $f\colon X\to Y$ is the subset of the domain, $U\subset X$, for which the function is non-zero for all values of the subset, i.e., $f(x)\neq 0$ for all $x\in U$.}
-Comparing our final result for the photocurrent, \cref{eq:detector_balanced_photocurrent_final}, with the expectation value of the quadrature operator for a coherent state $\ket{\beta(t)}$,
+Assuming the detector response-function $\eta(\omega)$ to be constant over the detector bandwidth $B_d$, \cref{eq:detector_balanced_photocurrent_final} simplifies to
+\begin{equation}
+	i(t)
+	\propto
+	2\Re
+	\int_{-B_d/2}^{+B_d/2}
+	\frac{\dd{\omega}}{2\pi}
+	\alpha(\omega+\omega_l)
+	e^{+i(\omega t+\vartheta)}
+	.
+	\label{eq:detector_balanced_photocurrent_simpilfied}
+\end{equation}
+Comparing our final result for the photocurrent, \cref{eq:detector_balanced_photocurrent_final}, with the expectation value of the quadrature operator for the coherent state $\ket{\alpha(t)}$,
 \begin{equation}
 	\begin{split}
-		\bra{\beta(t)}
+		\bra{\alpha(t)}
 		\hat{X}(t)
-		\ket{\beta(t)}
+		\ket{\alpha(t)}
 		&=
 		\int_{-\infty}^{+\infty}
 		\frac{\dd{\omega}}{2\pi}
@@ -339,27 +351,56 @@ Comparing our final result for the photocurrent, \cref{eq:detector_balanced_phot
 		,
 	\end{split}
 \end{equation}
-we identify that the balanced photocurrent signal corresponds to a quadrature measurement of a coherent state with bandwidth-limited and down-converted spectrum
+we note that the quadrature operator lacks the notion of a downconversion frequency and phase as well as a bandwidth.
+Fortunately, we already derived a unitary frequency-conversion operator in our treatment of the phase modulator, \cref{eq:frequency_conversion_evolution}.
+Transforming the quadrature operator with the frequency-conversion operator $\hat{U}_\text{FC}$,
 \begin{equation}
-	\beta(\omega)
-	=
-	\eta(\omega)
-	\alpha(\omega)
-	e^{-i(\omega_lt+\vartheta)}
-	,
+	\begin{split}
+		\hat{U}_\text{FC}^\dagger
+		\hat{X}(t)
+		\hat{U}_\text{FC}
+		&=
+		\int_{-\infty}^{+\infty}
+		\frac{\dd{\omega}}{2\pi}
+		\left[
+			\hat{U}_\text{FC}^\dagger
+			\hat{a}(\omega)
+			\hat{U}_\text{FC}
+			e^{-i\omega t}
+			+
+			\text{H.c.}
+		\right]
+		\\
+		&=
+		\sum_{m\in\mathbb{Z}}
+		J_m(\theta)
+		\int_{-\infty}^{+\infty}
+		\frac{\dd{\omega}}{2\pi}
+		\left[
+			\hat{a}(\omega+m\omega_l)
+			e^{-i(\omega t+m\vartheta)}
+			+
+			\text{H.c.}
+		\right]
+		,
+	\end{split}
 \end{equation}
-suggesting the definition of a generalized quadrature operator including phase, frequency and bandwidth, i.e.,
+creates not only the downconversion frequency $\omega_l$ but also all of its harmonics.
+To remove the harmonics, we add a reservoir to the detection system, which we assume to be in the vacuum state~\footnote{In a more realistic model, we would assume the reservoir to be in a thermal state, which directly includes thermal noise into our signals.}, and couple it such that it absorbs all the energy outside the frequency interval $[-B_d/2,+B_d/2]$.
+As a result, we discover the generalized quadrature operator,
 \begin{equation}
-	\hat{\chi}(t;\omega_0,\vartheta,B)
-	=
-	\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
-	\left[
-		\hat{a}(\omega-\omega_0)
-		e^{-i(\omega t+\vartheta)}
-		+
-		\text{H.c.}
-	\right]
-	.
-	\label{eq:quadrature_operator_generalized}
+	\begin{split}
+		\hat{X}(t;\omega_l,B_d)
+		&\propto
+		\int_{-B_d/2}^{+B_d/2}
+		\frac{\dd{\omega}}{2\pi}
+		\left[
+			\hat{a}(\omega+\omega_l)
+			e^{-i(\omega t+\vartheta)}
+			+
+			\text{H.c.}
+		\right]
+		,
+	\end{split}
 \end{equation}
-The generalized quadrature operator reduces to the phase-rotated quadrature operator for a quadrature measurement at zero frequency, $\omega_0=0$, with infinite bandwidth $B\to\infty$.\footnote{The zero-frequency quadrature measurement equals the time average of the quadrature.}
+which for coherent states has expectation value equal to the photocurrent of our balanced detector, \cref{eq:detector_balanced_photocurrent_simpilfied}.

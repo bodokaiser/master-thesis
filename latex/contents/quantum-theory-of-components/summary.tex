@@ -141,20 +141,20 @@ Additionally, we presented an electric circuit of a \gls{tia} converting and amp
     \includegraphics{figures/tikz/components-detector-direct}
     \caption{Quantum-optical direct detector with input coherent-state $\ket{\alpha(t)}$, and output voltage-signal $y(t)$.}\label{fig:components_detector_direct}
 \end{figure}
-The output voltage-signal $y(t)$ in \Cref{fig:components_detector_direct} is equal to the photon flux $\abs{\alpha(t)}^2$ convolved with the combined response of the detector and the \gls{tia} $\eta$, i.e.,
+The output voltage-signal $y(t)$ in \Cref{fig:components_detector_direct} is equal to the photon flux $\abs{\alpha(t)}^2$ convolved with the combined response-function of the detector and the \gls{tia} $\eta(\omega)$, i.e.,
 \begin{equation}
 	y(t)
 	=
 	\left(\eta\conv\abs{\alpha}^2\right)(t)
 	=
-	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
+	\int_{-\infty}^{+\infty}\frac{\dd{\omega}}{2\pi}
 	\eta(\omega)
 	\abs{\alpha(\omega)}^2
 	,
 \end{equation}
-wherein $\abs{\alpha(\omega)}^2$ is the signal power and $B/2$ is the minimum of the detector and \gls{tia} bandwidth.
+wherein $\abs{\alpha(\omega)}^2$ is the signal power.
 The direct detector is a square-law detector where the photocurrent is proportional to the signal power.
-To resolve the quadratures of the signal, we combine the signal with a \gls{lo} in an optical coupler and monitor the outputs with two direct detectors in a balanced configuration.
+To resolve the quadratures of the signal, we combine the input with a \gls{lo} signal in an optical coupler and monitor the outputs with two direct detectors in a balanced configuration.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/tikz/components-detector-balanced}
@@ -165,25 +165,25 @@ The output voltage-signal $z(t)$ in \Cref{fig:components_detector_balanced} is e
 	z(t)
 	=
 	2\Re
-	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
-	\eta(\omega)
-	\alpha(\omega)
-	e^{+i(\omega-\omega_l)t-i\vartheta}
+	\int_{-\infty}^{+\infty}\frac{\dd{\omega}}{2\pi}
+	\eta(\omega+\omega_l)
+	\alpha(\omega+\omega_l)
+	e^{+i(\omega t+\vartheta)}
 	,
 \end{equation}
-wherein $\omega_l$ is the \gls{lo} frequency and the \gls{lo} lineshape is absorbed into the signal $\alpha(\omega)$.
-Comparison of the balanced detector's mean voltage signal with the expectation value of the phase-rotated quadrature operator suggests defining a generalized quadrature operator
+wherein $\omega_l$ and $\vartheta$ are the \gls{lo} frequency and phase, and the \gls{lo} lineshape is absorbed into the signal $\alpha(\omega)$.
+Comparison of the balanced detector's mean voltage signal with the expectation value of the quadrature operator leads us to motivate the generalized quadrature operator
 \begin{equation}
-	\hat\chi(t)
+	\hat{X}(t;\omega_l,B_d)
 	=
-	\int_0^{B/2}\frac{\dd{\omega}}{2\pi}
+	\int_{-B_d/2}^{+B_d/2}\frac{\dd{\omega}}{2\pi}
 	\left[
-		\hat{a}(\omega+\omega_0)
+		\hat{a}(\omega+\omega_l)
 		e^{-i(\omega t+\vartheta)}
 		+
 		\text{H.c.}
 	\right]
 	,
 \end{equation}
-which extends the phase-rotated quadrature operator by the effective detector bandwidth $B/2$ and the frequency shift by $\omega_0$.
-Our results are compatible with Ref.~\cite{Gardiner2000,Shapiro2009,Loudon2000,Vogel2006,Kikuchi2016} on homo- and heterodyne detection but are more general in that we do not assume a particular input coherent-state and included the detector response as well as \gls{lo} lineshape.
+accounting for an effective detector-bandwidth $B_d$ and downconversion frequency and phase, by combining the frequency-conversion operator with a spectral filter.
+Our results are compatible with Ref.~\cite{Gardiner2000,Shapiro2009,Loudon2000,Vogel2006,Kikuchi2016} on homo- and heterodyne detection but are more general in that we account for continuous-time signals, downconversion frequency and phase, and the detector bandwidth.

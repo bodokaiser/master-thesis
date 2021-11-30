@@ -126,41 +126,41 @@ Multiplication with the \gls{lo} signal $\cos(\omega_lt+\vartheta)$, the mixing 
 		.
 	\end{split}
 \end{equation}
-However, we suppress the high-frequency band using an ideal \gls{lp} filter with bandwidth $B$,
+However, we suppress the high-frequency band using an ideal \gls{lp} filter with bandwidth $B_d$,
 \begin{equation}
 	\begin{split}
 		u(t)
 		&=
 		\Re
-		\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		\int_{-B_d/2}^{+B_d/2}\frac{\dd{\omega}}{2\pi}
 		z(\omega+\omega_l)
 		e^{+i\omega t-i\vartheta}
 		\\
 		&=
 		\Re
-		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		\int_{0}^{+B_d/2}\frac{\dd{\omega}}{2\pi}
 		z(\omega+\omega_l)
 		e^{+i\omega t-i\vartheta}
 		+
 		\Re
-		\int_{-B/2}^{0}\frac{\dd{\omega}}{2\pi}
+		\int_{-B_d/2}^{0}\frac{\dd{\omega}}{2\pi}
 		z(\omega+\omega_l)
 		e^{+i\omega t-i\vartheta}
 		\\
 		&=
 		\Re
-		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		\int_{0}^{+B_d/2}\frac{\dd{\omega}}{2\pi}
 		z(\omega+\omega_l)
 		e^{+i\omega t-i\vartheta}
 		-
 		\Re
-		\int_{B/2}^{0}\frac{\dd{\omega}}{2\pi}
+		\int_{B_d/2}^{0}\frac{\dd{\omega}}{2\pi}
 		z(\omega-\omega_l)^*
 		e^{-i\omega t-i\vartheta}
 		\\
 		&=
 		\Re
-		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		\int_{0}^{+B_d/2}\frac{\dd{\omega}}{2\pi}
 		\left[
 			z(\omega+\omega_l)
 			e^{+i\omega t}
@@ -173,7 +173,7 @@ However, we suppress the high-frequency band using an ideal \gls{lp} filter with
 	\end{split}
 	\label{eq:downconversion_real}
 \end{equation}
-where we assumed $\omega_l\gg B/2$.
+where we assumed $\omega_l\gg B_d/2$.
 For $\vartheta=0$, the downconverted signal $v(t)$ is equal to projecting the real part of the complex input spectrum $z(\omega)$, losing the imaginary part's information.
 Furthermore, when rewriting $u(t)$ as an integral over positive frequencies, i.e., frequencies we can measure, we find a second term mirroring the first term.
 \begin{figure}[htb]
@@ -182,7 +182,7 @@ Furthermore, when rewriting $u(t)$ as an integral over positive frequencies, i.e
 	\caption{Power spectrum illustrating downconversion of a passband signal (solid spectrum) mixed with a \gls{lo} signal $\omega_l$ to the intermediate frequency $\omega_i$ (dashed spectrum) and measurement with bandwidth $B_d$ (dotted spectrum).}\label{fig:spectrum_downconversion_single}
 \end{figure}
 \Cref{fig:spectrum_downconversion_single} shows the downconversion of the signal $z(t)$ around the \gls{lo} at $\omega_l$ to the intermediate frequency $\omega_i$.
-The actual measurement involved only positive frequencies up to the detector bandwidth $B/2$ causing the actual signal to be imposed with the mirrored spectrum.
+The actual measurement involved only positive frequencies up to the detector bandwidth $B_d/2$ causing the actual signal to be imposed with the mirrored spectrum.
 
 Single-quadrature downconversion only reveals a real projection of the complex spectrum.
 To conserve both quadratures, we need to split the input signal into two branches and perform single-quadrature downconversion with two orthogonal phase references of the \gls{lo}, see \Cref{fig:downconversion_dual}.
@@ -198,13 +198,13 @@ The signal of the lower branch,
 		v(t)
 		&=
 		\Im
-		\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		\int_{-B_d/2}^{+B_d/2}\frac{\dd{\omega}}{2\pi}
 		z(\omega-\omega_l)
 		e^{+i(\omega t+\vartheta)}
 		\\
 		&=
 		\Im
-		\int_{0}^{+B/2}\frac{\dd{\omega}}{2\pi}
+		\int_{0}^{+B_d/2}\frac{\dd{\omega}}{2\pi}
 		\left[
 			z(\omega-\omega_l)
 			e^{+i(\omega t+\vartheta)}
@@ -231,7 +231,7 @@ If we now assume the input signal to be from the coherent-state transmitter $\ke
 	u(t)
 	&=
 	\Re
-	\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
+	\int_{-B_d/2}^{+B_d/2}\frac{\dd{\omega}}{2\pi}
 	\beta(\omega-\omega_c+\omega_l)
 	e^{+i(\omega t+\theta)}
 	\label{eq:receiver_demod_real}
@@ -239,7 +239,7 @@ If we now assume the input signal to be from the coherent-state transmitter $\ke
 	v(t)
 	&=
 	\Im
-	\int_{-B/2}^{+B/2}\frac{\dd{\omega}}{2\pi}
+	\int_{-B_d/2}^{+B_d/2}\frac{\dd{\omega}}{2\pi}
 	\beta(\omega-\omega_c+\omega_l)
 	e^{+i(\omega t+\theta)}
 	\label{eq:receiver_demod_imag}
