@@ -1,8 +1,8 @@
 \section{Photodetectors}\label{sec:photodetectors}
 
 % We follow mostly Mandel & Wolf supplemented by Knight and Vogel.
-
-
+The photodetectors let us probe the quantum-optical states via an electrical signal.
+In the following, we will briefly review the results of the photodetection theory according to Refs.~\cite{Mandel1995,Wolf2021} and then take a closer look at the direct and balanced detector.
 
 \subsection{Photoelectric effect}
 
@@ -65,13 +65,14 @@ For the excited state, $\ket{e}$, an energy continuum exists with energies rangi
 The difference of the lowest excited energy, $\min_eE_e$, and the ground state energy, $E_g$, is equivalent to the bandgap energy inside a semiconductor.
 The transition from the ground to an excited state, $\ket{g}\to\ket{e}$, through photon absorption requires the photon energy, $\omega$, to be at least the bandgap energy, $\omega\geq\min_eE_e-E_g$.
 
+\FloatBarrier
 \subsection{Photocurrent operator}
 
 % independent atoms in ensemble: Rocca 1971, Arnedo and Rocca 1974
 % effective detector response including spatiality in z?
 % renormalization of inefficiency when considering spatial detector
 
-Ref.~\cite[p.~725]{Mandel1995} generalizes the differential probability for a single photoelectron excitation to the \gls{povm} of counting $m$ photoelectrons from infinitely many independent detector atoms from time $t$ to $t+T$ as\footnote{If we assume no sources present inside the detector, the fields are approximately free at the detector, and we can neglect the time-ordering in \cref{eq:photoelectron_counting_prob}~\cite[p.~183]{Vogel2006}.}
+Ref.~\cite[p.~725]{Mandel1995} generalizes the differential probability for a single photoelectron excitation to the \gls{povm} of counting $m$ photoelectrons from infinitely many independent detector atoms from time $t$ to $t+T$ as\footnote{If we assume no sources present inside the detector, the fields are approximately free at the detector, and we can neglect the time-ordering in \cref{eq:photoelectron_povm_mean}~\cite[p.~183]{Vogel2006}.}
 \begin{equation}
 	\hat{P}_m(t,T)
 	=
@@ -86,7 +87,7 @@ Ref.~\cite[p.~725]{Mandel1995} generalizes the differential probability for a si
 	\label{eq:photoelectron_povm}
 	,	
 \end{equation}
-wherein the intensity operator is equal to the integrated equal-time correlation function of the electric field, 
+wherein the photocurrent operator is equal to the integrated equal-time correlation function of the electric field,\footnote{In Ref.~\cite{Mandel1995} the photocurrent operator is equal to the equal-time correlation function of the Maxwell field. The electric and Maxwell field operator are connected by an unitary transformation.}
 \begin{align}
 	\hat{I}(t,T)
 	=
@@ -100,7 +101,7 @@ wherein the intensity operator is equal to the integrated equal-time correlation
 \end{align}
 with detector efficiency constant $\eta$.
 From a signal-processing perspective, it is more natural to define a detector response function, $\eta(t)$, which generalizes the measurement period $T$ and is experimentally accessible.
-The convolved intensity operator,
+The convolved photocurrent operator,
 \begin{align}
 	\hat{I}(t)
 	=
@@ -114,8 +115,8 @@ The convolved intensity operator,
 	\label{eq:intensity_operator_convolved}
 	,
 \end{align}
-reduces to the integrated intensity operator, \cref{eq:intensity_operator_integrated}, when using a constant step response for the detector.
-From here on, we use the \cref{eq:photoelectron_povm} with the convolved intensity operator, \cref{eq:intensity_operator_convolved}.
+reduces to the integrated photocurrent operator, \cref{eq:intensity_operator_integrated}, when using a constant step response for the detector.
+From here on, we use the \cref{eq:photoelectron_povm} with the convolved photocurrent operator, \cref{eq:intensity_operator_convolved}.
 
 Using the generating function of the photoelectron \gls{povm}, \cref{eq:photoelectron_povm}, we find the average number of photoelectrons emitted at $t$ to be~\cite[p.~183]{Vogel2006}
 \begin{equation}
@@ -144,6 +145,7 @@ wherein $\expval{\left(\Delta\hat{I}(t)\right)^2}$ denotes the variance of the b
 \FloatBarrier
 \subsection{Direct detector}
 
+The direct detector resembles a power or intensity measurement of the optical state, so it is also sometimes called a square-law detector.
 \Cref{fig:detector_direct} presents the electronic schematic of a direct detector circuit.
 A photodiode, PD, is reverse biased with voltage $-V_b<0$ to reduce the response time of the photodiode.
 Under optical illumination, PD produces a photocurrent, $i(t)$, which in natural units is equal to the mean photoelectron number, \cref{eq:photoelectron_povm_mean}.
@@ -188,8 +190,7 @@ In \cref{eq:detector_direct_photovoltage}, we find the absolute square of the si
 \FloatBarrier
 \subsection{Balanced detector}
 
-% problems with intensity detector (nonlinear)
-
+To obtain information about the quadratures of the signal, we can mix the optical signal with a \gls{lo} and measure the mixer outputs with two direct detectors in a balanced configuration.
 \Cref{fig:detector_balanced_optics} shows a possible arrangement of electro-optical components for balanced detection.
 \begin{figure}[htb]
     \centering
