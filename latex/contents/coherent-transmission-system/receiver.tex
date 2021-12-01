@@ -220,8 +220,7 @@ is simply obtained from \cref{eq:downconversion_real} by shifting the \gls{lo} p
 Regardless of the particular value of the \gls{lo} phase reference $\vartheta$, dual-quadrature downconversion recovers the complete information, the real and imaginary part, of the input signal spectrum $z(\omega)$.
 
 We presented the electro-optical receiver setups implementing single- and dual-quadrature downconversion in \Cref{fig:coherent_receiver_active} and \Cref{fig:coherent_receiver_passive} in \Cref{ch:qkd}.
-Essentially, the electro-optical setups combine the optical signal and \gls{lo} in an optical coupler and perform balanced detection on the coupler outputs for which derived the quantum theory in \Cref{sec:photodetectors}.
-From a quantum viewpoint, balanced detection corresponds to a quadrature measurement at a particular frequency represented by the generalized quadrature operator, \cref{eq:quadrature_operator_generalized}.
+In \Cref{ch:components}, we investigated the balanced detector, effectively implementing the single-quadrature downconversion.
 
 \subsection{Homo- and heterodyning}
 
@@ -261,17 +260,16 @@ and distinguish between homodyning for zero intermediate frequency $\omega_i=0$,
 	\includegraphics{figures/tikz/spectrum-heterodyning}
 	\caption{Power spectrum illustrating heterodyne detection. The passband signal with carrier frequency $\omega_c$ and bandwidth $B_s$ (dashed) is downconverted with the \gls{lo} frequency $\omega_l>\omega_c$. The downconverted spectrum is measured with bandwidth $B_d$ (solid), which contains the image band (dotted) from the right side of the \gls{lo}.}\label{fig:spectrum_heterodyning}
 \end{figure}
-In heterodyning, we downconvert the passband signal at $\omega_c$ to an intermediate frequency $\omega_i$.
-
-
-The negative frequencies collapse onto the positive frequencies by being mirrored around zero frequency $\omega=0$.
-In \Cref{fig:spectrum_heterodyning}, the left spectrum at $\omega_l$ (dashed) is mirrored 
-
-\Cref{fig:spectrum_heterodyning} shows how the frequencies left of the $\omega_l$ fold onto the positive frequencies.
-
-
-Furthermore, we distinguish between single- and dual-quadrature homodyning, depending if we perform single- or dual- quadrature downconversion.
-If the detector bandwidth is large enough to cover the baseband signal at the intermediate frequency, we can resolve both quadratures of the incoming signal with heterodyning and single-quadrature downconversion.
+In heterodyning, we shift the spectrum surrounding $\omega_c$, dashed lines in \Cref{fig:spectrum_heterodyning}, to the zero frequency $\omega=0$, where we superimpose the negative frequencies with the positive frequencies, dotted lines in \Cref{fig:spectrum_heterodyning}.
+The noise spectrum opposite of \gls{lo} frequency, which contributes to the measurement, is knowns as the image band.
+In homodyning, we calibrate the \gls{lo} signal to match the carrier frequency, $\omega_l=\omega_c$, as illustrated in \Cref{fig:spectrum_homodyning}, which separates the image from the signal band but folds the positive and negative frequencies of the baseband signal.
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/tikz/spectrum-homodyning}
+	\caption{Power spectrum illustrating homodyne detection. The passband signal with carrier frequency $\omega_c$ and bandwidth $B_s$ (dashed) is downconverted with the \gls{lo} frequency, equal to the carrier frequency, $\omega_l=\omega_c$. The downconverted spectrum is measured with bandwidth $B_d$ (solid), which contains the mirror (dotted) from the right side of the \gls{lo}.}\label{fig:spectrum_homodyning}
+\end{figure}
+As a result, homodyning recovers only one quadrature
+To resolve both quadratures, we need to perform dual-quadrature downconversion requiring two homodyne detectors.
 \begin{table}[htb]
   \centering
   \begin{tabular}{lccccc}
@@ -288,14 +286,10 @@ If the detector bandwidth is large enough to cover the baseband signal at the in
   \end{tabular}
   \caption{Comparison of receiver schemes according to Ref.~\cite{Brunner2017}. The single-quadrature homodyne detection offers low optical complexity and high bandwidth but only resolves one of two quadratures and required frequency and phase synchronization of the \gls{lo}. The dual-quadrature homodyne detection resolves both quadratures with high bandwidth but requires two balanced detectors increasing the optical complexity and phase synchronization of the \gls{lo}. The heterodyne detection schemes resolves both quadratures with low complexity and no requirements on \gls{lo} synchronization at the cost of signal bandwidth.}\label{tab:receivers}
 \end{table}
-\Cref{tab:receivers} summarizes the characteristics between the single and dual homodyne and the heterodyne receiver schemes.
+\Cref{tab:receivers} summarizes the characteristics between the single- and dual-quadrature homodyning and heterodyning.
 A strong advantage of the heterodyne receiver design is that both quadratures can be resolved with a single balanced detector, keeping the optical complexity low.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/tikz/spectrum-homodyning}
-	\caption{Power spectrum illustrating homodyne detection. The passband signal with carrier frequency $\omega_c$ and bandwidth $B_s$ (dashed) is downconverted with the \gls{lo} frequency, equal to the carrier frequency, $\omega_l=\omega_c$. The downconverted spectrum is measured with bandwidth $B_d$ (solid), which contains the mirror (dotted) from the right side of the \gls{lo}.}\label{fig:spectrum_homodyning}
-\end{figure}
+Concerning the \gls{snr}, dual-quadrature homodyne and heterodyne detection offer the same performance.
+For dual-quadrature homodyning, the signal power reduces among the two detectors, while the image band degrades the \gls{snr} for heterodyning.
 
 \FloatBarrier
 \subsection{Symbol decoding}
