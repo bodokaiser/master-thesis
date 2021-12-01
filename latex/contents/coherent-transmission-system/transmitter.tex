@@ -96,14 +96,19 @@ We also see how the pulse-shaping filter shapes the upsampled spectrum, and the 
 \subsection{Upconversion}
 
 We previously constructed the pulse-shaped baseband signals $x(t)$ and $p(t)$ encoding the real respective imaginary part of a complex symbol sequence $\{\alpha_n\in\mathbb{C}\colon n\in I\}$.
-Shifting the spectrum $x(\omega)$ to the optical domain resembles an upconversion by the optical carrier frequency $\omega_c$.
+Modulating the signals onto the optical carrier frequency $\omega_c$ resembles an upconversion by the frequency $\omega_c$, corresponding to the multiplication with an \gls{lo} signal, as illustrated in \Cref{fig:upconversion_single}.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/upconversion-single}
 	\caption{Block diagram of single-quadrature upconversion. The signal $x(t)$ is mixed with the \gls{lo} signal $\cos(\omega_lt+\vartheta)$ and the output is filtered by a bandpass to remove harmonics.}\label{fig:upconversion_single}
 \end{figure}
-The upconversion resembles a multiplication with an \gls{lo} signal at carrier frequency $\omega_c$, as illustrated in \Cref{fig:upconversion_single}.
-In the frequency representation, we find the upconversion to produce two copies of the spectrum $x(\omega)$, i.e.,
+In the frequency representation, we find that the multiplication of the signal $x(t)$ with the \gls{lo} signal $\cos(\omega_ct+\vartheta)$ creates two copies of the spectrum $x(\omega)$, at the positive and negative upconversion-frequency $\pm\omega_c$, as illustrated in \Cref{fig:spectrum_upconversion_single}.
+\begin{figure}[htb]
+	\centering
+	\includegraphics{figures/tikz/spectrum-upconversion-single}
+	\caption{Power spectrum illustrating upconversion of the real-valued signal $x(t)$ centered at zero frequency $\omega=0$ (solid spectrum) to the carrier frequencies $\pm\omega_c$ (dashed spectra).}\label{fig:spectrum_upconversion_single}
+\end{figure}
+Because \Cref{fig:spectrum_upconversion_single} shows the power spectrum, it fails to convey that the spectrum at the negative frequencies is complex conjugate, $x(-\omega)=x(\omega)^*$, with respect to the positive frequencies, as required for real-valued signals, i.e.,
 \begin{equation}
 	\begin{split}
 		x(t)
@@ -174,15 +179,9 @@ In the frequency representation, we find the upconversion to produce two copies 
 	\end{split}
 	\label{eq:upconversion_real}
 \end{equation}
-where we used the conjugate symmetry of the spectrum, $x(-\omega)=x(\omega)^*$, representing a real-valued signal in the time domain, for the last step.
-\begin{figure}[htb]
-	\centering
-	\includegraphics{figures/tikz/spectrum-upconversion-single}
-	\caption{Power spectrum illustrating upconversion of the real-valued signal $x(t)$ centered at zero frequency $\omega=0$ (solid spectrum) to the carrier frequencies $\pm\omega_c$ (dashed spectra).}\label{fig:spectrum_upconversion_single}
-\end{figure}
-Graphically, the upconversion creates two copies of the symmetric baseband spectrum around the positive and negative carrier frequencies $\pm\omega_c$, as illustrated in \Cref{fig:spectrum_upconversion_single}.
+wherein we used the conjugate symmetry of the spectrum in the last step.
 
-\Cref{fig:upconversion_dual} shows how to extend the single-quadrature upconversion of \Cref{fig:upconversion_single} to two quadratures by splitting a single \gls{lo} with relative phase shift of $\pi/2$.
+\Cref{fig:upconversion_dual} shows how to extend the previously-discussed single-quadrature upconversion to dual-quadrature upconversion by splitting a single \gls{lo} with relative phase shift of $\pi/2$.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/upconversion-dual}
@@ -201,7 +200,7 @@ The filtered output of the lower branch mixer is obtained by replacing $\varthet
 	.
 	\label{eq:upconversion_real}
 \end{equation}
-Adding both upconverted signals yields
+The sum of both branches in \Cref{fig:upconversion_dual} equals
 \begin{equation}
 	\begin{split}
 		s(t)
@@ -240,60 +239,25 @@ Adding both upconverted signals yields
 	\label{eq:upconversion_dual}
 \end{equation}
 where we used $\Im(z)=-\Re(iz)$ in the last step.
-The final result of the dual-quadrature upconversion, \cref{eq:upconversion_dual}, suggests defining the complex baseband
+\Cref{eq:upconversion_dual} suggests defining the complex-valued baseband signal
 \begin{equation}
-	\alpha(\omega)
+	\alpha(t)
 	=
-	x(\omega)
+	x(t)
 	+
-	ip(\omega)
+	ip(t)
 	\label{eq:upconversion_baseband}
-	.
 \end{equation}
-Expressing the spectrum in \cref{eq:upconversion_dual} in terms of the complex baseband \cref{eq:upconversion_baseband}
+for which we can show that the dual-quadrature upconversion equals the multiplication with a complex exponential, i.e.,
 \begin{equation}
-	\begin{split}
-		\Re
-		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
-		\frac{\dd{\omega}}{2\pi}
-		\alpha(\omega-\omega_c)
-		e^{+i\omega t+i\vartheta}
-		&=
-		\Re
-		\int_{-B_s/2}^{+B_s/2}
-		\frac{\dd{\omega}}{2\pi}
-		\alpha(\omega)
-		e^{+i\omega t}
+	s(t)
+	=
+	\Re
+	\left[
+		\alpha(t)
 		e^{+i(\omega_c t+\vartheta)}
-		\\
-		&=
-		\Re
-		\left[
-			\alpha(t)
-			e^{+i(\omega_c t+\vartheta)}
-		\right]
-		\\
-		&=
-		\Re
-		\left[
-			x(t)
-			e^{+i(\omega_c t+\vartheta)}
-		\right]
-		+
-		\Re
-		\left[
-			ip(t)
-			e^{+i(\omega_c t+\vartheta)}
-		\right]
-		\\
-		&=
-		x(t)
-		\cos(\omega_c t+\vartheta)
-		-
-		p(t)
-		\sin(\omega_c t+\vartheta)
-		,
-	\end{split}
+	\right]
+	,
 \end{equation}
 demonstrating equivalence between the baseband and passband representations.
 \begin{figure}[htb]
@@ -301,17 +265,15 @@ demonstrating equivalence between the baseband and passband representations.
 	\includegraphics{figures/tikz/spectrum-upconversion-dual}
 	\caption{Power spectrum illustrating dual-quadrature upconversion of the complex-valued signal $\alpha(t)$ centered at zero frequency $\omega=0$ (solid spectrum) to the carrier frequencies $\pm\omega_c$ (dashed spectra).}\label{fig:spectrum_upconversion_dual}
 \end{figure}
-The power spectrum illustrating the dual-quadrature upconversion in \Cref{fig:spectrum_upconversion_dual} is similar to the single-quadrature upconversion in \Cref{fig:spectrum_upconversion_single} with the difference that the baseband spectrum is not anymore symmetric around the carrier frequency.
+Compared to the power spectrum illustrating the single-quadrature upconversion in \Cref{fig:upconversion_dual}, the power spectras concentrated are now asymmetric around their respective carrier frequencies, $\omega=0,\pm\omega_c$.
+However, the upconverted spectrum including the positive and negative frequencies remains to have complex conjugate symmetry, as depicted in \Cref{fig:spectrum_upconversion_dual}.
 
-Another advantage of the complex representation is that the coherent states also use it.
-Indeed, if we identify the mixers in the upconversion diagram, \Cref{fig:upconversion_dual}, with \glspl{mzm}, we find ourselves with the electro-optical \gls{iqm} for which we derived a coherent state transform, \cref{eq:iqm_modulation}.
-The input coherent-state of the \gls{iqm} is a narrow-linewidth laser at frequency $\omega_c$, i.e.,
+Using the complex baseband representation, \cref{eq:upconversion_baseband}, it is simple to link the dual-quadrature upconversion to our result of the electro-optical \gls{iqm}.
+In particular, if we assume a narrow-linewidth \gls{lo} at frequency $\omega_c$, represented by the coherent state
 \begin{equation}
 	\ket{g(t)e^{+i\omega_ct}}
-	,
 \end{equation}
-wherein $g(t)$ encodes the laser profile.
-The unitary evolution operator associated with the \gls{iqm} acting on the \gls{lo} coherent state produces
+with $g(t)$ encoding the laser profile, the unitary evolution operator associated with the \gls{iqm} acting on the \gls{lo} coherent state produces,
 \begin{equation}
 	\hat{U}_\text{IQM}[\alpha(t)]
 	\ket{g(t)e^{+i\omega_ct}}
@@ -319,4 +281,4 @@ The unitary evolution operator associated with the \gls{iqm} acting on the \gls{
 	\ket{(g\alpha)(t)e^{+i\omega_ct}}
 	,
 \end{equation}
-i.e., upconverted the complex baseband $\alpha(t)$ from the electrical to the quantum-optical domain.
+the upconversion from the electrical to the quantum-optical domain.
