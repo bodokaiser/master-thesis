@@ -5,7 +5,7 @@ An optical coupler is a passive component with two optical in- and outputs, gene
 In the following, we would like to illuminate the versatile aspects of the optical coupler.
 We begin our investigation with the beam splitter, implementing an optical coupler and splitter, considering its reflection and transmission properties~\cite{Gerry2005,Vogel2006}.
 Subsequently, we examine the waveguide coupler, which offers an alternative approach using an interaction Hamiltonian~\cite{Haroche2006}.
-Finally, we provide a third entry point using a unitary transformation to transform the displacement operator yielding input-output relations for coherent states and discuss applications as a spectral filter~\cite{Leonhard2010,Vogel2006}.
+Finally, we provide a third entry point using a unitary transformation to transform the displacement operator yielding input-output relations for coherent states and discuss applications as a splitter and spectral filter~\cite{Leonhardt2010,Vogel2006}.
 
 \subsection{Beam splitter}
 
@@ -585,12 +585,12 @@ The output states are given by applying the unitary evolution operator $\hat{U}$
 	\hat{D}\left[\vb{\alpha}(t)\right]
 	\hat{U}^\dagger
 	\hat{U}
-	\ket*{\vb{0},\vb{0}}
+	\ket*{0,0}
 	=
 	\hat{U}
 	\hat{D}\left[\vb{\alpha}(t)\right]
 	\hat{U}^\dagger
-	\ket*{\vb{0},\vb{0}}
+	\ket*{0}
 	,
 \end{equation}
 wherein we inserted $\mathbb{1}=\hat{U}^\dagger\hat{U}$ in the second step and we used the invariance of the vacuum state in the third step.
@@ -966,7 +966,7 @@ Instead of choosing a parametrization for the splitting coefficients, which dire
 Assuming the Fourier transform of $c_1(\omega),c_2(\omega)$ to be well-defined, we find the output coherent-states to be
 \begin{equation}
 	\hat{U}
-	\ket*{\alpha(t),\vb{0}}
+	\ket*{\alpha(t),0}
 	=
 	\ket*{\left(c_1\conv\alpha\right)(t),\left(c_2\conv\alpha\right)(t)}
 	\label{eq:splitter_state_convolution}
@@ -991,7 +991,7 @@ If we further assume the signal $\alpha(t)$ to be bandwidth-limited to $B$ and t
 the output state takes the simple form
 \begin{equation}
 	\hat{U}
-	\ket*{\alpha(t),\vb{0}}
+	\ket*{\alpha(t),0}
 	=
 	\ket*{c_1\alpha(t),c_2\alpha(t)}
 \end{equation}

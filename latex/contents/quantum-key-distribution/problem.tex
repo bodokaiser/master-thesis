@@ -21,7 +21,7 @@ Unless Alice and Bob do not want to meet in person every time they initiate comm
 
 \subsection{Public-key distribution}
 
-The standard attempt to solve the key distribution problem is to use an asymmetric cipher comprising a public key for encryption and a private key for decryption.
+The standard attempt to solve the key-distribution problem is to use an asymmetric cipher comprising a public key for encryption and a private key for decryption.
 One of the parties, for example, Bob, first generates an asymmetric key pair of which he discloses the public key to Alice.
 Alice generates a secret key from a true random generator, encrypts it with the public key, and sends it to Bob, see the left-hand side of \Cref{fig:pkd_system}.
 Bob decrypts the message he received from Alice with his private key to obtain Alice's secret key, see the right-hand side of \Cref{fig:pkd_system}.
@@ -48,38 +48,38 @@ A key length that was considered secure in the past might be rendered useless in
 It is imaginable to store communication from the present in the hope of breaking it in the future.
 In addition to technological progress in computing, discovering new algorithms may decrease the computational complexity and make certain attacks practicable.
 For example, Shor's quantum algorithm~\cite{Shor1994} provides an exponential speed-up in prime number factorization compared to the fastest (known) classical algorithm, \gls{gnfs}, see \Cref{fig:prime_number_factorization_runtime}.
-As prime number factorization is used by, for instance, Diffie-Hellman key exchange, as a one-way function, a sufficiently powerful quantum computer can break previously, assumed to be, secure communication.
+As prime number factorization is used by, for instance, Diffie-Hellman key exchange, as a one-way function, a sufficiently-powerful quantum computer can break previously, assumed to be, secure communication.
 
 As long as there exists no mathematical proof for a theoretical lower bound of the computational complexity of a particular class of one-way functions, PKD is not forward secure, i.e., might be broken in the future.\footnote{Post-quantum cryptography~\cite{Bernstein2017,Chen2016} attempts to mitigate the vulnerability of present asymmetric ciphers against quantum algorithms by choosing a different class of one-way functions suspected to be secure. But again, as long as there is no absolute lower bound for the computational complexity of a particular class of one-way functions, forward security of PKD, including post-quantum ciphers, remains contestable.}
 
 \FloatBarrier
 \subsection{Quantum-key distribution}
 
-The potential of \gls{qkd} becoming a vulnerability inflames the demand for a practical and forward secure key distribution scheme.
-Ideally, the key distribution scheme should dynamically react to any third-party interaction by compensating for the information leak or aborting the protocol.
-\gls{qkd} claims to be such a key distribution scheme.
+The potential of \gls{pkd} becoming a vulnerability inflames the demand for a practical and forward secure key distribution scheme.
+Ideally, the key-distribution scheme should dynamically react to any third-party interaction by compensating for the information leak or aborting the protocol.
+\gls{qkd} claims to be such a key-distribution scheme.
 Based on the laws of quantum physics, \gls{qkd} exploits the inherent uncertainty of measuring non-orthogonal quantum states to generate random correlations between Alice and Bob.
-Alice's and Bob's correlations estimate for their quantum transmissions provides insights about potential information loss to a third party.
+Alice's and Bob's correlations provide insights about potential information loss to a third party.
 Using classical techniques, Alice and Bob can then compensate for the potential information loss or abort the protocol if necessary.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/qkd-system}
-	\caption{Alice and Bob use a quantum and classical channel to generate a shared secret key. Alice possesses a transmitter, and Bob owns a receiver. Transmitter and receiver both output a secret key and connect to a quantum and classical channel. A potential adversary, Eve, has read and write access to the quantum but only read access to the classical channel.}\label{fig:qkd_system}
+	\caption{Alice and Bob use a quantum and classical channel to generate a shared secret-key. Alice possesses a transmitter, and Bob owns a receiver. Transmitter and receiver both output a secret key and connect to a quantum and classical channel. A potential adversary, Eve, has read and write access to the quantum but only read access to the classical channel.}\label{fig:qkd_system}
 \end{figure}
 \Cref{fig:qkd_system} presents a communication system proficient for \gls{qkd}.
 The classical and quantum channel connecting Bob's receiver with Alice's transmitter is usually the same physical medium.
 For example, an optical fiber where the quantum and classical channels occupy different wavelengths or polarization.
-If the \gls{qkd} succeeds, Alice's transmitter and Bob's receiver output the same secret key to Alice, respectively Bob.
-The adversary, Eve, has full access (read and write) to the quantum channel but only read access to the classical channel.
+If the \gls{qkd} protocol succeeds, Alice's transmitter and Bob's receiver output the same secret key to Alice, respectively Bob.
+The adversary, Eve, has full access (read and write) to the quantum channel but has only read access to the classical channel.
 The restriction that Eve has only read access over the classical channel is important to exclude man-in-the-middle attacks.
 However, the restriction is not a practical limitation as we can ensure integrity by promoting the classical channel to an authenticated channel using \glspl{mac}.
 
 The details on \gls{qkd} strongly depend on the particular implementation at hand, the \gls{qkd} protocol.
 A huge zoo of \gls{qkd} protocols exists, and it is useful to overview common features for a systematic presentation.
 The \gls{qkd} literature typically distinguishes between \gls{dvqkd}, \gls{cvqkd}, and \gls{dpsqkd}.
-Leaving out \gls{dpsqkd}, it is unclear what features unambiguously differentiate between \gls{cvqkd} and \gls{dvqkd}.
+Leaving out \gls{dpsqkd}, it is unclear which features unambiguously differentiate between \gls{cvqkd} and \gls{dvqkd}.
 For instance, most practical \gls{dvqkd} protocols use weak coherent states~\cite{Duvsek2006}, which are anything but discrete.
-The accepted opinion considers a protocol discrete when using a single-photon and continuous when using a coherent detector.
+The accepted opinion considers a protocol discrete when using a single photon and continuous when using a coherent detector.
 However, this view is challenged by discrete \gls{qkd} protocols, like BB84~\cite{Bennett1984}, using coherent detection~\cite{Qi2021}.
 What other feature can we use if the detection method does not clearly distinguish between \gls{cvqkd} and \gls{dvqkd}?
 \begin{figure}[htb]
@@ -89,12 +89,12 @@ What other feature can we use if the detection method does not clearly distingui
 \end{figure}
 \Cref{fig:qkd_classification} summarizes common features among \gls{qkd} protocols.
 Features like the protocol schema, the measurement basis selection, and the detector are uniquely determined.
-More opaque is the distinction between the physical encoding and the logical Hilbert space.
-The physical encoding refers to the light \glspl{dof} used to encode the data, for example, the polarization of light or the particular quantum state (number, coherent, squeezed).
+More opaque is the distinction between the physical encoding and the logical Hilbert space, a concept which we introduce here.
+The physical encoding refers to the light \glspl{dof} used to encode the data, for example, the polarization of light or the particular quantum state.
 More often, the technical facilities determine the physical encoding.
 For example, coherent light sources and detectors are mature technologies.
-Yet, many \gls{qkd} protocols assume a more simple quantum system than that of light, which we refer to as the logical Hilbert space.
+At the same time, many \gls{qkd} protocols assume a more simple quantum system than that of light, which we refer to as the logical Hilbert space.
 The logical Hilbert space is either finite or countable.
 If it is finite, it is often a qubit or generalization thereof.
 If it is countable, it is often bosonic.
-Therefore, we propose not to partition \gls{qkd} protocols among \gls{cvqkd} or \gls{dvqkd} but by their logical Hilbert space being bosonic- or qubit-based\footnote{Such a distinction appears also in general quantum information theory, see, for instance, Ref.~\cite[p.~2]{Weedbrook2012}.}, which we both present in the next two sections.
+Therefore, we propose not to partition \gls{qkd} protocols among \gls{cvqkd} or \gls{dvqkd} but by their logical Hilbert space being bosonic- or qubit-based\footnote{Such a distinction is also indicated in quantum information theory, see, for instance, Ref.~\cite[p.~2]{Weedbrook2012}.}, which we both present in the next two sections.

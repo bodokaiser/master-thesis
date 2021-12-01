@@ -29,7 +29,8 @@ The cathode is then in excess of positive charge carriers, creating a positive c
     \includegraphics{figures/tikz/phototube}
     \caption{Schematic of a phototube, a vacuum tube utilizing the photoelectric effect for photodetection. Photons, $\gamma$, hit a metallic cathode and eject electrons, $e_-$, through the photoelectric effect. The anode is biased with a positive voltage, $V>0$, to attract the emitted electrons. The cathode is in excess of positive charge carriers, creating a positive electric current, $I>0$.}\label{fig:phototube}
 \end{figure}
-A photodiode is typically made of a PN-junction (\Cref{fig:photodiode}), a junction of a positively- (P) with a negatively-doped (N) semiconductor, supplemented by a contact on the P- and a contact on the N-doped semiconductor.
+
+Contrary, a photodiode is typically made of a PN-junction (\Cref{fig:photodiode}), a junction of a positively- (P) with a negatively-doped (N) semiconductor, supplemented by a contact on the P- and a contact on the N-doped semiconductor.
 The contact at the P-doped semiconductor is negatively charged, creating a depletion layer between the PN-junction with no free charge carriers.
 The P layer absorbs incident photons, $\gamma$, exciting electrons, which accelerate through the depletion layer towards the cathode, creating the photocurrent, $I$.
 \begin{figure}[htb]
@@ -39,8 +40,8 @@ The P layer absorbs incident photons, $\gamma$, exciting electrons, which accele
 \end{figure}
 Contrary to the phototube, the excited electrons are not truly free but rather excited to an energy band, where they move with higher mobility through the semiconductor.
 That said, the central idea of exciting photoelectrons through photon absorption to some higher energy, applies to both kinds of photodetectors~\cite[p.~128]{Cohen1992}.
-We will oversee the subtile differences and assume a single photoelectron bound to a single atom in a unique ground state, $\ket{g}$, which is excited through photon absorption to some excited state continuum, $\ket{e}$.\footnote{Quantum models for photon absorption specific to semiconductors are found in Ref.~\cite{Hoyer2002} and Ref.~\cite{Rossi2002}.}
 
+We will oversee the subtile differences and assume a single photoelectron bound to a single atom in a unique ground state, $\ket{g}$, which is excited through photon absorption to some excited state continuum, $\ket{e}$.\footnote{Quantum models for photon absorption specific to semiconductors are found in Ref.~\cite{Hoyer2002} and Ref.~\cite{Rossi2002}.}
 The Hamiltonian of an electron is
 \begin{equation}
 	\hat{H}_e
@@ -64,6 +65,7 @@ The ground state, $\ket{g}$, is unique and has the single energy $E_g$.
 For the excited state, $\ket{e}$, an energy continuum exists with energies ranging from $\min_eE_e$ to $\max_eE_e$.
 The difference of the lowest excited energy, $\min_eE_e$, and the ground state energy, $E_g$, is equivalent to the bandgap energy inside a semiconductor.
 The transition from the ground to an excited state, $\ket{g}\to\ket{e}$, through photon absorption requires the photon energy, $\omega$, to be at least the bandgap energy, $\omega\geq\min_eE_e-E_g$.
+In \Cref{app:photodetection_theory} we extend the photoelectron model to derive the differential probability for photoelectron emission.
 
 \FloatBarrier
 \subsection{Photocurrent operator}
@@ -146,13 +148,13 @@ wherein $\expval{\left(\Delta\hat{I}(t)\right)^2}$ denotes the variance of the b
 \subsection{Direct detector}
 
 The direct detector resembles a power or intensity measurement of the optical state, so it is also sometimes called a square-law detector.
-\Cref{fig:detector_direct} presents the electronic schematic of a direct detector circuit.
+\Cref{fig:detector_direct} presents the electronic schematic of a direct-detector circuit.
 A photodiode, PD, is reverse biased with voltage $-V_b<0$ to reduce the response time of the photodiode.
 Under optical illumination, PD produces a photocurrent, $i(t)$, which in natural units is equal to the mean photoelectron number, \cref{eq:photoelectron_povm_mean}.
 \begin{figure}[htb]
     \centering
     \includegraphics{figures/circuitikz/detector-direct}
-    \caption{Electronic schematic of a direct (intensity) detector comprising a photodiode and an operational amplifier in \gls{tia} configuration. The anode of the photodiode is reverse biased with voltage $-V_b<0$. The cathode of the photodiode emits the photocurrent $i$ and is connected to the inverting input of the operational amplifier. The non-inverting input of the operational amplifier is connected with ground, while the inverting input is coupled with feedback impedance $Z_f$ to the operational amplifier output voltage, $V$.}\label{fig:detector_direct}
+    \caption{Electronic schematic of a direct (intensity) detector comprising a photodiode and an operational amplifier with a \gls{tia} frontend. The anode of the photodiode is reverse biased with voltage $-V_b<0$. The cathode of the photodiode emits the photocurrent $i$ and is connected to the inverting input of the operational amplifier. The non-inverting input of the operational amplifier is connected with ground, while the inverting input is coupled with feedback impedance $Z_f$ to the operational amplifier output voltage, $V$.}\label{fig:detector_direct}
 \end{figure}
 For a coherent state, $\ket{\alpha(t)}$, we find the mean photocurrent to be equal to the power of the signal, $\abs{\alpha(t)}^2$, convolved with the detector response function,
 \begin{equation}
@@ -175,7 +177,7 @@ Assuming an ideal operational amplifier, the \gls{tia} outputs the voltage signa
 	i_p(t)
 	.
 \end{equation}
-More realistically, we expect the response of the \gls{tia} to be characterized by a frequency response function $h$, and the output voltage is given by
+More realistically, we expect the response of the \gls{tia} to be characterized by a frequency-response function $h$, and the output voltage is given by
 \begin{equation}
 	V_p(t)
 	=
@@ -185,7 +187,7 @@ More realistically, we expect the response of the \gls{tia} to be characterized 
 	\label{eq:detector_direct_photovoltage}
 	.
 \end{equation}
-In \cref{eq:detector_direct_photovoltage}, we find the absolute square of the signal to be convolved with the detector response function and the response function of the \gls{tia}, which can be summarized into one effective response function.
+In \cref{eq:detector_direct_photovoltage}, we find the absolute square of the signal to be convolved with the detector response-function and the response function of the \gls{tia}, which can be summarized into one effective response-function.
 
 \FloatBarrier
 \subsection{Balanced detector}
@@ -197,7 +199,7 @@ To obtain information about the quadratures of the signal, we can mix the optica
     \includegraphics{figures/tikz/detector-balanced}
     \caption{Electro-optical setup of a balanced detector comprising a beam splitter and two photodetectors. The beam splitter superimposes the signal and \gls{lo} fields, $\alpha_s(t)$ and $\alpha_l(t)$, to the output fields $\alpha_\pm(t)$, each monitored by a photodiode with output current $i_\pm(t)$.}\label{fig:detector_balanced_optics}
 \end{figure}
-Assuming a perfectly balanced beam splitter over the optical bandwidths, we find the output amplitudes to be
+Assuming a perfectly-balanced beam splitter over the optical bandwidths, we find the output amplitudes to be
 \begin{equation}
 	\alpha_\pm(t)
 	=

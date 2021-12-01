@@ -16,7 +16,7 @@ Together with practical considerations, these constraints lead to the particular
 First and foremost, the channel and receiver limit the spectrum of useful coherent states.
 For instance, the receiver has limited bandwidth to detect the signal with signal power outside that bandwidth being lost.
 Apart from that, the physical channel only shows favorable transmission properties over a certain frequency range, outside the signal is strongly suppressed and distorted.\footnote{For instance, the C-band, spanning wavelengths from \SI{1530}{\nano\meter} to \SI{1565}{\nano\meter}, is widely deployed for optical telecommunication.}
-Additionally, different users may jointly use the same physical channel, and using the available bandwidth efficiently while reducing interference between users, requires the signal bandwidth to be minimal.
+Additionally, different users may jointly use the same physical channel, and using the available bandwidth efficiently while reducing interference between users, requires the signal bandwidth to be well-defined.
 
 While the symbol rate effectively defines the bandwidth, insufficient usage of the bandwidth degrades the \gls{snr}.
 In addition, we need to shift the baseband spectrum to an optical frequency $\omega_0$ for which the channel shows desirable transmission characteristics.
@@ -28,8 +28,8 @@ So from a signal-processing point of view, we want the transmitter to
 In the following, we term the first step symbol encoding and the second step upconversion.
 
 In the present setup, the signal is almost exclusively constructed in the digital domain, and the analog part is limited to the digital-to-analog conversion.
-Constructing the signal digitally allows for greater flexibility in the development process as the synthesis is mostly software-defined.
-For upconversion of the synthesized signal to the optical domain, we modulate the electric signal onto an optical carrier.
+Constructing the signal digitally allows for greater flexibility in the development process is mostly software-defined.
+For upconversion of the analog signal to the optical domain, we modulate the electric signal onto an optical carrier.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/software-defined-transmitter}
