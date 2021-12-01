@@ -1,21 +1,20 @@
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
 
-First, we derived the quantum mode expansion of the Maxwell and electric field operators in the Coulomb gauge, \cref{eq:maxwell_operator} and \cref{eq:electric_operator}, from fundamental field-theoretic arguments.
-Second, we defined a vacuum state from which we axiomatically constructed generalized number and coherent quantum states.
-Our results for the field operators and quantum states are compatible with the results reported in the literature on quantum field theory~\cite{Itzykson2012,Greiner2013,Srednicki2007,Peskin1995}.
-The field-theoretic description naturally contains a momentum distribution related to the wave function and generalizes the frequency spectrum, essential for optical communication.
-Contrary to the number states in single-mode quantum optics, the generalized number states are not eigenstates of the energy and momentum operator.
-On the other hand, the coherent states behave as one would expect from a generalization of the single-mode description.
+The present chapter consists of two stages.
+In the first stage, we derived the plane-mode expansions of the quantum Maxwell and electric field operators in the Coulomb gauge, \cref{eq:maxwell_operator} and \cref{eq:electric_operator}, from field-theoretic arguments.
+In the second second, we axiomatically motivated a generalization of the number and coherent states to a momentum distribution.
+The momentum distribution is related to the wave function and generalizes the frequency spectrum, essential for communication, to three dimensions.
+While the properties of our generalized quantum states are qualitatively compatible with the simplified states from single-mode quantum optics, we presented them in a consistent framework justified by established results from quantum field theory.
 
-Our field-theoretic description coincides with the continuous-mode description of quantum optics~\cite{Barnett2002,Loudon2000,Vogel2006,Shapiro2009} when we
+Our field-theoretic description reduces to continuous-mode quantum optics~\cite{Barnett2002,Loudon2000} if we ignore
 \begin{enumerate}
-	\item approximate the vector field $\vu{A}(t,\vb{x})$ as a scalar field $\hat{A}(t,\vb{x})$,
-	\item ignore the transverse profile of the wave function,
-	\item rescale the field by the mean-value of the Lorentz factor $\sqrt{2\omega_0}$.
+	\item the polarization \glspl{dof} of the Maxwell vector field,
+	\item the transverse momentum distribution, and
+	\item the Lorentz factor $1/\sqrt{2\omega}$.
 \end{enumerate}
-The first approximation is straightforward and not a strong limitation as it is easy to restore the polarization \gls{dof} through a tensor product of two scalar fields.
-For optical communication, and quantum optics, the transverse momentum profile transversal to the propagation axis carries no information and it is reasonable to ignore the transversal \glspl{dof} and reduce the field to one-dimension~\cite[p.~53]{Cohen2019}
+The first approximation is straightforward and not a strong limitation as it is easy to restore the polarization \glspl{dof} through a tensor product of two scalar fields.
+For optical communication, and quantum optics, the transverse momentum profile transversal to the propagation axis carries no information and it is reasonable to ignore the transversal \glspl{dof}~\cite[p.~53]{Cohen2019}
 \begin{equation}
 	\int_{\mathbb{R}^3}
 	\frac{\dd[3]{p}}{(2\pi)^3\sqrt{2\omega(\vb{p})}}
@@ -24,7 +23,7 @@ For optical communication, and quantum optics, the transverse momentum profile t
 	\frac{\dd{p}}{(2\pi)\sqrt{2p}}
 	.
 \end{equation}
-The approximation can be made even stronger when neglecting back-scattering and reflection effects and restricting the momentum distribution to forward momentum, i.e.,
+The approximation can be made even stronger when neglecting back-scattering and reflection effects and restricting the momentum distribution to forward propagation, i.e.,
 \begin{equation}
 	\int_{-\infty}^{\infty}
 	\frac{\dd{p}}{(2\pi)\sqrt{2p}}
@@ -33,7 +32,8 @@ The approximation can be made even stronger when neglecting back-scattering and 
 	\frac{\dd{p}}{(2\pi)\sqrt{2p}}	
 \end{equation}
 where the identification of the forward momentum with the frequency, $p=\omega$ is often made.
-To justify the third approximation, we need to some kind of bandwidth limitation, then by the mean-value theorem for definite integrals
+The third approximation requires some additional investigation.
+For one, every physical measurement is bandwidth-limited such that by the mean-value theorem for definite integrals
 \begin{equation}
 	\int_{0}^{\infty}
 	\frac{\dd{\omega}}{(2\pi)\sqrt{2\omega}}
@@ -43,75 +43,79 @@ To justify the third approximation, we need to some kind of bandwidth limitation
 	\frac{\dd{\omega}}{2\pi}
 	,
 \end{equation}
-we can absorb the prefactor into the field.
-We conclude that (continuous-mode) quantum optics is the scalar, one-dimensional forward, optical bandwidth approximation of a Maxwell quantum field theory in the Coulomb gauge.
+the Lorentz factor is effectively constant.
+However, in principle, it should be possible to measure the Lorentz factor.
+That said, the Lorentz factor breaks our Fourier transform, making some results difficult for interpretation.\footnote{More precisely, we need to distinguish between the four-dimensional Fourier transform and the Fourier transform implementing the energy-momentum relation.}
+For instance, if we ignore the Lorentz factor and ignore the transverse momentum distribution, we find that the eigenvalue of the coherent state with regard to the Maxwell field operator, \cref{eq:coherent_state_eigenstate_maxwell}, simplifies to
+\begin{equation}
+	\hat{A}^{(-)}(t,x)
+	\ket{\alpha}
+	=
+	\int\frac{\dd{p}}{2\pi}
+	\alpha(p)
+	e^{-ip(t-x)}
+	\ket{\alpha}
+	=
+	\alpha(t-x)^*
+	\ket{\alpha}
+	,
+\end{equation}
+where $\alpha(t-x)$ is the time-domain signal.\footnote{We identify the negative-frequency Maxwell operator $\hat{A}^{(-)}$ with the Fourier transform of the annihilation operator used by Loudon~\cite{Loudon2000}.}
+Another assumption or restriction, which we have not mentioned explicitly yet, is the use of the Coulomb gauge.
 The Coulomb gauge restricts our predictions to a stationary reference frame.
 While a stationary reference frame appears reasonable for terrestrial communication, it must be questioned for space communication.
 
-An important observable we have not yet introduced is the generalized quadrature operator.
-Ref.~\cite[p.~79]{Barnett2002} defines the generalized quadrature operator as\footnote{We adapted the quadrature operator to our convention of the Fourier transform, dividing the integration measure by $2\pi$, and used $p=\omega$.}
+Another important operator, subject to controversies, which we have not mentioned so far, is the quadrature operator.
+Ref.~\cite[p.~79]{Barnett2002} defines the continuous-mode quadrature operator as\footnote{We adapted the quadrature operator to our convention of the Fourier transform, dividing the integration measure by $2\pi$, and added time evolution.}
 \begin{equation}
 	\hat{X}(\vartheta)
 	=
-	\int\frac{\dd{p}}{2\pi}
 	\frac{1}{\sqrt{2}}
+	\int\frac{\dd{p}}{2\pi}
 	\left\{
 		\hat{a}(p)
-		e^{-i\vartheta}
+		e^{-i(pt+\vartheta)}
 		+
 		\hat{a}^\dagger(p)
-		e^{+i\vartheta}
+		e^{+i(pt+\vartheta)}
 	\right\}
-	,
+	.
 	\label{eq:quadrature_operator_barnett}
 \end{equation}
-which for $\vartheta=0,\pi/2$ reduces to the continuous-mode generalization of the position and momentum operator of the harmonic oscillator.
-In Maxwell field theory, the field operator $\hat{A}(t,\vb{x})$ generalizes the position operator of the harmonic oscillator, and indeed, we find
+Comparing \cref{eq:quadrature_operator_barnett} with the one-dimensional Maxwell operator,
 \begin{equation}
-	\hat{A}(0,\vb{0})
+	\hat{A}(t,x)
 	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\frac{1}{\sqrt{2\omega(\vb{p})}}
+	\int\frac{\dd{p}}{2\pi}
+	\frac{1}{\sqrt{2p}}
 	\left\{
-		\hat{a}_\lambda(\vb{p})
+		\hat{a}_\lambda(p)
+		e^{-ip(t-x)}
 		+
-		\hat{a}_\lambda^\dagger(\vb{p})
+		\hat{a}_\lambda^\dagger(p)
+		e^{+ip(t-x)}
 	\right\}
+	,
 \end{equation}
-to generalize Barnett's quadrature operator, \cref{eq:quadrature_operator_barnett}, to three dimensions including the Lorentz factor.
-Application of the phase-rotation operator~\cite[p.~38]{Leonhardt2010} yields the phase-rotated quadrature operator
+we note that these are equal up to the Lorentz factor, a phase, and the spatial dependency $x$.
+For a measurement at a stationary location, the spatial dependency reduces to a phase, which can be further modified using the phase-rotation operator~\cite[p.~38]{Leonhardt2010}, i.e.,
 \begin{equation}
 	e^{-i\vartheta\hat{N}}
-	\hat{A}(0,\vb{0})
+	\hat{A}(t)
 	e^{+i\vartheta\hat{N}}
 	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\frac{1}{\sqrt{2\omega(\vb{p})}}
+	\int\frac{\dd{p}}{2\pi}
+	\frac{1}{\sqrt{2p}}
 	\left\{
-		\hat{a}(\vb{p})
-		e^{-i\vartheta}
+		\hat{a}_\lambda(p)
+		e^{-ip(t+\vartheta)}
 		+
-		\hat{a}^\dagger(\vb{p})
-		e^{+i\vartheta}
+		\hat{a}_\lambda^\dagger(p)
+		e^{+ip(t+\vartheta)}
 	\right\}
 	,
 \end{equation}
 where $\hat{N}$ denotes the number operator defined in \cref{eq:maxwell_number_operator}.
-Actual measurements of the quadrature operator are repeated at the same time in space, hence we can absorb the spatial dependency into the phase writing
-\begin{equation}
-	\hat{X}(t,\vartheta)
-	=
-	\int\frac{\dd[3]{p}}{(2\pi)^3}
-	\frac{1}{\sqrt{2\omega(\vb{p})}}
-	\left\{
-		\hat{a}(\vb{p})
-		e^{-i(\omega(\vb{p})t+\vartheta)}
-		+
-		\hat{a}^\dagger(\vb{p})
-		e^{+i(\omega(\vb{p})t+\vartheta)}
-	\right\}
-	.
-	\label{eq:quadrature_operator}
-\end{equation}
+Using that practical measurements are bandwidth-limited, we can invoke the mean-value theorem for definite integrals and pull out the Lorentz factor $1/\sqrt{2p}$ from the integrand and thereby fully recovering the quadrature operator proposed by in Ref.~\cite{Barnett2002}, \cref{eq:quadrature_operator_barnett}.
 How can the Maxwell field be an observable when it is not gauge invariant?
 While it is true that the Maxwell field shows a gauge symmetry, the gauge symmetry is uniquely fixed through the Coulomb gauge, which is required to remove unphysical polarization \glspl{dof}.\footnote{See Ref.~\cite{stackexchange676622} for a discussion on the physicality of the Maxwell field and the gauge freedom.}
