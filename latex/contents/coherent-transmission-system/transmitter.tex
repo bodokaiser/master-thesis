@@ -100,9 +100,9 @@ Modulating the signals onto the optical carrier frequency $\omega_c$ resembles a
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/upconversion-single}
-	\caption{Block diagram of single-quadrature upconversion. The signal $x(t)$ is mixed with the \gls{lo} signal $\cos(\omega_lt+\vartheta)$ and the output is filtered by a bandpass to remove harmonics.}\label{fig:upconversion_single}
+	\caption{Block diagram of single-quadrature upconversion. The signal $x(t)$ is mixed with the \gls{lo} signal $\cos(\omega_ct)$ and the output is filtered by a bandpass to remove harmonics.}\label{fig:upconversion_single}
 \end{figure}
-In the frequency representation, we find that the multiplication of the signal $x(t)$ with the \gls{lo} signal $\cos(\omega_ct+\vartheta)$ creates two copies of the spectrum $x(\omega)$, at the positive and negative upconversion-frequency $\pm\omega_c$, as illustrated in \Cref{fig:spectrum_upconversion_single}.
+In the frequency representation, we find that the multiplication of the signal $x(t)$ with the \gls{lo} signal $\cos(\omega_ct)$ creates two copies of the spectrum $x(\omega)$, at the positive and negative upconversion-frequency $\pm\omega_c$, as illustrated in \Cref{fig:spectrum_upconversion_single}.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/tikz/spectrum-upconversion-single}
@@ -112,13 +112,13 @@ Because \Cref{fig:spectrum_upconversion_single} shows the power spectrum, it fai
 \begin{equation}
 	\begin{split}
 		x(t)
-		\cos(\omega_ct+\vartheta)
+		\cos(\omega_ct)
 		&=
 		\int_{-B_s/2}^{+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega)
 		e^{+i\omega t}
-		\cos(\omega_ct+\vartheta)
+		\cos(\omega_ct)
 		\\
 		&=
 		\frac{1}{2}
@@ -126,9 +126,9 @@ Because \Cref{fig:spectrum_upconversion_single} shows the power spectrum, it fai
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega)
 		\left[
-			e^{+i(\omega+\omega_c)t+i\vartheta}
+			e^{+i(\omega+\omega_c)t}
 			+
-			e^{+i(\omega-\omega_c)t-i\vartheta}
+			e^{+i(\omega-\omega_c)t}
 		\right]
 		\\
 		&=
@@ -136,45 +136,45 @@ Because \Cref{fig:spectrum_upconversion_single} shows the power spectrum, it fai
 		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega-\omega_c)
-		e^{+i\omega t+i\vartheta}
+		e^{+i\omega t}
 		+
 		\frac{1}{2}
 		\int_{-\omega_c-B_s/2}^{-\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega+\omega_c)
-		e^{+i\omega t-i\vartheta}
+		e^{+i\omega t}
 		\\
 		&=
 		\frac{1}{2}
 		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega-\omega_c)
-		e^{+i\omega t+i\vartheta}
+		e^{+i\omega t}
 		-
 		\frac{1}{2}
 		\int_{+\omega_c+B_s/2}^{+\omega_c-B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		x(-\omega+\omega_c)
-		e^{-i\omega t-i\vartheta}
+		e^{-i\omega t}
 		\\
 		&=
 		\frac{1}{2}
 		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega-\omega_c)
-		e^{+i\omega t+i\vartheta}
+		e^{+i\omega t}
 		+
 		\frac{1}{2}
 		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega-\omega_c)^*
-		e^{-i\omega t-i\vartheta}
+		e^{-i\omega t}
 		\\
 		&=
 		\Re\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega-\omega_c)
-		e^{+i\omega t+i\vartheta}
+		e^{+i\omega t}
 		,
 	\end{split}
 	\label{eq:upconversion_real}
@@ -185,18 +185,18 @@ wherein we used the conjugate symmetry of the spectrum in the last step.
 \begin{figure}[htb]
 	\centering
 	\includegraphics{figures/circuitikz/upconversion-dual}
-	\caption{Block diagram illustrating upconversion of two real-valued baseband signals, $x(t)$ and $p(t)$, to a real-valued passband signal $s(t)$. The \gls{lo} signal $\sqrt{2}\cos(\omega_ct+\vartheta)$ is split into two branches with a relative phase shift between the branches of $\pi/2$. One branch is mixed with the baseband signal $x(t)$, the other is mixed with $p(t)$. The output of each mixer is filtered to remove harmonics and then added to yield the upconverted signal $s(t)$.}\label{fig:upconversion_dual}
+	\caption{Block diagram illustrating upconversion of two real-valued baseband signals, $x(t)$ and $p(t)$, to a real-valued passband signal $s(t)$. The \gls{lo} signal $\sqrt{2}\cos(\omega_ct)$ is split into two branches with a relative phase shift between the branches of $\pi/2$. One branch is mixed with the baseband signal $x(t)$, the other is mixed with $p(t)$. The output of each mixer is filtered to remove harmonics and then added to yield the upconverted signal $s(t)$.}\label{fig:upconversion_dual}
 \end{figure}
-The filtered output of the lower branch mixer is obtained by replacing $\vartheta\to\vartheta+\pi/2$ and $x(t)\to p(t)$ in \cref{eq:upconversion_real}, i.e.,
+The filtered output of the lower branch mixer is obtained by adding a phase of $\pi/2$ to the complex exponential and replacing $x(t)$ with $p(t)$ in \cref{eq:upconversion_real}, i.e.,
 \begin{equation}
 	p(t)
-	\sin(\omega_ct+\vartheta)
+	\sin(\omega_ct)
 	=
 	\Im
 	\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 	\frac{\dd{\omega}}{2\pi}
 	p(\omega-\omega_c)
-	e^{+i\omega t+i\vartheta}
+	e^{+i\omega t}
 	.
 	\label{eq:upconversion_real}
 \end{equation}
@@ -206,23 +206,23 @@ The sum of both branches in \Cref{fig:upconversion_dual} equals
 		s(t)
 		&=
 		x(t)
-		\cos(\omega_ct+\vartheta)
+		\cos(\omega_ct)
 		-
 		p(t)
-		\sin(\omega_ct+\vartheta)
+		\sin(\omega_ct)
 		\\
 		&=
 		\Re
 		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		x(\omega-\omega_c)
-		e^{+i\omega t+i\vartheta}
+		e^{+i\omega t}
 		-
 		\Im
 		\int_{+\omega_c-B_s/2}^{+\omega_c+B_s/2}
 		\frac{\dd{\omega}}{2\pi}
 		p(\omega-\omega_c)
-		e^{+i\omega t+i\vartheta}
+		e^{+i\omega t}
 		\\
 		&=
 		\Re
@@ -233,7 +233,7 @@ The sum of both branches in \Cref{fig:upconversion_dual} equals
 			+
 			ip(\omega-\omega_c)
 		\right]
-		e^{+i\omega t+i\vartheta}
+		e^{+i\omega t}
 		,
 	\end{split}
 	\label{eq:upconversion_dual}
@@ -255,7 +255,7 @@ for which we can show that the dual-quadrature upconversion equals the multiplic
 	\Re
 	\left[
 		\alpha(t)
-		e^{+i(\omega_c t+\vartheta)}
+		e^{+i\omega_c t}
 	\right]
 	,
 \end{equation}

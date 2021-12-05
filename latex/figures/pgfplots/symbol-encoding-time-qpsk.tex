@@ -90,7 +90,7 @@
 				very thick,
 				no markers,
 				restrict expr to domain={\thisrow{c1}}{10:20},
-			] plot table[col sep=comma] {../../../data/rand-time-tx-lp-imag.csv};
+			] plot table[col sep=comma, y expr=\thisrow{c2}*4] {../../../data/rand-time-tx-lp-imag.csv};
 		\end{groupplot}
 	\end{tikzpicture}
 \end{document}

@@ -6,9 +6,9 @@
 	\begin{tikzpicture}[line width=1pt]
 		\node (in) {$x(t)$};
 		\node (mix) [mixer, right=of in] {};
-		\node (osc) [below=of mix] {$\cos(\omega_lt+\vartheta)$};
+		\node (osc) [below=of mix] {$\cos(\omega_ct)$};
 		\node (bnd) [bandpassshape, right=of mix] {};
-		\node (out) [right=of bnd] {$x(t)\cos(\omega_lt+\vartheta)$};
+		\node (out) [right=of bnd] {$x(t)\cos(\omega_ct)$};
 		
 		\draw[-Latex] (in) -- (mix.west);
 		\draw[-Latex] (osc.north) -- (mix.south);
